@@ -4,20 +4,12 @@
 <html>
 <head>
 	<title>Home</title>
-	<sytle>
-		
-	</sytle>
+
 </head>
 
 <body>
 
-	<div id="headerWrapper">
-		<div>
-			한글
-		</div>
-	
-	</div>
-	
+	<jsp:include page="common/header.jsp"/>
 	
 </body>
 </html>
