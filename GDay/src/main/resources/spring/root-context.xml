@@ -22,6 +22,7 @@
      <property name="url" value="jdbc:oracle:thin:@aclass.xyz:9999:xe"/>
      <property name="username" value="gday"/>
      <property name="password" value="gday"/> 
+
 	   <!-- defaultAutoCommit: 풀에서 생성 된 연결의 기본 자동 커밋 상태입니다. 설정하지 않으면 setAutoCommit 메서드가 호출되지 않습니다. -->
      <property name="defaultAutoCommit" value="false"/>
 	   
@@ -95,5 +96,11 @@
 	 						(기본값 10240byte)
 	 	
 	  -->
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 </beans>
