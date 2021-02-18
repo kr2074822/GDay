@@ -9,6 +9,15 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
-		주문페이지
+	<h1>주문/결제</h1>
+
+	<table>
+
+		
+	</table>
+
+	받는 사람 정보
+
+
 </body>
 </html>
