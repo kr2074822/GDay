@@ -4,12 +4,9 @@
 <html>
 <head>
 	<title>Home</title>
-
 </head>
 
 <body>
 
-	<jsp:include page="common/header.jsp"/>
-	
 </body>
 </html>
