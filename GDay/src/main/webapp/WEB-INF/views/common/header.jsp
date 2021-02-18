@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<link rel="stylesheet" type="text/css" href="resources/css/header.css" >
+	<style>
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/header.css" >
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
 	<div id="headerWrapper">
 	
+		<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
+	
 		<div id="logo">
-			로고
+			로고${contextPath}123
 		</div>
 		
 		<div id="header-menu">
@@ -26,15 +33,14 @@
 		</div>
 		
 		<div id="hemberger">
-			<i class="fas fa-bars"></i>
+			<i class="fas fa-bars"></i>	
+			<a href="payment/order">주문</a>
 		</div>	
 			
 	</div>
 
 	<script>
-		$(".fa-bars").on("click",function(){
-			console.log(123);
-		});
+
 	</script>
 
 </body>
