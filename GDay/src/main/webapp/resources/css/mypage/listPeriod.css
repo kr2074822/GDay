@@ -1,0 +1,74 @@
+/* 마이페이지 목록 검색 기간 요소 스타일 */
+
+#container-period,
+#container-form, #list-search-1{
+    display : flex;
+    box-sizing: border-box;
+}
+
+#list-title, #list-title-period {
+    width : 200px;
+    font-weight : bold;
+    align-self: flex-start; /* 개별 아이템에 적용 */
+}
+
+#list-title { font : 20px/40px "맑은 고딕"; }
+#list-title-period { font-size : 16px;}
+
+
+
+#container-period { margin : 5px 0px 10px 0px;}
+#container-form {
+    flex-wrap: wrap;
+}
+
+input[name=periodRadio] {
+    display : none;
+}
+#list-search-1 {
+    justify-content: center;
+    align-items: center;
+}
+
+#list-search-1 > label, input[type=date], #giftStatus, #list-search-btn {
+    height : 28px;
+    font : 12px/24px "맑은 고딕";
+    border : 1px solid lightgray;
+    border-radius: 5px;
+    margin : 2px;
+} 
+#list-search-1 > label {
+    min-width : 50px;
+    background-color: #fafafa;
+    padding : 0px 0px 0px 1px;
+    text-align: center;
+}
+
+#list-search-1 > label:hover{
+    background-color: #ffd5da;
+}
+
+.radio-active {
+    background-color: #FE929F !important;
+    color : #fafafa !important;
+    border-color: #FE929F !important;
+}
+
+input[type=date], #giftStatus {
+    width : 120px;
+}
+
+#list-search-btn {
+    width : 54px;
+    background-color: #FE929F;
+    border-style : none !important;
+    color : #fafafa;
+}
+
+#list-search-btn:hover { 
+    background-color: #db7e89; 
+    color : #fafafa;
+    text-decoration: none;
+}
+
+a { text-decoration: none;}

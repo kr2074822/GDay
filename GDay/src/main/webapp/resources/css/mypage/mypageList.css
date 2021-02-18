@@ -1,0 +1,124 @@
+#container-list-all, #container-list, 
+.list-btn, .list-card,
+.list-seller, .list-status{
+    display : flex;
+    box-sizing: border-box;
+}
+
+/* 리스트 컨테이너 기준 (세로로 정렬) */
+#container-list-all {
+    width : 80%; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+.list-card, .list-btn, .list-seller, .list-status {
+    align-items: center;
+    /* 반응형에서 flex-direction : column으로 변경 */
+}
+
+.list-seller, .list-status{
+    flex-direction: column;
+    /* 반응형에서 row로 변경 */
+}
+
+/* 사이드바 : min-20% / 리스트 60% / 여백 : max-10% */
+#container-list {
+    width : 100%;
+}
+
+.list-card {
+    width : 60%;
+    height : 200px;
+    padding-left : 14px;
+}
+
+.list-thumb {
+    border : 1px solid black;
+    margin : 10px;
+    width : 120px;
+    height : 120px;
+}
+
+.list-title{
+    font-weight: bold;
+    font-size : 18px;
+}
+
+.list-btn {
+    justify-content: center;
+    width : 40%;
+    height : 200px;
+}
+
+.list-seller, .list-status {
+    width : 50%;
+    height : 100%;
+    justify-content: center;
+}
+.seller-name {
+    font-weight : bold;
+    font-size : 16px;
+}
+
+.list-seller > a, .list-status > a {
+    color : #fafafa;
+    width : 80px;
+    height : 26px;
+    text-align: center;
+    padding : 5px;
+    margin : 3px;
+    border-radius: 5px;
+    font-size : 12px;
+    line-height: 18px;
+}
+
+a { text-decoration: none;}
+
+.btn-review, .btn-confirm { background-color: #FE929F; /*티클미*/}
+.btn-review:hover, .btn-confirm:hover { 
+    background-color: #db7e89; 
+    color : #fafafa;
+    text-decoration: none;
+}
+.btn-inquiry, .btn-cancel, .btn-takeback{background-color : darkgray;}
+.btn-inquiry:hover, .btn-cancel:hover, .btn-takeback:hover { 
+    background-color: rgb(128, 128, 128); 
+    color : #fafafa;
+    text-decoration: none;
+}
+
+.list-hr {
+    width : 100%;
+    height : 3px;
+    padding : 1px;
+    margin : 5px 0px;
+}
+.list-hr > hr {
+    margin : 0px;
+    width : 100%;
+    height : 1px;
+    background-color: lightgray;
+}
+
+#btn-more {
+    width : 200px;
+    height : 50px;
+    background-color: #fafafa;
+    color : #FE929F;
+    font-size : 30px;
+    border : 1px solid #FE929F;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-more:hover {
+    background-color: #FE929F;
+    color : #fafafa;
+    text-decoration: none;
+}
