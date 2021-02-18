@@ -1,8 +1,6 @@
 package team.project.gday.payment.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/payment/*")
@@ -11,7 +9,6 @@ public class PaymentController {
 
 	@RequestMapping("order")
 	public String loginView() {
-		System.out.println("찍기");
 		return "payment/order";
 	}
 		
