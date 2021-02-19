@@ -7,10 +7,10 @@
 
 /* 리스트 컨테이너 기준 (세로로 정렬) */
 #container-list-all {
-    width : 80%; 
+		width : 80%;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    margin : 30px auto;
 }
 
 
@@ -122,3 +122,4 @@ a { text-decoration: none;}
     color : #fafafa;
     text-decoration: none;
 }
+

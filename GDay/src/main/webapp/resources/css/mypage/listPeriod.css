@@ -1,7 +1,7 @@
 /* 마이페이지 목록 검색 기간 요소 스타일 */
 
-#container-period,
-#container-form, #list-search-1{
+/* #container-period, */
+#container-form/* , #list-search-1 */{
     display : flex;
     box-sizing: border-box;
 }
@@ -18,9 +18,9 @@
 
 
 #container-period { margin : 5px 0px 10px 0px;}
-#container-form {
+/* #container-form {
     flex-wrap: wrap;
-}
+} */
 
 input[name=periodRadio] {
     display : none;
@@ -72,3 +72,13 @@ input[type=date], #giftStatus {
 }
 
 a { text-decoration: none;}
+
+
+/* @media 반응형 */
+@media (max-width : 992px){
+	#container-form {
+		flex-wrap : wrap;
+		align-items : center;
+		justify-content : center;
+	}
+}

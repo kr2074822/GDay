@@ -1,0 +1,112 @@
+/* 사이드바 css */
+li, a, span, div, i { box-sizing: border-box;}
+
+#sidebar-area { 
+    background-color: #FE929F;
+    width : 180px;
+    height : 100vh; /* window화면의 % */
+    padding : 5px 0;
+}
+
+#sidebar-area a, #sidebar-area span { 
+    color : #ffffffda;
+    text-decoration: none;
+}
+
+
+/* 닉네임, 프로필 사진 */
+#nickName{
+    display: block;
+    width : 170px;
+    height : 45px;
+    text-align: center;
+    margin : 0 auto;
+    line-height: 43px;
+} 
+#myProfile {
+    display: block;
+    width : 60px;
+    height : 60px;
+    margin : 0 auto;
+}
+
+/* 사이드바 메뉴 부분 */
+.sidebar-menu li a {
+    display : flex;
+    align-items: center;
+/*     border : 1px solid black; */
+    border-radius: 10px 0px 0px 10px;
+    margin : 1px 0px 1px 5px;
+    height : 40px;
+}
+
+/* 큰 메뉴 + 서브메뉴 공통 */
+.menu-icon, .submenu-icon {
+    width : 36px;
+    height : 36px;
+    margin-left : 5px;
+    /* border : 1px solid black; */
+}
+.menu-icon > i, .submenu-icon > i {
+    display : block;
+    font-size : 24px;
+    text-align: center;
+    line-height: 34px;
+}
+
+.menu-text, .submenu-text {
+    padding : 4px;
+    /* width : 130px; */
+    height : 36px;
+    font-size : 14px;
+    line-height: 25px;
+}
+
+/* 서브 메뉴 */
+.sub-menu > li > a {
+    margin-left : 40px;
+    height : 34px;
+    margin-top : 0px;
+}
+.submenu-icon > i { font-size : 20px; }
+.submenu-text { font-size : 11px; }
+
+
+/* 메뉴 선택 중(활성화) 배경색 */
+.active-back {
+    background-color :  #ffffffcc; 
+}
+/* 메뉴 선택 중(활성화) 글자색 */
+.active-color {
+    color : #FE929F !important;
+}
+
+.sidebar-menu a:hover {
+    background-color : #ffffff3d;
+}
+
+/* 햄버거 토글 버튼 */
+.sidebar-toggle {
+    position : absolute;
+    top : 10px;
+    left : 20px;
+    color : #fafafa;
+    font-size : 20px;
+    cursor : pointer;
+    display : none; 
+}
+
+/* @media 반응형 */
+@media (max-width : 768px){
+    .sidebar-toggle > i { 
+        background-color: none;
+        color : #FE929F;
+    }
+
+    #sidebar-area { 
+        display : none;
+    }
+    .sidebar-toggle {
+        display : block;
+    }
+}

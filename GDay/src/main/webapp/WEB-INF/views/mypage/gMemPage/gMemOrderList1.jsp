@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>선물 리스트</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.2">
 
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -22,15 +22,29 @@
 
     <!-- sweetalert : alert창을 꾸밀 수 있게 해주는 라이브러리 https://sweetalert.js.org/ -->
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	
+  	<style>
+  	
+  	.pageTitle {
+  		font-size : 24px;
+  		font-weight : bold;
+  	}
+  	#wrapper-list {
+  		display : flex;
+  	}
+  	
+  	</style>
+  	
 </head>
 <body>
 <%-- <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/> --%>
 
 <jsp:include page="../../common/header.jsp"/>
+		
+<div class="pageTitle">마이 페이지</div>
 
 <div id="wrapper-list">
-	<jsp:include page="gMemSidebar.jsp"/>
-
+		<jsp:include page="gMemSidebar.jsp"/>
 
     <div id="container-list-all">
         <div id="list-title">
@@ -66,8 +80,6 @@
                     <option value="#">취소/반품 완료</option>
                     <option value="#">취소/반품 처리 중</option>
                 </select> <!-- giftStats : 주문 선물 상태 -->
-            </div>
-            <div class="list-search" id="list-search-4">
                 <button type="submit" id="list-search-btn">조회</button>
             </div>
             </form>
@@ -81,7 +93,7 @@
                 </div>
                 <div class="list-text">
                     <span class="list-title">선물명</span><br>
-                    <span class="list-text-1">100,000원/1개 │ 2021.02.04.</span><br>
+                    <span class="list-text-1">100,000원 / 1개</span><br>
                     <span class="list-text-2">주문번호 : 210204113AAA</span><br>
                     <span class="list-text-3">[구매 확정]</span>
                 </div>
