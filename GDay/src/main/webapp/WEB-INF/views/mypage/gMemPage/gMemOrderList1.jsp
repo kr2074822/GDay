@@ -24,9 +24,12 @@
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+<%-- <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/> --%>
+
+<jsp:include page="../../common/header.jsp"/>
 
 <div id="wrapper-list">
-
+	<jsp:include page="gMemSidebar.jsp"/>
 
 
     <div id="container-list-all">
