@@ -27,7 +27,8 @@
         </div>
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
-                <li class="active-sidebar"><a href="#" class="up-menu">
+                <li class="active-sidebar">
+                		<a href="#" class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                     <span class="menu-text">주문 내역</span>
                     </a></li>
@@ -83,11 +84,14 @@
         
         /* 임시 - db 연결 후에는? c:if로 함 session에 넣기? flashAttribute?
         		어쨋든 해당 메뉴가 활성화되고 있다는 걸 알려주는 장치 필요*/
-        $(".sidebar-menu > li > a").not(".up-menu").on("click", function(){
+        $(".sidebar-menu > li > a").on("click", function(){
 	        	$(this).parent().addClass("active-sidebar");
 	        	if($(".sidebar-menu > li").eq(0).hasClass("active-sidebar")){
 		        	$(".sub-menu > li").removeClass("active-sidebar");
 		        }
+	        	if($(this).hasClass("up-menu")){
+	        		$(".sub-menu > li > a").first().trigger('click');
+	        	}
 	        	$(this).parent().siblings("li").removeClass("active-sidebar");
         });
         
