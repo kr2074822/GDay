@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>선물 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.2">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.3">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -25,10 +25,6 @@
   	
   	<style>
   	
-  	.pageTitle {
-  		font-size : 24px;
-  		font-weight : bold;
-  	}
   	#wrapper-list {
   		display : flex;
   	}
@@ -41,7 +37,6 @@
 
 <jsp:include page="../../common/header.jsp"/>
 		
-<div class="pageTitle">마이 페이지</div>
 
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
@@ -52,7 +47,7 @@
         </div>
 
         <!-- 주문 목록 기간 검색 -->
-        <div id="list-title-period"><span>[결제일]</span></div>
+        <div id="list-title-period"><span>결제일</span></div>
         <div class="row" id="container-period">
             <form action="#" method="post" id="container-form">
             <div class="list-search" id="list-search-1">

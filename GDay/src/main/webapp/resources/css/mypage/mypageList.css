@@ -14,7 +14,6 @@
 }
 
 
-
 .list-card, .list-btn, .list-seller, .list-status {
     align-items: center;
     /* 반응형에서 flex-direction : column으로 변경 */
