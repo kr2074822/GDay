@@ -1,99 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>클래스 상세 페이지</title>
 <script src="https://kit.fontawesome.com/955b087c12.js" crossorigin="anonymous"></script>
-<style>
-body {
-	display: flex;
-	justify-content: center;
-}
-
-.wrapper {
-	width: 70%;
-}
-
-.wrapper .flex-center {
-	display: flex;
-	box-sizing: border-box;
-	justify-content: center;
-}
-
-.wrapper .flex-center .thumbnailBx {
-	width: 500px;
-	height: 300px;
-	border: 1px solid black;
-}
-
-.wrapper .flex-center .productInfo {
-	margin-left: 50px;
-	width: 500px;
-}
-
-.wrapper .flex-around {
-	display: flex;
-	justify-content: space-around;
-}
-
-.wrapper .flex-between {
-	display: flex;
-	justify-content: space-between;
-}
-
-.row {
-	margin-top: 20px;
-	margin-bottom: 20px;	
-}
-
-.align-right {
-	text-align: right;
-	font-size: small;
-}
-
-.btn {
-	background-color:#FE929F;
-	color: white;
-	border-radius: 10px;
-	border-color: white;
-	width: 49%;
-	height: 35px;
-	margin-bottom: 10px;
-}
-
-.btn2 { 
-	background-color: white;
-	color: #FE929F;
-	border-color: #FE929F;
-	border-radius: 10px;
-	width: 100%;
-	height: 35px;
-}
-
-i {
-	font-size: 35px;
-	color: #FE929F;
-}
-
-.box-1 {
-
-}
-.box-2 {
-	margin-bottom: 50px;
-}
-.box-3 {
-	width:100%; 
-}
-
-.option {
-	
-}
-
-</style>
-
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassView.css">
 </head>
 <body>
+
+<jsp:include page="../common/header.jsp"/>
 
 	<div class="wrapper">
 		<div class="flex-center">
@@ -101,23 +21,32 @@ i {
 				<div class="thumbnailBx">
 					<img src="" />
 				</div>
-				<div class="row"><i class="fas fa-star"></i></div>
+				<div class="row large-font"><i class="fas fa-star"></i> 4.5</div>
 			</div>
 			<div class="box-2">
 				<div class="productInfo">
-					<div class="info-Row flex-around">
-						<h1>상품명</h1>
-						<span><i class="far fa-comments"></i></span>
+					<div class="flex-between large-font">
+						클래스명
+						<i class="far fa-comments"></i>
 					</div>
-					<div class="productOption">
-						<div class="row">가격</div>
-						<div class="row">옵션</div>
-						<div class="row">선택상품</div>
+					<div class="align-right">문의하기</div>
+					<div class="product-option">
+						<div class="row" style="margin-top: 0px;">120,000원 / 8회 수업</div>
+						<div class="small-row">2021-02-16 ~ 2021-03-16 (매주 수, 금)</div>
+						<div class="small-row">전체 정원 20명 중 10명이 수업을 신청했어요.</div>
+						<div class="amount-box flex-between">
+							<div style="line-height:100px;">참가 인원</div>
+							<div style="line-height:100px;">
+								<i class="fas fa-minus plus-minus"></i>
+								<input type="number" style="width:20px;">
+								<i class="fas fa-plus plus-minus"></i>
+							</div>
+						</div>
 					</div>
 					<hr>
-					<div class="align-right">총 개수 1개</div>
+					<div class="align-right">총 1개</div>
 					<div class="row flex-between">총 상품 금액
-						<span style="font-size: 30px">12,000원</span>
+						<span class="large-font">12,000원</span>
 					</div>
 					<div class="row">
 						<button class="btn">장바구니에 넣기</button>
@@ -128,14 +57,24 @@ i {
 			</div>
 		</div>
 		<div class="box-3">
-			<span>상품 설명</span>
-			<span>상품후기</span>
-			<span>배송/교환/반품</span>
+			<div class="infoTab" id="detail">상품설명</div>
+			<div class="infoTab" id="review">상품후기</div>
+			<div class="infoTab" id="refund">배송/교환/반품</div>
 		</div>
-		<div class=""></div>
-		<div class=""></div>
+		<hr>
+		<div class="align-right"><a href="#">신고</a></div>
+		<div class="content">강사 정보</div>
+		<div class="content">강의 설명</div>
+		<div class="content">약도</div>
+		<div class="content">강의 후기
+		
+		<jsp:include page="gClassReview.jsp"/>
+		</div>
 	</div>
 
+<script>
 
+
+</script>
 </body>
 </html>

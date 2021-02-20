@@ -1,0 +1,125 @@
+body {
+	margin: 0 auto;
+}
+
+.wrapper {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.wrapper .flex-center {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: center;
+}
+
+.wrapper .flex-center .thumbnailBx {
+	width: 500px;
+	height: 300px;
+	border: 1px solid black;
+}
+
+.wrapper .flex-center .productInfo {
+	margin-left: 50px;
+	width: 500px;
+}
+
+.wrapper .flex-around {
+	display: flex;
+	justify-content: space-around;
+}
+
+.wrapper .flex-between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.row {
+	margin-top: 20px;
+	margin-bottom: 20px;	
+}
+
+.small-row {
+ font-size: small;
+ 	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+.align-right {
+	margin-top: 5px;
+	text-align: right;
+	font-size: small;
+}
+
+.btn {
+	background-color:#FE929F;
+	color: white;
+	border-radius: 10px;
+	border-color: white;
+	width: 49%;
+	height: 35px;
+	margin-bottom: 10px;
+}
+
+.btn2 { 
+	background-color: white;
+	color: #FE929F;
+	border-color: #FE929F;
+	border-radius: 10px;
+	width: 100%;
+	height: 35px;
+}
+
+.infoTab {
+	display:inline-block;
+	width: 200px;
+	height: 50px;
+	background-color: lightgray;
+	text-align: center;
+	line-height: 50px;
+}
+
+.infoTab:hover {
+	background-color:#FE929F;
+}
+
+.content {
+	margin-top: 10px;
+	height: 300px;
+	background-color:#fafafa;
+}
+
+.product-option .amount-box {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
+	width:450px; 
+	height:100px; 
+	background:lightgray;
+}
+
+.large-font {
+	font-size: 30px
+}
+
+.plus-minus {
+	font-size:10px; color: black;
+}
+
+a {
+	text-decoration:none;
+	color: gray;
+}
+
+i {
+	font-size: 35px;
+	color: #FE929F;
+}
+
+/* number 태그 화살표 제거 */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
