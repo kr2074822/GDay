@@ -8,19 +8,21 @@
 
 #list-title, #list-title-period {
     width : 200px;
-    font-weight : bold;
     align-self: flex-start; /* 개별 아이템에 적용 */
 }
 
-#list-title { font : 20px/40px "맑은 고딕"; }
-#list-title-period { font-size : 16px;}
+#list-title > span { 
+	font : bold 20px/40px "맑은 고딕"; 
+	margin-left : 30px
+}
+#list-title-period > span { 
+	font-size : 16px;
+	font-weight : bold;
+	color : #FE929F;
+	margin-left : 30px;
+}
 
-
-
-#container-period { margin : 5px 0px 10px 0px;}
-/* #container-form {
-    flex-wrap: wrap;
-} */
+#container-period { margin : 10px;}
 
 input[name=periodRadio] {
     display : none;

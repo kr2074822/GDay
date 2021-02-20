@@ -1,16 +1,27 @@
 /* 사이드바 css */
 li, a, span, div, i { box-sizing: border-box;}
 
-#sidebar-area { 
+.sidebar-area { 
     background-color: #FE929F;
     width : 180px;
-    height : 100vh; /* window화면의 % */
-    padding : 5px 0;
+    height : 100vh;
 }
 
-#sidebar-area a, #sidebar-area span { 
-    color : #ffffffda;
+.sidebar-area a, .sidebar-area span { 
+    color : #ffffffda; 
     text-decoration: none;
+}
+
+/* 마이페이지 제목 */
+.pageTitle {
+	font-size : 24px;
+	font-weight : bold;
+	height : 80px;
+	line-height : 80px;
+	text-align : center;
+	margin-bottom : 5px;
+	background-color : #fafafa;
+	color : #FE929F;
 }
 
 
@@ -25,8 +36,8 @@ li, a, span, div, i { box-sizing: border-box;}
 } 
 #myProfile {
     display: block;
-    width : 60px;
-    height : 60px;
+    width : 45px;
+    height : 45px;
     margin : 0 auto;
 }
 
@@ -34,10 +45,14 @@ li, a, span, div, i { box-sizing: border-box;}
 .sidebar-menu li a {
     display : flex;
     align-items: center;
-/*     border : 1px solid black; */
     border-radius: 10px 0px 0px 10px;
-    margin : 1px 0px 1px 5px;
-    height : 40px;
+    margin : 1px 0px 1px 10px;
+    transition : 0.4s;
+    /* height : 40px; */
+}
+.sidebar-menu li {
+    transition : 0.4s;
+    border-right : 0px solid #fafafa;
 }
 
 /* 큰 메뉴 + 서브메뉴 공통 */
@@ -58,55 +73,88 @@ li, a, span, div, i { box-sizing: border-box;}
     padding : 4px;
     /* width : 130px; */
     height : 36px;
-    font-size : 14px;
+    font-size : 16px;
     line-height: 25px;
 }
 
 /* 서브 메뉴 */
 .sub-menu > li > a {
-    margin-left : 40px;
+    margin-left : 30px;
     height : 34px;
     margin-top : 0px;
 }
 .submenu-icon > i { font-size : 20px; }
-.submenu-text { font-size : 11px; }
+.submenu-text { font-size : 14px; }
 
 
 /* 메뉴 선택 중(활성화) 배경색 */
-.active-back {
-    background-color :  #ffffffcc; 
+.active-sidebar {
+    background-color :  #ffffff2d; 
+/*     transition : all 0.3s ease; */
+    border-right : 4px solid #fafafa !important;
+    font-weight: bold;
 }
-/* 메뉴 선택 중(활성화) 글자색 */
-.active-color {
-    color : #FE929F !important;
+.sidebar-menu li:hover {
+    border-right : 4px solid #fafafa;
+    background-color :  #ffffff2d;
+}
+.sidebar-menu a:hover {
+    font-weight: bold;
+    /* transition : 0.4s; */
 }
 
-.sidebar-menu a:hover {
-    background-color : #ffffff3d;
-}
 
 /* 햄버거 토글 버튼 */
 .sidebar-toggle {
     position : absolute;
     top : 10px;
-    left : 20px;
-    color : #fafafa;
+    left : 10px;
     font-size : 20px;
+    display: none;
     cursor : pointer;
-    display : none; 
 }
+
 
 /* @media 반응형 */
 @media (max-width : 768px){
-    .sidebar-toggle > i { 
-        background-color: none;
-        color : #FE929F;
+
+    .sidebar-area {
+        position: absolute; 
+        left : -180px;
+        transition : 1s;
+        z-index: 5;
     }
 
-    #sidebar-area { 
-        display : none;
+    .sidebar-toggle { 
+        display : block; 
+        z-index: 10;
     }
-    .sidebar-toggle {
+    .sidebar-toggle > i { 
+    	position : absolute; 
+    	color : #FE929F;
+    }
+    .sidebar-toggle > i:nth-of-type(1) {
         display : block;
+        left : 10px;
+        transition : 1s;
+    }  
+    .sidebar-toggle > i:nth-of-type(2) {
+        left : -160px;
+        transition : 1s;
+    }  
+    .active-toggle > i:nth-of-type(1) {
+        transition : 1s;
+        left : -160px;
+        z-index:0;
+    }
+    .active-toggle > i:nth-of-type(2) {
+        display : block; 
+        left: 10px;
+        transition : 1s;
+    } 
+
+    .sidebar-open {
+        left : 0px;
+        transition : 1s;
     }
 }
