@@ -1,5 +1,6 @@
-/* 마이페이지 목록 검색 기간 요소 스타일 */
+* { margin : 0; }
 
+/* 마이페이지 목록 검색 기간 요소 스타일 */
 /* #container-period, */
 #container-form/* , #list-search-1 */{
     display : flex;

@@ -1,5 +1,11 @@
+* { margin : 0; }
+
 /* 사이드바 css */
-li, a, span, div, i { box-sizing: border-box;}
+.sidebar-area li, 
+.sidebar-area a, 
+.sidebar-area span, 
+.sidebar-area div, 
+.sidebar-area i { box-sizing: border-box;}
 
 .sidebar-area { 
     background-color: #FE929F;

@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>선물 리스트</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.3">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.4">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
@@ -29,6 +29,8 @@
   		display : flex;
   	}
   	
+  	/* 헤더 깨져서 추가 */
+  	#header-ul { margin : 0px; }
   	</style>
   	
 </head>

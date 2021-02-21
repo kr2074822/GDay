@@ -1,0 +1,209 @@
+
+.container-info-all div, 
+.container-info-all span, 
+.container-info-all i, 
+.container-info-all input,
+.container-info-all label,
+.container-info-all button,
+.container-info-all textarea{
+    box-sizing: border-box;
+}
+
+input:focus, input:active, textarea:focus,
+button:active { outline: none !important;}
+
+/* 인포 컨테이너 기준 (세로로 정렬) */
+.container-info-all {
+		display : flex;
+		flex-direction : column;
+    width : 80%;
+    align-items: center;
+    margin : 30px auto;
+}
+
+/* 내정보 제목 */
+#information-title{
+    width : 200px;
+    align-self: flex-start; /* 개별 아이템에 적용 */
+}
+
+#information-title > span { 
+	font : bold 20px/40px "맑은 고딕"; 
+	margin-left : 30px
+}
+
+
+/* 컨테이너 */
+#container-info-form-1{
+    display : flex;
+    max-width : 640px;
+    margin : 20px 0px;
+    border : 1px solid darkgray;
+    border-radius: 20px;
+    padding : 20px 40px;
+}
+
+/* 프로필 사진*/
+#profile-div {
+    position: relative;
+    width : 100px;
+    height : 100px;
+    cursor: pointer;
+}
+#profile-image {
+    border : 1px solid lightgray;
+    width : 100px;
+    height : 100px;
+    border-radius: 50%;
+    background-clip: border-box;
+    background-size: cover; /* 배경 이미지로 div 커버 */
+    overflow: hidden; /* 사진이 넘치면 hidden */
+    background-position: center center;
+    z-index: 1;
+}
+#profile-icon {
+    position: absolute;
+    bottom : 0px;
+    right : 0px;
+    z-index: 5;
+    background-color : rgba(44, 44, 44, 0.815);
+    font-size : 22px;
+    text-align: center;
+    line-height: 30px;
+    color : #fafafae1;
+    width : 30px;
+    height : 30px;
+    border-radius: 20%;
+}
+
+
+/* 내 정보 각 행 div */
+.info-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin : 20px 0px;
+    width : 100%;   
+}
+
+/* 내 정보 행 label */
+.info-form > .info-title {
+    width : 150px;
+    padding : 0 5px;
+    font-weight: bold;
+}
+.star { color : red;}
+
+/* 내 정보 행 내용 부분(input, span) */
+.info-form > .info-content {
+    min-width : 400px;
+    height : 36px;
+}
+/* 내 정보 행 부분 input */
+.info-form input {
+    border : 1px solid lightgray;
+    border-radius: 10px;
+    padding : 5px 10px;
+    font-size : 14px;
+}
+/* input의 focus 스타일 */
+.info-form input:focus, .info-form input:active { background-color: #fff5f5;}
+
+/* 인풋+버튼 div의 input */
+.info-form .info-content-1 {
+    min-width : 150px;
+    height : 36px;
+}
+
+
+/* 버튼 */
+/* 버튼 여러개 div, 인풋+버튼 div */
+.info-btns, .input-btn {
+    display: flex;
+    align-content: center;
+    width : 240px;
+    margin : 0;
+}
+
+/* 버튼 */
+.info-btn {
+    width : 60px;
+    height : 36px;
+    border-radius: 10px;
+    border : none;
+    color : #fafafa;
+    font-size : 14px;
+    margin-left : 5px;
+}
+/* 티클미색 버튼 */
+#post-search-btn{ background-color: #FE929F; /*티클미*/}
+#post-search-btn:hover{ 
+    background-color: #db7e89; 
+    cursor: pointer;
+}
+
+
+
+
+
+/* ---------------------------------------------------------------- */
+
+/* 프로필 모달 메뉴 스타일 */
+#profile-menu-modal {
+    display: none;
+    width : 240px;
+    padding : 10px;
+    border : 1px solid lightgray;
+    border-radius: 10px;
+    position : absolute;
+    top: 20%;
+    left: 60%;
+    background-color: #fafafa;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.637);
+    z-index: 10;
+}
+
+.modal-close {
+    position : absolute;
+    right : 10px;
+    top : 10px;
+    color : #000000cb;
+    cursor: pointer;
+}
+
+.modal-title {
+    margin-top : 20px;
+    height : 40px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+.modal-menu > div {
+    height : 40px;
+    font-size : 16px;
+    text-align: center;
+    line-height: 36px;
+    color : #1b1b1b;
+    cursor: pointer;
+}
+.modal-menu > div:hover { 
+    background-color : rgba(190, 190, 190, 0.26);
+    color : #FE929F;
+    font-weight : bold;
+}
+
+
+/* 반응형 */
+@media (max-width : 768px){
+		.info-form, .info-title, .info-content,
+		.info-content-1, #profile-div, 
+		.info-b-textarea
+		{ display: block; }
+
+		.info-form { margin-bottom : 40px;}
+		.info-form > * {
+			margin : 10px 0px;
+		}
+		
+}
+
