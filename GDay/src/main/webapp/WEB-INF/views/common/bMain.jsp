@@ -18,13 +18,16 @@
     <div class="container">
         <div class="box">
             <div class="imgBx">
-                <img src="${contextPath}/resources/images/main_gift.jpg"></img>
+                <a href="#">
+                	<img src="${contextPath}/resources/images/main_gift.jpg" alt="선물 판매 신청"></img>
+                	
+                </a>
             </div>
             <div class="contentBx">
                 <div class="content">
                     <h1>선물 판매 신청</h1>
                     <p>
-                        	[판매자 전용]
+                        	[판매자 전용]<br>
                         	선물 등록 신청하러 가기
                     </p>
                 </div>
@@ -32,19 +35,28 @@
         </div>
         <div class="box">
             <div class="imgBx">
-                <img src="${contextPath}/resources/images/main_class.jpg"></img>
+                <a href="#"><img src="${contextPath}/resources/images/main_class.jpg"></img></a>
             </div>
             <div class="contentBx">
                 <div class="content">
                     <h1>클래스 모집 신청</h1>
                     <p>
-                        [강사 전용]
+                        [강사 전용]<br>
                                              기프트 클래스 등록 신청하러 가기
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+<script>
+$(".contentBx").on("click", function(){
+	location.href = "#";
+})
+
+
+</script>
+
 
 </body>
 </html>
