@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+body > #order-wrapper {
+	padding-top: 50px;
+	width: 80%;
+	margin: auto;
+}
+
+#order-wrapper > h1 {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 50px;
+}
+
+#order-wrapper > h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#address-area > h3 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#order-wrapper > .tables {
+	margin-bottom: 50px;
+	width: 100%;
+}
+
+
+/* 상품 */
+#goods-header {
+	width: 100%;
+	border-bottom: 1px solid lightgray;
+}
+
+.goods-header-th1 {
+	width: 70%;
+	padding: 10px;
+}
+
+.goods-header-th2, .goods-header-th3 {
+	width: 15%;
+}
+
+.goods-list {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	padding: 15px;
+	border-bottom: 3px solid lightgray;
+}
+
+
+
+/* 회원정보 */
+#member-info {
+	border-top: 3px solid lightgray;
+}
+
+.member-info-tr > .member-info-td {
+	font-size: 18px;
+	font-weight: bold;
+	width: 25%;
+	padding: 15px;
+}
+
+.member-info-input {
+	line-height: 30px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+}
+
+/* 주소 */
+#order-wrapper > #address-area {
+	padding: 30px;
+}
+
+#address-area {
+	border-top: 3px solid lightgray;
+}
+
+.member-address {
+	line-height: 30px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+}
+
+.address-div {
+	padding: 5px;
+}
+
+
+/* 결제 관련 */
+#payment-area {
+	width: 100%;
+	border-top: 3px solid lightgray;
+	display: flex;
+}
+
+#payment-api {
+	width: 65%;
+}
+
+#payment-other {
+	width: 35%;
+}
+
+#payment-other > h3 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+/* 반응형 */
+@media screen and ( max-width: 768px ) {
+	.member-info-tr > .member-info-td {
+		width: 40%;
+	}
+	
+	.goods-header-th1 {
+		width: 50%;
+	}
+	
+	.goods-header-th2, .goods-header-th3 {
+		width: 25%;
+	}
+}
