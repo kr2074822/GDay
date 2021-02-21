@@ -8,5 +8,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
+	<a href="payment/order">주문</a>
+	<a href="gMember/orderList1">마이페이지</a>
 </body>
 </html>
