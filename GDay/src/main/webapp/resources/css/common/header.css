@@ -65,7 +65,8 @@ header {
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); 
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 0;	
+	
 }
 
 /* 마이페이지 */
