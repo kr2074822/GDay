@@ -12,4 +12,10 @@ public class GmemController {
 	public String gMemOrderList1() {
 		return "mypage/gMemPage/gMemOrderList1";
 	}
+	
+	//내 정보 수정 페이지 이동
+	@RequestMapping("updateInfo")
+	public String gMemUpdate() {
+		return "mypage/bMemPage/bMemUpdate";
+	}
 }

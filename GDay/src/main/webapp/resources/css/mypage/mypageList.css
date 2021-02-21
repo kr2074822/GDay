@@ -1,3 +1,5 @@
+* { margin : 0; }
+
 #container-list-all, #container-list, 
 .list-btn, .list-card,
 .list-seller, .list-status{
@@ -121,4 +123,23 @@ a { text-decoration: none;}
     color : #fafafa;
     text-decoration: none;
 }
+
+
+/* 반응형 */
+@media (max-width : 768px){
+	#container-list {	flex-direction : column; }
+	.list-card, .list-btn { width : 100%; }
+	.list-btn { height : 100px;}
+	.list-status, list-seller {
+		flex-direction : row;
+	}
+	.list-status { width : 60%; flex-wrap : wrap;}
+	.list-seller { width : 40%; }
+	
+}
+
+
+
+
+
 
