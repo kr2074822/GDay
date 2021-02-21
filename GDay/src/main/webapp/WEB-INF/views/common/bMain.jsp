@@ -9,9 +9,12 @@
     <title>비즈니스 회원 메인 페이지</title>
 
 <link rel="stylesheet" href="${contextPath}/resources/css/common/bMain.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
 </head>
 <body>
+
+<jsp:include page="header.jsp"/>
     <div class="container">
         <div class="box">
             <div class="imgBx">
@@ -42,11 +45,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 </body>
 </html>

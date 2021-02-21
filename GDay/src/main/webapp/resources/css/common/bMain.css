@@ -6,20 +6,15 @@
     font-weight: normal;
     font-style: normal;
 }
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
+
 .container{
+		margin-top: 200px;
+    min-height: 100vh;
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -28,8 +23,8 @@ body{
 }
 .container .box{
     position: relative;
-    width: 600px;
-    height: 800px;
+    width: 500px;
+    height: 700px;
     background: #000;
 }
 .container .box .imgBx{
