@@ -89,7 +89,10 @@
 				if(!e.matches) {
 					document.getElementById("header-media-menu").style.visibility = "hidden"; 
 					document.getElementById("header-media-menu").style.minHeight = "0"; 
-					document.getElementById("header-mypage").style.display = "none";
+					document.getElementById("header-media-menu").style.top = "0"; 
+					document.getElementById("header-mypage").style.visibility = "hidden"; 
+					document.getElementById("header-mypage").style.minHeight = "0"; 
+					document.getElementById("header-mypage").style.top = "0"; 
 					document.getElementById("cancle-icon").style.display = "none";
 					document.getElementById("mypage-icon").style.display = "block";
 					document.getElementById("member-icon").style.display = "block";
@@ -101,6 +104,7 @@
 		  /* 햄버거 버튼 눌렀을 시 메뉴 컨트롤 */
 		  /* header-right */
 		  hamberger.addEventListener('click', function(){
+			  	document.getElementById("header-media-menu").style.top = "0"; 
 					document.getElementById("header-media-menu").style.visibility = "visible"; 
 					document.getElementById("header-media-menu").style.minHeight = "100vh"; 
 					document.getElementById("mypage-icon").style.display = "none";
@@ -110,7 +114,9 @@
 		  
 		  /* header-left */
 		  mypageHamberger.addEventListener('click', function(){
-					document.getElementById("header-mypage").style.display = "flex";
+			 		document.getElementById("header-mypage").style.top = "0"; 
+					document.getElementById("header-mypage").style.visibility = "visible"; 
+					document.getElementById("header-mypage").style.minHeight = "100vh"; 
 					document.getElementById("mypage-icon").style.display = "none";
 					document.getElementById("member-icon").style.display = "none";
 					document.getElementById("cancle-icon").style.display = "block"; 	     	    	    
@@ -118,10 +124,13 @@
 		  
 		  
 		  /* 취소 아이콘 누르기 */
-		  cancleIcon.addEventListener('click', function(){
-			  	document.getElementById("header-mypage").style.display = "none";
+		  cancleIcon.addEventListener('click', function(){		
 					document.getElementById("header-media-menu").style.visibility = "hidden"; 
 					document.getElementById("header-media-menu").style.minHeight = "0"; 
+					document.getElementById("header-media-menu").style.top = "-250px"; 
+					document.getElementById("header-mypage").style.visibility = "hidden"; 
+					document.getElementById("header-mypage").style.minHeight = "0"; 
+					document.getElementById("header-mypage").style.top = "-250px"; 
 					document.getElementById("mypage-icon").style.display = "block";
 					document.getElementById("member-icon").style.display = "block";
 					document.getElementById("cancle-icon").style.display = "none";
@@ -169,7 +178,7 @@
 
               setTimeout(()=>{
                   ripples.remove()
-              }, 600);
+              }, 300);
           });
       });  
       
@@ -186,7 +195,7 @@
 
               setTimeout(()=>{
                   ripples.remove()
-              }, 600);
+              }, 300);
           });
       });  
 
