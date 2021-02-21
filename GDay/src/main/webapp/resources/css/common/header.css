@@ -3,30 +3,151 @@
 * {
 	margin: 0;
 }
+
+header {
+	clear: both;
+	height: 100px;
+}
+
 #headerWrapper {
+	width: 100%;
+	height: 100px;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	background-color: #fafafa;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); 
+	position: fixed;
+}
+
+/* 마이페이지 */
+#midea-mypage {
+	display: none;
+	position: relative;
+}
+
+#mypage-hamberger {
+	font-size: 24px;
+	position: fixed;
+	top: 35px;
+	left: 75px;
+}
+
+#mypage-hamberger:hover {
+	cursor: pointer;
+}
+
+#header-mypage {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-color: #fafafa;
+	transition: 1s;
+}
+
+#mypage-menu {
+	padding: 0;
+	margin: auto;
+	width: 100%;
+}
+
+.mypage-li {
+	position: relative;
+  width: 100%;
+  height: 20%;
+  line-height: 40px;
+  text-align: center;
+  list-style: none;
+  transition: 0.6s;
+} 
+
+.mypage-li > a {
+	font-size: 16px;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+.mypage-li {
+	position: relative;
+  width: 100%;
+  height: 20%;
+  line-height: 40px;
+  text-align: center;
+  list-style: none;
+  transition: 0.6s;
+} 
+
+.mypage-li {
+	cursor: pointer;
+}
+
+.mypage-li:hover > .media-hover {
+	transition: 1.2s;
+	opacity: 0.5;
+	background: #fe929f;
+	height: 100%;
+  width: 100%;
 }
 
 
-#header-menu > ul {
-	display: flex;
-	width: 800px;
+
+
+
+/* 로고 */
+#header-logo {
+	z-index: -10;
+	width: 15%;
+	height: 100%;
+	text-align: center;
+	overflow: hidden; 
+}
+
+#logo {
+	display: block;
+	width: 100px;
 	height: 100px;
+	margin: auto;
+	vertical-align: middle;	
+	background-image: url('../../images/logoTest.png'); 
+ 	background-size: cover;
+	background-repeat: no-repeat;
+	transform: scale(1.5); 
+}
+
+
+
+
+
+
+/* 메뉴 */
+#header-menu{
+	width: 70%;
+	height: 100px;
+	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	padding: 0;
 }
-#logo {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
-}
 
 .header-li {
-	list-style: none;
+  position: relative;
+  width: 25%;
+  height: 50%;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 40px;
+  font-size: 18px;
+  text-decoration: none;
+  letter-spacing: 2px;
+  overflow: hidden;
+}
+
+.header-li:hover {
+	cursor: pointer;
 }
 
 .header-li > a {
@@ -34,12 +155,167 @@
 	text-decoration: none;
 	font-size: 24px;
 	font-weight: bold;
+	transition: 0.5s;
 }
 
-.fa-bars {
+.span1{
+  position: absolute;
+  background: #fe929f;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+}
+
+
+
+
+
+/* 로그인 영역 */
+#header-member-area {
+	width: 15%;
+	text-align: center;
+	position: relative;
+}
+
+.header-login, #hamberger {
+	display: none;
+}
+
+#hamberger {
 	font-size: 24px;
+	position: fixed;
+	top: 35px;
+	right: 75px;
 }
 
-.fa-bars:hover {
+#hamberger:hover {
 	cursor: pointer;
+}
+
+#header-media-menu {
+	visibility: hidden;
+	display: flex;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	min-height: 0;
+	background-color: #fafafa;
+	transition-property: min-height;
+  transition-duration: 0.3s;
+}
+
+#media-menu {
+	padding: 0;
+	margin: auto;
+	width: 100%;
+}
+
+.media-li {
+	position: relative;
+  width: 100%;
+  height: 20%;
+  line-height: 40px;
+  text-align: center;
+  list-style: none;
+  transition: 0.6s;
+} 
+
+.media-hover {
+	border-radius: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fe929f;
+	transition: 0.6s;
+	opacity: 0;
+	height: 0;
+  width: 0;
+}
+
+.media-li:hover {
+	cursor: pointer;
+}
+
+.media-li:hover > .media-hover {
+	transition: 1.2s;
+	opacity: 0.5;
+	background: #fe929f;
+	height: 100%;
+  width: 100%;
+}
+
+.media-li > a {
+	color: black;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+
+
+
+
+
+/* 취소 아이콘 */
+#cancle-icon {
+	font-size: 24px;
+	position: fixed;
+	top: 35px;
+	right: 75px;
+	display: none;
+}
+
+#cancle-icon:hover {
+	cursor: pointer;
+}
+
+
+/* 반응형 */
+@media screen and ( max-width: 768px ) {
+	#login {
+		display: none;
+	}
+
+	#midea-mypage {
+		display: block;
+	}
+
+	#hamberger, .header-login {
+		display: block;
+	}
+	
+	#midea-mypage {
+		width: 15%;
+	}
+	
+	#header-logo {
+		width: 70%;
+	}
+	
+	#logo {
+		width: 100px;
+		max-width: 100px;
+		margin: auto;
+	}
+	
+	#header-menu {
+		display: none;
+	}
+	
 }
