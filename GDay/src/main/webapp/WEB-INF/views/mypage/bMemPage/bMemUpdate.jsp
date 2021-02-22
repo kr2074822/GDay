@@ -70,7 +70,7 @@
             </div>
             
             <div class="info-form" id="info-phone">
-                <label for="phone" class="info-title"><span class="star">*</span>연락처</label>
+                <label for="phone" class="info-title">연락처</label>
                 <input type="text" name="phone" value="01011111111" class="info-content" required/><!-- 회원 전화번호 -->
             </div>
 

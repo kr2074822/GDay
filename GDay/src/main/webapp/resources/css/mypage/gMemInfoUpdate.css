@@ -59,13 +59,13 @@ button:active { outline: none !important;}
     background-size: cover; /* 배경 이미지로 div 커버 */
     overflow: hidden; /* 사진이 넘치면 hidden */
     background-position: center center;
-    z-index: 1;
+    z-index: 0;
 }
 #profile-icon {
     position: absolute;
     bottom : 0px;
     right : 0px;
-    z-index: 5;
+    z-index: 1;
     background-color : rgba(44, 44, 44, 0.815);
     font-size : 22px;
     text-align: center;
@@ -114,7 +114,13 @@ button:active { outline: none !important;}
     min-width : 150px;
     height : 36px;
 }
-
+.info-form .info-content-2 {
+    width : 200px;
+    height : 36px;
+    font-size : 12px;
+    line-height : 35px;
+    padding-left : 10px;
+}
 
 /* 버튼 */
 /* 버튼 여러개 div, 인풋+버튼 div */

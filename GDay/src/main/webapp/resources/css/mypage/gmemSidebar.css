@@ -7,6 +7,8 @@
 .sidebar-area div, 
 .sidebar-area i { box-sizing: border-box;}
 
+.sidebar-area > * {    z-index : 100;}
+
 .sidebar-area { 
     background-color: #FE929F;
     width : 180px;
@@ -112,10 +114,9 @@
 
 /* 햄버거 토글 버튼 */
 .sidebar-toggle {
-    position : absolute;
-    top : 10px;
-    left : 10px;
-    font-size : 20px;
+    position : fixed;
+    top : 36px;
+    font-size : 24px;
     display: none;
     cursor : pointer;
 }
@@ -128,21 +129,20 @@
         position: absolute; 
         left : -180px;
         transition : 1s;
-        z-index: 5;
+        z-index: 100;
     }
 
     .sidebar-toggle { 
         display : block; 
-        z-index: 10;
+        z-index : 1100;
     }
     .sidebar-toggle > i { 
-    	position : absolute; 
+    	position : fixed; 
     	color : #FE929F;
     }
     .sidebar-toggle > i:nth-of-type(1) {
         display : block;
-        left : 10px;
-        transition : 1s;
+        left : 75px;
     }  
     .sidebar-toggle > i:nth-of-type(2) {
         left : -160px;
@@ -155,7 +155,7 @@
     }
     .active-toggle > i:nth-of-type(2) {
         display : block; 
-        left: 10px;
+        left: 30px;
         transition : 1s;
     } 
 

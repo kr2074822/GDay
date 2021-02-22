@@ -16,6 +16,6 @@ public class GmemController {
 	//내 정보 수정 페이지 이동
 	@RequestMapping("updateInfo")
 	public String gMemUpdate() {
-		return "mypage/bMemPage/bMemUpdate";
+		return "mypage/gMemPage/gMemUpdate";
 	}
 }
