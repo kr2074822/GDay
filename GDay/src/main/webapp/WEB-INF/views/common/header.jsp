@@ -20,7 +20,7 @@
 	<header>
 		<div id="headerWrapper">		
 					
-			<div id="midea-mypage">
+<!-- 			<div id="midea-mypage">
 				<div id="mypage-hamberger">
 				
 					<i id="mypage-icon" class="fas fa-bars"></i>	
@@ -36,10 +36,10 @@
 					</div> 
 					
 				</div>		  
-			</div>
+			</div> -->
 		
 			<div id="header-logo">
-				<img id="logo"></img>
+				<a href="${contextPath}/"><img id="logo"></img></a>
 			</div>		
 
 			
@@ -53,6 +53,7 @@
 			
 			<div id="header-member-area">
 				<a id="login" href="#">로그인</a>
+				<a id="cart" href="#">장바구니</a>
 				
 				<div id="hamberger">
 				
@@ -79,7 +80,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
 		  var hamberger = document.getElementById("member-icon");
-		  var mypageHamberger = document.getElementById("mypage-icon");
+/* 		  var mypageHamberger = document.getElementById("mypage-icon"); */
 		  var cancleIcon = document.getElementById("cancle-icon");
 
 		  var mql = window.matchMedia("screen and (max-width: 768px)");
@@ -90,11 +91,11 @@
 					document.getElementById("header-media-menu").style.visibility = "hidden"; 
 					document.getElementById("header-media-menu").style.minHeight = "0"; 
 					document.getElementById("header-media-menu").style.top = "0"; 
-					document.getElementById("header-mypage").style.visibility = "hidden"; 
+/* 					document.getElementById("header-mypage").style.visibility = "hidden"; 
 					document.getElementById("header-mypage").style.minHeight = "0"; 
-					document.getElementById("header-mypage").style.top = "0"; 
+					document.getElementById("header-mypage").style.top = "0";  */
 					document.getElementById("cancle-icon").style.display = "none";
-					document.getElementById("mypage-icon").style.display = "block";
+/* 					document.getElementById("mypage-icon").style.display = "block"; */
 					document.getElementById("member-icon").style.display = "block";
 					hambergerSwitch = false;	
 					hambergerSwitch2 = false;
@@ -107,20 +108,20 @@
 			  	document.getElementById("header-media-menu").style.top = "0"; 
 					document.getElementById("header-media-menu").style.visibility = "visible"; 
 					document.getElementById("header-media-menu").style.minHeight = "100vh"; 
-					document.getElementById("mypage-icon").style.display = "none";
+/* 					document.getElementById("mypage-icon").style.display = "none"; */
 					document.getElementById("member-icon").style.display = "none";
 					document.getElementById("cancle-icon").style.display = "block"; 	     	    	    
 		  });
 		  
-		  /* header-left */
-		  mypageHamberger.addEventListener('click', function(){
+ 		  /* header-left */
+/* 		  mypageHamberger.addEventListener('click', function(){
 			 		document.getElementById("header-mypage").style.top = "0"; 
 					document.getElementById("header-mypage").style.visibility = "visible"; 
 					document.getElementById("header-mypage").style.minHeight = "100vh"; 
 					document.getElementById("mypage-icon").style.display = "none";
 					document.getElementById("member-icon").style.display = "none";
 					document.getElementById("cancle-icon").style.display = "block"; 	     	    	    
-		  });
+		  });  */
 		  
 		  
 		  /* 취소 아이콘 누르기 */
@@ -128,10 +129,10 @@
 					document.getElementById("header-media-menu").style.visibility = "hidden"; 
 					document.getElementById("header-media-menu").style.minHeight = "0"; 
 					document.getElementById("header-media-menu").style.top = "-250px"; 
-					document.getElementById("header-mypage").style.visibility = "hidden"; 
+/* 					document.getElementById("header-mypage").style.visibility = "hidden"; 
 					document.getElementById("header-mypage").style.minHeight = "0"; 
-					document.getElementById("header-mypage").style.top = "-250px"; 
-					document.getElementById("mypage-icon").style.display = "block";
+					document.getElementById("header-mypage").style.top = "-250px";  */
+/* 					document.getElementById("mypage-icon").style.display = "block"; */
 					document.getElementById("member-icon").style.display = "block";
 					document.getElementById("cancle-icon").style.display = "none";
 		  });
@@ -183,7 +184,7 @@
       });  
       
       /* header-left */
-     const buttons3 = document.querySelectorAll(".mypage-li");
+/*      const buttons3 = document.querySelectorAll(".mypage-li");
       buttons3.forEach(btn => {
           btn.addEventListener('mouseenter', function(e){
               
@@ -197,7 +198,7 @@
                   ripples.remove()
               }, 300);
           });
-      });  
+      });  */ 
 
   </script>
 
