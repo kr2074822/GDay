@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
    <title>내 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.1">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css?ver=1.3"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css?ver=1.4"/>
     
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -72,7 +72,7 @@
             </div>
             
             <div class="info-form" id="info-phone">
-                <label for="phone" class="info-title"><span class="star">*</span>연락처</label>
+                <label for="phone" class="info-title">연락처</label>
                 <input type="text" name="phone" value="01011111111" class="info-content" required/><!-- 회원 전화번호 -->
             </div>
 

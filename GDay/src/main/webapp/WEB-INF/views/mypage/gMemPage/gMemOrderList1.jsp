@@ -29,8 +29,6 @@
   		display : flex;
   	}
   	
-  	/* 헤더 깨져서 추가 */
-  	#header-ul { margin : 0px; }
   	</style>
   	
 </head>
