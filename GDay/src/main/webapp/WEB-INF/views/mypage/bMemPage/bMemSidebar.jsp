@@ -31,30 +31,61 @@
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
                 <li class="active-sidebar">
+                		<a href="${contextPath}/bMember/bSellList" class="up-menu">
+                    <span class="menu-icon"><i class="far fa-credit-card"></i></span>
+                    <span class="menu-text">판매 목록 조회</span>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li class="active-sidebar"><a href="${contextPath}/bMember/bSellList">
+                            <span class="submenu-icon"><i class="fas fa-gift"></i></span>
+                            <span class="submenu-text">판매글</span>
+                            </a>
+                        </li>
+                        <li><a href="${contextPath}/bMember/bOrderList">
+                            <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
+                            <span class="submenu-text">주문조회</span>
+                            </a>
+                        </li>
+                        <li><a href="#">
+                            <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
+                            <span class="submenu-text">반품 신청 조회</span>
+                            </a>
+                        </li>
+                        <li><a href="#">
+                            <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
+                            <span class="submenu-text">주문 취소 조회</span>
+                            </a>
+                        </li>
+                    </ul>
+								</li>
+								
+								<li class="active-sidebar">
                 		<a href="#" class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
-                    <span class="menu-text">주문 내역</span>
-                    </a></li>
+                    <span class="menu-text">클래스 관리</span>
+                    </a>
 
                     <ul class="sub-menu">
                         <li class="active-sidebar"><a href="#">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
-                            <span class="submenu-text">선물 리스트</span>
-                            </a></li>
+                            <span class="submenu-text">내 클래스</span>
+                            </a>
+                        </li>
                         <li><a href="#">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
-                            <span class="submenu-text">클래스 리스트</span>
-                            </a></li>
+                            <span class="submenu-text">수강 신청 조회</span>
+                            </a>
+                        </li>
+                        <li><a href="#">
+                            <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
+                            <span class="submenu-text">수강 취소 조회</span>
+                            </a>
+                        </li>
                     </ul>
-                <li><a href="#">
-                    <span class="menu-icon"><i class="fas fa-heart"></i></span>
-                    <span class="menu-text">위시 리스트</span>
-                    </a></li>
-                <li><a href="#">
-                    <span class="menu-icon"><i class="fas fa-feather"></i></span>
-                    <span class="menu-text">나의 후기</span>
-                    </a></li>
-                <li><a href="#">
+								</li>
+								
+                <li><a href="${contextPath}/bMember/bMemUpdate">
                     <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                     <span class="menu-text">내 정보</span>
                     </a></li>

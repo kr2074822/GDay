@@ -93,12 +93,7 @@
                 <input type="text" name="address3" value="대일빌딩 2층" class="info-content"/>
                 <!-- 회원 주소1 : 우편번호-->
             </div>
-
-            <div class="info-form" id="info-bday">
-                <label for="birthday" class="info-title">생년월일</label>
-                <input type="date" name="birthday" value="1990-01-03" class="info-content"/>
-                <!-- 회원 주소1 : 우편번호-->
-            </div>
+            
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
             
