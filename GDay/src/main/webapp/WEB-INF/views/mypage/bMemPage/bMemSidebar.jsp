@@ -47,12 +47,12 @@
                             <span class="submenu-text">주문조회</span>
                             </a>
                         </li>
-                        <li><a href="#">
+                        <li><a href="${contextPath}/bMember/bRefundList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">반품 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="#">
+                        <li><a href="${contextPath}/bMember/bCancleList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">주문 취소 조회</span>
                             </a>
@@ -67,17 +67,17 @@
                     </a>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="#">
+                        <li class="active-sidebar"><a href="${contextPath}/bMember/bClassList">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">내 클래스</span>
                             </a>
                         </li>
-                        <li><a href="#">
+                        <li><a href="${contextPath}/bMember/bEnrolmentList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">수강 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="#">
+                        <li><a href="${contextPath}/bMember/bClassCancleList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">수강 취소 조회</span>
                             </a>
