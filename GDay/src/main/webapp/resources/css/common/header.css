@@ -148,15 +148,13 @@ header {
 }
 
 #logo {
-	display: block;
 	width: 100px;
-	height: 100px;
+	height: 100%;
 	margin: auto;
 	vertical-align: middle;	
 	background-image: url('../../images/logoTest.png'); 
  	background-size: cover;
 	background-repeat: no-repeat;
-	transform: scale(1.5); 
 }
 
 
@@ -343,12 +341,13 @@ header {
 	
 	#header-logo {
 		width: 70%;
+		overflow: hidden;
 	}
 	
 	#logo {
-		width: 100px;
-		max-width: 100px;
-		margin: auto;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 	
 	#header-menu {

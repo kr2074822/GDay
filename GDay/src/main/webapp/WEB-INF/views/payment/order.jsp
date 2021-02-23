@@ -97,6 +97,7 @@
 				<h3>결제 금액</h3>
 				<button class="pink-btn" onclick="requestPay()">결제하기</button>
 				<button class="pink-btn" onclick="cancelPay()">임시환불버튼</button>
+				<a href="${contextPath}/cart/memberCart">임시장바구니 링크</a>
 			</div>
 		</div>
 

@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+#select-area {
+	position: absolute;
+	top: 150px;
+	left: 50%;
+	transform:translateX(-50%);
+}
+
+#select-area > button {
+	width: 100px;
+	padding: 15px 0;
+	margin-top: 20px;
+	border-radius: 10px;
+	border: none;
+}
+
+#select-area > button:hover {
+	background-color: rgb(128, 128, 128); 
+  cursor: pointer;
+  color: #000000;
+}
+
+
+#cart-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 100px;
+}
+
+#cart-wrapper li {
+	border-bottom: 3px solid lightgray;
+}
+
+
+/* 장바구니 상품 영역 */
+#gift-list-area, #class-list-area {
+	width: 60%;
+}
+
+#class-list-area {
+	display: none;
+}
+
+.cart-content {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 0;
+}
+
+.cancle-icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 24px;
+}
+
+.cancle-icon:hover {
+	cursor: pointer;
+}
+
+.img-box {
+	width: 30%;
+	height: 100%;
+	text-align: center;
+	overflow: hidden; 
+}
+
+.img-box img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	margin: auto;
+	vertical-align: middle;	
+	background-image: url('../../images/logoTest.png'); 
+ 	background-size: cover;
+	background-repeat: no-repeat;
+	transform: scale(1.5); 
+}
+
+.cart-content button {
+	width: 24px;
+	height: 24px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.product-name {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.acount-area input {
+	padding: 10px;
+	width: 30px;
+	text-align: center;
+}
+
+/* 결제 영역 */
+#payment-area {
+	width: 20%;
+}
+
+#payment-info {
+	width: 80%;
+	height: 100px;
+	border: 1px solid black;
+}
+
+#payment-info span {
+	font-size: 16px;
+	font-weight: bold;
+	display: block;
+}
+
+#price-text {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 10px;
+}
+
+.order-btn {
+	width: 80%;
+	background-color: #FE929F;
+	padding: 15px 0;
+	margin-top: 20px;
+	border-radius: 40px;
+	color: #fafafa;
+	border: none;
+}
+
+.order-btn:hover {
+	background-color: rgb(128, 128, 128); 
+  cursor: pointer;
+  color: #000000;
+}
+
+
+
+
+/* 반응형 */
+@media screen and ( max-width: 768px ) {
+	#cart-wrapper {
+		padding-top: 250px;
+		flex-direction: column;
+	}
+	
+	#gift-list-area, #class-list-area {
+		width: 80%;
+	}
+	
+	#payment-area {
+		margin-top: 30px;
+		width: 80%;
+		text-align: center;
+	}
+	
+	#payment-info {
+		margin: auto;
+	}
+	
+}
