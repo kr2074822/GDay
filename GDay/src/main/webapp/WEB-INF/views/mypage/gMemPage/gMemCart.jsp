@@ -17,7 +17,7 @@
 	</div>
 
 	<div id="cart-wrapper">
-		<jsp:include page="gMemSidebar.jsp"/>
+		<jsp:include page="../bMemPage/bMemSidebar.jsp"/>
 		
 		<!-- 선물 부분 -->
 		<div id="gift-list-area">

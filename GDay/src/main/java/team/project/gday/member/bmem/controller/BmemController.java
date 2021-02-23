@@ -12,4 +12,24 @@ public class BmemController {
 	public String gClassInsert() {
 		return "gClass/gClassInsert";
 	}
+	
+	
+	//비즈니스 내 판매 글 이동
+	@RequestMapping("bSellList")
+	public String bSellList() {
+		return "mypage/bMemPage/bSellList";
+	}
+	
+	//비즈니스 주문조회
+	@RequestMapping("bOrderList")
+	public String bOrderList() {
+		return "mypage/bMemPage/bOrderList";
+	}
+	
+	
+	//비즈니스 내 정보 수정 이동
+	@RequestMapping("bMemUpdate")
+	public String bMemUpdateForm() {
+		return "mypage/bMemPage/bMemUpdate";
+	}
 }

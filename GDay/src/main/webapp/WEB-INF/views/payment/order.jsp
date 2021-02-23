@@ -19,27 +19,20 @@
 		<h2>주문 상품</h2>
 		<table id="goods" class="tables">
 			<tr id="goods-header">
-				<th class="goods-header-th1">상품명</th>
+				<th class="goods-header-th1" colspan="2">상품명</th>
 				<th class="goods-header-th2">가격</th>
 				<th class="goods-header-th3">수량</th>
 			</tr>
 			<tr id="goods-list">
-				<td class="goods-list">
-					<div>상품명</div>
-
-					<img/>
-
-				</td>
+				<td class="goods-list"><img/></td>			
+				<td class="goods-list" style="vertical-align: middle;">상품명</td>
 				<td class="goods-list" style="vertical-align: middle;">1,000</td>
 				<td class="goods-list" style="vertical-align: middle;">1개</td>
 			</tr>
 			
 			<tr id="goods-list">
-				<td class="goods-list">
-					<div>상품명</div>
-
-					<img/>
-				</td>
+				<td class="goods-list"><img/></td>
+				<td class="goods-list" style="vertical-align: middle;">상품명</td>
 				<td class="goods-list" style="vertical-align: middle;">1,000</td>
 				<td class="goods-list" style="vertical-align: middle;">1개</td>
 			</tr>
