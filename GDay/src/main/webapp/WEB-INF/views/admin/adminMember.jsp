@@ -1,0 +1,150 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>관리자 페이지 - 회원 관리</title>
+
+<link rel="stylesheet" href="reset.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<style>
+	div{
+    	padding: 10px;
+    }
+    
+    .container{
+    	width: 80%;
+        margin: 0 auto;
+    }
+
+    #adminMember-search, #adminMember-Application{
+    	float: right;
+    }
+
+    table {
+    	width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+    }
+
+    table th{
+    	font-weight: bold;
+        background-color: #fafafa;
+    }
+    
+    th, td {
+    	text-align: center;
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+    }
+
+    button{
+    	height: 25px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #FE929F;
+        color: white;
+    }
+
+    #adminMember-se, #adminMember-ap, #search{
+    	padding: 5px;
+    }
+</style>
+</head>
+<body>
+<jsp:include page="../common/header.jsp"/>
+
+    <div class="container">
+        <jsp:include page="adminSidebar.jsp"/>
+
+        <div id="container-tb">
+            <div>
+                <h3>전체 회원 보기</h3>
+                <div id="adminMember-search">
+                    <select name="adminMember-se" id="adminMember-se">
+                        <option class="">일반</option>
+                        <option class="">비즈니스</option>
+                        <option class="">미인증</option>
+                        <option class="">블랙리스트</option>
+                        <option class="">탈퇴</option>
+                    </select>
+                    <input type="text" id="search">
+                    <button type="submit">등급 보기</button>
+                </div>
+            </div>
+            <div>
+                <form action="#" method="POST" id="adminMember">
+                    
+                    <table class="table" id="list-table">
+                    <thead>
+                        <tr>
+                            <th>회원 아이디</th>
+                            <th>회원 닉네임</th>
+                            <th>가입일</th>
+                            <th>등급</th>
+                            <th><input type="checkbox"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>user01@naver.com</td>
+                            <td>유저일</td>
+                            <td>2021-02-20</td>
+                            <td>일반</td>
+                            <td><input type="checkbox" class="check-input" id="checkedAll"></td>
+                        </tr>
+                        <tr>
+                            <td>user01@naver.com</td>
+                            <td>유저일</td>
+                            <td>2021-02-20</td>
+                            <td>일반</td>
+                            <td><input type="checkbox" class="check-input" id="checkedAll"></td>
+                        </tr>
+                        <tr>
+                            <td>user01@naver.com</td>
+                            <td>유저일</td>
+                            <td>2021-02-20</td>
+                            <td>일반</td>
+                            <td><input type="checkbox" class="check-input" id="checkedAll"></td>
+                        </tr>
+                        <tr>
+                            <td>user01@naver.com</td>
+                            <td>유저일</td>
+                            <td>2021-02-20</td>
+                            <td>일반</td>
+                            <td><input type="checkbox" class="check-input" id="checkedAll"></td>
+                        </tr>
+                        <tr>
+                            <td>user01@naver.com</td>
+                            <td>유저일</td>
+                            <td>2021-02-20</td>
+                            <td>일반</td>
+                            <td><input type="checkbox" class="check-input" id="checkedAll"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="adminMember-Application">
+                    <select name="adminMember-ap" id="adminMember-ap">
+                        <option class="">일반</option>
+                        <option class="">비즈니스</option>
+                        <option class="">미인증</option>
+                        <option class="">블랙리스트</option>
+                        <option class="">탈퇴</option>
+                    </select>
+                    <button type="submit">등급 변경</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        
+    </footer>
+</body>
+</html>
