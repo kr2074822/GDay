@@ -53,7 +53,6 @@
 			
 			<div id="header-member-area">
 				<a id="login" href="#">로그인</a>
-				<a id="cart" href="#">장바구니</a>
 				
 				<div id="hamberger">
 				

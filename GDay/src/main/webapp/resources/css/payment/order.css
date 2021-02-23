@@ -132,6 +132,12 @@ img {
   margin-left : 5px;
 }
 
+.pink-btn:hover {
+	background-color: rgb(128, 128, 128); 
+  cursor: pointer;
+  color: #000000;
+}
+
 /* 반응형 */
 @media screen and ( max-width: 768px ) {
 	.member-info-tr > .member-info-td {
