@@ -1,0 +1,261 @@
+div, span, i, input, label, button, textarea{
+    box-sizing: border-box;
+    margin : 0;
+}
+
+  *:focus, *:active { outline: none !important;}
+
+  #cal-wrapper, body {
+    margin : 0px;
+    padding : 0;
+    width : 100%;
+    height : 100vh;
+  }
+
+  #cal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #calendar {
+    width : 90%;
+  }
+
+  /* 툴바 날짜 타이틀 */
+  .fc-toolbar-chunk > div {
+      display:flex;
+      justify-content: center;
+  }
+  .fc-toolbar-title {
+    min-width : 200px;
+    text-align: center;      
+    margin-left: 0px !important;
+}
+/* 버튼 스타일 */
+.fc-button-active{
+    background-color: #FE929F !important;
+}
+
+/* 툴바 prev, next btn */
+.fc-prevYear-button, .fc-prev-button, 
+.fc-nextYear-button, .fc-next-button {
+    width : 30px;
+    height : 30px;
+    padding : 0 !important;
+    background-color : rgba(0, 0, 0, 0) !important;
+}
+.fc-icon:hover {
+    color : #FE929F !important;
+}
+.fc-button-primary:hover {
+    background-color:  rgba(190, 190, 190, 0.26);
+}
+
+/* 이벤트 박스 */
+.eventBox{
+height : 30px;
+font-size : 14px;
+line-height: 30px;
+border-style: none;
+cursor: pointer;
+}
+
+/* 요일박스 / 리스트날짜박스 */
+.dayBox{
+    height : 40px;
+    line-height: 50px;
+    font-size: 20px;
+    background-color:#fafafa;
+  }
+
+.fc-daygrid-day {
+    cursor: pointer;
+}
+
+
+
+/* 기념일 목록 */
+/* 날짜 디자인 */
+.fc-list-day-text, .fc-list-day-side-text{
+    font-size : 16px;
+    height : 30px;
+    line-height : 30px;
+}
+
+/* all-day 안보이기 */
+.fc-list-event-time {
+display:none;
+}
+
+
+/* @media 반응형 */
+@media (max-width : 768px){
+
+/* 헤더 툴바 */
+.fc-header-toolbar{
+    height : 100px;
+}
+/* 툴바 날짜 타이틀 */
+.fc-header-toolbar .fc-toolbar-chunk{
+      position: absolute;
+  }
+.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(1){ top:25px; left:5%;}
+.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(2){ 
+      top: 80px;
+      left: 10%;
+      right: 10%;
+    }
+.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(3){ top:25px; right:5%;}
+
+
+}
+/* 반응형 끝 */
+/* ---------------------------------------------------------------- */
+
+/* 모달창 */
+/* 모달 배경 */
+.modal-cover {
+    display: none; 
+    z-index: 50;
+    position:fixed; 
+    left:0;
+    top:0;
+    background:rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+} 
+
+/* 모달 메인 */
+.cal-modal{
+    /* z-index: 50; */
+    width : 450px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.637);
+    position:fixed;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+
+/* 닫기 버튼 */
+.modal-close {
+    position : absolute;
+    right : 15px;
+    top : 10px;
+    color : #000000cb;
+    cursor: pointer;
+    z-index: 51;
+}
+.m-title, .m-content-box, .m-btn-box {
+    width: 100%;
+    padding : 0 5%;
+}
+.m-title{
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    width : 100%;
+    line-height: 50px;
+}
+
+
+/* 버튼 박스 */
+.m-btn-box {
+    height : 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 버튼 */
+.modal-btn {
+    width : 60px;
+    height : 36px;
+    border-radius: 10px;
+    border : none;
+    color : #fafafa;
+    font-size : 14px;
+    margin-left : 5px;
+}
+
+/* 등록창 btn */
+#m-cancel-btn { background-color: darkgray;}
+#m-cancel-btn:hover{ background-color: rgb(128, 128, 128); cursor: pointer;}
+#m-submit-btn { background-color: #FE929F;}
+#m-submit-btn:hover{ background-color: #db7e89; cursor: pointer;}
+
+/* 등록창 */
+#modal-insert {height: 350px;}
+
+#put-gdayColor { width : 20%; cursor : pointer;}
+#select-fi, #put-dtStart { cursor : pointer; }
+
+#modal-insert .m-content-box { height : 70%; }
+
+
+/* 등록창 : 인풋 */
+.m-input-box {
+    width : 100%;
+    height : 23%;
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.m-input-box > label {
+    width : 25%;
+}
+
+.m-input-box > input:focus { background-color : #fff5f5; }
+
+.m-cal-input, .m-cal-input-1, .m-cal-input-2{
+    height : 35px;
+    border-radius: 10px;
+    border : 1px solid lightgray;
+}
+.m-cal-input { width : 100%; } /* 전체 인풋 */
+.m-cal-input-1 { width : 75%; } /* 레이블 등이 같이 있는 인풋 */
+
+/* 반복 주기 기타 */
+#interval-etc { display : none; }
+.m-input-box > .etc-label > span {
+    font-size : 14px;
+}
+
+/* 상세 조회창 */
+#modal-view {height: 240px;}
+
+#modal-view > .m-title {
+    display: flex;
+    align-items: center;
+}
+#modal-view #v-gdayColor {
+    width : 20px;
+    height : 20px;
+    border-radius: 50%;
+    margin-right : 20px;
+}
+
+#modal-view .m-content-box { height : 50%; padding-top : 10px;}
+#modal-view .m-content-box div { margin: 5px 0;}
+
+#modal-view .m-cal-text { font-size : 16px;}
+
+
+/* 상세 : 아이콘 버튼 */
+#modal-view .modal-icon-btn {
+    width : 30px;
+    height : 60px;
+    text-decoration: none;
+    line-height: 30px;
+    color : #000;
+    margin : 0 0 0 20px;
+    transition: 0.5s;
+}
+#modal-view .modal-icon-btn:hover {
+    color :#FE929F;
+    transition: 0.5s;
+}
+#modal-view .modal-icon-btn i { font-size : 28px;}
+#modal-view .modal-icon-btn span { display:none; font-size : 12px;}
