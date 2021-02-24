@@ -1,4 +1,4 @@
-package team.project.gday.member.model;
+package team.project.gday.member.model.vo;
 
 public class Member {
 	private int memberNo;
