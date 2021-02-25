@@ -44,6 +44,10 @@ public class LoginDAO {
 		return sqlSession.selectOne("memberMapper.kakaoLogin", member);
 	}
 
+	public String findEmail(Member member) {
+		return sqlSession.selectOne("memberMapper.findEmail", member);
+	}
+
 
 
 

@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="${contextPath}/resources/common/reset.css">
 
-    <link rel="stylesheet" href="${contextPath}/resources/login/signUp.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/login/signUp.css">
     
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="user norm">
                 <div class="imgBox">
-                    <img src="images/signin1.jpg" alt="">
+                    <img src="${contextPath}/resources/images/signin1.jpg" alt="">
                 </div>
                 <div class="formBox">
                     <form action="">
@@ -178,7 +178,7 @@
                         </p>
                     </form>
                 </div>
-                <div class="imgBox"><img src="images/signin2.jpg" alt=""></div>
+                <div class="imgBox"><img src="${contextPath}/resources/images/signin2.jpg" alt=""></div>
             </div>
         </div>
     </section>

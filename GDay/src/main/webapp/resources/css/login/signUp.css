@@ -88,7 +88,7 @@ section .container .user .formBox form input{
     
 }
 section .container .user .formBox form div .email{
-    width: 200px;
+    width: 150px;
 }
 section .container .user .formBox form div > button{
     position: relative;

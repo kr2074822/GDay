@@ -43,7 +43,6 @@ public class LoginController {
 		System.out.println(saveId);
 		System.out.println(inputMember);
 		Member loginMember = service.loginAction(inputMember);
-		
 		String url = null;
 		
 		if(loginMember != null) {
@@ -62,7 +61,7 @@ public class LoginController {
 			url = "/";
 		
 		}else {
-			url = "loginView";
+			url = "login/login";
 		}
 		
 		
@@ -111,4 +110,32 @@ public class LoginController {
 		
 		return  "redirect:" + url;
 	}
+	
+	// 일반회원 회원가입 화면
+	@RequestMapping("signUpView")
+	public String signUpView() {
+		return "login/signUp";
+	}
+	
+	
+	// 이메일 찾기 화면
+	@RequestMapping("emailView")
+	public String emailView() {
+		return "login/findEmail";
+	}
+	
+	// 이메일 찾기
+	@RequestMapping("findEmail")
+	@ResponseBody
+	public String findEmail(Member member) {
+		String email = service.findEmail(member);
+		return email;
+	}
+	
+	// 비밀번호 찾기 화면
+	@RequestMapping("passwordView")
+	public String passwordView() {
+		return "login/findPw";
+	}
+	
 }

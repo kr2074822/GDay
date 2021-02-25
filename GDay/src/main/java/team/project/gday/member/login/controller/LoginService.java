@@ -25,6 +25,12 @@ public interface LoginService {
 	 */
 	public abstract Member kakaoLogin(Member member);
 
+	/** 이메일 찾기
+	 * @param member
+	 * @return member
+	 */
+	public abstract String findEmail(Member member);
+
 
 
 
