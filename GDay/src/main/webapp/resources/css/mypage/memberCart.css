@@ -29,10 +29,6 @@
 	padding-top: 100px;
 }
 
-#cart-wrapper li {
-	border-bottom: 3px solid lightgray;
-}
-
 
 /* 장바구니 상품 영역 */
 #gift-list-area, #class-list-area {
