@@ -923,8 +923,8 @@
                 <button type="button" class="send">전송</button>
                 <button type="submit" class="code">입력</button>
             </form>
-            <a href="">이메일 찾기</a><br>
-            <a href="">로그인</a>
+            <a href="${contextPath}/login/emailView">이메일 찾기</a><br>
+            <a href="${contextPath}/login/loginView">로그인</a>
         </div>
     </div>
     <script>

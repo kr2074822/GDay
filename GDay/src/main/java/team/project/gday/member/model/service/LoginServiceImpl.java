@@ -55,6 +55,12 @@ public class LoginServiceImpl implements LoginService{
 		return dao.kakaoLogin(member);
 	}
 
+	// 이메일 찾기
+	@Override
+	public String findEmail(Member member) {
+		return dao.findEmail(member);
+	}
+
 
 
 

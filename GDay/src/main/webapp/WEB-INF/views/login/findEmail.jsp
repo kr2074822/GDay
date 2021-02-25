@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
@@ -906,23 +910,60 @@
     <div class="container">
         <div class="content">
             <h1>이메일 찾기</h1>
-            <form action="">
+            <form>
                 <div>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" name="memberEmail" required>
                     <label for="name">이름</label>
                 </div>
                 <div>
-                    <input type="text" id="tel" required>
+                    <input type="text" id="tel" name="memberPhone" required>
                     <label for="tel">핸드폰 번호</label>
                 </div>
-                <button type="submit">찾기</button>
+                <button type="button" id="find">찾기</button>
             </form>
-            <a href="">비밀번호 찾기</a><br>
-            <a href="">로그인</a>
+            <a href="${contextPath}/login/passwordView">비밀번호 찾기</a><br>
+            <a href="${contextPath}/login/loginView">로그인</a>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
 
+    	$("#find").on('click', function(){
+    		
+			$.ajax({
+				url: "${contextPath}/login/findEmail",
+				data: {
+					"memberName": $("#name").val(),
+					"memberPhone": $("#tel").val()
+				},
+				type: "post",
+				success: function(result){
+					if(result != ''){
+						Swal.fire({
+							  icon: 'success',
+							  title: '이메일 찾기 성공!',
+							  text: '이메일은 ' + result + ' 입니다.'
+						}).then((result) => {
+							
+							window.location.href = "${contextPath}/login/loginView";
+						
+						});
+					}else{
+						Swal.fire({
+							  icon: 'error',
+							  title: '이메일 찾기 실패',
+							  text: '이름과 핸드폰 번호가 일치하는 이메일이 없습니다.'
+						});
+						$("#name").val("");
+						$("#tel").val("");
+					}
+				},
+				error: function(){
+					console.log("실패");
+				}
+				
+			});
+    	});
     </script>
 </body>
 </html>

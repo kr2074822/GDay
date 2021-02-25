@@ -55,11 +55,11 @@
                          
                         <p class="seller">판매자로 로그인 하시겠습니까?&nbsp;<a href="#" onclick="toggleActive();">판매자 전환</a></p>
                         <p class="seller">
-                            <a href="">회원가입</a>
+                            <a href="${contextPath}/login/signUpView">회원가입</a>
                         </p>
                         <div class="link">
-                            <a href="">ID/PW 찾기</a>
-                            <a href=""><i class="fas fa-home"></i></a>
+                            <a href="${contextPath}/login/emailView">ID/PW 찾기</a>
+                            <a href="${contextPath}/"><i class="fas fa-home"></i></a>
                         </div>
                     </form>
                 </div>
@@ -89,10 +89,10 @@
 
                         <p class="seller">일반회원으로 로그인 하시겠습니까?&nbsp;<a href="#" onclick="toggleActive();">일반회원 전환</a></p>
                         <p class="seller">
-                            <a href="">회원가입</a><br>
+                            <a href="${contextPath}/login/signUpView">회원가입</a><br>
                             <div class="link">
-                                <a href="">ID/PW 찾기</a>
-                                <a href=""><i class="fas fa-home"></i></a>
+                                <a href="${contextPath}/login/emailView">ID/PW 찾기</a>
+                                <a href="${contextPath}/"><i class="fas fa-home"></i></a>
                             </div>
                         </p>
                     </form>
@@ -178,8 +178,6 @@
                             		console.log("tgt")
                             	}
                             });
-                            
-                            
                             
                         }
                     });

@@ -25,7 +25,6 @@
 		SELECT * 
 		FROM MEMBER
 		WHERE MEM_EMAIL = #{memberEmail} 
-		<!-- AND MEMBER_PWD = #{memberPwd} -->
 		AND MEM_SEC = 'N'
 	</select>
 	
@@ -49,5 +48,11 @@
 		WHERE MEM_TYPE = 'K' AND MEM_EMAIL = #{memberEmail}
 	</select>
 	
+	<!-- 이메일 찾기 -->
+	<select id="findEmail" parameterType="Member" resultType="string">
+		SELECT MEM_EMAIL
+		FROM MEMBER
+		WHERE MEM_NAME = #{memberName} AND MEM_PHONE = #{memberPhone} AND MEM_TYPE = 'G'
+	</select>
 	
 </mapper>
