@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
+<jsp:include page="header.jsp"/>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/main.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+
 	<a href="payment/order">주문</a>
 	<a href="gMember/orderList1">마이페이지</a>
 	
@@ -327,7 +328,7 @@
             </div>
         </div>
     </section>
-
+	
     <footer>
         <div class="container">
             <div class="sec aboutus">
@@ -384,7 +385,7 @@
         <p>COPYRIGHT. COMPANY INC. ALL RIGHTS RESERVED.</p>
     </div>
 
-    <script src="js/fontawesome.js"></script>
+    <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
         const img = document.getElementById("img");
         const selectBtn = document.getElementsByClassName("selectBtn");

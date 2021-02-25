@@ -1,9 +1,10 @@
 @charset "UTF-8";
 /* ///////////////////////////////////////////////////////////// */
-
+body{
+	background-color: #fafafa;
+}
 
 header {
-	clear: both;
 	height: 100px;
 }
 

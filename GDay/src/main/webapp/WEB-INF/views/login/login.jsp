@@ -28,24 +28,25 @@
                     <img src="${contextPath}/resources/images/gift1.jpg" alt="">
                 </div>
                 <div class="formBox">
-                    <form action="">
+                    <form action="loginAction" method="post">
                         <h2>일반회원 로그인</h2>
                         <div>
-                            <input type="text" name="" required>
-                            <label for="">Id</label>
+                            <input type="text" name="memberEmail" id="" required>
+                            <label for="">Email</label>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="memberPwd" id="" required>
                             <label for="">Password</label>
                             <i class="showpw fas fa-eye"></i>
                         </div>
 
                         <div class="chk_wrap">
-                            <input type="checkbox" id="saveGmemId">
-                            <label for="saveGmemId"> 아이디 저장</label>
+                            <input type="checkbox" id="saveId" name="saveId">
+                            <label for="saveId">아이디 저장</label>
 
-                            <input type="checkbox" id="gmemAutoLogin" disabled>
-                            <label for="gmemAutoLogin" > 자동 로그인</label>
+                            <input type="checkbox" id="autoId" name="autoId" disabled>
+                            <label for="autoId">자동 로그인</label>
+                            <input type="hidden" value="G" name="memberGrade">
                         </div>
                         <input type="submit" class="login" name="" value="Login">
                         <a href="javascript:klogin();" id="kakao-login-btn">
@@ -65,23 +66,24 @@
             </div>
             <div class="user sell">
                 <div class="formBox">
-                    <form action="">
+                    <form action="loginAction" method="post">
                         <h2>판매자회원 로그인</h2>
                         <div>
-                            <input type="text" name="" required>
-                            <label for="">Id</label>
+                            <input type="text" name="memberEmail" id="" required>
+                            <label for="">Email</label>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="memberPwd" id="" required>
                             <label for="">Password</label>
                         </div>
                         
                         <div class="chk_wrap">
-                            <input type="checkbox" id="saveBmemId">
+                            <input type="checkbox" id="saveBmemId" name="saveBmemId">
                             <label for="saveBmemId"> 아이디 저장</label>
                             
-                            <input type="checkbox" id="bmemAutoLogin" disabled>
+                            <input type="checkbox" id="bmemAutoLogin" name="bmemAutoLogin" disabled>
                             <label for="bmemAutoLogin"> 자동 로그인</label>
+                            <input type="hidden" value="B" name="memberGrade">
                         </div>
                         <input type="submit" class="login" name="" value="Login">
 
@@ -116,16 +118,18 @@
         }
         
         /* 일반 아이디 저장 및 자동로그인 */
-        $("#saveGmemId").click(function() {
-            var condition = $("#gmemAutoLogin").prop( 'disabled' );
-            $("#gmemAutoLogin").prop("disabled", condition ? false : true); 
-            if($("#saveGmemId").prop('checked') == false){
-                $("#gmemAutoLogin").prop('checked', false)
+        $("#saveId").click(function() {
+        	console.log(111);
+            var condition = $("#autoId").prop( 'disabled' );
+            $("#autoId").prop("disabled", condition ? false : true); 
+            if($("#saveId").prop('checked') == false){
+                $("#autoId").prop('checked', false)
             }
         });
 
         /* 판매 아이디 저장 및 자동로그인  */
         $("#saveBmemId").click(function() {
+        	console.log(111);
             var condition = $("#bmemAutoLogin").prop( 'disabled' );
             $("#bmemAutoLogin").prop("disabled", condition ? false : true); 
             if($("#saveBmemId").prop('checked') == false){
@@ -147,7 +151,7 @@
         window.Kakao.init('8035352f3860f77b021b6c64824a3b93');
         function klogin() {
             window.Kakao.Auth.login({
-                scope:'profile, account_email, birthday, age_range',
+                scope:'profile, account_email',
                 success: function(authObj) {
                     console.log(authObj);
                     window.Kakao.API.request({
@@ -155,8 +159,32 @@
                             success: res => {
                             const kakao_account = res.kakao_account
                             console.log(kakao_account);
+                            console.log(kakao_account.profile.nickname);
+                            
+                            
+                            
+                            $.ajax({
+                            	url: "${contextPath}/login/kakaoLogin",
+                            	data: ({
+                            		memberEmail: kakao_account.email,
+                            		memberNick: kakao_account.profile.nickname
+                            	}),
+                            	type: "post",
+                            	success: function(result){
+                            		console.log("성공")
+                            	},
+                            	error: function(){
+                            		console.log("tgt")
+                            	}
+                            });
+                            
+                            
+                            
                         }
                     });
+                },
+                fail: function() {
+                    alert('11');
                 }
             });
         }

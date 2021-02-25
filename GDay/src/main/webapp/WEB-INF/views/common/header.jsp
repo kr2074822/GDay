@@ -53,7 +53,7 @@
 			</ul>
 			
 			<div id="header-member-area">
-				<a id="login" href="#">로그인</a>
+				<a id="login" href="${contextPath}/login/loginView">로그인</a>
 				
 				<div id="hamberger">
 				
