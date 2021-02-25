@@ -14,6 +14,7 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js'></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <!-- rrule lib -->
 <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
 <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
