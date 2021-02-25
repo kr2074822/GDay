@@ -5,94 +5,9 @@
 <!-- el 사용을 위해 jsp로 생성 -->
 <script>
 
-var events = []; //이벤트 목록을 담을 곳
-//events = [{}, {}, {}....] <-이런 모양
-
-//캘린더 목록 조회
-selectCalendarList();
-
-//풀캘린더 설정
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-      //themeSystem: 'bootstrap',
-      //aspectRatio: 1.5, 비율
-      height : '95%',//달력형 스크롤바 X
-
-      dayHeaderClassNames: 'dayBox',//캘린더 요일 요소에 클래스 추가(css) 
-      eventClassNames: 'eventBox',//이벤트 요소에 클래스 추가(css)
-
-      customButtons: {
-          todayBtn: {
-              text: '오늘',
-              click: function(){
-                  calendar.today();
-              }
-          },
-          goToEvent: {
-              text: '검색',
-              click: function(){
-              }
-          },
-          insertBtn: {
-              text: '기념일 등록',
-              click: function(){
-                  gdayInsertForm("");
-              }
-          }
-      },
-
-      headerToolbar: {
-      left: 'goToEvent todayBtn',
-      center: 'prevYear,prev,title,next,nextYear',
-      right: 'dayGridMonth,listYear',
-      },
-      footerToolbar: {
-      right: 'insertBtn'
-      },
-
-      views: {
-      today: {buttonText: '오늘'}, //이거 왜 안될까?
-      dayGridMonth: {buttonText: '캘린더'},
-      list: {buttonText: '목록'},
-      },
-
-      locale : 'ko', //한국어
-      //navLinks: true, // can click day/week names to navigate views
-      dayMaxEvents: true, // allow "more" link when too many events
-      //editable: true, //drag로 기념일 움직이게 하기
-
-      events: events,
-      eventTextColor: 'black',
-
-      //날짜 클릭 이벤트(등록)
-      dateClick: function(info){
-          //console.log(info.dateStr);//날짜 가지고 등록
-          gdayInsertForm(info.dateStr);
-      },
-
-      //이벤트 클릭(이벤트 상세 조회)
-      eventClick: function(info){
-          console.log("기념일번호:" + info.event.id);
-          console.log("기념일날짜:" + info.event.start);
-          //id로 상세 조회
-          gdayView(info.event.id, info.event.start);
-      }
-
-  });
-  calendar.render();
-});
-//캘린더 설정 끝
-
 //ready함수
 $(function(){
 
-
-  //캘린더 툴바 버튼 디자인
-  $(".fc-button-primary").css("background-color", "darkgray").css("border-style", "none");
-  $(".fc-icon").css("color", "lightgray");
-
-  
   /* -----------모달창------------- */
   //모달창 x 클릭
   $(".modal-close").children().on("click", function(){
@@ -128,94 +43,137 @@ $(function(){
   });
   
   
-  });
+	selectCalendarList();
+
+});
   //레디 함수
 
+var memberNo = 1 /* ${loginMember.memberNo} */
 
-//이벤트 조회 임시
-var eventList;
-function selectCalendarList(){
-  // $.ajax({
-  //     url : "${contextPath}/calendar/selectCalendarList",
-  //     dataType : "json",
-  //     success : function(cList){
-  //         $.each(cList, function(index, item){
-  //             var event = {
-  //                         id: item.id, /*기념일 번호*/
-  //                         title: item.title, //제목,
-  //                         start : item.dtStart,
-  //                         rrule: {
-  //                             freq: item.freq, /* 반복 단위 daily, (monthly, weekly,) yearly */
-  //                             interval : item.interval, /* 반복 주기 + freq와 연결되어 사용됨 */
-  //                             dtstart: item.dtstart,//시작날짜 startStr과 같은 거 넣기
-  //                             until: item.until /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-  //                             },
-  //                         backgroundColor: item.backgroundColor //배경색(16진법 가능)
-  //                         }
-  //             events.push(event);
-  //         })();
-  //     },
-  //     error : function(){
-  //         console.log("기념일 목록 조회 실패");
-  //     }
-  // });
+//캘린더 목록 조회
+var events = []; //이벤트 목록을 담을 곳
+//events = [{}, {}, {}....] <-이런 모양
+
+
+//풀캘린더 로드 메소드
+function loadFullCalendar(){
+	
+	//풀캘린더 설정
+	//document.addEventListener('DOMContentLoaded', function() {
+	  var calendarEl = document.getElementById('calendar');
+	  var calendar = new FullCalendar.Calendar(calendarEl, {
+	      //themeSystem: 'bootstrap',
+	      //aspectRatio: 1.5, 비율
+	      height : '95%',//달력형 스크롤바 X
+
+	      dayHeaderClassNames: 'dayBox',//캘린더 요일 요소에 클래스 추가(css) 
+	      eventClassNames: 'eventBox',//이벤트 요소에 클래스 추가(css)
+
+	      customButtons: {
+	          todayBtn: {
+	              text: '오늘',
+	              click: function(){
+	                  calendar.today();
+	              }
+	          },
+	          goToEvent: {
+	              text: '검색',
+	              click: function(){
+	              }
+	          },
+	          insertBtn: {
+	              text: '기념일 등록',
+	              click: function(){
+	                  gdayInsertForm("");
+	              }
+	          }
+	      },
+
+	      headerToolbar: {
+	      left: 'goToEvent todayBtn',
+	      center: 'prevYear,prev,title,next,nextYear',
+	      right: 'dayGridMonth,listYear',
+	      },
+	      footerToolbar: {
+	      right: 'insertBtn'
+	      },
+
+	      views: {
+	      today: {buttonText: '오늘'}, 
+	      dayGridMonth: {buttonText: '캘린더'},
+	      list: {buttonText: '목록'},
+	      },
+
+	      locale : 'ko', //한국어
+	      //navLinks: true, // can click day/week names to navigate views
+	      dayMaxEvents: true, // allow "more" link when too many events
+	      //editable: true, //drag로 기념일 움직이게 하기
+
+	      events: events,
+	      eventTextColor: 'black',
+
+	      //날짜 클릭 이벤트(등록)
+	      dateClick: function(info){
+	          //console.log(info.dateStr);//날짜 가지고 등록
+	          gdayInsertForm(info.dateStr);
+	      },
+
+	      //이벤트 클릭(이벤트 상세 조회)
+	      eventClick: function(info){
+	          console.log("기념일번호:" + info.event.id);
+	          console.log("기념일날짜:" + info.event.start);
+	          //id로 상세 조회
+	          gdayView(info.event.id, info.event.start);
+	      }
+
+	  });
+	  calendar.render();
+	//});
+	//캘린더 설정 끝
+	
+	  //캘린더 툴바 버튼 디자인
+	  $(".fc-button-primary").css("background-color", "darkgray").css("border-style", "none");
+	  $(".fc-icon").css("color", "lightgray");
+	  
+ }
   
-  eventList = [ //json으로 넘어온다고 생각하면 다음과 같음
-      {
-      id: 1, /*기념일 번호*/
-      title: '기타', //기념일명
-      dtstart: new Date('2021-02-19'),//클릭 및 수정 시 확인 위해 필요(시작날짜)
-      freq: 'daily', /* 반복 단위 daily, (monthly, weekly,) yearly */
-      interval : 10, /* 반복 주기 + freq와 연결되어 사용됨 */
-      until: '2999-12-31', /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-      backgroundColor: 'red' //배경색(16진법 가능)
-      },
-      {
-      id: 2, /*기념일 번호*/
-      title: '100일', //제목
-      dtstart: new Date('2021-01-10'),//클릭 및 수정 시 확인 위해 필요(시작날짜)
-      freq: 'daily', /* 반복 단위 daily, (monthly, weekly,) yearly */
-      interval : 100, /* 반복 주기 + freq와 연결되어 사용됨 */
-      until: '2999-12-31', /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-      backgroundColor: 'lightgreen' //배경색(16진법 가능)
-      },
-      {
-      id: 3, /*기념일 번호*/
-      title: '반복없음', //제목
-      dtstart: new Date('2021-03-10'),//클릭 및 수정 시 확인 위해 필요(시작날짜)
-      freq: 'daily', /* 반복 단위 daily, (monthly, weekly,) yearly */
-      interval : 1, /* 반복 주기 + freq와 연결되어 사용됨 */
-      until: '2021-03-10', /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-      backgroundColor: 'yellow' //배경색(16진법 가능)
-      },
-      {
-      id: 4, /*기념일 번호*/
-      title: '1년', //제목
-      dtstart: new Date('2020-02-27'),//클릭 및 수정 시 확인 위해 필요(시작날짜)
-      freq: 'yearly', /* 반복 단위 daily, (monthly, weekly,) yearly */
-      interval : 1, /* 반복 주기 + freq와 연결되어 사용됨 */
-      until: '2999-12-31', /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-      backgroundColor: 'blue' //배경색(16진법 가능)
-      }
-  ]
-
-  $.each(eventList, function(index, item){
-      var event = {
-                  id: item.id, /*기념일 번호*/
-                  title: item.title, //제목,
-                  start : item.dtStart,
-                  rrule: {
-                      freq: item.freq, /* 반복 단위 daily, (monthly, weekly,) yearly */
-                      interval : item.interval, /* 반복 주기 + freq와 연결되어 사용됨 */
-                      dtstart: item.dtstart,//시작날짜 startStr과 같은 거 넣기
-                      until: item.until /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
-                      },
-                  backgroundColor: item.backgroundColor //배경색(16진법 가능)
-                  }
-      events.push(event);
-  });
-}
-
+  
+//캘린더 기념일 목록 조회
+function selectCalendarList(){
+	  
+	   $.ajax({
+	       url : "${contextPath}/calendar/selectCalendarList",
+	       type : "get",
+	       dataType : "json",
+	       data : { "memberNo" : 1 }, /* memberId */
+	       success : function(cList){
+	    	   console.log("success");
+	    	   
+	    	   $.each(cList, function(index, item){
+	               var event = {
+	                           id: item.gdayId, /*기념일 번호*/
+	                           title: item.gdayTitle, //제목,
+	                           start : item.dtStart,
+	                           rrule: {
+	                               freq: item.gdayFreq, /* 반복 단위 daily, (monthly, weekly,) yearly */
+	                               interval : item.interval, /* 반복 주기 + freq와 연결되어 사용됨 */
+	                               dtstart: item.dtStart,//시작날짜 startStr과 같은 거 넣기
+	                               until: item.dtUntil /* 마감날짜(기본은 2999-12-31): 주기 없음 = dtstart와 같은 날짜 + freq/interval(daily/1) */
+	                               },
+	                           backgroundColor: item.gdayColor //배경색(16진법 가능)
+	                           }
+	               events.push(event);
+	           });
+	    	   
+	    	   loadFullCalendar();//풀캘린더 로드
+	              
+	       },
+	       error : function(){
+	           console.log("기념일 목록 조회 실패");
+	       }
+	   });
+	
+  }
 
 
 /* 날짜 / 등록 버튼 클릭 시 등록 모달창 팝업 메소드 */
@@ -251,7 +209,7 @@ function cancelInput(str){
 
 /* 기념일 등록 메소드 */
 function gdayInsert(){
-  var memNo = 1; //멤버번호 세션에 있는 것 가져오기
+	
   var gdayTitle = $("#put-gdayTitle").val(); //기념일명
   var dtStart = $("#put-dtStart").val();//시작 날짜
   var gdayColor = $("#put-gdayColor").val();//기념일색
@@ -282,8 +240,31 @@ function gdayInsert(){
                'gdayFreq':gdayFreq, /* 반복 단위 */
                'interval':interval, /* 반복 주기 */
                'dtUntil':dtUntil, /* 마감일짜 */
-               'memNo':memNo /* 회원 번호 */
+               'memberNo':memberNo /* 회원 번호  : 위에서 세션에서 가져온 memberNo*/
               }
+  
+  $.ajax({
+	  url : "${contextPath}/calendar/gdatInsert",
+    data : gdayData, 
+    type : "post",
+    success : function(result){
+    	
+    	if(result > 0){
+    		swal({icon: "success", title: "기념일을 등록했습니다."});
+    		selectCalendarList();
+    	} else {
+	    	swal({icon: "error", title: "기념일 등록에 실패했습니다."});
+    	}
+    },
+    error : function(){
+    	console.log("기념일 등록 중 오류");
+    }
+  });
+
+  
+  
+  
+  
 }
 
 /* 이벤트 클릭 시 상세 조회 모달창 팝업 메소드 */
@@ -296,6 +277,10 @@ function gdayView(gdayNo, startStr){
   
   //임시
   console.log(gdayNo);
+  
+  
+  
+  
   var i = gdayNo - 1; /* eventList 인덱스 */
 
   $("#modal-view #v-gdayColor").css("background-color", eventList[i].backgroundColor);
@@ -322,7 +307,6 @@ function gdayView(gdayNo, startStr){
   }
   $("#modal-view #v-freqInterval").text(fi)
 }
-
 
 
 
