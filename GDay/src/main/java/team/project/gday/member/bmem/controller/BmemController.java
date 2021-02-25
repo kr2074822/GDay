@@ -33,9 +33,9 @@ public class BmemController {
 	}
 	
 	//비즈니스 주문 취소 목록 조회 이동
-	@RequestMapping("bCancleList")
-	public String bCancleList() {
-		return "mypage/bMemPage/bCancleList";
+	@RequestMapping("bCancelList")
+	public String bCancelList() {
+		return "mypage/bMemPage/bCancelList";
 	}
 	
 	//비즈니스 회원이 등록한 클래스 목록 조회 이동
@@ -51,9 +51,9 @@ public class BmemController {
 	}
 	
 	//비즈니스 수강 취소 목록 조회
-	@RequestMapping("bClassCancleList")
-	public String bClassCancleList() {
-		return "mypage/bMemPage/bClassCancleList";
+	@RequestMapping("bClassCancelList")
+	public String bClassCancelList() {
+		return "mypage/bMemPage/bClassCancelList";
 	}
 	
 	

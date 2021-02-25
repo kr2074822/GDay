@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#wrapper {
+	display: flex;
+}
+
+#b-refund-list-wrapper {
+	width: 70%;
+	margin: auto;
+}
+
+/* 페이지 상단 부분 */
+#wrapper-top-area {
+	width: 100%;
+	margin: 20px 0;
+	display: flex; 
+}
+
+#container-form {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+
+/* 주문 내역 목록 */
+#refund-list {
+	
+}
+
+#list-table {
+	border: 1px solid black;
+}

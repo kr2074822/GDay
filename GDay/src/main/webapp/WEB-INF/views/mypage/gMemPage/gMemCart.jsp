@@ -7,7 +7,6 @@
 <title>Insert title here</title>
    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css"/>
    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/memberCart.css"/>
-
    
 </head>
 <body>
@@ -17,7 +16,7 @@
 	</div>
 
 	<div id="cart-wrapper">
-		<jsp:include page="../bMemPage/bMemSidebar.jsp"/>
+		<jsp:include page="gMemSidebar.jsp"/>
 		
 		<!-- 선물 부분 -->
 		<div id="gift-list-area">

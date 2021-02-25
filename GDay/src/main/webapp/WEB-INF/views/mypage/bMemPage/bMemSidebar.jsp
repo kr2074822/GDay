@@ -52,7 +52,7 @@
                             <span class="submenu-text">반품 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bCancleList">
+                        <li><a href="${contextPath}/bMember/bCancelList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">주문 취소 조회</span>
                             </a>
@@ -77,7 +77,7 @@
                             <span class="submenu-text">수강 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bClassCancleList">
+                        <li><a href="${contextPath}/bMember/bClassCancelList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">수강 취소 조회</span>
                             </a>
