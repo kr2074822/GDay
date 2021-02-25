@@ -172,6 +172,7 @@
                             	type: "post",
                             	success: function(result){
                             		console.log("성공")
+                            		window.location.href = "${contextPath}";
                             	},
                             	error: function(){
                             		console.log("tgt")

@@ -18,6 +18,7 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private BCryptPasswordEncoder enc;
 	
+	// 회원 로그인
 	@Override
 	public Member loginAction(Member inputMember) {
 		Member loginMember = dao.loginAction(inputMember);
@@ -33,21 +34,28 @@ public class LoginServiceImpl implements LoginService{
 		}
 		return loginMember;
 	}
+	
+	// 닉네임 체크
+	@Override
+	public int nickCheck(Member member) {
+		return dao.nickCheck(member);
+	}
 
+	// 카카오톡 회원가입
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int kakaoSignUp(Member member) {
-		int result = 0;
-		result = dao.kakaoSignUp(member);
-		
-		if(result > 0) {
-			// result = dao.kakaoLogin(member);
-		}else {
-			
-		}
-		
-		return result;
+		return dao.kakaoSignUp(member);
 	}
+
+	// 카카오톡 로그인
+	@Override
+		
+	public Member kakaoLogin(Member member) {
+		return dao.kakaoLogin(member);
+	}
+
+
 
 
 }

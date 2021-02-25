@@ -81,12 +81,34 @@ public class LoginController {
 	// 카카오 로그인
 	@RequestMapping("kakaoLogin")
 	@ResponseBody
-	public int kakaoLogin(Member member) {
+	public String kakaoLogin(Member member, Model model) {
+		int random = 0;
+		int result = 0;
+		String url = null;
 		
-		System.out.println(member);
-		int result = service.kakaoSignUp(member);
-		System.out.println(result);
-		return result;
+		// 카카오톡 로그인
+		Member loginMember =  service.kakaoLogin(member);
+		if (loginMember != null) { // 아이디가 있을때
+			model.addAttribute("loginMember", loginMember);
+			url = "/";
+		}else { // 아이디가 없을때
+			// 닉네임 체크
+			result = service.nickCheck(member);
+			if (result > 0) { // 닉네임이 있을때
+				random = (int)(Math.random()*100);
+				member.setMemberNick(member.getMemberNick()+random);
+			}else { // 닉네임이 없을때
+				result = service.kakaoSignUp(member);
+				if (result > 0) { // 회원가입 성공했을때
+					
+				}else { // 회원가입 실패 했을 때
+					url = "loginView";
+				}
+				
+			}
 		
+		}
+		
+		return  "redirect:" + url;
 	}
 }
