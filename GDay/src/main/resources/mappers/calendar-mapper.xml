@@ -28,7 +28,7 @@
 		<id property="gdayNo" column="GDAY_NO"/>
 		<result property="gdayTitle" column="GDAY_TITLE"/>
 		<result property="gdayFreq" column="GDAY_FREQ"/>
-		<result property="interval" column="GDAY_INTER"/>
+		<result property="gdayInter" column="GDAY_INTER"/>
 		<result property="dtStart" column="DT_START"/>
 		<result property="dtUntil" column="DT_UNTIL"/>
 		<result property="gdayColor" column="GDAY_COLOR"/>
@@ -37,11 +37,40 @@
 		<result property="memberPhone" column="MEM_PHONE"/>
 	</resultMap>
 
+<!-- 캘린더 기념일 전체 조회 -->
  <select id="selectCalendarList" parameterType="_int" resultMap="calendar_rm">
  	SELECT * FROM V_CALENDAR WHERE MEM_NO = #{memberNo}
  </select>
 
+<!-- 캘린더 기념일 상세 조회 -->
+	<select id="viewEvent" parameterType="_int" resultMap="calendar_rm">
+		SELECT * FROM V_CALENDAR WHERE GDAY_NO = #{gdayNo}
+	</select>
+
+<!-- 캘린더 기념일 등록 -->
+	<insert id="insertEvent" parameterType="Calendar">
+		INSERT INTO CALENDAR VALUES
+		(CAL_SEQ.NEXTVAL, #{gdayTitle}, #{gdayFreq}, #{gdayInter}, #{dtStart}, #{dtUntil},
+		 #{gdayColor}, #{memberNo})
+	</insert>	
 	
+<!-- 캘린더 기념일 수정 -->
+	<update id="updateEvent" parameterType="Calendar">
+		UPDATE CALENDAR SET
+		GDAY_TITLE = #{gdayTitle},
+		GDAY_FREQ = #{gdayFreq},
+		GDAY_INTER = #{gdayInter},
+		DT_START = #{dtStart},
+		DT_UNTIL = #{dtUntil},
+		GDAY_COLOR = #{gdayColor}
+		WHERE GDAY_NO = #{gdayNo}
+	</update>
+	
+	
+<!-- 캘린더 기념일 삭제 -->
+	<delete id="deleteEvent" parameterType="_int">
+		DELETE FROM CALENDAR WHERE GDAY_NO = #{gdayNo}	
+	</delete>
 	
 	
 </mapper>

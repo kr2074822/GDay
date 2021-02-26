@@ -100,13 +100,13 @@ display:none;
 .fc-header-toolbar .fc-toolbar-chunk{
       position: absolute;
   }
-.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(1){ top:25px; left:5%;}
+.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(1){ top:120px; left:5%;}
 .fc-header-toolbar .fc-toolbar-chunk:nth-of-type(2){ 
-      top: 80px;
+      top: 180px;
       left: 10%;
       right: 10%;
     }
-.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(3){ top:25px; right:5%;}
+.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(3){ top:120px; right:5%;}
 
 
 }
@@ -171,7 +171,7 @@ display:none;
 
 /* 버튼 */
 .modal-btn {
-    width : 60px;
+    min-width : 60px;
     height : 36px;
     border-radius: 10px;
     border : none;
@@ -180,19 +180,19 @@ display:none;
     margin-left : 5px;
 }
 
-/* 등록창 btn */
-#m-cancel-btn { background-color: darkgray;}
-#m-cancel-btn:hover{ background-color: rgb(128, 128, 128); cursor: pointer;}
-#m-submit-btn { background-color: #FE929F;}
-#m-submit-btn:hover{ background-color: #db7e89; cursor: pointer;}
+/* 등록창/수정창 btn */
+.m-cancel-btns { background-color: darkgray;}
+.m-cancel-btns:hover{ background-color: rgb(128, 128, 128); cursor: pointer;}
+.m-submit-btns { background-color: #FE929F;}
+.m-submit-btns:hover{ background-color: #db7e89; cursor: pointer;}
 
-/* 등록창 */
-#modal-insert {height: 350px;}
+/* 등록창/수정창 */
+#modal-insert, #modal-update {height: 350px;}
 
-#put-gdayColor { width : 20%; cursor : pointer;}
-#select-fi, #put-dtStart { cursor : pointer; }
+.gdayColors { width : 20%; cursor : pointer;}
+.fis, .dtStarts { cursor : pointer; }
 
-#modal-insert .m-content-box { height : 70%; }
+#modal-insert .m-content-box, #modal-update .m-content-box { height : 70%; }
 
 
 /* 등록창 : 인풋 */
@@ -259,3 +259,7 @@ display:none;
 }
 #modal-view .modal-icon-btn i { font-size : 28px;}
 #modal-view .modal-icon-btn span { display:none; font-size : 12px;}
+
+/* 검색창 */
+#modal-search { height : 200px;}
+#search-input { height : 70px;}

@@ -7,7 +7,7 @@ public class Calendar {
 	private int gdayNo;
 	private String gdayTitle;
 	private String gdayFreq;
-	private int interval;
+	private int gdayInter; //interval
 	private Date dtStart;
 	private Date dtUntil;
 	private String gdayColor;
@@ -33,11 +33,11 @@ public class Calendar {
 	public void setGdayFreq(String gdayFreq) {
 		this.gdayFreq = gdayFreq;
 	}
-	public int getInterval() {
-		return interval;
+	public int getGdayInter() {
+		return gdayInter;
 	}
-	public void setInterval(int interval) {
-		this.interval = interval;
+	public void setGdayInter(int gdayInter) {
+		this.gdayInter = gdayInter;
 	}
 	public Date getDtStart() {
 		return dtStart;
@@ -78,8 +78,8 @@ public class Calendar {
 	
 	@Override
 	public String toString() {
-		return "Calendar [gdayNo=" + gdayNo + ", gdayTitle=" + gdayTitle + ", gdayFreq=" + gdayFreq + ", interval="
-				+ interval + ", dtStart=" + dtStart + ", dtUntil=" + dtUntil + ", gdayColor=" + gdayColor
+		return "Calendar [gdayNo=" + gdayNo + ", gdayTitle=" + gdayTitle + ", gdayFreq=" + gdayFreq + ", gdayInter="
+				+ gdayInter + ", dtStart=" + dtStart + ", dtUntil=" + dtUntil + ", gdayColor=" + gdayColor
 				+ ", memberNo=" + memberNo + ", memberNick=" + memberNick + ", memberPhone=" + memberPhone + "]";
 	}
 	
