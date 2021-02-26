@@ -55,6 +55,12 @@ public interface LoginService {
 	 */
 	public abstract int insertImg(List<MultipartFile> image, String savePath, Member member);
 
+	/** 카카오 회원 추가 정보
+	 * @param member
+	 * @return
+	 */
+	public abstract int addMoreInfo(Member member);
+
 
 
 

@@ -82,7 +82,7 @@
 	<!-- 일반 회원 가입 -->
 	<insert id="signUp" parameterType="Member">
 		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_NICK, MEM_PHONE, MEM_GRADE, MEM_TYPE, MEM_SEC)
-		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, 'G', 'K', DEFAULT)
+		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, 'G', 'G', DEFAULT)
 	</insert>
 	
 	<!-- 회원 번호 조회 -->
@@ -96,4 +96,18 @@
 	<insert id="insertImg" parameterType="ProfileImg">
 		INSERT INTO PROFILE_IMG VALUES(SEQ_PNO.NEXTVAL, #{pfPath}, #{pfName}, #{memberNo})
 	</insert>
+	
+	<!-- 카카오 회원 정보 추가 -->
+	<update id="addMoreInfo" parameterType="Member">
+		UPDATE MEMBER SET MEM_NAME = #{memberName}, MEM_PHONE = #{memberPhone} WHERE MEM_EMAIL = #{memberEmail}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

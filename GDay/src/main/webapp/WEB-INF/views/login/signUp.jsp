@@ -9,12 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
     <link rel="stylesheet" href="${contextPath}/resources/css/login/signUp.css">
     
-    <!-- JQUERY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -52,7 +54,7 @@
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="text" name="" class="memberName" required>
+                            <input type="text" name="memberName" class="memberName" required>
                             <label for="">이름</label>
                             <span id=""></span>
                         </div>
