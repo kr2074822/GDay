@@ -2,11 +2,13 @@ package team.project.gday.member.login.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 
 
 @Controller
@@ -134,6 +138,22 @@ public class LoginController {
 	@RequestMapping("signUpView")
 	public String signUpView() {
 		return "login/signUp";
+	}
+	
+	// 일반 회원 가입
+	@RequestMapping("signUp")
+	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
+		int result = service.signUp(member);
+		if (result > 0) {
+			String savePath = "resources/Images/profileImg";
+			if (image != null) { // 사진이 있을때
+				result = service.insertImg(image, savePath, member) ;
+				
+			} else { // 사진이 없을때
+				result = service.insertImg(image, savePath, member) ;
+			}
+		}
+		return "redirect:/";
 	}
 	
 	// 이메일 인증 

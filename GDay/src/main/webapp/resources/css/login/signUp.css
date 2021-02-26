@@ -75,7 +75,7 @@ section .container .user .formBox form div{
 }
 section .container .user .formBox form input{
     position: relative;
-    width: 90%;
+    width: 70%;
     padding: 10px 0;
     color: #141414;
     border: none;
@@ -112,7 +112,7 @@ section .container .user .formBox form div .code{
 section .container .user .formBox form div .showpw{
     position: absolute;
     top: 13%;
-    right: 0;
+    right: 100px;
     color:#141414;
 }
 section .container .user .formBox form div .showpw:hover{

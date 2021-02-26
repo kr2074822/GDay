@@ -13,6 +13,7 @@
 		<typeAlias type="team.project.gday.Product.model.vo.GClass" alias="Class"/>
 		<typeAlias type="team.project.gday.Product.model.vo.ProductCTag" alias="ProductCTag"/>
 		<typeAlias type="team.project.gday.Product.model.vo.GOption" alias="GOption"/>
+		<typeAlias type="team.project.gday.member.model.vo.ProfileImg" alias="ProfileImg"/>
 	</typeAliases>
 
 	<mappers>
