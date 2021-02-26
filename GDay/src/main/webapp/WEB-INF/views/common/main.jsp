@@ -192,7 +192,7 @@
                     <input type="checkbox" id="makeup">
                     <label class="item" for="makeup">화장품</label>
 					<input type="checkbox" id="etc">
-                    <label class="item" for="etc">화장품</label>
+                    <label class="item" for="etc">기타</label>
                 </div>
             </div>
             

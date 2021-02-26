@@ -149,7 +149,7 @@ public class LoginController {
 		System.out.println(member);
 		int result = service.signUp(member);
 		if (result > 0) {
-			String savePath = "resources/Images/profileImg";
+			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
 			if (image != null) { // 사진이 있을때
 				result = service.insertImg(image, savePath, member) ;
 				
