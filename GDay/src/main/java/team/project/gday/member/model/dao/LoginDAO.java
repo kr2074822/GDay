@@ -75,6 +75,10 @@ public class LoginDAO {
 		return sqlSession.insert("memberMapper.insertImg", pf);
 	}
 
+	public int addMoreInfo(Member member) {
+		return sqlSession.update("memberMapper.addMoreInfo", member);
+	}
+
 
 
 

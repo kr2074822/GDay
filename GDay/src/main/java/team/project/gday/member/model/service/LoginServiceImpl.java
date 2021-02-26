@@ -122,4 +122,9 @@ public class LoginServiceImpl implements LoginService{
 		return date + str + ext;
 	}
 
+	@Override
+	public int addMoreInfo(Member member) {
+		return dao.addMoreInfo(member);
+	}
+
 }

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
 
 <!DOCTYPE html>
@@ -173,9 +175,13 @@
                             	}),
                             	type: "post",
                             	success: function(result){
+                            		if(result == 'already'){ // 이미 아이디가 있을 때
+                            			window.location.href = "${contextPath}/";
+                            		}else{
+                            			window.location.href = "${contextPath}/login/addModeInfoView";
+                            		}
                             		console.log("성공")
-                            		window.location.href = "${contextPath}";
-		                            		console.log(Kakao.Auth.getAccessToken());
+		                            console.log(Kakao.Auth.getAccessToken());
                             	},
                             	error: function(){
                             		console.log("tgt")

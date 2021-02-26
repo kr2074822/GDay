@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.tracing.dtrace.ModuleAttributes;
 
 import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.Member;
@@ -111,7 +114,7 @@ public class LoginController {
 		if (loginMember != null) { // 아이디가 있을때
 			model.addAttribute("loginMember", loginMember);
 			// 토큰 저장
-			url = "/";
+			url = "already";
 		}else { // 아이디가 없을때
 			// 닉네임 체크
 			result = service.nickCheck(member);
@@ -123,14 +126,14 @@ public class LoginController {
 				if (result > 0) { // 회원가입 성공했을때
 					
 				}else { // 회원가입 실패 했을 때
-					url = "loginView";
+					url = "redirect:loginView";
 				}
 				
 			}
 		
 		}
 		
-		return  "redirect:" + url;
+		return url;
 	}
 	
 	
@@ -143,6 +146,7 @@ public class LoginController {
 	// 일반 회원 가입
 	@RequestMapping("signUp")
 	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
+		System.out.println(member);
 		int result = service.signUp(member);
 		if (result > 0) {
 			String savePath = "resources/Images/profileImg";
@@ -232,4 +236,20 @@ public class LoginController {
 		return "login/findPw";
 	}
 	
+	// 카카오톡 추가 정보 화면
+	@RequestMapping("addModeInfoView")
+	public String addModeInfoView() {
+		return "login/addMoreInfo";
+	}
+	
+	
+	// 카카오톡 회원 추가 정보
+	@RequestMapping("addMoreInfo")
+	@ResponseBody
+	public String addMoreInfo(@ModelAttribute Member member, Model model) {
+		System.out.println(member);
+		int result = service.addMoreInfo(member);
+		model.addAttribute("loginMEmber", member);
+		return "redirect:/";
+	}
 }
