@@ -25,7 +25,7 @@
                     <img src="${contextPath}/resources/images/signin1.jpg" alt="">
                 </div>
                 <div class="formBox">
-                    <form action="">
+                    <form action="" method="POST" onsubmit="return validate();">
                         <h2>일반회원 회원가입</h2>
                         <div>
                             <input type="email" name="" class="email" required>
@@ -190,16 +190,18 @@
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
-    <!-- jQuery와 postcodify 를 로딩한다. -->
-	<script src="https://d1p7wdleee1q2z.cloudfront.net/post/search.min.js">
-    </script>
-	<script>
-
-		$(function() {
-			$(".search_addr").postcodifyPopUp();
-		});
-	</script>
     <script type="text/javascript">
+    
+	 	// 각 유효성 검사 결과를 저장할 객체
+		var signUpCheck = {
+			"email" : false,
+			"pwd1" : false,
+			"pwd2" : false,
+			"name" : false,
+			"nick" : false,
+			"phone" : false
+		};
+		   
     
     	/* 이메일 코드 */
     	var code = 0;
@@ -279,6 +281,7 @@
 			        		console.log(ebtn.next());
 							ebtn.css("display", "none")
 							ebtn.next().css("display", "inline-block")
+							signUpCheck.email = false;
 						}
 					},
 					error: function(){
@@ -331,10 +334,39 @@
         	console.log($(this).prev().prev().val())
         	if($(this).prev().prev().val().trim().length == 0 || $(this).prev().prev().val() != code ){
         		$(this).next().text("불일치").css({"color":"red"})
+        		signUpCheck.email = false;
         	}else{
         		$(this).next().text("일치").css({"color":"green"})
+        		signUpCheck.email = true;
         	}
         });
+        
+        
+        
+		// 유효성 검사 
+		function validate() {
+			for ( var key in signUpCheck) {
+				if (!signUpCheck[key]) {
+					var str;
+					switch (key) {
+						case "email" : str = "이메일"; break;
+						case "pwd1": str = "비밀번호";	break;
+						case "pwd2": str = "비밀번호 확인";break;
+						case "name": str = "이름";	break;
+						case "nick":str = "닉네임";break;
+						case "phone": str = "전화번호"; break;
+					}
+							swal({icon:"warning", title:str+" 형식이 유효하지 않습니다."})
+					.then(function(){
+						var id = "#" + key;
+						$(id).focus();
+					});
+					
+					return false;
+				}
+			}
+		}
+        
         
     </script>
 </body>
