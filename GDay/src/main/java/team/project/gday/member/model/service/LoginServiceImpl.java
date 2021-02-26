@@ -62,13 +62,13 @@ public class LoginServiceImpl implements LoginService{
 			String fileName = rename(image.get(0).getOriginalFilename());
 			ProfileImg pf = new ProfileImg(0, savePath, fileName, result);
 			
-			
+			result = dao.insertImg(pf);
+			uploadImages.add(pf);
 			try {
 				image.get(0).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			result = dao.insertImg(pf);
 		}else {
 			ProfileImg pf = new ProfileImg(0, savePath, "pfp.png", result);
 			result = dao.insertImg(pf);
