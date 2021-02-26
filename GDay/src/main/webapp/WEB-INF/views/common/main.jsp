@@ -74,7 +74,7 @@
                     <input type="checkbox" id="nine_ten">
                     <label class="item" for="nine_ten">9~10만원대</label>
                     <input type="checkbox" id="over_ten">
-                    <label class="item" for="over_ten">10만원 이상</label>
+                    <label class="item" for="over_ten">11만원 이상</label>
                 </div>
             </div>
             <div class="popup" data-text="2">
@@ -107,8 +107,8 @@
                     <label class="item" for="friend">친구ㆍ동료</label>
                     <input type="checkbox" id="teacher">
                     <label class="item" for="teacher">선생님ㆍ상사</label>
-                    <input type="checkbox" id="group">
-                    <label class="item" for="group">단체</label>
+                    <input type="checkbox" id="relEtc">
+                    <label class="item" for="relEtc">기타</label>
                 </div>
             </div>
             <div class="popup" data-text="4">
@@ -124,8 +124,12 @@
                     <label class="item" for="marriage">결혼</label>
                     <input type="checkbox" id="childbirth">
                     <label class="item" for="childbirth">출산</label>
-                    <input type="checkbox" id="">
-                    <label class="item" for="">기타</label>
+                    <input type="checkbox" id="parent">
+                    <label class="item" for="parent">어버이날</label>
+                    <input type="checkbox" id="teacherDay">
+                    <label class="item" for="teacherDay">스승의날</label>
+                    <input type="checkbox" id="hire">
+                    <label class="item" for="hire">입사ㆍ승진</label>
                 </div>
             </div>
             <div class="popup" data-text="5">
@@ -139,8 +143,6 @@
                     <label class="item" for="fall">가을</label>
                     <input type="checkbox" id="winter">
                     <label class="item" for="winter">겨울</label>
-                    <input type="checkbox" id="seaon_all">
-                    <label class="item" for="seaon_all">모든계절</label>
                 </div>
             </div>
             <div class="popup" data-text="6">
@@ -156,6 +158,8 @@
                     <label class="item" for="green">Green</label>
                     <input type="checkbox" id="blue">
                     <label class="item" for="blue">Blue</label>
+					<input type="checkbox" id="navy">
+                    <label class="item" for="navy">Navy</label>
                     <input type="checkbox" id="purple">
                     <label class="item" for="purple">Purple</label>
                     <input type="checkbox" id="white">
@@ -184,9 +188,11 @@
                     <input type="checkbox" id="fashion">
                     <label class="item" for="fashion">패션의류</label>
                     <input type="checkbox" id="fash_goods">
-                    <label class="item" for="fash_goods">패션잡화</label>
-                    <input type="checkbox" id="accessory">
-                    <label class="item" for="accessory">액세서리</label>
+                    <label class="item" for="fash_goods">패션잡화ㆍ주얼리</label>
+                    <input type="checkbox" id="makeup">
+                    <label class="item" for="makeup">화장품</label>
+					<input type="checkbox" id="etc">
+                    <label class="item" for="etc">화장품</label>
                 </div>
             </div>
             

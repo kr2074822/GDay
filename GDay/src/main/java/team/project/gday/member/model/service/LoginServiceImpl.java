@@ -1,5 +1,7 @@
 package team.project.gday.member.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +54,20 @@ public class LoginServiceImpl implements LoginService{
 	// 회원 이미지 설정 
 	@Override
 	public int insertImg(List<MultipartFile> image, String savePath, Member member) {
+		List<ProfileImg> uploadImages = new ArrayList<ProfileImg>();
 		
 		// 회원 번호 조회
 		int result = dao.checkMemNo(member);
 		if (!image.get(0).getOriginalFilename().equals("")) {
 			String fileName = rename(image.get(0).getOriginalFilename());
 			ProfileImg pf = new ProfileImg(0, savePath, fileName, result);
+			
+			
+			try {
+				image.get(0).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 			result = dao.insertImg(pf);
 		}else {
 			ProfileImg pf = new ProfileImg(0, savePath, "pfp.png", result);
