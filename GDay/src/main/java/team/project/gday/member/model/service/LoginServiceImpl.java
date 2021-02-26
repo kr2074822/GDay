@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import team.project.gday.member.login.controller.LoginService;
 import team.project.gday.member.model.dao.LoginDAO;
 import team.project.gday.member.model.vo.Member;
 
@@ -52,13 +51,23 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 		
 	public Member kakaoLogin(Member member) {
-		return dao.kakaoLogin(member);
+		Member loginMember = dao.kakaoLogin(member);
+		if(loginMember != null) {
+			int token = dao.inputToken(member);
+		}
+		return loginMember;
 	}
 
 	// 이메일 찾기
 	@Override
 	public String findEmail(Member member) {
 		return dao.findEmail(member);
+	}
+	
+	// 이메일 중복
+	@Override
+	public int checkEmail(Member member) {
+		return dao.checkEmail(member);
 	}
 
 

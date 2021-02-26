@@ -48,6 +48,18 @@ public class LoginDAO {
 		return sqlSession.selectOne("memberMapper.findEmail", member);
 	}
 
+	public int inputToken(Member member) {
+		return sqlSession.update("memberMapper.inputToken", member);
+	}
+
+	/** 이메일 중복
+	 * @param member
+	 * @return int
+	 */
+	public int checkEmail(Member member) {
+		return sqlSession.selectOne("memberMapper.checkEmail", member);
+	}
+
 
 
 

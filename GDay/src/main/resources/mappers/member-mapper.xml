@@ -37,8 +37,8 @@
 	
 	<!-- 카카오톡 회원가입 -->
 	<insert id="kakaoSignUp" parameterType="Member">
-		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_NICK, MEM_GRADE, MEM_TYPE, MEM_SEC) 
-		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberNick}, 'G', 'K', DEFAULT)
+		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NICK, MEM_GRADE, MEM_TYPE, MEM_SEC) 
+		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberNick}, 'G', 'K', DEFAULT)
 	</insert>
 	
 	<!-- 카카오톡 로그인 -->
@@ -55,4 +55,15 @@
 		WHERE MEM_NAME = #{memberName} AND MEM_PHONE = #{memberPhone} AND MEM_TYPE = 'G'
 	</select>
 	
+	<!-- 토큰 삽입 -->
+	<update id="inputToken" parameterType="Member">
+		UPDATE MEMBER SET MEM_PW = #{memberPwd} WHERE MEM_EMAIL = #{memberEmail}
+	</update>
+	
+	<!-- 이메일 중복 체크 -->
+	<select id="checkEmail" parameterType="Member" resultType="_int">
+		SELECT COUNT(MEM_EMAIL)
+		FROM MEMBER
+		WHERE MEM_EMAIL = #{memberEmail}
+	</select>
 </mapper>
