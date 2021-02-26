@@ -125,7 +125,10 @@ button {
  			</div>
 		</div>
 	</div>
-
 	<footer> </footer>
+	
+	<script>
+		
+	</script>
 </body>
 </html>

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,8 @@ div {
 		<div class="input-area">
 			<form action="#" method="POST">
 				<div class="title-area">
-					<span>제목</span> <input type="text" name="title" id="titleInput" required="제목을 입력해주세요.">
+					<span>제목</span> <input type="text" name="title" id="titleInput"
+						required="제목을 입력해주세요.">
 				</div>
 				<div class="content-area">
 					<span>내용</span>
@@ -80,6 +82,5 @@ div {
 			</form>
 		</div>
 	</div>
-
 </body>
 </html>

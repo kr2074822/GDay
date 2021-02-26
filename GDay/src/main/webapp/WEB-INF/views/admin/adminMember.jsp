@@ -131,11 +131,11 @@
 
                 <div id="adminMember-Application">
                     <select name="adminMember-ap" id="adminMember-ap">
-                        <option class="">일반</option>
-                        <option class="">비즈니스</option>
-                        <option class="">미인증</option>
-                        <option class="">블랙리스트</option>
-                        <option class="">탈퇴</option>
+                        <option class="nomal">일반</option>
+                        <option class="bisuness">비즈니스</option>
+                        <option class="noCheck">미인증</option>
+                        <option class="blackList">블랙리스트</option>
+                        <option class="secession">탈퇴</option>
                     </select>
                     <button type="submit">등급 변경</button>
                 </div>
@@ -144,7 +144,10 @@
         </div>
     </div>
     <footer>
-        
     </footer>
+    
+    <script>
+    	
+    </script>
 </body>
 </html>
