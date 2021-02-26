@@ -27,7 +27,7 @@
                             <input type="text" name="" id="search" placeholder="">
                             <button type="submit" id=""><i class="fas fa-search"></i></button>
                     </form>
-                    <span>검색어 없어도 찾을수 있어요${loginMember }</span>
+                    <span>검색어 없어도 찾을수 있어요${loginMember}</span>
                 </div>
                 <ul>
                     <li class="selectBtn" id="" data-text="0">연령대</li>

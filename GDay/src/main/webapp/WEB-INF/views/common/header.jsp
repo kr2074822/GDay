@@ -48,7 +48,7 @@
 				<li class="header-li header-login"><a href="#">로그인</a></li>			
 				<li class="header-li"><a href="#">선물찾기</a></li>
 				<li class="header-li"><a href="#">클래스찾기</a></li>
-				<li class="header-li"><a href="#">마이캘린더</a></li>
+				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
 				<li class="header-li"><a href="#">매거진</a></li>
 			</ul>
 			
