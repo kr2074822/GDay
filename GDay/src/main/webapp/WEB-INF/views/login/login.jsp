@@ -105,6 +105,7 @@
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script type="text/javascript">
 
+    
         /* 배경색 변경 */
         function toggleActive(){
             const container = document.querySelector(".container");
@@ -204,6 +205,24 @@
 		                            		 }
 		                            		);
 		                            		console.log(Kakao.Auth.getAccessToken());  */
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+		                            		
+
         
     </script>
 </body>

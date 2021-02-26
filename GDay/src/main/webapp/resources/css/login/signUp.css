@@ -75,7 +75,7 @@ section .container .user .formBox form div{
 }
 section .container .user .formBox form input{
     position: relative;
-    width: 100%;
+    width: 90%;
     padding: 10px 0;
     color: #141414;
     border: none;
