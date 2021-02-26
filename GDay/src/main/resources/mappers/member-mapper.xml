@@ -20,6 +20,18 @@
 	</resultMap>
 	
 	
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="ProfileImg" id="profileImg_rm">
+		<!-- DB의 기본 키 -->
+		<id property="pfNo" column="PF_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="pfPath" column="PF_PATH"/>
+  		<result property="pfName" column="PF_NAME"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+	
+	
 	<!-- 로그인 -->
 	<select id="loginAction" parameterType="Member" resultMap="member_rm">
 		SELECT * 
@@ -66,4 +78,22 @@
 		FROM MEMBER
 		WHERE MEM_EMAIL = #{memberEmail}
 	</select>
+	
+	<!-- 일반 회원 가입 -->
+	<insert id="signUp" parameterType="Member">
+		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_NICK, MEM_PHONE, MEM_GRADE, MEM_TYPE, MEM_SEC)
+		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, 'G', 'K', DEFAULT)
+	</insert>
+	
+	<!-- 회원 번호 조회 -->
+	<select id="checkMemNo" parameterType="Member" resultType="_int">
+		SELECT MEM_NO
+		FROM MEMBER
+		WHERE MEM_EMAIL = #{memberEmail}
+	</select>
+	
+	<!-- 회원 사진 삽입 -->
+	<insert id="insertImg" parameterType="ProfileImg">
+		INSERT INTO PROFILE_IMG VALUES(SEQ_PNO.NEXTVAL, #{pfPath}, #{pfName}, #{memberNo})
+	</insert>
 </mapper>

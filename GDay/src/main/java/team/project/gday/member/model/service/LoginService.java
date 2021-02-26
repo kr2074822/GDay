@@ -1,5 +1,9 @@
 package team.project.gday.member.model.service;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import team.project.gday.member.model.vo.Member;
 
 public interface LoginService {
@@ -36,6 +40,20 @@ public interface LoginService {
 	 * @return
 	 */
 	public abstract int checkEmail(Member member);
+
+	/** 일반 회원 가입
+	 * @param member
+	 * @return
+	 */
+	public abstract int signUp(Member member);
+
+	/** 회원 이미지 설정
+	 * @param image
+	 * @param savePath
+	 * @param member 
+	 * @return
+	 */
+	public abstract int insertImg(List<MultipartFile> image, String savePath, Member member);
 
 
 

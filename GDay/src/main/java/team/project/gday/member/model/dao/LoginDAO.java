@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 
 @Repository
 public class LoginDAO {
@@ -58,6 +59,20 @@ public class LoginDAO {
 	 */
 	public int checkEmail(Member member) {
 		return sqlSession.selectOne("memberMapper.checkEmail", member);
+	}
+
+	public int signUp(Member member) {
+		return sqlSession.insert("memberMapper.signUp", member);
+	}
+
+	
+	// 회원 번호 조회
+	public int checkMemNo(Member member) {
+		return sqlSession.selectOne("memberMapper.checkMemNo", member);
+	}
+
+	public int insertImg(ProfileImg pf) {
+		return sqlSession.insert("memberMapper.insertImg", pf);
 	}
 
 

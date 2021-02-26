@@ -25,10 +25,10 @@
                     <img src="${contextPath}/resources/images/signin1.jpg" alt="">
                 </div>
                 <div class="formBox">
-                    <form action="" method="POST" onsubmit="return validate();">
+                    <form action="${contextPath}/login/signUp" enctype="multipart/form-data" method="POST" onsubmit="return validate();">
                         <h2>일반회원 회원가입</h2>
                         <div>
-                            <input type="email" name="" class="email" required>
+                            <input type="email" name="memberEmail" class="email" required>
                             <label for="">Email</label>
                             <button type="button" class="emailCheck">중복 검사</button>
                             <button type="button" class="sendMail">인증</button>
@@ -41,25 +41,27 @@
                             <span></span>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="memberPwd" required class="pw1">
                             <label for="">비밀번호</label>
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="" required class="pw2">
                             <label for="">비밀번호 확인</label>
+                            <span id=""></span>
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="" class="memberName" required>
                             <label for="">이름</label>
+                            <span id=""></span>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="memberNick" required>
                             <label for="">닉네임</label>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="memberPhone" required>
                             <label for="">전화번호</label>
                         </div>
 
@@ -84,7 +86,7 @@
                         -->
 
                         <div>
-                            <input type="file" name="" class="imgFile" id="img0" onchange="LoadImg(this,0)">
+                            <input type="file" name="image" class="imgFile" id="img0" onchange="LoadImg(this,0)">
                             <h1>프로필 사진 </h1>
                             <div class="showImg">
                                 <img>
@@ -117,17 +119,17 @@
                             <span>인증 성공</span>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="" required class="pw3">
                             <label for="">비밀번호</label>
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="password" name="" required>
+                            <input type="password" name="" required class="pw4">
                             <label for="">비밀번호 확인</label>
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="" class="memName" required>
                             <label for="">이름</label>
                         </div>
                         <div>
@@ -358,15 +360,75 @@
 					}
 							swal({icon:"warning", title:str+" 형식이 유효하지 않습니다."})
 					.then(function(){
-						var id = "#" + key;
-						$(id).focus();
+						
+/* 						var id = "#" + key;
+						$(id).focus(); */
+						
 					});
 					
 					return false;
 				}
 			}
 		}
-        
+		
+		// 일반 회원 비밀번호 유효성 및 일치 검사
+		$(".pw1, .pw2").on("input",function() {
+			//영어 대,소문자 + 숫자, 총 6~12글자
+			var regExp = /^[A-Za-z0-9]{6,12}$/;
+	
+			console.log($(".pw1").val())
+			console.log($(".pw2").val())
+			// 비밀번호1 유효성 검사
+			if (!regExp.test($(".pw1").val())) {
+				console.log("유효 ㄴㄴ")
+				signUpCheck.pw1 = false;
+			} else {
+				console.log("유효 ㅇㅇ");
+				signUpCheck.pw1 = true;
+			}
+			
+			// 비밀번호1이 유효하지 않은 상태로 비밀번호 2를 작성하는 경우
+			if (!signUpCheck.pw1 && $(".pw2").val().length > 0) {
+				alert("유효한 비밀번호를 작성해 주세요.");
+				$(".pw2").val("");
+				$(".pw1").focus();
+			} else if (signUpCheck.pw1 && $(".pw2").val().length > 0) {
+				if ($(".pw1").val() != $(".pw2").val()) {
+					
+					$(".pw2").next().next().text("불일치")
+					signUpCheck.pw2 = false;
+				} else {
+					$(".pw2").next().next().text("일치")
+					signUpCheck.pw2 = true;
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/* 		// 이름 유효성 검사
+		$(".memName").on("input", function() {
+			var regExp = /^[가-힣]{2,}$/; // 한글 두 글자 이상
+
+			if (!regExp.test($(this).val())) { // 이름이 정규식을 만족하지 않을경우
+				$(this).next().next().text("이름 부적합").css("color", "red");
+				signUpCheck.name = false;
+			} else {
+				console.log("dd")
+				$(this).next().next().text("이름 적합").css("color", "green");
+				signUpCheck.name = true;
+			}
+		});
+         */
         
     </script>
 </body>
