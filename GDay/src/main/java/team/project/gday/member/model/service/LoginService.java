@@ -1,4 +1,4 @@
-package team.project.gday.member.login.controller;
+package team.project.gday.member.model.service;
 
 import team.project.gday.member.model.vo.Member;
 
@@ -30,6 +30,12 @@ public interface LoginService {
 	 * @return member
 	 */
 	public abstract String findEmail(Member member);
+
+	/** 이메일 중복 검사
+	 * @param member
+	 * @return
+	 */
+	public abstract int checkEmail(Member member);
 
 
 

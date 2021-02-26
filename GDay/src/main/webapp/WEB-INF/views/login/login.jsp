@@ -94,7 +94,7 @@
                                 <a href="${contextPath}/login/emailView">ID/PW 찾기</a>
                                 <a href="${contextPath}/"><i class="fas fa-home"></i></a>
                             </div>
-                        </p>
+						</p>
                     </form>
                 </div>
                 <div class="imgBox"><img src="${contextPath}/resources/images/gift2.jpg" alt=""></div>
@@ -167,12 +167,14 @@
                             	url: "${contextPath}/login/kakaoLogin",
                             	data: ({
                             		memberEmail: kakao_account.email,
-                            		memberNick: kakao_account.profile.nickname
+                            		memberNick: kakao_account.profile.nickname,
+                            		memberPwd: Kakao.Auth.getAccessToken()
                             	}),
                             	type: "post",
                             	success: function(result){
                             		console.log("성공")
                             		window.location.href = "${contextPath}";
+		                            		console.log(Kakao.Auth.getAccessToken());
                             	},
                             	error: function(){
                             		console.log("tgt")
@@ -186,7 +188,23 @@
                     alert('11');
                 }
             });
+            
+            
         }
+          
+/* 		                            		console.log(Kakao.Auth.getAccessToken());
+            
+		                            		Kakao.Auth.logout(
+		                            		function(obj) {
+		                            		if(obj==true){
+		                            			alert(12)
+		                            		}else{
+		                            			
+		                            		}
+		                            		 }
+		                            		);
+		                            		console.log(Kakao.Auth.getAccessToken());  */
+        
     </script>
 </body>
 </html>

@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${contextPath}/resources/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
     <link rel="stylesheet" href="${contextPath}/resources/css/login/signUp.css">
     
@@ -29,13 +30,15 @@
                         <div>
                             <input type="email" name="" class="email" required>
                             <label for="">Email</label>
-                            <button type="button">인증</button>
-                            <span>메일 발송</span>
+                            <button type="button" class="emailCheck">중복 검사</button>
+                            <button type="button" class="sendMail">인증</button>
+                            <span id="sucMail"></span>
                         </div>
                         <div>
                             <input type="text" name="" required class="code">
                             <label for="">인증번호</label>
-                            <span>인증 성공</span>
+                           	<button type="button" class="checkCode">입력</button>
+                            <span></span>
                         </div>
                         <div>
                             <input type="password" name="" required>
@@ -101,14 +104,16 @@
                     <form action="">
                         <h2>판매자회원 로그인</h2>
                         <div>
-                            <input type="email" name="" class="email" required>
+                            <input type="email" name="" class="email"required>
                             <label for="">Email</label>
-                            <button type="button">인증</button>
-                            <span>메일 발송</span>
+                            <button type="button" class="sendMail">중복검사</button>
+                            <button type="button" class="sendMail">인증</button>
+                            <span></span>
                         </div>
                         <div>
                             <input type="text" name="" required class="code">
                             <label for="">인증번호</label>
+                            <button type="button" class="checkCode">입력</button>
                             <span>인증 성공</span>
                         </div>
                         <div>
@@ -183,8 +188,8 @@
         </div>
     </section>
 
-
-    <script src="${contextPath}/resources/login/fontawesome.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <!-- jQuery와 postcodify 를 로딩한다. -->
 	<script src="https://d1p7wdleee1q2z.cloudfront.net/post/search.min.js">
     </script>
@@ -195,6 +200,9 @@
 		});
 	</script>
     <script type="text/javascript">
+    
+    	/* 이메일 코드 */
+    	var code = 0;
 
         /* 배경색 변경 */
         function toggleActive(){
@@ -238,6 +246,96 @@
                 $(this).parent().children().first().attr('type', 'password');
             }
         });
+        
+        /* 이메일 중복 검사 */
+        $(".emailCheck").on('click', function() {
+        	var regExp = /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/; // 4글자 아무단어 @ 아무단어 . * 3
+        	var ebtn = $(this);
+        	if (!regExp.test($(this).prev().prev().val())) { // 이메일이 정규식을 만족하지 않을경우
+        		console.log($(this).prev().prev().val())
+        		Swal.fire({
+					icon: 'error',
+					title: '이메일형식이 맞지 않습니다',
+        		})
+
+			} else {
+				$.ajax({
+					url: "${contextPath}/login/checkEmail",
+					data: ({
+						memberEmail: $(this).prev().prev().val()
+					}),
+					type: "post",
+					success: function(result){
+						if(result > 0){ // 중복이 있을때
+							Swal.fire({
+								icon: 'error',
+								title: '사용 불가능한 이메일입니다.',
+			        		})
+						}else{
+							Swal.fire({
+								icon: 'success',
+								title: '사용 가능한 이메일입니다.',
+			        		})
+			        		console.log(ebtn.next());
+							ebtn.css("display", "none")
+							ebtn.next().css("display", "inline-block")
+						}
+					},
+					error: function(){
+						console.log("실패")
+					}
+					
+					
+				})
+        		
+			}
+        });
+        
+        /* 이메일 유효성 검사 */
+         $(".email").on("input", function() {
+        	var regExp = /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/; // 4글자 아무단어 @ 아무단어 . * 3
+        	
+			$(this).next().next().css("display", "inline-block")
+			$(this).next().next().next().css("display", "none")
+        	
+        })
+        
+        /* 이메일 */
+        $(".sendMail").on('click', function(){
+        	
+        	$.ajax({
+        		url: "${contextPath}/login/sendEmail",
+        		data: ({
+        			memberEmail: $(".email").val()
+        		}),
+        		type: "post",
+        		success: function(result){
+        			console.log("성공");
+        			code = result;
+        			console.log(code);
+        			Swal.fire({
+						icon: 'success',
+						title: '인증번호를 전송했습니다.',
+	        		})
+        			
+        		},
+        		error: function(){
+        			console.log("실패");
+        		}
+        	});
+        	
+        });
+        
+        /* 인증 코드 */
+        $(".checkCode").on("click", function(){
+        	console.log($(this).prev().prev().val())
+        	if($(this).prev().prev().val().trim().length == 0 || $(this).prev().prev().val() != code ){
+        		$(this).next().text("불일치").css({"color":"red"})
+        	}else{
+        		$(this).next().text("일치").css({"color":"green"})
+        	}
+        });
+        
     </script>
 </body>
 </html>
