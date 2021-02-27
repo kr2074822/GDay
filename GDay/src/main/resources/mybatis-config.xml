@@ -21,5 +21,6 @@
 		<mapper resource="/mappers/calendar-mapper.xml"/>
 		<mapper resource="/mappers/product/class-mapper.xml"/>
 		<mapper resource="/mappers/product/gift-mapper.xml"/>
+		<mapper resource="/mappers/mypage/bmem/b-mem-mypage-mapper.xml.xml"/>
 	</mappers>
 </configuration>

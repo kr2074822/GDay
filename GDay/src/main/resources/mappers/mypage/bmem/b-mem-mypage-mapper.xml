@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bMemMapper">
+
+	<!-- 선물 resultMap -->
+	<resultMap type="Gift" id="gift_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="readCount" column="READ_COUNT"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		<result property="gStatus" column="G_STATUS"/>
+	</resultMap>
+	
+	<!-- 선물 옵션 resultMap -->
+	<resultMap type="GOption" id="option_rm">
+		<id property="gOptNo" column="G_OPT_NO"/>
+	
+  	<result property="gOptName" column="G_OPT_NAME"/>
+ 		<result property="gOptType" column="G_OPT_TYPE"/>
+ 		<result property="gOptSold" column="G_OPT_SOLD"/>
+ 		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
+	<!-- 상품 카테고리 해시태그 resultMap -->
+	<resultMap type="ProductCTag" id="tag_rm">
+		<id property="tagNo" column="TAG_NO"/>
+	
+  	<result property="tagName" column="G_OPT_NAME"/>
+ 		<result property="ctNo" column="G_OPT_TYPE"/>
+ 		<result property="ctName" column="G_OPT_SOLD"/>
+ 		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>	
+</mapper>
