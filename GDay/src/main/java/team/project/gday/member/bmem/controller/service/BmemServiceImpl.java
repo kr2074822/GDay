@@ -2,6 +2,8 @@ package team.project.gday.member.bmem.controller.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.dao.BmemDAO;
@@ -17,14 +19,15 @@ public class BmemServiceImpl implements BmemService {
 		
 		int giftListCount = dao.getGiftListCount();
 		
-		return null;
+		return new PageInfo(cp, giftListCount);
 	}
 
 	
 	// 내 판매글 목록 조회 Service 구현
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public List<Gift> bSellList(PageInfo pInfo) {
-		return null;
+		return dao.bSellList(pInfo);
 	}
 
 	

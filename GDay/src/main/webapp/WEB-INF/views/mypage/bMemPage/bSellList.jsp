@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,50 +56,24 @@
 					
 			<div id="sell-list">
 					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
+					<c:if test="${empty gList}">
+						<tr>
+							<td colspan="6">존재하는 판매글이 없습니다.</td>
+						</tr>
+					</c:if>
 					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
+					<c:if test="${!empty gList}">
+						<c:forEach var="gift" items="${gList}" varStatus="vs">
+							<span class="item-name">gList.prdtName</span>
+						</c:forEach>
+					</c:if>
 					
+
+<!-- 					
 					<div id="sell-item">
 						<img class="item-img"/>
 						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
-					
-					<div id="sell-item">
-						<img class="item-img"/>
-						<span class="item-name">상품명</span>
-					</div>
+					</div> -->
 					
 			</div>
 			
