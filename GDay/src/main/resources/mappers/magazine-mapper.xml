@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="magazineMapper">
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Magazine" id="magazine_rm">
+		<!-- DB의 기본 키 -->
+		<id property="mgzNo" column="MGZ_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="mgzTitle" column="MGZ_TITLE"/>
+  		<result property="mgzContent" column="MGZ_CONTENT"/>
+  		<result property="mgzCreateDt" column="CREATE_DATE"/>
+  		<result property="mgzReadCnt" column="READ_CNT"/>
+  		<result property="mgzDelStatus" column="DELETE_STATUS"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+	
+	<select id="getListCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+		WHERE DELETE_STATUS = 'N' 
+	</select>
+	
+	<select id="selectList" parameterType="_int" resultMap="magazine_rm">
+		SELECT MGZ_NO, MGZ_TITLE, MGZ_CONTENT, CREATE_DATE
+		FROM MAGAZINE
+		WHERE DELETE_STATUS = 'N' 
+		ORDER BY MGZ_NO DESC
+	</select>
+	
+</mapper>
