@@ -44,7 +44,7 @@ public class BmemController {
 			}
 		}
 		
-		model.addAttribute("bList", gList);
+		model.addAttribute("gList", gList);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "mypage/bMemPage/bSellList";
