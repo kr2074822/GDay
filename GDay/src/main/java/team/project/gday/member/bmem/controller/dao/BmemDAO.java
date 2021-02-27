@@ -31,7 +31,7 @@ public class BmemDAO {
 		
 		System.out.println(offset);
 		
-		return sqlSession.selectList("bMemMapper.bSellList", rowBounds);
+		return sqlSession.selectList("bMemMapper.bSellList", null, rowBounds);
 	}
 
 	public List<Attachment> selectThumbnailList(List<Gift> gList) {
