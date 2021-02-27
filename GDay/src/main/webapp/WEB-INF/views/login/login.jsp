@@ -33,17 +33,18 @@
                     <form action="loginAction" method="post">
                         <h2>일반회원 로그인</h2>
                         <div>
-                            <input type="text" name="memberEmail" id="" required>
+                            <input type="text" name="memberEmail" id="" value="${cookie.saveId.value }" required>
                             <label for="">Email</label>
                         </div>
                         <div>
                             <input type="password" name="memberPwd" id="" required>
                             <label for="">Password</label>
-                            <i class="showpw fas fa-eye"></i>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash"></i>
                         </div>
 
                         <div class="chk_wrap">
-                            <input type="checkbox" id="saveId" name="saveId">
+                            <input type="checkbox" id="saveId" name="saveId" <c:if test="${!empty cookie.saveId.value}">checked</c:if>>
                             <label for="saveId">아이디 저장</label>
 
                             <input type="checkbox" id="autoId" name="autoId" disabled>
@@ -77,6 +78,8 @@
                         <div>
                             <input type="password" name="memberPwd" id="" required>
                             <label for="">Password</label>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash none"></i>
                         </div>
                         
                         <div class="chk_wrap">
@@ -121,34 +124,48 @@
         }
         
         /* 일반 아이디 저장 및 자동로그인 */
-        $("#saveId").click(function() {
-        	console.log(111);
-            var condition = $("#autoId").prop( 'disabled' );
+        if($("#saveId").prop('checked')) {
+        	 $("#autoId").prop('disabled', false)
+        	 console.log(123)
+	    }else{
+	    	 $("#autoId").prop('checked')
+	    }
+        $("#saveId").on('click', function(){
+        	var condition = $("#autoId").prop( 'disabled' );
             $("#autoId").prop("disabled", condition ? false : true); 
             if($("#saveId").prop('checked') == false){
                 $("#autoId").prop('checked', false)
             }
-        });
-
+        })
+        
         /* 판매 아이디 저장 및 자동로그인  */
-        $("#saveBmemId").click(function() {
-        	console.log(111);
-            var condition = $("#bmemAutoLogin").prop( 'disabled' );
+        if($("#saveBmemId").prop('checked')) {
+        	 $("#bmemAutoLogin").prop('disabled', false)
+        	 console.log(123)
+	    }else{
+	    	 $("#bmemAutoLogin").prop('checked')
+	    }
+        $("#saveBmemId").on('click', function(){
+        	var condition = $("#bmemAutoLogin").prop( 'disabled' );
             $("#bmemAutoLogin").prop("disabled", condition ? false : true); 
             if($("#saveBmemId").prop('checked') == false){
                 $("#bmemAutoLogin").prop('checked', false)
             }
-        });
+        })
 
         /* 비밀번호 표시 */
-        $(".showpw").on('click', function(){
-            $(this).toggleClass("fa-eye-slash");
-            if($(this).hasClass("fa-eye-slash")){
-                $(this).parent().children().first().attr('type', 'text');
-            }else{
-                $(this).parent().children().first().attr('type', 'password');
-            }
-        });
+        $(".show").on('click', function(){
+            console.log($(this).next())
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'password');
+            $(this).next().css("display",'inline-block');
+        })
+        $(".none").on('click', function(){
+            console.log($(".show"))
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'text');
+            $(this).prev().css("display",'inline-block');
+        })
         
         /* 카카오 로그인 */
         window.Kakao.init('8035352f3860f77b021b6c64824a3b93');

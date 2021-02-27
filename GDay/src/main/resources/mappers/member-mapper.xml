@@ -20,7 +20,6 @@
 	</resultMap>
 	
 	
-	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
 	<resultMap type="ProfileImg" id="profileImg_rm">
 		<!-- DB의 기본 키 -->
 		<id property="pfNo" column="PF_NO"/>
@@ -30,6 +29,31 @@
   		<result property="pfName" column="PF_NAME"/>
   		<result property="memberNo" column="MEM_NO"/>
 	</resultMap>
+
+	
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="BmemberInfo" id="bmemberInfo_rm">
+		<!-- DB의 기본 키 -->
+		<id property="bmemNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="bmemShop" column="BMEM_SHOP"/>
+  		<result property="bmemIntro" column="BMEM_INTRO"/>
+	</resultMap>
+	
+	
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="LicenseImg" id="LicenseImg_rm">
+		<!-- DB의 기본 키 -->
+		<id property="memNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="lcsPath" column="LCS_PATH"/>
+  		<result property="lcsName" column="LCS_NAME"/>
+  		<result property="lcsStatus" column="LCS_STATUS"/>
+  		<result property="lcsDate" column="BMEM_LCS_DATEINTRO"/>
+	</resultMap>
+	
 	
 	
 	<!-- 로그인 -->
@@ -82,7 +106,7 @@
 	<!-- 일반 회원 가입 -->
 	<insert id="signUp" parameterType="Member">
 		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_NICK, MEM_PHONE, MEM_GRADE, MEM_TYPE, MEM_SEC)
-		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, 'G', 'G', DEFAULT)
+		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, #{memberGrade}, 'G', DEFAULT)
 	</insert>
 	
 	<!-- 회원 번호 조회 -->
@@ -102,10 +126,15 @@
 		UPDATE MEMBER SET MEM_NAME = #{memberName}, MEM_PHONE = #{memberPhone} WHERE MEM_EMAIL = #{memberEmail}
 	</update>
 	
+	<!-- 비즈니스 회원 업체명 추가 -->
+	<insert id="bmemAddShopName" parameterType="BmemberInfo">
+		INSERT INTO BMEMBER(MEM_NO, BMEM_SHOP) VALUES(#{bmemNo}, #{bmemShop})
+	</insert>
 	
-	
-	
-	
+	<!-- 비즈니스 회원 이미지 삽입 -->
+	<insert id="insertLicense" parameterType="LicenseImg">
+		INSERT INTO LICENSE_IMG VALUES(#{memNo}, #{lcsPath}, #{lcsName}, 'N', SYSDATE)
+	</insert>
 	
 	
 	

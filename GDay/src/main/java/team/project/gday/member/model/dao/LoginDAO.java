@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.project.gday.member.model.vo.BmemberInfo;
+import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.ProfileImg;
 
@@ -77,6 +79,14 @@ public class LoginDAO {
 
 	public int addMoreInfo(Member member) {
 		return sqlSession.update("memberMapper.addMoreInfo", member);
+	}
+
+	public int bmemAddShopName(BmemberInfo bmemberinfo) {
+		return sqlSession.insert("memberMapper.bmemAddShopName", bmemberinfo);
+	}
+
+	public int insertLicense(LicenseImg li) {
+		return sqlSession.insert("memberMapper.insertLicense", li);
 	}
 
 

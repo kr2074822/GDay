@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.tracing.dtrace.ModuleAttributes;
 
 import team.project.gday.member.model.service.LoginService;
+import team.project.gday.member.model.vo.BMember;
 import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.ProfileImg;
 
@@ -62,6 +63,7 @@ public class LoginController {
 			  Model model) {
 		
 		System.out.println(saveId);
+		System.out.println(autoId);
 		System.out.println(inputMember);
 		Member loginMember = service.loginAction(inputMember);
 		String url = null;
@@ -86,7 +88,7 @@ public class LoginController {
 		}
 		
 		
-		return url;
+		return "redirect:" + url;
 		
 	}
 	
@@ -145,17 +147,26 @@ public class LoginController {
 	
 	// 일반 회원 가입
 	@RequestMapping("signUp")
-	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
+	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop) {
 		System.out.println(member);
-		int result = service.signUp(member);
+		int result = service.signUp(member, bmemShop);
 		if (result > 0) {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
-			if (image != null) { // 사진이 있을때
-				result = service.insertImg(image, savePath, member) ;
-				
-			} else { // 사진이 없을때
-				result = service.insertImg(image, savePath, member) ;
-			}
+			result = service.insertImg(image, savePath, member) ;
+
+		}
+		return "redirect:/";
+	}
+	
+	// 비즈니스 회원 가입
+	@RequestMapping("signUpBmember")
+	public String signUpBmember(@ModelAttribute BMember bmember, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
+		System.out.println(bmember);
+		int result = service.signUpBmember(bmember);
+		if (result > 0) {
+			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+			result = service.insertImgBmember(image, savePath, bmember) ;
+
 		}
 		return "redirect:/";
 	}

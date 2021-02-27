@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import team.project.gday.member.model.vo.BMember;
 import team.project.gday.member.model.vo.Member;
 
 public interface LoginService {
@@ -43,9 +44,10 @@ public interface LoginService {
 
 	/** 일반 회원 가입
 	 * @param member
+	 * @param bmemShop 
 	 * @return
 	 */
-	public abstract int signUp(Member member);
+	public abstract int signUp(Member member, String bmemShop);
 
 	/** 회원 이미지 설정
 	 * @param image
@@ -60,6 +62,20 @@ public interface LoginService {
 	 * @return
 	 */
 	public abstract int addMoreInfo(Member member);
+
+	/** 비즈니스 회원 가입
+	 * @param bmember
+	 * @return
+	 */
+	public abstract int signUpBmember(BMember bmember);
+
+	/** 비즈니스 회원 이미지 추가
+	 * @param image
+	 * @param savePath
+	 * @param bmember
+	 * @return
+	 */
+	public abstract int insertImgBmember(List<MultipartFile> image, String savePath, BMember bmember);
 
 
 

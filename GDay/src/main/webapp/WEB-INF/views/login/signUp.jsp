@@ -100,15 +100,16 @@
                         <p class="seller">
                             <a href="">로그인</a>
                         </p>
+                        <input type="hidden" name="memberGrade" value="G">
                     </form>
                 </div>
             </div>
             <div class="user sell">
                 <div class="formBox">
-                    <form action="">
+                    <form action="${contextPath}/login/signUp" enctype="multipart/form-data" method="POST" onsubmit="return validate();">
                         <h2>판매자회원 로그인</h2>
                         <div>
-                            <input type="email" name="" class="email"required>
+                            <input type="email" name="memberEmail" class="email"required>
                             <label for="">Email</label>
                             <button type="button" class="sendMail">중복검사</button>
                             <button type="button" class="sendMail">인증</button>
@@ -121,7 +122,7 @@
                             <span>인증 성공</span>
                         </div>
                         <div>
-                            <input type="password" name="" required class="pw3">
+                            <input type="password" name="memberPwd" required class="pw3">
                             <label for="">비밀번호</label>
                             <i class="showpw fas fa-eye"></i>
                         </div>
@@ -131,15 +132,15 @@
                             <i class="showpw fas fa-eye"></i>
                         </div>
                         <div>
-                            <input type="text" name="" class="memName" required>
+                            <input type="text" name="memberName" class="memName" required>
                             <label for="">이름</label>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="memberNick" required>
                             <label for="">닉네임</label>
                         </div>
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="memberPhone" required>
                             <label for="">전화번호</label>
                         </div>
                         
@@ -164,15 +165,15 @@
                         -->
                         
                         <div>
-                            <input type="text" name="" required>
+                            <input type="text" name="bmemShop" required>
                             <label for="">업체명</label>
                         </div>
                         <div>
-                            <input type="file" class="postcodify_details license">
+                            <input type="file" class="postcodify_details license" name="image" id="limg">
                             <label for="">사업자등록증</label>
                         </div>
                         <div>
-                            <input type="file" name="" class="imgFile" id="img1" onchange="LoadImg(this,1)">
+                            <input type="file" name="image" class="imgFile" id="img1" onchange="LoadImg(this,1)">
                             <h1>프로필 사진 </h1>
                             <div class="showImg">
                                 <img>
@@ -185,6 +186,7 @@
                         <p class="seller">
                             <a href="">로그인</a>
                         </p>
+                        <input type="hidden" name="memberGrade" value="B">
                     </form>
                 </div>
                 <div class="imgBox"><img src="${contextPath}/resources/images/signin2.jpg" alt=""></div>
