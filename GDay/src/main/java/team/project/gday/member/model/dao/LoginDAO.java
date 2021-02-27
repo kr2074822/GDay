@@ -89,6 +89,10 @@ public class LoginDAO {
 		return sqlSession.insert("memberMapper.insertLicense", li);
 	}
 
+	public int changePwAction(Member member) {
+		return sqlSession.update("memberMapper.changePwAction", member);
+	}
+
 
 
 

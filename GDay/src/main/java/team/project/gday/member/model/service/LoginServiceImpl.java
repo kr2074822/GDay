@@ -155,23 +155,30 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	// 카카오톡 추가 정보 입력
+	@Transactional(rollbackFor = Exception.class) 
 	@Override
 	public int addMoreInfo(Member member) {
 		return dao.addMoreInfo(member);
 	}
-
-	// 비즈니스 회원 가입
-	@Override
-	public int signUpBmember(BMember bmember) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/*
+	 * // 비즈니스 회원 가입
+	 * 
+	 * @Override public int signUpBmember(BMember bmember) { // TODO Auto-generated
+	 * method stub return 0; }
+	 */
 
 	// 비즈니스 이미지 추가
 	@Override
 	public int insertImgBmember(List<MultipartFile> image, String savePath, BMember bmember) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	// 비밀번호 찾기 변경
+	@Transactional(rollbackFor = Exception.class) 
+	@Override
+	public int changePwAction(Member member) {
+		return dao.changePwAction(member);
 	}
 
 }

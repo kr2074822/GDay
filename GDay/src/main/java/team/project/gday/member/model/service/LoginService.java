@@ -67,7 +67,7 @@ public interface LoginService {
 	 * @param bmember
 	 * @return
 	 */
-	public abstract int signUpBmember(BMember bmember);
+	// public abstract int signUpBmember(BMember bmember);
 
 	/** 비즈니스 회원 이미지 추가
 	 * @param image
@@ -76,6 +76,12 @@ public interface LoginService {
 	 * @return
 	 */
 	public abstract int insertImgBmember(List<MultipartFile> image, String savePath, BMember bmember);
+
+	/** 비밀번호 찾기 변경 구현
+	 * @param member
+	 * @return 
+	 */
+	public abstract int changePwAction(Member member);
 
 
 
