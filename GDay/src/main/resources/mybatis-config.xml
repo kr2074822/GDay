@@ -17,6 +17,7 @@
 		<typeAlias type="team.project.gday.Product.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="team.project.gday.member.model.vo.BmemberInfo" alias="BmemberInfo"/>
 		<typeAlias type="team.project.gday.member.model.vo.LicenseImg" alias="LicenseImg"/>
+		<typeAlias type="team.project.gday.magazine.model.vo.Magazine" alias="Magazine"/>
 	</typeAliases>
 
 	<mappers>
@@ -25,5 +26,6 @@
 		<mapper resource="/mappers/product/class-mapper.xml"/>
 		<mapper resource="/mappers/product/gift-mapper.xml"/>
 		<mapper resource="/mappers/mypage/bmem/b-mem-mypage-mapper.xml"/>
+		<mapper resource="/mappers/magazine-mapper.xml"/>
 	</mappers>
 </configuration>
