@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
 import team.project.gday.member.bmem.controller.service.BmemService;
@@ -34,7 +35,7 @@ public class BmemController {
 	public String bSellList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
 							Model model) {
 		
-		PageInfo pInfo = service.getPageInfo(cp);
+		PageInfo pInfo = service.getGiftPageInfo(cp);
 		
 		List<Gift> gList = service.bSellList(pInfo);
 		
@@ -70,9 +71,26 @@ public class BmemController {
 		return "mypage/bMemPage/bCancelList";
 	}
 	
-	//비즈니스 회원이 등록한 클래스 목록 조회 이동
+	//비즈니스 회원이 등록한 클래스 목록 조회 Controller
 	@RequestMapping("bClassList")
-	public String bClassList() {
+	public String bClassList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							 Model model) {
+		
+		PageInfo pInfo = service.getClassPageInfo(cp);
+		
+		List<GClass> cList = service.bClassList(pInfo);
+		
+		if(cList != null && !cList.isEmpty()) { // 게시글 목록 조회 성공 시
+			List<Attachment> thumbnailList = service.bClassThumbnailList(cList);
+			
+			if(thumbnailList != null) {
+				model.addAttribute("thList", thumbnailList);
+			}
+		}
+		
+		model.addAttribute("cList", cList);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "mypage/bMemPage/bClassList";
 	}
 	

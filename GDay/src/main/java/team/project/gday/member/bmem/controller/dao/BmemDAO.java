@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
 
@@ -34,8 +35,35 @@ public class BmemDAO {
 		return sqlSession.selectList("bMemMapper.bSellList", null, rowBounds);
 	}
 
-	public List<Attachment> selectThumbnailList(List<Gift> gList) {
-		return sqlSession.selectList("bMemMapper.selectThumbnailList", gList);
+	public List<Attachment> bSellThumbnailList(List<Gift> gList) {
+		return sqlSession.selectList("bMemMapper.bSellThumbnailList", gList);
 	}
+
+	
+	
+	
+	// 내 클래스 목록 조회 DAO
+	public int getClassPageInfo() {
+		return sqlSession.selectOne("bMemMapper.getClassListCount");
+	}
+	
+	// 페이징 처리 객체 생성 DAO
+	public List<GClass> bClassList(PageInfo pInfo) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		
+		System.out.println(offset);
+		
+		return sqlSession.selectList("bMemMapper.bClassList", null, rowBounds);
+	}
+
+	// 판매 회원 클래스 썸네일 목록 조회 DAO
+	public List<Attachment> bClassThumbnailList(List<GClass> cList) {
+		return sqlSession.selectList("bMemMapper.bClassThumbnailList", cList);
+	}
+
+
+
 
 }
