@@ -113,6 +113,9 @@ section .container .user .formBox form div .showpw{
     right: 0;
     color:#141414;
 }
+section .container .user .formBox form div .show{
+	display: none;
+}
 section .container .user .formBox form div .showpw:hover{
     cursor: pointer;
 }

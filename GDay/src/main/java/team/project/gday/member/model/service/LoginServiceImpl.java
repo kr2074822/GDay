@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.RollbackRuleAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.member.model.dao.LoginDAO;
+import team.project.gday.member.model.vo.BMember;
+import team.project.gday.member.model.vo.BmemberInfo;
+import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.ProfileImg;
 
@@ -45,27 +49,45 @@ public class LoginServiceImpl implements LoginService{
 	// 일반 회원 가입
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int signUp(Member member) {
-		String encPwd = enc.encode(member.getMemberPwd());		
+	public int signUp(Member member, String bmemShop) {
+		int result = 0 ;
+		String encPwd = enc.encode(member.getMemberPwd());
 		member.setMemberPwd(encPwd);
-		return dao.signUp(member);
+		if (member.getMemberGrade().equals("G")) {
+			dao.signUp(member);
+		}else {
+			dao.signUp(member);
+			result = dao.checkMemNo(member);
+			
+			BmemberInfo bmemberinfo = new BmemberInfo(result, bmemShop); 
+			result = dao.bmemAddShopName(bmemberinfo);
+		}
+		return result;
 	}
 	
 	// 회원 이미지 설정 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insertImg(List<MultipartFile> image, String savePath, Member member) {
 		List<ProfileImg> uploadImages = new ArrayList<ProfileImg>();
 		
 		// 회원 번호 조회
 		int result = dao.checkMemNo(member);
+		
 		if (!image.get(0).getOriginalFilename().equals("")) {
 			String fileName = rename(image.get(0).getOriginalFilename());
 			ProfileImg pf = new ProfileImg(0, savePath, fileName, result);
 			
-			result = dao.insertImg(pf);
+			dao.insertImg(pf);
 			uploadImages.add(pf);
 			try {
 				image.get(0).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
+	
+
+				savePath = savePath.replace("profileImg", "licenseImg");
+				image.get(1).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
+				LicenseImg li = new LicenseImg(result, savePath, fileName);
+				result = dao.insertLicense(li);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -132,9 +154,24 @@ public class LoginServiceImpl implements LoginService{
 		return date + str + ext;
 	}
 
+	// 카카오톡 추가 정보 입력
 	@Override
 	public int addMoreInfo(Member member) {
 		return dao.addMoreInfo(member);
+	}
+
+	// 비즈니스 회원 가입
+	@Override
+	public int signUpBmember(BMember bmember) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	// 비즈니스 이미지 추가
+	@Override
+	public int insertImgBmember(List<MultipartFile> image, String savePath, BMember bmember) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
