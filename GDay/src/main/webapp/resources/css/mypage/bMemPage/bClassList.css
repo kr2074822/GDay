@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+#wrapper {
+	display: flex;
+}
+
+#b-sell-list-wrapper {
+	width: 70%;
+	margin: auto;
+}
+
+/* 페이지 상단 부분 */
+#wrapper-top-area {
+	width: 100%;
+	margin: 20px 0;
+	display: flex; 
+}
+
+#container-form {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+
+/* 판매 글 목록 */
+#class-list {
+	height: 800px;
+	border: 1px solid black;
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.class-item {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	text-align: center;
+}
+
+.class-item > img {
+	width: 200px;
+	height: 200px;
+}
+
+.item-img {
+	margin-bottom: 15px;
+	width: 200px;
+	height: 200px;
+}
+
+.item-name {
+	font-size: 20px;
+	font-weight: bold;
+}
