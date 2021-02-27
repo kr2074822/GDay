@@ -157,19 +157,19 @@ public class LoginController {
 		}
 		return "redirect:/";
 	}
-	
-	// 비즈니스 회원 가입
-	@RequestMapping("signUpBmember")
-	public String signUpBmember(@ModelAttribute BMember bmember, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
-		System.out.println(bmember);
-		int result = service.signUpBmember(bmember);
-		if (result > 0) {
-			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
-			result = service.insertImgBmember(image, savePath, bmember) ;
-
-		}
-		return "redirect:/";
-	}
+//	
+//	// 비즈니스 회원 가입
+//	@RequestMapping("signUpBmember")
+//	public String signUpBmember(@ModelAttribute BMember bmember, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request) {
+//		System.out.println(bmember);
+//		int result = service.signUpBmember(bmember);
+//		if (result > 0) {
+//			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+//			result = service.insertImgBmember(image, savePath, bmember) ;
+//
+//		}
+//		return "redirect:/";
+//	}
 	
 	// 이메일 인증 
 	@RequestMapping("sendEmail")
@@ -263,4 +263,80 @@ public class LoginController {
 		model.addAttribute("loginMEmber", member);
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 비밀번호 찾기
+	@RequestMapping("findPw")
+	@ResponseBody
+	public int findPw(Member member, HttpServletResponse response_email) throws IOException {
+		System.out.println(member.getMemberEmail());
+		
+		int random = (int)(Math.random()*(99999 - 1))+1;
+        
+        String setfrom = "rladudwn0215@gamil.com";
+        String tomail =  member.getMemberEmail();// 받는 사람 이메일
+        String title = "비밀번호 변경 이메일 입니다."; // 제목
+        String content = "비밀번호 변경 인증번호는 " + random + " 입니다";
+        
+        System.out.println(random);
+        MimeMessage message = mailSender.createMimeMessage();
+        try {
+            System.out.println(message);
+            MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+            messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+            messageHelper.setTo(tomail); // 받는사람 이메일
+            messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+            messageHelper.setText(content); // 메일 내용
+            
+            mailSender.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+        mv.setViewName("/login/signUp");     //뷰의이름
+        mv.addObject("random", random);
+        
+        System.out.println("mv : "+mv);
+
+        response_email.setContentType("text/html; charset=UTF-8");
+		/*
+		 * PrintWriter out_email = response_email.getWriter();
+		 * out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+		 * out_email.flush();
+		 */
+        
+        
+        return random;
+		
+	}
+	
+	// 비밀번호 찾기 화면
+	@RequestMapping("changePw")
+	public String changePw(@RequestParam(value="memberEmail", required = false) String memberEmail, Model model) {
+		
+		System.out.println("받은이메일" + memberEmail);
+		model.addAttribute("memberEmail", memberEmail);
+		return "login/changePw";
+		
+	}
+	
+	// 비밀번호 찾기 변경 구현
+	@RequestMapping("changePwAction")
+	public String changePwAction(Member member) {
+		System.out.println(member);
+		int result = service.changePwAction(member);
+		return "redirect:/";
+	}
+	
 }

@@ -913,9 +913,9 @@
     <div class="container">
         <div class="content">
             <h1>비밀번호 찾기</h1>
-            <form action="">
+            <form action="${contextPath}/login/changePw" method="post" onsubmit="return validate();">
                 <div class="email">
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="memberEmail" required>
                     <label for="email">이메일</label>
                 </div>
                 <div class="certification">
@@ -929,7 +929,13 @@
             <a href="${contextPath}/login/loginView">로그인</a>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+   		var signUpCheck = {
+			"check" : false,
+		};
+    
+    	var code = 0;
         $(".send").on('click' ,()=> {
             
             $(".email").css('display', 'none');
@@ -937,7 +943,92 @@
 
             $(".send").css('display', 'none');
             $(".code").css('display', 'block');
+            
+	        $.ajax({
+	        	url: "${contextPath}/login/findPw",
+	        	data:{
+	        		"memberEmail": $("#email").val()
+	        	},
+	        	type: "post",
+	        	success: function(result){
+	        		console.log(result)
+	        		code = result;
+	        		console.log("성공")
+	        	}, 
+	        	error: function(){
+	        		console.log("실패")
+	        	}
+	        	
+	        })
         })
+        
+        
+        
+        /*
+        
+        $(".code").on('click' ,()=> {
+        	if (code == $("#code").val()) {
+        		Swal.fire({
+					  icon: 'success',
+					  title: '인증 성공!',
+					  text: '비밀번호 변경창으로 이동합니다.'
+				}).then((result) => {
+					
+					$.ajax({
+						url: "${contextPath}/login/changePw",
+						type: "post",
+						data:{
+			        		"memberEmail": $("#email").val()
+			        	},
+			        	success: function(result){
+			        		console.log("성공")
+							// window.location.href = "${contextPath}/login/changePw?"+$("#email").val();
+			        	}, 
+			        	error: function(){
+			        		console.log("실패")
+			        	}
+					})
+				
+				});
+			}else{
+				Swal.fire({
+					  icon: 'error',
+					  title: '인증 실패!',
+					  text: '올바른 코드를 입력해주세요.'
+				})
+			}
+        	
+        })
+        
+        
+        
+        */
+		
+        $("#code").on("input", function(){
+        	if($("#code").val() == code){
+        		signUpCheck.check = true;
+        	}else{
+        		
+        		signUpCheck.check = false;
+        	}
+        	
+        })
+        
+        
+        function validate() {
+			for ( var key in signUpCheck) {
+				if (!signUpCheck[key]) {
+					Swal.fire({
+						  icon: 'error',
+						  title: '인증번호가 일치하지 않습니다',
+					});
+					return false;
+				}
+			}
+        }
+
+        
+        
 
     </script>
 </body>

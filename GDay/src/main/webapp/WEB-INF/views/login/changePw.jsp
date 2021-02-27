@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
     <!-- reset.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/common/login/reset.css">
 
     <!-- findEmail.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/login/changePw.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/login/changePw.css">
     <title>Document</title>
 </head>
 <body>
@@ -912,17 +912,18 @@
     <div class="container">
         <div class="content">
             <h1>비밀번호 변경</h1>
-            <form action="">
+            <form action="${contextPath}/login/changePwAction">
                 <div>
-                    <input type="password" id="pw1" required>
+                    <input type="password" id="pw1" name="memberPwd" required>
                     <label for="pw1">새 비밀번호</label>
                     <i class="showpw fas fa-eye"></i>
                 </div>
                 <div>
                     <input type="password" id="pw2" required>
-                    <label for="pw2">새 비밀번호</label>
+                    <label for="pw2">새 비밀번호 확인</label>
                     <i class="showpw fas fa-eye"></i>
                 </div>
+                <input type="hidden" value="${memberEmail}" name="memberEmail">
                 <button type="submit">변경</button>
             </form>
         </div>
