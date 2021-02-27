@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
 
@@ -28,7 +29,13 @@ public class BmemDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		
+		System.out.println(offset);
+		
 		return sqlSession.selectList("bMemMapper.bSellList", rowBounds);
+	}
+
+	public List<Attachment> selectThumbnailList(List<Gift> gList) {
+		return sqlSession.selectList("bMemMapper.selectThumbnailList", gList);
 	}
 
 }

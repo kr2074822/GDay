@@ -2,6 +2,7 @@ package team.project.gday.member.bmem.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import team.project.gday.member.bmem.controller.service.BmemService;
 @RequestMapping("/bMember/*")
 public class BmemController {
 
+	@Autowired 
 	private BmemService service;
 	
 //	===================================== 화면 이동 관련 ======================================

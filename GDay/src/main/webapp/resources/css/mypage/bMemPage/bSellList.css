@@ -32,11 +32,16 @@
   grid-template-columns: 33% 33% 33%;
 }
 
-#sell-item {
+.sell-item {
 	display: flex;
 	flex-direction: column;
 	margin: auto;
 	text-align: center;
+}
+
+.sell-item > img {
+	width: 200px;
+	height: 200px;
 }
 
 .item-img {
