@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>선물 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css"> <!-- 같은 클래스 공유 -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css"> <!-- 상세 페이지 고유 css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.0"> <!-- 같은 클래스 공유 -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.1"> <!-- 상세 페이지 고유 css -->
 
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -23,7 +23,7 @@
   	<style>
   	
   	#wrapper-list {
-  		display : flex;
+  		display : flex; 
   	}
   	
   	</style>
@@ -39,56 +39,61 @@
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
 
-    <div id="container-list-all">
+    <div id="container-list-all" class="container-view">
         <div id="list-title">
-            <span>선물 주문 상세 정보</span>
+            <span>수강 클래스 상세 정보</span>
         </div>
     
         <div id="order-info">
-            <span class="order-date">주문 일자</span><span class="order-date">2021.02.04</span>
+            <span class="order-date">수강 신청일</span><span class="order-date">2021.02.04</span>
             <span class="separate" style="font-size : 16px;">&nbsp; ┃ &nbsp;</span>
             <br> <!-- flex-direction: row에서는 br이 적용X column일 때(반응형) 적용 -->
-            <span class="order-no">주문 번호</span><span class="order-no">2021020412345</span>
+            <span class="order-no">수강 신청 번호</span><span class="order-no">2021020412345</span>
         </div>
 
-        <div class="container-orders"><!-- 반응형 관련 -->
-        <!-- 주문 목록 리스트 -->
-        <%-- <c:forEach  var="order" items="oList"> --%>
-            <div class="row container-list">
-                <div class="list-card">
-                    <div class="list-thumb">
-                        <img src="#"> <!-- 클릭시 해당 판매글로 이동 -->
-                    </div>
-                    <div class="list-text">
-                        <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
-                        <span class="orderPrdtNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
-                        <span class="list-name">선물명</span><br><!-- 클릭시 해당 판매글로 이동 -->
-                        <span class="list-text-1">100,000원/1개</span><br>
-                        <span class="list-text-2">옵션</span><br>
-                        <span class="list-text-3">[구매 확정]</span>
-                    </div>
+        <div class="container-table" id="ship-info">
+            <div class="columns"><!-- 왼 레이블 / 오 내용 -->
+                <span class="column-label">클래스명</span>
+                <span class="column-content" id="class-name">손뜨개 클래스</span>
+            </div>
+            <div class="columns">
+                <span class="column-label">클래스 기간(회차)</span>
+                <span class="column-content" id="class-period">2021.03.30. ~ 2021.04.30.(4회차)</span>
+            </div>
+            <div class="columns">
+                <span class="column-label">클래스 시간</span>
+                <span class="column-content" id="class-dates">토 2시</span>
+            </div>
+            <div class="columns">
+                <span class="column-label">강사명</span>
+                <div class="column-content">
+	                <span class="column-content-1" id="teacher">강사님</span>
+	                <a href="#" class="btn-inquiry">문의하기</a>
                 </div>
-                <div class="list-btn">
-                    <div class="list-seller">
-                        <span class="seller-name">판매업체</span>
-                        <a href="#" class="btn-inquiry">문의하기</a><!-- 팝업창? 모달창? -->
-                    </div>
-                    <div class="list-status">
-                        <!-- 구매 확정 후 : 후기 쓰기(팝업창) -->
-                        <a href="#" class="btn-review">후기 쓰기</a>
-
-                        <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-                        <a href="#" class="btn-cancel">취소 요청</a> 
-                        
-                        <!-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) -->
-                        <a href="#" class="btn-confirm">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
-                        <a href="#" class="btn-takeback">반품 요청</a> 
-                    </div>
-                </div>
-            </div><!-- container-list 끝 -->
-	     <%-- </c:forEach> --%>
-        </div> 
-        <!-- container-orders 끝 -->
+            </div>
+            <div class="columns">
+                <span class="column-label">클래스 장소</span>
+                <div class="column-content">
+	                <span class="column-content-1" id="class-addr">서울특별시 중구 남대문로 120 대일빌딩 2층</span>
+  	              <a href="#" class="btn-map">지도보기</a>
+  	            </div>  
+            </div>
+        </div>
+        
+        <div id="list-title">
+            <span>수강생 정보</span>
+        </div>
+        <div class="container-table" id="ship-info">
+            <div class="columns"><!-- 왼 레이블 / 오 내용 -->
+                <span class="column-label">신청인(명)</span>
+                <span class="column-content" id="ship-name">김땡땡(2명)</span>
+            </div>
+            <div class="columns">
+                <span class="column-label">대표 연락처</span>
+                <span class="column-content" id="ship-phone">010-8888-8888</span>
+            </div>
+        </div>
+        
 
         <div id="list-title">
             <span>최종 결제 정보</span>
@@ -104,23 +109,6 @@
             </div>
         </div>
 
-        <div id="list-title">
-            <span>배송지 정보</span>
-        </div>
-        <div class="container-table" id="ship-info">
-            <div class="columns"><!-- 왼 레이블 / 오 내용 -->
-                <span class="column-label">받는 사람</span>
-                <span class="column-content" id="ship-name">김땡땡</span>
-            </div>
-            <div class="columns">
-                <span class="column-label">연락처</span>
-                <span class="column-content" id="ship-phone">010-8888-8888</span>
-            </div>
-            <div class="columns">
-                <span class="column-label">배송지</span>
-                <span class="column-content" id="ship-addr">서울특별시 중구 남대문로 120 대일빌딩 2층, 3층</span>
-            </div>
-        </div>
         <a href="#" class="btn-gotolist">목록</a>
     </div>
 </div>
