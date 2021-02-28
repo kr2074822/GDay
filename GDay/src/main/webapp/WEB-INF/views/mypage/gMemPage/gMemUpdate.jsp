@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
    <title>내 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.1">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css?ver=1.4"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css?ver=1.6"/>
     
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
     <!-- js -->
-    <script src="${contextPath}/resources/js/mypage/gMemInfoUpdate.js"></script>
+<%--     <script src="${contextPath}/resources/js/mypage/gMemInfoUpdate.js"></script> --%>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -29,6 +29,8 @@
    
 </head>
 <body>
+<!-- js -->
+<jsp:include page="gMemUpdateJS.jsp"/>
 
 <jsp:include page="../../common/header.jsp"/>
 
@@ -104,19 +106,21 @@
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
             
-
+		</div>
 </div>
     
     <!-- 프로필 모달창 -->
-    <div id="profile-menu-modal">
-        <a class="modal-close"><i class="fas fa-times"></i></a>
-        <div class="modal-title">프로필 사진 설정</div>
-        <div class="modal-menu">
-            <div id="upload-pf">사진 등록</div>
-            <div id="delete-pf">사진 삭제</div> <!-- 사진 삭제 -->
-        </div>
-    </div>
     
+    <div class="modal-cover">
+	    <div id="profile-menu-modal">
+	        <a class="modal-close"><i class="fas fa-times"></i></a>
+	        <div class="modal-title">프로필 사진 설정</div>
+	        <div class="modal-menu">
+	            <div id="upload-pf">사진 등록</div>
+	            <div id="delete-pf">사진 삭제</div> <!-- 사진 삭제 -->
+	        </div>
+	    </div>
+    </div>
     
 <!-- 도로명 주소 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>    

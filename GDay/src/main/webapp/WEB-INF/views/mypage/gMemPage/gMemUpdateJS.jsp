@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+  
+<script>
 
 $(function(){
     //프로필, 등록증에 자동으로 기존 이미지 넣기
@@ -72,3 +77,6 @@ function LoadProfile(value, num) {
         }
     }
 }
+
+
+</script>

@@ -2,6 +2,10 @@
 /* 반드시 mypageList.css와 같이 첨부되어야 함. mypageList에서 선언한 css들은 생략됐기 때문!! */
 
 
+#order-info, .container-table {
+	box-sizing : border-box;
+}
+
 .container-view {
 		border-radius : 25px;
 		background-color : #ffffff !important;
@@ -19,7 +23,6 @@
 }
 
 #order-info {
-    box-sizing: border-box;
     width : 100%;
     margin-top : 20px;
     padding : 5px 20px;
@@ -93,9 +96,13 @@
     #order-info, .container-table .columns { flex-direction: column;}
     #order-info > .separate { display : none; padding-left : 30px;} 
     
-   .container-table .column-content{ 
+   .container-table .column-content {
    		width : 100%;
-   		text-align : center;
+   		text-align: right;
+   }
+   .container-table .column-label {
+   		width : 100%;
+   		text-align: left;
    }
 }
 
