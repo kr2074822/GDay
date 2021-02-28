@@ -1,6 +1,6 @@
 * { margin : 0; }
 
-#container-list-all, #container-list, 
+#container-list-all, .container-list, 
 .list-btn, .list-card,
 .list-seller, .list-status{
     display : flex;
@@ -15,6 +15,30 @@
     margin : 30px auto;
 }
 
+.wrapper-box {
+		display : flex;
+		flex-direction : column;
+		align-items : center;
+    width : 100%;
+    padding : 20px;
+    background-color: #ffffff;
+    margin : 0px;
+    border-radius : 25px;
+}
+
+/* 리스트 감싸는 wrapper */
+.container-orders{
+    box-sizing: border-box;
+    width : 100%;
+    margin-left : 30px;
+}
+
+
+/* 사이드바 : min-20% / 리스트 60% / 여백 : max-10% */
+.container-list {
+    width : 100%;
+    border-bottom : 1px solid lightgray;
+}
 
 .list-card, .list-btn, .list-seller, .list-status {
     align-items: center;
@@ -26,10 +50,6 @@
     /* 반응형에서 row로 변경 */
 }
 
-/* 사이드바 : min-20% / 리스트 60% / 여백 : max-10% */
-#container-list {
-    width : 100%;
-}
 
 .list-card {
     width : 60%;
@@ -42,7 +62,12 @@
     margin : 10px;
     width : 120px;
     height : 120px;
+    cursor : pointer;
 }
+
+.list-text { cursor : pointer;}
+
+.list-hidden {display: none;} /* 주문번호, 주문 상세 정보 */
 
 .list-title{
     font-weight: bold;
@@ -92,23 +117,10 @@ a { text-decoration: none;}
     text-decoration: none;
 }
 
-.list-hr {
-    width : 100%;
-    height : 3px;
-    padding : 1px;
-    margin : 5px 0px;
-}
-.list-hr > hr {
-    margin : 0px;
-    width : 100%;
-    height : 1px;
-    background-color: lightgray;
-}
-
-#btn-more {
+.btn-more {
     width : 200px;
     height : 50px;
-    background-color: #fafafa;
+    background-color: #ffffff;
     color : #FE929F;
     font-size : 30px;
     border : 1px solid #FE929F;
@@ -116,9 +128,10 @@ a { text-decoration: none;}
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top : 20px;
 }
 
-#btn-more:hover {
+.btn-more:hover {
     background-color: #FE929F;
     color : #fafafa;
     text-decoration: none;
@@ -127,14 +140,16 @@ a { text-decoration: none;}
 
 /* 반응형 */
 @media (max-width : 768px){
-	#container-list {	flex-direction : column; }
+	.container-list {	flex-direction : column; }
 	.list-card, .list-btn { width : 100%; }
+    .list-card { height : 160px; margin-top: 20px;}
 	.list-btn { height : 100px;}
 	.list-status, list-seller {
 		flex-direction : row;
 	}
 	.list-status { width : 60%; flex-wrap : wrap;}
 	.list-seller { width : 40%; }
+    .seller-name { font-size: 14px;}
 	
 }
 

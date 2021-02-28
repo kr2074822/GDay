@@ -1,0 +1,106 @@
+
+/* 반드시 mypageList.css와 같이 첨부되어야 함. mypageList에서 선언한 css들은 생략됐기 때문!! */
+
+
+.container-view {
+		border-radius : 25px;
+		background-color : #ffffff !important;
+		padding : 20px;
+}
+
+#list-title {
+    width : 240px;
+    align-self: flex-start; /* 개별 아이템에 적용 */
+}
+
+#list-title > span { 
+	font : bold 20px/40px "맑은 고딕"; 
+	margin-left : 30px
+}
+
+#order-info {
+    box-sizing: border-box;
+    width : 100%;
+    margin-top : 20px;
+    padding : 5px 20px;
+    border-left : 5px solid #FE929F;
+    display: flex;
+}
+#order-info > span:nth-of-type(1), 
+#order-info > span:nth-of-type(4){ font-weight: bold;}
+
+#order-info > span:not(.separate) {
+    font-size: 16px;
+    min-width: 80px;
+}
+
+.container-orders {
+		margin : 0px 0px 40px 25px;
+}
+
+/* hover (클릭 시 이동 가능 */
+.list-card:hover{
+    cursor: pointer;
+}
+
+
+/* 컬럼형 리스트 */
+.container-table, .columns {
+    box-sizing: border-box;
+    width : 100%;
+}
+
+.container-table { 
+    margin : 20px 0 40px 0;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding : 10px 0 10px 0;
+}
+
+.container-table .columns { 
+    display: flex; 
+}
+.container-table span { font-size : 16px; padding : 18px;}
+.container-table .column-label { 
+    width : 30%; 
+    text-align: center;
+    font-weight: bold;
+}
+.container-table .column-content { width : 70%; }
+
+.btn-gotolist{
+    color : #fafafa;
+    width : 80px;
+    height : 36px;
+    text-align: center;
+    padding : 5px;
+    margin : 3px;
+    border-radius: 5px;
+    font-size : 16px;
+    line-height: 28px;
+    background-color: #596566;
+    align-self: flex-end;
+}
+.btn-gotolist:hover, .btn-confirm:hover { 
+    background-color: #806f71; 
+    color : #fafafa;
+    text-decoration: none;
+}
+
+
+/* 반응형 */
+@media (max-width : 768px){
+    #order-info, .container-table .columns { flex-direction: column;}
+    #order-info > .separate { display : none; padding-left : 30px;} 
+    
+   .container-table .column-content{ 
+   		width : 100%;
+   		text-align : center;
+   }
+}
+
+
+
+
+
+
