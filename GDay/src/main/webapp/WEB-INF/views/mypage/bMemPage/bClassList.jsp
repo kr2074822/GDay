@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
 <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemPage/bClassList.css"/>
 </head>
 <body>
@@ -17,7 +18,7 @@
 	<div id="wrapper">
 		<jsp:include page="bMemSidebar.jsp"/>	
 		
-		<div id="b-sell-list-wrapper">
+		<div id="b-class-list-wrapper">
 		
 			<h1>내 클래스</h1>
 			
@@ -73,7 +74,7 @@
 								</c:forEach>
 								
 								<span class="item-no">[${bClass.prdtNo}]</span>		
-								<span class="item-name">${bClass.prdtName}</span>
+								<span class="item-name" title="${bClass.prdtName}">${bClass.prdtName}</span>
 							</div>
 						</c:forEach>					
 					</c:if>					

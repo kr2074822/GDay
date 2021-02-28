@@ -52,9 +52,7 @@ public class BmemDAO {
 		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
-		
-		System.out.println(offset);
-		
+				
 		return sqlSession.selectList("bMemMapper.bClassList", null, rowBounds);
 	}
 

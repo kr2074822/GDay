@@ -109,7 +109,7 @@
    </script><!-- jQuery CDN --->
    
   <script>
-
+ 
      var IMP = window.IMP; 
      IMP.init("imp81888393"); 
      
@@ -139,7 +139,7 @@
                      method: "POST",
                      headers: { "Content-Type": "application/json" },
                      data: {
-                         imp_uid: rsp.imp_uid,
+                         imp_uid: rsp.imp_uid, // 테이블에 들어가야 할 것
                          merchant_uid: rsp.merchant_uid
                      }
                  }).done(function (data) {
