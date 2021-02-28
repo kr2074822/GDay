@@ -6,6 +6,7 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
+import team.project.gday.member.model.vo.Member;
 
 public interface BmemService {
 
@@ -13,13 +14,13 @@ public interface BmemService {
 	 * @param cp
 	 * @return pInfo
 	 */
-	PageInfo getGiftPageInfo(int cp);
+	PageInfo getGiftPageInfo(int cp, Member loginMember);
  
 	/** 내 판매글 목록 조회 Service
 	 * @param pInfo
 	 * @return gList
 	 */
-	List<Gift> bSellList(PageInfo pInfo);
+	List<Gift> bSellList(PageInfo pInfo, Member loginMember);
 
 	/** 내 판매글 썸네일 목록 조회 Service
 	 * @param gList
