@@ -5,16 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
 import team.project.gday.member.bmem.controller.service.BmemService;
+import team.project.gday.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"loginMember"})
 @RequestMapping("/bMember/*")
 public class BmemController {
 
@@ -33,11 +37,12 @@ public class BmemController {
 	//비즈니스 내 판매 글 이동
 	@RequestMapping("bSellList")
 	public String bSellList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
-							Model model) {
+							@ModelAttribute("loginMember") Member loginMember,
+							Model model) {				
 		
-		PageInfo pInfo = service.getGiftPageInfo(cp);
+		PageInfo pInfo = service.getGiftPageInfo(cp, loginMember);
 		
-		List<Gift> gList = service.bSellList(pInfo);
+		List<Gift> gList = service.bSellList(pInfo, loginMember);
 		
 		if(gList != null && !gList.isEmpty()) { // 게시글 목록 조회 성공 시
 			List<Attachment> thumbnailList = service.bSellThumbnailList(gList);

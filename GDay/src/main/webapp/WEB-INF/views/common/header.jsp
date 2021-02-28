@@ -147,9 +147,6 @@
           btn.addEventListener('mouseenter', function(e){
               var x = e.clientX - e.target.offsetLeft;
               var y = e.clientY - e.target.offsetTop;
-
-              console.log(x);
-              console.log(y);
               
               var ripples = document.createElement('span');
               
@@ -183,6 +180,14 @@
           });
       });  
       
+      // li가 a보다 위에있어서 li클릭 시 링크 이동
+      $(".header-li").on("click", function() {
+    	  var link = $(this).children().attr("href");
+    	  console.log(link);
+    	  location.href = link;
+    	});
+      
+      
       /* header-left */
 /*      const buttons3 = document.querySelectorAll(".mypage-li");
       buttons3.forEach(btn => {
@@ -200,10 +205,6 @@
           });
       });  */ 
       
-      
-		
-
-
   </script>
 
 
