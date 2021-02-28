@@ -126,7 +126,7 @@
 @media (max-width : 768px){
 
     .sidebar-area {
-        position: absolute; 
+        position: fixed; 
         left : -180px;
         transition : 1s;
         z-index: 100;
@@ -149,7 +149,6 @@
         transition : 1s;
     }  
     .active-toggle > i:nth-of-type(1) {
-        transition : 1s;
         left : -160px;
         z-index:0;
     }

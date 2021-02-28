@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gMemMapper">
+
+	<!-- 주문 resultMap order_info, order_product, order_status-->
+	<resultMap type="Order" id="order_rm">
+		<id property="opNo" column="OP_NO"/>
+		<result property="orderNo" column="ORDER_NO"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="statusNo" column="STATUS_NO"/>
+		<result property="statusName" column="STATUS_NAME"/>
+		<result property="orderDate" column="ORDER_DATE"/>
+		<result property="opAmount" column="OP_AMOUNT"/>
+		<result property="giftOpNo" column="GIFT_OP_NO"/>
+		<result property="buyer" column="MEM_NO"/>
+		<result property="shipName" column="SHIP_NAME"/>
+		<result property="shipAddr" column="SHIP_ADDR"/>
+		<result property="shipPhone" column="SHIP_PHONE"/>
+		<result property="impUid" column="IMP_UID"/>
+	</resultMap>
+	<!-- 선물 resultMap -->
+	<resultMap type="Gift" id="gift_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="readCount" column="READ_COUNT"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		<result property="gStatus" column="G_STATUS"/>
+	</resultMap>
+	
+	<!-- 선물 옵션 resultMap -->
+	<resultMap type="GOption" id="gOption_rm">
+		<id property="gOptNo" column="G_OPT_NO"/>
+		<result property="gOptName" column="G_OPT_NAME"/>
+		<result property="gOptType" column="G_OPT_TYPE"/>
+		<result property="gOptSold" column="G_OPT_SOLD"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
+	<!-- 클래스 resultMap -->
+	<resultMap type="Class" id="class_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="readCount" column="READ_COUNT"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		
+  		<result property="cCount" column="C_COUNT"/>
+  		<result property="cNowCount" column="C_NOWCOUNT"/>
+  		<result property="cSession" column="C_SESSION"/>
+  		<result property="cLocal" column="C_LOCATE"/>
+  		<result property="cStartDate" column="C_START_DATE"/>
+  		<result property="cEndDate" column="C_END_DATE"/>
+  		<result property="cStatus" column="C_STATUS"/>
+  		<result property="cDate" column="C_DATE"/>
+	</resultMap>
+	
+	
+	
+	
+</mapper>
