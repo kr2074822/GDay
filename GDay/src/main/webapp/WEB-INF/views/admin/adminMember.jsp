@@ -17,10 +17,12 @@ div {
 }
 
 .container {
-	width: 70%;
+	width: 80%;
 	margin: 0 auto;
-	border: 1px solid black;
-	float: right;
+	float: left;
+	height: 100%;
+	
+	margin: 200px 0;
 }
 
 #adminMember-search, #adminMember-Application {

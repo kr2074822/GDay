@@ -86,23 +86,24 @@
 		        		},
 		        		success: function(result){
 		        			console.log('성공')
-		        			
+		        			/* 
 		        			console.log('${mThumbList}');
 		        			
 		        			console.log(result);
 		        			console.log('${pInfo.maxPage}')
-		        			
-		        			for(var mgz in result){
+		        			console.log(result.mList[0].mgzNo) */
+		        			for(let i = 0; i < result.mList.length; i++ ){
+		        			console.log(result.mThumbList[i])
 		        				
 			        			var addContent = 
 			        	            '<div class="card">'+
 			        	                    '<div class="imgBx" data-text="제목">'+
-			        	                        '<img src="images/profile.jpg" alt="">'+
+			        	                        '<img src='+ result.mThumbList[i].imgPath + '/' + result.mThumbList[i].imgName +' alt="">'+
 			        	                    '</div>'+
 			        	                    '<div class="content">'+
 			        	                     '   <div>'+
-			        	                      '      <h3>제목' + result[mgz].mgzNo + '</h3>'+
-			        	                       '     <p>'+ result[mgz].mgzContent +' </p>'+
+			        	                      '      <h3>제목' + result.mList[i].mgzTitle + '</h3>'+
+			        	                       '     <p>'+ result.mList[i].mgzNo+' </p>'+
 			        	                   '         <a href="">Read More</a>'+
 			        	                    '    </div>'+
 			        	                   ' </div>'+
