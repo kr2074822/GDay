@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>일반회원 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.2"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.3"/>
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -28,17 +28,17 @@
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
                 <li class="active-sidebar">
-                		<a href="" class="up-menu">
+                		<a href="#" class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                     <span class="menu-text">주문 내역</span>
                     </a></li>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="orderList1">
+                        <li class="active-sidebar"><a href="${contextPath}/gMember/orderList/1">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">선물 리스트</span>
                             </a></li>
-                        <li><a href="#">
+                        <li><a href="${contextPath}/gMember/orderList/2">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">클래스 리스트</span>
                             </a></li>
