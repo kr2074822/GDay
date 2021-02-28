@@ -1,0 +1,166 @@
+* { margin : 0; }
+
+/* 사이드바 css */
+.sidebar-area li, 
+.sidebar-area a, 
+.sidebar-area span, 
+.sidebar-area div, 
+.sidebar-area i { box-sizing: border-box;}
+
+.sidebar-area > * {    z-index : 100;}
+
+.sidebar-area { 
+    background-color: #FE929F;
+    width : 220px;
+    height : 100vh;
+    border: 1px solid red;
+}
+
+.sidebar-area a, .sidebar-area span { 
+    color : #ffffffda; 
+    text-decoration: none;
+}
+
+/* 마이페이지 제목 */
+.pageTitle {
+	font-size : 24px;
+	font-weight : bold;
+	height : 80px;
+	line-height : 80px;
+	text-align : center;
+	margin-bottom : 5px;
+	background-color : #fafafa;
+	color : #FE929F;
+}
+
+
+/* 닉네임, 프로필 사진 */
+#nickName{
+    display: block;
+    width : 170px;
+    height : 45px;
+    text-align: center;
+    margin : 0 auto;
+    line-height: 43px;
+} 
+#myProfile {
+    display: block;
+    width : 45px;
+    height : 45px;
+    margin : 0 auto;
+}
+
+/* 사이드바 메뉴 부분 */
+.sidebar-menu li a {
+    display : flex;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    margin : 1px 0px 1px 10px;
+    transition : 0.4s;
+    /* height : 40px; */
+}
+.sidebar-menu li {
+    transition : 0.4s;
+    border-right : 0px solid #fafafa;
+}
+
+/* 큰 메뉴 + 서브메뉴 공통 */
+.menu-icon, .submenu-icon {
+    width : 36px;
+    height : 36px;
+    margin-left : 5px;
+    /* border : 1px solid black; */
+}
+.menu-icon > i, .submenu-icon > i {
+    display : block;
+    font-size : 24px;
+    text-align: center;
+    line-height: 34px;
+}
+
+.menu-text, .submenu-text {
+    padding : 4px;
+    /* width : 130px; */
+    height : 36px;
+    font-size : 16px;
+    line-height: 25px;
+}
+
+/* 서브 메뉴 */
+.sub-menu > li > a {
+    margin-left : 30px;
+    height : 34px;
+    margin-top : 0px;
+}
+.submenu-icon > i { font-size : 20px; }
+.submenu-text { font-size : 14px; }
+
+
+/* 메뉴 선택 중(활성화) 배경색 */
+.active-sidebar {
+    background-color :  #ffffff2d; 
+/*     transition : all 0.3s ease; */
+    border-right : 4px solid #fafafa !important;
+    font-weight: bold;
+}
+.sidebar-menu li:hover {
+    border-right : 4px solid #fafafa;
+    background-color :  #ffffff2d;
+}
+.sidebar-menu a:hover {
+    font-weight: bold;
+    /* transition : 0.4s; */
+}
+
+
+/* 햄버거 토글 버튼 */
+.sidebar-toggle {
+    position : fixed;
+    top : 36px;
+    font-size : 24px;
+    display: none;
+    cursor : pointer;
+}
+
+
+/* @media 반응형 */
+@media (max-width : 768px){
+
+    .sidebar-area {
+        position: fixed; 
+        left : -180px;
+        transition : 1s;
+        z-index: 100;
+    }
+
+    .sidebar-toggle { 
+        display : block; 
+        z-index : 1100;
+    }
+    .sidebar-toggle > i { 
+    	position : fixed; 
+    	color : #FE929F;
+    }
+    .sidebar-toggle > i:nth-of-type(1) {
+        display : block;
+        left : 75px;
+    }  
+    .sidebar-toggle > i:nth-of-type(2) {
+        left : -160px;
+        transition : 1s;
+    }  
+    .active-toggle > i:nth-of-type(1) {
+        left : -160px;
+        z-index:0;
+    }
+    .active-toggle > i:nth-of-type(2) {
+        display : block; 
+        left: 30px;
+        transition : 1s;
+    } 
+
+    .sidebar-open {
+        left : 0px;
+        transition : 1s;
+    }
+}
