@@ -18,6 +18,10 @@ div {
 .container {
 	width: 80%;
 	margin: 0 auto;
+	float: left;
+	height: 100%;
+	
+	margin: 200px 0;
 }
 
 table {
@@ -82,10 +86,9 @@ li {
 
 <body>
 	<jsp:include page="../common/header.jsp" />
+	<jsp:include page="adminSidebar.jsp" />
 
 	<div class="container">
-		<jsp:include page="adminSidebar.jsp" />
-
 		<div id="container-tb">
 			<div>
 				<h3>비즈니스 회원 신청</h3>

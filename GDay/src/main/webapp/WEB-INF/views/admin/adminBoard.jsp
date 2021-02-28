@@ -16,6 +16,10 @@ div {
 .container {
 	width: 80%;
 	margin: 0 auto;
+	float: left;
+	height: 100%;
+	
+	margin: 200px 0;
 }
 
 #adminBoard-search, #adminBoard-Application {
@@ -55,10 +59,9 @@ button {
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
+	<jsp:include page="adminSidebar.jsp" />
 
 	<div class="container">
-		<jsp:include page="adminSidebar.jsp" />
-
 		<div id="container-tb">
 			<div>
 				<h3>게시글 관리</h3>
