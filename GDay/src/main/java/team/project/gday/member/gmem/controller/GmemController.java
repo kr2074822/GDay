@@ -1,6 +1,7 @@
 package team.project.gday.member.gmem.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -8,9 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GmemController {
 
 	//마이페이지 주문 내역 조회
-	@RequestMapping("orderList1")
-	public String gMemOrderList1() {
-		return "mypage/gMemPage/gMemOrderList1";
+	@RequestMapping("orderList/{type}")
+	public String gMemOrderList(@PathVariable("type") int type) {
+		return "mypage/gMemPage/gMemOrderList" + type;
+	}
+	
+	//마이페이지 주문 상세 조회("orderView/{type}/{orderNo}")
+	@RequestMapping("orderView/{type}/{orderNo}")
+	public String gMemOrderView(@PathVariable("type") int type,
+								@PathVariable("orderNo") int orderNo) {
+		
+		return "mypage/gMemPage/gMemOrderView" + type;
 	}
 	
 	//내 정보 수정 페이지 이동
