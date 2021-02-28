@@ -51,7 +51,7 @@
                     <span class="menu-icon"><i class="fas fa-feather"></i></span>
                     <span class="menu-text">나의 후기</span>
                     </a></li>
-                <li><a href="../../updateInfo">
+                <li><a href="${contextPath}/gMember/updateInfo">
                     <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                     <span class="menu-text">내 정보</span>
                     </a></li>

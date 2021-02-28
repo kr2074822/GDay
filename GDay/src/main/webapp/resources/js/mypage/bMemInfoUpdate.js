@@ -15,14 +15,14 @@ $(function(){
     // 프로필 영역을 클릭할 때 모달 메뉴창 창이 뜨도록 설정하는 함수
     $("#profile").hide(); //요소를 숨김.		
     $("#profile-div").on("click", function(){ // 이미지 영역이 클릭 되었을 때
-        $("#profile-menu-modal").show();
+        $(".modal-cover").show();
     });
 
     /* 모달 메뉴 창 클릭 */
     //등록
     $("#upload-pf").on("click", function(){
         $("#profile").click();
-        $("#profile-menu-modal").hide();
+        $(".modal-cover").hide();
     });
     //프로필 사진 삭제
     $("#delete-pf").on("click", function(){
@@ -31,11 +31,11 @@ $(function(){
         //$("#profile-image").css("background-image", "url("+basicImg+")");//기본 이미지 url 첨부
         
         //프로필 삭제 ajax 진행 or 삭제 표시 변수 사용?
-        $("#profile-menu-modal").hide();
+        $(".modal-cover").hide();
     });
     //x 클릭
     $(".modal-close").on("click", function(){
-        $("#profile-menu-modal").hide();
+        $(".modal-cover").hide();
     });
 
 

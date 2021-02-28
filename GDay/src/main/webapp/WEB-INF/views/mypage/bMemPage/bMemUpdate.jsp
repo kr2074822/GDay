@@ -139,6 +139,8 @@
 </div>
     
     <!-- 프로필 모달창 -->
+    
+  <div class="modal-cover">
     <div id="profile-menu-modal">
         <a class="modal-close"><i class="fas fa-times"></i></a>
         <div class="modal-title">프로필 사진 설정</div>
@@ -147,6 +149,8 @@
             <div id="delete-pf">사진 삭제</div> <!-- 사진 삭제 -->
         </div>
     </div>
+  </div> 
+  
     
     <!-- 도로명 주소 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>  
