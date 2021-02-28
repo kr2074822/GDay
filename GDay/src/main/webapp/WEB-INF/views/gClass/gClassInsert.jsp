@@ -2,12 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>클래스 등록 신청</title>
 <script src="https://kit.fontawesome.com/955b087c12.js" crossorigin="anonymous"></script>
+<!-- 주소 api -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930f7a74b0fd1bdc17d81c3d8fb76bf4&libraries=services"></script>
+
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassReview.css">
 <link rel ="stylesheet" href="${contextPath}/resources/summernote/css/summernote-lite.css">
@@ -32,42 +38,56 @@
    margin-bottom: 20px;
 }
 
-.box .optRow {
+.box h1 {
    font-size: 1.2em;
    font-weight: bold;
    padding: 7px;
 }
 
-.box .optRow .checkBx {
-	font-size: 0.9em;
-	font-weight: lighter;
+.box ul {
+	display: flex;
+	justify-content: start;
+	align-content: center;
 }
 
-.box .optRow .checkBx .item {
+.box ul li {
+	margin-bottom: 10px;
+}
+
+
+.box .item {
 	color: gray;
 	border: 1px solid gray;
 	border-radius: 40px;
-	padding-right: 5px;
-	padding-left: 3px;
-	margin: 1px;
+	padding-right: 8px;
+	padding-left: 8px;
+	margin: 5px;
+	line-height: 30px;	
 	margin-bottom: 20px;
 	cursor: pointer;
 }
 
-.box .optRow .checkBx input[type="checkbox"] {
+.box input[type="checkbox"] {
 	display: none;
 }
 
-.box .optRow .checkBx input[type="checkbox"]:checked + label {
+.box input[type="checkbox"]:checked + label {
 	transition: 0.3s ease-out;
   background: #fe929f;
   color:white;
+  border: 1px solid lightgray;
 }
 
 /* 수강인원/세션수/개강일 등 기입 */
+.optRow {
+	margin: 10px;
+
+}
+
 .extraInput .optRow input {
-	margin-top: 5px;
-	margin-bottom: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 5px;
 	width: 100px;
 	vertical-align: middle;
 }
@@ -86,6 +106,7 @@
 .boardRow img {
 	margin-top:30px;
 	margin-bottom:20px;
+	display: inline-block;
 }
 
 #title {
@@ -124,6 +145,25 @@
 	
 }
 
+/* 주소 입력 */
+.address {
+	margin-right: 20px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid #c9c9c9;
+}
+
+#sample5_address {
+	width: 48%;
+}
+
+#searchBtn {
+	border-style: none;
+	background: #fe929f;
+	color: white;
+}
+
+
 </style>
 </head>
 
@@ -137,150 +177,256 @@
 <form action="requestAction" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
 <div class="wrapper">
    <div class="box">
-      <div class="optRow">연령대
-      	<span class="checkBx">
-      		<input type="checkbox" id="baby">
-          <label class="item" for="baby">영유아</label>
-          <input type="checkbox" id="child">
-          <label class="item" for="child">어린이</label>
-          <input type="checkbox" id="teenager">
-          <label class="item" for="teenager">청소년</label>
-          <input type="checkbox" id="adult">
-          <label class="item" for="adult">청년</label>
-          <input type="checkbox" id="midage">
-          <label class="item" for="midage">중년</label>
-          <input type="checkbox" id="oldage">
-          <label class="item" for="oldage">장년</label>
-         </span>
-      </div>
-      <div class="optRow">가격대
-      	<span class="checkBx">
-					<input type="checkbox" id="under_one">
-          <label class="item" for="under_one">1만원 미만</label>
-          <input type="checkbox" id="one_two">
-          <label class="item" for="one_two">2~3만원대</label>
-          <input type="checkbox" id="three_for">
-          <label class="item" for="three_for">3~4만원대</label>
-          <input type="checkbox" id="five_eight">
-          <label class="item" for="five_eight">5~8만원대</label>
-          <input type="checkbox" id="nine_ten">
-          <label class="item" for="nine_ten">9~10만원대</label>
-          <input type="checkbox" id="over_ten">
-          <label class="item" for="over_ten">10만원 이상</label>
-         </span>
-      </div>
-      <div class="optRow">취향별
-      	<span class="checkBx">
-					<input type="checkbox" id="lovely">
-          <label class="item" for="lovely">사랑스러운</label>
-          <input type="checkbox" id="modern">
-          <label class="item" for="modern">모던한</label>
-          <input type="checkbox" id="special">
-          <label class="item" for="special">독특한</label>
-          <input type="checkbox" id="casual">
-          <label class="item" for="casual">캐쥬얼</label>
-          <input type="checkbox" id="useful">
-         	<label class="item" for="useful">실용적인</label>
-          <input type="checkbox" id="luxury">
-          <label class="item" for="luxury">럭셔리</label>      	
-      	</span>
-      </div>
-      <div class="optRow">관계별
-      	<span class="checkBx">
-      		<input type="checkbox" id="honey">
-           <label class="item" for="honey">애인</label>
-           <input type="checkbox" id="parents">
-           <label class="item" for="parents">부모님</label>
-           <input type="checkbox" id="sibling">
-           <label class="item" for="sibling">형제ㆍ자매</label>
-           <input type="checkbox" id="friend">
-           <label class="item" for="friend">친구ㆍ동료</label>
-           <input type="checkbox" id="teacher">
-           <label class="item" for="teacher">선생님ㆍ상사</label>
-           <input type="checkbox" id="relEtc">
-           <label class="item" for="relEtc">기타</label>
-      	</span>
-      </div>
-      <div class="optRow">기념일
-      	<span class="checkBx">
-         <input type="checkbox" id="bday">
-         <label class="item" for="bday">생일</label>
-         <input type="checkbox" id="couple_day">
-         <label class="item" for="couple_day">커플기념일</label>
-         <input type="checkbox" id="school_day">
-         <label class="item" for="school_day">입학ㆍ졸업ㆍ합격</label>
-         <input type="checkbox" id="marriage">
-         <label class="item" for="marriage">결혼</label>
-         <input type="checkbox" id="childbirth">
-         <label class="item" for="childbirth">출산</label>
-         <input type="checkbox" id="parent">
-         <label class="item" for="parent">어버이날</label>
-         <input type="checkbox" id="teacherDay">
-         <label class="item" for="teacherDay">스승의날</label>
-         <input type="checkbox" id="hire">
-         <label class="item" for="hire">입사ㆍ승진</label>
-      	</span>
-      </div>
-      <div class="optRow">계절별
-      	<span class="checkBx">
-      	 <input type="checkbox" id="spring">
-         <label class="item" for="spring">봄</label>
-         <input type="checkbox" id="summer">
-         <label class="item" for="summer">여름</label>
-         <input type="checkbox" id="fall">
-         <label class="item" for="fall">가을</label>
-         <input type="checkbox" id="winter">
-         <label class="item" for="winter">겨울</label>
-      	</span>
-      </div>
-      <div class="optRow">색상별
-      	<span class="checkBx">
-      		<input type="checkbox" id="red">
-          <label class="item" for="red">Red</label>
-          <input type="checkbox" id="orange">
-          <label class="item" for="orange">Orange</label>
-          <input type="checkbox" id="yellow">
-          <label class="item" for="yellow">Yellow</label>
-          <input type="checkbox" id="green">
-          <label class="item" for="green">Green</label>
-          <input type="checkbox" id="blue">
-          <label class="item" for="blue">Blue</label>
-					<input type="checkbox" id="navy">
-          <label class="item" for="navy">Navy</label>
-          <input type="checkbox" id="purple">
-          <label class="item" for="purple">Purple</label>
-          <input type="checkbox" id="white">
-          <label class="item" for="white">White</label>
-          <input type="checkbox" id="black">
-          <label class="item" for="black">Black</label>
-      	</span>
-      </div>
-      <div class="optRow">종류별
-      	<span class="checkBx">
-      		<input type="checkbox" id="stationery">
-           <label class="item" for="stationery">디자인문구</label>
-           <input type="checkbox" id="elec_equip">
-           <label class="item" for="elec_equip">전자기기</label>
-           <input type="checkbox" id="leports">
-           <label class="item" for="leports">여행ㆍ레포츠</label>
-           <input type="checkbox" id="house_design">
-           <label class="item" for="house_design">디자인가전</label>
-           <input type="checkbox" id="interior">
-           <label class="item" for="interior">인테리어ㆍ수납</label>
-           <input type="checkbox" id="life">
-           <label class="item" for="life">패브릭ㆍ생활</label>
-           <input type="checkbox" id="food">
-           <label class="item" for="food">키친ㆍ푸드</label>
-           <input type="checkbox" id="fashion">
-           <label class="item" for="fashion">의류</label>
-           <input type="checkbox" id="fash_goods">
-           <label class="item" for="fash_goods">패션잡화ㆍ주얼리</label>
-           <input type="checkbox" id="makeup">
-           <label class="item" for="makeup">화장품</label>
-					 <input type="checkbox" id="etc">
-           <label class="item" for="etc">기타</label>
-         </span>
-      </div>
+   		<h1>연령대</h1>
+      <ul data-text="0">
+				<li class="tag">
+            <input type="checkbox" name="" id="aa">
+            <label for="aa" class="item">영유아</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" class="item" id="an">
+            <label for="an" class="item">어린이</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ac">
+            <label for="ac" class="item">청소년</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ad">
+            <label for="ad" class="item">청년</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ae">
+            <label for="ae" class="item">중년</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="af">
+            <label for="af" class="item">장년</label>
+        </li>
+    </ul>
+ 		<h1>가격대</h1>
+    <ul class="tagBx" data-text="1">
+        <li class="tag">
+            <input type="checkbox" id="ba">
+            <label for="ba" class="item">1만원 미만</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="bb">
+            <label for="bb" class="item">2~3만원대</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="bc">
+            <label for="bc" class="item">3~4만원대</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="bd">
+            <label for="bd" class="item">5~8만원대</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="be">
+            <label for="be" class="item">9~10만원대</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="bf">
+            <label for="bf" class="item">11만원 이상</label>
+        </li>
+    </ul>
+    <h1>취향별</h1>
+    <ul class="tagBx" data-text="2">
+        <li class="tag">
+            <input type="checkbox" id="ca">
+            <label for="ca" class="item">사랑스러운</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="cb">
+            <label for="cb" class="item">모던한</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="cc">
+            <label for="cc" class="item">독특한</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="cd">
+            <label for="cd" class="item">캐쥬얼</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ce">
+            <label for="ce" class="item">실용적인</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="cf">
+            <label for="cf" class="item">럭셔리</label>
+        </li>
+    </ul>
+    <h1>관계별</h1>
+    <ul class="tagBx" data-text="3">
+        <li class="tag">
+            <input type="checkbox" id="da">
+            <label for="da" class="item">애인</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="db">
+            <label for="db" class="item">부모님</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="dc">
+            <label for="dc" class="item">형제ㆍ자매</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="dd">
+            <label for="dd" class="item">친구ㆍ동료</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="de">
+            <label for="de" class="item">선생님ㆍ상사</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="df">
+            <label for="df" class="item">기타</label>
+        </li>
+    </ul>
+    <h1>기념일</h1>
+    <ul class="tagBx" data-text="4">
+        <li class="tag">
+            <input type="checkbox" id="ea">
+            <label for="ea" class="item">생일</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="eb">
+            <label for="eb" class="item">커플기념일</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ec">
+            <label for="ec" class="item">입학ㆍ졸업ㆍ합격</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ed">
+            <label for="ed" class="item">결혼</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ee">
+            <label for="ee" class="item">출산</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ef">
+            <label for="ef" class="item">어버이날</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="eg">
+            <label for="eg" class="item">스승의날</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="eh">
+            <label for="eh" class="item">입사ㆍ승진</label>
+        </li>
+    </ul>
+    <h1>계절별</h1>
+    <ul class="tagBx" data-text="5">
+        <li class="tag">
+            <input type="checkbox" id="fa">
+            <label for="fa" class="item">봄</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="fb">
+            <label for="fb" class="item">여름</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="fc">
+            <label for="fc" class="item">가을</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="fd">
+            <label for="fd" class="item">겨울</label>
+        </li>
+    </ul>
+    <h1>색상별</h1>
+    <ul class="tagBx" data-text="6">
+        <li class="tag">
+            <input type="checkbox" id="ga">
+            <label for="ga" class="item">Red</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gb">
+            <label for="gb" class="item">Orange</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gc">
+            <label for="gc" class="item">Yellow</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gd">
+            <label for="gd" class="item">Green</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="ge">
+            <label for="ge" class="item">Blue</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gf">
+            <label for="gf" class="item">Navy</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gg">
+            <label for="gg" class="item">Purple</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gh">
+            <label for="gh" class="item">White</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="gi">
+            <label for="gi" class="item">Black</label>
+        </li>
+    </ul>
+    <h1>종류별</h1>
+    <ul class="tagBx" data-text="7">
+        <li class="tag">
+            <input type="checkbox" id="ha">
+            <label for="ha" class="item">디자인문구</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hb">
+            <label for="hb" class="item">전자기기</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hc">
+            <label for="hc" class="item">여행ㆍ레포츠</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hd">
+            <label for="hd" class="item">디자인가전</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="he">
+            <label for="he" class="item">인테리어ㆍ수납</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hf">
+            <label for="hf" class="item">패브릭ㆍ생활</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hg">
+            <label for="hg" class="item">키친ㆍ푸드</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hh">
+            <label for="hh" class="item">패션의류</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hi">
+            <label for="hi" class="item">패션잡화ㆍ주얼리</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hj">
+            <label for="hj" class="item">화장품</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" id="hk">
+            <label for="hk" class="item">기타</label>
+        </li>
+    </ul>
+      
+      
       <div class="extraInput">
       	<span class="optRow">최대 수강 인원
       		<input type="number" placeholder="15">
@@ -298,12 +444,14 @@
       		<input type="text" placeholder="금/토요일 18:00">
       	</span>
       </div>
-   </div>
+     </div>
+   
 			<div class="boardRow">
+			<!-- 썸네일 -->
 				<div class="boardImg" id="titleImgArea">
 						<img id="titleImg" src="${contextPath}/resources/images/thumb.png" width="200" height="100">
-						<img src="${contextPath}/resources/images/inputThumb.png">
-					</div>
+				</div>
+				<img id="thumbInfo" style="margin-left:20px;" src="${contextPath}/resources/images/inputThumb.png">
 			</div>
 			<div class="boardRow">
 				<input type="text" id="title" name="classTitle" placeholder="클래스명">
@@ -317,14 +465,19 @@
 				<textarea class="form-control" id="summernote" name="boardContent"
 					rows="10" style="resize: none;"></textarea>
 			</div>
+			
+			<!-- 카카오 맵 API -->
+			<div class="boardRow" style="margin-bottom: 0px;">
+				<input type="text" class="address" id="sample5_address" placeholder="클래스가 진행될 장소를 필수로 입력해주세요.">
+				<input type="button" class="address" id="searchBtn" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+				<div id="map" style="width:300px;height:200px;visibility:hidden"></div>
+			</div>
+		
 		<div class="btnArea">
 			<button type="submit" id="submitBtn">등록</button>
 			<button type="reset" id="resetBtn">취소</button>
-		</div>
-	</div>
-		
-
-		
+		</div>	
+	</div>	
 	</form>
 	
 	<script>
@@ -340,6 +493,38 @@
 			alert("내용을 입력해 주세요.");
 			$("#content").focus();
 			return false;
+		}
+	}
+	
+	  // 썸네일을 보여주는 함수
+	  function LoadImg(value, num) {
+		  // value.files : 파일이 업로드되어 있으면 true
+		  // value.files[0] : 여러 파일 중 첫번째 파일이 업로드 되어 있으면 true
+		  
+			if(value.files && value.files[0]){ // 해당 요소에 업로드된 파일이 있을 경우
+				
+				var reader = new FileReader();
+     	// 자바스크립트 FileReader
+    	// 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 
+    	// 읽을 파일을 가리키는 File 혹은 Blob객체를 이용해 
+    	// 파일의 내용을 읽고 사용자의 컴퓨터에 저장하는 것을 가능하게 해주는 객체
+    	
+    	reader.readAsDataURL(value.files[0]);
+      // FileReader.readAsDataURL()
+    	// 지정된의 내용을 읽기 시작합니다. 
+    	// Blob완료되면 result속성 data:에 파일 데이터를 나타내는 URL이 포함 됩니다.	
+    	
+    	reader.onload = function(e){
+      	// FileReader.onload
+					// load 이벤트의 핸들러. 
+					// 이 이벤트는 읽기 동작이 성공적으로 완료 되었을 때마다 발생합니다.	
+    		
+					// 읽어들인 내용(이미지 파일)을 화면에 출력
+					
+					$(".boardImg").eq(num).children("img").attr("src", e.target.result);
+					// e.target.result : 파일 읽기 동작을 성공한 요소가 읽어들인 파일 내용
+					
+    	}
 		}
 	}
 
@@ -360,8 +545,56 @@
 		});
 		
 	});
-	 
+	
+	/* 카카오 주소 API */
+ 
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		mapOption = {
+			center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+			level : 5
+		// 지도의 확대 레벨
+		};
 
-</script>
+		//지도를 미리 생성
+		var map = new daum.maps.Map(mapContainer, mapOption);
+		//주소-좌표 변환 객체를 생성
+		var geocoder = new daum.maps.services.Geocoder();
+		//마커를 미리 생성
+		var marker = new daum.maps.Marker({
+			position : new daum.maps.LatLng(37.537187, 127.005476),
+			map : map
+		});
+
+		function sample5_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var addr = data.address; // 최종 주소 변수
+
+					// 주소 정보를 해당 필드에 넣는다.
+					document.getElementById("sample5_address").value = addr;
+					// 주소로 상세 정보를 검색
+	
+					geocoder.addressSearch(data.address, function(results, status) {
+						// 정상적으로 검색이 완료됐으면
+						if (status === daum.maps.services.Status.OK) {
+
+							var result = results[0]; //첫번째 결과의 값을 활용
+
+							// 해당 주소에 대한 좌표를 받아서
+							var coords = new daum.maps.LatLng(result.y,
+									result.x);
+							// 지도를 보여준다.
+							mapContainer.style.visibility = "visible";
+							map.relayout();
+							// 지도 중심을 변경한다.
+							map.setCenter(coords);
+							// 마커를 결과값으로 받은 위치로 옮긴다.
+							marker.setPosition(coords)
+						}
+					});
+				}
+			}).open();
+		}
+	</script>
 </body>
 </html>

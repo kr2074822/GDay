@@ -1,11 +1,11 @@
-package team.project.gday.member.bmem.controller.service;
+package team.project.gday.member.bmem.model.service;
 
 import java.util.List;
 
-import team.project.gday.Product.model.vo.Attachment;
-import team.project.gday.Product.model.vo.GClass;
-import team.project.gday.Product.model.vo.Gift;
-import team.project.gday.member.bmem.controller.model.PageInfo;
+import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.product.model.vo.Attachment;
+import team.project.gday.product.model.vo.GClass;
+import team.project.gday.product.model.vo.Gift;
 
 public interface BmemService {
 
@@ -13,13 +13,13 @@ public interface BmemService {
 	 * @param cp
 	 * @return pInfo
 	 */
-	PageInfo getGiftPageInfo(int cp);
+	PageInfo9 getGiftPageInfo(int cp);
  
 	/** 내 판매글 목록 조회 Service
 	 * @param pInfo
 	 * @return gList
 	 */
-	List<Gift> bSellList(PageInfo pInfo);
+	List<Gift> bSellList(PageInfo9 pInfo);
 
 	/** 내 판매글 썸네일 목록 조회 Service
 	 * @param gList
@@ -32,13 +32,13 @@ public interface BmemService {
 	 * @param cp
 	 * @return pInfo
 	 */
-	PageInfo getClassPageInfo(int cp);
+	PageInfo9 getClassPageInfo(int cp);
 	
 	/** 판매 회원 클래스 목록 조회 Service
 	 * @param pInfo
 	 * @return cList
 	 */
-	List<GClass> bClassList(PageInfo pInfo);
+	List<GClass> bClassList(PageInfo9 pInfo);
 	
 	/** 판매 회원 클래스 썸네일 목록 조회 Service
 	 * @param cList

@@ -1,4 +1,4 @@
-package team.project.gday.Product.model.vo;
+package team.project.gday.product.model.vo;
 
 // 상품별 해시태그
 public class ProductCTag {

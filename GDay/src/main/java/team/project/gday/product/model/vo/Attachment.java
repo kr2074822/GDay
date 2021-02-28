@@ -1,4 +1,4 @@
-package team.project.gday.Product.model.vo;
+package team.project.gday.product.model.vo;
 
 public class Attachment {
 	private int fileNo;

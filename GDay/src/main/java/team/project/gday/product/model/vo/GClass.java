@@ -1,9 +1,9 @@
-package team.project.gday.Product.model.vo;
+package team.project.gday.product.model.vo;
 
 import java.sql.Date;
 
-// 선물
-public class Gift {
+// 핸드메이드 클래스
+public class GClass {
 	private int prdtNo; // 상품 번호
 	private String prdtType; // 상품 타입
 	private String prdtName; // 상품명
@@ -14,9 +14,17 @@ public class Gift {
 	private Date modifyDate; // 수정 날짜
 	private String prdtStatus; // 블라인드 여부
 	private int memNo; // 회원 번호
-	private String gStatus; // 품절 여부
-	
-	public Gift() {}
+
+	private int cCount; // 클래스 정원
+	private int cNowCount; // 클래스 인원
+	private int cSession; // 클래스 횟수
+	private String cLocal; // 클래스 장소
+	private Date cStartDate; // 클래스 개강일
+	private Date cEndDate; // 클래스 종강일
+	private String cStatus; // 클래스 모집여부
+	private String cDate; // 수업일/시간
+
+	public GClass() { }
 
 	public int getPrdtNo() {
 		return prdtNo;
@@ -98,23 +106,78 @@ public class Gift {
 		this.memNo = memNo;
 	}
 
-	public String getgStatus() {
-		return gStatus;
+	public int getcCount() {
+		return cCount;
 	}
 
-	public void setgStatus(String gStatus) {
-		this.gStatus = gStatus;
+	public void setcCount(int cCount) {
+		this.cCount = cCount;
+	}
+
+	public int getcNowCount() {
+		return cNowCount;
+	}
+
+	public void setcNowCount(int cNowCount) {
+		this.cNowCount = cNowCount;
+	}
+
+	public int getcSession() {
+		return cSession;
+	}
+
+	public void setcSession(int cSession) {
+		this.cSession = cSession;
+	}
+
+	public String getcLocal() {
+		return cLocal;
+	}
+
+	public void setcLocal(String cLocal) {
+		this.cLocal = cLocal;
+	}
+
+	public Date getcStartDate() {
+		return cStartDate;
+	}
+
+	public void setcStartDate(Date cStartDate) {
+		this.cStartDate = cStartDate;
+	}
+
+	public Date getcEndDate() {
+		return cEndDate;
+	}
+
+	public void setcEndDate(Date cEndDate) {
+		this.cEndDate = cEndDate;
+	}
+
+	public String getcStatus() {
+		return cStatus;
+	}
+
+	public void setcStatus(String cStatus) {
+		this.cStatus = cStatus;
+	}
+
+	public String getcDate() {
+		return cDate;
+	}
+
+	public void setcDate(String cDate) {
+		this.cDate = cDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Gift [prdtNo=" + prdtNo + ", prdtType=" + prdtType + ", prdtName=" + prdtName + ", prdtContent="
+		return "GClass [prdtNo=" + prdtNo + ", prdtType=" + prdtType + ", prdtName=" + prdtName + ", prdtContent="
 				+ prdtContent + ", prdtPrice=" + prdtPrice + ", readCount=" + readCount + ", createDate=" + createDate
-				+ ", modifyDate=" + modifyDate + ", prdtStatus=" + prdtStatus + ", memNo=" + memNo + ", gStatus="
-				+ gStatus + "]";
+				+ ", modifyDate=" + modifyDate + ", prdtStatus=" + prdtStatus + ", memNo=" + memNo + ", cCount="
+				+ cCount + ", cNowCount=" + cNowCount + ", cSession=" + cSession + ", cLocal=" + cLocal
+				+ ", cStartDate=" + cStartDate + ", cEndDate=" + cEndDate + ", cStatus=" + cStatus + ", cDate=" + cDate
+				+ "]";
 	}
-	
-	
-	
-}
 
+}

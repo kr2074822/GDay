@@ -1,4 +1,4 @@
-package team.project.gday.Product.model.vo;
+package team.project.gday.product.model.vo;
 
 // 선물 옵션
 public class GOption {

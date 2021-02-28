@@ -8,11 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import team.project.gday.Product.model.vo.Attachment;
-import team.project.gday.Product.model.vo.GClass;
-import team.project.gday.Product.model.vo.Gift;
-import team.project.gday.member.bmem.controller.model.PageInfo;
-import team.project.gday.member.bmem.controller.service.BmemService;
+import team.project.gday.member.bmem.model.service.BmemService;
+import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.product.model.vo.Attachment;
+import team.project.gday.product.model.vo.GClass;
+import team.project.gday.product.model.vo.Gift;
 
 @Controller
 @RequestMapping("/bMember/*")
@@ -23,19 +23,13 @@ public class BmemController {
 	
 //	===================================== 화면 이동 관련 ======================================
 	
-	//클래스 신청 화면 이동
-	@RequestMapping("gClassInsert")
-	public String gClassInsert() {
-		return "gClass/gClassInsert";
-	}
-	
 	
 	//비즈니스 내 판매 글 이동
 	@RequestMapping("bSellList")
 	public String bSellList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
 							Model model) {
 		
-		PageInfo pInfo = service.getGiftPageInfo(cp);
+		PageInfo9 pInfo = service.getGiftPageInfo(cp);
 		
 		List<Gift> gList = service.bSellList(pInfo);
 		
@@ -76,7 +70,7 @@ public class BmemController {
 	public String bClassList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
 							 Model model) {
 		
-		PageInfo pInfo = service.getClassPageInfo(cp);
+		PageInfo9 pInfo = service.getClassPageInfo(cp);
 		
 		List<GClass> cList = service.bClassList(pInfo);
 		
