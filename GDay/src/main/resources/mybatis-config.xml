@@ -11,6 +11,7 @@
 		<typeAlias type="team.project.gday.calendar.model.vo.Calendar" alias="Calendar"/>
 		<typeAlias type="team.project.gday.Product.model.vo.Gift" alias="Gift"/>
 		<typeAlias type="team.project.gday.Product.model.vo.GClass" alias="Class"/>
+		<typeAlias type="team.project.gday.member.bmem.controller.model.vo.OrderList" alias="BmemOrderList"/>
 		<typeAlias type="team.project.gday.Product.model.vo.ProductCTag" alias="ProductCTag"/>
 		<typeAlias type="team.project.gday.Product.model.vo.GOption" alias="GOption"/>
 		<typeAlias type="team.project.gday.member.model.vo.ProfileImg" alias="ProfileImg"/>
