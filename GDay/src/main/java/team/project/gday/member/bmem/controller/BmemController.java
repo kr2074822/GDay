@@ -18,10 +18,12 @@ import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.model.vo.Member;
 
+
 @Controller
 @SessionAttributes({"loginMember"})
 @RequestMapping("/bMember/*")
 public class BmemController {
+
 
 	@Autowired 
 	private BmemService service;
@@ -133,7 +135,6 @@ public class BmemController {
 	
 	
 //	===================================== 기능 관련 ======================================
-	
 	
 	
 }
