@@ -24,10 +24,24 @@ public class AdminController {
 	public String memberRating() {
 		return null;
 	}
+
+	// 블랙리스트 회원 조회 화면 전환 Controller
+	@RequestMapping("adminBlackMem")
+	public String adminBlackMem() {
+		return "admin/adminBlackMem";
+	}
 	
-	// 고객센터 화면 전환 Controller
+	// 고객센터 문의 화면 전환 Controller
 	@RequestMapping("memberCusInt")
 	public String memberCustomerInsert() {
 		return "admin/memberCustomerInsert";
 	}
+
+	
+	// 회원 고객센터 목록 화면 전환 Controller
+	@RequestMapping("memberCustomer")
+	public String memberCustomer(){
+		return "admin/memberCustomer";
+	}
+	
 }
