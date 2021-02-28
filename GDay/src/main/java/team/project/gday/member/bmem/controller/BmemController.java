@@ -14,6 +14,7 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.controller.model.PageInfo;
+import team.project.gday.member.bmem.controller.model.vo.OrderList;
 import team.project.gday.member.bmem.controller.service.BmemService;
 import team.project.gday.member.model.vo.Member;
 
@@ -60,7 +61,17 @@ public class BmemController {
 	
 	//비즈니스 주문조회 이동
 	@RequestMapping("bOrderList")
-	public String bOrderList() {
+	public String bOrderList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							 @ModelAttribute("loginMember") Member loginMember,
+							 Model model) {
+		
+		PageInfo pInfo = service.getOrdListPageInfo(cp, loginMember);
+		
+		List<OrderList> oList = service.bOrderList(pInfo, loginMember);
+		
+		model.addAttribute("oList", oList);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "mypage/bMemPage/bOrderList";
 	}
 	
@@ -79,11 +90,12 @@ public class BmemController {
 	//비즈니스 회원이 등록한 클래스 목록 조회 Controller
 	@RequestMapping("bClassList")
 	public String bClassList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							 @ModelAttribute("loginMember") Member loginMember,
 							 Model model) {
 		
-		PageInfo pInfo = service.getClassPageInfo(cp);
+		PageInfo pInfo = service.getClassPageInfo(cp, loginMember);
 		
-		List<GClass> cList = service.bClassList(pInfo);
+		List<GClass> cList = service.bClassList(pInfo, loginMember);
 		
 		if(cList != null && !cList.isEmpty()) { // 게시글 목록 조회 성공 시
 			List<Attachment> thumbnailList = service.bClassThumbnailList(cList);
