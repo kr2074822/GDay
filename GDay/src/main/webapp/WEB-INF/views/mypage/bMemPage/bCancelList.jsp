@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
 <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemPage/bCancelList.css"/>
 </head>
 <body>

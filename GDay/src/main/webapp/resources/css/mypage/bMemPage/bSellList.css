@@ -26,20 +26,20 @@
 /* 판매 글 목록 */
 #sell-list {
 	height: 800px;
-	border: 1px solid black;
   display: grid;
-  grid-template-rows: 33% 33% 33%;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 34%;
+  grid-template-columns: 33% 33% 34%;
 }
 
 .sell-item {
 	display: flex;
 	flex-direction: column;
-	margin: auto;
 	text-align: center;
 }
 
 .sell-item > img {
+	display: block;
+	margin: 0 auto;
 	width: 200px;
 	height: 200px;
 }
@@ -53,4 +53,9 @@
 .item-name {
 	font-size: 20px;
 	font-weight: bold;
+	display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
