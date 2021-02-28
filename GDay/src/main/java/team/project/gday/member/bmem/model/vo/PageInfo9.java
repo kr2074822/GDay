@@ -1,9 +1,9 @@
-package team.project.gday.member.bmem.controller.model;
+package team.project.gday.member.bmem.model.vo;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class PageInfo {
+public class PageInfo9 {
 	private int currentPage; 	// 현재 페이지 번호를 표시할 변수
 	private int listCount; 		// 전체 게시글 수
 	private int limit = 9; 		// 한 페이지에 보여질 게시글 수
@@ -13,9 +13,9 @@ public class PageInfo {
 	private int startPage;	 	// 페이징바 시작 페이지 번호
 	private int endPage; 	 	// 페이징바 끝 페이지 번호
 	
-	public PageInfo() {}
+	public PageInfo9() {}
 	
-	public PageInfo(int currentPage, int listCount) {
+	public PageInfo9(int currentPage, int listCount) {
 		this.currentPage = currentPage;
 		this.listCount = listCount;
 		
@@ -24,7 +24,7 @@ public class PageInfo {
 	}
 	
 
-	public PageInfo(int currentPage, int listCount, int limit, int pagingBarSize) {
+	public PageInfo9(int currentPage, int listCount, int limit, int pagingBarSize) {
 		super();
 		this.currentPage = currentPage;
 		this.listCount = listCount;

@@ -13,15 +13,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
-import team.project.gday.member.bmem.controller.model.PageInfo;
-import team.project.gday.member.bmem.controller.model.vo.OrderList;
-import team.project.gday.member.bmem.controller.service.BmemService;
+import team.project.gday.member.bmem.model.service.BmemService;
+import team.project.gday.member.bmem.model.vo.OrderList;
+import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.model.vo.Member;
+
 
 @Controller
 @SessionAttributes({"loginMember"})
 @RequestMapping("/bMember/*")
 public class BmemController {
+
 
 	@Autowired 
 	private BmemService service;
@@ -41,7 +43,7 @@ public class BmemController {
 							@ModelAttribute("loginMember") Member loginMember,
 							Model model) {				
 		
-		PageInfo pInfo = service.getGiftPageInfo(cp, loginMember);
+		PageInfo9 pInfo = service.getGiftPageInfo(cp, loginMember);
 		
 		List<Gift> gList = service.bSellList(pInfo, loginMember);
 		
@@ -65,7 +67,7 @@ public class BmemController {
 							 @ModelAttribute("loginMember") Member loginMember,
 							 Model model) {
 		
-		PageInfo pInfo = service.getOrdListPageInfo(cp, loginMember);
+		PageInfo9 pInfo = service.getOrdListPageInfo(cp, loginMember);
 		
 		List<OrderList> oList = service.bOrderList(pInfo, loginMember);
 		
@@ -93,7 +95,7 @@ public class BmemController {
 							 @ModelAttribute("loginMember") Member loginMember,
 							 Model model) {
 		
-		PageInfo pInfo = service.getClassPageInfo(cp, loginMember);
+		PageInfo9 pInfo = service.getClassPageInfo(cp, loginMember);
 		
 		List<GClass> cList = service.bClassList(pInfo, loginMember);
 		
@@ -133,7 +135,6 @@ public class BmemController {
 	
 	
 //	===================================== 기능 관련 ======================================
-	
 	
 	
 }
