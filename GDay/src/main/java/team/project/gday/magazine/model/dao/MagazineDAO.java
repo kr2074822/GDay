@@ -35,4 +35,12 @@ public class MagazineDAO {
 		
 		return sqlSession.selectList("magazineMapper.selectList", pInfo.getBoardType(), rowBounds);
 	}
+
+	/** 매거진 썸네일 목록 조회
+	 * @param mList
+	 * @return
+	 */
+	public List<Magazine> selectThumbnailList(List<Magazine> mList) {
+		return sqlSession.selectList("magazineMapper.selectThumbnailList", mList);
+	}
 }

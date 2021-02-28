@@ -32,7 +32,11 @@
 
 		        <div class="card">
 		            <div class="imgBx" data-text="제목">
-		                <img src="images/gift1.jpg" alt="">
+			            <c:forEach items="${mThumbList }" var="imgList">
+							<c:if test="${imgList.mgzNo == magazine.mgzNo}">
+			                	<img src="${contextPath}${imgList.imgPath}/${imgList.imgName}" alt="">
+			                </c:if>
+						</c:forEach>
 		            </div>
 		            <div class="content">
 		            
@@ -42,10 +46,6 @@
 		                    <p>
 		                    	${magazine.mgzContent }
 		                        Lorem ipsum dolor sit amet, 
-		                        consectetur adipiscing elit, 
-		                        sed do eiusmod tempor incididunt
-		                        ut labore et dolore magna aliqua.
-		                        Ut enim ad minim veniam
 		                    </p>
 		                    <a href="">Read More</a>
 		                </div>
@@ -87,14 +87,13 @@
 		        		success: function(result){
 		        			console.log('성공')
 		        			
-		        			console.log('${mList}');
+		        			console.log('${mThumbList}');
 		        			
 		        			console.log(result);
 		        			console.log('${pInfo.maxPage}')
 		        			
 		        			for(var mgz in result){
 		        				
-			        			
 			        			var addContent = 
 			        	            '<div class="card">'+
 			        	                    '<div class="imgBx" data-text="제목">'+

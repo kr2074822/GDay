@@ -1,6 +1,8 @@
 package team.project.gday.magazine.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,11 +49,21 @@ public class MagazineController {
 		
 		
 		// 썸네일부분
-		/*
-		 * if (bList != null && !bList.isEmpty()) { List<Magazine> thumbnailList =
-		 * service.selectThumbnailList(bList); if (thumbnailList != null) {
-		 * model.addAttribute("thList", thumbnailList); } }
-		 */
+		
+		
+		
+		 if (mList != null && !mList.isEmpty()) { 
+			 List<Magazine> mThumbList =
+			 service.selectThumbnailList(mList); 
+			 if (mThumbList != null) {
+				 model.addAttribute("mThumbList", mThumbList); 
+			 } 
+			 System.out.println("이미지 획인: " + mThumbList);
+		}
+		
+		
+		
+		
 		// 게시글 목록, 페이징 처리 정보를 request scope로 세팅 후 foward 진행
 		
 		model.addAttribute("mList", mList);
@@ -61,22 +73,48 @@ public class MagazineController {
 		return "magazine/magazine";
 	}
 	
+	// 매거진 페이징 처리
 	@RequestMapping("paging")
 	@ResponseBody
-	public List<Magazine> paging (@RequestParam(value="cp", required = false ,defaultValue = "1" ) int cp,
+	public Map<String, Object> paging (@RequestParam(value="cp", required = false ,defaultValue = "1" ) int cp,
 			Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		MagazinePageInfo pInfo = service.getPageInfo(cp);
 		System.out.println(pInfo);
 		
+		map.put("pInfo", pInfo);
 	
 		List<Magazine> mList = service.selectList(pInfo); 
+		
+		
+		map.put("mList", mList);
+		
+		
+		
+		// 썸네일부분
+		if (mList != null && !mList.isEmpty()) { 
+			 List<Magazine> mThumbList =
+			 service.selectThumbnailList(mList); 
+			 if (mThumbList != null) {
+				 model.addAttribute("mThumbList", mThumbList); 
+				 map.put("mThumbList", mThumbList);
+			 } 
+			 System.out.println("이미지 획인: " + mThumbList);
+		}
+		
+		
+		
+
+		System.out.println("--------"+map);
+		
+		
 		
 		model.addAttribute("mList", mList);
 		model.addAttribute("pInfo", pInfo);
 		
 		System.out.println(mList);
 		
-		return mList;
+		return map;
 	}
 }

@@ -10,5 +10,7 @@ public interface MagazineService {
 	MagazinePageInfo getPageInfo(int cp);
 
 	List<Magazine> selectList(MagazinePageInfo pInfo);
+
+	List<Magazine> selectThumbnailList(List<Magazine> mList);
 	
 }
