@@ -16,17 +16,40 @@
   		<result property="memberNo" column="MEM_NO"/>
 	</resultMap>
 	
+	<resultMap type="MagazineImg" id="magazineImg_rm">
+		<id property="imgNo" column="MGZ_IMG_NO"/>
+		<result property="imgPath" column="MGZ_IMG_PATH"/>
+		<result property="imgName" column="MGZ_IMG_NAME"/>
+		<result property="imgLevel" column="MGZ_IMG_LEVEL"/>
+		<result property="mgzNo" column="MGZ_NO"/>
+   </resultMap>
+	
+	
+	<!-- 목록 갯수 -->
 	<select id="getListCount" parameterType="_int" resultType="_int">
 		SELECT COUNT(*)
 		FROM MAGAZINE
 		WHERE DELETE_STATUS = 'N' 
 	</select>
 	
+	<!-- 매거진 조회 -->
 	<select id="selectList" parameterType="_int" resultMap="magazine_rm">
 		SELECT MGZ_NO, MGZ_TITLE, MGZ_CONTENT, CREATE_DATE
 		FROM MAGAZINE
 		WHERE DELETE_STATUS = 'N' 
 		ORDER BY MGZ_NO DESC
 	</select>
+	
+	<!-- 매거진 썸네일 조회 -->
+	<select id="selectThumbnailList" parameterType="list" resultMap="magazineImg_rm">
+		SELECT *
+		FROM  MAGAZINE_IMG
+		WHERE MGZ_IMG_LEVEL = 0
+		AND MGZ_NO IN
+		<foreach collection="list" item="magazine" open="(" close=")" separator=",">
+			#{magazine.mgzNo}
+		</foreach>
+	</select>
+	
 	
 </mapper>

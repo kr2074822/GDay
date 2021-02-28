@@ -28,5 +28,11 @@ public class MagazineServiceImpl implements MagazineService{
 	public List<Magazine> selectList(MagazinePageInfo pInfo) {
 		return dao.selectList(pInfo);
 	}
+
+	// 매거진 썸네일 조회
+	@Override
+	public List<Magazine> selectThumbnailList(List<Magazine> mList) {
+		return dao.selectThumbnailList(mList);
+	}
 	
 }
