@@ -1,4 +1,4 @@
-package team.project.gday.member.bmem.controller.model.vo;
+package team.project.gday.member.bmem.model.vo;
 
 import java.sql.Date;
 
