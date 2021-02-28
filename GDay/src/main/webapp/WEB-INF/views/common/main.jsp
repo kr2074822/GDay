@@ -16,7 +16,7 @@
 <body>
 
 	<a href="payment/order">주문</a>
-	<a href="gMember/orderList1">마이페이지</a>
+	<a href="gMember/orderList/1">마이페이지</a>
 	
 	<section class="">
         <div class="selectWrapper">
