@@ -3,6 +3,7 @@ package team.project.gday.search.bmem.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +21,7 @@ import team.project.gday.search.bmem.service.BOrderListSearchService;
 @RequestMapping("/bMemSearch/*")
 public class BOrderListSearchController {
 	
+	@Autowired
 	private BOrderListSearchService service;
 	
 	//비즈니스 내 판매 글 이동
@@ -29,27 +31,21 @@ public class BOrderListSearchController {
 								@PathVariable("day") String selectDay,
 								Model model) {				
 		
-		System.out.println(selectDay);
-		
 		int day = 0;
 		int memberNo = loginMember.getMemberNo();
-		
+				
 		switch(selectDay) {
 		case "7days" : day = 7; break;
 		case "1Month" : day = 30; break;
 		case "3Months" : day = 90; break;
 		case "6Months" : day = 180; break;
-		}
+		}		
 		
-		System.out.println(day);
-		
-		Map<String, Object>map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNo", memberNo);
 		map.put("day", day);
-		
-		PageInfo9 pInfo = service.getOdlPageInfo(cp, map);
-		
-		
+						
+		PageInfo9 pInfo = service.getOdlPageInfo(cp, map);		
 		
 		return "mypage/bMemPage/bOrderList";
 	}

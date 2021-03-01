@@ -12,8 +12,9 @@ public class BOrderListSearchDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	// 판매 회원 날짜 선택 후 주문 목록 페이징 처리 객체 생성 DAO
 	public int getOdlListCount(Map<String, Object> map) {
-		return sqlSession.selectOne("bMemMapper.getGiftListCount", map);
+		return sqlSession.selectOne("bMemSearchMapper.getOdlListCount", map);
 	}
 
 }
