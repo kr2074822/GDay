@@ -1,4 +1,4 @@
-@charset "UTF-8";
+	@charset "UTF-8";
 /* ///////////////////////////////////////////////////////////// */
 body{
 /* 	background-color: #fafafa; */
@@ -267,6 +267,7 @@ header #headerWrapper {
 	top: 35px;
 	right: 75px;
 	display: none;
+	z-index: 1;
 }
 
 #cancle-icon:hover {
@@ -306,5 +307,6 @@ header #headerWrapper {
 	#header-menu {
 		display: none;
 	}
+	
 	
 }

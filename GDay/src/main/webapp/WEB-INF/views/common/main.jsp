@@ -7,16 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-   <!-- reset.css -->
+	<!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <!-- reset.css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
     <!-- main.css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/common/main.css">
 </head>
 <body>
-
-	<a href="payment/order">주문</a>
-	<a href="gMember/orderList/1">마이페이지</a>
 	
 	<section class="">
         <div class="selectWrapper">
@@ -24,8 +24,9 @@
                 <div class="select">
                     <div class="input_wrapper">
                         <form action="" method="GET">
-                        	<div id="hash_tag">dd</div>
+                        	<div id="hash_tag"><span id="hash_span"></span></div>
                             <input type="text" name="" id="search" placeholder="">
+                            <input type="hidden" name="" id="hsearch" placeholder="">
                             <button type="submit" id=""><i class="fas fa-search"></i></button>
                     </form>
                     <span>검색어 없어도 찾을수 있어요${loginMember}</span>
@@ -344,8 +345,12 @@
         const selectBtn = document.getElementsByClassName("selectBtn");
         const popup = document.getElementsByClassName("popup");
 
+        const hash_tag = document.getElementById("hash_span");
+        
         const item = document.getElementsByClassName("item");
         const search = document.getElementById("search");
+        const hsearch = document.getElementById("hsearch");
+        "hsearch"
         var text = '';
         var change = '';
 
@@ -369,14 +374,20 @@
 
         for (const list of item) {
             list.addEventListener('click', ()=>{
-                if(search.value.indexOf('#'+list.innerText+' ') != -1){
+    
+                if(hsearch.value.indexOf('#'+list.innerText+' ') != -1){
                     change = text.replace('#'+list.innerText+' ', '');
-                    search.value = change;
+                    hsearch.value = change;
                     text = change;
+                    hash_tag.innerText = text;
+	                    
 
                 }else{
                     text += '#'+list.innerText+' '
-                    search.value = text;
+                    hsearch.value = text;
+                    console.log(text)
+                    hash_tag.innerText = text; 
+
                 }
             });
         }
@@ -385,7 +396,7 @@
             let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
             input_list.addEventListener('click', ()=> {
                 if(input_list.checked == true){
-                    selectBtn[div_index].style.background="red";
+                    selectBtn[div_index].style.background="#FE929F";
                 }else{
                     let cnt = 0;
                     let aa = input_list.parentElement.querySelectorAll('input')
@@ -397,7 +408,7 @@
                         }
                     }
                     if(cnt*(-1) == aa.length){
-                        selectBtn[div_index].style.background="white";
+                        selectBtn[div_index].style.background="rgba(0, 0, 0, .05)";
                     }
                 }
                 

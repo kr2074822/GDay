@@ -24,13 +24,13 @@ footer .container .sec{
 footer .container .sec.aboutus{
     width: 40%;
 }
-footer .container h2 {
+footer .container .sec h2 {
     position: relative;
     color: #fff;
     font-weight: 500;
     margin-bottom: 15px;
 }
-footer .container h2:before{
+footer .container .sec h2:before{
     content: '';
     position: absolute;
     bottom: -5px;
@@ -39,18 +39,18 @@ footer .container h2:before{
     height: 2px;
     background: #f00;
 }
-footer p{
+footer .container .sec.aboutus p{
     color: #999;
 }
-.sci{
+footer .container .sec.aboutus .sci{
     margin-top: 20px;
     display: flex;
 
 }
-.sci li{
+footer .container .sec.aboutus .sci li{
     list-style-type: none;
 }
-.sci li a {
+footer .container .sec.aboutus .sci li a {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -62,56 +62,56 @@ footer p{
     text-decoration: none;
     border-radius: 4px;
 }
-.sci li a:hover{
+footer .container .sec.aboutus .sci li a:hover{
     background: #f00;
 }
-.sci li a .fab{
+footer .container .sec.aboutus .sci li a .fab{
     color: #fff;
     font-size: 20px;
 }
 
-.quickLinks{
+footer .container .quickLinks{
     position: relative;
     width: 25%;
 }
-.quickLinks ul li{
+footer .container .quickLinks ul li{
     list-style: none;
 }
-.quickLinks ul li a{
+footer .container .quickLinks ul li a{
     color: #999;
     text-decoration: none;
     margin-bottom: 10px;
     display: inline-block;
 }
-.quickLinks ul li a:hover{
+footer .container .quickLinks ul li a:hover{
     color: #fff;
 }
 
-.contact{
+footer .container .contact{
     width: calc(35% - 60px);
     margin-right: 0 !important;
 }
 
-.contact .info{
+footer .container .contact .info{
     position: relative;
 }
-.contact .info li{
+footer .container .contact .info li{
     display: flex;
     margin-bottom: 16px;
 }
-.contact .info li span:nth-child(1){
+footer .container .contact .info li span:nth-child(1){
     color: #fff;
     font-size: 20px;
     margin-right: 10px;
 }
-.contact .info li span{
+footer .container .contact .info li span{
     color: #999;
 }
-.contact .info li a{
+footer .container .contact .info li a{
     text-decoration: none;
     color: #999;
 }
-.contact .info li a:hover{
+footer .container .contact .info li a:hover{
     color: #fff;
 }
 .copyrightText{

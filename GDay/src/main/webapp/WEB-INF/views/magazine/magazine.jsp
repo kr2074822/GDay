@@ -22,7 +22,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <section class="magazine_wrapper">
     	<h1>Magazine</h1>
 		<c:if test="${empty mList }">
 			<h1>존재하는 게시글이 없습니다.</h1>
@@ -55,8 +55,10 @@
 			</c:forEach>
 		</c:if>
         
-    </div>
+    </section>
     
+    
+    <jsp:include page="../common/footer.jsp"/>
     <script>
     
     	var currentPage = 0;
@@ -110,7 +112,7 @@
 			        	                   ' </div>'+
 			        	                '</div>';
 			        	            //article에 추가되는 콘텐츠를 append
-			        	            $('.container').append(addContent);
+			        	            $('.magazine_wrapper').append(addContent);
 			        			
 		        			}
 
