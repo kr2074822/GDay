@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
 #wrapper {
-	display: flex;
+	display: flex;	
 }
 
 #b-order-list-wrapper {
-	width: 70%;
-	margin: auto;
+	margin: 100px auto;	
 }
 
 /* 페이지 상단 부분 */
@@ -19,15 +18,28 @@
 #container-form {
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+}
+
+.list-search {
+	padding: 20px;
 }
 
 
-/* 주문 내역 목록 */
+/* 판매 글 목록 */
 #order-list {
-	
+
 }
 
 #list-table {
-	border: 1px solid black;
+	width: 100%;
 }
+
+.order-td {
+	padding: 20px 15px;
+	text-align: center;
+}
+
+.order-td:nth-child(odd) {
+	background-color: lightgray;
+}
+

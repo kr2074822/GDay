@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
 <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemPage/bOrderList.css"/>
 </head>
+
 <body>
 	<jsp:include page="../../common/header.jsp"/>
 	
@@ -25,7 +26,7 @@
 			<div id="wrapper-top-area">
 			<!-- 주문 목록 기간 검색 -->
 		    <div class="row" id="container-period">
-		        <form action="#" method="post" id="container-form">
+		        <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
 		        <div class="list-search" id="list-search-1">
 		            <input type="radio" name="periodRadio" id="7days" value="7days">
 		            <label for="7days">일주일</label>
@@ -51,6 +52,7 @@
 		                <option value="#">취소/반품 완료</option>
 		                <option value="#">취소/반품 처리 중</option>
 		            </select> <!-- giftStats : 주문 선물 상태 -->
+		           	<input id="search-input" type="text"/>
 		            <button type="submit" id="list-search-btn">조회</button>
 		        </div>
 		        </form>
@@ -61,8 +63,10 @@
 					
 				<table id="list-table">
 				<thead>
-					<tr>
-						<th>접수날짜</th>
+					<tr style="border-bottom: 1px solid black;">
+						<th>주문번호</th>
+						<th>상품 번호</th>
+						<th>주문일</th>
 						<th>주문자</th>
 						<th>상품명</th>
 						<th>옵션</th>
@@ -81,10 +85,10 @@
 					<c:if test="${!empty oList}">
 						<c:forEach var="order" items="${oList}" varStatus="vs">
 
-							<tr>
-								<td>${order.orderNo}</td>
-								<td>${order.opNo}</td>
-								<td>
+							<tr class="order-rows">
+								<td class="order-td">${order.orderNo}</td>
+								<td class="order-td">${order.opNo}</td>
+								<td class="order-td">
 									<%-- 날짜 출력 모양 지정 --%>
 									<fmt:formatDate var="createDate" value="${order.orderDate }" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate var="now" value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/> 
@@ -97,11 +101,12 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td>${order.memName}</td>
-								<td>${order.prdtName}</td>
-								<td>${order.gOptName}</td>
-								<td>${order.prdtPrice}</td>
-								<td>${order.statusName}</td>
+								<td class="order-td">${order.memName}</td>
+								<td class="order-td">${order.prdtName}</td>
+								<td class="order-td">${order.gOptName}</td>
+								<td class="order-td">${order.opAmount}</td>
+								<td class="order-td">${order.prdtPrice}</td>
+								<td class="order-td">${order.statusName}</td>
 
 							</tr>
 						</c:forEach>
@@ -184,6 +189,12 @@
 			
 		</div>
 	</div>
+	
+	<script>
+		$("#list-search-btn").on("click", function() {
+			
+		})
+	</script>
 	
 	
 </body>
