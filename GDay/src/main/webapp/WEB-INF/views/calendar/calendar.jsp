@@ -20,15 +20,16 @@
 <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@5.5.0/main.global.min.js'></script>
 
-<!-- calendar자체 css / js -->
-<link rel="stylesheet" href="${contextPath}/resources/css/calendar.css?ver=1.2"/>
 
 <!-- swal2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
-
 <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
-
+<!-- calendar자체 css / js -->
+<link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css?ver=1.3"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    
 </head>
 <body>
 

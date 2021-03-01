@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>선물 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.6">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
@@ -39,6 +39,9 @@
 <!-- js 파일 -->
 <jsp:include page="gMemOrderListJS1.jsp"/>
 
+<!-- 모달 파일 -->
+<jsp:include page="../../review/reviewInsertForm.jsp"/>
+
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
 
@@ -47,7 +50,7 @@
             <span>선물 리스트</span>
         </div>
 
-				<div class="wrapper-box">
+			<div class="wrapper-box">
         <!-- 주문 목록 기간 검색 -->
         <div id="list-title-period"><span>결제일</span></div>
         <div class="row" id="container-period">
@@ -91,10 +94,10 @@
 	                </div>
 	                <div class="list-text">
 	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
-	                    <span class="orderPrdtNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
+	                    <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
 	                    <span class="list-name">선물명</span><br>
-	                    <span class="list-text-1">100,000원/1개 │ 2021.02.04.</span><br>
-	                    <span class="list-text-2">옵션</span><br>
+	                    <span class="list-text-1">100,000원 │ 2021.02.04.</span><br>
+	                    <span class="list-text-2">빨강, 1개</span><br>
 	                    <span class="list-text-3">[구매 확정]</span>
 	                </div>
 	            </div>
@@ -105,23 +108,23 @@
 	                </div>
 	                <div class="list-status">
 	                    <!-- 구매 확정 후 : 후기 쓰기(팝업창) -->
-	                    <a href="#" class="btn-review">후기 쓰기</a>
+	                    <a href="#" class="btn-review" onclick="popUp(1, 'g')">후기 쓰기</a>
 	
 	                    <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-	                    <a href="#" class="btn-cancel">취소 요청</a> 
+	                    <a href="../cancelRequest/1/1" class="btn-cancel">취소 요청</a> 
 	                    
 	                    <!-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) -->
 	                    <a href="#" class="btn-confirm">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
-	                    <a href="#" class="btn-takeback">반품 요청</a> 
+	                    <a href="../cancelRequest/1/1" class="btn-takeback">반품 요청</a> 
 	                </div>
 	            </div>
 		        	<!-- <span class="list-hr"><hr></span> -->
            </div><!-- container-list 끝 -->
-        </div> <!-- table-list 끝 -->
+        </div> <!-- container-orders 끝 -->
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
         <a href="#" class="btn-more"><i class="fas fa-plus"></i></a>
-    </div>
-   </div> <!-- wrapper-box 끝 -->
+    </div> <!-- wrapper-box 끝 -->
+   </div>
 </div>
 
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>

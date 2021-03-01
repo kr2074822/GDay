@@ -1,0 +1,176 @@
+
+div, span, i, input, label, button, textarea{
+    box-sizing: border-box;
+    margin : 0;
+}
+
+#container-cancel-all, .container-list, 
+.list-btn, .list-card, .list-info, .list-total,
+.list-seller, .list-status{
+    display : flex;
+    box-sizing: border-box;
+}
+
+.list-info {
+    justify-content: center;
+    width : 40%;
+    height : 200px;
+}
+
+.list-total {
+	align-items : center;
+	width : 50%;
+  height : 100%;
+  justify-content: center;
+}
+
+
+*:focus, *:active { outline: none !important;}
+
+/* orderinfo, list는 myOrderView.css, mypageList.css */
+
+/* 인포 컨테이너 기준 (세로로 정렬) */
+#container-cancel-all {
+    flex-direction: column;
+    width : 80%;
+    align-items: center;
+    margin : 30px auto;
+    border-radius: 25px;
+    background-color: #ffffff;
+    		padding : 20px;
+}
+
+
+/* 컬럼형 리스트 */
+.container-table-cancel, .columns {
+    box-sizing: border-box;
+    width : 100%;
+}
+.container-table-cancel { 
+    margin : 20px 0 40px 0;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding : 10px 0 10px 0;
+}
+.container-table-cancel .columns { 
+    display: flex; 
+}
+.container-table-cancel span { font-size : 16px; padding : 18px;}
+.container-table-cancel .column-label { 
+    width : 40%; 
+    text-align: center;
+    font-weight: bold;
+}
+.container-table-cancel .column-content { width : 60%; }
+
+
+/* form 내부 */
+#cancel-request { width: 100%; display: flex; flex-direction: column;}
+.container-cancel-input {
+		display: flex;
+		flex-direction: column; 
+    width : 100%;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+}
+
+
+/* 취소 신청 각 행 div */
+.cancel-form {
+    display: flex;
+    align-items : center;
+    flex-wrap: wrap;
+    margin : 10px 0px;
+    width : 560px;   
+}
+
+/* 취소 신청 행 label */
+.cancel-form > .cancel-title {
+    width : 150px;
+    padding : 0 5px;
+    font-weight: bold;
+}
+.star { color : red;}
+
+/* 취소 신청 행 내용 부분(input, span) */
+.cancel-form > .cancel-content {
+    width : 400px;
+    height : 36px;
+}
+/* 취소 신청 행 부분 input, textarea */
+.cancel-form input, .cancel-form textarea, .cancel-form select {
+    border : 1px solid lightgray;
+    border-radius: 10px;
+    padding : 5px 10px;
+    font-size : 14px;
+}
+/* input, textarea의 focus 스타일 */
+.cancel-form input:focus, .cancel-form textarea:focus,
+.cancel-form select:focus, .cancel-form input:active { 
+    background-color: #fff5f5;}
+
+
+.cancel-form textarea {
+    width : 400px;
+    height : 100px;
+    resize: none;
+}
+
+/* 인풋+버튼 div의 input */
+.cancel-form .cancel-content-1 {
+    min-width : 150px;
+    height : 36px;
+}
+
+/* 버튼 */
+/* 버튼 여러개 div, 인풋+버튼 div */
+
+/* 버튼 */
+.wrap-btn{
+    width : 100%;
+    margin : 40px 0px 0 0;
+    text-align: center;
+}
+
+.rf-btn {
+    min-width : 60px;
+    height : 36px;
+    border-radius: 10px;
+    border : none;
+    color : #fafafa;
+    font-size : 14px;
+    margin-left : 5px;
+}
+
+/* 티클미색 버튼 */
+#post-search-btn, .sumbit-btn { background-color: #FE929F; /*티클미*/}
+#post-search-btn:hover, .sumbit-btn:hover { 
+    background-color: #db7e89; 
+    color : #fafafa;
+    cursor: pointer;
+}
+.goback-btn {background-color : darkgray;}
+.goback-btn:hover { 
+    background-color: rgb(128, 128, 128); 
+    color : #fafafa;
+    text-decoration: none;
+}
+
+.goback-btn, .sumbit-btn{ width : 90px; }
+
+/* 반응형 */
+@media (max-width : 768px){
+    .cancel-form, .cancel-title, .cancel-content,
+    .cancel-content-1, .cancel-textarea
+    { display: block; }
+
+		.list-info { width : 100%;}
+    .cancel-form { margin-bottom : 10px; width : 100%;}
+    .cancel-form > * {  margin : 10px 0px;}
+    .cancel-form textarea { width : 100%; }
+		.cancel-form .cancel-content {	width : 100%; }
+		.input-btn { display : flex; }
+		
+}
+

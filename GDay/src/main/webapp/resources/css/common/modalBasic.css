@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+  *:focus, *:active { outline: none !important;}
+
+/* 모달창 */
+/* 모달 배경 */
+.modal-cover {
+    display: none; 
+    z-index: 50;
+    position:fixed; 
+    left:0;
+    top:0;
+    background:rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+} 
+
+/* 모달 메인 */
+.cal-modal{
+    /* z-index: 50; */
+    width : 450px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.637);
+    position:fixed;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+
+/* 닫기 버튼 */
+.modal-close {
+    position : absolute;
+    right : 15px;
+    top : 10px;
+    color : #000000cb;
+    cursor: pointer;
+    z-index: 51;
+}
+.m-title, .m-content-box, .m-btn-box {
+    width: 100%;
+    padding : 0 5%;
+}
+.m-title{
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    width : 100%;
+    line-height: 50px;
+}
+
+
+/* 버튼 박스 */
+.m-btn-box {
+    height : 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 버튼 */
+.modal-btn {
+    min-width : 60px;
+    height : 36px;
+    border-radius: 10px;
+    border : none;
+    color : #fafafa;
+    font-size : 14px;
+    margin-left : 5px;
+}
+
+/*  btn */
+.m-cancel-btns { background-color: darkgray;}
+.m-cancel-btns:hover{ background-color: rgb(128, 128, 128); cursor: pointer;}
+.m-submit-btns { background-color: #FE929F;}
+.m-submit-btns:hover{ background-color: #db7e89; cursor: pointer;}
+
+/* 인풋 */
+.m-input-box {
+    width : 100%;
+    height : 23%;
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.m-input-box > label {
+    width : 25%;
+}
+
+.m-input-box > input:focus { background-color : #fff5f5; }
+
+.m-cal-input, .m-cal-input-1, .m-cal-input-2{
+    height : 35px;
+    border-radius: 10px;
+    border : 1px solid lightgray;
+}
+.m-cal-input { width : 100%; } /* 전체 인풋 */
+.m-cal-input-1 { width : 75%; } /* 레이블 등이 같이 있는 인풋 */

@@ -81,9 +81,9 @@ $(function(){
 
 });//레디 함수 끝---------------------------------------------------------------------
 
-var memberNo = 7//"${loginMember.memberNo}";
-var memberNick = "투투"//"${loginMember.memberNick}";
-var memberPhone = "01077777777"//"${loginMember.memberPhone}";
+var memberNo = "${loginMember.memberNo}";
+var memberNick = "${loginMember.memberNick}";
+var memberPhone = "${loginMember.memberPhone}";
 
 //풀캘린더 로드 메소드
 function loadFullCalendar(events){
@@ -559,6 +559,7 @@ function ValidateCheck(modalType){
 //------------------버튼 클릭 수행 관련 메소드-----------------------
 //등록, 수정, 취소 등 후 모달 reset
 function modalReset(){
+		$(".gdayTitles").val("");
     $(".dtStarts").val("");
     $(".gdayColors").val("#FE929F");
     $(".fis").val("fi1");

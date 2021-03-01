@@ -65,6 +65,10 @@
     cursor : pointer;
 }
 
+.list-name{
+    font-weight: bold;
+    font-size : 18px;
+}
 .list-text { cursor : pointer;}
 
 .list-hidden {display: none;} /* 주문번호, 주문 상세 정보 */
@@ -100,6 +104,7 @@
     border-radius: 5px;
     font-size : 12px;
     line-height: 18px;
+    cursor: pointer;
 }
 
 a { text-decoration: none;}
@@ -110,8 +115,12 @@ a { text-decoration: none;}
     color : #fafafa;
     text-decoration: none;
 }
-.btn-inquiry, .btn-cancel, .btn-takeback{background-color : darkgray;}
-.btn-inquiry:hover, .btn-cancel:hover, .btn-takeback:hover { 
+.btn-inquiry, .btn-cancel, 
+.btn-takeback, .btn-map, .btn-request{ 
+	background-color : darkgray;
+}
+.btn-inquiry:hover, .btn-cancel:hover, 
+.btn-takeback:hover, .btn-map:hover, .btn-request:hover { 
     background-color: rgb(128, 128, 128); 
     color : #fafafa;
     text-decoration: none;
