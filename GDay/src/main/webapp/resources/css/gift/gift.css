@@ -160,11 +160,11 @@ section.gift .gift_wrapper .item div {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 280px;
+    height: 200px;
 }
 section.gift .gift_wrapper .item div > img{
     width: 250px;
-    height: 280px;
+    height: 200px;
     object-fit: cover;
 }
 section.gift .gift_wrapper .item div > .sold_out{
@@ -214,10 +214,27 @@ section.gift .gift_wrapper .item a{
 
 
 
-
-
-
-
+@media screen and ( max-width: 991px ) {
+	section.gift .gift_wrapper {
+		display: flex;
+	    justify-content: center;
+	    align-content: center;
+	    flex-wrap: wrap;
+	}
+	
+}
+@media screen and ( max-width: 768px ) {
+	section.gift .gift_wrapper {
+		display: flex;
+	    justify-content: center;
+	    align-content: center;
+	    flex-wrap: wrap;
+	}	
+	
+	section.option .option_wrapper .tag_wrapper{
+	}
+	
+}
 
 
 
