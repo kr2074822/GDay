@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,6 @@
     <title>Document</title>
 </head>
 <body>
-    <header></header>
 
     <section class="search">
         <div class="search_wrapper">
@@ -336,7 +336,8 @@
                     </p>
                     <span>가격</span>
                 </a>
-            </div><div class="item">
+            </div>
+            <div class="item">
                 <a href="">
                     <div>
                         <img src="images/gift1.jpg" alt="">
@@ -347,7 +348,8 @@
                     </p>
                     <span>가격</span>
                 </a>
-            </div><div class="item">
+            </div>
+            <div class="item">
                 <a href="">
                     <div>
                         <img src="images/gift1.jpg" alt="">
@@ -361,7 +363,8 @@
                     </p>
                     <span>가격</span>
                 </a>
-            </div><div class="item">
+            </div>
+            <div class="item">
                 <a href="">
                     <div>
                         <img src="images/gift1.jpg" alt="">
@@ -372,7 +375,8 @@
                     </p>
                     <span>가격</span>
                 </a>
-            </div><div class="item">
+            </div>
+            <div class="item">
                 <a href="">
                     <div>
                         <img src="images/gift1.jpg" alt="">
@@ -405,6 +409,7 @@
         const input = document.querySelectorAll('input[type="checkbox"]');
         const aaa = document.getElementById('baby');
         
+        // 팝업 
         for (const button of item) {
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
@@ -412,12 +417,32 @@
                 for(const pop of tagBx){                    
                     if(pop.getAttribute('data-text') == index) {
                         tagBx[index].classList.toggle("action");
+
                     }else{
                         pop.classList.remove("action");
                     }
                 }
             });
         }
+
+        // 버튼 클릭 리플 효과
+        const li = document.querySelectorAll('li.item');
+        console.log(li)
+        li.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    let x = e.clientX - e.target.offsetLeft;
+                    let y = e.clientY - 366;
+
+                    let ripples = document.createElement('b');
+                    ripples.style.left = x + 'px';
+                    ripples.style.top = y + 'px';
+                    this.appendChild(ripples);
+
+                    setTimeout(() => {
+                        ripples.remove()
+                    }, 1000)
+                })
+            })
     </script>
 </body>
 </html>

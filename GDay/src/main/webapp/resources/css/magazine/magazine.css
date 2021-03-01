@@ -13,19 +13,24 @@ body{
 }
 .container{
     position: relative;
-    width: 1000px;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 200px 20px 0;
+}
+.container h1{
+	width: 100%;
+	margin-bottom: 50px;
+	font-size: 40px;
 }
 .container .card{
     position: relative;
     height: 250px;
     background: #fff;
     display: flex;
-    width: 45%;
-    margin: 30px 0;
+    width: 25.33%;
+    margin: 30px 30px;
     box-shadow: 10px 5px 10px rgba(0, 0, 0, .3);
 }
 .container .card .imgBx{

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
-
+<jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +23,7 @@
 </head>
 <body>
     <div class="container">
+    	<h1>Magazine</h1>
 		<c:if test="${empty mList }">
 			<h1>존재하는 게시글이 없습니다.</h1>
 		</c:if>
@@ -125,36 +126,6 @@
 	            //실행할 로직 (콘텐츠 추가)
 	            count++;
 		    	
-		    	
-		    	
-		    	/*
-		    	
-		    	
-		    	
-	            var addContent = 
-	            '<div class="card">'+
-	                    '<div class="imgBx" data-text="제목">'+
-	                        '<img src="images/profile.jpg" alt="">'+
-	                    '</div>'+
-	                    '<div class="content">'+
-	                     '   <div>'+
-	                      '      <h3>제목</h3>'+
-	                       '     <p>'+
-	                        '        Lorem ipsum dolor sit amet, '+
-	                         '       consectetur adipiscing elit, '+
-	                          '      sed do eiusmod tempor incididunt'+
-	                           ' </p>'+
-	                   '         <a href="">Read More</a>'+
-	                    '    </div>'+
-	                   ' </div>'+
-	                '</div>';
-	            //article에 추가되는 콘텐츠를 append
-	            $('.container').append(addContent).append(addContent);
-	            
-	            
-	            */
-	            
-	            
 	        }
 	    };
     </script>
