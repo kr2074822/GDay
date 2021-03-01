@@ -14,6 +14,14 @@ public class GmemController {
 		return "mypage/gMemPage/gMemOrderList" + type;
 	}
 	
+	//마이페이지 주문 취소 요청 
+	@RequestMapping("cancelRequest/{type}/{opNo}")
+	public String cancelRequest(@PathVariable("type") int type,
+								@PathVariable("opNo") int opNo) {
+		return "mypage/gMemPage/gMemCancelReqst" + type;
+	}
+	
+	
 	//마이페이지 주문 상세 조회("orderView/{type}/{orderNo}")
 	@RequestMapping("orderView/{type}/{orderNo}")
 	public String gMemOrderView(@PathVariable("type") int type,
@@ -27,4 +35,18 @@ public class GmemController {
 	public String gMemUpdate() {
 		return "mypage/gMemPage/gMemUpdate";
 	}
+	
+	//위시리스트 페이지 이동
+	@RequestMapping("myWishList")
+	public String myWishList() {
+		return "mypage/gMemPage/gMemWishList";
+	}
+	
+	//나의 후기 페이지 이동
+	@RequestMapping("myReviews")
+	public String myReviews() {
+		return "mypage/gMemPage/gMemReviewList";
+	}
+	
+	
 }

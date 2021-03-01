@@ -38,7 +38,7 @@
 }
 
 .container-orders {
-		margin : 0px 0px 40px 25px;
+		margin : 0px 0px 40px 0px;
 }
 
 /* hover (클릭 시 이동 가능 */
@@ -63,28 +63,54 @@
 .container-table .columns { 
     display: flex; 
 }
-.container-table span { font-size : 16px; padding : 18px;}
+
+.columns .column-hidden { display : none;}
+
+.container-table .column-content,
+.container-table .column-label { 
+	font-size : 16px; padding : 18px;
+}
+	
 .container-table .column-label { 
     width : 30%; 
     text-align: center;
     font-weight: bold;
 }
-.container-table .column-content { width : 70%; }
+.container-table .column-content { 
+	width : 70%; 
+	display : flex;
+	align-items : center;
+}
+.container-table .column-content-1 { padding : 0px;}
 
-.btn-gotolist{
+a { text-decoration: none;}
+
+.btn-view {
     color : #fafafa;
     width : 80px;
-    height : 36px;
     text-align: center;
     padding : 5px;
     margin : 3px;
     border-radius: 5px;
-    font-size : 16px;
-    line-height: 28px;
-    background-color: #596566;
-    align-self: flex-end;
+    cursor: pointer;
 }
-.btn-gotolist:hover, .btn-confirm:hover { 
+.columns .btn-inquiry, .columns .btn-map,
+.columns .btn-request, .columns .btn-review { 
+	height : 20px; 
+	line-height: 13px; 
+	font-size : 14px;
+	margin-left : 10px;
+}
+
+
+.btn-gotolist{ 
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #596566; 
+	align-self: flex-end;     
+	line-height: 28px;
+}
+.btn-gotolist:hover { 
     background-color: #806f71; 
     color : #fafafa;
     text-decoration: none;

@@ -43,11 +43,11 @@
                             <span class="submenu-text">클래스 리스트</span>
                             </a></li>
                     </ul>
-                <li><a href="#">
+                <li><a href="${contextPath}/gMember/myWishList">
                     <span class="menu-icon"><i class="fas fa-heart"></i></span>
                     <span class="menu-text">위시 리스트</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="${contextPath}/gMember/myReviews">
                     <span class="menu-icon"><i class="fas fa-feather"></i></span>
                     <span class="menu-text">나의 후기</span>
                     </a></li>

@@ -1,0 +1,127 @@
+* { margin : 0; }
+
+#container-list-all, .container-wish, 
+.wish-card {
+    display : flex;
+    box-sizing: border-box;
+}
+
+/* 리스트 컨테이너 기준 (세로로 정렬) */
+#container-list-all {
+	width : 80%;
+    flex-direction: column;
+    align-items: center;
+    margin : 30px auto;
+}
+
+#list-title {
+    width : 200px;
+    align-self: flex-start; /* 개별 아이템에 적용 */
+}
+
+#list-title > span { 
+	font : bold 20px/40px "맑은 고딕"; 
+	margin-left : 30px
+}
+
+/* 리스트 감싸는 wrapper */
+.container-orders{
+    box-sizing: border-box;
+    width : 100%;
+    margin-left : 30px;
+}
+
+.container-check {
+	width : 100%;
+  box-sizing: border-box;
+}
+.container-orders .check-input {	margin-left : 20px; }
+.container-check > input[type=checkbox] {
+	
+}
+
+/* 사이드바 : min-20% / 리스트 60% / 여백 : max-10% */
+.container-wish {
+    width : 100%;
+    border-bottom : 1px solid lightgray;
+}
+
+.wish-check { width : 80px;}
+.wish-check > input[type=checkbox] {
+	margin-top : 40px;
+}
+
+.wish-card {
+    align-items: center;
+    /* 반응형에서 flex-direction : column으로 변경 */
+    width : 70%;
+    height : 200px;
+    padding-left : 14px;
+}
+
+.wish-thumb {
+    border : 1px solid black;
+    margin : 10px;
+    width : 120px;
+    height : 120px;
+    cursor : pointer;
+}
+
+.wish-name{
+    font-weight: bold;
+    font-size : 18px;
+}
+
+.wish-text { cursor : pointer;}
+
+.wish-hidden {display: none;} /* 주문번호, 주문 상세 정보 */
+
+a { text-decoration: none;}
+
+.btn-delete {
+	border-style : none;
+  color : #fafafa;
+  text-align: center;
+  padding : 2px 15px;
+  margin : 3px;
+  border-radius: 15px;
+	height : 24px; 
+	line-height: 14px; 
+	font-size : 14px;
+	margin-left : 10px;
+	background-color : #596566;
+}
+
+.btn-delete:hover { 
+    background-color: #806f71; 
+    color : #fafafa;
+    text-decoration: none;
+}
+
+.btn-more {
+    width : 200px;
+    height : 50px;
+    background-color: #ffffff;
+    color : #FE929F;
+    font-size : 30px;
+    border : 1px solid #FE929F;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top : 20px;
+}
+
+.btn-more:hover {
+    background-color: #FE929F;
+    color : #fafafa;
+    text-decoration: none;
+}
+
+/* 반응형 */
+@media (max-width : 768px){
+	.container-wish {	width: 100%; }
+	.wish-card { width : 95%; height : 160px; margin-bottom: 20px;}
+	.wish-check { width : 5%; height : 160px; margin-bottom: 20px;}
+	
+}

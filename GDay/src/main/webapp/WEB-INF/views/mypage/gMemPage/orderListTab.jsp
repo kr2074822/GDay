@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+
 .tab-radio { display : none; }
 
 .tab-label {
@@ -32,13 +33,16 @@
 		display : flex;
 		flex-direction : column;
 		align-items : center;
+		justify-content : centent;
     width : 100%;
     padding : 20px;
     border-top: 2px solid #806f71;
     /* border-bottom: 2px solid #806f71; */
     background-color: #ffffff;
     margin : 0px;
+    box-sizing : border-box;
 }
+
 .wrap-tab-r { display : none; }
 
 .tab-active {

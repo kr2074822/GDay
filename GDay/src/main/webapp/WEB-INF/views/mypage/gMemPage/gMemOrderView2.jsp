@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>선물 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.0"> <!-- 같은 클래스 공유 -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.1"> <!-- 상세 페이지 고유 css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2"> <!-- 같은 클래스 공유 -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css"> <!-- 상세 페이지 고유 css -->
 
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -35,6 +35,8 @@
 <!-- js 파일 -->
 <jsp:include page="gMemOrderViewJS1.jsp"></jsp:include>
 
+<!-- 모달 파일 -->
+<jsp:include page="../../review/reviewInsertForm.jsp"/>
 
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
@@ -53,8 +55,13 @@
 
         <div class="container-table" id="ship-info">
             <div class="columns"><!-- 왼 레이블 / 오 내용 -->
+                <span class="column-hidden opNo">21234</span><!-- 클래스 상품 주문번호 -->
                 <span class="column-label">클래스명</span>
-                <span class="column-content" id="class-name">손뜨개 클래스</span>
+                <span class="column-content" >
+	                <span class="column-content-1" id="class-name">손뜨개 클래스</span>
+	                <a href="${contextPath}/gMember/cancelRequest/2/1" class="btn-request btn-view">신청 취소</a>
+	                <a class="btn-review btn-view" onclick="popUp(1, 'c')">후기 쓰기</a>
+                </span>
             </div>
             <div class="columns">
                 <span class="column-label">클래스 기간(회차)</span>
@@ -68,14 +75,14 @@
                 <span class="column-label">강사명</span>
                 <div class="column-content">
 	                <span class="column-content-1" id="teacher">강사님</span>
-	                <a href="#" class="btn-inquiry">문의하기</a>
+	                <a href="#" class="btn-inquiry btn-view">문의하기</a>
                 </div>
             </div>
             <div class="columns">
                 <span class="column-label">클래스 장소</span>
                 <div class="column-content">
 	                <span class="column-content-1" id="class-addr">서울특별시 중구 남대문로 120 대일빌딩 2층</span>
-  	              <a href="#" class="btn-map">지도보기</a>
+  	              <a href="#" class="btn-map btn-view">지도보기</a>
   	            </div>  
             </div>
         </div>
@@ -109,7 +116,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn-gotolist">목록</a>
+        <a href="#" class="btn-gotolist btn-view">목록</a>
     </div>
 </div>
 
