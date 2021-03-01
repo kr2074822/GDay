@@ -14,6 +14,10 @@ div {
 	padding: 10px;
 }
 
+.bMemStandView{
+	padding: 30px;
+}
+
 #businessView {
 	margin: auto;
 	padding: 0 auto;
@@ -29,8 +33,31 @@ div {
 	font-weight: bold;
 }
 
-.form-hr>hr {
-	color: #FE929F;
+hr {
+	border: 2px solid #FE929F;
+	width: 100%;
+}
+
+.container {
+	width: 65%;
+	margin: 0 auto;
+	float: left;
+	height: 100%;
+	padding-left: 7%;
+	
+	margin: 100px 0;
+}
+
+.content-body{
+	width: 65%;
+	margin: 0 auto;
+	float: left;
+	height: 100%;
+	padding-left: 7%;
+}
+
+button{
+	margin: 10px;
 }
 
 #approval {
@@ -61,28 +88,29 @@ div {
 			<div>
 				<h3>비즈니스 회원 신청</h3>
 			</div>
-			<div>
+			<div class="bMemStandView">
 				<form action="#" method="POST" id="businessView">
 					<div class="header-business">
-						<span class="form-business">비즈니스 회원 신청자</span> <span
-							class="form-hr" style="position: absolute; width: 90%;">
-							<hr>
-						</span>
+						<h1><span class="form-business">비즈니스 회원 신청자</span></h1>
+						<hr>
 					</div>
-					<div class="body-business">
-						<p>성명: 비즈니스</p>
-						<p>업체명: 비즈니스</p>
-						<p>주소: 서울시 구로구</p>
-						<p>연락처: 010-1111-1111</p>
-						<p>비즈니스 신청 분야: 선물(또는 클래스)</p>
-					</div>
-					<div>
-						<img>
-					</div>
-					<div id="business-Application">
-						<button type="submit" id="approval">비즈니스 회원 승인</button>
-						<button type="button" id="none" data-toggle="modal"
-							href="#modal-container-1">비즈니스 회원 부적합</button>
+					<div class="content-body">
+						<div class="body-business">
+							<p>성명: 비즈니스</p>
+							<p>업체명: 비즈니스</p>
+							<p>주소: 서울시 구로구</p>
+							<p>연락처: 010-1111-1111</p>
+							<p>비즈니스 신청 분야: 선물(또는 클래스)</p>
+						</div>
+						<br><br><br>
+						<div>
+							<img>
+						</div>
+						<div id="business-Application" style="text-align: center; margin: 0 auto;">
+							<button type="submit" id="approval">비즈니스 회원 승인</button>
+							<button type="button" id="none" data-toggle="modal"
+								href="#modal-container-1">비즈니스 회원 부적합</button>
+						</div>
 					</div>
 
 					<!-- 부적합 판정 모달창 -->
@@ -116,6 +144,6 @@ div {
 		</div>
 	</div>
 
-	<footer> </footer>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
