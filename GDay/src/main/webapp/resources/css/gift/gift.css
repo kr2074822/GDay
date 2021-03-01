@@ -1,0 +1,240 @@
+header{
+    background: red;
+    width: 100%;
+    height: 100px;
+}
+
+/* SECTION SEARCH */
+section.search{
+    margin-top: 100px;
+}
+section.search .search_wrapper{
+    width: 100%;
+}
+section.search .search_wrapper h1{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+section.search .search_wrapper div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+section.search .search_wrapper div input{
+    width: 30%;
+    padding: 20px 0 10px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #FE929F;
+}
+section.search .search_wrapper div button{
+    padding: 20px 0 10px;
+    font-size: 20px;
+    color: #141414;
+    background: #fff;
+    border: none;
+    border-bottom: 2px solid #FE929F;
+}
+section.search .search_wrapper div button:hover{
+    cursor: pointer;
+}
+
+
+/* SECTION OPTION */
+section.option{
+    margin-top: 50px;
+}
+section.option .option_wrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.option .option_wrapper .item_wrapper{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+section.option .option_wrapper .item_wrapper .item{
+    display: inline-block;
+    position: relative;
+    padding: 10px 20px;
+    margin: 0 20px;
+    border-bottom: 1px solid #FE929F ;
+    cursor: pointer;
+}
+
+section.option .option_wrapper .tag_wrapper{
+    position: absolute;
+    top: 0;
+    margin-top: 50px;
+}
+section.option .option_wrapper .tag_wrapper ul{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    display: none;
+}
+section.option .option_wrapper .tag_wrapper ul.action{
+    width: 800px;
+    display: block;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+section.option .option_wrapper .tag_wrapper ul li {
+    width: 20%;
+    padding: 20px;
+    text-align: center;
+}
+
+section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]{
+    display: none;
+}
+section.option .option_wrapper .tag_wrapper ul li > label{
+    transition: 0.3s ease-out;
+}
+section.option .option_wrapper .tag_wrapper ul li > label:hover{
+    cursor: pointer;
+}
+section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]:checked+label{
+    transition: 0.3s ease-out;
+    color: #fe929f;
+}
+
+
+/* SECTION GIFT */
+section.gift{
+    width: 80%;
+    margin: 200px auto;
+}
+section.gift .search_result{
+    text-align: right;
+    margin-bottom: 10px;
+}
+section.gift .search_result h2{
+    margin-bottom: 5px;
+}
+section.gift .search_result p {
+    
+}
+section.gift .search_result p span{
+    cursor: pointer;
+}
+section.gift .gift_wrapper{
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    flex-wrap: wrap;
+}
+section.gift .gift_wrapper .item{
+    margin: 0 10px;
+    margin-top: 40px;
+    border: 1px solid rgba(0, 0,  0, .1);
+    padding: 10px;
+}
+section.gift .gift_wrapper .item:hover{
+    box-shadow: 0px 0px 10px #fe929f;
+}
+section.gift .gift_wrapper .item div {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 280px;
+}
+section.gift .gift_wrapper .item div > img{
+    width: 250px;
+    height: 280px;
+    object-fit: cover;
+}
+section.gift .gift_wrapper .item div > .sold_out{
+    position: absolute;
+    top: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, .5 );
+}
+section.gift .gift_wrapper .item div h1{
+    color: #fff;
+    font-size: 42px;
+    margin: 0; 
+    padding: 0;
+    margin-top: 100px;
+}
+section.gift .gift_wrapper .item h1{
+    width: 250px;
+    padding: 5px 0;
+    margin: 10px 0;
+    font-size: 24px;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+
+}
+section.gift .gift_wrapper .item p{
+    width: 250px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+section.gift .gift_wrapper .item span{
+    font-size: 12px;
+}
+section.gift .gift_wrapper .item a{
+    display: block;
+    text-decoration: none;
+    color: #141414;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes animate{
+    0%{
+        width: 0;
+        height: 0;
+        opacity: .5;
+    }
+    100%{
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+} 
