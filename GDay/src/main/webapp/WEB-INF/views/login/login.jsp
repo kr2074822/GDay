@@ -180,6 +180,7 @@
                             const kakao_account = res.kakao_account
                             console.log(kakao_account);
                             console.log(kakao_account.profile.nickname);
+                            console.log(kakao_account.email);
                             
                             
                             
@@ -188,12 +189,12 @@
                             	data: ({
                             		memberEmail: kakao_account.email,
                             		memberNick: kakao_account.profile.nickname,
-                            		memberPwd: Kakao.Auth.getAccessToken()
+                            		/* memberPwd: Kakao.Auth.getAccessToken() */
                             	}),
                             	type: "post",
                             	success: function(result){
                             		if(result == 'already'){ // 이미 아이디가 있을 때
-                            			window.location.href = "${contextPath}/";
+                            			window.location.href = "${contextPath}/"; 
                             		}else{
                             			window.location.href = "${contextPath}/login/addModeInfoView";
                             		}
@@ -232,6 +233,12 @@
 		                            		
 		                            		
 		                            		
+		                            		// 로그아웃 및 연결끊기
+		                            		/*
+		                            		
+		                            		Kakao.Auth.logout(function() {
+		                            			  console.log(Kakao.Auth.getAccessToken());
+		                            			});        		
 		                            		
 		                            		
 		                            		
@@ -239,12 +246,16 @@
 		                            		
 		                            		
 		                            		
-		                            		
-		                            		
-		                            		
-		                            		
-		                            		
-		                            		
+		                            		Kakao.API.request({
+		                            			  url: '/v1/user/unlink',
+		                            			  success: function(response) {
+		                            			    console.log(response);
+		                            			  },
+		                            			  fail: function(error) {
+		                            			    console.log(error);
+		                            			  },
+		                            			});
+		                            		*/
 
         
     </script>

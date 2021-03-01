@@ -179,7 +179,7 @@ public class LoginController {
 		
 		int random = (int)(Math.random()*(99999 - 1))+1;
         
-        String setfrom = "rladudwn0215@gamil.com";
+        String setfrom = "Gdayproject.Kh@gamil.com";
         String tomail =  member.getMemberEmail();// 받는 사람 이메일
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content = "인증번호는 " + random + " 입니다";

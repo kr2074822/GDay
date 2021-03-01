@@ -180,6 +180,14 @@
                         <input type="checkbox" id="eh">
                         <label for="eh">입사ㆍ승진</label>
                     </li>
+                    <li class="tag">
+                        <input type="checkbox" id="ei">
+                        <label for="ei">퇴사</label>
+                    </li>
+                    <li class="tag">
+                        <input type="checkbox" id="ej">
+                        <label for="ej">명절</label>
+                    </li>
                 </ul>
                 <ul class="tagBx" data-text="5">
                     <li class="tag">
@@ -230,11 +238,15 @@
                     </li>
                     <li class="tag">
                         <input type="checkbox" id="gh">
-                        <label for="gh">White</label>
+                        <label for="gh">Pink</label>
                     </li>
                     <li class="tag">
                         <input type="checkbox" id="gi">
-                        <label for="gi">Black</label>
+                        <label for="gi">White</label>
+                    </li>
+                    <li class="tag">
+                        <input type="checkbox" id="gj">
+                        <label for="gj">Black</label>
                     </li>
                 </ul>
                 <ul class="tagBx" data-text="7">
