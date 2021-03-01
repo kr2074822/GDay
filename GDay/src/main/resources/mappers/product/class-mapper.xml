@@ -2,10 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="classMapper">
 
-	<!-- 클래스 resultMap -->
-	<resultMap type="Class" id="class_rm">
+	<!-- 상품 resultMap -->
+	<resultMap type="Class" id="prdt_rm">
 		<id property="prdtNo" column="PRDT_NO"/>
-		
    		<result property="prdtType" column="PRDT_TYPE"/>
   		<result property="prdtName" column="PRDT_NAME"/>
   		<result property="prdtContent" column="PRDT_CONTENT"/>
@@ -15,7 +14,10 @@
   		<result property="modifyDate" column="MODIFY_DATE"/>
   		<result property="prdtStatus" column="PRDT_STATUS"/>
   		<result property="memNo" column="MEM_NO"/>
-  		
+	</resultMap>
+	
+	<!-- 클래스 resultMap -->
+	<resultMap type="Class" id="class_rm">
   		<result property="cCount" column="C_COUNT"/>
   		<result property="cNowCount" column="C_NOWCOUNT"/>
   		<result property="cSession" column="C_SESSION"/>
@@ -29,11 +31,39 @@
 	<!-- 상품 카테고리 해시태그 resultMap -->
 	<resultMap type="ProductCTag" id="tag_rm">
 		<id property="tagNo" column="TAG_NO"/>
-	
   	<result property="tagName" column="G_OPT_NAME"/>
  		<result property="ctNo" column="G_OPT_TYPE"/>
  		<result property="ctName" column="G_OPT_SOLD"/>
  		<result property="prdtNo" column="PRDT_NO"/>
-	</resultMap>	
+	</resultMap>		
 
+
+	<!-- 다음 상품번호 조회 -->
+	<select id="selectNextNo" resultType="_int">
+		SELECT SEQ_PNO.NEXTVAL FROM DUAL
+	</select>
+	
+	<!-- 상품 테이블에 삽입 -->
+	<insert id="insertProduct" parameterType="map">
+		INSERT INTO PRODUCT(PRDT_NO, PRDT_NAME, PRDT_TYPE, PRDT_CONTENT, PRDT_PRICE, READ_COUNT, CREATE_DATE, MODIFY_DATE, PRDT_STATUS, MEM_NO)
+		VALUES(#{prdtNo}, #{prdtName}, 'C', #{prdtContent}, #{prdtPrice}, DEFAULT, DEFAULT, NULL, DEFAULT, 1)
+	</insert>
+	
+	<!--클래스 테이블에 삽입-->
+	<insert id="insertClass" parameterType="map">
+	  INSERT INTO G_CLASS 
+	  VALUES(#{prdtNo}, #{cCount}, DEFAULT, #{cSession}, #{cLocal}, #{cStartDate}, #{cEndDate}, DEFAULT, #{cDate})
+	</insert>
+	
+	<!-- 상품-태그 테이블에 삽입 -->
+	<insert id="insertTag" parameterType="map">
+		INSERT INTO PRODUCT_TAG
+		SELECT A.*, #{prdtNo} FROM (
+		
+		<foreach collection="map.list" item="hashNo" separator=" UNION ALL ">
+			SELECT #{hashNo} TAG_NO
+			FROM DUAL
+		</foreach>
+		)A
+	</insert>
 </mapper>

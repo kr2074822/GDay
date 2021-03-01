@@ -31,9 +31,10 @@
 }
 
 .box {
-   background-color: lightgray;
+   background: rgba(0, 0, 0, .07);
    width: 100%;
    height: 15%;
+   padding: 20px;
    margin-top: 20px;
    margin-bottom: 20px;
 }
@@ -79,17 +80,17 @@
 }
 
 /* 수강인원/세션수/개강일 등 기입 */
-.optRow {
-	margin: 10px;
+.extraInput {
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-between;
 
 }
 
 .extraInput .optRow input {
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-left: 5px;
-	width: 100px;
+	width: 85px;
 	vertical-align: middle;
+	margin-left: 7px;
 }
 
 .extraInput .optRow input[type="date"] {
@@ -163,7 +164,6 @@
 	color: white;
 }
 
-
 </style>
 </head>
 
@@ -174,274 +174,289 @@
 <script src="${contextPath}/resources/summernote/js/summernote-ko-KR.js"></script>
 <script src="${contextPath}/resources/summernote/js/mySummernote.js"></script>
 
-<form action="requestAction" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
+<form action="insertClass" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
 <div class="wrapper">
    <div class="box">
    		<h1>연령대</h1>
       <ul data-text="0">
 				<li class="tag">
-            <input type="checkbox" name="" id="aa">
+            <input type="checkbox" name="hashNo" value="1" id="aa">
             <label for="aa" class="item">영유아</label>
         </li>
         <li class="tag">
-            <input type="checkbox" class="item" id="an">
+            <input type="checkbox" name="hashNo" value="2" class="item" id="an">
             <label for="an" class="item">어린이</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ac">
+            <input type="checkbox" name="hashNo" value="3" id="ac">
             <label for="ac" class="item">청소년</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ad">
+            <input type="checkbox" name="hashNo" value="4" id="ad">
             <label for="ad" class="item">청년</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ae">
+            <input type="checkbox" name="hashNo" value="5" id="ae">
             <label for="ae" class="item">중년</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="af">
+            <input type="checkbox" name="hashNo" value="6" id="af">
             <label for="af" class="item">장년</label>
         </li>
     </ul>
  		<h1>가격대</h1>
     <ul class="tagBx" data-text="1">
         <li class="tag">
-            <input type="checkbox" id="ba">
+            <input type="checkbox" name="hashNo" value="7" id="ba">
             <label for="ba" class="item">1만원 미만</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="bb">
+            <input type="checkbox" name="hashNo" value="8" id="bb">
             <label for="bb" class="item">2~3만원대</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="bc">
+            <input type="checkbox" name="hashNo" value="9" id="bc">
             <label for="bc" class="item">3~4만원대</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="bd">
+            <input type="checkbox" name="hashNo" value="10" id="bd">
             <label for="bd" class="item">5~8만원대</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="be">
+            <input type="checkbox" name="hashNo" value="11" id="be">
             <label for="be" class="item">9~10만원대</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="bf">
+            <input type="checkbox" name="hashNo" value="12" id="bf">
             <label for="bf" class="item">11만원 이상</label>
         </li>
     </ul>
     <h1>취향별</h1>
     <ul class="tagBx" data-text="2">
         <li class="tag">
-            <input type="checkbox" id="ca">
+            <input type="checkbox" name="hashNo" value="13" id="ca">
             <label for="ca" class="item">사랑스러운</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="cb">
+            <input type="checkbox" name="hashNo" value="14" id="cb">
             <label for="cb" class="item">모던한</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="cc">
+            <input type="checkbox" name="hashNo" value="15" id="cc">
             <label for="cc" class="item">독특한</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="cd">
+            <input type="checkbox" name="hashNo" value="16" id="cd">
             <label for="cd" class="item">캐쥬얼</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ce">
+            <input type="checkbox" name="hashNo" value="17" id="ce">
             <label for="ce" class="item">실용적인</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="cf">
+            <input type="checkbox" name="hashNo" value="18" id="cf">
             <label for="cf" class="item">럭셔리</label>
         </li>
     </ul>
     <h1>관계별</h1>
     <ul class="tagBx" data-text="3">
         <li class="tag">
-            <input type="checkbox" id="da">
+            <input type="checkbox" name="hashNo" value="19" id="da">
             <label for="da" class="item">애인</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="db">
+            <input type="checkbox" name="hashNo" value="20" id="db">
             <label for="db" class="item">부모님</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="dc">
+            <input type="checkbox" name="hashNo" value="21" id="dc">
             <label for="dc" class="item">형제ㆍ자매</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="dd">
+            <input type="checkbox" name="hashNo" value="22" id="dd">
             <label for="dd" class="item">친구ㆍ동료</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="de">
+            <input type="checkbox" name="hashNo" value="23" id="de">
             <label for="de" class="item">선생님ㆍ상사</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="df">
+            <input type="checkbox" name="hashNo" value="24" id="df">
             <label for="df" class="item">기타</label>
         </li>
     </ul>
     <h1>기념일</h1>
     <ul class="tagBx" data-text="4">
         <li class="tag">
-            <input type="checkbox" id="ea">
+            <input type="checkbox" name="hashNo" value="25" id="ea">
             <label for="ea" class="item">생일</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="eb">
+            <input type="checkbox" name="hashNo" value="26" id="eb">
             <label for="eb" class="item">커플기념일</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ec">
+            <input type="checkbox" name="hashNo" value="27" id="ec">
             <label for="ec" class="item">입학ㆍ졸업ㆍ합격</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ed">
+            <input type="checkbox" name="hashNo" value="28" id="ed">
             <label for="ed" class="item">결혼</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ee">
+            <input type="checkbox" name="hashNo" value="29" id="ee">
             <label for="ee" class="item">출산</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ef">
+            <input type="checkbox" name="hashNo" value="30" id="ef">
             <label for="ef" class="item">어버이날</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="eg">
+            <input type="checkbox" name="hashNo" value="31" id="eg">
             <label for="eg" class="item">스승의날</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="eh">
+            <input type="checkbox" name="hashNo" value="32" id="eh">
             <label for="eh" class="item">입사ㆍ승진</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" name="hashNo" value="33" id="eh">
+            <label for="eh" class="item">퇴사</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" name="hashNo" value="34" id="eh">
+            <label for="eh" class="item">명절</label>
         </li>
     </ul>
     <h1>계절별</h1>
     <ul class="tagBx" data-text="5">
         <li class="tag">
-            <input type="checkbox" id="fa">
+            <input type="checkbox" name="hashNo" value="35" id="fa">
             <label for="fa" class="item">봄</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="fb">
+            <input type="checkbox" name="hashNo" value="36" id="fb">
             <label for="fb" class="item">여름</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="fc">
+            <input type="checkbox" name="hashNo" value="37" id="fc">
             <label for="fc" class="item">가을</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="fd">
+            <input type="checkbox" name="hashNo" value="38" id="fd">
             <label for="fd" class="item">겨울</label>
         </li>
     </ul>
     <h1>색상별</h1>
     <ul class="tagBx" data-text="6">
         <li class="tag">
-            <input type="checkbox" id="ga">
+            <input type="checkbox" name="hashNo" value="39" id="ga">
             <label for="ga" class="item">Red</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gb">
+            <input type="checkbox" name="hashNo" value="40" id="gb">
             <label for="gb" class="item">Orange</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gc">
+            <input type="checkbox" name="hashNo" value="41" id="gc">
             <label for="gc" class="item">Yellow</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gd">
+            <input type="checkbox" name="hashNo" value="42" id="gd">
             <label for="gd" class="item">Green</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="ge">
+            <input type="checkbox" name="hashNo" value="43" id="ge">
             <label for="ge" class="item">Blue</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gf">
+            <input type="checkbox" name="hashNo" value="44" id="gf">
             <label for="gf" class="item">Navy</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gg">
+            <input type="checkbox" name="hashNo" value="45" id="gg">
             <label for="gg" class="item">Purple</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gh">
+            <input type="checkbox" name="hashNo" value="46" id="gg">
+            <label for="gg" class="item">Pink</label>
+        </li>
+        <li class="tag">
+            <input type="checkbox" name="hashNo" value="47" id="gh">
             <label for="gh" class="item">White</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="gi">
+            <input type="checkbox" name="hashNo" value="48" id="gi">
             <label for="gi" class="item">Black</label>
         </li>
     </ul>
     <h1>종류별</h1>
     <ul class="tagBx" data-text="7">
         <li class="tag">
-            <input type="checkbox" id="ha">
+            <input type="checkbox" name="hashNo" value="49" id="ha">
             <label for="ha" class="item">디자인문구</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hb">
+            <input type="checkbox" name="hashNo" value="50" id="hb">
             <label for="hb" class="item">전자기기</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hc">
+            <input type="checkbox" name="hashNo" value="51" id="hc">
             <label for="hc" class="item">여행ㆍ레포츠</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hd">
+            <input type="checkbox" name="hashNo" value="52" id="hd">
             <label for="hd" class="item">디자인가전</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="he">
+            <input type="checkbox" name="hashNo" value="53" id="he">
             <label for="he" class="item">인테리어ㆍ수납</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hf">
+            <input type="checkbox" name="hashNo" value="54" id="hf">
             <label for="hf" class="item">패브릭ㆍ생활</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hg">
+            <input type="checkbox" name="hashNo" value="55" id="hg">
             <label for="hg" class="item">키친ㆍ푸드</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hh">
+            <input type="checkbox" name="hashNo" value="56" id="hh">
             <label for="hh" class="item">패션의류</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hi">
+            <input type="checkbox" name="hashNo" value="57" id="hi">
             <label for="hi" class="item">패션잡화ㆍ주얼리</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hj">
+            <input type="checkbox" name="hashNo" value="58" id="hj">
             <label for="hj" class="item">화장품</label>
         </li>
         <li class="tag">
-            <input type="checkbox" id="hk">
+            <input type="checkbox" name="hashNo" value="59" id="hk">
             <label for="hk" class="item">기타</label>
         </li>
     </ul>
       
       
       <div class="extraInput">
-      	<span class="optRow">최대 수강 인원
-      		<input type="number" placeholder="15">
+      	<span class="optRow">수강료
+      		<input type="number" id="prdtPrice" name="prdtPrice" placeholder="50000">
+      	</span>
+      	<span class="optRow">정원 수
+      		<input type="number" id="cCount" name="cCount" placeholder="15">
       	</span>
       	<span class="optRow">세션 수
-      		<input type="number" placeholder="8">
+      		<input type="number" id="cSession" name="cSession" placeholder="8">
       	</span>
       	<span class="optRow">개강일
-      		<input type="date">
+      		<input type="date" id="cStartDate" name="cStartDate">
       	</span>
       	<span class="optRow">종강일
-      		<input type="date">
+      		<input type="date" id="cEndDate" name="cEndDate">
       	</span>
       	<span class="optRow">수업일/시간
-      		<input type="text" placeholder="금/토요일 18:00">
+      		<input type="text" id="cDate" name="cDate" style="width:150px;" placeholder="금/토요일 18:00">
       	</span>
       </div>
      </div>
@@ -449,12 +464,12 @@
 			<div class="boardRow">
 			<!-- 썸네일 -->
 				<div class="boardImg" id="titleImgArea">
-						<img id="titleImg" src="${contextPath}/resources/images/thumb.png" width="200" height="100">
+						<img id="titleImg" src="${contextPath}/resources/images/thumb.png" width="250" height="130">
 				</div>
 				<img id="thumbInfo" style="margin-left:20px;" src="${contextPath}/resources/images/inputThumb.png">
 			</div>
 			<div class="boardRow">
-				<input type="text" id="title" name="classTitle" placeholder="클래스명">
+				<input type="text" id="title" name="prdtName" placeholder="클래스명">
 			</div> 
 			<div class="boardRow">
 				<div id="fileArea">
@@ -462,13 +477,13 @@
 				</div>
 			</div>
 			<div class="boardRow">
-				<textarea class="form-control" id="summernote" name="boardContent"
+				<textarea class="form-control" id="summernote" name="prdtContent"
 					rows="10" style="resize: none;"></textarea>
 			</div>
 			
 			<!-- 카카오 맵 API -->
 			<div class="boardRow" style="margin-bottom: 0px;">
-				<input type="text" class="address" id="sample5_address" placeholder="클래스가 진행될 장소를 필수로 입력해주세요.">
+				<input type="text" class="address" id="sample5_address" name="cLocal" placeholder="클래스가 진행될 장소를 필수로 입력해주세요.">
 				<input type="button" class="address" id="searchBtn" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 				<div id="map" style="width:300px;height:200px;visibility:hidden"></div>
 			</div>
@@ -483,19 +498,66 @@
 	<script>
 
 	function validate() {
+		if($("input:checkbox[name='hashNo']:checked").length == 0) {
+			alert("더 정확한 검색을 위해 해시태그를 하나 이상 골라 주세요!");
+			return false;
+		}
+		
 		if ($("#title").val().trim().length == 0) {
-			alert("제목을 입력해 주세요.");
+			alert("강사님, 클래스명을 적어 주세요!");
 			$("#title").focus();
 			return false;
 		}
 	
-		if ($("#content").val().trim().length == 0) {
-			alert("내용을 입력해 주세요.");
-			$("#content").focus();
+		if ($("#summernote").val().trim().length == 0) {
+			alert("강사님, 클래스 설명을 적어주세요!");
+			$("#summernote").focus();
+			return false;
+		}
+		
+		if ($("#sample5_address").val().trim().length == 0) {
+			alert("강사님, 강의 장소를 알려주세요!");
+			return false;
+		}
+		
+		if ($("#prdtPrice").val().trim().length == 0) {
+			alert("강사님, 클래스 수강료를 알려주세요!");
+			$(".prdtPrice").focus();
+			return false;
+		}
+		
+		if ($("#cCount").val().trim().length == 0) {
+			alert("강사님, 클래스 정원을 알려주세요!");
+			$(".cCount").focus();
+			return false;
+		}
+		
+		if ($("#cSession").val().trim().length == 0) {
+			alert("강사님, 클래스 횟수를 알려주세요!");
+			$(".cSession").focus();
+			return false;
+		}
+		
+		if ($("#cStartDate").val().trim().length == 0) {
+			alert("강사님, 클래스 시작일을 알려주세요!");
+			$(".cStartDate").focus();
+			return false;
+		}
+		
+		if ($("#cEndDate").val().trim().length == 0) {
+			alert("강사님, 클래스 종료일 알려주세요!");
+			$(".cEndDate").focus();
+			return false;
+		}
+		
+		if ($("#cDate").val().trim().length == 0) {
+			alert("강사님, 클래스 수업일과 시간을 알려주세요!");
+			$(".cDate").focus();
 			return false;
 		}
 	}
 	
+
 	  // 썸네일을 보여주는 함수
 	  function LoadImg(value, num) {
 		  // value.files : 파일이 업로드되어 있으면 true
