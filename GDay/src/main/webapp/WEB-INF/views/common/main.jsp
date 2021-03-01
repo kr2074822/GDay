@@ -24,6 +24,7 @@
                 <div class="select">
                     <div class="input_wrapper">
                         <form action="" method="GET">
+                        	<div id="hash_tag">dd</div>
                             <input type="text" name="" id="search" placeholder="">
                             <button type="submit" id=""><i class="fas fa-search"></i></button>
                     </form>
