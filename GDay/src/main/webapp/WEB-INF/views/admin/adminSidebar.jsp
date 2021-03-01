@@ -35,7 +35,7 @@
                             <span class="submenu-text">전체회원 보기</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/admin/adminBMemView">
+                        <li><a href="${contextPath}/admin/adminBMemSub">
                             <span class="submenu-icon"><i class="far fa-id-card"></i></span>
                             <span class="submenu-text">비즈니스 회원 신청</span>
                             </a>
@@ -45,11 +45,6 @@
                             <span class="submenu-text">블랙 리스트 회원</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/admin/adminBMemSub">
-                            <span class="submenu-icon"><i class="fas fa-id-card-alt"></i></i></span>
-                            <span class="submenu-text">비즈니스 회원</span>
-                            </a>
-                       	</li>
                     </ul>
                 </li>
                 <li class="active-sidebar">

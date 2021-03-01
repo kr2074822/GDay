@@ -15,10 +15,11 @@ div {
 }
 
 .container {
-	width: 80%;
+	width: 65%;
 	margin: 0 auto;
 	float: left;
 	height: 100%;
+	padding-left: 7%;
 	
 	margin: 200px 0;
 }
@@ -27,18 +28,18 @@ div {
 	float: right;
 }
 
-table {
+.my-4 form table {
 	width: 100%;
 	border-top: 1px solid #444444;
 	border-collapse: collapse;
 }
 
-table th {
+.my-4 form table th {
 	font-weight: bold;
 	background-color: #fafafa;
 }
 
-th, td {
+.my-4 form table th, .my-4 form table td {
 	text-align: center;
 	border-bottom: 1px solid #444444;
 	padding: 10px;
@@ -71,9 +72,8 @@ button {
 					<button type="submit">검색</button>
 				</div>
 			</div>
-			<div>
+			<div class="my-4">
 				<form action="#" method="POST" id="reportEnd">
-
 					<table class="table" id="list-table">
 						<thead>
 							<tr>

@@ -24,23 +24,6 @@ div {
 	margin: 200px 0;
 }
 
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-table th {
-	font-weight: bold;
-	background-color: #fafafa;
-}
-
-th, td {
-	text-align: center;
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
-
 button {
 	height: 25px;
 	border: none;
@@ -50,15 +33,11 @@ button {
 	color: white;
 }
 
-h1 {
-	color: #fff;
-}
-
 ul {
 	overflow: hidden;
 }
 
-li {
+#adminBusinessMember li {
 	float: left;
 	margin: 10px;
 	width: calc(25% - 20px);
