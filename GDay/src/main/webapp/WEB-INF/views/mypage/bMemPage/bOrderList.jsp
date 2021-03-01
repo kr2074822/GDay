@@ -26,44 +26,42 @@
 			<div id="wrapper-top-area">
 			<!-- 주문 목록 기간 검색 -->
 		    <div class="row" id="container-period">
-		        <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
+		      <div id="date-form">
 		        <div class="list-search" id="list-search-1">
-		            <input type="radio" name="periodRadio" id="7days" value="7days">
-		            <label for="7days">일주일</label>
-		            <input type="radio" name="periodRadio" id="1Month" value="1Month">
-		            <label for="1Month">1개월</label>
-		            <input type="radio" name="periodRadio" id="3Months" value="3Months">
-		            <label for="3Months">3개월</label>
-		            <input type="radio" name="periodRadio" id="6Months" value="6Months">
-		            <label for="6Months">6개월</label>
-		            <input type="radio" name="periodRadio" id="selfInput" value="selfInput">
-		            <label for="selfInput">직접 입력</label>
+		        	<button type="button" name="periodRadio" value="7days">일주일</button>
+		        	<button type="button" name="periodRadio" value="1Month">1개월</button>
+		        	<button type="button" name="periodRadio" value="3Months">3개월</button>
+		        	<button type="button" name="periodRadio" value="6Months">6개월</button>
 		        </div>
 		        <div class="list-search" id="list-search-2">
 		            <input type="date" name="periodStart" id="periodStart">
 		            <span>~</span>
 		            <input type="date" name="periodEnd" id="periodEnd">
-		        </div>
-		        <div class="list-search" id="list-search-3">
-		            <select name="giftStatus" id="giftStatus">
-		                <option value="#">결제 완료</option>
-		                <option value="#">선물 발송</option>
-		                <option value="#">구매 확정</option>
-		                <option value="#">취소/반품 완료</option>
-		                <option value="#">취소/반품 처리 중</option>
-		            </select> <!-- giftStats : 주문 선물 상태 -->
-		           	<input id="search-input" type="text"/>
-		            <button type="submit" id="list-search-btn">조회</button>
-		        </div>
-		        </form>
+		        </div>	
+		      </div>	        
 		    </div>
+		    
+		    <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
+			    <div class="list-search" id="list-search-3">
+	           <select name="giftStatus" id="giftStatus">
+	               <option value="#">결제 완료</option>
+	               <option value="#">선물 발송</option>
+	               <option value="#">구매 확정</option>
+	               <option value="#">취소/반품 완료</option>
+	               <option value="#">취소/반품 처리 중</option>
+	           </select> <!-- giftStats : 주문 선물 상태 -->
+	           <button type="submit" id="list-search-btn">변경</button>
+	        </div>
+        </form>
 			</div>
+			
+
 					
 			<div id="order-list">
 					
 				<table id="list-table">
 				<thead>
-					<tr style="border-bottom: 1px solid black;">
+					<tr style="border-bottom: 1px solid black; background-color: lightgray;">
 						<th>주문번호</th>
 						<th>상품 번호</th>
 						<th>주문일</th>
@@ -191,9 +189,12 @@
 	</div>
 	
 	<script>
-		$("#list-search-btn").on("click", function() {
+ 		$("[name='periodRadio']").on("click", function() {
+			var day = $(this).val();
 			
-		})
+			location.href = "${contextPath}/bMemSearch/bOrdDaySearch/" + day;
+			
+		}); 
 	</script>
 	
 	

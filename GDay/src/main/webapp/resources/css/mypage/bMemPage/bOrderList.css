@@ -13,16 +13,18 @@
 	width: 100%;
 	margin: 20px 0;
 	display: flex; 
+	justify-content: space-between;
 }
 
-#container-form {
+#list-search-1, #list-search-2, #date-form{
 	width: 100%;
 	display: flex;
 }
 
-.list-search {
-	padding: 20px;
+#list-search-1 {
+	padding-right: 20px;
 }
+
 
 
 /* 판매 글 목록 */
@@ -35,11 +37,8 @@
 }
 
 .order-td {
-	padding: 20px 15px;
+	padding: 5px 20px;
+	border-bottom: 1px solid lightgray;
 	text-align: center;
-}
-
-.order-td:nth-child(odd) {
-	background-color: lightgray;
 }
 
