@@ -31,5 +31,7 @@
 		<mapper resource="/mappers/mypage/bmem/b-mem-mypage-mapper.xml"/>
 		<mapper resource="/mappers/mypage/gmem/gmem-mapper.xml"/>
 		<mapper resource="/mappers/magazine-mapper.xml"/>
+		<mapper resource="/mappers/search/bmem/b-mem-search.xml"/>
+		
 	</mappers>
 </configuration>
