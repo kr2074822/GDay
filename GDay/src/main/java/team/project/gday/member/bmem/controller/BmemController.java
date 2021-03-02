@@ -1,13 +1,17 @@
 package team.project.gday.member.bmem.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import team.project.gday.Product.model.vo.Attachment;
@@ -128,6 +132,17 @@ public class BmemController {
 	
 	
 //	===================================== 기능 관련 ======================================
-	
+	// 주문 목록 상태 변경
+	@ResponseBody
+	@RequestMapping("orderStatusChange/{status}")
+	public int orderStatusChange(@RequestParam(value = "ordNumAry[]") List<String> ordNumAry,
+								 @ModelAttribute("loginMember") Member loginMember,
+								 @RequestParam(value = "opNameAry[]") List<String> opNameAry,
+							 	 @PathVariable("status") int status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+			
+		return 0;
+	}
 	
 }

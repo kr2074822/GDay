@@ -25,7 +25,7 @@
     <div class="sidebar-area">
 		    <div class="pageTitle">마이 페이지</div>
         <div id="sidebar-mypage">
-            <img src="1" id="myProfile">
+            <img src="#" id="myProfile">
             <span id="nickName">닉네임</span>
         </div>
         <div id="sidebar-ul">
@@ -89,11 +89,11 @@
                     <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                     <span class="menu-text">내 정보</span>
                     </a></li>
-                <li><a href="2">
+                <li><a href="#">
                     <span class="menu-icon"><i class="fas fa-user-shield" style="font-size : 20px"></i></span>
                     <span class="menu-text">비밀번호 변경</span>
                     </a></li>
-                <li><a href="1">
+                <li><a href="#">
                     <span class="menu-icon"><i class="fas fa-sad-tear"></i></span>
                     <span class="menu-text">회원 탈퇴</span>
                     </a></li>
