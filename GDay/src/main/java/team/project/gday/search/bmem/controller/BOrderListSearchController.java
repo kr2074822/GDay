@@ -1,5 +1,6 @@
 package team.project.gday.search.bmem.controller;
 
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import team.project.gday.member.bmem.model.vo.OrderList;
@@ -125,4 +127,5 @@ public class BOrderListSearchController {
 		
 		return "mypage/bMemPage/bOrderList";
 	}
+	
 }

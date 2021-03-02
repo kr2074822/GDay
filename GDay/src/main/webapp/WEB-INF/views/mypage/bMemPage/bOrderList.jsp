@@ -42,16 +42,14 @@
 		      </div>	        
 		    </div>
 		    
-		    <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
-			    <div class="list-search" id="list-search-3">
-	           <select name="giftStatus" id="giftStatus">
-	               <option value="100">결제 완료</option>
-	               <option value="200">발송 완료</option>
-	               <option value="300">구매 확정</option>
-	           </select> <!-- giftStats : 주문 선물 상태 -->
-	           <button type="submit" id="list-search-btn">변경</button>
-	        </div>
-        </form>
+		    <div class="list-search" id="list-search-3 container-form">
+           <select name="giftStatus" id="giftStatus">
+               <option value="100">결제 완료</option>
+               <option value="200">발송 완료</option>
+               <option value="300">구매 확정</option>
+           </select> <!-- giftStats : 주문 선물 상태 -->
+           <button type="button" id="status-change-btn">변경</button>
+        </div>
 			</div>
 			
 
@@ -101,7 +99,7 @@
 								</td>
 								<td class="order-td">${order.memName}</td>
 								<td class="order-td">${order.prdtName}</td>
-								<td class="order-td">${order.gOptName}</td>
+								<td class="order-td opName">${order.gOptName}</td>
 								<td class="order-td">${order.opAmount}</td>
 								<td class="order-td">${order.prdtPrice}</td>
 								<td class="order-td">${order.statusName}</td>
@@ -264,7 +262,54 @@
  		
  		
  		// 상태 변경
-
+ 		var ordNumAry = [];
+ 		var opNameAry = [];
+ 		
+ 		$("[name='ordSelectBox']").on("change", function() {
+ 			if($(this).is(":checked")) {
+ 				ordNumAry.push($(this).parent().next().text());
+ 				opNameAry.push($(this).parent().nextAll(".opName").text());
+ 				
+ 			} else {
+ 				for(var i = 0; i < ordNumAry.length; ++i) {
+ 					if(ordNumAry[i] == $(this).parent().next().text() && opNameAry[i] == $(this).parent().nextAll(".opName").text()) {
+ 						ordNumAry.splice(i, 1);
+ 						opNameAry.splice(i, 1);
+ 					}
+ 				} 		
+ 			}
+ 		});				
+		
+		$("#status-change-btn").on("click", function() {	
+			
+			var status = $("#giftStatus > option:selected").val();
+			
+			console.log(ordNumAry);
+			console.log(opNameAry);
+			console.log(status);
+			if(ordNumAry.length <= 0 || opNameAry.length <= 0) {
+				window.alert("하나 이상 체크해 주세요.");
+			} else {
+				if(window.confirm("선택된 항목들을 수정하시겠습니까?")) {
+					$.ajax({
+						url : "${contextPath}/bMember/orderStatusChange/" + status,
+						data : {"ordNumAry" : ordNumAry,
+										"opNameAry" : opNameAry},
+						type : "post",
+						success : function(result) {
+							
+						}, error : function() {
+							
+						}						
+					});
+					
+				} else {
+					console.log("아니오");
+				}
+			}
+			
+		});
+ 		
 	</script>
 	
 	
