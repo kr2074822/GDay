@@ -45,11 +45,9 @@
 		    <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
 			    <div class="list-search" id="list-search-3">
 	           <select name="giftStatus" id="giftStatus">
-	               <option value="1">결제 완료</option>
-	               <option value="2">선물 발송</option>
-	               <option value="3">구매 확정</option>
-	               <option value="4">취소/반품 완료</option>
-	               <option value="5">취소/반품 처리 중</option>
+	               <option value="100">결제 완료</option>
+	               <option value="200">발송 완료</option>
+	               <option value="300">구매 확정</option>
 	           </select> <!-- giftStats : 주문 선물 상태 -->
 	           <button type="submit" id="list-search-btn">변경</button>
 	        </div>
@@ -63,6 +61,7 @@
 				<table id="list-table">
 				<thead>
 					<tr style="border-bottom: 1px solid black; background-color: lightgray;">
+						<th></th>
 						<th>주문번호</th>
 						<th>상품 번호</th>
 						<th>주문일</th>
@@ -83,8 +82,8 @@
 
 					<c:if test="${!empty oList}">
 						<c:forEach var="order" items="${oList}" varStatus="vs">
-
 							<tr class="order-rows">
+								<td><input type="checkbox" name="ordSelectBox"/></td>
 								<td class="order-td">${order.orderNo}</td>
 								<td class="order-td">${order.opNo}</td>
 								<td class="order-td">
@@ -262,6 +261,9 @@
  	 			 }
  	 		} 	 		 			
  		});
+ 		
+ 		
+ 		// 상태 변경
 
 	</script>
 	
