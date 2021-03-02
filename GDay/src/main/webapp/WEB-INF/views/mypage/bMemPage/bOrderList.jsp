@@ -45,11 +45,11 @@
 		    <form action="${contextPath}/bMember/bOrderSearch" method="post" id="container-form">
 			    <div class="list-search" id="list-search-3">
 	           <select name="giftStatus" id="giftStatus">
-	               <option value="#">결제 완료</option>
-	               <option value="#">선물 발송</option>
-	               <option value="#">구매 확정</option>
-	               <option value="#">취소/반품 완료</option>
-	               <option value="#">취소/반품 처리 중</option>
+	               <option value="1">결제 완료</option>
+	               <option value="2">선물 발송</option>
+	               <option value="3">구매 확정</option>
+	               <option value="4">취소/반품 완료</option>
+	               <option value="5">취소/반품 처리 중</option>
 	           </select> <!-- giftStats : 주문 선물 상태 -->
 	           <button type="submit" id="list-search-btn">변경</button>
 	        </div>
@@ -114,6 +114,27 @@
 			</table>
 					
 			</div>
+			
+			
+			<c:if test="${!empty day}">	
+				<c:set var="url" value="${contextPath}/bMemSearch/bOrdSearch/${day}"/>
+			</c:if>		
+			<c:if test="${empty day}">	
+		 	  <c:set var="url" value="${contextPath}/bMemSearch/bOrdSearch"/>
+			</c:if>
+
+			
+			<form action="${url}" method="post" id="container-form">
+		    <div class="list-search" id="list-search-3 container-form">
+           <select name="sk" id="searchKey">
+               <option value="memName">회원명</option>
+               <option value="prdtName">상품명</option>
+               <option value="status">상태</option>
+           </select>
+           <input type="text" name="sv" id="searchValue"/>
+           <button type="submit" id="list-search-btn">검색</button>
+        </div>
+      </form>			
 			
 			<div id="page-area">
 		<!--------------------------------- pagination  ---------------------------------->
@@ -190,6 +211,7 @@
 	</div>
 	
 	<script>
+		/* 날짜 선택 시 */
  		$("[name='periodRadio']").on("click", function() {
 			var day = $(this).val();
 			
