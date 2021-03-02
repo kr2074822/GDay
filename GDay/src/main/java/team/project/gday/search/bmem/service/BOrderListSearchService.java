@@ -8,6 +8,22 @@ import team.project.gday.member.bmem.model.vo.PageInfo9;
 
 public interface BOrderListSearchService {
 
+	/** 판매 회원 기본 날짜 선택 후 주문 목록 페이징 처리 객체 생성 Service
+	 * @param cp
+	 * @param map
+	 * @return pInfo
+	 */
+	PageInfo9 getOdsPageInfo(int cp, Map<String, Object> map);
+
+	/** 판매 회원 기본 날짜 선택 후 검색 Service 
+	 * @param pInfo
+	 * @param map
+	 * @return oList
+	 */
+	List<OrderList> bOdsList(PageInfo9 pInfo, Map<String, Object> map);	
+	
+	
+	
 	/** 판매 회원 날짜 선택 후 주문 목록 페이징 처리 객체 생성 Service
 	 * @param cp
 	 * @param map
@@ -22,6 +38,8 @@ public interface BOrderListSearchService {
 	 */
 	List<OrderList> bOrdDaySearchList(PageInfo9 pInfo, Map<String, Object> map);
 
+	
+	
 	/** 판매 회원 날짜 선택 후 주문 목록 페이징 처리 객체 생성2 Service
 	 * @param cp
 	 * @param map

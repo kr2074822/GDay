@@ -27,6 +27,38 @@ public class BOrderListSearchController {
 	@Autowired
 	private BOrderListSearchService service;
 	
+	
+	// 판매 회원 기본 날짜 선택 후 검색 Controller
+	@RequestMapping("bOrdSearch/{day}")
+	public String bOrdSearch(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							 @RequestParam(value="sv", required = false) String searchValue,
+							 @RequestParam(value="sk", required = false) String searchKey,
+							 @ModelAttribute("loginMember") Member loginMember,
+							 @PathVariable("day") int day,
+							 Model model) {				
+		
+		System.out.println(searchValue); // sdf
+		System.out.println(day); // 30
+		System.out.println(searchKey); // all
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("searchValue", searchValue);
+		map.put("day", day);
+		map.put("searchKey", searchKey);
+						
+		PageInfo9 pInfo = service.getOdsPageInfo(cp, map);		
+		
+		List<OrderList> oList = service.bOdsList(pInfo, map);
+		
+		model.addAttribute("oList", oList);
+		model.addAttribute("pInfo", pInfo);
+		
+		return "mypage/bMemPage/bOrderList";
+	}
+	
 	// 판매 회원 날짜 선택 후 목록 조회 Controller
 	@RequestMapping("bOrdDaySearch/{day}")
 	public String bOrdDaySearch(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
@@ -54,6 +86,7 @@ public class BOrderListSearchController {
 		
 		model.addAttribute("oList", oList);
 		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("day", day);
 		
 		return "mypage/bMemPage/bOrderList";
 	}
