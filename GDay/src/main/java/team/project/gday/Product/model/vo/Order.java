@@ -7,6 +7,7 @@ public class Order {
 	private int opNo; //주문상품번호
 	private int orderNo; //주문번호
 	private int prdtNo;//상품번호
+	private String prdtType;//상품 타입
 	private String prdtName; //상품명
 	private int prdtPrice;//상품가격
 	private int sellerNo; //판매자 번호
@@ -42,6 +43,15 @@ public class Order {
 	public void setPrdtNo(int prdtNo) {
 		this.prdtNo = prdtNo;
 	}
+	
+	public String getPrdtType() {
+		return prdtType;
+	}
+
+	public void setPrdtType(String prdtType) {
+		this.prdtType = prdtType;
+	}
+
 	public String getPrdtName() {
 		return prdtName;
 	}
@@ -138,13 +148,14 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [opNo=" + opNo + ", orderNo=" + orderNo + ", prdtNo=" + prdtNo + ", prdtName=" + prdtName
-				+ ", prdtPrice=" + prdtPrice + ", sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", statusNo="
-				+ statusNo + ", statusName=" + statusName + ", orderDate=" + orderDate + ", opAmount=" + opAmount
-				+ ", giftOpNo=" + giftOpNo + ", buyer=" + buyer + ", shipName=" + shipName + ", shipAddr=" + shipAddr
-				+ ", shipPhone=" + shipPhone + ", impUid=" + impUid + "]";
+		return "Order [opNo=" + opNo + ", orderNo=" + orderNo + ", prdtNo=" + prdtNo + ", prdtType=" + prdtType
+				+ ", prdtName=" + prdtName + ", prdtPrice=" + prdtPrice + ", sellerNo=" + sellerNo + ", sellerName="
+				+ sellerName + ", statusNo=" + statusNo + ", statusName=" + statusName + ", orderDate=" + orderDate
+				+ ", opAmount=" + opAmount + ", giftOpNo=" + giftOpNo + ", buyer=" + buyer + ", shipName=" + shipName
+				+ ", shipAddr=" + shipAddr + ", shipPhone=" + shipPhone + ", impUid=" + impUid + "]";
 	}
-	
+
+
 	
 
 }

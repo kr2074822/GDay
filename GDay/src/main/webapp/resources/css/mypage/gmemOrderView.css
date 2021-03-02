@@ -12,12 +12,12 @@
 		padding : 20px;
 }
 
-#list-title {
+.list-title {
     width : 240px;
     align-self: flex-start; /* 개별 아이템에 적용 */
 }
 
-#list-title > span { 
+.list-title > span { 
 	font : bold 20px/40px "맑은 고딕"; 
 	margin-left : 30px
 }

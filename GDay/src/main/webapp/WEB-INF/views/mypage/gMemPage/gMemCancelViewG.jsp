@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>선물 주문 상세 정보</title>
+<title>선물 취소/반품 요청 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.0"> <!-- 같은 클래스 공유 -->
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.0"> <!-- 상세 페이지 고유 css -->
@@ -44,7 +44,7 @@
 
     <div id="container-list-all" class="container-view">
         <div class="list-title">
-            <span>선물 주문 상세 정보</span>
+            <span>선물 취소·반품 요청 정보</span>
         </div>
     
         <div id="order-info">
@@ -55,8 +55,7 @@
         </div>
 
         <div class="container-orders"><!-- 반응형 관련 -->
-        <!-- 주문 목록 리스트 -->
-        <%-- <c:forEach  var="order" items="oList"> --%>
+        <!-- 취소 주문 상품 리스트 -->
             <div class="container-list">
                 <div class="list-card">
                     <div class="list-thumb">
@@ -76,17 +75,6 @@
                         <span class="seller-name">판매업체</span>
                         <a href="#" class="btn-inquiry">문의하기</a><!-- 팝업창? 모달창? -->
                     </div>
-                    <div class="list-status">
-                        <!-- 구매 확정 후 : 후기 쓰기(팝업창) -->
-                        <a href="#" class="btn-review" onclick="popUp(1, 'g')">후기 쓰기</a>
-
-                        <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-                        <a href="${contextPath}/gMember/cancelRequest/1/1" class="btn-cancel">취소 요청</a> 
-                        
-                        <!-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) -->
-                        <a href="#" class="btn-confirm">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
-                        <a href="${contextPath}/gMember/cancelRequest/1/1" class="btn-takeback">반품 요청</a> 
-                    </div>
                 </div>
             </div><!-- container-list 끝 -->
 	     <%-- </c:forEach> --%>
@@ -94,25 +82,39 @@
         <!-- container-orders 끝 -->
 
         <div class="list-title">
-            <span>최종 결제 정보</span>
+            <span>취소·반품 사유</span>
+        </div>
+        <div class="container-table" id="cancel-info">
+            <div class="columns">
+                <span class="column-label">취소·반품 사유</span>
+                <span class="column-content" id="rfReason">이유</span>
+            </div>
+            <div class="columns">
+                <span class="column-label">사유 상세 내용</span>
+                <span class="column-content" id="rfContent"></span>
+            </div>
+        </div>
+
+        <div class="list-title">
+            <span>환불 예정 금액</span>
         </div>
         <div class="container-table" id="pay-info">
             <div class="columns">
-                <span class="column-label">최종 결제 금액</span>
+                <span class="column-label">환불 금액</span>
                 <span class="column-content" id="total-order">200,000원</span>
             </div>
             <div class="columns">
-                <span class="column-label">결제 수단</span>
+                <span class="column-label">환불 방식</span>
                 <span class="column-content" id="payType">신용카드/일시불</span>
             </div>
         </div>
 
         <div class="list-title">
-            <span>배송지 정보</span>
+            <span>수거지 정보</span>
         </div>
         <div class="container-table" id="ship-info">
             <div class="columns"><!-- 왼 레이블 / 오 내용 -->
-                <span class="column-label">받는 사람</span>
+                <span class="column-label">반송자</span>
                 <span class="column-content" id="ship-name">김땡땡</span>
             </div>
             <div class="columns">

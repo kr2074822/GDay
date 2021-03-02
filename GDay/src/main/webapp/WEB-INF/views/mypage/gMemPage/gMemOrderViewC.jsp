@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>선물 주문 상세 정보</title>
+<title>클래스 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2"> <!-- 같은 클래스 공유 -->
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css"> <!-- 상세 페이지 고유 css -->
@@ -33,7 +33,7 @@
 <jsp:include page="../../common/header.jsp"/>
 
 <!-- js 파일 -->
-<jsp:include page="gMemOrderViewJS1.jsp"></jsp:include>
+<jsp:include page="gMemOrderViewJS.jsp"></jsp:include>
 
 <!-- 모달 파일 -->
 <jsp:include page="../../review/reviewInsertForm.jsp"/>
@@ -42,7 +42,7 @@
 		<jsp:include page="gMemSidebar.jsp"/>
 
     <div id="container-list-all" class="container-view">
-        <div id="list-title">
+        <div class="list-title">
             <span>수강 클래스 상세 정보</span>
         </div>
     
@@ -87,7 +87,7 @@
             </div>
         </div>
         
-        <div id="list-title">
+        <div class="list-title">
             <span>수강생 정보</span>
         </div>
         <div class="container-table" id="ship-info">
@@ -102,7 +102,7 @@
         </div>
         
 
-        <div id="list-title">
+        <div class="list-title">
             <span>최종 결제 정보</span>
         </div>
         <div class="container-table" id="pay-info">

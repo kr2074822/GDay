@@ -34,11 +34,11 @@
                     </a></li>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/gMember/orderList/1">
+                        <li class="active-sidebar"><a href="${contextPath}/gMember/orderList/G">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">선물 리스트</span>
                             </a></li>
-                        <li><a href="${contextPath}/gMember/orderList/2">
+                        <li><a href="${contextPath}/gMember/orderList/C">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">클래스 리스트</span>
                             </a></li>
