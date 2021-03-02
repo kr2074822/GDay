@@ -14,6 +14,8 @@
 
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/header.css" >
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<!-- sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	
@@ -47,7 +49,7 @@
 			<ul id="header-menu">	
 				<li class="header-li header-login"><a href="#">로그인</a></li>			
 				<li class="header-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
-				<li class="header-li"><a href="#">클래스찾기</a></li>
+				<li class="header-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
 				<li class="header-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 			</ul>

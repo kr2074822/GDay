@@ -41,6 +41,7 @@ public class BmemController2 {
 		return "gClass/gClassInsert";
 	}
 
+	
 	// ==============기능 구현용=================
 	// 클래스 등록 신청 Controller
 
@@ -114,5 +115,5 @@ public class BmemController2 {
 			//java->js로 객체 전달 : json
 			return new Gson().toJson(at);
 		}
-	 
+		
 }

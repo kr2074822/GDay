@@ -49,6 +49,9 @@
         </div>
     </div>
 
+    <jsp:include page="../common/footer.jsp"/>
+
+
 <script>
 $("#gClassInsertView").on("click", function(){
 	location.href = "${contextPath}/bMember2/gClassInsert";
