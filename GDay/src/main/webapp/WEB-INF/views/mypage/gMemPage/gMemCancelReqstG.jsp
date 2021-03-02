@@ -32,7 +32,7 @@
 		
 		
 	<div id="container-cancel-all">
-    <div id="list-title">
+    <div class="list-title">
         <span>선물 반품·취소 신청</span>
     </div>
     <div id="order-info">
@@ -70,12 +70,12 @@
     <!-- container-orders 끝 -->
 
     <form action="#" id="cancel-request">
-        <div id="list-title">
+        <div class="list-title">
             <span>취소·반품 정보</span>
         </div>
         <div class="container-cancel-input">
             <div class="cancel-form" id="cancel-rf">
-                <label for="rfContent" class="cancel-title">취소·반품 사유</label>
+                <label for="" class="cancel-title">취소·반품 사유</label>
                 <select name="" id="rfReasonCode" class="cancel-content">
                     <option value="">구매 의사 취소</option>
                     <option value="">사이즈 및 색상 변경</option>
@@ -94,7 +94,7 @@
         </div>
 
 
-        <div id="list-title">
+        <div class="list-title">
             <span>환불 예정 금액</span>
         </div>
         <div class="container-table-cancel" id="pay-info">

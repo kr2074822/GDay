@@ -37,7 +37,7 @@
 <jsp:include page="../../common/header.jsp"/>
 
 <!-- js 파일 -->
-<jsp:include page="gMemOrderListJS2.jsp"/>
+<jsp:include page="gMemOrderListJSC.jsp"/>
 <jsp:include page="orderListTab.jsp"/>
 
 <!-- 모달 파일 -->
@@ -99,14 +99,13 @@
 	        <div class="row container-list">
 	            <div class="list-card">
 	                <div class="list-thumb">
-	                    <img src="#">
 	                </div>
 	                <div class="list-text">
 	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
 	                    <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
 	                    <span class="list-name">클래스명</span><br>
 	                    <span class="list-text-1">100,000원/1회</span><br>
-	                    <span class="list-text-2">클래스 개강 : 2021.05.04.</span><br>
+	                    <span class="list-text-2">2021.05.04. ~ 2021.05.04.</span><br>
 	                    <span class="list-text-3">[수강 신청]</span>
 	                </div>
 	            </div>
@@ -129,7 +128,6 @@
 	        <div class="container-list">
 	            <div class="list-card">
 	                <div class="list-thumb">
-	                    <img src="#">
 	                </div>
 	                <div class="list-text">
 	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->

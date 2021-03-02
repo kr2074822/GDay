@@ -110,8 +110,8 @@ function popUp(opNo, type){
     var url;
 
     //ajax로 opNo에 맞는 상세 정보 가져오기
-    if(type == "g") url = "${contextPath}/review/insertReview/1/" +  opNo;
-    else if(type == "c") url = "${contextPath}/review/insertReview/2/" + opNo;
+    if(type == "g") url = "${contextPath}/review/insertReview/G/" +  opNo;
+    else if(type == "c") url = "${contextPath}/review/insertReview/C/" + opNo;
 
     //g == gift / c == class : g/c에 따라서 success에서 만드는 html이 달라지게 하기(콜백함수 쓰기)
 /*     $.ajax({

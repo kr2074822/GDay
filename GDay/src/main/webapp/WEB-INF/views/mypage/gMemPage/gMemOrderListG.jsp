@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>선물 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.1">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
@@ -37,7 +37,7 @@
 <jsp:include page="../../common/header.jsp"/>
 
 <!-- js 파일 -->
-<jsp:include page="gMemOrderListJS1.jsp"/>
+<jsp:include page="gMemOrderListJSG.jsp"/>
 
 <!-- 모달 파일 -->
 <jsp:include page="../../review/reviewInsertForm.jsp"/>
@@ -73,37 +73,38 @@
                 <input type="date" name="periodEnd" id="periodEnd">
             </div>
             <div class="list-search" id="list-search-3">
-                <select name="giftStatus" id="giftStatus">
-                    <option value="#">결제 완료</option>
-                    <option value="#">선물 발송</option>
-                    <option value="#">구매 확정</option>
-                    <option value="#">취소/반품 완료</option>
-                    <option value="#">취소/반품 처리 중</option>
+                <select name="prdtStatus" id="giftStatus">
+                    <option value="1000" selected>전체</option>
+                    <option value="100">결제 완료</option>
+                    <option value="200">발송 완료</option>
+                    <option value="300">구매 확정</option>
+                    <option value="400">취소/반품 처리 중</option>
+                    <option value="600">취소/반품 완료</option>
                 </select> <!-- giftStats : 주문 선물 상태 -->
-                <button type="submit" id="list-search-btn">조회</button>
+                <button type="button" id="list-search-btn">조회</button>
             </div>
             </form>
         </div>
 
         <!-- 주문 목록 리스트 -->
         <div class="container-orders">
-	        <div class="row container-list">
+<%--	   <div class="row container-list">
 	            <div class="list-card">
 	                <div class="list-thumb">
-	                    <img src="#">
 	                </div>
 	                <div class="list-text">
 	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
 	                    <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
-	                    <span class="list-name">선물명</span><br>
-	                    <span class="list-text-1">100,000원 │ 2021.02.04.</span><br>
-	                    <span class="list-text-2">빨강, 1개</span><br>
+	                    <span class="list-name">선물명</span>
+	                    <span class="list-text-1">100,000원</span>
+	                    <span class="list-text-2">빨강, 1개</span>
 	                    <span class="list-text-3">[구매 확정]</span>
 	                </div>
 	            </div>
 	            <div class="list-btn">
 	                <div class="list-seller">
 	                    <span class="seller-name">판매업체</span>
+	                    <span class="seller-no list-hidden">101</span>
 	                    <a href="#" class="btn-inquiry">문의하기</a><!-- 팝업창? 모달창? -->
 	                </div>
 	                <div class="list-status">
@@ -111,15 +112,14 @@
 	                    <a href="#" class="btn-review" onclick="popUp(1, 'g')">후기 쓰기</a>
 	
 	                    <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-	                    <a href="../cancelRequest/1/1" class="btn-cancel">취소 요청</a> 
+	                    <a href="../cancelRequest/1/1" class="btn-cancel">취소 요청</a>
 	                    
 	                    <!-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) -->
 	                    <a href="#" class="btn-confirm">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
 	                    <a href="../cancelRequest/1/1" class="btn-takeback">반품 요청</a> 
 	                </div>
 	            </div>
-		        	<!-- <span class="list-hr"><hr></span> -->
-           </div><!-- container-list 끝 -->
+           </div><!-- container-list 끝 -->  --%>
         </div> <!-- container-orders 끝 -->
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
         <a href="#" class="btn-more"><i class="fas fa-plus"></i></a>
@@ -128,6 +128,10 @@
 </div>
 
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
+
+
+<jsp:include page="../../common/footer.jsp"/>
+
 
 </body>
 </html>

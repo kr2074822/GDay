@@ -20,4 +20,28 @@ $(".container-list > .list-card > .list-text > span").on("click", function(){
 });
 
 });//ready 함수 끝
+
+
+
+/* 주문 내역 조회 */
+function selectOrderList(cp){
+	var start = $("#periodStart").val();//조회 시작일
+	var end = $("#periodEnd").val();//조회 마지막일
+	
+	var statusNo = $("#giftStatus").val();//상태
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

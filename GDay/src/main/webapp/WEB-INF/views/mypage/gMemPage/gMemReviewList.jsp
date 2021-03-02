@@ -79,11 +79,6 @@
                 <input type="date" name="periodEnd" id="periodEnd">
             </div>
             <div class="list-search" id="list-search-3">
-                <select name="giftStatus" class="wrap-tab-l" id="giftStatus"><!-- 왼쪽에서만 보여짐 -->
-                    <option value="#">수강 신청</option>
-                    <option value="#">취소 완료</option>
-                    <option value="#">취소 처리 중</option>
-                </select> <!-- giftStats : 주문 선물 상태 -->
                 <button type="submit" id="list-search-btn">조회</button>
             </div>
             </form>

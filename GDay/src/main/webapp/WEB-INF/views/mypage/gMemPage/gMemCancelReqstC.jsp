@@ -32,7 +32,7 @@
 		
 		
 	<div id="container-cancel-all">
-    <div id="list-title">
+    <div class="list-title">
         <span>클래스 수강 취소 신청</span>
     </div>
     <div id="order-info">
@@ -63,7 +63,7 @@
 
 
     <form action="#" id="cancel-request">
-        <div id="list-title">
+        <div class="list-title">
             <span>취소 정보</span>
         </div>
         <div class="container-cancel-input">
@@ -84,7 +84,7 @@
         </div>
 
 
-        <div id="list-title">
+        <div class="list-title">
             <span>환불 예정 금액</span>
         </div>
         <div class="container-table-cancel" id="pay-info">

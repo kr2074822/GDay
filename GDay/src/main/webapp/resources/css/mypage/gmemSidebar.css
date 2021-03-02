@@ -12,7 +12,7 @@
 .sidebar-area { 
     background-color: #FE929F;
     width : 180px;
-    height : 100vh;
+    /* height : 100vh; */
 }
 
 .sidebar-area a, .sidebar-area span { 

@@ -1,6 +1,6 @@
 * { margin : 0; }
 
-#container-list-all, .container-list, 
+#container-list-all, .container-list, .no-list,
 .list-btn, .list-card,
 .list-seller, .list-status{
     display : flex;
@@ -33,6 +33,19 @@
     margin-left : 30px;
 }
 
+.no-list {
+	width : 100%;
+	height : 100px;
+	justify-content : center;
+	align-items : center;
+}
+.no-list-text {
+	font-size : 20px;
+	color : #596566;
+	font-weight : bold;
+}
+
+
 
 /* 사이드바 : min-20% / 리스트 60% / 여백 : max-10% */
 .container-list {
@@ -57,26 +70,41 @@
     padding-left : 14px;
 }
 
+/* 이거 추가해 */
 .list-thumb {
-    border : 1px solid black;
+    border : 1px solid lightgray;
     margin : 10px;
-    width : 120px;
+    min-width : 120px;
     height : 120px;
     cursor : pointer;
+    background-clip: border-box;
+    background-size: cover; /* 배경 이미지로 div 커버 */
+    overflow: hidden; /* 사진이 넘치면 hidden */
+    background-position: center center;
 }
 
 .list-name{
     font-weight: bold;
     font-size : 18px;
 }
-.list-text { cursor : pointer;}
+.list-text { cursor : pointer; display: flex; flex-direction : column;}
+.list-text-1 { font-weight : bold; }
+.list-text-2 { font-size : 14px; color : gray; }
+.list-text-3 { 
+	display: inline-block; 
+  border : 1px solid #806f71;
+  border-radius: 5px;
+  padding : 2px;
+  font-size: 12px;
+  color : #806f71;
+	height: 20px;
+	width : 60px;
+	text-align : center;
+	margin-top : 10px;
+}
 
 .list-hidden {display: none;} /* 주문번호, 주문 상세 정보 */
 
-.list-title{
-    font-weight: bold;
-    font-size : 18px;
-}
 
 .list-btn {
     justify-content: center;
@@ -88,6 +116,7 @@
     width : 50%;
     height : 100%;
     justify-content: center;
+    align-items: center;
 }
 .seller-name {
     font-weight : bold;
@@ -138,6 +167,7 @@ a { text-decoration: none;}
     align-items: center;
     justify-content: center;
     margin-top : 20px;
+    display: none;
 }
 
 .btn-more:hover {
