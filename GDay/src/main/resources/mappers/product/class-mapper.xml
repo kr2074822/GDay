@@ -57,13 +57,25 @@
 	
 	<!-- 상품-태그 테이블에 삽입 -->
 	<insert id="insertTag" parameterType="map">
-		INSERT INTO PRODUCT_TAG
-		SELECT A.*, #{prdtNo} FROM (
-		
-		<foreach collection="map.list" item="hashNo" separator=" UNION ALL ">
-			SELECT #{hashNo} TAG_NO
+		INSERT ALL
+		<foreach collection="hashNo" item="item" separator=" ">
+			INTO PRODUCT_TAG VALUES (#{item}, #{prdtNo})
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+	<!-- 파일 정보 삽입 -->
+	<insert id="insertAttachmentList" parameterType="list"> 
+		INSERT INTO PRODUCT_IMG
+		SELECT SEQ_FNO.NEXTVAL, A.* FROM (
+		<foreach collection="list" item="item" separator=" UNION ALL ">
+			SELECT #{item.filePath} FILE_PATH,
+				#{item.fileName} FILE_NAME,
+				#{item.fileLevel} FILE_LEVEL,
+				#{item.prdtNo} PRDT_NO
 			FROM DUAL
 		</foreach>
 		)A
 	</insert>
+	
 </mapper>

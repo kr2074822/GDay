@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,11 @@
 <!-- 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930f7a74b0fd1bdc17d81c3d8fb76bf4&libraries=services"></script>
+
+<!-- datepicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
+
 
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassReview.css">
@@ -24,6 +30,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  -->
 <style>
+
+/* number 태그 화살표 제거 */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
 
 .wrapper {
    width: 80%;
@@ -88,7 +101,7 @@
 }
 
 .extraInput .optRow input {
-	width: 85px;
+	width: 100px;
 	vertical-align: middle;
 	margin-left: 7px;
 }
@@ -170,9 +183,11 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="${contextPath}/resources/summernote/js/summernote-lite.js"></script>
 <script src="${contextPath}/resources/summernote/js/summernote-ko-KR.js"></script>
 <script src="${contextPath}/resources/summernote/js/mySummernote.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
 
 <form action="insertClass" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
 <div class="wrapper">
@@ -441,22 +456,22 @@
       
       <div class="extraInput">
       	<span class="optRow">수강료
-      		<input type="number" id="prdtPrice" name="prdtPrice" placeholder="50000">
+      		<input type="number" id="prdtPrice" name="prdtPrice" placeholder="50000" autocomplete=off>
       	</span>
       	<span class="optRow">정원 수
-      		<input type="number" id="cCount" name="cCount" placeholder="15">
+      		<input type="number" id="cCount" name="cCount" placeholder="15" autocomplete=off>
       	</span>
       	<span class="optRow">세션 수
-      		<input type="number" id="cSession" name="cSession" placeholder="8">
+      		<input type="number" id="cSession" name="cSession" placeholder="8" autocomplete=off>
       	</span>
       	<span class="optRow">개강일
-      		<input type="date" id="cStartDate" name="cStartDate">
+      		<input type="text" id="cStartDate" name="cStartDate" autocomplete=off>
       	</span>
       	<span class="optRow">종강일
-      		<input type="date" id="cEndDate" name="cEndDate">
+      		<input type="text" id="cEndDate" name="cEndDate" autocomplete=off>
       	</span>
       	<span class="optRow">수업일/시간
-      		<input type="text" id="cDate" name="cDate" style="width:150px;" placeholder="금/토요일 18:00">
+      		<input type="text" id="cDate" name="cDate" style="width:150px;" placeholder="금/토요일 18:00" autocomplete=off>
       	</span>
       </div>
      </div>
@@ -464,12 +479,12 @@
 			<div class="boardRow">
 			<!-- 썸네일 -->
 				<div class="boardImg" id="titleImgArea">
-						<img id="titleImg" src="${contextPath}/resources/images/thumb.png" width="250" height="130">
+						<img id="titleImg" src="${contextPath}/resources/images/thumb.png" width="250" height="105">
 				</div>
 				<img id="thumbInfo" style="margin-left:20px;" src="${contextPath}/resources/images/inputThumb.png">
 			</div>
 			<div class="boardRow">
-				<input type="text" id="title" name="prdtName" placeholder="클래스명">
+				<input type="text" id="title" name="prdtName" placeholder="클래스명" autocomplete=off>
 			</div> 
 			<div class="boardRow">
 				<div id="fileArea">
@@ -483,7 +498,7 @@
 			
 			<!-- 카카오 맵 API -->
 			<div class="boardRow" style="margin-bottom: 0px;">
-				<input type="text" class="address" id="sample5_address" name="cLocal" placeholder="클래스가 진행될 장소를 필수로 입력해주세요.">
+				<input type="text" class="address" id="sample5_address" name="cLocal" placeholder="클래스가 진행될 장소를 필수로 입력해주세요." autocomplete=off readonly>
 				<input type="button" class="address" id="searchBtn" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 				<div id="map" style="width:300px;height:200px;visibility:hidden"></div>
 			</div>
@@ -557,7 +572,38 @@
 		}
 	}
 	
+	//오늘 날짜 이전은 선택하지 못하게 / 종료일이 시작일보다 앞서지 못하게 하는 함수
+	$(function() {
+		$("#cStartDate").datepicker({ 
+			format: "yyyy-mm-dd",
+			language: "kr",
+			startDate: new Date(),
+			todayHighlight: true,
+			
+			autoclose: true }).on('changeDate', function(selected) {
+				var startDate = new Date(selected.date.valueOf());
+				$('#cEndDate').datepicker('setStartDate', startDate);
+			}).on('clearDate', function(selected) {
+				$('#cEndDate').datepicker('setStartDate', null);
+			});
+		});
 
+	
+	$(function() {
+		$("#cEndDate").datepicker({ 
+			format: "yyyy-mm-dd",
+			language: "kr",
+			todayHighlight: true,
+			autoclose: true }).on('changeDate', function(selected) {
+				var endDate = new Date(selected.date.valueOf());
+				$('#cStartDate').datepicker('setEndDate', endDate);
+			}).on('clearDate', function(selected) {
+				$('#cStartDate').datepicker('setEndDate', null);
+			});
+		});
+
+	
+	
 	  // 썸네일을 보여주는 함수
 	  function LoadImg(value, num) {
 		  // value.files : 파일이 업로드되어 있으면 true
