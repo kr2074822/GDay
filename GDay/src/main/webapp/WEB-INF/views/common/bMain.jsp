@@ -23,7 +23,7 @@
                 	
                 </a>
             </div>
-            <div class="contentBx">
+            <div class="contentBx" id="giftInsertView">
                 <div class="content">
                     <h1>선물 판매 신청</h1>
                     <p>
@@ -35,9 +35,9 @@
         </div>
         <div class="box">
             <div class="imgBx">
-                <a href="#"><img src="${contextPath}/resources/images/main_class.jpg"></img></a>
+                <a href="${contextPath}/bMember2/gClassInsert"><img src="${contextPath}/resources/images/main_class.jpg"></img></a>
             </div>
-            <div class="contentBx">
+            <div class="contentBx" id="gClassInsertView">
                 <div class="content">
                     <h1>클래스 모집 신청</h1>
                     <p>
@@ -50,11 +50,13 @@
     </div>
 
 <script>
-$(".contentBx").on("click", function(){
-	location.href = "#";
+$("#gClassInsertView").on("click", function(){
+	location.href = "${contextPath}/bMember2/gClassInsert";
 })
 
-
+$("#giftInsertView").on("click", function(){
+	location.href = "#";
+})
 </script>
 
 
