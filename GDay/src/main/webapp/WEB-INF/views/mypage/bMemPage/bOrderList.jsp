@@ -28,6 +28,7 @@
 		    <div class="row" id="container-period">
 		      <div id="date-form">
 		        <div class="list-search" id="list-search-1">
+		        	<button type="button" onclick="location.href='${contextPath}/bMember/bOrderList'">전체</button>
 		        	<button type="button" name="periodRadio" value="7days">일주일</button>
 		        	<button type="button" name="periodRadio" value="1Month">1개월</button>
 		        	<button type="button" name="periodRadio" value="3Months">3개월</button>
@@ -194,7 +195,52 @@
 			
 			location.href = "${contextPath}/bMemSearch/bOrdDaySearch/" + day;
 			
-		}); 
+		});
+ 		
+ 		
+ 		/* 날짜 직접 선택 시  */
+ 		$("#periodStart").on("change", function() {
+ 	 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
+ 	 			 var startText = $(this).val();
+ 	 			 var endText = $("#periodEnd").val();
+ 	 			 
+ 	 			 var startAry = startText.split('-');
+ 	 			 var endAry = endText.split('-');
+ 	 			 
+ 	 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
+ 	 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
+ 	 			 
+ 	 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
+ 	 			 
+ 	 			 if(result < 0) {
+ 	 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
+ 	 			 } else {
+ 	 				 location.href = "${contextPath}/bMemSearch/bOrdDaySearch2/" + startText + "/" + endText;
+ 	 			 }
+ 	 		} 	 		 			
+ 		});
+ 		
+ 		$("#periodEnd").on("change", function() {
+ 	 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
+	 			 var startText = $("#periodStart").val();
+ 	 			 var endText = $(this).val();
+ 	 			 
+ 	 			 var startAry = startText.split('-');
+ 	 			 var endAry = endText.split('-');
+ 	 			 
+ 	 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
+ 	 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
+ 	 			 
+ 	 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
+ 	 			 
+ 	 			 if(result < 0) {
+ 	 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
+ 	 			 } else {
+ 	 				 location.href = "${contextPath}/bMemSearch/bOrdDaySearch2/" + startText + "/" + endText;
+ 	 			 }
+ 	 		} 	 		 			
+ 		});
+
 	</script>
 	
 	
