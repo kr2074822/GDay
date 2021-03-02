@@ -47,7 +47,7 @@
                             <input type="checkbox" id="saveId" name="saveId" <c:if test="${!empty cookie.saveId.value}">checked</c:if>>
                             <label for="saveId">아이디 저장</label>
 
-                            <input type="checkbox" id="autoId" name="autoId" disabled>
+                            <input type="checkbox" id="autoId" name="autoId" <c:if test="${!empty cookie.autoId.value}">checked</c:if> disabled>
                             <label for="autoId">자동 로그인</label>
                             <input type="hidden" value="G" name="memberGrade">
                         </div>
@@ -256,7 +256,6 @@
 		                            			  },
 		                            			});
 		                            		*/
-
         
     </script>
 </body>

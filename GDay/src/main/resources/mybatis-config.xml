@@ -21,6 +21,7 @@
 		<typeAlias type="team.project.gday.member.model.vo.LicenseImg" alias="LicenseImg"/>
 		<typeAlias type="team.project.gday.magazine.model.vo.Magazine" alias="Magazine"/>
 		<typeAlias type="team.project.gday.magazine.model.vo.MagazineImg" alias="MagazineImg"/>
+		<typeAlias type="team.project.gday.member.model.vo.AutoLogin" alias="AutoLogin"/>
 	</typeAliases>
 
 	<mappers>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -179,6 +180,26 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public int changePwAction(Member member) {
 		return dao.changePwAction(member);
+	}
+
+	// 자동로그인
+	@Override
+	public int searchSID(Map<String, Object> map) {
+		return dao.searchSID(map);
+	}
+
+	// 최초 삽입
+	@Transactional(rollbackFor = Exception.class) 
+	@Override
+	public int insertSID(Map<String, Object> map) {
+		return dao.insertSID(map);
+	}
+
+	// SID 있을경우 업데이트
+	@Transactional(rollbackFor = Exception.class) 
+	@Override
+	public int updateSID(Map<String, Object> map) {
+		return dao.updateSID(map);
 	}
 
 }
