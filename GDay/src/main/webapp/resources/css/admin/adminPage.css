@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+div {
+	padding: 15%;
+}
+
+div h3{
+	padding-bottom: 30px;
+	font-weight: bold;
+}
+
+.container {
+	width: 65%;
+	margin: 0 auto;
+	float: left;
+	height: 100%;
+	padding-left: 7%;
+	
+	margin: 200px 0;
+}
+
+#adminMember-search, #adminMember-Application, 
+#report-search, #report-Application,
+#adminBoard-search, #adminBoard-Application,
+#adminCus-search, #report-search, #report-Application {
+	float: right;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.my-4 form table {
+	width: 100%;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+.my-4 form table th {
+	font-weight: bold;
+	background-color: #fafafa;
+}
+
+.my-4 form table th, .my-4 form table td {
+	text-align: center;
+	border-bottom: 1px solid #444444;
+	padding: 10px;
+}
+
+button {
+	height: 25px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #FE929F;
+	color: white;
+}
+
+#sk, #adminMember-ap, #board-ap, #board-se, #adminCus-se, 
+#report-ap, #search {
+	padding: 5px;
+}

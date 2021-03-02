@@ -19,6 +19,9 @@ div {
 	margin: 0 auto;
 }
 
+.container-area{
+}
+
 table {
 	width: 100%;
 	border-top: 1px solid #444444;
@@ -34,6 +37,10 @@ th, td {
 	text-align: center;
 	border-bottom: 1px solid #444444;
 	padding: 10px;
+}
+
+td{
+	cursor: pointer;
 }
 
 button {
@@ -56,9 +63,9 @@ button {
 		<h3>나의 문의글</h3>
 		<br>
 
-		<div>
+		<div class="container-area">
 			<form action="#" method="POST">
-				<table>
+				<table class="table table-hover" id="list-table">
 					<thead>
 						<tr>
 							<th>문의 번호</th>
@@ -86,8 +93,10 @@ button {
 		</div>
 	</div>
 	
-	<!-- closer 챗봇 연동 설정(설치 스크립트) -->
+	<jsp:include page="../common/footer.jsp" />
+	
 	<script>
+	/* closer 챗봇 연동 설정(설치 스크립트) */
 		(function(c, l, o, s, e, r) {
 			c[e] = c[e] || {};
 			r = l.createElement('script');
@@ -97,6 +106,16 @@ button {
 			r.async = 1;
 			l.head.appendChild(r);
 		})(window, document, 'https://app.closer.ai/webchat.js', 'B266ew');
+		
+		
+		/* 게시글 상세보기 */
+		$("#list-table td").on("click", function(){
+			var boardNo = $(this).parent().children().eq(0).text();
+			
+			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
+			
+			location.href = "${contextPath}/admin/memberCustomerView"; 
+		});
 	</script>
 </body>
 

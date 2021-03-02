@@ -8,56 +8,7 @@
 <title>관리자 페이지 - 신고 내역</title>
 
 <link rel="stylesheet" href="reset.css">
-
-<style>
-div {
-	padding: 10px;
-}
-
-.container {
-	width: 65%;
-	margin: 0 auto;
-	float: left;
-	height: 100%;
-	padding-left: 7%;
-	
-	margin: 200px 0;
-}
-
-#report-search, #report-Application {
-	float: right;
-}
-
-.my-4 form table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-.my-4 form table th {
-	font-weight: bold;
-	background-color: #fafafa;
-}
-
-.my-4 form table th, .my-4 form table td {
-	text-align: center;
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
-
-button {
-	height: 25px;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
-	background-color: #FE929F;
-	color: white;
-}
-
-#report-ap, #search {
-	padding: 5px;
-}
-</style>
+<link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -142,6 +93,6 @@ button {
 		</div>
 	</div>
 
-	<footer> </footer>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

@@ -20,6 +20,11 @@ div {
 	margin: 0 auto;
 }
 
+hr {
+	border: 2px solid #FE929F;
+	width: 100%;
+}
+
 .input-area {
 	margin: 0 auto;
 	padding: 5px;
@@ -61,10 +66,13 @@ div {
 </style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp" />
+
 	<div class="container">
 		<div>
 			<h3>고객센터 문의글 작성</h3>
 		</div>
+		<hr>
 		<div class="input-area">
 			<form action="#" method="POST">
 				<div class="title-area">
@@ -77,10 +85,12 @@ div {
 				</div>
 				<div id="form-btn" class="form-size">
 					<button type="submit" class="inquiry">문의하기</button>
-					<button type="button" class="none">취소</button>
+					<button type="button" class="none" onclick="location.href='${contextPath}/admin/memberCustomer'">취소</button>
 				</div>
 			</form>
 		</div>
 	</div>
+	
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

@@ -12,7 +12,11 @@
 
 <style>
 div {
-	padding: 10px;
+	padding: 15%;
+}
+
+#container-tb{
+	padding: 20px;
 }
 
 .container {
@@ -46,19 +50,17 @@ ul {
 }
 
 .album-cover {
-	width: 50%;
-	height: 100px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	width: 200px;
+	height: 200px;
+	cursor: pointer;
 }
 
 .album-info {
-	padding: 10px;
+	padding: 20px;
 }
 
 .album-title {
-	font-size: 12px;
+	font-size: 13px;
 }
 </style>
 </head>
@@ -70,7 +72,7 @@ ul {
 	<div class="container">
 		<div id="container-tb">
 			<div>
-				<h3>비즈니스 회원 신청</h3>
+				<h3 style="font-weight: bold;">비즈니스 회원 신청</h3>
 			</div>
 			<div>
 				<form action="#" method="POST" id="adminBusinessMember">
@@ -82,7 +84,9 @@ ul {
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
 									</p>
-									<div class="album-cover"></div>
+									<div class="album-cover">
+										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
+									</div>
 								</div>
 							</div>
 						</li>
@@ -93,7 +97,9 @@ ul {
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
 									</p>
-									<div class="album-cover"></div>
+									<div class="album-cover">
+										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
+									</div>
 								</div>
 							</div>
 						</li>
@@ -104,7 +110,9 @@ ul {
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
 									</p>
-									<div class="album-cover"></div>
+									<div class="album-cover">
+										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
+									</div>
 								</div>
 							</div>
 						</li>
@@ -115,7 +123,9 @@ ul {
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
 									</p>
-									<div class="album-cover"></div>
+									<div class="album-cover">
+										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
+									</div>
 								</div>
 							</div>
 						</li>
@@ -126,7 +136,13 @@ ul {
 		</div>
 	</div>
 
-	<footer> </footer>
+	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+		$("img").on("click", function(){
+			location.href = "${contextPath}/admin/adminBMemView"
+		})
+	</script>
 </body>
 
 </html>

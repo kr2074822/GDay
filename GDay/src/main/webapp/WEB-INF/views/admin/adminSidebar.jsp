@@ -24,49 +24,51 @@
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
                 <li class="active-sidebar">
-                		<a href="${contextPath}/admin/adminMember" class="up-menu">
+                	<a href="${contextPath}/admin/adminMember" class="up-menu">
                     <span class="menu-icon"><i class="fas fa-users-cog"></i></span>
                     <span class="menu-text">회원 관리</span>
                     </a>
-
-                    <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/admin/adminMember">
-                            <span class="submenu-icon"><i class="fas fa-users"></i></span>
-                            <span class="submenu-text">전체회원 보기</span>
-                            </a>
-                        </li>
-                        <li><a href="${contextPath}/admin/adminBMemSub">
-                            <span class="submenu-icon"><i class="far fa-id-card"></i></span>
-                            <span class="submenu-text">비즈니스 회원 신청</span>
-                            </a>
-                        </li>
-                        <li><a href="${contextPath}/admin/adminBlackMem">
-                            <span class="submenu-icon"><i class="fas fa-user-times"></i></i></span>
-                            <span class="submenu-text">블랙 리스트 회원</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+				</li>
+                <ul class="sub-menu">
+                    <li class="active-sidebar"><a href="${contextPath}/admin/adminMember">
+	                    <span class="submenu-icon"><i class="fas fa-users"></i></span>
+	                    <span class="submenu-text">전체회원 보기</span>
+	                    </a>
+                    </li>
+                    <li><a href="${contextPath}/admin/adminBMemSub">
+                    	<span class="submenu-icon"><i class="far fa-id-card"></i></span>
+                        <span class="submenu-text">비즈니스 회원 신청</span>
+                        </a>
+                    </li>
+                    <li><a href="${contextPath}/admin/adminBlackMem">
+                        <span class="submenu-icon"><i class="fas fa-user-times"></i></i></span>
+                        <span class="submenu-text">블랙 리스트 회원</span>
+                        </a>
+                    </li>
+                </ul>
                 <li class="active-sidebar">
                 		<a href="${contextPath}/admin/adminReportEnd" class="up-menu">
                     <span class="menu-icon"><i class="fas fa-exclamation-triangle"></i></span>
                     <span class="menu-text">신고 내역</span>
                     </a>
-                    <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/admin/adminReportEnd">
-                            <span class="submenu-icon"><i class="fas fa-exclamation-circle"></i></span>
-                            <span class="submenu-text">신고처리 완료</span>
-                            </a></li>
-                        <li><a href="${contextPath}/admin/adminReportStand">
-                            <span class="submenu-icon"><i class="fas fa-bomb"></i></span>
-                            <span class="submenu-text">신고처리 대기</span>
-                            </a></li>
-                    </ul>
                 </li>
+                
+                <ul class="sub-menu">
+                	<li class="active-sidebar"><a href="${contextPath}/admin/adminReportEnd">
+	                    <span class="submenu-icon"><i class="fas fa-exclamation-circle"></i></span>
+	                    <span class="submenu-text">신고처리 완료</span>
+                    	</a></li>
+                    <li><a href="${contextPath}/admin/adminReportStand">
+                        <span class="submenu-icon"><i class="fas fa-bomb"></i></span>
+                        <span class="submenu-text">신고처리 대기</span>
+                        </a></li>
+                </ul>
+                
                 <li><a href="${contextPath}/admin/adminBoard">
                     <span class="menu-icon"><i class="fas fa-clipboard-list"></i></span>
                     <span class="menu-text">게시글 관리</span>
                     </a></li>
+                    
                 <li><a href="${contextPath}/admin/adminCustomerService">
                     <span class="menu-icon"><i class="fas fa-question-circle"></i></span>
                     <span class="menu-text">고객 센터</span>
