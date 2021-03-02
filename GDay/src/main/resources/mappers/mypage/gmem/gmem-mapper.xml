@@ -2,22 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gMemMapper">
 
-	<!-- 주문 resultMap order_info, order_product, order_status-->
+	<!-- 주문 resultMap V_ORDER-->
 	<resultMap type="Order" id="order_rm">
 		<id property="opNo" column="OP_NO"/>
 		<result property="orderNo" column="ORDER_NO"/>
 		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="prdtName" column="PRDT_Name"/>
+		<result property="sellerNo" column="SELLER_NO"/>
+		<result property="sellerName" column="SELLER_NM"/>
 		<result property="statusNo" column="STATUS_NO"/>
 		<result property="statusName" column="STATUS_NAME"/>
 		<result property="orderDate" column="ORDER_DATE"/>
 		<result property="opAmount" column="OP_AMOUNT"/>
 		<result property="giftOpNo" column="GIFT_OP_NO"/>
-		<result property="buyer" column="MEM_NO"/>
+		<result property="buyer" column="BUYER_NO"/>
 		<result property="shipName" column="SHIP_NAME"/>
 		<result property="shipAddr" column="SHIP_ADDR"/>
 		<result property="shipPhone" column="SHIP_PHONE"/>
 		<result property="impUid" column="IMP_UID"/>
 	</resultMap>
+	
 	<!-- 선물 resultMap -->
 	<resultMap type="Gift" id="gift_rm">
 		<id property="prdtNo" column="PRDT_NO"/>
