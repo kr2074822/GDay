@@ -7,7 +7,7 @@
 .sidebar-area div, 
 .sidebar-area i { box-sizing: border-box;}
 
-.sidebar-area > * {    z-index : 100;}
+.sidebar-area > * {z-index : 100;}
 
 .sidebar-area { 
     background-color: #FE929F;
@@ -33,22 +33,6 @@
 	color : #FE929F;
 }
 
-
-/* 닉네임, 프로필 사진 */
-#nickName{
-    display: block;
-    width : 170px;
-    height : 45px;
-    text-align: center;
-    margin : 0 auto;
-    line-height: 43px;
-} 
-#myProfile {
-    display: block;
-    width : 45px;
-    height : 45px;
-    margin : 0 auto;
-}
 
 /* 사이드바 메뉴 부분 */
 .sidebar-menu li a {

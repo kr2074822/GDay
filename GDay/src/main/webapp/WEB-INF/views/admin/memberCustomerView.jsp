@@ -19,18 +19,25 @@ div {
 	margin: 0 auto;
 }
 
-.input-area {
-	margin: 0 auto;
+.info-area{
+	font-size: 15px; 
+	line-height: 15px
+}
+
+.board-area {
+	margin-bottom: 100px;
 	padding: 5px;
+	width: 95%;
+	text-aling: center;
+}
+
+.board-content{ 
+	padding-bottom:150px;
 }
 
 .comment-area {
 	width: 100%;
 	resize: none;
-}
-
-#form-btn {
-	float: right;
 }
 
 .inquiry {
@@ -40,41 +47,41 @@ div {
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
+	float: right;
 }
 </style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp" />
 	<div class="container">
 		<div>
 			<h3>고객센터</h3>
 		</div>
-		<div class="input-area">
-			<form action="#" method="POST">
-				<div class="title-area">
-					<h4>안녕하세요</h4>
-				</div>
-				<div class="info-area">
-					<h1>작성자: 회원명</h1>
-					<h1>작성일자: 2021-02-20</h1>
-				</div>
-				<hr>
-				<div class="content-area">
-					<span>내용</span>
-				</div>
-				<hr>
-				<div class="comment-area">
-					<textarea class="comment"></textarea>
-				</div>
-				<div id="form-btn" class="form-size">
-					<button type="submit" class="inquiry">답변등록</button>
-				</div>
-				<div>
-					<p>관리자</p>
-					<textarea class="reply">작성</textarea>
-				</div>
-			</form>
+		<div class="board-area">
+			<div class="title-area">
+				<h2>안녕하세요</h2>
+			</div>
+			<div class="info-area">
+				<h4>작성자: 회원명</h4>
+				<h5>작성일자: 2021-02-20</h5>
+			</div>
+			<hr>
+			<div class="board-content">
+				<span>내용</span>
+			</div>
+			
+			<div class="float-right">
+				<%-- <c:if test="${empty sessionScope.returnListURL}">
+					<c:set var="returnListURL" value="../list/${board.boardCode}" scope="session"/>
+				</c:if> --%>
+				<button type="button" class="btn btn-success inquiry" onclick="location.href='${contextPath}/admin/memberCustomer'">목록으로</button>			
+			</div>
+			<br>
+			<hr>
+			
+			<jsp:include page="adminReply.jsp"></jsp:include>
 		</div>
 	</div>
-
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

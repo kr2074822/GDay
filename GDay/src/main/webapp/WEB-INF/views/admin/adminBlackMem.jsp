@@ -8,57 +8,8 @@
 <title>관리자 페이지 - 회원 관리</title>
 
 <link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<style>
-div {
-	padding: 10px;
-}
-
-.container {
-	width: 65%;
-	margin: 0 auto;
-	float: left;
-	height: 100%;
-	padding-left: 7%;
-	
-	margin: 200px 0;
-}
-
-#report-search, #report-Application {
-	float: right;
-}
-
-.my-4 form table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-.my-4 form table th {
-	font-weight: bold;
-	background-color: #fafafa;
-}
-
-.my-4 form table th, .my-4 form table td {
-	text-align: center;
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
-
-button {
-	height: 25px;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
-	background-color: #FE929F;
-	color: white;
-}
-
-#search{
-	padding: 5px;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -128,7 +79,7 @@ button {
  			</div>
 		</div>
 	</div>
-	<footer> </footer>
+	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
 		
