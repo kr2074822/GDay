@@ -2,7 +2,9 @@ package team.project.gday.member.login.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -47,8 +50,19 @@ public class LoginController {
 	private LoginService service;
 	
 	// 로그인 화면
+	@SuppressWarnings("deprecation")
 	@RequestMapping("loginView")
-	public String loginView(){
+	public String loginView(HttpSession session, HttpServletRequest request){
+		System.out.println(session);
+		
+		request.getSession();
+		Cookie cookie = new Cookie("JSESSIONID", session.getId());
+		String sessionId = cookie.getValue();
+		
+		
+		
+		
+//		Cookie cookie = new Cookie("JSESSION", loginMember.getMemberEmail());
 		return "login/login";
 	}
 	
@@ -60,7 +74,12 @@ public class LoginController {
 //			  @RequestParam(value="saveId", required=false) String ,
 //			  @RequestParam(value="autoId", required=false) String ,
 			  HttpServletResponse response,
+			  HttpSession session,
 			  Model model) {
+		if (session.getAttribute("loginMember") !=null ){
+			session.removeAttribute("loginMember");
+        }
+
 		
 		System.out.println(saveId);
 		System.out.println(autoId);
@@ -70,8 +89,31 @@ public class LoginController {
 		
 		if(loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
+			int mNo = loginMember.getMemberNo();
 			
 			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+			Cookie autoId_cookie = new Cookie("autoId", loginMember.getMemberEmail());
+			Cookie sid = new Cookie("JSESSIONID", session.getId());
+			String sessionId = sid.getValue();
+			System.out.println(sid.getValue());
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("sessionId", sessionId);
+			map.put("mNo", mNo);
+			System.out.println("map" +map);
+			int search = service.searchSID(map);
+			System.out.println("search: "+ search);
+			if (search == 0) {
+				int result = service.insertSID(map);
+			} else {
+				// 업데이트
+				int result = service.updateSID(map);
+				
+				
+				System.out.println(result);
+			}
+			
+			
 			
 			if(saveId != null) { 
 				cookie.setMaxAge(60 * 60 * 24 * 30);
@@ -79,16 +121,26 @@ public class LoginController {
 				
 				cookie.setMaxAge(0);
 			}
-			response.addCookie(cookie);
 			
-			url = "/";
+			if (autoId != null) {
+				autoId_cookie.setMaxAge(60 * 60 * 24 * 30);
+				
+			}else {
+				autoId_cookie.setMaxAge(0);
+				
+			}
+				
+			response.addCookie(cookie);
+			response.addCookie(autoId_cookie);
+			
+			url ="redirect:/";
 		
 		}else {
 			url = "login/login";
 		}
 		
 		
-		return "redirect:" + url;
+		return  url;
 		
 	}
 	

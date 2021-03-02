@@ -1,5 +1,7 @@
 package team.project.gday.member.model.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -91,6 +93,18 @@ public class LoginDAO {
 
 	public int changePwAction(Member member) {
 		return sqlSession.update("memberMapper.changePwAction", member);
+	}
+
+	public int searchSID(Map<String, Object> map) {
+		return sqlSession.selectOne("memberMapper.searchSID", map);
+	}
+
+	public int insertSID(Map<String, Object> map) {
+		return sqlSession.insert("memberMapper.insertSID", map);
+	}
+
+	public int updateSID(Map<String, Object> map) {
+		return sqlSession.update("memberMapper.udateSID", map);
 	}
 
 

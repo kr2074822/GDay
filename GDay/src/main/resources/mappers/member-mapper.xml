@@ -55,6 +55,14 @@
 	</resultMap>
 	
 	
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="AutoLogin" id="autologin_rm">
+		<id property="sessionId" column="SESSION_ID"/>
+		
+   		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+	
+	
 	
 	<!-- 로그인 -->
 	<select id="loginAction" parameterType="Member" resultMap="member_rm">
@@ -141,5 +149,27 @@
 	<update id="changePwAction">
 		UPDATE MEMBER SET MEM_PW = #{memberPwd} WHERE MEM_EMAIL = #{memberEmail}
 	</update>
+	
+	<!-- 세션 확인 -->
+	<select id="searchSID" parameterType="map" resultType="_int">
+		SELECT COUNT(SESSION_ID)
+		FROM AUTO_LOGIN
+		WHERE MEM_NO = #{mNo}
+	</select>
+
+	<!-- 최초 삽입 -->
+	<insert id="insertSID" parameterType="map">
+		INSERT INTO AUTO_LOGIN VALUES(#{mNo}, #{sessionId})
+	</insert>
+	
+	<!-- SID업데이트 -->
+	<update id="udateSID">
+		UPDATE AUTO_LOGIN SET SESSION_ID = #{sessionId} WHERE MEM_NO = #{mNo}
+	</update>
+	
+	
+	
+	
+	
 	
 </mapper>

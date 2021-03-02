@@ -1,6 +1,7 @@
 package team.project.gday.member.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,6 +83,13 @@ public interface LoginService {
 	 * @return 
 	 */
 	public abstract int changePwAction(Member member);
+
+	public abstract int searchSID(Map<String, Object> map);
+
+	public abstract int insertSID(Map<String, Object> map);
+
+	public abstract int updateSID(Map<String, Object> map);
+
 
 
 

@@ -415,6 +415,8 @@
             });
         } 
         
+		console.log(document.cookie)
+     
     </script>
 </body>
 </html>
