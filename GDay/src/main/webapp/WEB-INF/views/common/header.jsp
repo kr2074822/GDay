@@ -45,9 +45,9 @@
 
 			
 			<ul id="header-menu">	
-				<li class="header-li header-login"><a href="1">로그인</a></li>			
+				<li class="header-li header-login"><a href="#">로그인</a></li>			
 				<li class="header-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
-				<li class="header-li"><a href="1">클래스찾기</a></li>
+				<li class="header-li"><a href="#">클래스찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
 				<li class="header-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 			</ul>
@@ -61,11 +61,11 @@
 					
 					<div id="header-media-menu">
 						<ul id="media-menu">	
-							<li class="media-li"><a href="1">로그인</a></li>			
-							<li class="media-li"><a href="2">선물찾기</a></li>
-							<li class="media-li"><a href="3">클래스찾기</a></li>
-							<li class="media-li"><a href="4">마이캘린더</a></li>
-							<li class="media-li"><a href="5">매거진</a></li>
+							<li class="media-li"><a href="#">로그인</a></li>			
+							<li class="media-li"><a href="#">선물찾기</a></li>
+							<li class="media-li"><a href="#">클래스찾기</a></li>
+							<li class="media-li"><a href="#">마이캘린더</a></li>
+							<li class="media-li"><a href="#">매거진</a></li>
 						</ul>		
 					</div>
 				</div>		  

@@ -61,7 +61,7 @@
 								</li>
 								
 								<li class="active-sidebar">
-                		<a href="1" class="up-menu">
+                		<a href="#" class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                     <span class="menu-text">클래스 관리</span>
                     </a>
