@@ -510,6 +510,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	</div>	
 	</form>
 	
+	<jsp:include page="../common/footer.jsp"/>
+	
+	
 	<script>
 
 	function validate() {
