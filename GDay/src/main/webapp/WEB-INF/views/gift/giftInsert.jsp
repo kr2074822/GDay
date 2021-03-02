@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftInsert.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/gitfInsert.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftInsert.css">
     
     <!-- summernote.css -->
     <link rel="stylesheet" href="${contextPath}/resources/summernote/css/summernote-lite.css">

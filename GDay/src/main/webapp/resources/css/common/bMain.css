@@ -7,13 +7,9 @@
     font-style: normal;
 }
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-.container{
-		margin-top: 200px;
+.container.x{
+	margin: 0 auto;
 		margin-bottom: 200px;
     min-height: 100vh;
     position: relative;

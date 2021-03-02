@@ -15,10 +15,10 @@
 <body>
 
 <jsp:include page="header.jsp"/>
-    <div class="container">
+    <div class="container x">
         <div class="box">
             <div class="imgBx">
-                <a href="#">
+                <a href="${contextPath}/gift/insertView">
                 	<img src="${contextPath}/resources/images/main_gift.jpg" alt="선물 판매 신청"></img>
                 	
                 </a>
