@@ -7,6 +7,9 @@ public class Order {
 	private int opNo; //주문상품번호
 	private int orderNo; //주문번호
 	private int prdtNo;//상품번호
+	private String prdtName; //상품명
+	private int sellerNo; //판매자 번호
+	private String sellerName; //업체명 
 	private int statusNo; //주문 상태 번호
 	private String statusName; //주문 상태명
 	private Date orderDate; //주문일
@@ -38,6 +41,30 @@ public class Order {
 	public void setPrdtNo(int prdtNo) {
 		this.prdtNo = prdtNo;
 	}
+	public String getPrdtName() {
+		return prdtName;
+	}
+
+	public void setPrdtName(String prdtName) {
+		this.prdtName = prdtName;
+	}
+
+	public int getSellerNo() {
+		return sellerNo;
+	}
+
+	public void setSellerNo(int sellerNo) {
+		this.sellerNo = sellerNo;
+	}
+
+	public String getSellerName() {
+		return sellerName;
+	}
+
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
+	
 	public int getStatusNo() {
 		return statusNo;
 	}
@@ -86,6 +113,7 @@ public class Order {
 	public void setShipAddr(String shipAddr) {
 		this.shipAddr = shipAddr;
 	}
+
 	public String getShipPhone() {
 		return shipPhone;
 	}
@@ -98,14 +126,13 @@ public class Order {
 	public void setImpUid(String impUid) {
 		this.impUid = impUid;
 	}
+	
 	@Override
 	public String toString() {
-		return "Order [opNo=" + opNo + ", orderNo=" + orderNo + ", prdtNo=" + prdtNo + ", statusNo=" + statusNo
-				+ ", statusName=" + statusName + ", orderDate=" + orderDate + ", opAmount=" + opAmount + ", giftOpNo="
-				+ giftOpNo + ", buyer=" + buyer + ", shipName=" + shipName + ", shipAddr=" + shipAddr + ", shipPhone="
-				+ shipPhone + ", impUid=" + impUid + "]";
+		return "Order [opNo=" + opNo + ", orderNo=" + orderNo + ", prdtNo=" + prdtNo + ", prdtName=" + prdtName
+				+ ", sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", statusNo=" + statusNo + ", statusName="
+				+ statusName + ", orderDate=" + orderDate + ", opAmount=" + opAmount + ", giftOpNo=" + giftOpNo
+				+ ", buyer=" + buyer + ", shipName=" + shipName + ", shipAddr=" + shipAddr + ", shipPhone=" + shipPhone
+				+ ", impUid=" + impUid + "]";
 	}
-	
-	
-
 }
