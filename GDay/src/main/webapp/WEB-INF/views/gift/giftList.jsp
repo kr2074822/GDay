@@ -429,10 +429,10 @@
                 
                 for(const pop of tagBx){                    
                     if(pop.getAttribute('data-text') == index) {
-                        tagBx[index].classList.toggle("action");
+                        tagBx[index].classList.toggle("action1");
 
                     }else{
-                        pop.classList.remove("action");
+                        pop.classList.remove("action1");
                     }
                 }
             });

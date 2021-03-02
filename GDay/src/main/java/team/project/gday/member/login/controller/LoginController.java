@@ -71,8 +71,8 @@ public class LoginController {
 	public String loginAction(Member inputMember, 
 			  @RequestParam(value="saveId", required=false) String saveId,
 			  @RequestParam(value="autoId", required=false) String autoId,
-//			  @RequestParam(value="saveId", required=false) String ,
-//			  @RequestParam(value="autoId", required=false) String ,
+			  @RequestParam(value="saveBmemId", required=false) String saveBmemId,
+			  @RequestParam(value="bmemAutoLogin", required=false) String bmemAutoLogin,
 			  HttpServletResponse response,
 			  HttpSession session,
 			  Model model) {
@@ -83,6 +83,8 @@ public class LoginController {
 		
 		System.out.println(saveId);
 		System.out.println(autoId);
+		System.out.println(saveBmemId);
+		System.out.println(bmemAutoLogin);
 		System.out.println(inputMember);
 		Member loginMember = service.loginAction(inputMember);
 		String url = null;
@@ -93,6 +95,9 @@ public class LoginController {
 			
 			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
 			Cookie autoId_cookie = new Cookie("autoId", loginMember.getMemberEmail());
+			Cookie bmemCookie = new Cookie("saveBmemId", loginMember.getMemberEmail());
+			Cookie bmemAutoId_cookie = new Cookie("bmemAutoLogin", loginMember.getMemberEmail());
+			
 			Cookie sid = new Cookie("JSESSIONID", session.getId());
 			String sessionId = sid.getValue();
 			System.out.println(sid.getValue());
@@ -129,9 +134,25 @@ public class LoginController {
 				autoId_cookie.setMaxAge(0);
 				
 			}
+			if(saveBmemId != null) { 
+				bmemCookie.setMaxAge(60 * 60 * 24 * 30);
+			}else {
+				
+				bmemCookie.setMaxAge(0);
+			}
+			
+			if (bmemAutoLogin != null) {
+				bmemAutoId_cookie.setMaxAge(60 * 60 * 24 * 30);
+				
+			}else {
+				bmemAutoId_cookie.setMaxAge(0);
+				
+			}
 				
 			response.addCookie(cookie);
 			response.addCookie(autoId_cookie);
+			response.addCookie(bmemCookie);
+			response.addCookie(bmemAutoId_cookie);
 			
 			url ="redirect:/";
 		

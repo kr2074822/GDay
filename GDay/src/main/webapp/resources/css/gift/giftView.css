@@ -1,0 +1,433 @@
+header{
+    width: 100%;
+    height: 100px;
+    background: red;;
+}
+
+/* SECTION ORDER */
+section{
+    width: 80%;
+    margin: 0 auto;
+}
+section .gift_wrapper{
+    margin-top: 100px;
+}
+section .gift_wrapper form{
+    display: flex;
+    justify-content: center;
+}
+section .gift_wrapper form .gift_img_wrapper{
+    margin-right: 10px;
+}
+section .gift_wrapper form .gift_img_wrapper .gift_img{
+    background: coral;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+section .gift_wrapper form .gift_img_wrapper img{
+    object-fit: cover;
+}
+section .gift_wrapper form .gift_img_wrapper .rate{
+    margin-top: 10px;
+    font-size: 20px ;
+}
+section .gift_wrapper form .gift_img_wrapper .rate span i{
+    color: #fe929f;
+
+}
+section .gift_wrapper form .gift_info{
+    margin-left: 10px;
+    width: 30%;
+    
+}
+section .gift_wrapper form .gift_info .gift_option{
+    
+}
+section .gift_wrapper form .gift_info .gift_option .title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+section .gift_wrapper form .gift_info .gift_option .title div h1{
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+section .gift_wrapper form .gift_info .gift_option .title div:nth-child(1) > span{
+    font-size: 14px;
+    font-weight: 300;
+}
+section .gift_wrapper form .gift_info .gift_option .title div > i{
+    font-size: 40px;
+    display: block;
+    margin-bottom: 1px;
+    text-align: center;
+}
+section .gift_wrapper form .gift_info .gift_option .title div:hover{
+    cursor: pointer;
+}
+section .gift_wrapper form .gift_info .gift_option .option{
+    position: relative;
+}
+section .gift_wrapper form .gift_info .gift_option .option > span{
+    font-size: 16px;
+}
+section .gift_wrapper form .gift_info .gift_option .option > select{
+    padding: 5px;
+    width: 100px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fe929f;
+}
+section .gift_wrapper form .gift_info .gift_option .option > select option{
+    outline: none;
+    border: none;
+    border: 1px solid red;
+}
+section .gift_wrapper form .gift_info .gift_option .option > div{
+    margin-top: 20px;
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #f1f1f1;
+    margin-bottom: 15px;
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .opt_title{
+    
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .opt_title span{
+    display: block;
+    font-size: 14px;
+    margin: 2px 0;
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .cnt{
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .cnt i{
+    font-size: 14px;
+    padding: 0 5px;
+}
+section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .cnt input{
+    text-align: center;
+    padding: 2px;
+    width: 20px;
+}
+section .gift_wrapper form .gift_info .priceBtn{
+    
+}
+section .gift_wrapper form .gift_info .priceBtn p{
+    text-align: right;
+    font-size: 14px;
+}
+
+section .gift_wrapper form .gift_info .priceBtn .price{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+section .gift_wrapper form .gift_info .priceBtn .price:nth-child(1){
+    position: relative;
+    bottom: 0;
+}
+section .gift_wrapper form .gift_info .priceBtn .price .total{
+    font-size: 30px;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn{
+    margin-top: 10px;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn a{
+    display: inline-block;
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center;
+    background: #999;
+    color: #fff;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn a:nth-child(3){
+    background: #fe929f;
+    border: 1px solid #fe929f;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn div {
+    display: flex;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn a{
+    width: 100%;
+    margin-bottom: 5px;
+    transition: .5s;
+}
+section .gift_wrapper form .gift_info .priceBtn .option_btn a:hover{
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 10px;
+}
+
+
+/* SECTION GIFT */
+section .gift {
+    margin-top: 100px;
+}
+
+section .gift .gift_title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+section .gift .gift_title div{
+    padding: 20px 100px;
+    border-right: 1px solid #fe929f;
+}
+section .gift .gift_title div:nth-child(3){
+    border-right: none; 
+}
+section .gift .gift_title div a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #141414;
+}
+section .gift .describe{
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px;
+    border-top: 1px solid #fe929f;
+}
+section .gift .describe h1{
+    position: relative;
+    font-size: 24px;
+    margin: 50px 0 30px;
+}
+section .gift .describe .report{
+    text-align: right;
+}
+section .gift .describe .report a{
+    text-decoration: none;
+}
+section .gift .describe .report a i{
+    color: #ff0101;
+    font-size: 40px;
+}
+section .gift .describe h1::before{
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 2px;
+    background: #fe929f;
+    bottom: -6px;
+}
+section .gift .describe .b_info{
+    margin-bottom: 50px;
+}
+section .gift .describe .b_info table,
+section .gift .describe .g_info table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+section .gift .describe .b_info table tr,
+section .gift .describe .g_info table tr{
+    width: 100%;
+}
+section .gift .describe .b_info table tr th,
+section .gift .describe .g_info table tr th{
+    font-size: 20px;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+section .gift .describe .b_info table tr td,
+section .gift .describe .g_info table tr td{
+    text-align: left;
+    border-bottom: 1px solid #fe929f;
+    border-right: 1px solid #fe929f;
+    padding: 10px;
+}
+section .gift .describe .b_info table tr td:last-child,
+section .gift .describe .g_info table tr td:last-child{
+    border-right: none;
+}
+
+
+section .gift .describe .b_info table tr td:nth-child(1),
+section .gift .describe .g_info table tr td:nth-child(1){
+    width: 25%;
+    text-align: left;
+}
+section .gift .describe .about_gift{
+    width: 100%;
+    margin-bottom: 30px;
+}
+section .gift .describe .about_gift p{
+    font-size: 20px;
+    line-height: 1.3;
+}
+section .gift .describe .g_info {
+    margin-bottom: 100px;
+}
+section .gift .describe .g_info table tr td {
+    font-size: 12px;
+}
+section .gift .describe .g_info table tr td:nth-child(1),
+section .gift .describe .g_info table tr td:nth-child(3){
+    width: 15%;
+}
+
+section .gift .describe .gift_pic{
+    margin-bottom: 100px;
+}
+section .gift .describe .gift_pic img{
+    width: 100%;
+}
+section .gift .describe .refund{
+    margin-bottom: 100px;
+}
+section .gift .describe .refund .table_wrapper{
+    
+}
+section .gift .describe .refund .table_wrapper table{
+    width: 100%;
+    font-weight: 300;
+}
+section .gift .describe .refund .table_wrapper table tr{
+    padding: 200px;
+}
+section .gift .describe .refund .table_wrapper table tr th{
+    padding: 20px 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #999;
+}
+section .gift .describe .refund .table_wrapper table tr th h2{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #141414;
+}
+section .gift .describe .refund .table_wrapper table tr td{
+    width: 25%;
+    padding: 10px;
+    border: 1px solid #f1f1f1;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+section .gift .describe .review_wrapper{
+
+}
+section .gift .describe .review_wrapper h1{
+    
+}
+section .gift .describe .review_wrapper .bar{
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
+    margin-bottom: 60px;
+}
+section .gift .describe .review_wrapper .bar:first-child{
+    margin-top: 0px;
+}
+section .gift .describe .review_wrapper .bar .info{
+    margin-bottom: 5px;
+}
+section .gift .describe .review_wrapper .bar .info span{
+    font-size: 18px;
+    font-weight: 500;
+}
+section .gift .describe .review_wrapper .bar .progress_line{
+    width: 100%;
+    position: relative;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .05), 0px 1px rgba(255, 255, 255, 0.8);
+}
+section .gift .describe .review_wrapper .bar .progress_line span{
+    height: 100%;
+    background: #fe929f;
+    position: absolute;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+}
+section .gift .describe .review_wrapper .review_editor{
+    
+}
+
+section .gift .describe .review_wrapper .review_editor .write_form{
+    
+}
+section .gift .describe .review_wrapper .review_editor .write_form form{
+    
+}
+section .gift .describe .review_wrapper .review_editor .write_form form textarea{
+    width: 85%;
+    resize: none;
+}
+section .gift .describe .review_wrapper .review_editor .write_form form img{
+    width: 100px;
+    height: 100px;
+}
+section .gift .describe .review_wrapper .review_editor .write_form form input{
+    display: none;
+}
+
+section .gift .describe .review_wrapper .review_editor .write_form form button{
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: #fe929f;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+}
+
+section .gift .describe .review_wrapper .review{
+}
+section .gift .describe .review_wrapper .review .item{
+    border-bottom: 1px solid #d1d1d1;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+}
+
+section .gift .describe .review_wrapper .review .item .rank{
+    margin-bottom: 10px;
+}
+section .gift .describe .review_wrapper .review .item .rev_content img{
+    width: 100px;
+    height: 100px;
+    background: red;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+section .gift .describe .review_wrapper .review .item .rev_content{
+    width: 60%;
+    margin-bottom: 10px;
+}
+section .gift .describe .review_wrapper .review .item .writer{
+    display: flex;
+    justify-content: space-between;
+}
+section .gift .describe .review_wrapper .review .item .writer span{
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

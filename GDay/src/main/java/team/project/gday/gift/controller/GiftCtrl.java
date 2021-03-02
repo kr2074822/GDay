@@ -15,11 +15,24 @@ public class GiftCtrl {
 	@Autowired
 	private GiftService service;
 	
+	// 선물 리스트 화면
 	@RequestMapping("list")
 	public String giftList() {
 		return "gift/giftList";
 	}
+	// 선물 등록 화면
+	@RequestMapping("insertView")
+	public String giftInsertView() {
+		return "gift/giftInsert";
+	}
 	
+	
+	// 선물 등록 기능 구현
+	@RequestMapping("insert")
+	public String giftInsert() {
+		
+		return "redirect:/";
+	}
 	
 	
 }
