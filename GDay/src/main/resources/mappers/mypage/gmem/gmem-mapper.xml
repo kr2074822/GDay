@@ -7,7 +7,8 @@
 		<id property="opNo" column="OP_NO"/>
 		<result property="orderNo" column="ORDER_NO"/>
 		<result property="prdtNo" column="PRDT_NO"/>
-		<result property="prdtName" column="PRDT_Name"/>
+		<result property="prdtName" column="PRDT_NAME"/>
+		<result property="prdtPrice" column="PRDT_PRICE"/>
 		<result property="sellerNo" column="SELLER_NO"/>
 		<result property="sellerName" column="SELLER_NM"/>
 		<result property="statusNo" column="STATUS_NO"/>
@@ -71,7 +72,14 @@
   		<result property="cDate" column="C_DATE"/>
 	</resultMap>
 	
-	
+	<!-- 상품 이미지 resultMap -->
+	<resultMap type="Attachment" id="attachment_rm">
+		<id property="fileNo" column="FILE_NO"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
 	
 	
 </mapper>

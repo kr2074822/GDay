@@ -8,6 +8,7 @@ public class Order {
 	private int orderNo; //주문번호
 	private int prdtNo;//상품번호
 	private String prdtName; //상품명
+	private int prdtPrice;//상품가격
 	private int sellerNo; //판매자 번호
 	private String sellerName; //업체명 
 	private int statusNo; //주문 상태 번호
@@ -47,6 +48,14 @@ public class Order {
 
 	public void setPrdtName(String prdtName) {
 		this.prdtName = prdtName;
+	}
+
+	public int getPrdtPrice() {
+		return prdtPrice;
+	}
+
+	public void setPrdtPrice(int prdtPrice) {
+		this.prdtPrice = prdtPrice;
 	}
 
 	public int getSellerNo() {
@@ -126,13 +135,16 @@ public class Order {
 	public void setImpUid(String impUid) {
 		this.impUid = impUid;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Order [opNo=" + opNo + ", orderNo=" + orderNo + ", prdtNo=" + prdtNo + ", prdtName=" + prdtName
-				+ ", sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", statusNo=" + statusNo + ", statusName="
-				+ statusName + ", orderDate=" + orderDate + ", opAmount=" + opAmount + ", giftOpNo=" + giftOpNo
-				+ ", buyer=" + buyer + ", shipName=" + shipName + ", shipAddr=" + shipAddr + ", shipPhone=" + shipPhone
-				+ ", impUid=" + impUid + "]";
+				+ ", prdtPrice=" + prdtPrice + ", sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", statusNo="
+				+ statusNo + ", statusName=" + statusName + ", orderDate=" + orderDate + ", opAmount=" + opAmount
+				+ ", giftOpNo=" + giftOpNo + ", buyer=" + buyer + ", shipName=" + shipName + ", shipAddr=" + shipAddr
+				+ ", shipPhone=" + shipPhone + ", impUid=" + impUid + "]";
 	}
+	
+	
+
 }
