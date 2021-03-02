@@ -72,7 +72,7 @@
                     <form action="loginAction" method="post">
                         <h2>판매자회원 로그인</h2>
                         <div>
-                            <input type="text" name="memberEmail" id="" required>
+                            <input type="text" name="memberEmail" id="" value="${cookie.saveBmemId.value }" required>
                             <label for="">Email</label>
                         </div>
                         <div>
@@ -83,10 +83,10 @@
                         </div>
                         
                         <div class="chk_wrap">
-                            <input type="checkbox" id="saveBmemId" name="saveBmemId">
+                            <input type="checkbox" id="saveBmemId" name="saveBmemId" <c:if test="${!empty cookie.saveBmemId.value}">checked</c:if>>
                             <label for="saveBmemId"> 아이디 저장</label>
                             
-                            <input type="checkbox" id="bmemAutoLogin" name="bmemAutoLogin" disabled>
+                            <input type="checkbox" id="bmemAutoLogin" name="bmemAutoLogin" <c:if test="${!empty cookie.bmemAutoLogin.value}">checked</c:if> disabled>
                             <label for="bmemAutoLogin"> 자동 로그인</label>
                             <input type="hidden" value="B" name="memberGrade">
                         </div>

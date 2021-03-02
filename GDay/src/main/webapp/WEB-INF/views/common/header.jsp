@@ -14,8 +14,6 @@
 
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/header.css" >
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-	<!-- sweetalert -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	
@@ -49,29 +47,92 @@
 			<ul id="header-menu">	
 				<li class="header-li header-login"><a href="#">로그인</a></li>			
 				<li class="header-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
-				<li class="header-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
+				<li class="header-li"><a href="#">클래스찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
 				<li class="header-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 			</ul>
 			
-			<div id="header-member-area">
-				<a id="login" href="${contextPath}/login/loginView">로그인</a>
 				
-				<div id="hamberger">
-				
-					<i id="member-icon" class="fas fa-bars"></i>	
-					
-					<div id="header-media-menu">
-						<ul id="media-menu">	
-							<li class="media-li"><a href="#">로그인</a></li>			
-							<li class="media-li"><a href="#">선물찾기</a></li>
-							<li class="media-li"><a href="#">클래스찾기</a></li>
-							<li class="media-li"><a href="#">마이캘린더</a></li>
-							<li class="media-li"><a href="#">매거진</a></li>
-						</ul>		
+			
+			
+			
+			<c:choose>
+            		<%-- 로그인이 되어있지 않은 경우 --%>
+            	<c:when test="${empty sessionScope.loginMember }">
+					<div id="header-member-area">
+						<a id="login" href="${contextPath}/login/loginView">로그인</a>
+						<div id="hamberger">
+							<i id="member-icon" class="fas fa-bars"></i>	
+							<div id="header-media-menu">
+								<ul id="media-menu">	
+									<li class="media-li"><a href="#">로그인</a></li>			
+									<li class="media-li"><a href="#">선물찾기</a></li>
+									<li class="media-li"><a href="#">클래스찾기</a></li>
+									<li class="media-li"><a href="#">마이캘린더</a></li>
+									<li class="media-li"><a href="#">매거진</a></li>
+								</ul>		
+							</div>
+						</div>		  
 					</div>
-				</div>		  
-			</div>
+				</c:when>
+				
+				<c:otherwise>
+					<div id="header-member-area">
+					
+						<div>
+							<div class="action">
+						        <div class="profile" onclick="menuToggle();">
+						            <img src="${contextPath}/resources/images/profileImg/profile.jpg" alt="">
+						        </div>
+						        <div class="menu">
+						            <h3>김영주님<br><span>반갑습니다</span></h3>
+						            <ul>
+								        <li>
+								            <a href="#">
+								                <div class="name"><span data-text="Home">마이페이지</span></div>
+								            </a>
+								        </li>
+								        <li>
+								            <a href="">
+								                <div class="name">
+								                	<span data-text="message">쪽지</span>
+								                </div>
+								            </a>
+								        </li>
+								        <li>
+								            <a href="">
+								                <div class="name">
+								                	<span data-text="help">고객센터</span>
+								                </div>
+								            </a>
+								        </li>
+								        <li>
+								            <a href="${contextPath}/login/logout">
+								                <div class="name">
+								                	<span data-text="Contact">로그아웃</span>
+								                </div>
+								            </a>
+								        </li>
+								    </ul>
+						        </div>
+						    </div>
+						</div>
+						
+					
+						<div id="hamberger">
+							<i id="member-icon" class="fas fa-bars"></i>	
+							<div id="header-media-menu">
+								<ul id="media-menu">	
+									<li class="media-li"><a href="#">선물찾기</a></li>
+									<li class="media-li"><a href="#">클래스찾기</a></li>
+									<li class="media-li"><a href="#">마이캘린더</a></li>
+									<li class="media-li"><a href="#">매거진</a></li>
+								</ul>		
+							</div>
+						</div>		  
+					</div>
+				</c:otherwise>
+            </c:choose>
 			
 			<i id="cancle-icon" class="fas fa-times"></i>
 			
@@ -206,6 +267,14 @@
               }, 300);
           });
       });  */ 
+      
+      
+      function menuToggle(){
+          const toggleMenu = document.querySelector('.menu');
+          toggleMenu.classList.toggle('active')
+
+      }
+      
       
   </script>
 
