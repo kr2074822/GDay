@@ -20,8 +20,6 @@
     <title>Document</title>
 </head>
 <body>
-    <header></header>
-    
     <!-- summernote 사용 시 필요한 js 파일 추가 -->
 	<script src="${contextPath}/resources/summernote/js/summernote-lite.js"></script>
 	<script src="${contextPath}/resources/summernote/js/summernote-ko-KR.js"></script>
@@ -329,7 +327,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="editor">
+                <div class="editor boardRow">
                     <textarea class="form-control" id="summernote" name="prdtContent" rows="10" style="resize: none;"></textarea>
                 </div>
                 <div class="buttons">
@@ -415,6 +413,9 @@
 			
 		});
         
+	    
+	    
+	    
         $(document).ready(function(){
             $("#content").summernote({
                width : 1000,

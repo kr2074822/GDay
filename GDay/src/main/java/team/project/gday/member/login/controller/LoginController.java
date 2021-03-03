@@ -154,7 +154,16 @@ public class LoginController {
 			response.addCookie(bmemCookie);
 			response.addCookie(bmemAutoId_cookie);
 			
-			url ="redirect:/";
+			
+			if(inputMember.getMemberGrade().equals("B")) {
+				url = "common/bMain";
+			}else {
+				
+				url ="redirect:/";
+			}
+			
+			
+			
 		
 		}else {
 			url = "login/login";

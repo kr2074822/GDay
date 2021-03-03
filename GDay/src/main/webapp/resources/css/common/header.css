@@ -1,11 +1,27 @@
-	@charset "UTF-8";
+@charset "UTF-8";
 /* ///////////////////////////////////////////////////////////// */
 body{
 /* 	background-color: #fafafa; */
 }
 
+@font-face {
+    font-family: 'TmoneyRoundWindRegular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 header {
 	height: 100px;
+	font-family: 'yg-jalnan';
+	font-weight: 100;
 }
 
 header #headerWrapper {
