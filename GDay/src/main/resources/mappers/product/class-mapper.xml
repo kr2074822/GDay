@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="classMapper">
 
-	<!-- 상품 resultMap -->
-	<resultMap type="Class" id="prdt_rm">
+	<!-- V_Class resultMap -->
+	<resultMap type="Class" id="class_rm">
 		<id property="prdtNo" column="PRDT_NO"/>
    		<result property="prdtType" column="PRDT_TYPE"/>
   		<result property="prdtName" column="PRDT_NAME"/>
@@ -14,10 +14,6 @@
   		<result property="modifyDate" column="MODIFY_DATE"/>
   		<result property="prdtStatus" column="PRDT_STATUS"/>
   		<result property="memNo" column="MEM_NO"/>
-	</resultMap>
-	
-	<!-- 클래스 resultMap -->
-	<resultMap type="Class" id="class_rm">
   		<result property="cCount" column="C_COUNT"/>
   		<result property="cNowCount" column="C_NOWCOUNT"/>
   		<result property="cSession" column="C_SESSION"/>
@@ -37,6 +33,31 @@
  		<result property="prdtNo" column="PRDT_NO"/>
 	</resultMap>		
 
+	<!-- V_REVIEW resultMap -->
+	<resultMap type="Review" id="review_rm">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="rvContent" column="RV_CONTENT"/>
+		<result property="rvStar" column="RV_STAR"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="rvStatus" column="RV_STATUS"/>
+		<result property="writerNo" column="WRITER_NO"/>
+		<result property="writer" column="WRITER"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="giftOpNo" column="GIFT_OP_NO"/>
+		<result property="rvImgPath" column="RV_IMG_PATH"/>
+		<result property="rvImgName" column="RV_IMG_NAME"/>
+	</resultMap>		
+	
+		<!-- 상품 이미지 resultMap -->
+	<resultMap type="Attachment" id="attachment_rm">
+		<id property="fileNo" column="FILE_NO"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
+	
 
 	<!-- 다음 상품번호 조회 -->
 	<select id="selectNextNo" resultType="_int">
@@ -77,5 +98,28 @@
 		</foreach>
 		)A
 	</insert>
+	
+	<!-- 전체 클래수 수 조회 -->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*) FROM V_CLASS
+		WHERE PRDT_STATUS = 'Y'
+	</select>
+	
+	<!-- 클래스 목록 조회 -->
+	<select id="selectList" parameterType="_int" resultMap="class_rm">
+		SELECT PRDT_NAME, PRDT_CONTENT, PRDT_PRICE FROM V_CLASS
+		WHERE PRDT_TYPE = 'C' AND PRDT_STATUS = 'Y'
+	</select>
+	
+	<!-- 썸네일 목록 조회 -->
+	<select id="selectThumbnailList" parameterType="list" resultMap="">
+		SELECT * FROM ATTACHMENT
+		WHERE FILE_LEVEL = 0
+		AND PRDT_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item.prdtNo}
+		</foreach>
+	</select>
+	
 	
 </mapper>
