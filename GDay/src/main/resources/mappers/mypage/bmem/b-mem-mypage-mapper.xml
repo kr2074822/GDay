@@ -69,6 +69,16 @@
 		<result property="prdtNo" column="PRDT_NO"/>	
 	</resultMap>
 	
+	<!-- 선물 옵션 resultMap -->
+	<resultMap type="GOption" id="option_rm">
+		<id property="gOptNo" column="G_OPT_NO"/>
+	
+  	<result property="gOptName" column="G_OPT_NAME"/>
+ 		<result property="gOptType" column="G_OPT_TYPE"/>
+ 		<result property="gOptSold" column="G_OPT_SOLD"/>
+ 		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
 	<!-- 내 판매 목록 전체 게시글 수 개수 조회 -->
 	<select id="getGiftListCount" parameterType="Member" resultType="_int">
 		SELECT COUNT(*) FROM V_GIFT
@@ -140,5 +150,29 @@
 		AND PRDT_TYPE = 'G'
 	</select>
 	
+
+	<!-- 옵션 이름 번호로 바꿔오기 -->
+	<select id="opNumSelect" parameterType="map" resultMap="option_rm">
+		SELECT G_OPT_NO FROM GIFT_OPTION
+		WHERE G_OPT_NAME IN 
+		<foreach collection="opNameAry" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>		
+	</select>
+	
+	<update id="orderStatusChange" parameterType="map">
+		UPDATE ORDER_PRODUCT SET
+		STATUS_NO = #{status}
+		WHERE GIFT_OP_NO = 
+		<foreach collection="opNumAry" item="item" separator=",">
+			#{item}
+			AND ORDER_NO = 
+			<foreach collection="ordNumAry" item="item" separator=",">
+				#{item}
+			</foreach>	
+		</foreach>	
+
+
+	</update>
 	
 </mapper>

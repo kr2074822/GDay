@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.dao.BmemDAO;
 import team.project.gday.member.bmem.model.vo.OrderList;
@@ -79,6 +80,29 @@ public class BmemServiceImpl implements BmemService {
 	@Override
 	public List<OrderList> bOrderList(PageInfo9 pInfo, Member loginMember) {
 		return dao.bOrderList(pInfo, loginMember);
+	}
+
+	
+	// 주문 상태 변경 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int orderStatusChange(Map<String, Object> map) {
+		
+		List<GOption> opAry = dao.opNumSelect(map);
+		
+		int[] opNumAry = new int[opAry.size()];
+		
+		for(int i = 0; i < opAry.size(); ++i) {
+			opNumAry[i] = opAry.get(i).getgOptNo();
+		}
+		
+		System.out.println(opNumAry);
+		
+		map.put("opNumAry", opNumAry);
+		
+		int result = dao.orderStatusChange(map);
+		
+		return result;
 	}
 
 	

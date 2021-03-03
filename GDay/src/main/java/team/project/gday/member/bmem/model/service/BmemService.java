@@ -83,4 +83,12 @@ public interface BmemService {
 	List<OrderList> bOrderList(PageInfo9 pInfo, Member loginMember);
 
 	
+	
+	/** 주문 상태 변경 Service
+ 	 * @param map
+	 * @return
+	 */
+	int orderStatusChange(Map<String, Object> map);
+
+	
 }

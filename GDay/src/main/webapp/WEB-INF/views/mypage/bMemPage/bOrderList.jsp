@@ -46,7 +46,6 @@
            <select name="giftStatus" id="giftStatus">
                <option value="100">결제 완료</option>
                <option value="200">발송 완료</option>
-               <option value="300">구매 확정</option>
            </select> <!-- giftStats : 주문 선물 상태 -->
            <button type="button" id="status-change-btn">변경</button>
         </div>
@@ -297,9 +296,11 @@
 										"opNameAry" : opNameAry},
 						type : "post",
 						success : function(result) {
-							
+							if(result > 0) {
+								console.log("상태가 변경되었습니다.");
+							}
 						}, error : function() {
-							
+								console.log("실패.")
 						}						
 					});
 					

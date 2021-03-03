@@ -87,14 +87,11 @@
 	</select>
 	
 	<!-- 판매 회원 기본 날짜 선택 후 검색  -->
-	<select id="bOdsList" parameterType="map" resultType="_int">
+	<select id="bOdsList" parameterType="map" resultMap="bOrder_rm">
 		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
 		FROM V_BMEMBER_ORDERLIST
 		WHERE PRDT_TYPE = 'G'	
 		AND MEM_NO = #{memberNo}
-		<if test="searchKey == 'all'">
-			AND LIKE '%' || #{searchValue} || '%'
-		</if>	
 		<if test="searchKey == 'memName'">
 			AND MEM_NAME LIKE '%' || #{searchValue} || '%'
 		</if>	
@@ -105,6 +102,40 @@
 			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
 		</if>		
 		<![CDATA[AND ROUND(SYSDATE-ORDER_DATE) <= #{day}]]>
+	</select>
+	
+	
+		<!-- 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성 -->
+	<select id="getOdsPageInfo2" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM V_BMEMBER_ORDERLIST
+		WHERE PRDT_TYPE = 'G'	
+		AND MEM_NO = #{memberNo}
+		<if test="searchKey == 'memName'">
+			AND MEM_NAME LIKE '%' || #{searchValue} || '%'
+		</if>	
+		<if test="searchKey == 'prdtName'">
+			AND PRDT_NAME LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'status'">
+			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
+		</if>		
+	</select>
+	
+	<!-- 판매 회원 기본 날짜 선택 안하고 검색  -->
+	<select id="bOdsList2" parameterType="map" resultMap="bOrder_rm">
+		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
+		FROM V_BMEMBER_ORDERLIST
+		WHERE PRDT_TYPE = 'G'	
+		AND MEM_NO = #{memberNo}
+		<if test="searchKey == 'memName'">
+			AND MEM_NAME LIKE '%' || #{searchValue} || '%'
+		</if>	
+		<if test="searchKey == 'prdtName'">
+			AND PRDT_NAME LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'status'">
+			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
+		</if>		
 	</select>
 	
 	

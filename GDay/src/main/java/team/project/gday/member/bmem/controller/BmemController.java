@@ -51,7 +51,7 @@ public class BmemController {
 				model.addAttribute("thList", thumbnailList);
 			}
 		}
-		
+	
 		model.addAttribute("gList", gList);
 		model.addAttribute("pInfo", pInfo);
 		
@@ -141,8 +141,16 @@ public class BmemController {
 							 	 @PathVariable("status") int status) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-			
-		return 0;
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("status", status);
+		map.put("ordNumAry", ordNumAry);
+		map.put("opNameAry", opNameAry);
+		
+		int result = service.orderStatusChange(map);
+				
+		System.out.println(result);
+		
+		return result;
 	}
 	
 }
