@@ -30,7 +30,7 @@ public class GiftCtrl {
 	// 선물 등록 기능 구현
 	@RequestMapping("insert")
 	public String giftInsert() {
-		
+		System.out.println(1);
 		return "redirect:/";
 	}
 	
