@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=1.0">
     <link rel="stylesheet" href="${contextPath}/resources/css/review/reviewInsert.css">
 
 <!-- <a href="#" onclick="popUp(1, 'g')">후기 쓰기 선물</a>
@@ -96,7 +96,7 @@ function popUp(opNo, type){
         dataType : "json"
     }) */
 
-    $(".modal-cover").show();
+    $("#rvGift").parent().show();
 }
 
 /* 인풋 창 닫기/취소 */
@@ -121,7 +121,7 @@ function cancelInsert(str){
 	  						if(result.isConfirmed){
 	  							$(".modal-cover").hide();
                                 //모달 리셋  
-                                modalInputReset();
+                  modalInputReset();
 	  						} 
 	  					});
 }
@@ -182,12 +182,12 @@ function modalInputReset(){
 
 $(function(){
     //창닫기 버튼(x)
-    $(".modal-close").children().on("click", function(){
+    $("#rvGift .modal-close").children().on("click", function(){
         cancelInsert("x")
     });
 
     //입력 모달창 취소 버튼
-    $(".m-cancel-btns").on("click", function(){
+    $("#rvGift .m-cancel-btns").on("click", function(){
         cancelInsert("cancel");
     });
 

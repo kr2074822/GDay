@@ -11,20 +11,25 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.3"> <!-- 같은 클래스 공유 -->
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.2"> <!-- 상세 페이지 고유 css -->
-
+		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
+    
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+		<!-- 주소 api -->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930f7a74b0fd1bdc17d81c3d8fb76bf4&libraries=services"></script>
+
+		
   	
   	<style>
   	
   	#wrapper-list {
   		display : flex; 
   	}
-  	
   	
   	</style>
 </head>
@@ -113,7 +118,7 @@
 		                <span class="column-label">클래스 장소</span>
 		                <div class="column-content">
 			                <span class="column-content-1" id="class-addr">${gClass.cLocal}</span>
-		  	              <a class="btn-map btn-view">지도보기</a>
+		  	              <a class="btn-map btn-view" onclick="mapView('${gClass.cLocal}')">지도보기</a>
 		  	            </div>  
 		            </div>
 	            </c:if>
@@ -122,7 +127,7 @@
                 <span class="column-label">수강료</span>
                 <span class="column-content class-price"><fmt:formatNumber value="${order.prdtPrice * order.opAmount}"/>원 / ${order.opAmount}명</span>
             </div>
-            <c:set var="total" value="${total + order.prdtPrice * order.opAmount }"/>
+            <c:set var="total" value="${total + order.prdtPrice * order.opAmount}"/>
           </c:forEach>
         
         </div>
@@ -159,6 +164,22 @@
         <a href="#" class="btn-gotolist btn-view">목록</a>
     </div>
 </div>
+
+
+<!-- 모달창 : 지도 팝업 -->
+<div class="modal-cover">
+  <div class="cal-modal" id="modal-map" style="width:600px; height:550px;">
+    <a class="modal-close"><i class="fas fa-times map-close"></i></a>
+    <div class="m-title">강의장 확인하기</div>
+     	<div class="m-content-box">
+     		<br>
+     		<div id="map-box" style="width:100%; height:400px;"></div>
+    	</div>
+  </div>
+</div>
+
+
+
 <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

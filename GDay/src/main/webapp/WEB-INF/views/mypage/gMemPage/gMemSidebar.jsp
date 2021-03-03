@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     
-  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.3"/>
+  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.4"/>
   <!-- icon : font-awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -14,10 +14,10 @@
 
   <div class="sidebar-area">
     <div class="pageTitle">마이 페이지</div>
-      <div id="sidebar-mypage">
+<!--       <div id="sidebar-mypage">
           <img src="#" id="myProfile">
           <span id="nickName">닉네임</span>
-      </div>
+      </div> -->
       <div id="sidebar-ul">
           <ul class="sidebar-menu">
               <li class="active-sidebar">

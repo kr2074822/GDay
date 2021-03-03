@@ -29,7 +29,7 @@
   	#wrapper-list {
   		display : flex;
   	}
-  	
+  	body { height : 100vh;}
   	</style>
   	
 </head>
@@ -150,5 +150,6 @@
         
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
 
+<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

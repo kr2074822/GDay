@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>위시 리스트</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/wishList.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.0">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/wishList.css?ver=1.0">
 
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -19,15 +19,13 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <!-- swal2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
   	
   	<style>
   	
   	#wrapper-list {
   		display : flex;
   	}
+  	body { height : 100vh;}
   	
   	</style>
   	
@@ -110,6 +108,6 @@
         
    </div><!-- wish-all -->
 </div>
-
+<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>
