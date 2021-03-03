@@ -109,7 +109,9 @@ function selectOrderList(cp){
 					$.each(cList, function(index, gClass){
 						
 						if(order.prdtNo == gClass.prdtNo){
-							text1 = (order.prdtPrice * order.opAmount) + "원 / " + gClass.cSession + "회";
+							
+							/* 숫자.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); : 화폐단위 , 찍어줌 */
+							text1 = (order.prdtPrice * order.opAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원 / " + gClass.cSession + "회";
 							text2 = gClass.cStartDate + " ~ " + gClass.cEndDate;
 						}
 					});

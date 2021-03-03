@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.xml.internal.ws.api.message.Attachment;
 
@@ -86,6 +87,7 @@ public class GmemServiceImpl implements GmemService {
 
 	
 	// 주문 구매 확정 처리 service 구현
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int confirmOrder(int opNo) {
 		return dao.confirmOrder(opNo);

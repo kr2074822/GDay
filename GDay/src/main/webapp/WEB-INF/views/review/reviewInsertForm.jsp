@@ -15,7 +15,6 @@
       <a class="modal-close"><i class="fas fa-times"></i></a>
       <div class="review-card">
         <div class="review-thumb">
-            <img src="#">
         </div>
         <div class="review-info">
             <span class="opNo review-hidden">21020423456</span> <!-- 상품 주문 번호 -->

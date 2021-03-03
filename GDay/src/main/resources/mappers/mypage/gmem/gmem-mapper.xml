@@ -143,7 +143,7 @@
 	
 	<!-- 클래스 주문 목록 상세 정보 조회 -->
 	<select id="selectCList" parameterType="list" resultMap="class_rm">
-		SELECT PRDT_NO, C_START_DATE, C_END_DATE, C_SESSION, C_DATE
+		SELECT PRDT_NO, C_START_DATE, C_END_DATE, C_SESSION, C_DATE, C_LOCATE
 		FROM V_CLASS 
 		WHERE PRDT_NO IN (
 		<foreach collection="list" item="order" separator=",">
@@ -179,7 +179,7 @@
 	<select id="selectOrders" parameterType="map" resultMap="order_rm">
 		SELECT * FROM V_ORDER
 		WHERE ORDER_NO = #{orderNo}
-
+		AND PRDT_TYPE = #{type}
 	</select>
 	
 	<!-- 구매 확정 처리  -->

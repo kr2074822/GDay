@@ -129,6 +129,7 @@
 .seller-name {
     font-weight : bold;
     font-size : 16px;
+    margin-bottom: 5px;
 }
 
 .list-seller > a, .list-status > a {

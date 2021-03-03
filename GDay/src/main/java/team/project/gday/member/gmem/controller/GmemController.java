@@ -123,9 +123,12 @@ public class GmemController {
 				//returnMap에 썸네일 추가
 				returnMap.put("thumbnails", thumbnails);
 				
-				
 				//리뷰 확인하는 거 가져오기 (RV_NO = OP_NO)
+				List<Review> rCheck = service.selectRCheck(oList);
 				
+				if(rCheck != null && !rCheck.isEmpty()) {
+					returnMap.put("rCheck", rCheck);
+				}
 				
 				if(type.equals("G")) {//선물일 때
 					
@@ -164,7 +167,8 @@ public class GmemController {
 	public String gMemOrderView(@PathVariable("type") String type,
 								@PathVariable("orderNo") int orderNo, 
 								Model model, RedirectAttributes ra,
-								@RequestHeader(value="refere", required=false) String referer) {
+								@RequestHeader(value="referer", required=false) String referer) {
+		String url = null;//주소 담기
 		
 		//파라미터 맵에 담기
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -194,7 +198,9 @@ public class GmemController {
 				
 				System.out.println("rCheck : " + rCheck);
 				
-				model.addAttribute("rCheck", rCheck);
+				if(rCheck != null && !rCheck.isEmpty()) {
+					model.addAttribute("rCheck", rCheck);
+				}
 
 				if(type.equals("G")) {//선물일 때
 					
@@ -203,7 +209,7 @@ public class GmemController {
 					
 					if(optList != null && !optList.isEmpty()) {
 						model.addAttribute("optList", optList);
-						//System.out.println("optList : " + optList);
+						System.out.println("optList : " + optList);
 					}
 					
 				} else if (type.equals("C")) {//클래스일 때
@@ -217,19 +223,23 @@ public class GmemController {
 					System.out.println(cList);
 				} 
 			}
+			
+			url = "mypage/gMemPage/gMemOrderView" + type;
+			
+		} else {
+			if(referer == null) {
+				url = "redirect: ../orderList/" + type;
+			} else {
+				url = "redirct: " + referer;
+			}
+			ra.addFlashAttribute("swalIcon", "error");
+			ra.addFlashAttribute("swalTitle", "존재하지 않는 게시글입니다.");
 		}
-		
-		
-		return "mypage/gMemPage/gMemOrderView" + type;
+		return url;
 	}
 	
 	
-
-	
-	
-	
-	
-	//마이페이지 주문 구매 확정 처리
+	//마이페이지 주문 목록에서 구매 확정 처리
 	@ResponseBody
 	@RequestMapping("confirmOrder")
 	public int confirmOrder(@RequestParam("opNo") int opNo) {
@@ -239,6 +249,25 @@ public class GmemController {
 		return result;
 	}
 	
+	//마이페이지 주문 상세에서 구매 확정 처리
+	@RequestMapping("confirmOrderIn/{orderNo}/{opNo}")
+	public String confirmOrderIn(@PathVariable("orderNo") int orderNo,
+								 @PathVariable("opNo") int opNo,
+								 RedirectAttributes ra) {
+		int result = service.confirmOrder(opNo);
+		
+		if(result > 0) {
+			swalIcon = "success";
+			swalTitle = "구매 확정되었습니다.";
+		} else {
+			swalIcon = "error";
+			swalTitle = "구매 확정에 실패했습니다.";
+		}
+		ra.addFlashAttribute("swalIcon", swalIcon);
+		ra.addFlashAttribute("swalTitle", swalTitle);
+		
+		return "redirect: ../" + orderNo;
+	}
 	
 	
 	//마이페이지 주문 취소 요청 페이지 이동
