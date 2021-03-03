@@ -3,14 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>클래스 등록 신청</title>
 <script src="https://kit.fontawesome.com/955b087c12.js" crossorigin="anonymous"></script>
+
 <!-- 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930f7a74b0fd1bdc17d81c3d8fb76bf4&libraries=services"></script>
@@ -19,165 +18,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
 
+<!-- summernote -->
+<link rel ="stylesheet" href="${contextPath}/resources/summernote/css/summernote-lite.css">
 
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassReview.css">
-<link rel ="stylesheet" href="${contextPath}/resources/summernote/css/summernote-lite.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassInsert.css">
 <!--     Bootstrap core JS
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  -->
-<style>
 
-/* number 태그 화살표 제거 */
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
-	{
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-.wrapper {
-   width: 80%;
-   margin: 0 auto;
-}
-
-.box {
-   background: rgba(0, 0, 0, .07);
-   width: 100%;
-   height: 15%;
-   padding: 20px;
-   margin-top: 20px;
-   margin-bottom: 20px;
-}
-
-.box h1 {
-   font-size: 1.2em;
-   font-weight: bold;
-   padding: 7px;
-}
-
-.box ul {
-	display: flex;
-	justify-content: start;
-	align-content: center;
-}
-
-.box ul li {
-	margin-bottom: 10px;
-}
-
-
-.box .item {
-	color: gray;
-	border: 1px solid gray;
-	border-radius: 40px;
-	padding-right: 8px;
-	padding-left: 8px;
-	margin: 5px;
-	line-height: 30px;	
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-.box input[type="checkbox"] {
-	display: none;
-}
-
-.box input[type="checkbox"]:checked + label {
-	transition: 0.3s ease-out;
-  background: #fe929f;
-  color:white;
-  border: 1px solid lightgray;
-}
-
-/* 수강인원/세션수/개강일 등 기입 */
-.extraInput {
-	margin-top: 30px;
-	display: flex;
-	justify-content: space-between;
-
-}
-
-.extraInput .optRow input {
-	width: 100px;
-	vertical-align: middle;
-	margin-left: 7px;
-}
-
-.extraInput .optRow input[type="date"] {
-	width: 150px;
-}
-
-/* 신청 제목, 내용 작성 */
-.boardRow {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-}
-
-.boardRow img {
-	margin-top:30px;
-	margin-bottom:20px;
-	display: inline-block;
-}
-
-#title {
-	height: 35px;
-	width: 82%;
-	border: 1px solid #c9c9c9;
-	border-radius: 5px;
-}
-
-/* 등록, 취소 버튼 */
-.btnArea {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 100px;
-}
-
-#submitBtn {
-	margin-top: 20px;
-	margin-right: 10px;
-	background: #fe929f;
-	border-radius: 5px;
-	border-style: none;
-	color: white;
-	width: 55px;
-	height: 2em;
-}
-
-#resetBtn {
-	margin-top: 20px;
-	background: gray;
-	border-radius: 5px;
-	border-style: none;
-	color: white;
-	width: 55px;
-	height: 2em;
-	
-}
-
-/* 주소 입력 */
-.address {
-	margin-right: 20px;
-	height: 25px;
-	border-radius: 5px;
-	border: 1px solid #c9c9c9;
-}
-
-#sample5_address {
-	width: 48%;
-}
-
-#searchBtn {
-	border-style: none;
-	background: #fe929f;
-	color: white;
-}
-
-</style>
 </head>
 
 <body>
@@ -199,7 +52,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
             <label for="aa" class="item">영유아</label>
         </li>
         <li class="tag">
-            <input type="checkbox" name="hashNo" value="2" class="item" id="an">
+            <input type="checkbox" name="hashNo" value="2" class="item" id="ab">
             <label for="an" class="item">어린이</label>
         </li>
         <li class="tag">
