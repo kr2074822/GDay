@@ -424,6 +424,7 @@
         
         // 팝업 
         for (const button of item) {
+        	console.log(item)
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
                 
@@ -436,6 +437,7 @@
                     }
                 }
             });
+            
         }
 
         // 버튼 클릭 리플 효과

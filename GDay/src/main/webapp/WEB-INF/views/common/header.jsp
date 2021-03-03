@@ -20,6 +20,9 @@
 	 <!-- swal2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    
+    <!-- Kakao -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 		<c:if test="${!empty swalTitle}">
@@ -122,7 +125,7 @@
 								            </a>
 								        </li>
 								        <li>
-								            <a href="${contextPath}/login/logout">
+								            <a href="${contextPath}/login/logout" id="logout">
 								                <div class="name">
 								                	<span data-text="Contact">로그아웃</span>
 								                </div>
@@ -289,6 +292,32 @@
           toggleMenu.classList.toggle('active')
 
       }
+      
+      // 로그아웃
+      $("#logout").on("click", function(){
+		// window.location.href = "${contextPath}/login/logout";
+    	  
+    	  console.log(1)
+    	  
+    	  Kakao.Auth.logout(function() {
+			  console.log(Kakao.Auth.getAccessToken());
+			});    
+    	  
+		Kakao.API.request({
+			  url: '/v1/user/unlink',
+			  success: function(response) {
+			    console.log(response);
+			  },
+			  fail: function(error) {
+			    console.log(error);
+			  },
+			});
+		
+		windows.location
+		
+		
+		
+      })
       
       
   </script>

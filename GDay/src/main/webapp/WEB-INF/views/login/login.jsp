@@ -195,6 +195,7 @@
                             	success: function(result){
                             		if(result == 'already'){ // 이미 아이디가 있을 때
                             			window.location.href = "${contextPath}/"; 
+                            			                     			
                             		}else{
                             			window.location.href = "${contextPath}/login/addModeInfoView";
                             		}
@@ -234,9 +235,9 @@
 		                            		
 		                            		
 		                            		// 로그아웃 및 연결끊기
-		                            		/*
 		                            		
-		                            		Kakao.Auth.logout(function() {
+		                            		
+		                 /*            		Kakao.Auth.logout(function() {
 		                            			  console.log(Kakao.Auth.getAccessToken());
 		                            			});        		
 		                            		
@@ -255,8 +256,8 @@
 		                            			    console.log(error);
 		                            			  },
 		                            			});
-		                            		*/
-        
+		                            		
+         */
     </script>
 </body>
 </html>

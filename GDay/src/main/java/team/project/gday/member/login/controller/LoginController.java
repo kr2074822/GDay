@@ -207,6 +207,8 @@ public class LoginController {
 				member.setMemberNick(member.getMemberNick()+random);
 			}else { // 닉네임이 없을때
 				result = service.kakaoSignUp(member);
+				loginMember = member;
+				model.addAttribute("loginMember", loginMember);
 				if (result > 0) { // 회원가입 성공했을때
 					
 				}else { // 회원가입 실패 했을 때
@@ -331,7 +333,8 @@ public class LoginController {
 	
 	// 카카오톡 추가 정보 화면
 	@RequestMapping("addModeInfoView")
-	public String addModeInfoView() {
+	public String addModeInfoView(@ModelAttribute Member member) {
+		System.out.println(member);
 		return "login/addMoreInfo";
 	}
 	
@@ -340,9 +343,10 @@ public class LoginController {
 	@RequestMapping("addMoreInfo")
 	@ResponseBody
 	public String addMoreInfo(@ModelAttribute Member member, Model model) {
-		System.out.println(member);
+		System.out.println("-------"+member);
 		int result = service.addMoreInfo(member);
-		model.addAttribute("loginMEmber", member);
+		System.out.println(result);
+		model.addAttribute("loginMember", member);
 		return "redirect:/";
 	}
 	

@@ -919,9 +919,9 @@
                 </div>
                 <div>
                     <input type="text" id="tel" name="memberPhone" required>
-                    <label for="tel">핸드폰 번호$</label>
+                    <label for="tel">핸드폰 번호</label>
                 </div>
-                <button type=button id="infoAdd">등록</button>
+                <button type=button id="infoAdd" >등록</button>
             </form>
         </div>
     </div>
@@ -931,12 +931,29 @@
     var email = '${loginMember.memberEmail}';
     $("#infoAdd").on('click', ()=> {
     	
+		if ($("#name").val().trim().length == 0) {
+			Swal.fire({
+				  icon: 'error',
+				  title: '이름을 입력해주세요',
+			})
+			
+			return false;
+		}
+		if ($("#tel").val().trim().length == 0) {
+			Swal.fire({
+				  icon: 'error',
+				  title: '전화번호를 입력해주세요',
+			})
+			
+			return false;
+		}
+	    	
 		$.ajax({
 			url: "${contextPath}/login/addMoreInfo",
 			data: ({
 				memberName: $("#name").val(),
 				memberPhone: $("#tel").val(),
-				memberEmail: '${loginMember.memberEmail}'
+				memberEmail: email
 			}),
 			success: function(){
 				Swal.fire({
@@ -954,7 +971,20 @@
 				
 			}
 		});
+
     });
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
     </script>
 </body>
 </html>

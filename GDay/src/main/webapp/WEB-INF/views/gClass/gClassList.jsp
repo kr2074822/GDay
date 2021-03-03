@@ -365,8 +365,9 @@
         const input = document.querySelectorAll('input[type="checkbox"]');
         const aaa = document.getElementById('baby');
         
+        const li = document.querySelectorAll('li.item');
         // 팝업 
-        for (const button of item) {
+        for (const button of li) {
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
                 
@@ -382,7 +383,6 @@
         }
 
         // 버튼 클릭 리플 효과
-        const li = document.querySelectorAll('li.item');
         console.log(li)
         li.forEach(btn => {
                 btn.addEventListener('click', function(e) {
