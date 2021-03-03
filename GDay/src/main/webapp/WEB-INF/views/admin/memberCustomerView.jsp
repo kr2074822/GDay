@@ -7,16 +7,17 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 
-<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
 <style>
-div {
-	padding: 10px;
-}
-
 .container {
 	width: 80%;
 	margin: 0 auto;
+	padding: 3%;
+}
+
+.container-title, .title-area{
+	padding-bottom: 20px;
 }
 
 .info-area{
@@ -26,18 +27,17 @@ div {
 
 .board-area {
 	margin-bottom: 100px;
-	padding: 5px;
+	padding: 30px;
 	width: 95%;
 	text-aling: center;
 }
 
 .board-content{ 
-	padding-bottom:150px;
+	padding-bottom:20%;
 }
 
-.comment-area {
-	width: 100%;
-	resize: none;
+.float-right{
+	padding-bottom: 40px;
 }
 
 .inquiry {
@@ -54,12 +54,12 @@ div {
 <body>
 	<jsp:include page="../common/header.jsp" />
 	<div class="container">
-		<div>
-			<h3>고객센터</h3>
+		<div class="container-title">
+			<h3 style="font-weight: bold; font-size: 25px;">고객센터</h3>
 		</div>
 		<div class="board-area">
 			<div class="title-area">
-				<h2>안녕하세요</h2>
+				<h2 style="font-weight: bold; font-size: 20px;">안녕하세요</h2>
 			</div>
 			<div class="info-area">
 				<h4>작성자: 회원명</h4>
@@ -76,7 +76,6 @@ div {
 				</c:if> --%>
 				<button type="button" class="btn btn-success inquiry" onclick="location.href='${contextPath}/admin/memberCustomer'">목록으로</button>			
 			</div>
-			<br>
 			<hr>
 			
 			<jsp:include page="adminReply.jsp"></jsp:include>

@@ -9,6 +9,12 @@
 
 <link rel="stylesheet" href="reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
+
+<style>
+td{
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -79,5 +85,16 @@
 	</div>
 
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+		/* 게시글 상세보기 */
+		$("#list-table td").on("click", function(){
+			var boardNo = $(this).parent().children().eq(0).text();
+			
+			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
+			
+			location.href = "${contextPath}/admin/memberCustomerView"; 
+		});	
+	</script>
 </body>
 </html>

@@ -32,7 +32,7 @@
 								<th>게시글 명</th>
 								<th>신고 일자</th>
 								<th>신고 사유</th>
-								<th><input type="checkbox"></th>
+								<th><input type="checkbox" id="checkAll"></th>
 							</tr>
 						</thead>
 
@@ -43,7 +43,7 @@
 								<td>2021-02-20</td>
 								<td>허위 클래스</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>클래스</td>
@@ -51,7 +51,7 @@
 								<td>2021-02-20</td>
 								<td>허위 클래스</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>클래스</td>
@@ -59,7 +59,7 @@
 								<td>2021-02-20</td>
 								<td>허위 클래스</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>클래스</td>
@@ -67,7 +67,7 @@
 								<td>2021-02-20</td>
 								<td>허위 클래스</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>클래스</td>
@@ -75,7 +75,7 @@
 								<td>2021-02-20</td>
 								<td>허위 클래스</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -94,5 +94,29 @@
 	</div>
 
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+		/* 체크박스 전체 선택 */
+		$(document).ready(function(){
+			
+			// 전체 선택 박스 클릭
+			$("#checkAll").click(function(){
+				if($("#checkAll").prop("checked")){ // 클릭 되었을 시
+					$("input[id=check]").prop("checked", true);
+				}else{ // 클릭이 되어있지 않을 시
+					$("input[id=check]").prop("checked", false);
+				}
+			});
+		});
+		
+		/* 게시글 상세보기 */
+/* 		$("#list-table td").on("click", function(){
+			var boardNo = $(this).parent().children().eq(0).text();
+					
+			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
+					
+			location.href = "${contextPath}/admin/memberCustomerView"; 
+		}); */		
+	</script>
 </body>
 </html>

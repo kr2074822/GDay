@@ -78,7 +78,6 @@
 				<td id="replyBtnArea">
 					<button class="btn btn-success" id="addReply">답변 등록</button>
 				</td>
-			</tr>
 		</table>
 	</div>
 

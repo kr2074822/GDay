@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -8,16 +7,13 @@
 <meta charset="UTF-8">
 <title>고객센터 문의</title>
 
-<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
 <style>
-div {
-	padding: 10px;
-}
-
 .container {
 	width: 80%;
 	margin: 0 auto;
+	padding: 80px;
 }
 
 hr {
@@ -26,8 +22,7 @@ hr {
 }
 
 .input-area {
-	margin: 0 auto;
-	padding: 5px;
+	padding: 3%;
 }
 
 #titleInput {
@@ -40,6 +35,10 @@ hr {
 	height: 500px;
 	resize: none;
 	margin: 5px;
+}
+
+.content-area{
+	padding-top: 30px;
 }
 
 #form-btn {
@@ -70,8 +69,8 @@ hr {
 
 	<div class="container">
 		<div>
-			<h3>고객센터 문의글 작성</h3>
-		</div>
+			<h3 style="font-weight: bold; font-size: 20px;">고객센터 문의글 작성</h3>
+		</div><br>
 		<hr>
 		<div class="input-area">
 			<form action="#" method="POST">
