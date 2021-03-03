@@ -60,7 +60,7 @@
 								<td>2021-02-20</td>
 								<td>일반</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>user01@naver.com</td>
@@ -68,7 +68,7 @@
 								<td>2021-02-20</td>
 								<td>일반</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>user01@naver.com</td>
@@ -76,7 +76,7 @@
 								<td>2021-02-20</td>
 								<td>일반</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>user01@naver.com</td>
@@ -84,7 +84,7 @@
 								<td>2021-02-20</td>
 								<td>일반</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<tr>
 								<td>user01@naver.com</td>
@@ -92,7 +92,7 @@
 								<td>2021-02-20</td>
 								<td>일반</td>
 								<td><input type="checkbox" class="check-input"
-									id="checkedAll"></td>
+									id="check"></td>
 							</tr>
 							<%-- </c:forEach> 
 							</c:if> --%>
@@ -185,5 +185,20 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script>
+		/* 체크박스 전체 선택 */
+		$(document).ready(function(){
+			
+			// 전체 선택 박스 클릭
+			$("#checkAll").click(function(){
+				if($("#checkAll").prop("checked")){ // 클릭 되었을 시
+					$("input[id=check]").prop("checked", true);
+				}else{ // 클릭이 되어있지 않을 시
+					$("input[id=check]").prop("checked", false);
+				}
+			});
+		});
+	</script>
 </body>
 </html>

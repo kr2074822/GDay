@@ -58,3 +58,7 @@ button {
 #report-ap, #search {
 	padding: 5px;
 }
+
+@media(max-width: 768px){
+	
+}

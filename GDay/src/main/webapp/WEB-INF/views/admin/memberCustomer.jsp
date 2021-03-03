@@ -7,19 +7,17 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 
-<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 
 <style>
-div {
-	padding: 10px;
-}
-
 .container {
 	width: 80%;
 	margin: 0 auto;
+	padding: 120px;
 }
 
 .container-area{
+	padding: 7%;
 }
 
 table {
@@ -60,7 +58,7 @@ button {
 	<jsp:include page="../common/header.jsp" />
 
 	<div class="container">
-		<h3>나의 문의글</h3>
+		<h3 style="font-weight: bold; font-size: 20px;">나의 문의글</h3>
 		<br>
 
 		<div class="container-area">

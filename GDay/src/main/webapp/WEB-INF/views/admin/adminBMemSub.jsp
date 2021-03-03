@@ -16,7 +16,7 @@ div {
 }
 
 #container-tb{
-	padding: 20px;
+	padding: 50px;
 }
 
 .container {
@@ -28,35 +28,24 @@ div {
 	margin: 200px 0;
 }
 
-button {
-	height: 25px;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
-	background-color: #FE929F;
-	color: white;
-}
-
-ul {
-	overflow: hidden;
-}
-
 #adminBusinessMember li {
-	float: left;
-	margin: 10px;
-	width: calc(25% - 20px);
+	display: inline-block;
+	margin: 0 auto;
 	background: #fff;
 	text-align: center;
+	padding-right: 100px;
 }
 
 .album-cover {
 	width: 200px;
 	height: 200px;
 	cursor: pointer;
+	overflow: hidden; /* 사진이 넘치면 hidden */
+	position: relative;
 }
 
 .album-info {
-	padding: 20px;
+	padding: 10px;
 }
 
 .album-title {
@@ -83,7 +72,7 @@ ul {
 									<p class="album-text">비즈니스 회원 신청자</p>
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p>
+									</p><br>
 									<div class="album-cover">
 										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
 									</div>
@@ -96,7 +85,7 @@ ul {
 									<p class="album-text">비즈니스 회원 신청자</p>
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p>
+									</p><br>
 									<div class="album-cover">
 										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
 									</div>
@@ -109,7 +98,7 @@ ul {
 									<p class="album-text">비즈니스 회원 신청자</p>
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p>
+									</p><br>
 									<div class="album-cover">
 										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
 									</div>
@@ -122,7 +111,7 @@ ul {
 									<p class="album-text">비즈니스 회원 신청자</p>
 									<p class="album-title">
 										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p>
+									</p><br>
 									<div class="album-cover">
 										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
 									</div>
