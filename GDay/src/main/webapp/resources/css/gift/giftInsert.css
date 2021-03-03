@@ -105,6 +105,11 @@ section form .wrapper .gift_title .thumbnail .showImg{
     margin: 0 auto;
     margin-top: 10px;
 }
+section form .wrapper .gift_title .thumbnail .showImg img{
+	object-fit: cover;
+	width: 100%;
+	height: 100%;	
+}
 section form .wrapper .editor{
     width: 100%;
     display: flex;
