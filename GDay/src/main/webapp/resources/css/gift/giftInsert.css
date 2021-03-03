@@ -106,12 +106,29 @@ section form .wrapper .gift_title .thumbnail .showImg{
     margin-top: 10px;
 }
 section form .wrapper .editor{
+    width: 100%;
     display: flex;
     margin-top: 50px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
-
+section form .wrapper .buttons{
+    display: flex;
+    justify-content: center;
+    text-align: right;
+    margin-bottom: 50px;
+}
+section form .wrapper .buttons button{
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+section form .wrapper .buttons .submit{
+    background: #fe929f;
+}
 
 
 
