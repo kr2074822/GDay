@@ -18,9 +18,6 @@ $(document).ready(function(){//ready 함수
 	(function(){
 	
 		$("#7days").click();
-
-		listContainer.html("");
-		
 		cp = 1;//첫 페이지
 		selectOrderList(cp); //첫 조회
 
@@ -29,7 +26,6 @@ $(document).ready(function(){//ready 함수
 	//period 조회 버튼 클릭
 	$("#list-search-btn").on("click", function(){
 		cp = 1;
-		listContainer.html("");
 		selectOrderList(cp);
 	});
 	
@@ -49,6 +45,10 @@ function selectOrderList(cp){
 	
 	var statusNo = $("#giftStatus").val();//상태
 	
+	
+	if(cp<=1){
+		listContainer.html("");
+	}
 	//array를 넘기기 위해 필요한 설정
 //	jQuery.ajaxSettings.traditional = true;
 
@@ -58,7 +58,7 @@ function selectOrderList(cp){
 		type : "post",
 		dataType : "json",
 		success : function(map){
-
+			console.log(map);
 			var oList = map.oList;
 
 			if(oList.length > 0){

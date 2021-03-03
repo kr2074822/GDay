@@ -65,10 +65,10 @@
                     <div class="list-text">
                         <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
                         <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
-                        <span class="list-name">선물명</span><br><!-- 클릭시 해당 판매글로 이동 -->
-                        <span class="list-text-1">100,000원</span><br>
-                        <span class="list-text-2">빨강, 1개</span><br>
-                        <span class="list-text-3">[구매 확정]</span>
+                        <span class="list-name">선물명</span><!-- 클릭시 해당 판매글로 이동 -->
+                        <span class="list-text-1">100,000원</span>
+                        <span class="list-text-2">빨강, 1개</span>
+                        <span class="list-text-3">구매 확정</span>
                     </div>
                 </div>
                 <div class="list-btn">
@@ -81,7 +81,7 @@
                         <a href="#" class="btn-review" onclick="popUp(1, 'g')">후기 쓰기</a>
 
                         <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-                        <a href="${contextPath}/gMember/cancelRequest/1/1" class="btn-cancel">취소 요청</a> 
+                        <a href="${contextPath}/gMember/cancelRequest/G/1" class="btn-cancel">취소 요청</a> 
                         
                         <!-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) -->
                         <a href="#" class="btn-confirm">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->

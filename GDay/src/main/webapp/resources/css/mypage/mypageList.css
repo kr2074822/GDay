@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     margin : 30px auto;
+    min-height : 800px;
 }
 
 .wrapper-box {
@@ -85,10 +86,17 @@
 
 .list-name{
     font-weight: bold;
-    font-size : 18px;
+    font-size : 20px;
 }
-.list-text { cursor : pointer; display: flex; flex-direction : column;}
-.list-text-1 { font-weight : bold; }
+.list-text { 
+	cursor : pointer; 
+	display: flex; 
+	flex-direction : column;
+	justify-content : space-between;
+	min-height : 100px;
+	
+}
+.list-text-1 { font-weight : bold; font-size : 18px; }
 .list-text-2 { font-size : 14px; color : gray; }
 .list-text-3 { 
 	display: inline-block; 
@@ -100,7 +108,7 @@
 	height: 20px;
 	width : 60px;
 	text-align : center;
-	margin-top : 10px;
+	margin-top : 4px;
 }
 
 .list-hidden {display: none;} /* 주문번호, 주문 상세 정보 */
@@ -132,7 +140,7 @@
     margin : 3px;
     border-radius: 5px;
     font-size : 12px;
-    line-height: 18px;
+    line-height: 16px;
     cursor: pointer;
 }
 

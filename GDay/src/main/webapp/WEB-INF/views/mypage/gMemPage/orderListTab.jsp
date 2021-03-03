@@ -60,11 +60,13 @@
 	$(function(){
 		
     $(".tabs .tab-label").on("click", function(){
-        if(!$(this).hasClass("tab-active")){
+        if(!$(this).prev().attr("checked")){
 
            $(this).addClass("tab-active");
            $(this).siblings(".tab-label").removeClass("tab-active");
-
+					$(this).prev().attr("checked", true);
+					$(this).prev().siblings().attr("checked", false);
+           
            if($(this).hasClass("tab-l")){
                $(".wrap-tab-l").show();
                $(".wrap-tab-r").hide();
@@ -75,6 +77,8 @@
            }
            
         } 
+        
+        loadTab();
     });
 	});
 </script>

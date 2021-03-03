@@ -8,7 +8,7 @@
 <title>클래스 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2"> <!-- 같은 클래스 공유 -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css"> <!-- 상세 페이지 고유 css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.0"> <!-- 상세 페이지 고유 css -->
 
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -59,7 +59,7 @@
                 <span class="column-label">클래스명</span>
                 <span class="column-content" >
 	                <span class="column-content-1" id="class-name">손뜨개 클래스</span>
-	                <a href="${contextPath}/gMember/cancelRequest/2/1" class="btn-request btn-view">신청 취소</a>
+	                <a href="${contextPath}/gMember/cancelRequest/C/1" class="btn-request btn-view">신청 취소</a>
 	                <a class="btn-review btn-view" onclick="popUp(1, 'c')">후기 쓰기</a>
                 </span>
             </div>
