@@ -38,7 +38,6 @@ public class GClassController {
 		
 		if(gCList != null && !gCList.isEmpty()) {
 			List<Attachment> thumbnailList = service.selectThumbnailList(gCList);
-		
 			if(thumbnailList != null) {
 				model.addAttribute("thList", thumbnailList);
 			}
