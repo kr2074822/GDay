@@ -424,6 +424,7 @@
         
         // 팝업 
         for (const button of item) {
+        	console.log(item)
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
                 
@@ -433,9 +434,11 @@
 
                     }else{
                         pop.classList.remove("action1");
+                        console.log(pop)
                     }
                 }
             });
+            
         }
 
         // 버튼 클릭 리플 효과
