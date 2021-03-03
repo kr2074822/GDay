@@ -12,7 +12,7 @@
 </head>
 <body>	
     <footer>
-        <div class="container">
+        <div class="footer_wrapper">
             <div class="sec aboutus">
                 <h2>About Us</h2>
                 <p>
