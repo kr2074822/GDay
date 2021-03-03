@@ -37,4 +37,51 @@
  		<result property="ctName" column="G_OPT_SOLD"/>
  		<result property="prdtNo" column="PRDT_NO"/>
 	</resultMap>	
+	
+	
+	<!-- 다음 상품번호 조회 -->
+	<select id="selectNextNo" resultType="_int">
+		SELECT SEQ_PNO.NEXTVAL FROM DUAL
+	</select>
+	
+	<!-- 상품 테이블에 삽입 -->
+	<insert id="insertProduct" parameterType="map">
+		INSERT INTO PRODUCT(PRDT_NO, PRDT_NAME, PRDT_TYPE, PRDT_CONTENT, PRDT_PRICE, READ_COUNT, CREATE_DATE, MODIFY_DATE, PRDT_STATUS, MEM_NO)
+		VALUES(#{prdtNo}, #{prdtName}, 'G', #{prdtContent}, #{prdtPrice}, DEFAULT, DEFAULT, NULL, DEFAULT, 1)
+	</insert>
+	
+	<!--클래스 테이블에 삽입-->
+	<insert id="insertGift" parameterType="map">
+	  INSERT INTO Gift 
+	  VALUES(#{prdtNo}, 'N')
+	</insert>
+	
+	<!-- 상품-태그 테이블에 삽입 -->
+	<insert id="insertTag" parameterType="map">
+		INSERT ALL
+		<foreach collection="hashNo" item="item" separator=" ">
+			INTO PRODUCT_TAG VALUES (#{item}, #{prdtNo})
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+	<!-- 파일 정보 삽입 -->
+	<insert id="insertAttachmentList" parameterType="list"> 
+		INSERT INTO PRODUCT_IMG
+		SELECT SEQ_FNO.NEXTVAL, A.* FROM (
+		<foreach collection="list" item="item" separator=" UNION ALL ">
+			SELECT #{item.filePath} FILE_PATH,
+				#{item.fileName} FILE_NAME,
+				#{item.fileLevel} FILE_LEVEL,
+				#{item.prdtNo} PRDT_NO
+			FROM DUAL
+		</foreach>
+		)A
+	</insert>
+	
+	
+	
+	
+	
+	
 </mapper>
