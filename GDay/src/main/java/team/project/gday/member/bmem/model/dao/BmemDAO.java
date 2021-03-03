@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
@@ -76,6 +77,17 @@ public class BmemDAO {
 		RowBounds rowBounds = new RowBounds(offset, 10);
 
 		return sqlSession.selectList("bMemMapper.bOrderList", loginMember, rowBounds);
+	}
+
+	
+	// 옵션 이름 옵션 번호로 바꿔오기
+	public List<GOption> opNumSelect(Map<String, Object> map) {
+		return sqlSession.selectList("bMemMapper.opNumSelect", map);
+	}
+
+	// 주문 상태 변경 DAO
+	public int orderStatusChange(Map<String, Object> map) {
+		return sqlSession.update("bMemMapper.orderStatusChange", map);
 	}
 
 	

@@ -18,7 +18,7 @@ public class BOrderListSearchDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	// 판매 회원 기본 날짜 선택 후 주문 목록 페이징 처리 객체 생성 DAO
+	// 판매 회원 기본 날짜 선택 후 검색 시 주문 목록 페이징 처리 객체 생성 DAO
 	public int getOdsPageInfo(Map<String, Object> map) {
 		return sqlSession.selectOne("bMemSearchMapper.getOdsPageInfo", map);
 	}
@@ -30,6 +30,21 @@ public class BOrderListSearchDAO {
 		RowBounds rowBounds = new RowBounds(offset, 10);
 
 		return sqlSession.selectList("bMemSearchMapper.bOdsList", map, rowBounds);
+	}
+	
+	
+	// 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성 DAO
+	public int getOdsPageInfo2(Map<String, Object> map) {
+		return sqlSession.selectOne("bMemSearchMapper.getOdsPageInfo2", map);
+	}
+	
+	// 판매 회원 기본 날짜 선택 안하고 검색 DAO
+	public List<OrderList> bOdsList2(PageInfo9 pInfo, Map<String, Object> map) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemSearchMapper.bOdsList2", map, rowBounds);
 	}
 	
 	

@@ -55,11 +55,44 @@ public class BOrderListSearchController {
 		
 		List<OrderList> oList = service.bOdsList(pInfo, map);
 		
+		System.out.println(oList);
+		
 		model.addAttribute("oList", oList);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "mypage/bMemPage/bOrderList";
 	}
+	
+	
+	// 판매 회원 기본 날짜 선택 안하고 검색 Controller
+	@RequestMapping("bOrdSearch")
+	public String bOrdSearch2(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							  @RequestParam(value="sv", required = false) String searchValue,
+							  @RequestParam(value="sk", required = false) String searchKey,
+							  @ModelAttribute("loginMember") Member loginMember,
+							  Model model) {				
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("searchValue", searchValue);
+		map.put("searchKey", searchKey);
+						
+		PageInfo9 pInfo = service.getOdsPageInfo2(cp, map);		
+		
+		List<OrderList> oList = service.bOdsList2(pInfo, map);
+		
+		System.out.println(oList);
+		
+		model.addAttribute("oList", oList);
+		model.addAttribute("pInfo", pInfo);
+		
+		return "mypage/bMemPage/bOrderList";
+	}
+	
+	
+	
 	
 	// 판매 회원 날짜 선택 후 목록 조회 Controller
 	@RequestMapping("bOrdDaySearch/{day}")
