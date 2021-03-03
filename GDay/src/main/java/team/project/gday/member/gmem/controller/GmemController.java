@@ -9,10 +9,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,14 +27,22 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.service.GmemService;
+import team.project.gday.review.model.vo.Review;
 
 @Controller
 @RequestMapping("/gMember/*")
+@SessionAttributes({"loginMember"})
+
 public class GmemController {
 
 	@Autowired
 	private GmemService service;
 	
+	//sweet alert 메시지 전달용 변수 선언
+	private String swalIcon;
+	private String swalTitle;
+	private String swalText;
+
 	
 	//마이페이지 주문 내역 페이지 이동
 	@RequestMapping("orderList/{type}")
@@ -147,6 +159,76 @@ public class GmemController {
 	//-------------------주문 목록 조회 끝-------------------------
 	
 	
+	//마이페이지 주문 상세 조회("orderView/{type}/{orderNo}")
+	@RequestMapping("orderView/{type}/{orderNo}")
+	public String gMemOrderView(@PathVariable("type") String type,
+								@PathVariable("orderNo") int orderNo, 
+								Model model, RedirectAttributes ra,
+								@RequestHeader(value="refere", required=false) String referer) {
+		
+		//파라미터 맵에 담기
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("orderNo", orderNo);
+		
+		List<Order> oList = service.selectOrders(map);
+		
+		if(oList != null && !oList.isEmpty()) {
+
+			model.addAttribute("oList", oList);
+
+			//썸네일 리스트 구하기
+			List<Attachment> thumbnails = service.selectThumbnails(oList);
+			
+			//System.out.println("thumbnails : " + thumbnails);
+			
+			if(thumbnails != null && !oList.isEmpty()) {
+				
+				//modelattribute로 보내기
+				model.addAttribute("thumbnails", thumbnails);
+				
+				
+				//리뷰 확인하는 거 가져오기 (RV_NO = OP_NO)
+				List<Review> rCheck = service.selectRCheck(oList);
+				
+				System.out.println("rCheck : " + rCheck);
+				
+				model.addAttribute("rCheck", rCheck);
+
+				if(type.equals("G")) {//선물일 때
+					
+					//선물이면 goption 가져와야 함
+					List<GOption> optList = service.selectOptList(oList);
+					
+					if(optList != null && !optList.isEmpty()) {
+						model.addAttribute("optList", optList);
+						//System.out.println("optList : " + optList);
+					}
+					
+				} else if (type.equals("C")) {//클래스일 때
+					//클래스면 gclass를 가져와야 함
+					
+					List<GClass> cList = service.selectCList(oList);
+					if(cList != null && !cList.isEmpty()) {
+						model.addAttribute("cList", cList);
+					}
+					
+					System.out.println(cList);
+				} 
+			}
+		}
+		
+		
+		return "mypage/gMemPage/gMemOrderView" + type;
+	}
+	
+	
+
+	
+	
+	
+	
 	//마이페이지 주문 구매 확정 처리
 	@ResponseBody
 	@RequestMapping("confirmOrder")
@@ -156,6 +238,7 @@ public class GmemController {
 
 		return result;
 	}
+	
 	
 	
 	//마이페이지 주문 취소 요청 페이지 이동
@@ -174,15 +257,7 @@ public class GmemController {
 			return "mypage/gMemPage/gMemCancelView" + type;
 	}
 		
-	
-	//마이페이지 주문 상세 조회("orderView/{type}/{orderNo}")
-	@RequestMapping("orderView/{type}/{orderNo}")
-	public String gMemOrderView(@PathVariable("type") String type,
-								@PathVariable("orderNo") int orderNo) {
-		
-		return "mypage/gMemPage/gMemOrderView" + type;
-	}
-	
+
 	//내 정보 수정 페이지 이동
 	@RequestMapping("updateInfo")
 	public String gMemUpdate() {

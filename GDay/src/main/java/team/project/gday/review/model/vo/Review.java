@@ -13,8 +13,6 @@ public class Review {
 	private String writer; //작성자 닉네임(WRITER = MEM_NICK)
 	private int prdtNo; //상품 번호
 	private int giftOpNo; //옵션 번호 (GIFT_OP_NO = G_OPT_NO)(GIFT_OPTION)
-	private String rvImgPath;//후기 이미지 경로
-	private String rvImgName;//후기 이미지명
 	
 	public Review() {
 	}
@@ -91,28 +89,13 @@ public class Review {
 		this.giftOpNo = giftOpNo;
 	}
 
-	public String getRvImgPath() {
-		return rvImgPath;
-	}
-
-	public void setRvImgPath(String rvImgPath) {
-		this.rvImgPath = rvImgPath;
-	}
-
-	public String getRvImgName() {
-		return rvImgName;
-	}
-
-	public void setRvImgName(String rvImgName) {
-		this.rvImgName = rvImgName;
-	}
-
 	@Override
 	public String toString() {
 		return "Review [rvNo=" + rvNo + ", rvContent=" + rvContent + ", rvStar=" + rvStar + ", createDate=" + createDate
 				+ ", rvStatus=" + rvStatus + ", writerNo=" + writerNo + ", writer=" + writer + ", prdtNo=" + prdtNo
-				+ ", giftOpNo=" + giftOpNo + ", rvImgPath=" + rvImgPath + ", rvImgName=" + rvImgName + "]";
+				+ ", giftOpNo=" + giftOpNo + "]";
 	}
+
 	
 	
 	
