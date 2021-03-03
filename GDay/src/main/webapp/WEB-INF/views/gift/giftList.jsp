@@ -434,7 +434,6 @@
 
                     }else{
                         pop.classList.remove("action1");
-                        console.log(pop)
                     }
                 }
             });
