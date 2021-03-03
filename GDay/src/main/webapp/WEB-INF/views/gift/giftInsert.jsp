@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +11,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/giftInsert.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftInsert.css">
     <!-- summernote 사용 시 필요한 css 파일 추가 -->
-    <link rel="stylesheet" href="summernote/css/summernote-lite.css">
+    <link rel="stylesheet" href="${contextPath}/resources/summernote/css/summernote-lite.css">
 
     <title>Document</title>
 </head>
@@ -25,7 +28,7 @@
 
     <section class="mgz_wrapper">
         <h1>선물 등록 신청</h1>
-        <form action="requestAction" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
+        <form action="${contextPath}/gift/insert" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
             <div class="wrapper">
                 <div class="check_wrapper">
                     <span class="opt_name">연령대</span>
@@ -309,7 +312,7 @@
                     <textarea class="form-control" id="summernote" name="boardContent" rows="10" style="resize: none;"></textarea>
                 </div>
                 <div class="buttons">
-                    <button class="submit">등록</button>	
+                    <button type="submit" class="submit">등록</button>	
                     <button class="cancel">취소</button>	
                 </div>
             </div>
