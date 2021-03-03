@@ -14,7 +14,12 @@ import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.review.model.vo.Review;
 
+/**
+ * @author Younghyun
+ *
+ */
 @Repository
 public class GmemDAO {
 	// 마이바티스를 이용한 DB 연결 객체를 의존성 주입
@@ -65,9 +70,28 @@ public class GmemDAO {
 	public List<GClass> selectCList(List<Order> oList) {
 		return sqlSession.selectList("gMemMapper.selectCList", oList);
 	}
+	
+
+	/** 주문내역 확인용 후기 체크
+	 * @param oList
+	 * @return
+	 */
+	public List<Review> selectRCheck(List<Order> oList) {
+		return sqlSession.selectList("gMemMapper.selectRCheck", oList);
+	}
+
 
 	//---------------------------------주문 목록 끝 --------------------------------------------
 	
+	/**주문 상세 조회(주문 번호에 들어간 모든 주문 상품 번호 가져오기)
+	 * @param orderNo
+	 * @param type
+	 * @return
+	 */
+	public List<Order> selectOrders(Map<String, Object> map) {
+		return sqlSession.selectList("gMemMapper.selectOrders", map);
+	}
+
 	
 	/** 주문 구매 확정 처리(선물)
 	 * @param opNo
@@ -76,6 +100,8 @@ public class GmemDAO {
 	public int confirmOrder(int opNo) {
 		return sqlSession.update("gMemMapper.confirmOrder", opNo);
 	}
+
+
 }
 
 

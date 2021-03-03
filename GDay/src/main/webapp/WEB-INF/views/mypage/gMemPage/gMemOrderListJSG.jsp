@@ -97,12 +97,16 @@ function selectOrderList(cp){
 					var text1 = (order.prdtPrice * order.opAmount) + "원";
 					var listText1 = $("<span>").addClass('list-text-1').text(text1).attr("onclick", click);
 					
-					var text2;
+					var text2 = "";
+					text2 = order.opAmount + "개";
+					
+					//옵션이 있을 때
 					$.each(optList, function(index, option){
 						if(order.giftOpNo == option.gOptNo){
 							text2 = option.gOptName + " / " + order.opAmount + "개";
 						}
 					});
+					
 					var listText2 = $("<span>").addClass('list-text-2').text(text2);
 	
 					var listText3 = $("<span>").addClass('list-text-3').text(order.statusName);

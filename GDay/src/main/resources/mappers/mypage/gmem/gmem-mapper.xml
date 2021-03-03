@@ -82,6 +82,19 @@
 		<result property="prdtNo" column="PRDT_NO"/>
 	</resultMap>
 	
+	<!-- 후기 resultMap -->
+	<resultMap type="Review" id="review_rm">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="rvContent" column="RV_CONTENT"/>
+		<result property="rvStar" column="RV_STAR"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="rvStatus" column="RV_STATUS"/>
+		<result property="writerNo" column="WRITER_NO"/>
+		<result property="writer" column="WRITER"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="giftOpNo" column="GIFT_OP_NO"/>
+	</resultMap>
+	
 	
 	<!-- 주문 listcount 조회 -->
 	<select id="orderListCount" parameterType="map" resultType="_int">
@@ -151,6 +164,23 @@
 		)
 	</select>
 	
+	<!-- 주문 확인용 후기 목록 -->
+	<select id="selectRCheck" parameterType="list" resultMap="review_rm">
+		SELECT RV_NO FROM V_REVIEW 
+		WHERE RV_STATUS = 'Y'
+		AND RV_NO IN (
+		<foreach collection="list" item="order" separator=",">
+			#{order.opNo}
+		</foreach>
+		)
+	</select>
+	
+	<!-- 주문 상세 조회용 주문 번호에 해당하는 모든 주문 상품 정보 가져가기 -->
+	<select id="selectOrders" parameterType="map" resultMap="order_rm">
+		SELECT * FROM V_ORDER
+		WHERE ORDER_NO = #{orderNo}
+
+	</select>
 	
 	<!-- 구매 확정 처리  -->
 	<update id="confirmOrder" parameterType="_int">

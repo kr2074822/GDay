@@ -13,6 +13,7 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.dao.GmemDAO;
+import team.project.gday.review.model.vo.Review;
 
 @Service
 public class GmemServiceImpl implements GmemService {
@@ -66,14 +67,31 @@ public class GmemServiceImpl implements GmemService {
 	public List<GClass> selectCList(List<Order> oList) {
 		return dao.selectCList(oList);
 	}
+	
+
+	//주문 확인용 후기 체크
+	@Override
+	public List<Review> selectRCheck(List<Order> oList) {
+		return dao.selectRCheck(oList);
+	}
+
 
 	//-----------------------------------주문 목록 끝------------------------------------------
 
-	// 주문 구매 확정 처리
+	//주문 상세 조회(주문 번호에 들어간 모든 주문 상품 번호 가져오기) service 구현
+	@Override
+	public List<Order> selectOrders(Map<String, Object> map) {
+		return dao.selectOrders(map);
+	}
+
+	
+	// 주문 구매 확정 처리 service 구현
 	@Override
 	public int confirmOrder(int opNo) {
 		return dao.confirmOrder(opNo);
 	}
+
+
 
 	
 }

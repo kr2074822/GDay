@@ -12,10 +12,13 @@ public class Order {
 	private int prdtPrice;//상품가격
 	private int sellerNo; //판매자 번호
 	private String sellerName; //업체명 
-	private int statusNo; //주문 상태 번호
+	private int statusNo; //주문 상태 번호 
 	private String statusName; //주문 상태명
+		//100결제완료 200발송완료 300구매확정 400취소요청 500반품요청 
+		//600취소완료 700반품완료 800수강완료 900수강신청
+	
 	private Date orderDate; //주문일
-	private int opAmount;//주문 상품 개수
+	private int opAmount;//주문 상품 개수 
 	private int giftOpNo; //주문한 옵션 넘버
 	private String buyer; //구매회원(일반) (mem_no)
 	private String shipName; //받는 사람
