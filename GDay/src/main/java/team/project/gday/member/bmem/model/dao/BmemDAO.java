@@ -78,19 +78,17 @@ public class BmemDAO {
 
 		return sqlSession.selectList("bMemMapper.bOrderList", loginMember, rowBounds);
 	}
-
 	
-	// 옵션 이름 옵션 번호로 바꿔오기
-	public List<GOption> opNumSelect(Map<String, Object> map) {
-		return sqlSession.selectList("bMemMapper.opNumSelect", map);
+	// 상품별 옵션 이름 가져오기 DAO
+	public List<GOption> gOptionList(int opNo) {
+		return sqlSession.selectList("bMemMapper.gOptionList", opNo);
 	}
+	
+	
 
 	// 주문 상태 변경 DAO
 	public int orderStatusChange(Map<String, Object> map) {
 		return sqlSession.update("bMemMapper.orderStatusChange", map);
-	}
-
-	
-	
+	}	
 
 }

@@ -12,13 +12,13 @@ public class OrderList {
 	private Date orderDate; // 주문일
 	private String memName; // 주문자명
 	private String prdtName; // 상품명
-	private String gOptName; // 상품옵션명
 	private int opAmount; // 상품 수량
 	private int prdtPrice; // 상품 가격
 	private String statusName; // 상품 상태
 	private int memNo; // 판매자 회원 번호
 	private String prdtType; // 상품 타입
-	
+	private int giftOpNo; // 상품 옵션 번호
+
 	public OrderList() { }
 
 	public int getOrderNo() {
@@ -61,14 +61,6 @@ public class OrderList {
 		this.prdtName = prdtName;
 	}
 
-	public String getgOptName() {
-		return gOptName;
-	}
-
-	public void setgOptName(String gOptName) {
-		this.gOptName = gOptName;
-	}
-
 	public int getOpAmount() {
 		return opAmount;
 	}
@@ -109,12 +101,21 @@ public class OrderList {
 		this.prdtType = prdtType;
 	}
 
+	public int getGiftOpNo() {
+		return giftOpNo;
+	}
+
+	public void setGiftOpNo(int giftOpNo) {
+		this.giftOpNo = giftOpNo;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderList [orderNo=" + orderNo + ", opNo=" + opNo + ", orderDate=" + orderDate + ", memName=" + memName
-				+ ", prdtName=" + prdtName + ", gOptName=" + gOptName + ", opAmount=" + opAmount + ", prdtPrice="
-				+ prdtPrice + ", statusName=" + statusName + ", memNo=" + memNo + ", prdtType=" + prdtType + "]";
+				+ ", prdtName=" + prdtName + ", opAmount=" + opAmount + ", prdtPrice=" + prdtPrice + ", statusName="
+				+ statusName + ", memNo=" + memNo + ", prdtType=" + prdtType + ", giftOpNo=" + giftOpNo + "]";
 	}
+
 
 
 		

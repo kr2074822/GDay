@@ -48,6 +48,21 @@ public class BOrderListSearchDAO {
 	}
 	
 	
+	// 판매 회원 직접 날짜 선택 후 검색 시 주문 목록 페이징 처리 객체 생성 DAO
+	public int getOdsPageInfo3(Map<String, Object> map) {
+		return sqlSession.selectOne("bMemSearchMapper.getOdsPageInfo3", map);
+	}
+
+	// 판매 회원 직접 날짜 선택 후 검색 DAO
+	public List<OrderList> bOdsList3(PageInfo9 pInfo, Map<String, Object> map) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemSearchMapper.bOdsList3", map, rowBounds);
+	}
+	
+	
 	
 	// 판매 회원 날짜 선택 후 주문 목록 페이징 처리 객체 생성 DAO
 	public int getOdlListCount(Map<String, Object> map) {
