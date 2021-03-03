@@ -27,7 +27,7 @@
 
 <!-- calendar자체 css / js -->
 <link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css?ver=1.3"/>
-<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=1.0"/>
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
 </head>

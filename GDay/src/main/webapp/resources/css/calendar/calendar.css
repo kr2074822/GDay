@@ -21,6 +21,8 @@ div, span, i, input, label, button, textarea{
   #calendar {
     width : 90%;
   }
+  
+  #calendar * {font-family: 'TmoneyRoundWindRegular';}
 
   /* 툴바 날짜 타이틀 */
   .fc-toolbar-chunk > div {
