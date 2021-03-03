@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>선물 리스트</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.1">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.0">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
@@ -74,7 +74,7 @@
             </div>
             <div class="list-search" id="list-search-3">
                 <select name="prdtStatus" id="giftStatus">
-                    <option value="1000" selected>전체</option>
+                    <option value="0" selected>전체</option>
                     <option value="100">결제 완료</option>
                     <option value="200">발송 완료</option>
                     <option value="300">구매 확정</option>

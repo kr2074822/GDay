@@ -64,6 +64,9 @@ public class GmemController {
 		case 300 : status.add(300); break;
 		case 400 : status.add(400); status.add(500); break;
 		case 600 : status.add(600); status.add(700); break;
+		case 800 : status.add(800); break;
+		case 900 : status.add(900); break;
+		case 1000 : status.add(400); status.add(600); status.add(900); break;
 		}
 		
 		map.put("status", status);
@@ -88,7 +91,7 @@ public class GmemController {
 		//oList 구하기
 		List<Order> oList = service.selectOrderList(pInfo, map); 
 		
-		//System.out.println("oList: " + oList);
+		System.out.println("oList: " + oList);
 		
 		
 		//returnMap에 oList 넣기
@@ -127,10 +130,12 @@ public class GmemController {
 					//클래스면 gclass를 가져와야 함
 					
 					List<GClass> cList = service.selectCList(oList);
-					if(cList != null && cList.isEmpty()) {
+					if(cList != null && !cList.isEmpty()) {
 						returnMap.put("cList", cList);
 					}
-				}
+					
+					System.out.println(cList);
+				} 
 			}
 		} 
 		

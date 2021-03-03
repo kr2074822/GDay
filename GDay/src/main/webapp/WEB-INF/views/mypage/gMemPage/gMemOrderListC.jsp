@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>클래스 리스트</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
 
     <!-- icon : font-awesome -->
@@ -53,9 +53,9 @@
 				
 				<!-- 탭메뉴 -->
 			<div class="tabs">	
-				<input type="radio" name="tabMenu1" class="tab-radio" id="tab-left">
+				<input type="radio" name="tabMenu1" class="tab-radio" value="readyClass" id="tab-left" checked>
 		    <label for="tabMenu1" class="tab-label tab-l tab-active" >수강 신청 클래스</label>
-		    <input type="radio" name="tabMenu2" class="tab-radio" id="tab-right">
+		    <input type="radio" name="tabMenu2" class="tab-radio" value="endClass" id="tab-right">
 		    <label for="tabMenu2" class="tab-label tab-r">수강 완료 클래스</label>
 			</div>
 				
@@ -84,11 +84,12 @@
             </div>
             <div class="list-search" id="list-search-3">
                 <select name="giftStatus" class="wrap-tab-l" id="giftStatus"><!-- 왼쪽에서만 보여짐 -->
-                    <option value="#">수강 신청</option>
-                    <option value="#">취소 완료</option>
-                    <option value="#">취소 처리 중</option>
+                    <option value="1000">전체</option>
+                    <option value="900">수강 신청</option>
+                    <option value="400">취소 처리 중</option>
+                    <option value="600">취소 완료</option>
                 </select> <!-- giftStats : 주문 선물 상태 -->
-                <button type="submit" id="list-search-btn">조회</button>
+                <button type="button" id="list-search-btn">조회</button>
             </div>
             </form>
         </div>
@@ -96,46 +97,17 @@
         
         <!-- 주문 목록 리스트 : 수강 신청 클래스 -->
         <div class="container-orders wrap-tab-l" id="readyClass">
-	        <div class="row container-list">
+	<%--     <div class="container-list">
 	            <div class="list-card">
 	                <div class="list-thumb">
 	                </div>
 	                <div class="list-text">
-	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
-	                    <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
+	                    <span class="orderNo list-hidden">주문번호</span> <!-- 주문번호 -->
+	                    <span class="opNo list-hidden">주문상품번호</span> <!-- 상품 주문 번호 -->
 	                    <span class="list-name">클래스명</span><br>
 	                    <span class="list-text-1">100,000원/1회</span><br>
 	                    <span class="list-text-2">2021.05.04. ~ 2021.05.04.</span><br>
-	                    <span class="list-text-3">[수강 신청]</span>
-	                </div>
-	            </div>
-	            <div class="list-btn">
-	                <div class="list-seller">
-	                    <span class="seller-name">강사</span>
-	                    <a href="#" class="btn-inquiry">문의하기</a><!-- 팝업창? 모달창? -->
-	                </div>
-	                <div class="list-status">
-	                    <!-- 결제 완료 후 : 취소 요청(팝업창)-->
-	                    <a href="../cancelRequest/2/1" class="btn-cancel">신청 취소</a> 
-	                </div>
-	            </div>
-           </div><!-- container-list 끝 -->
-        	</div> <!--container-orders 끝 -->
-			
-			
-			    <!-- 주문 목록 리스트 : 수강 완료 클래스 -->
-        <div class="container-orders wrap-tab-r" id="endClass">
-	        <div class="container-list">
-	            <div class="list-card">
-	                <div class="list-thumb">
-	                </div>
-	                <div class="list-text">
-	                    <span class="orderNo list-hidden">21020411334</span> <!-- 주문번호 -->
-	                    <span class="opNo list-hidden">21020423456</span> <!-- 상품 주문 번호 -->
-	                    <span class="list-name">클래스명</span><br>
-	                    <span class="list-text-1">100,000원/1회</span><br>
-	                    <span class="list-text-2">클래스 개강 : 2021.02.04.</span><br>
-	                    <span class="list-text-3">[수강 완료]</span>
+	                    <span class="list-text-3">수강 상태</span>
 	                </div>
 	            </div>
 	            <div class="list-btn">
@@ -148,7 +120,36 @@
 	                    <a href="#" class="btn-review" onclick="popUp(1, 'c')">후기 쓰기</a>
 	                </div>
 	            </div>
-           </div><!-- container-list 끝 -->
+           </div><!-- container-list 끝 --> --%>   
+        	</div> <!--container-orders 끝 -->
+			
+			
+			    <!-- 주문 목록 리스트 : 수강 완료 클래스 -->
+        <div class="container-orders wrap-tab-r" id="endClass">
+	<%--     <div class="container-list">
+	            <div class="list-card">
+	                <div class="list-thumb">
+	                </div>
+	                <div class="list-text">
+	                    <span class="orderNo list-hidden">주문번호</span> <!-- 주문번호 -->
+	                    <span class="opNo list-hidden">주문상품번호</span> <!-- 상품 주문 번호 -->
+	                    <span class="list-name">클래스명</span><br>
+	                    <span class="list-text-1">100,000원/1회</span><br>
+	                    <span class="list-text-2">2021.05.04. ~ 2021.05.04.</span><br>
+	                    <span class="list-text-3">수강 상태</span>
+	                </div>
+	            </div>
+	            <div class="list-btn">
+	                <div class="list-seller">
+	                    <span class="seller-name">강사</span>
+	                    <a href="#" class="btn-inquiry">문의하기</a><!-- 팝업창? 모달창? -->
+	                </div>
+	                <div class="list-status">
+	                    <!-- 구매 확정 후 : 후기 쓰기(팝업창) -->
+	                    <a href="#" class="btn-review" onclick="popUp(1, 'c')">후기 쓰기</a>
+	                </div>
+	            </div>
+           </div><!-- container-list 끝 --> --%>   
         </div> <!-- container-orders 끝 -->
       
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
@@ -158,6 +159,6 @@
    </div><!-- list-all -->
 </div>
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
-
+<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

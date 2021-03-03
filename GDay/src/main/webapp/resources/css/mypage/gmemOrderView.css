@@ -97,7 +97,7 @@ a { text-decoration: none;}
 .columns .btn-inquiry, .columns .btn-map,
 .columns .btn-request, .columns .btn-review { 
 	height : 20px; 
-	line-height: 13px; 
+	line-height: 10px; 
 	font-size : 14px;
 	margin-left : 10px;
 }

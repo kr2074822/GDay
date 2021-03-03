@@ -1,31 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-    <title>후기 작성</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/review/reviewInsert.css">
-
-    <!-- icon : font-awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-    
-    <!-- Bootstrap core JS-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- swal2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-
-
-</head>
-<body>
 
 <!-- <a href="#" onclick="popUp(1, 'g')">후기 쓰기 선물</a>
 <a href="#" onclick="popUp(1, 'c')">후기 쓰기 클래스</a> -->
@@ -232,5 +210,3 @@ $(function(){
 });//ready함수 끝
 
 </script>
-</body>
-</html>
