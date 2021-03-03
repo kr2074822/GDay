@@ -11,10 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
-
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/gift.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassList.css">
     <title>클래스 찾기</title>
 </head>
 <body>
@@ -306,96 +304,49 @@
                 <span>인기순</span> | <span>최신순</span>
             </p>
         </div>
-        
+        <!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
         <c:if test="${empty gCList}">
-        
         	<div class="">조건에 맞는 상품이 없습니다.</div>
-        
         </c:if>
-        <c:if test="${!empty gCList}"/>
+        <c:if test="${!empty gCList}">
         <div class="gift_wrapper">
+        <c:forEach var="gClass" items="${gCList}" varStatus="vs">
+        	                    
+        	<c:if test="${gClass.cStatus == 'N'}">
+        		<div class="item">
+        		<div>
+        		<c:forEach items="${thList}" var="th">
+	                    <c:if test="${th.prdtNo == gClass.prdtNo}">
+                        <img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+                      </c:if>
+  	                  </c:forEach>
+        		<div class="sold_out">
+	         	<h1>품절</h1>
+	        	</div>
+        		</div>
+        		<h1>${gClass.prdtName}</h1>
+                    <p>별점</p> 
+                    <span>${gClass.prdtPrice}</span>
+                    </div>
+        	</c:if>
+        	<c:if test="${gClass.cStatus == 'Y'}">
             <div class="item">
                     <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
+	                    <c:forEach items="${thList}" var="th">
+	                    <c:if test="${th.prdtNo == gClass.prdtNo}">
+                        <img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+                      </c:if>
+  	                  </c:forEach>
+
                     </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
+                    <h1>${gClass.prdtName}</h1>
+                    <p>별점</p> 
+                    <span>${gClass.prdtPrice}</span>
             </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-            </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-            </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-            </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-            </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-            </div>
-            <div class="item">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-            </div>
+          </c:if>
+       </c:forEach>
         </div>
+     </c:if>
     </section>
     
     <jsp:include page="../common/footer.jsp"/>
@@ -421,10 +372,10 @@
                 
                 for(const pop of tagBx){                    
                     if(pop.getAttribute('data-text') == index) {
-                        tagBx[index].classList.toggle("action");
+                        tagBx[index].classList.toggle("action1");
 
                     }else{
-                        pop.classList.remove("action");
+                        pop.classList.remove("action1");
                     }
                 }
             });
@@ -446,13 +397,9 @@
                     setTimeout(() => {
                         ripples.remove()
                     }, 1000)
-                });
-            });
-        
-        
-        // 상품 상세보기 기능
-        
-        $("")
+                })
+            })
+
     </script>
 </body>
 </html>
