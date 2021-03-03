@@ -22,7 +22,16 @@
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 </head>
 <body>
-	
+		<c:if test="${!empty swalTitle}">
+      <script>
+         swal.fire({icon : "${swalIcon}",
+             title : "${swalTitle}",
+             text : "${swalText}"
+             /* , confirmButtonColor:  */
+         			
+         		});
+      </script>
+   </c:if>
 	
 	<header>
 		<div id="headerWrapper">		
