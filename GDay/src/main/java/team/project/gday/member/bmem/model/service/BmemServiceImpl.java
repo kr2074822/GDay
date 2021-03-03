@@ -82,29 +82,21 @@ public class BmemServiceImpl implements BmemService {
 		return dao.bOrderList(pInfo, loginMember);
 	}
 
+	// 상품별 옵션 이름 가져오기 Service 구현
+	@Override
+	public List<GOption> gOptionList(int opNo) {
+		return dao.gOptionList(opNo);
+	}
+	
 	
 	// 주문 상태 변경 Service 구현
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int orderStatusChange(Map<String, Object> map) {
-		
-		List<GOption> opAry = dao.opNumSelect(map);
-		
-		int[] opNumAry = new int[opAry.size()];
-		
-		for(int i = 0; i < opAry.size(); ++i) {
-			opNumAry[i] = opAry.get(i).getgOptNo();
-		}
-		
-		System.out.println(opNumAry);
-		
-		map.put("opNumAry", opNumAry);
-		
 		int result = dao.orderStatusChange(map);
 		
 		return result;
 	}
-
 	
 
 }
