@@ -7,6 +7,7 @@
 
 var memberNo = "${loginMember.memberNo}";
 var cp;
+
 var listContainer;
 var maxPage; //최대 페이지
 
@@ -65,6 +66,7 @@ function selectOrderList(cp){
 				
 				var thumbnails = map.thumbnails;
 				var optList = map.optList;
+				var rCheck = map.rCheck;
 				
 		    $.each(oList, function(index, order){   
 					
@@ -94,7 +96,8 @@ function selectOrderList(cp){
 					
 					var listName = $("<span>").addClass('list-name').text(order.prdtName).attr("onclick", click);
 					
-					var text1 = (order.prdtPrice * order.opAmount) + "원";
+					/* 숫자.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 화폐 , 찍어주 */
+					var text1 = (order.prdtPrice * order.opAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 					var listText1 = $("<span>").addClass('list-text-1').text(text1).attr("onclick", click);
 					
 					var text2 = "";
@@ -147,12 +150,17 @@ function selectOrderList(cp){
 						var btn2 = $("<a>").addClass('btn-confirm')
 											.attr("onclick", "confirm(" + order.opNo + ")").text("구매 확정");
 	
-						listStatus.append(btn).append(btn2);
+						listStatus.append(btn2).append(btn);
 	
 					} else if(status == 300){//구매 확정
+						
 						btn = $("<a>").addClass('btn-review')
-									.attr("onclick", "popUp("+ order.opNo + ", 'g'" +")").text("후기 쓰기");
-					
+						.attr("onclick", "popUp("+ order.opNo + ", 'g'" +")").text("후기 쓰기");
+						
+						$.each(rCheck, function(index, review){
+							if(review.rvNo == order.opNo) btn = "";
+						});
+
 						listStatus.append(btn);
 					} //취소-반품 요청 중 + 완료
 					
@@ -243,7 +251,11 @@ function confirm(opNo){
 																			title : "구매 확정되었습니다.",
 																			confirmButtonColor: "#54b39E"});	
 													
-													selectOrderList(cp);//재 로드
+													for(var i=1; i<=cp; i++) {
+														selectOrderList(cp);
+													} 
+													//ajax로 페이지를 불러와 누적하기 때문에 새로 해당 페이지까지 로드하려면
+													//cp 수만큼 selectOrderList(cp)를 다시해야 함
 													
 												} else {
 													swal.fire ({icon: "error", 
@@ -261,7 +273,6 @@ function confirm(opNo){
 }//구매 확정 끝
 
 //팝업은 모달창jsp에 있음
-
 
 
 </script>
