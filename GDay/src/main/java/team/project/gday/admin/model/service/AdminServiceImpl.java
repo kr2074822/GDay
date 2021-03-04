@@ -1,9 +1,11 @@
 package team.project.gday.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.project.gday.admin.model.dao.AdminDAO;
 import team.project.gday.admin.model.vo.adminPageInfo;
@@ -27,6 +29,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Member> adminMember(adminPageInfo pInfo) {
 		return dao.adminMember(pInfo);
+	}
+
+	// 회원 등급 변경 Service
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateMemberGrade(Map<String, Object> map) {
+		return dao.updateMemberGrade(map);
 	}
 
 }

@@ -27,7 +27,19 @@
 	
 	<!-- 회원 전체 조회 -->
 	<select id="adminMember" parameterType="_int" resultMap="member_rm">
-		SELECT MEM_EMAIL, MEM_NAME, SYSDATE, MEM_GRADE
+		SELECT MEM_NO, MEM_EMAIL, MEM_NAME, MEM_TYPE, MEM_GRADE
 		FROM MEMBER
+		ORDER BY MEM_NO DESC
 	</select>
+	
+	<update id="updateMemberGrade" parameterType="map">
+		UPDATE MEMBER SET
+		MEM_GRADE = #{memberGrade}
+		WHERE MEM_NO IN
+		<foreach collection="memberNo" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+		
+		
+	</update>
 </mapper>

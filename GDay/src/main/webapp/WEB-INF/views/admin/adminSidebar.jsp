@@ -52,30 +52,40 @@
                     </ul>
 								</li>
 								
-								<li class="active-sidebar">
+					<li class="active-sidebar">
                 		<a href="${contextPath}/admin/adminReportEnd" class="up-menu">
-                    <span class="menu-icon"><i class="fas fa-exclamation-triangle"></i></span>
-                    <span class="menu-text">신고 관리</span>
+                    	<span class="menu-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    	<span class="menu-text">신고 관리</span>
                     </a>
 
-                    <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/admin/adminReportEnd">
-                            <span class="submenu-icon"><i class="fas fa-exclamation-circle"></i></span>
-                            <span class="submenu-text">신고처리 완료</span>
-                            </a>
-                        </li>
-                        <li><a href="${contextPath}/admin/adminReportStand">
-                            <span class="submenu-icon"><i class="fas fa-bomb"></i></span>
-                            <span class="submenu-text">신고처리 대기</span>
-                            </a>
-                        </li>
-                    </ul>
-								</li>
+	                    <ul class="sub-menu">
+	                        <li class="active-sidebar"><a href="${contextPath}/admin/adminReportEnd">
+	                            <span class="submenu-icon"><i class="fas fa-exclamation-circle"></i></span>
+	                            <span class="submenu-text">신고처리 완료</span>
+	                            </a>
+	                        </li>
+	                        <li><a href="${contextPath}/admin/adminReportStand">
+	                            <span class="submenu-icon"><i class="fas fa-bomb"></i></span>
+	                            <span class="submenu-text">신고처리 대기</span>
+	                            </a>
+	                        </li>
+	                    </ul>
+					</li>
+
+					<li class="active-sidebar">
+                		<a href="${contextPath}/admin/adminBoard" class="up-menu">
+	                    <span class="menu-icon"><i class="fas fa-clipboard-list"></i></span>
+	                    <span class="menu-text">게시글 관리</span>
+                    </a>
+
+	                    <ul class="sub-menu">
+			                <li><a href="${contextPath}/admin/adminMagazine">
+			                    <span class="submenu-icon"><i class="fas fa-book-open"></i></span>
+			                    <span class="submenu-text">매거진 관리</span>
+			                    </a></li>
+	                    </ul>
+					</li>
 								
-                <li><a href="${contextPath}/admin/adminBoard">
-                    <span class="menu-icon"><i class="fas fa-clipboard-list" style="font-size : 20px"></i></span>
-                    <span class="menu-text">게시글 관리</span>
-                    </a></li>
                 <li><a href="${contextPath}/admin/adminCustomerService">
                     <span class="menu-icon"><i class="fas fa-question-circle" style="font-size : 20px"></i></span>
                     <span class="menu-text">고객 센터</span>
