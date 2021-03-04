@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,7 +29,7 @@ public class GClassController {
 	private String swalText = null;
 	
 	
-	//상품 목록 조회/최신순 Controller
+	//상품 목록 평점/최신순 Controller --현재 최신순
 	@RequestMapping("list")
 	public String giftList(@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 							Model model){
@@ -49,7 +50,14 @@ public class GClassController {
 		return "gClass/gClassList";
 	}
 	
-	//상품 검색 Controller
+	/*
+	 * //상품 검색 Controller
+	 * 
+	 * @RequestMapping("search") public String searchgClass(@PathVariable("type")
+	 * int type,
+	 * 
+	 * @RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+	 */
 
 
 }
