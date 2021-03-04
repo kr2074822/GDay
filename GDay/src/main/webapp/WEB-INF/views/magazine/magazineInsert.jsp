@@ -33,9 +33,9 @@
         <div class="magazine_wrapper">
             <h1>매거진 등록</h1>
             <div class="magazine_form">
-                <form action="" method="POST">
+                <form action="${contextPath}/magazine/magazineInsert" method="POST" enctype="multipart/form-data" role="form">
                     <div class="magazine_title">
-                        <input type="text" placeholder="제목을 입력해주세요" name="prdtName">
+                        <input type="text" placeholder="제목을 입력해주세요" name="mgzTitle">
                         <div class="thumbnail">
                             <div class="boardRow">
                                 <div id="fileArea">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="editor">
-                        <textarea class="form-control" id="summernote" name="boardContent" rows="10" style="resize: none;"></textarea>
+                        <textarea class="form-control" id="summernote" name="mgzContent" rows="10" style="resize: none;"></textarea>
                     </div>
                     <div class="buttons">
                         <button type="submit" class="submit">등록</button>

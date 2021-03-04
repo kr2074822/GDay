@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.magazine.model.service.MagazineService;
 import team.project.gday.magazine.model.vo.Magazine;
+import team.project.gday.magazine.model.vo.MagazineImg;
 import team.project.gday.magazine.model.vo.MagazinePageInfo;
 import team.project.gday.member.model.vo.Member;
 
@@ -36,28 +37,16 @@ public class MagazineController {
 	@RequestMapping("list")
 	public String magazineList (@RequestParam(value="cp", required = false ,defaultValue = "1" ) int cp,
 			Model model) {
-		// System.out.println("type : " + type);
-		// System.out.println("cp : " + cp);
-		
+
 		// 1) 페이징 처리를 위한 객체 PageInfo 생성
 		MagazinePageInfo pInfo = service.getPageInfo(cp);
 		
-		// System.out.println(pInfo);
+
 		
 		// 2) 게시글 목록 조회 
 		List<Magazine> mList = service.selectList(pInfo); 
 		
-		/*
-		for(Board b : bList) {
-			System.out.println(b);
-		}
-		*/
-		
-		
-		
-		
-		// 썸네일부분
-		
+
 		
 		
 		 if (mList != null && !mList.isEmpty()) { 
@@ -141,10 +130,11 @@ public class MagazineController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mgzNo", magazine.getMgzNo());
-		map.put("mgzTitle", magazine.getMemberNo());
-		map.put("mgzContent", magazine.getMemberNo());
-		map.put("memberNo", magazine.getMemberNo());
-		
+		map.put("mgzTitle", magazine.getMgzTitle());
+		map.put("mgzContent", magazine.getMgzContent());
+		map.put("memberNo", loginMember.getMemberNo());
+		System.out.println(images);
+		System.out.println(magazine);
 		
 		// 파일 업로드 확인 
 		for (int i = 0; i < images.size(); i++) {
@@ -154,7 +144,7 @@ public class MagazineController {
 		// 파일 저장 경로설정
 		// HttpServletRequest 객체가 있어야지만 파일 저장 경로를 얻어올 수 있음
 		// -> HttpServletRequest객체는 Controller에서만 사용 가능
-		String savePath = request.getSession().getServletContext().getRealPath("resources/images/thumbnailImg");
+		String savePath = request.getSession().getServletContext().getRealPath("resources/images/magazineImg");
 
 		// 게시글 map, 이미지 images, 저장경로 savePath
 
@@ -175,7 +165,7 @@ public class MagazineController {
 		//서버에 파일(이미지)을 저장할 폴더 경로 얻어오기
 		String savePath
 		= request.getSession().getServletContext().getRealPath("resources/images/productInfoImg");
-		Attachment at = service.insertImages(uploadFile, savePath);
+		MagazineImg at = service.insertImages(uploadFile, savePath);
 		
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
