@@ -25,6 +25,7 @@
 		<typeAlias type="team.project.gday.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="team.project.gday.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="team.project.gday.admin.model.vo.adminPageInfo" alias="AdminInfo"/>
+		<typeAlias type="team.project.gday.member.model.vo.Refund" alias="Refund"/>
 	</typeAliases>
 
 	<mappers>
