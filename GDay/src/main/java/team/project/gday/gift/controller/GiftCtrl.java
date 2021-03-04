@@ -11,9 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.gift.model.service.GiftService;
 import team.project.gday.member.model.vo.Member;
@@ -76,6 +80,20 @@ public class GiftCtrl {
 		
 		System.out.println(1);
 		return "redirect:/";
+	}
+	
+	// summernote에 업로드된 이미지 저장 Controller
+	@RequestMapping("insertImage")
+	@ResponseBody //응답시 값 자체를 돌려보냄
+	public String insertImage(HttpServletRequest request,
+								@RequestParam(value="uploadFile") MultipartFile uploadFile) {
+		//서버에 파일(이미지)을 저장할 폴더 경로 얻어오기
+		String savePath
+		= request.getSession().getServletContext().getRealPath("resources/images/productInfoImg");
+		Attachment at = service.insertImages(uploadFile, savePath);
+		
+		//java->js로 객체 전달 : json
+		return new Gson().toJson(at);
 	}
 	
 	

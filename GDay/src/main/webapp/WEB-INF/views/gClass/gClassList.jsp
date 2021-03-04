@@ -326,39 +326,27 @@
         <c:if test="${!empty gCList}">
         <div class="gift_wrapper">
         <c:forEach var="gClass" items="${gCList}" varStatus="vs">
-        	                    
-        	<c:if test="${gClass.cStatus == 'N'}">
-        		<div class="item">
-        		<div>
-        		<c:forEach items="${thList}" var="th">
-	                    <c:if test="${th.prdtNo == gClass.prdtNo}">
-                        <img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
-                      </c:if>
-  	                  </c:forEach>
-        		<div class="sold_out">
-	         	<h1>품절</h1>
-	        	</div>
-        		</div>
-        		<h1>${gClass.prdtName}</h1>
-                    <p>별점</p> 
-                    <span>${gClass.prdtPrice}</span>
-                    </div>
-        	</c:if>
-        	<c:if test="${gClass.cStatus == 'Y'}">
             <div class="item">
+          		  <a href="">
                     <div>
 	                    <c:forEach items="${thList}" var="th">
 	                    <c:if test="${th.prdtNo == gClass.prdtNo}">
                         <img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
                       </c:if>
+                      
+                      <c:if test="${gClass.cStatus == 'N'}">
+					        		<div class="sold_out">
+						         	<h1>품절</h1>
+						        	</div>
+                    </c:if>
   	                  </c:forEach>
-
                     </div>
                     <h1>${gClass.prdtName}</h1>
                     <p>별점</p> 
                     <span>${gClass.prdtPrice}</span>
+                 </a>
             </div>
-          </c:if>
+         
        </c:forEach>
         </div>
      </c:if>

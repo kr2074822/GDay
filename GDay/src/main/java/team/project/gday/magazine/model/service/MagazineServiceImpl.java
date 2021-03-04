@@ -140,16 +140,16 @@ public class MagazineServiceImpl implements MagazineService{
 	
 	// 이미지 등록
 	@Override
-	public MagazineImg insertImages(MultipartFile uploadFile, String savePath) {
+	public Attachment insertImages(MultipartFile uploadFile, String savePath) {
 		
 		//파일명 변경하기
 		String fileName = rename(uploadFile.getOriginalFilename());
 		//웹상 접근 주소 적기
-		String filePath = "/resources/images/magazineImg";
+		String filePath = "/resources/images/productInfoImg";
 		
-		MagazineImg at = new MagazineImg();
-		at.setImgPath(filePath);
-		at.setImgName(fileName);
+		Attachment at = new Attachment();
+		at.setFilePath(filePath);
+		at.setFileName(fileName);
 		
 		//transferTo == 서버에 파일 저장
 		try {

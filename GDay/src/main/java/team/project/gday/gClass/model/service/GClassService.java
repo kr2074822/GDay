@@ -26,4 +26,8 @@ public interface GClassService {
 	 */
 	List<Attachment> selectThumbnailList(List<GClass> gCList);
 
+	GClass selectGClass(int prdtNo);
+
+	List<Attachment> selectAttachmentList(int prdtNo);
+
 }

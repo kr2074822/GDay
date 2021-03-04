@@ -26,6 +26,6 @@ public interface MagazineService {
 	 */
 	int insertMagazine(Map<String, Object> map, List<MultipartFile> images, String savePath);
 
-	MagazineImg insertImages(MultipartFile uploadFile, String savePath);
+	Attachment insertImages(MultipartFile uploadFile, String savePath);
 	
 }
