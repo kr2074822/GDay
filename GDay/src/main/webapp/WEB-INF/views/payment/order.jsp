@@ -120,7 +120,7 @@
              pay_method : 'card',
              merchant_uid : 'merchant_' + new Date().getTime(),
              name : '주문명:결제테스트',
-             amount : 10000,
+             amount : 100,
              buyer_email : 'kang2x2@naver.com',
              buyer_name : '구매자이름',
              buyer_tel : '010-9462-2303',
@@ -144,8 +144,7 @@
                      }
                  }).done(function (data) {
                    // 가맹점 서버 결제 API 성공시 로직
-                    var msg = '결제에 성공하였습니다.';
-                      alert(msg);
+                    console.log("결제 성공했어요.");
                  });
              } else {
                   var msg = '결제에 실패하였습니다.';
