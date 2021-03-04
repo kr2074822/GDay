@@ -8,12 +8,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sun.xml.internal.ws.api.message.Attachment;
-
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
 /**
@@ -95,10 +95,66 @@ public class GmemDAO {
 	
 	/** 주문 구매 확정 처리(선물)
 	 * @param opNo
-	 * @return
+	 * @return result
 	 */
 	public int confirmOrder(int opNo) {
 		return sqlSession.update("gMemMapper.confirmOrder", opNo);
+	}
+
+	/**주문 상품 번호 + 타입으로 하나의 주문 가져오기 dao
+	 * @param map
+	 * @return order
+	 */
+	public Order selectAOrder(Map<String, Object> map) {
+		return sqlSession.selectOne("gMemMapper.selectAOrder", map);
+	}
+
+	/**상품 번호로 썸네일 조회 dao
+	 * @param prdtNo
+	 * @return thumbnail
+	 */
+	public Attachment selectAThumbnail(int prdtNo) {
+		return sqlSession.selectOne("gMemMapper.selectAThumbnail", prdtNo);
+	}
+
+	/**옵션 번호로 옵션 내용 조회 dao
+	 * @param giftOpNo
+	 * @return gOption
+	 */
+	public GOption selectOption(int giftOpNo) {
+		return sqlSession.selectOne("gMemMapper.selectOption", giftOpNo);
+	}
+
+	/**상품 번호로 클래스 상세 내용 조회 dao
+	 * @param prdtNo
+	 * @return gClass
+	 */
+	public GClass selectGClass(int prdtNo) {
+		return sqlSession.selectOne("gMemMapper.selectGClass", prdtNo);
+	}
+
+	/**환불 테이블에 취소-반품 요청 삽입 dao
+	 * @param refund
+	 * @return result
+	 */
+	public int insertRequest(Refund refund) {
+		return sqlSession.insert("gMemMapper.insertRequest", refund);
+	}
+
+	/** 주문 상품 테이블에 상태 변경(100/900 → 400, 200 → 500)
+	 * @param map
+	 * @return
+	 */
+	public int updateRfStatus(Map<String, Object> map) {
+		return sqlSession.update("gMemMapper.updateRfStatus", map);
+	}
+
+	/**반품 요청 시 수거지 정보 변경 dao
+	 * @param map
+	 * @return result
+	 */
+	public int updateShipInfo(Map<String, Object> map) {
+		return sqlSession.update("gMemMapper.updateShipInfo", map);
 	}
 
 

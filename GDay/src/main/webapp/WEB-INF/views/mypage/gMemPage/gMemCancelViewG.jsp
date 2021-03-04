@@ -35,23 +35,20 @@
 <!-- js 파일 -->
 <jsp:include page="gMemOrderViewJS.jsp"></jsp:include>
 
-<!-- 모달 파일 -->
-<jsp:include page="../../review/reviewInsertForm.jsp"/>
-
 
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
 
     <div id="container-list-all" class="container-view">
         <div class="list-title">
-            <span>선물 취소·반품 요청 정보</span>
+            <span>취소·반품 요청 정보</span>
         </div>
     
         <div id="order-info">
-            <span class="order-date">주문 일자</span><span class="order-date">2021.02.04</span>
+            <span class="order-date">&nbsp; &nbsp;</span><span class="order-date">${refund.rfDate}</span>
             <span class="separate" style="font-size : 16px;">&nbsp; ┃ &nbsp;</span>
             <br> <!-- flex-direction: row에서는 br이 적용X column일 때(반응형) 적용 -->
-            <span class="order-no">주문 번호</span><span class="order-no">2021020412345</span>
+            <span class="order-no">주문 상품 번호&nbsp; &nbsp;</span><span class="order-no">2021020412345</span>
         </div>
 
         <div class="container-orders"><!-- 반응형 관련 -->

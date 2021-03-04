@@ -16,6 +16,8 @@
     min-height : 800px;
 }
 
+#container-list-all {font-family: 'TmoneyRoundWindRegular'; }
+
 .wrapper-box {
 		display : flex;
 		flex-direction : column;
@@ -92,7 +94,7 @@
 	cursor : pointer; 
 	display: flex; 
 	flex-direction : column;
-	justify-content : space-between;
+	justify-content : space-around;
 	min-height : 100px;
 	
 }
@@ -190,7 +192,7 @@ a { text-decoration: none;}
 @media (max-width : 768px){
 	.container-list {	flex-direction : column; }
 	.list-card, .list-btn { width : 100%; }
-    .list-card { height : 160px; margin-top: 20px;}
+  .list-card { height : 160px; margin-top: 20px;}
 	.list-btn { height : 100px;}
 	.list-status, list-seller {
 		flex-direction : row;
@@ -198,7 +200,7 @@ a { text-decoration: none;}
 	.list-status { width : 60%; flex-wrap : wrap;}
 	.list-seller { width : 40%; }
     .seller-name { font-size: 14px;}
-	
+
 }
 
 

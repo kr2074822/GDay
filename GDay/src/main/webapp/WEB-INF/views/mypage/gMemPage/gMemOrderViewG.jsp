@@ -10,11 +10,11 @@
 <meta charset="UTF-8">
 <title>선물 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.0"> <!-- 같은 클래스 공유 -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.5"> <!-- 같은 클래스 공유 -->
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.1"> <!-- 상세 페이지 고유 css -->
 
     <!-- Bootstrap core JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -116,13 +116,13 @@
                     		 
                     		 <c:if test="${order.statusNo == 100}">
 		                    		 <%-- 결제 완료 후 : 취소 요청(팝업창)--%>
-		                        <a href="${contextPath}/gMember/cancelRequest/G/${order.opNo}" class="btn-cancel">취소 요청</a> 
+		                        <a href="${contextPath}/gMember/cancelRequest/G/${order.opNo}" class="btn-cancel">취소 신청</a> 
 		                     </c:if>
 		                     
 		                     <c:if test="${order.statusNo == 200}">
                         		<%-- 선물 발송 후 : 구매확정(confirm) / 반품 요청(팝업창) --%>
 		                        <a class="btn-confirm" onclick="confirm(${order.opNo})">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
-		                        <a href="${contextPath}/gMember/cancelRequest/G/${order.opNo}" class="btn-takeback">반품 요청</a> 
+		                        <a href="${contextPath}/gMember/cancelRequest/G/${order.opNo}" class="btn-takeback">반품 신청</a> 
 		                    </c:if>	
                     </div>
                 </div>
@@ -163,10 +163,20 @@
                 <span class="column-content" id="ship-addr">${oList[0].shipAddr}</span>
             </div>
         </div>
-        <a href="" class="btn-gotolist btn-view">목록</a>
+        
+        <%-- 북마크나 주소로 인한 직접 접근 시 목록으로 버튼 경로 지정 --%>
+				<c:if test="${empty sessionScope.returnListURL}">
+					<c:set var="returnListURL" value="../../orderList/G" scope="session"/>
+				</c:if>
+        <a href="${sessionScope.returnListURL}" class="btn-gotolist btn-view">목록</a>
     </div>
 </div>
+				
 
+<%-- 취소 요청 페이지에서 이전으로 클릭 시 주문 상세 페이지로 돌아오도록 url 세션에 올리기 --%>
+	<c:set var="returnViewUrl" 
+		scope="session"
+		value="${contextPath}/gMember/orderView/G/${oList[0].orderNo}"/>
 
 <jsp:include page="../../common/footer.jsp"/>
 </body>

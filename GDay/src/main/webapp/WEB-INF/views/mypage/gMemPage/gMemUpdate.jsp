@@ -68,41 +68,42 @@
 
             <div class="info-form" id="info-nickname">
                 <label class="info-title"><span class="star">*</span>닉네임</label>
-                <input type="text" name="nickname" value="지데이샵" class="info-content-1" required/>
-                <span class="info-content-2" id="check-nickname">최대 6글자</span>
+                <input type="text" name="memberNick" value="지데이샵" class="info-content-1" 
+                	maxlength="6" required/>
+                <span class="info-content-2" id="check-nickname">한글 최대 6글자, 영문 최대 20글자</span>
                 <!-- 닉네임 중복확인 ajax : 문구 출력(check-nickname)-->
             </div>
             
             <div class="info-form" id="info-phone">
-                <label for="phone" class="info-title">연락처</label>
-                <input type="text" name="phone" value="01011111111" class="info-content" required/><!-- 회원 전화번호 -->
+                <label class="info-title">연락처</label>
+                <input type="text" name="memberPhone" value="01011111111" class="info-content" 
+                	maxlength='11' placeholder="'-' 없이 숫자만 입력" required/><!-- 회원 전화번호 -->
             </div>
 
             <div class="info-form" id="info-address-1">
                 <label class="info-title">우편번호</label>
                 <div class="input-btn">
-                    <input type="text" name="address1" value="01234" class="info-content-1"/>
+                    <input type="text" name="address1" value="01234" class="info-content-1 postcodify_postcode5" readonly/>
                     <button type="button" class="info-btn" id="post-search-btn">검색</button>
                 <!-- 회원 주소1 : 우편번호-->
                 </div>
             </div>
             <div class="info-form" id="info-address-2">
                 <label class="info-title">도로명 주소</label>
-                <input type="text" name="address2" value="서울특별시 중구 남대문로 120" class="info-content"/>
+                <input type="text" name="address2" value="서울특별시 중구 남대문로 120" class="info-content postcodify_address" readonly/>
                 <!-- 회원 주소2 : 도로명 주소-->
             </div>
 
             <div class="info-form" id="info-address-3">
                 <label for="address3" class="info-title">상세 주소</label>
-                <input type="text" name="address3" value="대일빌딩 2층" class="info-content"/>
+                <input type="text" name="address3" value="대일빌딩 2층" class="info-content postcodify_details"/>
                 <!-- 회원 주소1 : 우편번호-->
             </div>
-
-            <div class="info-form" id="info-bday">
-                <label for="birthday" class="info-title">생년월일</label>
-                <input type="date" name="birthday" value="1990-01-03" class="info-content"/>
-                <!-- 회원 주소1 : 우편번호-->
-            </div>
+            
+		        <div class="wrap-btn">
+				        <button type="reset" class="reset-btn">초기화</button>
+				        <button type="submit" class="sumbit-btn">정보 변경</button>
+		        </div>
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
             
@@ -130,6 +131,9 @@
 	 // 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
 	 $(function(){
 	     $("#post-search-btn").postcodifyPopUp();
+ 	     $(".postcodify_details").on("focus", function(){
+	    	 $(this).val("");
+	     });
 	 });
  
  </script>

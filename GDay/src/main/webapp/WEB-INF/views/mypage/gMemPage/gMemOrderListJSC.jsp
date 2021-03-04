@@ -7,7 +7,8 @@
 
 var memberNo = "${loginMember.memberNo}";
 var cp;
-var presentTab;
+var tabMenu;
+var periodRadio;
 var listContainer;
 var maxPage; //최대 페이지
 
@@ -16,7 +17,7 @@ $(document).ready(function(){//ready 함수
 //기본 화면 결제일 기간 : 일주일 / 전체  + list 초기화
 (function(){
 
-	loadTab(); //로드 탭
+	loadTab(cp); //로드 탭
 
 })();	
 
@@ -39,14 +40,16 @@ $("#btn-more").on("click", function(){
 
 /* 주문 내역 조회 */
 function selectOrderList(cp){
-	var start = $("#periodStart").val();//조회 시작일
-	var end = $("#periodEnd").val();//조회 마지막일
+	var periodStart = $("#periodStart").val();//조회 시작일
+	var periodEnd = $("#periodEnd").val();//조회 마지막일
 	
 	var statusNo = $("#giftStatus").val();//상태
 	
-	presentTab = $(".tab-active").prev().val();
+	periodRadio = $("input=[name='periodRadio]").val();
 	
-	if(presentTab == "endClass") {
+	tabMenu = $(".tab-active").prev().val();
+	
+	if(tabMenu == "endClass") {
 		statusNo = 800;
 	}
 	
@@ -61,7 +64,12 @@ function selectOrderList(cp){
 
 	$.ajax({
 		url : "../selectOrderList/C/" + memberNo, /* type : 1(선물) + 회원번호*/
-		data : { "cp" : cp, "start" : start, "end" : end, "statusNo" : statusNo },
+		data : { "cp" : cp, 
+						"periodStart" : periodStart, 
+						"periodEnd" : periodEnd, 
+						"periodRadio" : periodRadio,
+						"statusNo" : statusNo, 
+						"tabMenu" : tabMenu },
 		type : "post",
 		dataType : "json",
 		success : function(map){
@@ -73,6 +81,7 @@ function selectOrderList(cp){
 				
 				var thumbnails = map.thumbnails;
 				var cList = map.cList;
+				var rCheck = map.rCheck;
 				
 		    $.each(oList, function(index, order){   
 					
@@ -146,15 +155,20 @@ function selectOrderList(cp){
 					
 					var url = "../cancelRequest/C/" + order.opNo;//반품/취소 요청 href + 주문 상품 번호 
 					
+					btn = "";
+					
 					if(status == 900) { //수강신청
-						btn = $("<a>").addClass('btn-cancel').attr("href", url).text("취소 요청");
-						listStatus.append(btn);
+						btn = $("<a>").addClass('btn-cancel').attr("href", url).text("수강 취소");
 						
 					} else if(status == 800){ //수강 완료
 						btn = $("<a>").addClass('btn-review')
 						.attr("onclick", "popUp("+ order.opNo + ", 'g'" +")").text("후기 쓰기");
+					
+						$.each(rCheck, function(index, review){
+							if(review.rvNo == order.opNo) btn = "";
+						});
 					}
-						listStatus.append(btn);
+					listStatus.append(btn);
 					
 					listBtn.append(listSeller).append(listStatus);
 					/* btn 부분 끝 */
@@ -201,11 +215,21 @@ function selectOrderList(cp){
 
 
 //처음 화면 로딩 + tab 클릭시 진행되는 함수
-function loadTab(){
+function loadTab(cp){
 	
 	$("#7days").click();
-	cp = 1;//첫 페이지
-	selectOrderList(cp); //첫 조회
+	
+	console.log(cp);
+	
+	if(cp = ""){
+		cp = 1;
+	}
+	
+	for(var i=0; i<cp; i++){ 
+		//목록, 이전으로 버튼으로 돌아온 경우
+		selectOrderList(cp); 
+	}
+	
 }
 
 

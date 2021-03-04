@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sun.xml.internal.ws.api.message.Attachment;
-
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.dao.GmemDAO;
+import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
 @Service
@@ -93,7 +93,68 @@ public class GmemServiceImpl implements GmemService {
 		return dao.confirmOrder(opNo);
 	}
 
+	// 주문 상품 번호 + 타입으로 하나의 주문 가져오기 service 구현
+	@Override
+	public Order selectAOrder(Map<String, Object> map) {
+		return dao.selectAOrder(map);
+	}
 
+	//상품 번호로 썸네일 조회 service 구현
+	@Override
+	public Attachment selectAThumbnail(int prdtNo) {
+		return dao.selectAThumbnail(prdtNo);
+	}
+
+	//옵션 번호로 옵션 내용 조회 service 구현	
+	@Override
+	public GOption selectOption(int giftOpNo) {
+		return dao.selectOption(giftOpNo);
+	}
+
+	//상품 번호로 클래스 상세 내용 조회 service 구현
+	@Override
+	public GClass selectGClass(int prdtNo) {
+		return dao.selectGClass(prdtNo);
+	}
+
+	//------------------------------------주문 상세 조회 끝----------------------------------
+	
+	//환불 테이블에 취소-반품 요청 삽입  + 주문 상태 변경 service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int sendRequest(Refund refund, Map<String, Object> map) {
+		
+		refund.setRfContent(replaceParameter(refund.getRfContent().replaceAll("\n", "<br>")));
+		
+		int result = dao.insertRequest(refund);
+		
+		if(result > 0) {
+			result = 0;
+			result = dao.updateRfStatus(map);
+		}
+		
+		return result;
+	}
+
+	//반품 요청 시 수거지 정보 변경 service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateShipInfo(Map<String, Object> map) {
+		return dao.updateShipInfo(map);
+	}
+
+
+	// 크로스 사이트 스크립트 방지 처리 메소드
+	private String replaceParameter(String param) {
+		String result = param;
+		if(param != null) {
+			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("<", "&lt;");
+			result = result.replaceAll(">", "&gt;");
+			result = result.replaceAll("\"", "&quot;");
+		}
+		return result;
+	}
 
 	
 }

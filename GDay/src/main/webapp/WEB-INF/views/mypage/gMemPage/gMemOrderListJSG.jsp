@@ -6,7 +6,7 @@
 <script>
 
 var memberNo = "${loginMember.memberNo}";
-var cp;
+var cp = "${cp}";
 
 var listContainer;
 var maxPage; //최대 페이지
@@ -19,8 +19,15 @@ $(document).ready(function(){//ready 함수
 	(function(){
 	
 		$("#7days").click();
-		cp = 1;//첫 페이지
-		selectOrderList(cp); //첫 조회
+		console.log(cp);
+		
+		if(cp == ""){
+			cp = 1;//첫 페이지
+		}
+		for(var i=0; i<cp; i++){ 
+			//목록, 이전으로 버튼으로 돌아온 경우
+			selectOrderList(cp); 
+		}
 
 	})();	
 	
@@ -41,8 +48,9 @@ $(document).ready(function(){//ready 함수
 
 /* 주문 내역 조회 */
 function selectOrderList(cp){
-	var start = $("#periodStart").val();//조회 시작일
-	var end = $("#periodEnd").val();//조회 마지막일
+	var periodStart = $("#periodStart").val();//조회 시작일
+	var periodEnd = $("#periodEnd").val();//조회 마지막일
+	periodRadio = $("input=[name='periodRadio]").val();
 	
 	var statusNo = $("#giftStatus").val();//상태
 	
@@ -55,7 +63,11 @@ function selectOrderList(cp){
 
 	$.ajax({
 		url : "../selectOrderList/G/" + memberNo, /* type : 1(선물) + 회원번호*/
-		data : { "cp" : cp, "start" : start, "end" : end, "statusNo" : statusNo },
+		data : { "cp" : cp, 
+						"periodStart" : periodStart, 
+						"periodEnd" : periodEnd, 
+						"periodRadio" : periodRadio,
+						"statusNo" : statusNo },
 		type : "post",
 		dataType : "json",
 		success : function(map){
@@ -142,11 +154,11 @@ function selectOrderList(cp){
 					var url = "../cancelRequest/G/" + order.opNo;//반품/취소 요청 href + 주문 상품 번호 
 					
 					if(status == 100) { //결제 완료
-						btn = $("<a>").addClass('btn-cancel').attr("href", url).text("취소 요청");
+						btn = $("<a>").addClass('btn-cancel').attr("href", url).text("취소 신청");
 						listStatus.append(btn);
 						
 					} else if(status == 200){ //발송 완료
-						btn = $("<a>").addClass('btn-takeback').attr("href", url).text("반품 요청");
+						btn = $("<a>").addClass('btn-takeback').attr("href", url).text("반품 신청");
 						var btn2 = $("<a>").addClass('btn-confirm')
 											.attr("onclick", "confirm(" + order.opNo + ")").text("구매 확정");
 	
