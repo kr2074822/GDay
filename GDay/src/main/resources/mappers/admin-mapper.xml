@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Member" id="member_rm">
+		<!-- DB의 기본 키 -->
+		<id property="memberNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="memberEmail" column="MEM_EMAIL"/>
+  		<result property="memberPwd" column="MEM_PW"/>
+  		<result property="memberName" column="MEM_NAME"/>
+  		<result property="memberNick" column="MEM_NICK"/>
+  		<result property="memberPhone" column="MEM_PHONE"/>
+  		<result property="memberAddress" column="MEM_ADDR"/>
+  		<result property="memberGrade" column="MEM_GRADE"/>
+  		<result property="memberType" column="MEM_TYPE"/>
+  		<result property="memberSec" column="MEM_SEC"/>
+	</resultMap>
+	
+	<!-- 페이징 처리(목록 갯수) -->
+	<select id="getListCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
+	
+	<!-- 회원 전체 조회 -->
+	<select id="adminMember" parameterType="_int" resultMap="member_rm">
+		SELECT MEM_EMAIL, MEM_NAME, SYSDATE, MEM_GRADE
+		FROM MEMBER
+	</select>
+</mapper>

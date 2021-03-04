@@ -1,10 +1,17 @@
 package team.project.gday.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import team.project.gday.admin.model.service.AdminService;
+import team.project.gday.admin.model.vo.adminPageInfo;
+import team.project.gday.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -13,15 +20,26 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 
-	// 관리자 페이지로 이동 Controller
+	// 관리자 페이지/전체 회원관리로 이동 Controller
 	@RequestMapping("adminMember")
-	public String adminMember() {
+	public String adminMember(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+							  Model model) {
+		
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageInfo(cp);
+		
+		System.out.println(pInfo);
+		// 전체 회원 조회
+		List<Member> mList = service.adminMember(pInfo);
+		
+		model.addAllAttributes(mList);
+		
 		return "admin/adminMember";
 	}
 	
 	// 회원 등급 변경 Controller
 	@RequestMapping("memberRating")
-	public String memberRating() {
+	public String memberRating(@RequestParam("check") int check) {
 		return null;
 	}
 
@@ -84,5 +102,7 @@ public class AdminController {
 	public String memberCustomerView(){
 		return "admin/memberCustomerView";
 	}
+	
+	//-----------------------------------------------------------------------
 	
 }
