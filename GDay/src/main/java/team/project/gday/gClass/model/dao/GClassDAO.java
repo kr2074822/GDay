@@ -18,21 +18,22 @@ public class GClassDAO {
 	private SqlSessionTemplate sqlSession;
 
 	/**전체 클래스 수 조회 DAO
-	 * @return listCount
+	 * @return classCount
 	 */
 	public int getClassCount() {
 		return sqlSession.selectOne("classMapper.getClassCount");
 	}
-
+	
 	/**클래스 목록 조회 DAO
 	 * @param pInfo
 	 * @return
 	 */
 	public List<GClass> selectList(PageInfo10 pInfo) {
 		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		
-		return sqlSession.selectList("classMapper.selectList", rowBounds);
+		return sqlSession.selectList("classMapper.selectList", null, rowBounds);
 	}
 
 	/**썸네일 목록 조회 DAO
@@ -42,4 +43,5 @@ public class GClassDAO {
 	public List<Attachment> selectThumbnailList(List<GClass> gCList) {
 		return sqlSession.selectList("classMapper.selectThumbnailList", gCList);
 	}
+
 }
