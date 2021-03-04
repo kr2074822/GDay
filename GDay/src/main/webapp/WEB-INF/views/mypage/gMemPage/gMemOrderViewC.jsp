@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 화폐단위 체크용 -->
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>클래스 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.3"> <!-- 같은 클래스 공유 -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.2"> <!-- 상세 페이지 고유 css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css"> <!-- 같은 클래스 공유 -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.7"> <!-- 상세 페이지 고유 css -->
 		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
     
     <!-- Bootstrap core JS-->
@@ -63,7 +63,18 @@
 			<c:set var="total" value="0"/>
 
         <div class="container-table" id="class-info">
-          <c:forEach  var="order" items="${oList}">
+	      <c:forEach  var="order" items="${oList}">
+        	<div class="columns-cover">
+        		
+        		<c:forEach var="image" items="${thumbnails}">
+        			<c:if test="${image.prdtNo == order.prdtNo}">
+	        		<div class="columns">
+							    <c:set var="imgUrl" value="${contextPath}${image.filePath}/${image.fileName}"/>
+					        <div class="columns-thumb" style="background-image: url(${imgUrl});">
+					        </div>
+							</div>
+							</c:if>
+				    </c:forEach>    
             <div class="columns"><!-- 왼 레이블 / 오 내용 -->
                 <span class="column-hidden opNo">${order.opNo}</span><!-- 클래스 상품 주문번호 -->
                 <span class="column-label">클래스명</span>
@@ -92,7 +103,7 @@
 									
 									<%-- 수강 신청 상태 --%>
 									<c:if test="${order.statusNo == 900 }">	
-	                	<a href="${contextPath}/gMember/cancelRequest/C/${order.opNo}" class="btn-request btn-view">신청 취소</a>	
+	                	<a href="${contextPath}/gMember/cancelRequest/C/${order.opNo}" class="btn-request btn-view">수강 취소</a>	
 									</c:if>
                 
                 </span>
@@ -119,7 +130,7 @@
 		                <div class="column-content">
 			                <span class="column-content-1" id="class-addr">${gClass.cLocal}</span>
 		  	              <a class="btn-map btn-view" onclick="mapView('${gClass.cLocal}')">지도보기</a>
-		  	            </div>  
+		  	            </div>
 		            </div>
 	            </c:if>
 	           </c:forEach>
@@ -127,9 +138,9 @@
                 <span class="column-label">수강료</span>
                 <span class="column-content class-price"><fmt:formatNumber value="${order.prdtPrice * order.opAmount}"/>원 / ${order.opAmount}명</span>
             </div>
-            <c:set var="total" value="${total + order.prdtPrice * order.opAmount}"/>
-          </c:forEach>
-        
+            <c:set var="total" value="${total + order.prdtPrice * order.opAmount}"/>	
+					</div>        
+		     </c:forEach>
         </div>
         
         <div class="list-title">
@@ -161,9 +172,18 @@
             </div>
         </div>
 
-        <a href="#" class="btn-gotolist btn-view">목록</a>
+				<%-- 북마크나 주소로 인한 직접 접근 시 목록으로 버튼 경로 지정 --%>
+				<c:if test="${empty sessionScope.returnListURL}">
+					<c:set var="returnListURL" value="../../orderList/C" scope="session"/>
+				</c:if>
+        <a href="${sessionScope.returnListURL}" class="btn-gotolist btn-view">목록</a>
     </div>
 </div>
+
+<%-- 취소 요청 페이지에서 이전으로 클릭 시 주문 상세 페이지로 돌아오도록 url 세션에 올리기 --%>
+	<c:set var="returnViewUrl" 
+		scope="session"
+		value="${contextPath}/gMember/orderView/C/${oList[0].orderNo}"/>
 
 
 <!-- 모달창 : 지도 팝업 -->
@@ -177,7 +197,6 @@
     	</div>
   </div>
 </div>
-
 
 
 <jsp:include page="../../common/footer.jsp"/>

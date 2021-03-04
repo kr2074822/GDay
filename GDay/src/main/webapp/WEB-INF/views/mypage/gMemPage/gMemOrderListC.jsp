@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>클래스 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.5">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.5">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.6">
 
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -36,9 +36,6 @@
 <body>
 <jsp:include page="../../common/header.jsp"/>
 
-<!-- js 파일 -->
-<jsp:include page="gMemOrderListJSC.jsp"/>
-<jsp:include page="orderListTab.jsp"/>
 
 <!-- 모달 파일 -->
 <jsp:include page="../../review/reviewInsertForm.jsp"/>
@@ -53,10 +50,10 @@
 				
 				<!-- 탭메뉴 -->
 			<div class="tabs">	
-				<input type="radio" name="tabMenu1" class="tab-radio" value="readyClass" id="tab-left" checked>
-		    <label for="tabMenu1" class="tab-label tab-l tab-active" >수강 신청 클래스</label>
-		    <input type="radio" name="tabMenu2" class="tab-radio" value="endClass" id="tab-right">
-		    <label for="tabMenu2" class="tab-label tab-r">수강 완료 클래스</label>
+				<input type="radio" name="tabMenu" class="tab-radio" value="readyClass" id="tab-left" checked>
+		    <label for="tab-left" class="tab-label tab-l tab-active" >수강 신청 클래스</label>
+		    <input type="radio" name="tabMenu" class="tab-radio" value="endClass" id="tab-right">
+		    <label for="tab-right" class="tab-label tab-r">수강 완료 클래스</label>
 			</div>
 				
 				<div class="wrapper-tab">
@@ -64,7 +61,7 @@
         <!-- 주문 목록 기간 검색 -->
         <div id="list-title-period"><span>개강 일시</span></div>
         <div class="row" id="container-period">
-            <form action="" method="post" id="container-form">
+            <form method="post" id="container-form">
             <div class="list-search" id="list-search-1">
                 <input type="radio" name="periodRadio" id="7days" value="7days" checked>
                 <label for="7days" class="radio-active">일주일</label>
@@ -83,7 +80,7 @@
                 <input type="date" name="periodEnd" id="periodEnd">
             </div>
             <div class="list-search" id="list-search-3">
-                <select name="giftStatus" class="wrap-tab-l" id="giftStatus"><!-- 왼쪽에서만 보여짐 -->
+                <select name="status" class="wrap-tab-l" id="giftStatus"><!-- 왼쪽에서만 보여짐 -->
                     <option value="1000">전체</option>
                     <option value="900">수강 신청</option>
                     <option value="400">취소 처리 중</option>
@@ -153,12 +150,19 @@
         </div> <!-- container-orders 끝 -->
       
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
-      	<a href="#" class="btn-more"><i class="fas fa-plus"></i></a>
+      	<a class="btn-more"><i class="fas fa-plus"></i></a>
       </div>
         
    </div><!-- list-all -->
 </div>
+
+
+<!-- js 파일 -->
+<jsp:include page="gMemOrderListJSC.jsp"/>
+<jsp:include page="orderListTab.jsp"/>
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
+
+
 <jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

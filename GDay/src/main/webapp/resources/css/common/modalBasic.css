@@ -2,6 +2,13 @@
 
   *:focus, *:active { outline: none !important;}
 
+/* 인풋창 내부 폰트 적용 */
+input[type=date], input[type=text],
+ select, option {
+ 	font-family: 'TmoneyRoundWindRegular';
+}
+
+
 /* 모달창 */
 /* 모달 배경 */
 .modal-cover {
@@ -84,6 +91,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .m-input-box > label {
     width : 25%;
 }

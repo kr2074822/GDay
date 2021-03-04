@@ -3,6 +3,8 @@
 //라디오 버튼 체크 시
     $("input[name='periodRadio']").on("click", function(){
 
+				periodRadio = $(this).val();//검색 확인을 위한 변수 대입
+				
         //체크한 radio에 radio-active 추가
         if(!$(this).next().hasClass("radio-active")){
             $(this).siblings().removeClass("radio-active");
@@ -49,6 +51,9 @@
 
     //날짜 직접 입력 시
     $("input[type=date]").on("click", function(){
+    		
+    		periodRadio = "selfInput";//검색 확인을 위한 변수 대입
+    
         $("#selfInput").prop("checked", true);
         $("#selfInput").siblings().prop("checked", false);  
         $("#selfInput").siblings().removeClass("radio-active");

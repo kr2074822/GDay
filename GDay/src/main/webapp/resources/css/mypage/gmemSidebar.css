@@ -1,7 +1,7 @@
 
 * { margin : 0; }
 
-#wrapper-list {font-family: 'TmoneyRoundWindRegular'; }
+
 
 /* 사이드바 css */
 .sidebar-area li, 
@@ -10,12 +10,13 @@
 .sidebar-area div, 
 .sidebar-area i { box-sizing: border-box;}
 
-.sidebar-area > * {  z-index : 100; font-family: 'TmoneyRoundWindRegular'; }
+.sidebar-area > * {  z-index : 100; }
 
 .sidebar-area { 
     background-color: #FE929F;
     width : 180px;
     /* height : 100%; */
+    font : 12px/24px "TmoneyRoundWindRegular";
 }
 
 .sidebar-area a, .sidebar-area span { 

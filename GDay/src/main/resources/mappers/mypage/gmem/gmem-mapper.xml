@@ -189,6 +189,65 @@
 		WHERE OP_NO = #{opNo}
 	</update>
 	
+	
+	<!-- 주문 상품 번호+타입으로 하나의 주문 가져오기 -->	
+	<select id="selectAOrder" parameterType="map" resultMap="order_rm">
+		SELECT * FROM V_ORDER
+		WHERE OP_NO = #{opNo}
+		AND PRDT_TYPE = #{type}
+		AND STATUS_NO IN (100, 200, 900)
+	</select>
+	
+	<!-- 상품 번호로 썸네일 조회  -->
+	<select id="selectAThumbnail" parameterType="_int" resultMap="attachment_rm">
+		SELECT FILE_PATH, FILE_NAME, PRDT_NO
+		FROM PRODUCT_IMG
+		WHERE PRDT_NO = #{prdtNo}
+		AND FILE_LEVEL = 0
+	</select>	
+	
+	
+	<!-- 옵션 번호로 옵션 내용 조회 -->
+	<select id="selectOption" parameterType="_int" resultMap="option_rm">
+		SELECT G_OPT_NO, G_OPT_NAME, G_OPT_TYPE
+		FROM GIFT_OPTION
+		WHERE G_OPT_NO = #{giftOpNo}
+	</select>
+	
+	<!-- 상품 번호로 클래스 상세 내용 조회 -->
+	<select id="selectGClass" parameterType="_int" resultMap="class_rm">
+		SELECT  PRDT_NO, C_START_DATE, C_END_DATE, C_SESSION, C_DATE, C_LOCATE
+		FROM V_CLASS 
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
+	<!-- 환불 테이블에 취소-반품 요청 삽입 -->
+	<insert id="insertRequest" parameterType="refund">
+		INSERT INTO REFUND VALUES 
+		(#{opNo}, SYSDATE, #{rfContent}, #{rfReasonCode})	
+	</insert>
+	
+	<!-- 주문 상품 테이블에 상태 변경(100/900 → 400, 200 → 500) -->
+	<update id="updateRfStatus" parameterType="map">
+		UPDATE ORDER_PRODUCT SET
+		<if test="statusNo == 100 || statusNo == 900">
+			STATUS_NO = 400
+		</if>
+		<if test="statusNo == 200">
+			STATUS_NO = 500
+		</if>
+		WHERE OP_NO = #{opNo}
+	</update>
+	
+	<!-- 반품 요청 시 수거지 정보 변경 -->
+	<update id="updateShipInfo" parameterType="map">
+		UPDATE ORDER_INFO SET
+		SHIP_NAME = #{shipName},
+		SHIP_ADDR = #{shipAddr},
+		SHIP_PHONE = #{shipPhone} 
+		WHERE ORDER_NO = #{orderNo}
+	</update>
+	
 </mapper>
 
 

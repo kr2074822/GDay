@@ -49,10 +49,10 @@
 				
 				<!-- 탭메뉴 -->
 			<div class="tabs">	
-				<input type="radio" name="tabMenu1" class="tab-radio" id="tab-left">
-		    <label for="tabMenu1" class="tab-label tab-l tab-active" >선물</label>
-		    <input type="radio" name="tabMenu2" class="tab-radio" id="tab-right">
-		    <label for="tabMenu2" class="tab-label tab-r">클래스</label>
+				<input type="radio" name="tabMenu" class="tab-radio" id="tab-left" value="review-gift">
+		    <label for="tab-left" class="tab-label tab-l tab-active" >선물</label>
+		    <input type="radio" name="tabMenu" class="tab-radio" id="tab-right" value="review-class">
+		    <label for="tab-right" class="tab-label tab-r">클래스</label>
 			</div>
 				
 		<div class="wrapper-tab">
@@ -85,7 +85,7 @@
         </div>
         
         
-        <!-- 주문 목록 리스트 : 수강 신청 클래스 -->
+        <!-- 선물 -->
         <div class="container-reviews wrap-tab-l" id="review-gift">
 	        <div class="container-review">
 			        <a class="a-delete">삭제</a>
@@ -114,8 +114,8 @@
 			    </div><!--container-orders 끝 -->
 			
 			
-			    <!-- 주문 목록 리스트 : 수강 완료 클래스 -->
-	        <div class="container-reviews wrap-tab-r" id="review-gift">
+			    <!-- 클래스 -->
+	        <div class="container-reviews wrap-tab-r" id="review-class">
 		        <div class="container-review">
 				        <a class="a-delete">삭제</a>
 				        <div class="review-card">

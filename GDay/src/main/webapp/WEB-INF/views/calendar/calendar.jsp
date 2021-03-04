@@ -26,8 +26,8 @@
 <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
 <!-- calendar자체 css / js -->
-<link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css?ver=1.3"/>
-<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=1.0"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=2.0"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css"/>
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
 </head>

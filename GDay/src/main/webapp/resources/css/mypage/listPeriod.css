@@ -46,7 +46,7 @@ input[name=periodRadio] {
 #list-search-1 > label {
     min-width : 50px;
     background-color: #fafafa;
-    padding : 0px 0px 0px 1px;
+    padding : 1px 0px 0px 0px;
     text-align: center;
 }
 

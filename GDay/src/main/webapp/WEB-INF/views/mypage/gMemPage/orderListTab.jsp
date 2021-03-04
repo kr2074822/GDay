@@ -78,7 +78,8 @@
            
         } 
         
-        loadTab();
+        cp=1;
+        loadTab(cp);
     });
 	});
 </script>

@@ -46,10 +46,10 @@
 				
 				<!-- 탭메뉴 -->
 			<div class="tabs">	
-				<input type="radio" name="tabMenu1" class="tab-radio" id="tab-left">
-		    <label for="tabMenu1" class="tab-label tab-l tab-active" >선물</label>
-		    <input type="radio" name="tabMenu2" class="tab-radio" id="tab-right">
-		    <label for="tabMenu2" class="tab-label tab-r">클래스</label>
+				<input type="radio" name="tabMenu" class="tab-radio" id="tab-left" value="wish-gift">
+		    <label for="tab-left" class="tab-label tab-l tab-active" >선물</label>
+		    <input type="radio" name="tabMenu" class="tab-radio" id="tab-right" value="wish-class">
+		    <label for="tab-right" class="tab-label tab-r">클래스</label>
 			</div>
 				
 				<div class="wrapper-tab">
@@ -79,7 +79,7 @@
         </div> <!-- container-orders 끝 -->
 			
 			    <!-- 위시리스트 : 클래스 -->
-        <div class="container-orders wrap-tab-r" id="wishClass">
+        <div class="container-orders wrap-tab-r" id="wish-class">
         	 <div class="row container-check"> 
 	             <input type="checkbox" name="checkAll"	class="check-input">
 	             <button id="del-class" class="btn-delete">선택 클래스 삭제</button>
