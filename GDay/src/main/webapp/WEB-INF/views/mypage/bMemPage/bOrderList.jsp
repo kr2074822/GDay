@@ -59,15 +59,15 @@
 				<thead>
 					<tr style="border-bottom: 1px solid black; background-color: lightgray;">
 						<th></th>
-						<th>주문번호</th>
-						<th>상품 번호</th>
-						<th>주문일</th>
-						<th>주문자</th>
+						<th class="hide">주문번호</th>
+						<th class="hide">상품 번호</th>
+						<th class="hide">주문일</th>
+						<th class="hide">주문자</th>
 						<th>상품명</th>
-						<th>옵션</th>
-						<th>수량</th>
-						<th>금액</th>
-						<th>상태</th>
+						<th class="hide">옵션</th>
+						<th class="hide">수량</th>
+						<th class="hide">금액</th>
+						<th class="hide">상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,9 +81,9 @@
 						<c:forEach var="order" items="${oList}" varStatus="vs">
 							<tr class="order-rows">
 								<td><input type="checkbox" name="ordSelectBox"/></td>
-								<td class="order-td">${order.orderNo}</td>
-								<td class="order-td">${order.opNo}</td>
-								<td class="order-td">
+								<td class="order-td hide">${order.orderNo}</td>
+								<td class="order-td hide">${order.opNo}</td>
+								<td class="order-td hide">
 									<%-- 날짜 출력 모양 지정 --%>
 									<fmt:formatDate var="createDate" value="${order.orderDate }" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate var="now" value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/> 
@@ -96,12 +96,16 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td class="order-td">${order.memName}</td>
-								<td class="order-td">${order.prdtName}</td>
-								<td class="order-td opName">${order.gOptName}</td>
-								<td class="order-td">${order.opAmount}</td>
-								<td class="order-td">${order.prdtPrice}</td>
-								<td class="order-td">${order.statusName}</td>
+								<td class="order-td hide">${order.memName}</td>
+								<td class="order-td prdt-name">${order.prdtName}</td>
+								<td class="order-td opName hide">
+									<c:if test="${!empty gOpName}">
+										<c:forEach var="optName" items="${gOpName}}"></c:forEach>
+									</c:if>
+								</td>
+								<td class="order-td hide">${order.opAmount}</td>
+								<td class="order-td hide">${order.prdtPrice}</td>
+								<td class="order-td hide">${order.statusName}</td>
 
 							</tr>
 						</c:forEach>
@@ -117,6 +121,9 @@
 			</c:if>		
 			<c:if test="${empty day}">	
 		 	  <c:set var="url" value="${contextPath}/bMemSearch/bOrdSearch"/>
+			</c:if>
+			<c:if test="${!empty startText && !empty endText}">	
+		 	  <c:set var="url" value="${contextPath}/bMemSearch/bOrdSearch/${startText}/${endText}"/>
 			</c:if>
 
 			
@@ -261,19 +268,16 @@
  		
  		
  		// 상태 변경
- 		var ordNumAry = [];
- 		var opNameAry = [];
+ 		var opAry = [];
  		
  		$("[name='ordSelectBox']").on("change", function() {
  			if($(this).is(":checked")) {
- 				ordNumAry.push($(this).parent().next().text());
- 				opNameAry.push($(this).parent().nextAll(".opName").text());
+ 				opAry.push($(this).parent().next().next().text());
  				
  			} else {
- 				for(var i = 0; i < ordNumAry.length; ++i) {
- 					if(ordNumAry[i] == $(this).parent().next().text() && opNameAry[i] == $(this).parent().nextAll(".opName").text()) {
- 						ordNumAry.splice(i, 1);
- 						opNameAry.splice(i, 1);
+ 				for(var i = 0; i < opAry.length; ++i) {
+ 					if(opAry[i] == $(this).parent().next().next().text()) {
+ 						opAry.splice(i, 1);
  					}
  				} 		
  			}
@@ -283,21 +287,18 @@
 			
 			var status = $("#giftStatus > option:selected").val();
 			
-			console.log(ordNumAry);
-			console.log(opNameAry);
-			console.log(status);
-			if(ordNumAry.length <= 0 || opNameAry.length <= 0) {
+			if(opAry.length <= 0) {
 				window.alert("하나 이상 체크해 주세요.");
 			} else {
 				if(window.confirm("선택된 항목들을 수정하시겠습니까?")) {
 					$.ajax({
 						url : "${contextPath}/bMember/orderStatusChange/" + status,
-						data : {"ordNumAry" : ordNumAry,
-										"opNameAry" : opNameAry},
+						data : {"opAry" : opAry},
 						type : "post",
 						success : function(result) {
 							if(result > 0) {
 								console.log("상태가 변경되었습니다.");
+								location.reload(true);
 							}
 						}, error : function() {
 								console.log("실패.")

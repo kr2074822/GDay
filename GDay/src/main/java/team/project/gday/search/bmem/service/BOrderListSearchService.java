@@ -22,7 +22,7 @@ public interface BOrderListSearchService {
 	 */
 	List<OrderList> bOdsList(PageInfo9 pInfo, Map<String, Object> map);	
 	
-	/** 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성2 Service
+	/** 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성 Service
 	 * @param cp
 	 * @param map
 	 * @return pInfo
@@ -36,6 +36,19 @@ public interface BOrderListSearchService {
 	 */
 	List<OrderList> bOdsList2(PageInfo9 pInfo, Map<String, Object> map);
 	
+	/** 판매 회원 직접 날짜 선택 후 검색 시 주문 목록 페이징 처리 객체 생성 Service
+	 * @param cp
+	 * @param map
+	 * @return pInfo
+	 */
+	PageInfo9 getOdsPageInfo3(int cp, Map<String, Object> map);
+	
+	/** 판매 회원 직접 날짜 선택 후 검색 Service 
+	 * @param pInfo
+	 * @param map
+	 * @return oList
+	 */
+	List<OrderList> bOdsList3(PageInfo9 pInfo, Map<String, Object> map);
 	
 	
 	

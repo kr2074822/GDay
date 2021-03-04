@@ -5,6 +5,7 @@
 }
 
 #b-order-list-wrapper {
+	width: 70%;
 	margin: 100px auto;	
 }
 
@@ -29,16 +30,79 @@
 
 /* 판매 글 목록 */
 #order-list {
-
+	min-height: 500px;
+	min-width: 1200px;
 }
 
 #list-table {
 	width: 100%;
 }
 
+
+
 .order-td {
 	padding: 5px 20px;
 	border-bottom: 1px solid lightgray;
 	text-align: center;
+	word-break:break-all
 }
 
+/* .prdt-name {
+  white-space: nowrap;
+} */
+
+
+/* 검색 영역 */
+#container-form {
+	text-align: right;
+}
+
+
+/* 페이징바 영역 */
+#page-area {
+	margin-top: 15px;
+	text-align: center;
+}
+
+
+
+
+
+/* 반응형 */
+@media screen and (max-width:768px) {
+ 
+  #wrapper-top-area {
+		flex-direction: column;
+		align-items: center;
+		
+	}
+	
+	#date-form {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.list-search {
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	#list-search-1 {
+		padding-right: 0;
+		width: auto;
+	}
+
+  #order-list {
+    display: flex;
+  	flex-direction: column;
+  	min-height: auto;
+  	min-width: 500px;
+  }
+  
+  .hide{
+		display: none;
+  }
+  
+  #list-search-3 {
+  }
+}

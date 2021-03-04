@@ -5,6 +5,7 @@ import java.util.Map;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
@@ -82,6 +83,12 @@ public interface BmemService {
 	 */
 	List<OrderList> bOrderList(PageInfo9 pInfo, Member loginMember);
 
+	/** 상품별 옵션 이름 가져오기 Service
+	 * @param opNo
+	 * @return
+	 */
+	List<GOption> gOptionList(int opNo);
+	
 	
 	
 	/** 주문 상태 변경 Service
@@ -89,6 +96,7 @@ public interface BmemService {
 	 * @return
 	 */
 	int orderStatusChange(Map<String, Object> map);
+
 
 	
 }

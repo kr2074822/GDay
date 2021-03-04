@@ -9,7 +9,7 @@
 <title>클래스 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.2">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.4">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.5">
 
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -64,7 +64,7 @@
         <!-- 주문 목록 기간 검색 -->
         <div id="list-title-period"><span>개강 일시</span></div>
         <div class="row" id="container-period">
-            <form action="#" method="post" id="container-form">
+            <form action="" method="post" id="container-form">
             <div class="list-search" id="list-search-1">
                 <input type="radio" name="periodRadio" id="7days" value="7days" checked>
                 <label for="7days" class="radio-active">일주일</label>

@@ -11,7 +11,7 @@
   		<result property="prdtContent" column="PRDT_CONTENT"/>
   		<result property="prdtPrice" column="PRDT_PRICE"/>
   		<result property="readCount" column="READ_COUNT"/>
-  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="createDate" column="CREATE_DATE"/>		
   		<result property="modifyDate" column="MODIFY_DATE"/>
   		<result property="prdtStatus" column="PRDT_STATUS"/>
   		<result property="memNo" column="MEM_NO"/>
@@ -51,12 +51,12 @@
   		<result property="orderDate" column="ORDER_DATE"/>
   		<result property="memName" column="MEM_NAME"/>
   		<result property="prdtName" column="PRDT_NAME"/>
-  		<result property="gOptName" column="G_OPT_NAME"/>
   		<result property="opAmount" column="OP_AMOUNT"/>
   		<result property="prdtPrice" column="PRDT_PRICE"/>
   		<result property="statusName" column="STATUS_NAME"/>
   		<result property="memNo" column="MEM_NO"/>
   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="giftOpNo" column="GIFT_OP_NO"/>
 	</resultMap>		
 	
 	<!-- 파일 resultMap -->
@@ -88,8 +88,7 @@
 	
 	<!-- 판매 회원 기본 날짜 선택 후 검색  -->
 	<select id="bOdsList" parameterType="map" resultMap="bOrder_rm">
-		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
-		FROM V_BMEMBER_ORDERLIST
+		SELECT * FROM V_BMEMBER_ORDERLIST
 		WHERE PRDT_TYPE = 'G'	
 		AND MEM_NO = #{memberNo}
 		<if test="searchKey == 'memName'">
@@ -105,7 +104,7 @@
 	</select>
 	
 	
-		<!-- 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성 -->
+	<!-- 판매 회원 기본 날짜 선택 안하고 검색 시 주문 목록 페이징 처리 객체 생성 -->
 	<select id="getOdsPageInfo2" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM V_BMEMBER_ORDERLIST
 		WHERE PRDT_TYPE = 'G'	
@@ -123,8 +122,7 @@
 	
 	<!-- 판매 회원 기본 날짜 선택 안하고 검색  -->
 	<select id="bOdsList2" parameterType="map" resultMap="bOrder_rm">
-		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
-		FROM V_BMEMBER_ORDERLIST
+		SELECT * FROM V_BMEMBER_ORDERLIST
 		WHERE PRDT_TYPE = 'G'	
 		AND MEM_NO = #{memberNo}
 		<if test="searchKey == 'memName'">
@@ -137,6 +135,43 @@
 			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
 		</if>		
 	</select>
+	
+	<!-- 판매 회원 직접 날짜 선택 후 검색 시 주문 목록 페이징 처리 객체 생성 -->
+	<select id="getOdsPageInfo3" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM V_BMEMBER_ORDERLIST
+		WHERE PRDT_TYPE = 'G'	
+		AND MEM_NO = #{memberNo}
+		<if test="searchKey == 'memName'">
+			AND MEM_NAME LIKE '%' || #{searchValue} || '%'
+		</if>	
+		<if test="searchKey == 'prdtName'">
+			AND PRDT_NAME LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'status'">
+			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
+		</if>		
+		<![CDATA[AND ORDER_DATE >= #{startDay}
+						 AND ORDER_DATE - 1 <= #{endDay}]]>
+	</select>
+	
+	<!-- 판매 회원 직접 날짜 선택 후 검색  -->
+	<select id="bOdsList3" parameterType="map" resultMap="bOrder_rm">
+	  SELECT * FROM V_BMEMBER_ORDERLIST
+		WHERE PRDT_TYPE = 'G'	
+		AND MEM_NO = #{memberNo}
+		<if test="searchKey == 'memName'">
+			AND MEM_NAME LIKE '%' || #{searchValue} || '%'
+		</if>	
+		<if test="searchKey == 'prdtName'">
+			AND PRDT_NAME LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'status'">
+			AND STATUS_NAME LIKE '%' || #{searchValue} || '%'
+		</if>		
+		<![CDATA[AND ORDER_DATE >= #{startDay}
+						 AND ORDER_DATE - 1 <= #{endDay}]]>
+	</select>
+	
 	
 	
 	
@@ -151,8 +186,7 @@
 	
 	<!-- 판매 회원 날짜 선택 후 주문 목록 조회 -->
 	<select id="bOrdDaySearchList" parameterType="map" resultMap="bOrder_rm">
-		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
-		FROM V_BMEMBER_ORDERLIST
+		SELECT * FROM V_BMEMBER_ORDERLIST
 		WHERE MEM_NO = #{memberNo}
 		AND PRDT_TYPE = 'G'
 		<![CDATA[AND ROUND(SYSDATE-ORDER_DATE) <= #{day}]]>
@@ -171,8 +205,7 @@
 	
 	<!-- 판매 회원 날짜 선택 후 주문 목록 조회2 -->
 	<select id="bOrdDaySearchList2" parameterType="map" resultMap="bOrder_rm">
-		SELECT ORDER_NO, OP_NO, ORDER_DATE, MEM_NAME, PRDT_NAME, G_OPT_NAME, OP_AMOUNT, PRDT_PRICE, STATUS_NAME
-		FROM V_BMEMBER_ORDERLIST
+	  SELECT * FROM V_BMEMBER_ORDERLIST
 		WHERE MEM_NO = #{memberNo}
 		AND PRDT_TYPE = 'G'
 		<![CDATA[AND ORDER_DATE >= #{startDay}

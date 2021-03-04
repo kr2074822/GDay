@@ -1,5 +1,6 @@
 package team.project.gday.member.bmem.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.service.BmemService;
 import team.project.gday.member.bmem.model.vo.OrderList;
@@ -66,9 +68,31 @@ public class BmemController {
 		
 		PageInfo9 pInfo = service.getOrdListPageInfo(cp, loginMember);
 		
-		List<OrderList> oList = service.bOrderList(pInfo, loginMember);
+		List<OrderList> oList = service.bOrderList(pInfo, loginMember);		
+
+		List<String> gOpName = new ArrayList<String>();
+		
+		
+		for(int i = 0; i < oList.size(); ++i) {
+			String optName = "";
+			List<GOption> gOptNames = service.gOptionList(oList.get(i).getOpNo());
+			
+			for(GOption opt : gOptNames) {
+				optName = opt.getgOptName() + ", ";
+			}
+			
+			gOpName.add(optName);
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		map.put("oList", oList);
+		map.put("gOpName", gOpName);
+		
+		System.out.println(map.get("oList")); 
+		System.out.println(map.get("gOpName")); 
 		
 		model.addAttribute("oList", oList);
+		model.addAttribute("map", map);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "mypage/bMemPage/bOrderList";
@@ -135,16 +159,14 @@ public class BmemController {
 	// 주문 목록 상태 변경
 	@ResponseBody
 	@RequestMapping("orderStatusChange/{status}")
-	public int orderStatusChange(@RequestParam(value = "ordNumAry[]") List<String> ordNumAry,
+	public int orderStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
 								 @ModelAttribute("loginMember") Member loginMember,
-								 @RequestParam(value = "opNameAry[]") List<String> opNameAry,
 							 	 @PathVariable("status") int status) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNo", loginMember.getMemberNo());
 		map.put("status", status);
-		map.put("ordNumAry", ordNumAry);
-		map.put("opNameAry", opNameAry);
+		map.put("opAry", opAry);
 		
 		int result = service.orderStatusChange(map);
 				

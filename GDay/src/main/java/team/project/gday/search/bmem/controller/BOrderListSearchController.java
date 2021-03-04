@@ -92,6 +92,44 @@ public class BOrderListSearchController {
 	}
 	
 	
+	// 판매 회원 날짜 직접 선택 하고 검색 Controller
+	@RequestMapping("bOrdSearch/{startText}/{endText}")
+	public String bOrdSearch3(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+								 @ModelAttribute("loginMember") Member loginMember,
+								 @PathVariable("startText") String startText,
+								 @PathVariable("endText") String endText,
+								 @RequestParam(value="sv", required = false) String searchValue,
+								 @RequestParam(value="sk", required = false) String searchKey,
+								 Model model) {				
+		
+		String startDay = startText;
+		String endDay = endText;
+		
+		Date startReult = Date.valueOf(startDay);  
+		Date endReult = Date.valueOf(endDay);  		
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("searchValue", searchValue);
+		map.put("searchKey", searchKey);
+		map.put("startDay", startReult);
+		map.put("endDay", endReult);
+		
+		PageInfo9 pInfo = service.getOdsPageInfo3(cp, map);		
+		
+		List<OrderList> oList = service.bOdsList3(pInfo, map);
+		
+		model.addAttribute("oList", oList);
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("startText", startText);
+		model.addAttribute("endText", endText);
+		
+		return "mypage/bMemPage/bOrderList";
+	}
+	
+	
 	
 	
 	// 판매 회원 날짜 선택 후 목록 조회 Controller
@@ -141,9 +179,6 @@ public class BOrderListSearchController {
 		Date startReult = Date.valueOf(startDay);  
 		Date endReult = Date.valueOf(endDay);  
 		
-		System.out.println(startReult);
-		System.out.println(endReult);
-		
 		int memberNo = loginMember.getMemberNo();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -157,6 +192,8 @@ public class BOrderListSearchController {
 		
 		model.addAttribute("oList", oList);
 		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("startText", startText);
+		model.addAttribute("endText", endText);
 		
 		return "mypage/bMemPage/bOrderList";
 	}
