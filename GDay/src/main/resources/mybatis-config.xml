@@ -24,6 +24,7 @@
 		<typeAlias type="team.project.gday.member.model.vo.AutoLogin" alias="AutoLogin"/>
 		<typeAlias type="team.project.gday.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="team.project.gday.message.model.vo.Message" alias="Message"/>
+		<typeAlias type="team.project.gday.admin.model.vo.adminPageInfo" alias="AdminInfo"/>
 	</typeAliases>
 
 	<mappers>
@@ -36,6 +37,6 @@
 		<mapper resource="/mappers/magazine-mapper.xml"/>
 		<mapper resource="/mappers/search/bmem/b-mem-search.xml"/>
 		<mapper resource="/mappers/message-mapper.xml"/>
-		
+		<mapper resource="/mappers/admin-mapper.xml"/>
 	</mappers>
 </configuration>
