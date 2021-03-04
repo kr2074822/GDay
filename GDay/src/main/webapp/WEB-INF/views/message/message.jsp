@@ -21,30 +21,34 @@
                 <h1>쪽지</h1>
             </div>
             <div class="msg_list">
-                <ul>
-                	<c:forEach var="message" items="${msgList}">
-	                    <li>
-	                        <div class="msg_item">
-	                            <div class="top">
-	                            	<c:if test="${message.msgStatus == 0}">
-	                                	<span class="status">도착</span>
-	                            	</c:if> 
-	                            	<c:if test="${message.msgStatus == 1}">
-	                                	<span class="read"></span>
-	                            	</c:if>
-	                                <span class="time">
-	                                	<fmt:formatDate value="${message.msgDate}" pattern="hh:mm"/>
-	                                </span>
-	                            </div>
-	                            <div class="bottom">
-	                                <h1><span>${message.memNick }</span>의 메시지가 도착했어요!</h1>
-	                                <p>내용을 확인하시려면 클릭하세요</p>
-	                            </div>
-	                        </div>
-	                        <input type="hidden" value=" ${message.you}">
-                    	</li>
-                    </c:forEach>
-                </ul>
+	            <c:if test="${empty msgList }">
+					<h1>받은 쪽지가 없습니다.</h1>
+				</c:if>
+                <c:forEach var="message" items="${msgList}">
+	                <ul>
+	                		
+		                    <li>
+		                        <div class="msg_item">
+		                            <div class="top">
+		                            	<c:if test="${message.msgStatus == 0}">
+		                                	<span class="status">도착</span>
+		                            	</c:if> 
+		                            	<c:if test="${message.msgStatus == 1}">
+		                                	<span class="read"></span>
+		                            	</c:if>
+		                                <span class="time">
+		                                	<fmt:formatDate value="${message.msgDate}" pattern="hh:mm"/>
+		                                </span>
+		                            </div>
+		                            <div class="bottom">
+		                                <h1><span>${message.memNick }</span>의 메시지가 도착했어요!</h1>
+		                                <p>내용을 확인하시려면 클릭하세요</p>
+		                            </div>
+		                        </div>
+		                        <input type="hidden" value=" ${message.you}">
+	                    	</li>
+	                </ul>
+                </c:forEach>
             </div>
         </div>
 

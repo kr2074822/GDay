@@ -20,7 +20,7 @@ body{
 
 header {
 	height: 100px;
-	font-family: 'yg-jalnan';
+	font-family: 'yg-jalnan' !important;
 	font-weight: 100;
 }
 
@@ -36,6 +36,12 @@ header #headerWrapper {
 	left: 0;	
 	z-index: 2;
 	
+}
+header #headerWrapper #header-menu > li> a{
+	font-family: 'yg-jalnan';
+}
+header #headerWrapper #header-member-area > a{
+	font-family: 'yg-jalnan';
 }
 
 /* 마이페이지 */
@@ -113,16 +119,19 @@ header #headerWrapper {
 	width: 15%;
 	height: 100%;
 	text-align: center;
-	overflow: hidden; 
+	width: 15%;
+}
+#header-logo >a {
+	display: block;
+	object-fit: cover;
+	
+	
 }
 
 #logo {
-	width: 100px;
-	height: 100%;
-	margin: auto;
-	vertical-align: middle;	
-	background-image: url('../../images/logoTest.png'); 
- 	background-size: cover;
+	width : 100px;
+	height : 100px;
+ 	background-size: 100px 100px;
 	background-repeat: no-repeat;
 }
 
@@ -199,7 +208,7 @@ header #headerWrapper {
 #header-member-area > a{
 	text-decoration: none;
 	color: black;	
-	border: 1px solid #fe929f;
+	background: #fe929f;
 	font-weight: 300;
 	padding: 10px 20px;
 	
