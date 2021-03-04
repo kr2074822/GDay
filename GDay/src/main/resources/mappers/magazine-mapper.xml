@@ -52,4 +52,12 @@
 	</select>
 	
 	
+	<!-- 매거진 다음 번호 조회 -->
+	<select id="selectNextNo">
+		SELECT SEQ_MGZNO.NEXTVAL FROM DUAL
+	</select>
+	
+	
+	
+	
 </mapper>

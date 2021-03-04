@@ -26,10 +26,10 @@
 	                    <li>
 	                        <div class="msg_item">
 	                            <div class="top">
-	                            	<c:if test="${message.msgStatus == 1}">
+	                            	<c:if test="${message.msgStatus == 0}">
 	                                	<span class="status">도착</span>
 	                            	</c:if> 
-	                            	<c:if test="${message.msgStatus == 0}">
+	                            	<c:if test="${message.msgStatus == 1}">
 	                                	<span class="read"></span>
 	                            	</c:if>
 	                                <span class="time">
@@ -81,8 +81,8 @@
                     </li>
                 </ul>
                 <div class="input_form">
-                    <textarea name="" id="" cols="10" rows="5"></textarea>
-                    <button>전송</button>
+                    <textarea name="" id="myMsg" cols="10" rows="5"></textarea>
+                    <button id="send">전송</button>
                 </div>
             </div>
         </div>
@@ -92,17 +92,87 @@
     <script>
         // 팝업
         const popup = document.getElementById('popup');
+        var getterNo =0;
         console.log($(".msg_item"));
         $(".msg_item").on('click', function(){
-            console.log($(this));
-            $("#popup").addClass('active')
+            console.log($(this).next().val());
+            getterNo = $(this).next().val()
+            console.log("${loginMember.memberNo}")
             
+            
+            	
+            $.ajax({
+            	url: "${contextPath}/message/msgChat", 
+            	data: {
+            		getter: $(this).next().val()
+            	},
+            	success: function(result){
+            		console.log("성공");
+            		$(".msg_chat").html("");
+            		console.log(result[0].MSG_CONTENT);
+            		
+            		for(let j = 0; j <result.length; j++){
+						
+						if (result[j].GETTER == "${loginMember.memberNo}") {
+	    					var li = $("<li>").addClass("i");
+	    					var span = $("<span>").text(result[j].MSG_DATE)
+	    					var p = $("<p>").text(result[j].MSG_CONTENT)
+	    					
+	    					li.append(span).append(p)
+    						
+						}else{
+							
+							var li = $("<li>").addClass("you");
+	    					var span = $("<span>").text(result[j].MSG_DATE)
+	    					var p = $("<p>").text(result[j].MSG_CONTENT)
+	    					
+	    					li.append(span).append(p)
+						}
 
+    					$(".msg_chat").append(li);
+    					console.log(li)
+					}    
+            		 
+            	},
+            	error: function(){
+            		console.log("실패");
+            	}
+            	
+            });
+
+            $("#popup").addClass('active')
         });
         function popupToggle(){
             const popup = document.getElementById('popup');
             popup.classList.toggle('active')
         }
+        
+        $("#send").on('click', function(){
+       		console.log($("#myMsg").val())
+       		console.log(getterNo)
+        	
+        	$.ajax({
+            	url: "${contextPath}/message/sendMsg", 
+            	data: {
+            		myMsg: $("#myMsg").val(),
+            		getter: getterNo
+            	},
+            	success: function(result){
+            		console.log("성공");
+            		$("#myMsg").val("")
+            		
+            	},
+            	error: function(){
+            		console.log("실패");
+            	}
+            	
+            });
+        	
+        	
+        });
+        
+        
+
     </script>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
