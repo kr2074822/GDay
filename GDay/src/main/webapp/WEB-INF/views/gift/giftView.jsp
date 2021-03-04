@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftView.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/gitView.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css">
     <title>Document</title>
 </head>
 <body>

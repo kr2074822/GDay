@@ -14,9 +14,14 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassList.css">
     <title>클래스 찾기</title>
+    <style>
+    	input[name='category']{
+    		display: none;
+    	}
+    </style>
 </head>
 <body>
-	<form action="searchClass" method="get" role="form" onsubmit="return validate();">
+	<form action="search" method="get" role="form" onsubmit="return validate();">
     <section class="search">
         <div class="search_wrapper">
             <h1>클래스 찾기</h1>
@@ -31,14 +36,22 @@
     <section class="option">
         <div class="option_wrapper">
             <ul class="item_wrapper">
-                <li class="item" data-text="0">연령대</li>
-                <li class="item" data-text="1">가격</li>
-                <li class="item" data-text="2">분위기</li>
-                <li class="item" data-text="3">관계</li>
-                <li class="item" data-text="4">기념일/명절</li>
-                <li class="item" data-text="5">계절</li>
-                <li class="item" data-text="6">색상</li>
-                <li class="item" data-text="7">종류</li>
+                <li class="item" data-text="0">연령대
+                	<input type="checkbox" name="category" value="100"></li>
+                <li class="item" data-text="1">가격
+                	<input type="checkbox" name="category" value="200"></li>
+                <li class="item" data-text="2">분위기
+                	<input type="checkbox" name="category" value="300"></li>
+                <li class="item" data-text="3">관계
+                	<input type="checkbox" name="category" value="400"></li>
+                <li class="item" data-text="4">기념일/명절
+                	<input type="checkbox" name="category" value="500"></li>
+                <li class="item" data-text="5">계절
+                	<input type="checkbox" name="category" value="600"></li>
+                <li class="item" data-text="6">색상
+                	<input type="checkbox" name="category" value="700"></li>
+                <li class="item" data-text="7">종류
+                	<input type="checkbox" name="category" value="800"></li>
             </ul>
 
             <div class="tag_wrapper">
@@ -469,7 +482,20 @@
                     }, 1000)
                 });
             });
-
+	
+        
+        
+        $("input[name='hashNo']").on("change", function(){
+        	
+        	let index = $(this).parent().parent().attr("data-text");
+        	$category = $("li[data-text='"+index+"'] > input[name='category']");
+        	
+        	if($category.prop("checked")){
+        		$category.prop("checked", false);
+        	}else{
+        		$category.prop("checked", true);
+        	}
+        });
 
     </script>
 </body>
