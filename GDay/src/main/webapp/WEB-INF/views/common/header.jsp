@@ -58,7 +58,9 @@
 			</div> -->
 		
 			<div id="header-logo">
-				<a href="${contextPath}/"><img id="logo"></img></a>
+				<a href="${contextPath}/">
+				<img id="logo" src="${contextPath}/resources/images/logo.png">
+				</a>
 			</div>		
 
 			
@@ -103,7 +105,7 @@
 						            <img src="${contextPath}/resources/images/profileImg/profile.jpg" alt="">
 						        </div>
 						        <div class="menu">
-						            <h3>김영주님<br><span>반갑습니다</span></h3>
+						            <h3>${loginMember.memberNick}<br><span>반갑습니다</span></h3>
 						            <ul>
 								        <li>
 								            <a href="#">
@@ -111,7 +113,7 @@
 								            </a>
 								        </li>
 								        <li>
-								            <a href="">
+								            <a href="${contextPath}/message/message">
 								                <div class="name">
 								                	<span data-text="message">쪽지</span>
 								                </div>
