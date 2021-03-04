@@ -34,4 +34,16 @@ public class GClassServiceImpl implements GClassService {
 	public List<Attachment> selectThumbnailList(List<GClass> gCList) {
 		return dao.selectThumbnailList(gCList);
 	}
+
+	@Override
+	public GClass selectGClass(int prdtNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentList(int prdtNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

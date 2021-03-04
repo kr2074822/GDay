@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +21,6 @@ import com.google.gson.Gson;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.magazine.model.service.MagazineService;
 import team.project.gday.magazine.model.vo.Magazine;
-import team.project.gday.magazine.model.vo.MagazineImg;
 import team.project.gday.magazine.model.vo.MagazinePageInfo;
 import team.project.gday.member.model.vo.Member;
 
@@ -165,7 +163,7 @@ public class MagazineController {
 		//서버에 파일(이미지)을 저장할 폴더 경로 얻어오기
 		String savePath
 		= request.getSession().getServletContext().getRealPath("resources/images/productInfoImg");
-		MagazineImg at = service.insertImages(uploadFile, savePath);
+		Attachment at = service.insertImages(uploadFile, savePath);
 		
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
