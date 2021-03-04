@@ -23,18 +23,6 @@ public class PageInfo10 {
 		makePageInfo();
 	}
 	
-
-	public PageInfo10(int currentPage, int listCount, int limit, int pagingBarSize) {
-		super();
-		this.currentPage = currentPage;
-		this.listCount = listCount;
-		this.limit = limit;
-		this.pageSize = pagingBarSize;
-		
-		makePageInfo();
-	}
-
-
 	public int getListCount() {
 		return listCount;
 	}
@@ -57,8 +45,8 @@ public class PageInfo10 {
 		return pageSize;
 	}
 
-	public void setPageSize(int pagingBarSize) {
-		this.pageSize = pagingBarSize;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 		makePageInfo();
 	}
 

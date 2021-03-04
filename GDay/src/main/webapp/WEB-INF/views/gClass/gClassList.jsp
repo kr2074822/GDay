@@ -16,10 +16,11 @@
     <title>클래스 찾기</title>
 </head>
 <body>
-
+	<form action="searchClass" method="get" role="form" onsubmit="return validate();">
     <section class="search">
         <div class="search_wrapper">
             <h1>클래스 찾기</h1>
+            
             <div class="">
                 <input type="text" name="" id="" placeholder="">
                 <button type="submit" id=""><i class="fas fa-search"></i></button>
@@ -246,6 +247,10 @@
 						            <input type="checkbox" name="hashNo" value="48" id="gi">
 						            <label for="gi" class="item">Black</label>
 						        </li>
+						        <li class="tag">
+						            <input type="checkbox" name="hashNo" value="59" id="gk">
+						            <label for="gk" class="item">기타</label>
+						        </li>
                 </ul>
                 <ul class="tagBx" data-text="7">
                     <li class="tag">
@@ -288,20 +293,17 @@
 						            <input type="checkbox" name="hashNo" value="58" id="hj">
 						            <label for="hj" class="item">화장품</label>
 						        </li>
-						        <li class="tag">
-						            <input type="checkbox" name="hashNo" value="59" id="hk">
-						            <label for="hk" class="item">기타</label>
-						        </li>
                 </ul>
             </div>
 				</div>
     </section>
+    </form>
 		
     <section class="gift">
         <div class="search_result">
-            <h2>검색결과 <span>여러</span>개</h2>
+            <h2><span>${pInfo.listCount}</span>개 상품</h2>
             <p>
-                <span>인기순</span> | <span>최신순</span>
+                <span class="order" id="Popularity">인기순</span> | <span class="order" id="Newest">최신순</span>
             </p>
         </div>
         <!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
@@ -349,10 +351,74 @@
      </c:if>
     </section>
     
+   <div class="pagination">
+    
+    		<c:url var="pageUrl" value="list?"/>
+    		
+				<!-- 화살표에 들어갈 주소를 변수로 생성 -->
+				<c:set var="firstPage" value="${pageUrl}cp=1"/>
+				<c:set var="lastPage" value="${pageUrl}cp=${pInfo.maxPage}"/>
+				
+				<%-- EL을 이용한 숫자 연산의 단점 : 연산이 자료형에 영향을 받지 않는다--%>
+				<%-- 
+					<fmt:parseNumber>   : 숫자 형태를 지정하여 변수 선언 
+					integerOnly="true"  : 정수로만 숫자 표현 (소수점 버림)--%>
+				
+				
+				<fmt:parseNumber var="c1" value="${(pInfo.currentPage - 1) / 10 }"  integerOnly="true" />
+				<fmt:parseNumber var="prev" value="${ c1 * 10 }"  integerOnly="true" />
+				<c:set var="prevPage" value="${pageUrl}cp=${prev}" />
+				
+				<fmt:parseNumber var="c2" value="${(pInfo.currentPage + 9) / 10 }" integerOnly="true" />
+				<fmt:parseNumber var="next" value="${ c2 * 10 + 1 }" integerOnly="true" />
+				<c:set var="nextPage" value="${pageUrl}cp=${next}" />
+
+				<c:if test="${pInfo.currentPage > pInfo.pageSize}">
+					<li> <!-- 첫 페이지로 이동(<<) -->
+						<a class="page-link" href="${firstPage}">&lt;&lt;</a>
+					</li>
+					
+					<li> <!-- 이전 페이지로 이동 (<) -->
+						<a class="page-link" href="${prevPage}">&lt;</a>
+					</li>
+				</c:if>
+    
+    
+    				<!-- 페이지 목록 -->
+				<c:forEach var="page" begin="${pInfo.startPage}" end="${pInfo.endPage}" >
+					<c:choose>
+						<c:when test="${pInfo.currentPage == page }">
+							<li>
+								<a class="page-link">${page}</a>
+							</li>
+						</c:when>
+					
+						<c:otherwise>
+							<li>	
+								<a class="page-link" href="${pageUrl}cp=${page}">${page}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				</div>	
+		
+				<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
+				<c:if test="${next <= pInfo.maxPage}">
+					<li> <!-- 다음 페이지로 이동 (>) -->
+						<a class="page-link" href="${nextPage}">&gt;</a>
+					</li>
+					
+					<li> <!-- 마지막 페이지로 이동(>>) -->
+						<a class="page-link" href="${lastPage}">&gt;&gt;</a>
+					</li>
+				</c:if>
+			
+    
     <jsp:include page="../common/footer.jsp"/>
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
-    <script>
+    <script>    
+    
         const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");
         const tagBx = document.getElementsByClassName("tagBx");
@@ -366,6 +432,10 @@
         const aaa = document.getElementById('baby');
         
         const li = document.querySelectorAll('li.item');
+        
+		  	//Javascript
+		    var count = 0;
+        
         // 팝업 
         for (const button of li) {
             button.addEventListener('click', function(){
@@ -397,8 +467,9 @@
                     setTimeout(() => {
                         ripples.remove()
                     }, 1000)
-                })
-            })
+                });
+            });
+
 
     </script>
 </body>

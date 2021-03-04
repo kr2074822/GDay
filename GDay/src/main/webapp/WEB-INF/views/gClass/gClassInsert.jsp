@@ -368,6 +368,8 @@
 	
 	<script>
 
+	var flag = false; 
+	
 	function validate() {
 		if($("input:checkbox[name='hashNo']:checked").length == 0) {
 			alert("더 정확한 검색을 위해 해시태그를 하나 이상 골라 주세요!");
@@ -416,7 +418,7 @@
 		}
 		
 		if ($("#cEndDate").val().trim().length == 0) {
-			alert("강사님, 클래스 종료일 알려주세요!");
+			alert("강사님, 클래스 종료일을 알려주세요!");
 			$(".cEndDate").focus();
 			return false;
 		}
@@ -424,6 +426,12 @@
 		if ($("#cDate").val().trim().length == 0) {
 			alert("강사님, 클래스 수업일과 시간을 알려주세요!");
 			$(".cDate").focus();
+			return false;
+		
+		}
+		
+		if(!flag) {
+			alert("강사님, 썸네일을 필수로 등록해주셔야 합니다.")
 			return false;
 		}
 	}
@@ -487,7 +495,7 @@
 					
 					$(".boardImg").eq(num).children("img").attr("src", e.target.result);
 					// e.target.result : 파일 읽기 동작을 성공한 요소가 읽어들인 파일 내용
-					
+					flag = true;
     	}
 		}
 	}

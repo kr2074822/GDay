@@ -28,7 +28,7 @@ public class GClassController {
 	private String swalText = null;
 	
 	
-	//상품 목록 조회 Controller
+	//상품 목록 조회/최신순 Controller
 	@RequestMapping("list")
 	public String giftList(@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 							Model model){
@@ -49,6 +49,7 @@ public class GClassController {
 		return "gClass/gClassList";
 	}
 	
-	
+	//상품 검색 Controller
+
 
 }
