@@ -16,6 +16,7 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.magazine.model.dao.MagazineDAO;
 import team.project.gday.magazine.model.vo.Magazine;
+import team.project.gday.magazine.model.vo.MagazineImg;
 import team.project.gday.magazine.model.vo.MagazinePageInfo;
 
 @Service 
@@ -54,7 +55,7 @@ public class MagazineServiceImpl implements MagazineService{
 		if(mgzNo>0) {
 			map.put("mgzNo", mgzNo);
 						
-			//2) 제품 테이블에 삽입
+			//2) 매거진 테이블 삽입
 			result = dao.insertMagazine(map);
 			/*
 			if(result>0) {
@@ -67,20 +68,20 @@ public class MagazineServiceImpl implements MagazineService{
 					*/
 					if(result>0) {
 						//5) 썸네일 이미지 정보 삽입 (경로차이O)
-						List<Attachment> uploadImages = new ArrayList<>();
+						List<MagazineImg> uploadImages = new ArrayList<>();
 						
-						String filePath = "/resources/images/thumbnailImg";
+						String filePath = "/resources/images/magazineImg";
 						
 						for(int i=0; i<images.size(); i++) {
 							if(!images.get(i).getOriginalFilename().contentEquals("")) {
 								String fileName = rename(images.get(i).getOriginalFilename());
-								Attachment at = new Attachment(filePath, fileName, i, mgzNo);
+								MagazineImg at = new MagazineImg(filePath, fileName, i, mgzNo);
 								uploadImages.add(at);
 							}
 						}
 						//6. 썸머노트 내 첨부 이미지 삽입
 						Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
-						Matcher matcher = pattern.matcher((String)map.get("prdtContent"));
+						Matcher matcher = pattern.matcher((String)map.get("mgzContent"));
 						
 						String fileName = null;
 						String src = null;
@@ -90,7 +91,7 @@ public class MagazineServiceImpl implements MagazineService{
 							filePath = src.substring(src.indexOf("/", 2), src.lastIndexOf("/"));
 							System.out.println(filePath);
 							fileName = src.substring(src.lastIndexOf("/") + 1);
-							Attachment at = new Attachment(filePath, fileName, 1, mgzNo);
+							MagazineImg at = new MagazineImg(filePath, fileName, 1, mgzNo);
 							uploadImages.add(at);
 						}
 						
@@ -108,8 +109,8 @@ public class MagazineServiceImpl implements MagazineService{
 								
 								for(int i=0; i<size; i++) {
 									try {
-										images.get(uploadImages.get(i).getFileLevel())
-										.transferTo(new File(savePath + "/" + uploadImages.get(i).getFileName())); //savePath(실제 경로) "/"안에 앞뒤 띄어쓰기 절대 금지
+										images.get(uploadImages.get(i).getImgLevel())
+										.transferTo(new File(savePath + "/" + uploadImages.get(i).getImgName())); //savePath(실제 경로) "/"안에 앞뒤 띄어쓰기 절대 금지
 									} catch(Exception e) {
 										e.printStackTrace();
 										throw new UserDefineException("파일을 서버에 저장 실패하였습니다.");
@@ -139,20 +140,21 @@ public class MagazineServiceImpl implements MagazineService{
 	
 	// 이미지 등록
 	@Override
-	public Attachment insertImages(MultipartFile uploadFile, String savePath) {
+	public MagazineImg insertImages(MultipartFile uploadFile, String savePath) {
 		
 		//파일명 변경하기
 		String fileName = rename(uploadFile.getOriginalFilename());
 		//웹상 접근 주소 적기
 		String filePath = "/resources/images/magazineImg";
 		
-		Attachment at = new Attachment();
-		at.setFilePath(filePath);
-		at.setFileName(fileName);
+		MagazineImg at = new MagazineImg();
+		at.setImgPath(filePath);
+		at.setImgName(fileName);
 		
 		//transferTo == 서버에 파일 저장
 		try {
 			uploadFile.transferTo(new File(savePath + "/" + fileName ));
+			System.out.println(uploadFile);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new UserDefineException("summernote 파일 업로드에 실패했습니다.");

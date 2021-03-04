@@ -258,6 +258,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="Gbutton">
+                    <button class="update">수정</button>
+                </div>
             </div> 
         </div> 
     </section>

@@ -1,0 +1,131 @@
+header{
+    background: red;
+    height: 100px;
+    width: 100%;
+}
+section {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+section h1{
+    font-size: 40px;
+}
+section form{
+    margin-top: 50px;
+}
+section form .wrapper{
+}
+section form .wrapper .check_wrapper{
+    padding: 20px;
+    border: 1px solid #FE929F;  
+    border-radius: 10px;
+}
+
+section form .wrapper .check_wrapper span{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+}
+section form .wrapper .check_wrapper span::before{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 70px;
+    height: 1px;
+    background:#fe929f;
+    color:#FE929F;
+}
+section form .wrapper .check_wrapper span{
+    display: block;
+    margin-bottom: 15px;
+}
+section form .wrapper .check_wrapper span:hover{
+    cursor: pointer;
+}
+section form .wrapper .check_wrapper ul{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    display: none;
+}
+section form .wrapper .check_wrapper ul li {
+    font-weight: 300;
+    color: #141414;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+section form .wrapper .check_wrapper ul li input[type="checkbox"]{
+    display: none;
+}
+section form .wrapper .check_wrapper ul li input[type="checkbox"]:checked+label{
+    transition: 0.3s ease-out;
+    color: #fe929f;
+}
+section form .wrapper .check_wrapper ul li input[type="text"]{
+    width: 40px;
+}
+section form .wrapper .check_wrapper ul li label{
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+section form .wrapper .gift_title{
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+}
+section form .wrapper .gift_title > input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fe929f;
+    display: inline;
+    width: 30%;
+    padding: 5px 0;
+    font-size: 24px;
+    text-align: center;
+}
+section form .wrapper .gift_title .thumbnail{
+    width: 100%;
+    text-align: start;
+}
+section form .wrapper .gift_title .thumbnail > input{
+    display: none;
+}
+section form .wrapper .gift_title .thumbnail h1{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+section form .wrapper .gift_title .thumbnail .showImg{
+    background: red;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+section form .wrapper .editor{
+    width: 100%;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+section form .wrapper .buttons{
+    display: flex;
+    justify-content: center;
+    text-align: right;
+    margin-bottom: 50px;
+}
+section form .wrapper .buttons button{
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+section form .wrapper .buttons .submit{
+    background: #fe929f;
+}

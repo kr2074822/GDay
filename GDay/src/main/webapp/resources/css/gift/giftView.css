@@ -415,19 +415,17 @@ section .gift .describe .review_wrapper .review .item .writer span{
     font-size: 12px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+section .gift .describe .Gbutton{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+section .gift .describe .Gbutton .update{
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    background: #fe929f;
+    cursor: pointer;
+}
 
 

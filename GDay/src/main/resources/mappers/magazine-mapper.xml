@@ -51,13 +51,28 @@
 		</foreach>
 	</select>
 	
-	
 	<!-- 매거진 다음 번호 조회 -->
-	<select id="selectNextNo">
+	<select id="selectNextNo" resultType="_int">
 		SELECT SEQ_MGZNO.NEXTVAL FROM DUAL
 	</select>
 	
+	<insert id="insertMagazine" parameterType="map">
+		INSERT INTO MAGAZINE(MGZ_NO, MGZ_TITLE, MGZ_CONTENT, CREATE_DATE, READ_CNT, DELETE_STATUS, MEM_NO)
+		VALUES(#{mgzNo}, #{mgzTitle}, #{mgzContent}, SYSDATE, 0, 'N', #{memberNo})
+	</insert>	
 	
-	
+	<!-- 파일 정보 삽입 -->
+	<insert id="insertAttachmentList" parameterType="list"> 
+		INSERT INTO MAGAZINE_IMG
+		SELECT SEQ_MGZ_IMG_NO.NEXTVAL, A.* FROM (
+		<foreach collection="list" item="item" separator=" UNION ALL ">
+			SELECT #{item.imgPath} MGZ_IMG_PATH,
+				#{item.imgName} MGZ_IMG_NAME,
+				#{item.imgLevel} MGZ_IMG_LEVEL,
+				#{item.mgzNo} MGZ_NO
+			FROM DUAL
+		</foreach>
+		)A
+	</insert>
 	
 </mapper>

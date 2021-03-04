@@ -10,6 +10,18 @@ public class MagazineImg {
 	public MagazineImg() {
 	}
 
+
+
+	public MagazineImg( String imgPath, String imgName, int imgLevel, int mgzNo) {
+		super();
+		this.imgPath = imgPath;
+		this.imgName = imgName;
+		this.imgLevel = imgLevel;
+		this.mgzNo = mgzNo;
+	}
+
+
+
 	public int getImgNo() {
 		return imgNo;
 	}
