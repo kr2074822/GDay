@@ -28,7 +28,7 @@
 	                            <div class="top">
 	                            	<c:if test="${message.msgStatus == 1}">
 	                                	<span class="status">도착</span>
-	                            	</c:if>
+	                            	</c:if> 
 	                            	<c:if test="${message.msgStatus == 0}">
 	                                	<span class="read"></span>
 	                            	</c:if>
