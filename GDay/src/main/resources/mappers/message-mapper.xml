@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messageMapper">
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Message" id="message_rm">
+		<!-- DB의 기본 키 -->
+		<id property="msgNo" column="MSG_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="msgContent" column="MSG_CONTENT"/>
+  		<result property="msgDate" column="MSG_DATE"/>
+  		<result property="msgStatus" column="MSG_STATUS"/>
+  		<result property="me" column="SENDER"/>
+  		<result property="you" column="GETTER"/>
+  		
+  		<result property="memNick" column="MEM_NICK"/>
+	</resultMap>
+	
+	<select id="messageList" parameterType="Message" resultMap="message_rm">
+		SELECT  GETTER, MAX(MSG_DATE) AS MSG_DATE, MEM_NICK, MAX(MSG_STATUS) AS MSG_STATUS
+		FROM MESSAGE
+		JOIN MEMBER ON (GETTER = MEM_NO)
+		WHERE SENDER = #{memNo}
+		GROUP BY GETTER, MEM_NICK
+		ORDER BY MSG_DATE DESC
+	</select>
+	
+
+	
+</mapper>

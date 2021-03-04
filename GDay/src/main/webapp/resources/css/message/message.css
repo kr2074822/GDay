@@ -1,0 +1,194 @@
+header{
+    width: 100%;
+    height: 100px;
+    background: red;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background: #f1f1f1;
+}
+section {
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+
+}
+.message_wrapper{
+    
+}
+.message_wrapper .msg_title{
+    margin: 100px 0;
+}
+.message_wrapper .msg_title h1{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+.message_wrapper .msg_list{
+    margin-bottom: 200px;
+}
+.message_wrapper .msg_list ul{
+    border: 1px solid #999;
+
+}
+.message_wrapper .msg_list ul li{
+    border-top: 1px solid #999;
+    padding: 20px;
+}
+.message_wrapper .msg_list ul li:nth-child(1){
+    border: none;
+}
+.message_wrapper .msg_list ul li .msg_item{
+    cursor: pointer;
+    color: #141414;
+}
+.message_wrapper .msg_list ul li .msg_item .top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-size: 10px;
+}
+.message_wrapper .msg_list ul li .msg_item .top .status{
+    background: #fe929f;
+    padding: 5px;
+}
+.message_wrapper .msg_list ul li .msg_item .top .read{
+    background: #fff;
+}
+
+.message_wrapper .msg_list ul li .msg_item .bottom{
+
+}
+.message_wrapper .msg_list ul li .msg_item .bottom h1{
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.message_wrapper .msg_list ul li .msg_item .bottom h1 span{
+	color: #fe929f;
+}
+.message_wrapper .msg_list ul li .msg_item .bottom p{
+    font-size: 12px;
+}
+
+
+
+
+*{
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+.popup{
+
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: .5s;
+
+    width: 30%;
+
+
+
+    margin: 0 auto;
+    background: #fe929f;
+    
+}
+
+.popup.active{
+    visibility: visible;
+    top: 50%;
+}
+.popup .chat_wrapper{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: right;
+}
+.popup .chat_wrapper i{
+    font-size: 24px;
+    cursor: pointer;
+}
+.popup .chat_wrapper h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.popup .chat_wrapper ul{
+    background: #f1f1f1;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.popup .chat_wrapper ul li{
+    padding: 0px 60px 20px;
+    width: 100%;
+
+}
+.popup .chat_wrapper ul li:nth-child(1){
+    padding-top: 20px;
+}
+.popup .chat_wrapper ul li > p{
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    padding: 20px;
+    word-break: break-all;
+}
+.popup .chat_wrapper ul li.you{
+    text-align: start;
+}
+.popup .chat_wrapper ul li.you span{
+    background: #ffe6e9;
+    padding: 5px 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 10px;
+}
+.popup .chat_wrapper ul li.you p{
+    border-top-left-radius: 0px;
+    background: #ffe6e9;
+}
+.popup .chat_wrapper ul li.i{
+    text-align: end;
+}
+.popup .chat_wrapper ul li.i span{
+    background: #fafafa;
+    padding: 5px 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 10px;
+}
+.popup .chat_wrapper ul li.i p{
+    background: #fafafa;
+    text-align: end;
+    border-top-right-radius: 0px;
+}
+.popup .chat_wrapper .input_form{
+    width: 100%;
+}
+.popup .chat_wrapper .input_form textarea{
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+}
+.popup .chat_wrapper .input_form button{
+    width: 100%;
+    background: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 0;
+}
