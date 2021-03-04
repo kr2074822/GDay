@@ -28,11 +28,11 @@
 		    <div class="row" id="container-period">
 		      <div id="date-form">
 		        <div class="list-search" id="list-search-1">
-		        	<button type="button" onclick="location.href='${contextPath}/bMember/bOrderList'">전체</button>
-		        	<button type="button" name="periodRadio" value="7days">일주일</button>
-		        	<button type="button" name="periodRadio" value="1Month">1개월</button>
-		        	<button type="button" name="periodRadio" value="3Months">3개월</button>
-		        	<button type="button" name="periodRadio" value="6Months">6개월</button>
+		        	<button type="button" class="day-btn" onclick="location.href='${contextPath}/bMember/bOrderList'">전체</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="7days">일주일</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="1Month">1개월</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="3Months">3개월</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="6Months">6개월</button>
 		        </div>
 		        <div class="list-search" id="list-search-2">
 		            <input type="date" name="periodStart" id="periodStart">
@@ -46,6 +46,7 @@
            <select name="giftStatus" id="giftStatus">
                <option value="100">결제 완료</option>
                <option value="200">발송 완료</option>
+               <option value="300">구매 확정</option>
            </select> <!-- giftStats : 주문 선물 상태 -->
            <button type="button" id="status-change-btn">변경</button>
         </div>
@@ -57,7 +58,7 @@
 					
 				<table id="list-table">
 				<thead>
-					<tr style="border-bottom: 1px solid black; background-color: lightgray;">
+					<tr id="table-head" style="border-bottom: 1px solid black; background-color: lightgray;">
 						<th></th>
 						<th class="hide">주문번호</th>
 						<th class="hide">상품 번호</th>
@@ -213,6 +214,8 @@
 		</div>
 	</div>
 	
+	<jsp:include page="../../common/footer.jsp"/>
+	
 	<script>
 		/* 날짜 선택 시 */
  		$("[name='periodRadio']").on("click", function() {
@@ -244,29 +247,8 @@
  	 			 }
  	 		} 	 		 			
  		});
- 		
- 		$("#periodEnd").on("change", function() {
- 	 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
-	 			 var startText = $("#periodStart").val();
- 	 			 var endText = $(this).val();
- 	 			 
- 	 			 var startAry = startText.split('-');
- 	 			 var endAry = endText.split('-');
- 	 			 
- 	 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
- 	 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
- 	 			 
- 	 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
- 	 			 
- 	 			 if(result < 0) {
- 	 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
- 	 			 } else {
- 	 				 location.href = "${contextPath}/bMemSearch/bOrdDaySearch2/" + startText + "/" + endText;
- 	 			 }
- 	 		} 	 		 			
- 		});
- 		
- 		
+ 
+ 				
  		// 상태 변경
  		var opAry = [];
  		

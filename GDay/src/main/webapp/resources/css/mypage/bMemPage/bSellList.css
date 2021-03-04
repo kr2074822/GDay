@@ -2,15 +2,16 @@
 
 #wrapper {
 	display: flex;
+	margin-bottom: 100px;
 }
 
 #b-sell-list-wrapper {
 	width: 70%;
-	margin: auto;
+	margin: 100px auto;
 }
 
 /* 페이지 상단 부분 */
-#wrapper-top-area {
+/* #wrapper-top-area {
 	width: 100%;
 	margin: 20px 0;
 	display: flex; 
@@ -20,6 +21,33 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+} */
+#wrapper-top-area {
+	width: 100%;
+	min-width: 800px;
+	margin: 20px 0;
+	display: flex; 
+	justify-content: space-between;
+}
+
+#list-search-1, #list-search-2, #date-form{
+	width: 100%;
+	display: flex;
+}
+
+#list-search-1 {
+	padding-right: 20px;
+}
+
+.day-btn {
+	border: 0;
+	outline: 0;
+}
+
+.day-btn:hover, #status-change-btn:hover , #list-search-btn:hover {
+	cursor: pointer;
+	background-color: #8e8989;
+	color: #FFF;
 }
 
 
@@ -53,4 +81,14 @@
   white-space: nowrap;
   overflow: hidden; 
   text-overflow: ellipsis;
+}
+
+/* 페이징바 영역 */
+#page-area {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.pagination li {
+	display: inline-block;
 }
