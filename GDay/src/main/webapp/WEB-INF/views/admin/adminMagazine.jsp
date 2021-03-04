@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지 - 회원 관리</title>
+<title>관리자 페이지 - 매거진 관리</title>
 
 <link rel="stylesheet" href="reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
@@ -19,18 +19,15 @@
 	<div class="container">
 		<div id="container-tb">
 			<div>
-				<h3>전체 회원 보기</h3>
-				<div id="adminMember-search">
+				<h3>매거진 관리</h3>
+				<div id="adminMagazine-search">
 					<form action=# onsubmit="" method="GET" class="text-right" id="searchForm">
 						<select id="sk" name="sk" class="form-control sf-margin">
 							<option class="updateMem" value="namal">일반</option>
 							<option class="updateMem" value="bisuness">비즈니스</option>
-							<option class="updateMem" value="noCheck">미인증</option>
-							<option class="updateMem" value="blackList">블랙리스트</option>
-							<option class="updateMem" value="secession">탈퇴</option>
 						</select> 
 						<input type="text" name="sv" class="form-control sf-margin" id="search" placeholder="검색어를 입력하세요.">
-						<button type="submit">등급 보기</button>
+						<button type="submit">찾기</button>
 					</form>
 				</div>
 			</div>
@@ -39,11 +36,10 @@
 					<table class="table" id="list-table">
 						<thead>
 							<tr>
-								<th>회원 번호</th>
-								<th>회원 아이디</th>
-								<th>회원 닉네임</th>
-								<th>가입일</th>
-								<th>등급</th>
+								<th>게시글 번호</th>
+								<th>제목</th>
+								<th>작성 일자</th>
+								<th>수정 일자</th>
 								<th><input type="checkbox" id="checkAll"></th>
 							</tr>
 						</thead>
@@ -77,7 +73,7 @@
 							<option class="updateMem" value="U">미인증</option>
 							<option class="updateMem" value="X">블랙리스트</option>
 						</select>
-						<button type="button" id="changeMemBtn" class="form-control btn">등급 변경</button>
+						<button type="button" id="changeMemBtn" class="form-control btn">매거진 작성</button>
 					</div>
 				</form>
 			</div>
@@ -168,11 +164,6 @@
 					$("input[id=check]").prop("checked", false);
 				}
 			});
-		});
-		
-		// 전체 체크 중, 한개라도 체크가 풀리면 모든 체크 해제
-		$("input[id=check]").on("click", function(){
-			$("#checkAll").prop("checked", false);
 		});
 		
 		// 회원 등급변경하기

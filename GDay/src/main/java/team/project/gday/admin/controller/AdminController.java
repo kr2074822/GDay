@@ -1,6 +1,8 @@
 package team.project.gday.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team.project.gday.admin.model.service.AdminService;
 import team.project.gday.admin.model.vo.adminPageInfo;
@@ -27,22 +30,39 @@ public class AdminController {
 		
 		// 페이징 처리
 		adminPageInfo pInfo = service.getPageInfo(cp);
-		
 		System.out.println(pInfo);
+		
 		// 전체 회원 조회
 		List<Member> mList = service.adminMember(pInfo);
 		
-		model.addAllAttributes(mList);
+		for(Member m : mList) {
+			System.out.println(m);
+		}
+	
+		model.addAttribute("mList", mList);
+		model.addAttribute("pInfo", pInfo);
 		
 		return "admin/adminMember";
 	}
 	
 	// 회원 등급 변경 Controller
-	@RequestMapping("memberRating")
-	public String memberRating(@RequestParam("check") int check) {
-		return null;
+	@RequestMapping("memberGrade")
+	@ResponseBody
+	public int memberGrade(@RequestParam String[] memberNo,
+							@RequestParam String memberGrade) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("memberGrade", memberGrade);
+		
+		System.out.println(map);
+		int result = service.updateMemberGrade(map);
+		
+		return result;
 	}
 
+	// -----------------------------------------------------------------------------
+	
 	// 비즈니스 회원 목록 조회 화면 전환 Controller
 	@RequestMapping("adminBMemSub")
 	public String adminBMemSub() {
@@ -54,12 +74,26 @@ public class AdminController {
 	public String adminBMemView() {
 		return "admin/adminBMemView";
 	}
+
+	
+	// 블랙리스트 회원 조회 화면 전환 Controller
+	@RequestMapping("adminBlackMem")
+	public String adminBlackMem() {
+		return "admin/adminBlackMem";
+	}
 	
 	// 게시판 전체 조회 화면 전환 Controller
 	@RequestMapping("adminBoard")
 	public String adminBoard() {
 		return "admin/adminBoard";
 	}
+	
+	// 매거진 게시판 조회 화면 전환 Controller
+	@RequestMapping("adminMagazine")
+	public String adminMagazine() {
+		return "admin/adminMagazine";
+	}
+	
 	
 	// 신고 회원 화면 전환 Controller
 	@RequestMapping("adminReportEnd")
@@ -79,11 +113,6 @@ public class AdminController {
 		return "admin/adminCustomerService";
 	}
 	
-	// 블랙리스트 회원 조회 화면 전환 Controller
-	@RequestMapping("adminBlackMem")
-	public String adminBlackMem() {
-		return "admin/adminBlackMem";
-	}
 	
 	// 고객센터 문의 화면 전환 Controller
 	@RequestMapping("memberCustomerInsert")
@@ -102,7 +131,4 @@ public class AdminController {
 	public String memberCustomerView(){
 		return "admin/memberCustomerView";
 	}
-	
-	//-----------------------------------------------------------------------
-	
 }

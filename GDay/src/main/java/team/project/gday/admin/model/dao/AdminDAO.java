@@ -1,6 +1,7 @@
 package team.project.gday.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -31,7 +32,16 @@ public class AdminDAO {
 		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		
-		return sqlSession.selectList("adminMapper.adminMember", pInfo, rowBounds);
+		return sqlSession.selectList("adminMapper.adminMember", null, rowBounds);
+	}
+
+	/** 회원 등급 변경하기
+	 * @param memNo
+	 * @param memberGrade
+	 * @return result
+	 */
+	public int updateMemberGrade(Map<String, Object> map) {
+		return sqlSession.update("adminMapper.updateMemberGrade", map);
 	}
 
 }
