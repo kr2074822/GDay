@@ -1,0 +1,81 @@
+header{
+    width: 100%;
+    height: 100px;
+    background: red;
+}
+section{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+section .magazine_wrapper {
+    width: 100%;
+    align-items: center;
+}
+section .magazine_wrapper > h1{
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+section .magazine_wrapper .magazine_form{
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+section .magazine_wrapper .magazine_form form .magazine_title{
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+section .magazine_wrapper .magazine_form form .magazine_title > input{
+    padding: 10px 20px;
+    width: 20%;
+    border: none;
+    border-bottom: 2px solid #fe929f;
+    text-align: center;
+    outline: none;
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail{
+    margin-top: 50px;
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail h1{
+    font-size: 12px;
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail .boardRow{
+    
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail .boardRow .area{
+    
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail .boardImg{
+    width: 300px;
+    height: 200px;
+    background: #fe929f;
+    margin: 0 auto;
+}
+section .magazine_wrapper .magazine_form form .magazine_title .thumbnail .boardImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+}
+section .magazine_wrapper .magazine_form form .editor{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+section .magazine_wrapper .magazine_form form .buttons{
+    margin-bottom: 200px;
+}
+section .magazine_wrapper .magazine_form form .buttons button{
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+section .magazine_wrapper .magazine_form form .buttons .submit{
+    background: #fe929f;
+}

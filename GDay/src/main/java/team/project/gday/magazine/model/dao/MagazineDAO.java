@@ -43,4 +43,11 @@ public class MagazineDAO {
 	public List<Magazine> selectThumbnailList(List<Magazine> mList) {
 		return sqlSession.selectList("magazineMapper.selectThumbnailList", mList);
 	}
+
+	/** 다음 매거진번호 조회
+	 * @return
+	 */
+	public int selectNextNo() {
+		return sqlSession.selectOne("magazineMapper.selectNextNo");
+	}
 }
