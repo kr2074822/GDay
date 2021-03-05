@@ -46,7 +46,8 @@ public class GiftCtrl {
 	@RequestMapping("insert")
 	public String giftInsert(@ModelAttribute Gift gift, 
 			@ModelAttribute("loginMember") Member loginMember,
-			@RequestParam("hashNo") List<String> hashNo, 
+			@RequestParam(value="hashNo", required = false) List<String> hashNo, 
+			@RequestParam(value="color", required = false) List<String> color, 
 			@RequestParam(value = "images", required = false) List<MultipartFile> images,
 			HttpServletRequest request) {
 		
@@ -59,6 +60,8 @@ public class GiftCtrl {
 		map.put("prdtPrice", gift.getPrdtPrice());
 		System.out.println(gift);
 		System.out.println(hashNo);
+		System.out.println(color);
+		System.out.println(images);
 		
 		
 		// 파일 업로드 확인 

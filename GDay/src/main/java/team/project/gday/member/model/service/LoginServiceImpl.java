@@ -55,7 +55,8 @@ public class LoginServiceImpl implements LoginService{
 		String encPwd = enc.encode(member.getMemberPwd());
 		member.setMemberPwd(encPwd);
 		if (member.getMemberGrade().equals("G")) {
-			dao.signUp(member);
+			result = dao.signUp(member);
+			System.out.println("서비스 가입확인"+ result);
 		}else {
 			dao.signUp(member);
 			result = dao.checkMemNo(member);
@@ -85,10 +86,12 @@ public class LoginServiceImpl implements LoginService{
 				image.get(0).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
 	
 
-				savePath = savePath.replace("profileImg", "licenseImg");
-				image.get(1).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
-				LicenseImg li = new LicenseImg(result, savePath, fileName);
-				result = dao.insertLicense(li);
+				if (member.getMemberGrade().equals("B")) {
+					savePath = savePath.replace("profileImg", "licenseImg");
+					image.get(1).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
+					LicenseImg li = new LicenseImg(result, savePath, fileName);
+					result = dao.insertLicense(li);
+				}
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -200,6 +203,12 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public int updateSID(Map<String, Object> map) {
 		return dao.updateSID(map);
+	}
+
+	// 프사 갖고오기
+	@Override
+	public ProfileImg getProfile(int memberNo) {
+		return dao.getProfile(memberNo);
 	}
 
 }

@@ -106,7 +106,7 @@
             </div>
             <div class="user sell">
                 <div class="formBox">
-                    <form action="${contextPath}/login/signUp" enctype="multipart/form-data" method="POST" onsubmit="return validate();">
+                    <form action="${contextPath}/login/signUp" enctype="multipart/form-data" method="POST" onsubmit="return validate()2;">
                         <h2>판매자회원 로그인</h2>
                         <div>
                             <input type="email" name="memberEmail" class="email"required>
@@ -410,8 +410,69 @@
 		
 		
 		
+		// 유효성 검사
+		function validate() {
+
+			
+			if ($("#title").val().trim().length == 0) {
+				alert("강사님, 클래스명을 적어 주세요!");
+				$("#title").focus();
+				return false;
+			}
 		
-		
+			if ($("#summernote").val().trim().length == 0) {
+				alert("강사님, 클래스 설명을 적어주세요!");
+				$("#summernote").focus();
+				return false;
+			}
+			
+			if ($("#sample5_address").val().trim().length == 0) {
+				alert("강사님, 강의 장소를 알려주세요!");
+				return false;
+			}
+			
+			if ($("#prdtPrice").val().trim().length == 0) {
+				alert("강사님, 클래스 수강료를 알려주세요!");
+				$(".prdtPrice").focus();
+				return false;
+			}
+			
+			if ($("#cCount").val().trim().length == 0) {
+				alert("강사님, 클래스 정원을 알려주세요!");
+				$(".cCount").focus();
+				return false;
+			}
+			
+			if ($("#cSession").val().trim().length == 0) {
+				alert("강사님, 클래스 횟수를 알려주세요!");
+				$(".cSession").focus();
+				return false;
+			}
+			
+			if ($("#cStartDate").val().trim().length == 0) {
+				alert("강사님, 클래스 시작일을 알려주세요!");
+				$(".cStartDate").focus();
+				return false;
+			}
+			
+			if ($("#cEndDate").val().trim().length == 0) {
+				alert("강사님, 클래스 종료일을 알려주세요!");
+				$(".cEndDate").focus();
+				return false;
+			}
+			
+			if ($("#cDate").val().trim().length == 0) {
+				alert("강사님, 클래스 수업일과 시간을 알려주세요!");
+				$(".cDate").focus();
+				return false;
+			
+			}
+			
+			if(!flag) {
+				alert("강사님, 썸네일을 필수로 등록해주셔야 합니다.")
+				return false;
+			}
+		}
 		
 		
 		

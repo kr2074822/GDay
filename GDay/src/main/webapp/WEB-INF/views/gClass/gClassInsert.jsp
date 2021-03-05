@@ -257,6 +257,10 @@
             <input type="checkbox" name="hashNo" value="48" id="gi">
             <label for="gi" class="item">Black</label>
         </li>
+        <li class="tag">
+            <input type="checkbox" name="hashNo" value="59" id="hk">
+            <label for="hk" class="item">기타</label>
+        </li>
     </ul>
     <h1>종류별</h1>
     <ul class="tagBx" data-text="7">
@@ -300,10 +304,7 @@
             <input type="checkbox" name="hashNo" value="58" id="hj">
             <label for="hj" class="item">화장품</label>
         </li>
-        <li class="tag">
-            <input type="checkbox" name="hashNo" value="59" id="hk">
-            <label for="hk" class="item">기타</label>
-        </li>
+        
     </ul>
       
       
