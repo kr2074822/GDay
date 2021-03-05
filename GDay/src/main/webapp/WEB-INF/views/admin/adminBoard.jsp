@@ -21,7 +21,11 @@
 					<select name="board-se" id="board-se">
 						<option class="boardOp" value="C">선물</option>
 						<option class="boardOp" value="G">클래스</option>
-					</select> 
+					</select>
+					<select name="board-ap" id="board-ap">
+						<option class="boardAp" value="Y">일반</option>
+						<option class="boardAp" value="B">블라인드</option>
+					</select>					
 					<input type="text" id="search">
 					<button type="submit">게시글 보기</button>
 				</div>
@@ -105,11 +109,11 @@
 
 				<c:if test="${pInfo.currentPage > pInfo.pageSize}">
 					<li> <!-- 첫 페이지로 이동(<<) -->
-						<a class="page-link" href="${firstPage}">&lt;&lt;</a>
+						<a class="page-link noteSelected" href="${firstPage}">&lt;&lt;</a>
 					</li>
 					
 					<li> <!-- 이전 페이지로 이동 (<) -->
-						<a class="page-link" href="${prevPage}">&lt;</a>
+						<a class="page-link noteSelected" href="${prevPage}">&lt;</a>
 					</li>
 				</c:if>
 
@@ -127,7 +131,7 @@
 					
 						<c:otherwise>
 							<li>	
-								<a class="page-link" href="${pageUrl}cp=${page}">${page}</a>
+								<a class="page-link noteSelected" href="${pageUrl}cp=${page}">${page}</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -137,11 +141,11 @@
 				<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
 				<c:if test="${next <= pInfo.maxPage}">
 					<li> <!-- 다음 페이지로 이동 (>) -->
-						<a class="page-link" href="${nextPage}">&gt;</a>
+						<a class="page-link noteSelected" href="${nextPage}">&gt;</a>
 					</li>
 					
 					<li> <!-- 마지막 페이지로 이동(>>) -->
-						<a class="page-link" href="${lastPage}">&gt;&gt;</a>
+						<a class="page-link noteSelected" href="${lastPage}">&gt;&gt;</a>
 					</li>
 				</c:if>
 			</ul>

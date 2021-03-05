@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.service.AdminService;
+import team.project.gday.admin.model.vo.Customor;
 import team.project.gday.admin.model.vo.adminPageInfo;
+import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
 
 @Controller
@@ -57,7 +59,7 @@ public class AdminController {
 		map.put("memberNo", memberNo);
 		map.put("memberGrade", memberGrade);
 		
-		System.out.println(map);
+		// System.out.println(map);
 		int result = service.updateMemberGrade(map);
 		
 		return result;
@@ -124,12 +126,31 @@ public class AdminController {
 	
 	
 	
+	// ----------------------------------------------------------
+	
 	// 매거진 게시판 조회 화면 전환 Controller
 	@RequestMapping("adminMagazine")
-	public String adminMagazine() {
+	public String adminMagazine(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+								Model model) {
+		
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageMzInfo(cp);
+		
+		// 매거진 조회
+		List<Magazine> mzList = service.adminMagazine(pInfo);
+		/*
+		 * for(Magazine mz: mzList) { System.out.println(mz); }
+		 */
+		
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("mzList", mzList);
+		
 		return "admin/adminMagazine";
 	}
 	
+	// 매거진 상세조회 Controller
+	
+	// ----------------------------------------------------------------
 	
 	// 신고 회원 화면 전환 Controller
 	@RequestMapping("adminReportEnd")
@@ -143,12 +164,28 @@ public class AdminController {
 		return "admin/adminReportStand";
 	}
 	
+	// -----------------------------------------------------------------
+	
 	// 관리자 고객센터 목록 화면 전환 Controller
 	@RequestMapping("adminCustomerService")
-	public String adminCustomerService() {
+	public String adminCustomerService(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+									   Model model) {
+		
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageAcInfo(cp);
+		// System.out.println(pInfo);
+		
+		// 고객센터 목록 읽어오기
+		List<Customor> cList = service.adminCustomor(pInfo);
+		// System.out.println(cList);
+		
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("cList", cList);
+		
 		return "admin/adminCustomerService";
 	}
 	
+	// ---------------------------------------------------------------
 	
 	// 고객센터 문의 화면 전환 Controller
 	@RequestMapping("memberCustomerInsert")

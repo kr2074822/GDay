@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import team.project.gday.Product.model.vo.Product;
+import team.project.gday.admin.model.vo.Customor;
 import team.project.gday.admin.model.vo.adminPageInfo;
+import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
 
 public interface AdminService {
@@ -53,6 +55,30 @@ public interface AdminService {
 	 * @return product
 	 */
 	public abstract List<Product> productBoard(adminPageInfo pInfo);
+
+	/** 매거진 페이징처리 Service
+	 * @param cp
+	 * @return pInfo
+	 */
+	public abstract adminPageInfo getPageMzInfo(int cp);
+
+	/** 매거진 게시판 조회 Service
+	 * @param pInfo
+	 * @return mzList
+	 */
+	public abstract List<Magazine> adminMagazine(adminPageInfo pInfo);
+
+	/** 관리자 고객센터 페이징처리 Service
+	 * @param cp
+	 * @return pInfo
+	 */
+	public abstract adminPageInfo getPageAcInfo(int cp);
+
+	/** 관리자 고객센터 목록 조회 Serivce
+	 * @param pInfo
+	 * @return cList
+	 */
+	public abstract List<Customor> adminCustomor(adminPageInfo pInfo);
 
 
 

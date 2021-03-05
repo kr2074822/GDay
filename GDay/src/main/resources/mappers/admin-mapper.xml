@@ -48,25 +48,63 @@
   		<result property="prdtStatus" column="PRDT_STATUS"/>
   		<result property="memNo" column="MEM_NO"/>
 	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Magazine" id="magazine_rm">
+		<!-- DB의 기본 키 -->
+		<id property="mgzNo" column="MGZ_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="mgzTitle" column="MGZ_TITLE"/>
+  		<result property="mgzContent" column="MGZ_CONTENT"/>
+  		<result property="mgzCreateDt" column="CREATE_DATE"/>
+  		<result property="mgzReadCnt" column="READ_CNT"/>
+  		<result property="mgzDelStatus" column="DELETE_STATUS"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Customor" id="customor_rm">
+		<!-- DB의 기본 키 -->
+		<id property="cusNo" column="CUS_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="cusContent" column="CUS_CONTENT"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		<result property="curNo" column="CUR_NO"/>
+  		<result property="curContent" column="CUR_CONTENT"/>
+	</resultMap>
 	
 	
 	<!-- 전체회원 페이징 처리(목록 갯수) -->
-	<select id="getListCount" parameterType="_int" resultType="_int">
+	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 	</select>
 
 	<!-- 블랙리스트 회원 페이징 처리(목록 갯수) -->
-	<select id="getBmListCount" parameterType="_int" resultType="_int">
+	<select id="getBmListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MEM_GRADE = 'X'
 	</select>
 	
 	<!-- 전체 게시글 페이징 처리(목록 갯수) -->
-	<select id="getListBdCount" parameterType="_int" resultType="_int">
+	<select id="getListBdCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM PRODUCT
+	</select>
+	
+	<!-- 매거진 게시글 페이징 처리(목록 갯수) -->
+	<select id="getListMzCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+	</select>
+	
+	<!-- 관리자 고객센터 페이징 처리(목록 갯수) -->
+	<select id="getListAcCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM V_CUSTOMOR
 	</select>
 	
 	<!-- 회원 전체 조회 -->
@@ -100,4 +138,19 @@
         FROM PRODUCT
         ORDER BY PRDT_NO DESC
 	</select>
+	
+	<!-- 매거진 전체 조회 -->
+	<select id="adminMagazine" parameterType="_int" resultMap="magazine_rm">
+		SELECT MGZ_NO, MGZ_TITLE, CREATE_DATE, DELETE_STATUS
+        FROM MAGAZINE
+        ORDER BY MGZ_NO DESC
+	</select>
+	
+	<!-- 관리자 고객센터 목록 전체 조회 -->
+	<select id="adminCustomor" parameterType="_int" resultMap="customor_rm">
+		SELECT *
+        FROM V_CUSTOMOR
+        ORDER BY CUS_NO DESC
+	</select>
+	
 </mapper>
