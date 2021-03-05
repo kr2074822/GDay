@@ -81,11 +81,6 @@ public class LoginController {
         }
 
 		
-		System.out.println(saveId);
-		System.out.println(autoId);
-		System.out.println(saveBmemId);
-		System.out.println(bmemAutoLogin);
-		System.out.println(inputMember);
 		Member loginMember = service.loginAction(inputMember);
 		String url = null;
 		
@@ -100,22 +95,18 @@ public class LoginController {
 			
 			Cookie sid = new Cookie("JSESSIONID", session.getId());
 			String sessionId = sid.getValue();
-			System.out.println(sid.getValue());
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("sessionId", sessionId);
 			map.put("mNo", mNo);
-			System.out.println("map" +map);
+			
 			int search = service.searchSID(map);
-			System.out.println("search: "+ search);
 			if (search == 0) {
 				int result = service.insertSID(map);
 			} else {
 				// 업데이트
 				int result = service.updateSID(map);
 				
-				
-				System.out.println(result);
 			}
 			
 			
@@ -163,12 +154,9 @@ public class LoginController {
 			}
 			
 			// 프사 갖고오기
-			System.out.println("로그인 넘버: ------"+loginMember.getMemberNo());
 			ProfileImg picture = service.getProfile(loginMember.getMemberNo());
 
 			model.addAttribute("picture", picture);
-			System.out.println("회원 사진 "+ picture);
-		
 		}else {
 			url = "login/login";
 		}
@@ -236,16 +224,11 @@ public class LoginController {
 	// 일반 회원 가입
 	@RequestMapping("signUp")
 	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop) {
-		System.out.println(member);
-		System.out.println("이미지 받기"+image);
 		int result = service.signUp(member, bmemShop);
-		System.out.println("회원가입 결과"+ result);
-		System.out.println("회원가입 등급"+member.getMemberGrade());
 		if (result > 0) {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
 			result = 0;
 			result = service.insertImg(image, savePath, member) ;
-			System.out.println("이미지 삽입-----" +result);
 
 		}
 		return "redirect:/";

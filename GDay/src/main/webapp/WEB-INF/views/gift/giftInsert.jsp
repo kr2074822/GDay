@@ -242,6 +242,10 @@
 				            <input type="checkbox" name="hashNo" value="48" id="gi">
 				            <label for="gi" class="item">Black</label>
 				        </li>
+				        <li class="tag">
+				            <input type="checkbox" name="hashNo" value="59" id="hk">
+				            <label for="hk" class="item">기타</label>
+				        </li>
 				    </ul>
 				    <span class="opt_name">종류별</span>
 				    <ul class="tagBx" data-text="7">
@@ -285,26 +289,22 @@
 				            <input type="checkbox" name="hashNo" value="58" id="hj">
 				            <label for="hj" class="item">화장품</label>
 				        </li>
-				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="59" id="hk">
-				            <label for="hk" class="item">기타</label>
-				        </li>
 				    </ul>
                     <span class="opt_name">옵션</span>
                     <ul class="tagBx" data-text="7">
                         <li class="tag">
                             <label for="ha" class="item">옵션1</label>
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
+                            <input type="text" name="color">
+                            <input type="text" name="color">
+                            <input type="text" name="color">
+                            <input type="text" name="color">
                         </li>
                         <li class="tag">
                             <label for="he" class="item">옵션2</label>
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
+                            <input type="text" name="size">
+                            <input type="text" name="size">
+                            <input type="text" name="size">
+                            <input type="text" name="size">
                         </li>
                         <li class="tag">
                             <label for="he" class="item" >가격</label>
