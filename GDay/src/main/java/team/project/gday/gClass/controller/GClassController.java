@@ -16,6 +16,7 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
+import team.project.gday.member.model.vo.Member;
 
 @Controller 
 @SessionAttributes({"loginMember"})
@@ -76,8 +77,18 @@ public class GClassController {
 			if(attachmentList != null && !attachmentList.isEmpty()) {
 				model.addAttribute("attachmentList", attachmentList);
 			}
+			
+			//판매자 정보 가져오기
+			Member member = service.selectMember(gclass.getMemNo());
+			model.addAttribute("member", member);
+			
+			Attachment thumbnail = service.selectThumbnail(prdtNo);
+			if(thumbnail != null) {
+				model.addAttribute("thumbnail", thumbnail);
+			}
+			
 			model.addAttribute("gclass", gclass);
-			url = "board/boardView";
+			url = "gClass/gClassView";
 		} else {
 			//즐겨찾기로 들어와서 referer이 null인 상태라면?
 			// -> 이전 요청 주소가 없는 경우
@@ -88,7 +99,7 @@ public class GClassController {
 			}
 			
 			ra.addFlashAttribute("swalIcon", "error");
-			ra.addFlashAttribute("swalTitle", "존재하지 않는 게시글입니다.");
+			ra.addFlashAttribute("swalTitle", "존재하지 않는 클래스입니다.");
 		}
 		
 		return url;

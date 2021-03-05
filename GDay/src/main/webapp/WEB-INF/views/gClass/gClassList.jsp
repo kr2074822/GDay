@@ -327,7 +327,7 @@
         <div class="gift_wrapper">
         <c:forEach var="gClass" items="${gCList}" varStatus="vs">
             <div class="item">
-          		  <a href="">
+          		  <a href="${gClass.prdtNo}">
                     <div>
 	                    <c:forEach items="${thList}" var="th">
 	                    <c:if test="${th.prdtNo == gClass.prdtNo}">
@@ -419,6 +419,17 @@
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>    
+    
+/*     $(".item div").on("click", function(){
+		var prdtNo = $(this).children().eq(0).text();
+	
+		//상대경로
+		var boardViewURL = prdtNo;
+		
+		location.href = boardViewURL;
+	}) 
+     */
+    
     
         const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");

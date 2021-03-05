@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftView.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassView.css">
     <title>클래스 상세 페이지</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
             <form action="">
                 <div class="gift_img_wrapper">
                     <div class="gift_img">
-                        <img src="" alt="">
+                        <img src="${contextPath}${thumbnail.filePath}/${thumbnail.fileName}" alt="">
                     </div>
                     <div class="rate">
                         <span><i class="fas fa-star"></i>4.1</span>
@@ -36,8 +36,8 @@
                     <div class="gift_option">
                         <div class="title">
                             <div>
-                                <h1>상품명</h1>
-                                <span>가격</span>
+                                <h1>${gclass.prdtName}</h1>
+                                <span>${gclass.prdtPrice}</span>
                             </div>
                             <div>
                                 <i class="far fa-comments"></i>
@@ -45,28 +45,24 @@
                             </div>
                         </div>
                         <div class="option">
-                            <span>옵션</span>
-                            <select name="" id="">
-                                <option value="">가가가가가</option>
-                                <option value="">나</option>
-                                <option value="">다</option>
-                            </select>
                             <div class="gift_cnt">
-                                <di class="opt_title">
-                                    <span>상품명</span>
-                                    <span>[옵션명]</span>
-                                    </di>
+                                <div class="opt_title">
+                                    <span>참여 인원</span>
+                                    </div>
                                 <div class="cnt">
-                                    <i class="fas fa-plus"></i><input type="text" value="1"><i class="fas fa-minus"></i>
+                              		  <i class="fas fa-minus" onclick="del()"></i>
+                                    <input type="text" class="amount" value=1 style="width:30px">
+                                    <i class="fas fa-plus" onclick="add()"></i>
+                                   <!--  <input type=hidden name="sell_price" value="${gclass.prdtPrice}"> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="priceBtn">
-                        <p>총 <span>123</span>개</p>
+                        <!-- <p>총 <span>123</span>개</p> -->
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="total">12000</span>
+                            <span class="sum">${gclass.prdtPrice }</span>
                         </div>
     
                         <div class="option_btn">
@@ -97,34 +93,34 @@
                 <div class="b_info">
                     <table>
                         <tr>
-                            <th colspan="2"><span>김영주</span> 판매자님</th>
+                            <th colspan="2"><span>${member.memberName}</span> 강사님</th>
                         </tr>
                         <tr>
                             <td>이름</td>
-                            <td>이이1</td>
+                            <td>${member.memberName}</td>
                         </tr>
                         <tr>
                             <td>전화번호</td>
-                            <td>이이1</td>
+                            <td>${member.memberPhone}</td>
                         </tr>
                         <tr>
                             <td>주소</td>
-                            <td>이이1</td>
+                            <td>${member.memberAddress}</td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td>이이1</td>
+                            <td>${member.memberEmail}</td>
                         </tr>
                         <tr>
                             <td>상호명</td>
-                            <td>이이1</td>
+                            <td>${member.memberName}</td>
                         </tr>
                     </table>
                 </div>
                 <h1>상품 설명</h1>
                 <div class="about_gift">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                       ${gclass.prdtContent}
                     </p>
                 </div>
                 <div class="g_info">
@@ -262,7 +258,79 @@
             </div> 
         </div> 
     </section>
+	
+		<script type="text/javascript" src="${contextPath}/resources/js/fontawesome.js"></script>
+    
+    <script>
+    var price = ${gclass.prdtPrice };
+    function add(){
+    	$(".amount").val( Number($(".amount").val()) + 1  );
+    	$(".sum").text( Number($(".sum").text()) + price  );
+    }
+    
+    function del(){
+    	
+    	if($(".amount").val() > 1 ){
+	    	$(".amount").val( Number($(".amount").val()) - 1  );
+	    	$(".sum").text( Number($(".sum").text()) - price  );
+    	}
+    }
+    
+    $(".amount").on("input", function(){
+    	
+    	if(isNaN(Number($(".amount").val())) ){ // 숫자 말고 다른 것 입력 시
+    		$(".amount").val("");
+    		$(".sum").text( price  );
+    	}else{
+    		$(".sum").text( Number($(".amount").val()) * price  );
+    	}
+    	
+    	
+    });
+    /* var sell_price;
+    var amount;
+    var hm;
+    
+    $(function() {
+    	init();
+    })
 
-    <script src="js/fontawesome.js"></script>
+  	
+  	function init() {
+  		sell_price = $(".sell_price").val();
+  		amount = $(".amount").val();
+  		$(".sum").val(sell_price);
+  		change();
+  	}
+  	
+  	function add() {
+  		hm = amount;
+  		sum = $(".sum").val();
+  		hm.value++;
+
+  		sum.val(parseInt(hm) * sell_price);
+  	}
+
+  	function del() {
+  		hm = amount;
+  		sum = $(".sum").val();
+  			if (hm.value > 1) {
+  				hm.value--;
+  				sum.value = parseInt(hm.value) * sell_price;
+  			}
+  	}
+
+  	function change() {
+  		hm = amount;
+  		sum = $(".sum").val();
+
+  			if (hm.value < 0) {
+  				hm.value = 0;
+  			}
+  		sum.value = parseInt(hm.value) * sell_price;  
+  	}
+     */
+    </script>
+    
 </body>
 </html>
