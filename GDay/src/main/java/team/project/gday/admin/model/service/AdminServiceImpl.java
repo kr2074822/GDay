@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.dao.AdminDAO;
+import team.project.gday.admin.model.vo.Customor;
 import team.project.gday.admin.model.vo.adminPageInfo;
+import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
 
 @Service
@@ -69,6 +71,38 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Product> productBoard(adminPageInfo pInfo) {
 		return dao.productBoard(pInfo);
+	}
+
+	// -------------------------------------------------------------------
+	
+	// 매거진 페이징 처리를 위한 Service 구현
+	@Override
+	public adminPageInfo getPageMzInfo(int cp) {
+		
+		int listMzCount = dao.getListMzCount();
+		return new adminPageInfo(listMzCount, cp);
+	}
+
+	// 매거진 게시판 조회 Service 구현
+	@Override
+	public List<Magazine> adminMagazine(adminPageInfo pInfo) {
+		return dao.adminMagazine(pInfo);
+	}
+
+	// ---------------------------------------------------
+	
+	// 관리자 고객센터 페이징 처리 Service 구현
+	@Override
+	public adminPageInfo getPageAcInfo(int cp) {
+		int listAcCount = dao.getListAcCount();
+		System.out.println(listAcCount);
+		return new adminPageInfo(listAcCount, cp);
+	}
+
+	// 관리자 고객센터 목록 조회 Service 구현
+	@Override
+	public List<Customor> adminCustomor(adminPageInfo pInfo) {
+		return dao.adminCustomor(pInfo);
 	}
 
 

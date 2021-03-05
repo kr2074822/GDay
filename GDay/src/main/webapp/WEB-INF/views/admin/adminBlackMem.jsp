@@ -89,11 +89,11 @@
 
 			<c:if test="${pinfo.currentPage > pinfo.pageSize}">
 				<li> <!-- 첫 페이지로 이동(<<) -->
-					<a class="page-link" href="${firstPage}">&lt;&lt;</a>
+					<a class="page-link noteSelected" href="${firstPage}">&lt;&lt;</a>
 				</li>
 					
 				<li> <!-- 이전 페이지로 이동 (<) -->
-					<a class="page-link" href="${prevPage}">&lt;</a>
+					<a class="page-link noteSelected" href="${prevPage}">&lt;</a>
 				</li>
 			</c:if>
 
@@ -111,7 +111,7 @@
 					
 					<c:otherwise>
 						<li>	
-							<a class="page-link" href="${pageUrl}cp=${page}">${page}</a>
+							<a class="page-link noteSelected" href="${pageUrl}cp=${page}">${page}</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -121,11 +121,11 @@
 			<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
 			<c:if test="${next <= pinfo.maxPage}">
 				<li> <!-- 다음 페이지로 이동 (>) -->
-					<a class="page-link" href="${nextPage}">&gt;</a>
+					<a class="page-link noteSelected" href="${nextPage}">&gt;</a>
 				</li>
 					
 				<li> <!-- 마지막 페이지로 이동(>>) -->
-					<a class="page-link" href="${lastPage}">&gt;&gt;</a>
+					<a class="page-link noteSelected" href="${lastPage}">&gt;&gt;</a>
 				</li>
 			</c:if>
 		</ul>
