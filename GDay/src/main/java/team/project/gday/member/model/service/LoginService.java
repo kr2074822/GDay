@@ -97,6 +97,12 @@ public interface LoginService {
 	 */
 	public abstract ProfileImg getProfile(int memberNo);
 
+	/** JSESSION 비교
+	 * @param sessionId
+	 * @return
+	 */
+	public abstract Member getCookie(String sessionId);
+
 
 
 

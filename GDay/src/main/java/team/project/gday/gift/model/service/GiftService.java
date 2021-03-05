@@ -9,6 +9,12 @@ import team.project.gday.Product.model.vo.Attachment;
 
 public interface GiftService {
 
+	/** 선물 삽입
+	 * @param map
+	 * @param images
+	 * @param savePath
+	 * @return
+	 */
 	int insertGift(Map<String, Object> map, List<MultipartFile> images, String savePath);
 
 	//썸머노트에 업로드된 이미지 저장 service
