@@ -111,6 +111,14 @@ public class LoginDAO {
 		return sqlSession.selectOne("memberMapper.getProfile", memberNo);
 	}
 
+	/** JSESSION 비교
+	 * @param sessionId
+	 * @return
+	 */
+	public Member getCookie(String sessionId) {
+		return sqlSession.selectOne(sessionId);
+	}
+
 
 
 

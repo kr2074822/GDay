@@ -211,4 +211,10 @@ public class LoginServiceImpl implements LoginService{
 		return dao.getProfile(memberNo);
 	}
 
+	// JSESSIONID 비교
+	@Override
+	public Member getCookie(String sessionId) {
+		return dao.getCookie(sessionId);
+	}
+
 }
