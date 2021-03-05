@@ -51,6 +51,7 @@ public class CalendarServiceImpl implements CalendarService {
 	public int deleteEvent(int gdayNo) {
 		return dao.deleteEvent(gdayNo);
 	}
+	
 
 
 }

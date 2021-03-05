@@ -42,6 +42,7 @@
     <div id='calendar'></div>
   </div>
 
+<a href="${contextPath}/calendar/getTargetDt">날짜 계산 확인용</a>
 
 <!-- 모달창1 : 등록 모달창 -->
 <div class="modal-cover">
