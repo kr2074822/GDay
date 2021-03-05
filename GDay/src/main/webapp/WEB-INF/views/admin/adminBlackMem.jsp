@@ -37,42 +37,23 @@
 						</thead>
 
 						<tbody>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
-							<tr>
-								<td>user01@naver.com</td>
-								<td>유저일</td>
-								<td>2021-02-20</td>
-								<td>욕설</td>
-							</tr>
+							<!-- 회원이 없을 경우 -->
+	                    	<c:if test="${empty bmList}">
+	                    		<tr>
+	                    			<td colspan="4">존재하는 회원이 없습니다.</td>
+	                    		</tr>
+	                    	</c:if>
+	                    	<c:if test="${!empty bmList}">
+		                    	<!-- 회원이 있을 경우 -->
+		                    	<c:forEach var="member" items="${bmList}">
+									<tr>
+										<td>${member.memberNo}</td>
+										<td>${member.memberEmail}</td>
+										<td>${member.memberName}</td>
+										<td>${member.memberType}</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</tbody>
 					</table>
 				</form>

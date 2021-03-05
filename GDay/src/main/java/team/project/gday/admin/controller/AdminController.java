@@ -30,14 +30,14 @@ public class AdminController {
 		
 		// 페이징 처리
 		adminPageInfo pInfo = service.getPageInfo(cp);
-		System.out.println(pInfo);
+		// System.out.println(pInfo);
 		
 		// 전체 회원 조회
 		List<Member> mList = service.adminMember(pInfo);
 		
-		for(Member m : mList) {
-			System.out.println(m);
-		}
+		/*
+		 * for(Member m : mList) { System.out.println(m); }
+		 */
 	
 		model.addAttribute("mList", mList);
 		model.addAttribute("pInfo", pInfo);
@@ -75,12 +75,27 @@ public class AdminController {
 		return "admin/adminBMemView";
 	}
 
+	//-------------------------------------------------------------------------------
 	
 	// 블랙리스트 회원 조회 화면 전환 Controller
 	@RequestMapping("adminBlackMem")
-	public String adminBlackMem() {
+	public String adminBlackMem(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+			  					Model model) {
+		
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageInfo(cp);
+		System.out.println(pInfo);
+		
+		// 블랙 리스트 회원 조회
+		List<Member> bmList = service.adminBlackMem(pInfo); 
+		
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("bmList", bmList);
+		
 		return "admin/adminBlackMem";
 	}
+	
+	// -------------------------------------------------------------------------------
 	
 	// 게시판 전체 조회 화면 전환 Controller
 	@RequestMapping("adminBoard")

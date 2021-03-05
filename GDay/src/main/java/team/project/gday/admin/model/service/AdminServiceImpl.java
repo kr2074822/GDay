@@ -31,11 +31,17 @@ public class AdminServiceImpl implements AdminService{
 		return dao.adminMember(pInfo);
 	}
 
-	// 회원 등급 변경 Service
+	// 회원 등급 변경 Service 구현
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int updateMemberGrade(Map<String, Object> map) {
 		return dao.updateMemberGrade(map);
+	}
+
+	// 블랙리스트 회원 조회 Service 구현
+	@Override
+	public List<Member> adminBlackMem(adminPageInfo pInfo) {
+		return dao.adminBlackMem(pInfo);
 	}
 
 }

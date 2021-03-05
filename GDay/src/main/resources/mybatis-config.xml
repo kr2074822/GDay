@@ -26,8 +26,9 @@
 		<typeAlias type="team.project.gday.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="team.project.gday.admin.model.vo.adminPageInfo" alias="AdminInfo"/>
 		<typeAlias type="team.project.gday.member.model.vo.Refund" alias="Refund"/>
+		<typeAlias type="team.project.gday.admin.model.vo.Report" alias="Report"/>
 	</typeAliases>
-
+	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/calendar-mapper.xml"/>

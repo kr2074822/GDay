@@ -20,16 +20,6 @@
 		<div id="container-tb">
 			<div>
 				<h3>매거진 관리</h3>
-				<div id="adminMagazine-search">
-					<form action=# onsubmit="" method="GET" class="text-right" id="searchForm">
-						<select id="sk" name="sk" class="form-control sf-margin">
-							<option class="updateMem" value="namal">일반</option>
-							<option class="updateMem" value="bisuness">비즈니스</option>
-						</select> 
-						<input type="text" name="sv" class="form-control sf-margin" id="search" placeholder="검색어를 입력하세요.">
-						<button type="submit">찾기</button>
-					</form>
-				</div>
 			</div>
 			<div class="my-4">
 				<form id="adminMember">
@@ -40,39 +30,31 @@
 								<th>제목</th>
 								<th>작성 일자</th>
 								<th>수정 일자</th>
-								<th><input type="checkbox" id="checkAll"></th>
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 회원이 없을 경우 -->
-	                    	<c:if test="${empty mList}">
+							<!-- 매거진이 없을 경우 -->
+	                    	<c:if test="${empty mzList}">
 	                    		<tr>
-	                    			<td colspan="6">존재하는 회원이 없습니다.</td>
+	                    			<td colspan="5">존재하는 매거진이 없습니다.</td>
 	                    		</tr>
 	                    	</c:if>
-	                    	<c:if test="${!empty mList}">
+	                    	<c:if test="${!empty mzList}">
 		                    	<!-- 회원이 있을 경우 -->
-		                    	<c:forEach var="member" items="${mList}">
+		                    	<c:forEach var="member" items="${mzList}">
 									<tr>
-										<td>${member.memberNo}</td>
+										<td>${board.memberNo}</td>
 										<td>${member.memberEmail}</td>
 										<td>${member.memberName}</td>
 										<td>${member.memberType}</td>
 										<td>${member.memberGrade}</td>
-										<td><input type="checkbox" class="check-input" value="${member.memberNo}"></td>
 									</tr>
 								</c:forEach> 
 							</c:if>
 						</tbody>
 					</table>
 
-					<div id="adminMember-Application">
-						<select name="adminMember-ap" id="adminMember-ap">
-							<option class="updateMem" value="G">일반</option>
-							<option class="updateMem" value="B">비즈니스</option>
-							<option class="updateMem" value="U">미인증</option>
-							<option class="updateMem" value="X">블랙리스트</option>
-						</select>
+					<div id="Magazine-Add">
 						<button type="button" id="changeMemBtn" class="form-control btn">매거진 작성</button>
 					</div>
 				</form>
@@ -153,63 +135,6 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
-		/* 체크박스 전체 선택 */
-		$(document).ready(function(){
-			
-			// 전체 선택 박스 클릭
-			$("#checkAll").click(function(){
-				if($("#checkAll").prop("checked")){ // 클릭 되었을 시
-					$("input[id=check]").prop("checked", true);
-				}else{ // 클릭이 되어있지 않을 시
-					$("input[id=check]").prop("checked", false);
-				}
-			});
-		});
-		
-		// 회원 등급변경하기
-		$("#changeMemBtn").on("click", function(){
-			var array = [];
-			var grade = $("select[name=adminMember-ap] option:selected").val();
-			
-			$('input[type="checkbox"]:checked').each(function(index, item){
-				array.push($(item).val());
-			})
-			
-			
-			console.log(array);
-
-			if($('input[type="checkbox"]:checked') < 1){
-				alert("선택된 회원이 없습니다.");
-				return;
-			}else{
-				
-				console.log($('input[type="checkbox"]:checked').val())
-				console.log($('#adminMember-ap').val())
-				console.log(array)
-				if(confirm("회원" +  "님의 상태를 변경하시겠습니까?")){
-					$.ajax({
-						url: "${contextPath}/admin/memberGrade",
-						data: { "memberGrade": $('#adminMember-ap').val(),
-								"memberNo": array},
-						type: "post",
-						traditional: true,
-						success: function(result){
-							console.log("성공");
-							if(result > 0){
-								location.reload();
-								alert("등급이 변경되었습니다.");
-							};
-						},
-						error: function(){
-							console.log("등급 변경 실패");
-						}
-					});
-				}else{
-					$("#changeMemBtn").blur();
-					return;
-				}
-			}
-		});
 	</script>
 </body>
 </html>
