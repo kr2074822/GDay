@@ -11,7 +11,6 @@ import org.springframework.web.util.WebUtils;
 
 import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.AutoLogin;
-import team.project.gday.member.model.vo.Member;
 
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	@Inject
@@ -30,7 +29,6 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 				HttpSession session = request.getSession();
 				session.setAttribute("login", userSession);
 			}
-			  
 		}
 		return true;
 	}
