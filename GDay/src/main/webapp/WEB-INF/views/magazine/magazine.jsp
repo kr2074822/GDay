@@ -45,8 +45,7 @@
 		                <div>
 		                    <h3>제목 ${magazine.mgzTitle}${magazine.mgzNo}</h3>
 		                    <p>
-		                    	${magazine.mgzContent }
-		                        Lorem ipsum dolor sit amet, 
+		                    
 		                    </p>
 		                    <a href="">Read More</a>
 		                </div>

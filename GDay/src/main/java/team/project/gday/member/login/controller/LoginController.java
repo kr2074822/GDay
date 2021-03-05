@@ -40,7 +40,7 @@ import team.project.gday.member.model.vo.ProfileImg;
 
 @Controller
 @RequestMapping("/login/*")
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember", "picture"})
 public class LoginController {
 	
 	@Autowired
@@ -162,8 +162,12 @@ public class LoginController {
 				url ="redirect:/";
 			}
 			
-			
-			
+			// 프사 갖고오기
+			System.out.println("로그인 넘버: ------"+loginMember.getMemberNo());
+			ProfileImg picture = service.getProfile(loginMember.getMemberNo());
+
+			model.addAttribute("picture", picture);
+			System.out.println("회원 사진 "+ picture);
 		
 		}else {
 			url = "login/login";
@@ -233,10 +237,15 @@ public class LoginController {
 	@RequestMapping("signUp")
 	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop) {
 		System.out.println(member);
+		System.out.println("이미지 받기"+image);
 		int result = service.signUp(member, bmemShop);
+		System.out.println("회원가입 결과"+ result);
+		System.out.println("회원가입 등급"+member.getMemberGrade());
 		if (result > 0) {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+			result = 0;
 			result = service.insertImg(image, savePath, member) ;
+			System.out.println("이미지 삽입-----" +result);
 
 		}
 		return "redirect:/";

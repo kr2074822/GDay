@@ -102,13 +102,19 @@
 						<div>
 							<div class="action">
 						        <div class="profile" onclick="menuToggle();">
-						            <img src="${contextPath}/resources/images/profileImg/profile.jpg" alt="">
+						        	<c:if test="${!empty picture}">
+						            	<img src="${contextPath}/resources/images/profileImg/${picture.pfName}" alt="">
+						            </c:if>
+						            <c:if test="${empty picture}">
+						            	<img src="${contextPath}/resources/images/profileImg/profile.jpg" alt="">
+						            </c:if>
+						            
 						        </div>
 						        <div class="menu">
 						            <h3>${loginMember.memberNick}<br><span>반갑습니다</span></h3>
 						            <ul>
 								        <li>
-								            <a href="#">
+								            <a href="${contextPath}/gMember/orderList/G">
 								                <div class="name"><span data-text="Home">마이페이지</span></div>
 								            </a>
 								        </li>

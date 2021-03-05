@@ -60,6 +60,7 @@ section {
 }
 .message_wrapper .msg_list ul li .msg_item .top .read{
     background: #fff;
+    padding: 5px;
 }
 
 .message_wrapper .msg_list ul li .msg_item .bottom{
@@ -135,6 +136,8 @@ section {
     background: #f1f1f1;
     width: 100%;
     margin-bottom: 20px;
+    height: 500px;
+    overflow: auto;
 }
 .popup .chat_wrapper ul li{
     padding: 0px 60px 20px;

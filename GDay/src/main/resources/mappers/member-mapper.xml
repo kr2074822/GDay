@@ -163,11 +163,15 @@
 	</insert>
 	
 	<!-- SID업데이트 -->
-	<update id="udateSID">
+	<update id="updateSID">
 		UPDATE AUTO_LOGIN SET SESSION_ID = #{sessionId} WHERE MEM_NO = #{mNo}
 	</update>
 	
-	
+	<select id="getProfile" parameterType="ProfileImg" resultMap="profileImg_rm">
+		SELECT *
+		FROM PROFILE_IMG
+		WHERE MEM_NO = #{memberNo}
+	</select>
 	
 	
 	

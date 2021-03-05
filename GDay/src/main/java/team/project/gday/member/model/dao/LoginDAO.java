@@ -104,7 +104,11 @@ public class LoginDAO {
 	}
 
 	public int updateSID(Map<String, Object> map) {
-		return sqlSession.update("memberMapper.udateSID", map);
+		return sqlSession.update("memberMapper.updateSID", map);
+	}
+
+	public ProfileImg getProfile(int memberNo) {
+		return sqlSession.selectOne("memberMapper.getProfile", memberNo);
 	}
 
 
