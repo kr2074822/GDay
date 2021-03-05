@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.service.AdminService;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.member.model.vo.Member;
@@ -83,14 +85,15 @@ public class AdminController {
 			  					Model model) {
 		
 		// 페이징 처리
-		adminPageInfo pInfo = service.getPageInfo(cp);
-		System.out.println(pInfo);
+		adminPageInfo pInfo = service.getPageBmInfo(cp);
+		// System.out.println(pInfo);
 		
 		// 블랙 리스트 회원 조회
 		List<Member> bmList = service.adminBlackMem(pInfo); 
+		/* for(Member m : bmList) { System.out.println(m); } */
 		
-		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("bmList", bmList);
+		model.addAttribute("pInfo", pInfo);
 		
 		return "admin/adminBlackMem";
 	}
@@ -99,9 +102,27 @@ public class AdminController {
 	
 	// 게시판 전체 조회 화면 전환 Controller
 	@RequestMapping("adminBoard")
-	public String adminBoard() {
+	public String adminBoard(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+							 Model model) {
+
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageBdInfo(cp);
+		
+		List<Product> product = service.productBoard(pInfo);
+		
+		/*
+		 * for(Product p: product) { System.out.println(p); }
+		 */
+		
+		model.addAttribute("product", product);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "admin/adminBoard";
 	}
+	
+	// 게시판 상세조회 Controller
+	
+	
 	
 	// 매거진 게시판 조회 화면 전환 Controller
 	@RequestMapping("adminMagazine")
@@ -146,4 +167,5 @@ public class AdminController {
 	public String memberCustomerView(){
 		return "admin/memberCustomerView";
 	}
+	
 }
