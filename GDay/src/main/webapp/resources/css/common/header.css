@@ -152,12 +152,11 @@ header #headerWrapper #header-member-area > a{
 
 .header-li {
   position: relative;
-  width: 20%;
   height: 50%;
   line-height: 50px;
   text-align: center;
   font-size: 18px;
-  margin: 0 40px;
+  margin: 0;
   text-decoration: none;
   letter-spacing: 2px;
   overflow: hidden;
@@ -173,7 +172,6 @@ header #headerWrapper #header-member-area > a{
 	font-size: 24px;
 	font-weight: bold;
 	transition: 0.3s;
-	padding: 0 20px;
 }
 
 .span1{
@@ -452,7 +450,7 @@ header #headerWrapper #header-member-area > a{
 
 @media screen and ( max-width: 768px ) {
 	.action{
-	    left: 30px;
+	    display: none;
 	}
 	
 }

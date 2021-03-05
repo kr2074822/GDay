@@ -65,7 +65,7 @@
 
 			
 			<ul id="header-menu">	
-				<li class="header-li header-login"><a href="#">로그인</a></li>			
+				<li class="header-li header-login"><a href="${contextPath}/login/loginView">로그인</a></li>			
 				<li class="header-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
@@ -84,12 +84,12 @@
 						<div id="hamberger">
 							<i id="member-icon" class="fas fa-bars"></i>	
 							<div id="header-media-menu">
-								<ul id="media-menu">	
-									<li class="media-li"><a href="#">로그인</a></li>			
-									<li class="media-li"><a href="#">선물찾기</a></li>
-									<li class="media-li"><a href="#">클래스찾기</a></li>
-									<li class="media-li"><a href="#">마이캘린더</a></li>
-									<li class="media-li"><a href="#">매거진</a></li>
+								<ul id="media-menu">
+									<li class="media-li"><a href="#">로그인</a></li>
+									<li class="media-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
+									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
+									<li class="media-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
+									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>		
 								</ul>		
 							</div>
 						</div>		  
@@ -114,7 +114,7 @@
 						            <h3>${loginMember.memberNick}<br><span>반갑습니다</span></h3>
 						            <ul>
 								        <li>
-								            <a href="${contextPath}/gMember/orderList/G">
+								            <a href="#">
 								                <div class="name"><span data-text="Home">마이페이지</span></div>
 								            </a>
 								        </li>
@@ -126,7 +126,7 @@
 								            </a>
 								        </li>
 								        <li>
-								            <a href="">
+								            <a href="${contextPath}/admin/memberCustomer">
 								                <div class="name">
 								                	<span data-text="help">고객센터</span>
 								                </div>
@@ -149,10 +149,14 @@
 							<i id="member-icon" class="fas fa-bars"></i>	
 							<div id="header-media-menu">
 								<ul id="media-menu">	
-									<li class="media-li"><a href="#">선물찾기</a></li>
-									<li class="media-li"><a href="#">클래스찾기</a></li>
-									<li class="media-li"><a href="#">마이캘린더</a></li>
-									<li class="media-li"><a href="#">매거진</a></li>
+									<li class="media-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
+									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
+									<li class="media-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
+									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>
+									<li class="media-li"><a href="#">마이페이지</a></li>
+									<li class="media-li"><a href="${contextPath}/message/message">쪽지</a></li>
+									<li class="media-li"><a href="#">고객센터</a></li>
+									<li class="media-li"><a href="${contextPath}/login/logout">로그아웃</a></li>
 								</ul>		
 							</div>
 						</div>		  
@@ -217,7 +221,7 @@
 		  cancleIcon.addEventListener('click', function(){		
 					document.getElementById("header-media-menu").style.visibility = "hidden"; 
 					document.getElementById("header-media-menu").style.minHeight = "0"; 
-					document.getElementById("header-media-menu").style.top = "-250px"; 
+					document.getElementById("header-media-menu").style.top = "-350px"; 
 /* 					document.getElementById("header-mypage").style.visibility = "hidden"; 
 					document.getElementById("header-mypage").style.minHeight = "0"; 
 					document.getElementById("header-mypage").style.top = "-250px";  */
