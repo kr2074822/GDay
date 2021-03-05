@@ -70,11 +70,17 @@
 		
 					<ul class="pagination">
 		
-					<c:url var="pageUrl" value="bSellList?"/>
-<%-- 					
-					<c:if test = "${!empty day}">
-						<c:url var="pageUrl" value="bSellDaySearch/${day}"/>
-					</c:if> --%>
+					<c:if test = "${empty selectDay}">
+						<c:url var="pageUrl" value="bSellList?"/> 
+					</c:if>
+					
+ 					<c:if test = "${!empty selectDay}">
+						<c:url var="pageUrl" value="${selectDay}?"/> 
+					</c:if>
+					
+					<c:if test = "${!empty startText && !empty endText}">
+						<c:url var="pageUrl" value="${endText}?"/> 
+					</c:if>
 		
 						<!-- 화살표에 들어갈 주소를 변수로 생성 -->
 						<c:set var="firstPage" value="${pageUrl}cp=1"/>
@@ -177,6 +183,27 @@
 	 			 }
 	 		} 	 		 			
 		});
+		
+ 		$("#periodEnd").on("change", function() {
+ 	 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
+ 	 			 var startText = $("#periodStart").val();
+ 	 			 var endText = $(this).val();
+ 	 			 
+ 	 			 var startAry = startText.split('-');
+ 	 			 var endAry = endText.split('-');
+ 	 			 
+ 	 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
+ 	 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
+ 	 			 
+ 	 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
+ 	 			 
+ 	 			 if(result < 0) {
+ 	 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
+ 	 			 } else {
+ 	 				 location.href = "${contextPath}/bMemSearch/bSellDaySearch2/" + startText + "/" + endText;
+ 	 			 }
+ 	 		} 	 		 			
+ 		});
 		
 	</script>
 	
