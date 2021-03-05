@@ -15,6 +15,7 @@ import org.springframework.transaction.interceptor.RollbackRuleAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.member.model.dao.LoginDAO;
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.BMember;
 import team.project.gday.member.model.vo.BmemberInfo;
 import team.project.gday.member.model.vo.LicenseImg;
@@ -213,7 +214,7 @@ public class LoginServiceImpl implements LoginService{
 
 	// JSESSIONID 비교
 	@Override
-	public Member getCookie(String sessionId) {
+	public AutoLogin getCookie(String sessionId) {
 		return dao.getCookie(sessionId);
 	}
 

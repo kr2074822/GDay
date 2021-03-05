@@ -4,11 +4,13 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
 import team.project.gday.member.model.service.LoginService;
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.Member;
 
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
@@ -23,12 +25,14 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 		if (loginCookie != null) {
 			String sessionId = loginCookie.getValue();
 			
-			Member member = service.getCookie(sessionId);
+			AutoLogin userSession = service.getCookie(sessionId);
+			if (userSession != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("login", userSession);
+			}
+			  
 		}
-		
 		return true;
-		
-		
 	}
 	
 	
