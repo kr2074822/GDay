@@ -1,6 +1,9 @@
 package team.project.gday.calendar;
 
+import java.net.HttpURLConnection;
 import java.util.List;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,12 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import team.project.gday.calendar.model.service.CalendarService;
 import team.project.gday.calendar.model.vo.Calendar;
+import team.project.gday.common.scheduling.SendSMSbyN;
 
 @Controller
 @RequestMapping("/calendar/*")
@@ -100,8 +106,9 @@ public class CalendarController {
 	@RequestMapping("getTargetDt")
 	public String getTargetDt() {
 		
-		
-		
+		SendSMSbyN sendSms = new SendSMSbyN();
+		sendSms.sendSMS();
+
 		
 		return "calendar/calendar";
 	}
