@@ -44,4 +44,12 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.updateMemberGrade", map);
 	}
 
+	/** 블랙리스트 회원 조회
+	 * @param pInfo
+	 * @return bmList
+	 */
+	public List<Member> adminBlackMem(adminPageInfo pInfo) {
+		return sqlSession.selectList("adminMapper.adminBlackMem", pInfo);
+	}
+
 }

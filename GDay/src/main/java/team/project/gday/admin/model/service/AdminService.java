@@ -27,5 +27,11 @@ public interface AdminService {
 	 */
 	public abstract int updateMemberGrade(Map<String, Object> map);
 
+	/** 블랙 리스트 회원 조회 Service
+	 * @param pInfo
+	 * @return bmList
+	 */
+	public abstract List<Member> adminBlackMem(adminPageInfo pInfo);
+
 
 }

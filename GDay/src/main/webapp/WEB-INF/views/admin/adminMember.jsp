@@ -23,11 +23,11 @@
 				<div id="adminMember-search">
 					<form action=# onsubmit="" method="GET" class="text-right" id="searchForm">
 						<select id="sk" name="sk" class="form-control sf-margin">
-							<option class="updateMem" value="namal">일반</option>
-							<option class="updateMem" value="bisuness">비즈니스</option>
-							<option class="updateMem" value="noCheck">미인증</option>
-							<option class="updateMem" value="blackList">블랙리스트</option>
-							<option class="updateMem" value="secession">탈퇴</option>
+							<option class="updateMem" value="none">-- 등급 --</option>
+							<option class="updateMem" value="G">일반</option>
+							<option class="updateMem" value="B">비즈니스</option>
+							<option class="updateMem" value="U">미인증</option>
+							<option class="updateMem" value="X">블랙리스트</option>
 						</select> 
 						<input type="text" name="sv" class="form-control sf-margin" id="search" placeholder="검색어를 입력하세요.">
 						<button type="submit">등급 보기</button>
@@ -42,7 +42,7 @@
 								<th>회원 번호</th>
 								<th>회원 아이디</th>
 								<th>회원 닉네임</th>
-								<th>가입일</th>
+								<th>가입 수단</th>
 								<th>등급</th>
 								<th><input type="checkbox" id="checkAll"></th>
 							</tr>
@@ -63,7 +63,7 @@
 										<td>${member.memberName}</td>
 										<td>${member.memberType}</td>
 										<td>${member.memberGrade}</td>
-										<td><input type="checkbox" class="check-input" value="${member.memberNo}"></td>
+										<td><input type="checkbox" class="check-input" id="checkMember" value="${member.memberNo}"></td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -72,6 +72,7 @@
 
 					<div id="adminMember-Application">
 						<select name="adminMember-ap" id="adminMember-ap">
+							<option class="updateMem" value="none">-- 등급 --</option>						
 							<option class="updateMem" value="G">일반</option>
 							<option class="updateMem" value="B">비즈니스</option>
 							<option class="updateMem" value="U">미인증</option>
@@ -163,15 +164,15 @@
 			// 전체 선택 박스 클릭
 			$("#checkAll").click(function(){
 				if($("#checkAll").prop("checked")){ // 클릭 되었을 시
-					$("input[id=check]").prop("checked", true);
+					$("input[id=checkMember]").prop("checked", true);
 				}else{ // 클릭이 되어있지 않을 시
-					$("input[id=check]").prop("checked", false);
+					$("input[id=checkMember]").prop("checked", false);
 				}
 			});
 		});
 		
 		// 전체 체크 중, 한개라도 체크가 풀리면 모든 체크 해제
-		$("input[id=check]").on("click", function(){
+		$("input[id=checkMember]").on("click", function(){
 			$("#checkAll").prop("checked", false);
 		});
 		
