@@ -193,7 +193,7 @@ function selectCalendarList(loadFullCalender){
 	       type : "get",
 	       dataType : "json",
 	       data : { "memberNo" : memberNo }, /* memberId */
-	       success : function(eList){
+	       success : function(eList){ 
 	    	   console.log("success");
 	    	   var events = [];
 	    	   $.each(eList, function(index, item){
