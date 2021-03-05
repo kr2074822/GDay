@@ -47,7 +47,6 @@
 										<td>${member.memberEmail}</td>
 										<td>${member.memberName}</td>
 										<td>${member.memberType}</td>
-										<td>${member.memberGrade}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -55,7 +54,7 @@
 					</table>
 
 					<div id="Magazine-Add">
-						<button type="button" id="changeMemBtn" class="form-control btn">매거진 작성</button>
+						<button type="button" id="changeMemBtn" class="form-control btn" onclick="location.href='${contextPath}/magazine/magazineInsert'">매거진 작성</button>
 					</div>
 				</form>
 			</div>
@@ -65,7 +64,7 @@
 			<ul class="pagination">
 
 				 <%-- 주소 조합 작업 --%>
-				<c:url var="pageUrl" value="adminMember?"/>
+				<c:url var="pageUrl" value="adminMagazine?"/>
 
 				<!-- 화살표에 들어갈 주소를 변수로 생성 -->
 				<c:set var="firstPage" value="${pageUrl}cp=1"/>

@@ -59,6 +59,35 @@ button {
 	padding: 5px;
 }
 
+.pagination li{
+	display: inline-block;
+	aling: center;
+} 
+
+.pagination li a{
+	display:inline-block;
+	margin:0 auto;
+	border:1px solid #FE929F;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#FE929F;
+	font-size:13px;
+	color:#black;
+	text-decoration:none;
+} 
+
+.pagination li a:visited{
+	background-color:#fff;
+	color:#white;
+	border:1px solid #FE929F;
+}
+.pagination{
+	margin-top: 50px;
+	text-align:center;
+}
+
 @media(max-width: 768px){
 	
 }
