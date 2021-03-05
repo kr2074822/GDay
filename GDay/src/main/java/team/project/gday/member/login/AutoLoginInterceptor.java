@@ -30,11 +30,9 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 				HttpSession session = request.getSession();
 				session.setAttribute("login", userSession);
 			}
-			
+			  
 		}
 		return true;
-		
-		
 	}
 	
 	
