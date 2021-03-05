@@ -129,7 +129,7 @@
              m_redirect_url : 'https://www.myservice.com/payments/complete/mobile'
          }, function(rsp) {
              if ( rsp.success ) {
-                  var msg = '결제가 완료되었습니다.';
+                 var msg = '결제가 완료되었습니다.';
                  msg += '고유ID : ' + rsp.imp_uid;
                  msg += '상점 거래ID : ' + rsp.merchant_uid;
                  msg += '결제 금액 : ' + rsp.paid_amount;
