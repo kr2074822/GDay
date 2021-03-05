@@ -26,14 +26,13 @@
 	<context:component-scan base-package="team.project.gday" />
 	
 	<!-- 자동로그인 인터셉터 -->
-	<beans:bean id="autoLoginInterceptor" class="team.project.gday.member.login.AutoLoginInterceptor">
-		<interceptors>
-			<interceptor>
-				<mapping path="/" />
-				<beans:ref bean="autoLoginInterceptor"/>
-			</interceptor>
-		</interceptors>
-	</beans:bean>
+	<beans:bean id="autoLoginInterceptor" class="team.project.gday.member.login.AutoLoginInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/" />
+			<beans:ref bean="autoLoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	<!-- 스프링 스케줄러 -->
 	<task:annotation-driven/>

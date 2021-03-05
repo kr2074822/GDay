@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.BMember;
 import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.ProfileImg;
@@ -101,7 +102,7 @@ public interface LoginService {
 	 * @param sessionId
 	 * @return
 	 */
-	public abstract Member getCookie(String sessionId);
+	public abstract AutoLogin getCookie(String sessionId);
 
 
 

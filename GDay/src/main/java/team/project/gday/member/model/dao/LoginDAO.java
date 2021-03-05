@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.BmemberInfo;
 import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
@@ -115,8 +116,8 @@ public class LoginDAO {
 	 * @param sessionId
 	 * @return
 	 */
-	public Member getCookie(String sessionId) {
-		return sqlSession.selectOne(sessionId);
+	public AutoLogin getCookie(String sessionId) {
+		return sqlSession.selectOne("memberMapper.getCookie", sessionId);
 	}
 
 
