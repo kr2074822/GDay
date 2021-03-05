@@ -218,4 +218,10 @@ public class LoginServiceImpl implements LoginService{
 		return dao.getCookie(sessionId);
 	}
 
+	// 인터셉터 멤버
+	@Override
+	public Member getMember(int memberNo) {
+		return dao.getMember(memberNo);
+	}
+
 }

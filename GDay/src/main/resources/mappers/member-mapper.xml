@@ -179,5 +179,11 @@
 		WHERE SESSION_ID = #{sessionId}
 	</select>
 	
+	<!-- 인터셉터 멤버 -->
+	<select id="getMember" parameterType="Member" resultMap="member_rm">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_NO = #{memberNo}
+	</select>
 	
 </mapper>

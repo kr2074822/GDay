@@ -104,6 +104,12 @@ public interface LoginService {
 	 */
 	public abstract AutoLogin getCookie(String sessionId);
 
+	/** 인터셉터에서 불러오기
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract Member getMember(int memberNo);
+
 
 
 
