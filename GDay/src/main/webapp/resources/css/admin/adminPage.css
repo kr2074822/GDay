@@ -22,7 +22,7 @@ div h3{
 #adminMember-search, #adminMember-Application, 
 #report-search, #report-Application,
 #adminBoard-search, #adminBoard-Application,
-#adminCus-search, #report-search, #report-Application {
+#adminCus-search, #report-search, #report-Application, #Magazine-Add {
 	float: right;
 	padding-top: 12px;
 	padding-bottom: 12px;

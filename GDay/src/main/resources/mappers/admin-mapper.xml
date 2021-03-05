@@ -18,6 +18,20 @@
   		<result property="memberType" column="MEM_TYPE"/>
   		<result property="memberSec" column="MEM_SEC"/>
 	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Report" id="report_rm">
+		<!-- DB의 기본 키 -->
+		<id property="reportNo" column="REP_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="reportType" column="REP_TYPE"/>
+  		<result property="parentNo" column="PARENT_NO"/>
+  		<result property="parentType" column="PARENT_TYPE"/>
+  		<result property="reportTarget" column="REP_TARGET"/>
+  		<result property="reportContent" column="REP_CONTENT"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
 	
 	<!-- 페이징 처리(목록 갯수) -->
 	<select id="getListCount" parameterType="_int" resultType="_int">
@@ -32,6 +46,7 @@
 		ORDER BY MEM_NO DESC
 	</select>
 	
+	<!-- 회원 등급 변경 -->
 	<update id="updateMemberGrade" parameterType="map">
 		UPDATE MEMBER SET
 		MEM_GRADE = #{memberGrade}
@@ -39,7 +54,13 @@
 		<foreach collection="memberNo" item="no" open="(" close=")" separator=",">
 			#{no}
 		</foreach>
-		
-		
 	</update>
+	
+	<!-- 블랙리스트 회원 조회 -->
+	<select id="adminBlackMem" parameterType="_int" resultMap="member_rm">
+		SELECT MEM_NO, MEM_EMAIL, MEM_NAME, MEM_TYPE
+		FROM MEMBER
+		WHERE MEM_GRADE = 'X'
+		ORDER BY MEM_NO DESC
+	</select>
 </mapper>
