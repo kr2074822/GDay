@@ -73,7 +73,7 @@ public class LoginController {
 			  @RequestParam(value="autoId", required=false) String autoId,
 			  @RequestParam(value="saveBmemId", required=false) String saveBmemId,
 			  @RequestParam(value="bmemAutoLogin", required=false) String bmemAutoLogin,
-			  HttpServletResponse response,
+			  HttpServletResponse response, HttpServletRequest request,
 			  HttpSession session,
 			  Model model) {
 		if (session.getAttribute("loginMember") !=null ){
@@ -100,6 +100,8 @@ public class LoginController {
 			map.put("sessionId", sessionId);
 			map.put("mNo", mNo);
 			
+			Cookie loginSessionId = new Cookie("loginSessionId", sessionId);
+			
 			int search = service.searchSID(map);
 			if (search == 0) {
 				int result = service.insertSID(map);
@@ -120,9 +122,11 @@ public class LoginController {
 			
 			if (autoId != null) {
 				autoId_cookie.setMaxAge(60 * 60 * 24 * 30);
+				loginSessionId.setMaxAge(60 * 60 * 24 * 30);
 				
 			}else {
 				autoId_cookie.setMaxAge(0);
+				loginSessionId.setMaxAge(0);
 				
 			}
 			if(saveBmemId != null) { 
@@ -139,11 +143,19 @@ public class LoginController {
 				bmemAutoId_cookie.setMaxAge(0);
 				
 			}
+			
+			cookie.setPath(request.getContextPath());
+			autoId_cookie.setPath(request.getContextPath());
+			bmemCookie.setPath(request.getContextPath());
+			bmemAutoId_cookie.setPath(request.getContextPath());
+			loginSessionId.setPath("/");
+			System.out.println("경로"+request.getContextPath());
 				
 			response.addCookie(cookie);
 			response.addCookie(autoId_cookie);
 			response.addCookie(bmemCookie);
 			response.addCookie(bmemAutoId_cookie);
+			response.addCookie(loginSessionId);
 			
 			
 			if(inputMember.getMemberGrade().equals("B")) {
@@ -169,8 +181,16 @@ public class LoginController {
 	
 	// 로그아웃
 	@RequestMapping("logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpServletResponse response) {
 		status.setComplete();
+		
+		Cookie loginSessionId = new Cookie("loginSessionId", null);
+		loginSessionId.setPath("/");
+		System.out.println("-------");
+		System.out.println(loginSessionId.getValue());
+		System.out.println("-------");
+		loginSessionId.setMaxAge(0);
+		response.addCookie(loginSessionId);
 		
 		return "redirect:/";
 	}

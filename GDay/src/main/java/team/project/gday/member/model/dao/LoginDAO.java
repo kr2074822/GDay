@@ -120,6 +120,10 @@ public class LoginDAO {
 		return sqlSession.selectOne("memberMapper.getCookie", sessionId);
 	}
 
+	public Member getMember(int memberNo) {
+		return sqlSession.selectOne("memberMapper.getMember", memberNo);
+	}
+
 
 
 
