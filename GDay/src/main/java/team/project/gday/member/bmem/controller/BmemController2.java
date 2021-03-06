@@ -84,18 +84,18 @@ public class BmemController2 {
 		// 게시글 삽입 결과에 따른 View 연결 처리
 		if(result > 0) {
 			swalIcon = "success";
-			swalTitle = "클래스가 정상적으로 등록되었습니다.";
-			swalText = "등록하신 해시태그와 제목으로 검색 결과에 노출됩니다.";
-			url = "redirect:/";
+			swalTitle = "클래스 정상 등록";
+			swalText = "작성하신 해시태그와 제목으로 검색됩니다.";
+			url = "redirect:/gClass/list";
 
 			// 새로 작성한 게시글 상세 조회시 목록으로 버튼 경로 지정하기
 			// request.getSession().setAttribute("returnListURL", "../list/" + type);
 			// /spring/list/1 -> 자유게시판의 첫페이지로 이동
 		} else {
 			swalIcon = "error";
-			swalTitle = "클래스 등록 중 문제가 발생했습니다.";
-			swalText = "문제가 계속될 시 관리자에게 연락해주세요.";
-			url = "redirect:/";
+			swalTitle = "클래스 등록 중 문제가 발생";
+			swalText = "문제가 계속될 시 관리자에게 연락 주세요.";
+			url = "redirect:/common/bMain";
 		}
 
 		ra.addFlashAttribute("swalIcon", swalIcon);

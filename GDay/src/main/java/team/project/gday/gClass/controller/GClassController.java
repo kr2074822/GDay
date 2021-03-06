@@ -54,8 +54,8 @@ public class GClassController {
 	}
 	
 	
-	//클래스 상세 조회
-	@RequestMapping("/gClass/{prdtNo}") 
+	//클래스 상세 조회 controller
+	@RequestMapping("{prdtNo}") 
 	public String boardView(@PathVariable("prdtNo") int prdtNo,
 							Model model,
 							@RequestHeader(value="referer", required=false) String referer,
@@ -105,15 +105,10 @@ public class GClassController {
 		return url;
 	}
 	
-	
 	/*
-	 * //상품 검색 Controller
+	 * //클래스 수정 controller
 	 * 
-	 * @RequestMapping("search") public String searchgClass(@PathVariable("type")
-	 * int type,
-	 * 
-	 * @RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+	 * @RequestMapping("{prdtNo}/updateAction") public String
+	 * updateAction(@PathVariable("prdtNo") int prdtNo)
 	 */
-
-
 }
