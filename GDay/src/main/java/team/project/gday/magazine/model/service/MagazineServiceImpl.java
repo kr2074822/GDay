@@ -145,7 +145,7 @@ public class MagazineServiceImpl implements MagazineService{
 		//파일명 변경하기
 		String fileName = rename(uploadFile.getOriginalFilename());
 		//웹상 접근 주소 적기
-		String filePath = "/resources/images/productInfoImg";
+		String filePath = "/resources/images/magazineImg";
 		
 		Attachment at = new Attachment();
 		at.setFilePath(filePath);
@@ -178,5 +178,34 @@ public class MagazineServiceImpl implements MagazineService{
 
 		return date + str + ext;
 	}
-	
+
+	// 매거진 상세 조회
+	@Override
+	public Magazine selectMagazine(int no) {
+		Magazine temp = new Magazine();
+		temp.setMgzNo(no);
+		Magazine magazine = dao.selectMagazine(temp);
+		
+		if (magazine != null) {
+			int result = dao.increaseReadCount(no);
+			if (result > 0) {
+				magazine.setMgzReadCnt(magazine.getMgzReadCnt());
+			}
+			
+		}
+		
+		return magazine;
+	}
+
+	// 매거진 상세 이미지 조회
+	@Override
+	public List<MagazineImg> selectMimgList(int no) {
+		return dao.selectMimgList(no);
+	}
+
+	@Override
+	public MagazineImg selectThumbnail(int no) {
+		return dao.selectThumbnail(no);
+	}
+
 }

@@ -10,17 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.magazine.model.service.MagazineService;
 import team.project.gday.magazine.model.vo.Magazine;
+import team.project.gday.magazine.model.vo.MagazineImg;
 import team.project.gday.magazine.model.vo.MagazinePageInfo;
 import team.project.gday.member.model.vo.Member;
 
@@ -162,11 +167,63 @@ public class MagazineController {
 								@RequestParam(value="uploadFile") MultipartFile uploadFile) {
 		//서버에 파일(이미지)을 저장할 폴더 경로 얻어오기
 		String savePath
-		= request.getSession().getServletContext().getRealPath("resources/images/productInfoImg");
+		= request.getSession().getServletContext().getRealPath("resources/images/magazineImg");
 		Attachment at = service.insertImages(uploadFile, savePath);
 		
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
 	}
+	
+	
+	// 매거진 상세 페이지 조회
+	@RequestMapping("/magazine/{no}") 
+	public String boardView(@PathVariable("no") int no,
+							Model model,
+							@RequestHeader(value="referer", required=false) String referer,
+							RedirectAttributes ra) {
+		//@RequestHeader(name="referer") String referer
+		// ---> HTTP 요청 헤더에 존재하는 "referer"값을 얻어와
+		//매개변수 String referer에 저장
+
+		System.out.println("no: " + no);
+		
+		Magazine magazine = service.selectMagazine(no);
+		System.out.println("매거진 조회: "+magazine);
+		String url = null;
+		
+		if(magazine != null) { //상세 조회 성공시
+			//상세 조회 성공한 게시물의 이미지 목록을 조회하는 Service 호출
+			List<MagazineImg> magazineImg = service.selectMimgList(no);
+			
+			//조회된 이미지 목록이 있을 경우
+			if(magazineImg != null && !magazineImg.isEmpty()) {
+				model.addAttribute("magazineImg", magazineImg);
+				System.out.println(magazineImg);
+			}
+			
+			MagazineImg thumbnail = service.selectThumbnail(no);
+			if(thumbnail != null) {
+				model.addAttribute("thumbnail", thumbnail);
+				System.out.println(thumbnail);
+			}
+			
+			model.addAttribute("magazine", magazine);
+			url = "magazine/magazineView";
+		} else {
+			//즐겨찾기로 들어와서 referer이 null인 상태라면?
+			// -> 이전 요청 주소가 없는 경우
+			if(referer == null) { 
+				url = "redirect:../list/";
+			} else { //이전 요청 주소가 있는 경우
+				url = "redirect:" + referer;
+			}
+			
+		}
+		
+		return url;
+	}
+	
+	
+	
 
 }
