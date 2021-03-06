@@ -262,6 +262,15 @@
                         </div>
                     </div>
                 </div>
+                <c:url var="updateUrl" value="${gclass.prdtNo}/update"/>
+          	<%--  <c:if test="${(loginMember != null) && (member.memberId == loginMember.memberId)}"> --%>
+                 	<div class="Gbutton">
+                  	<a href="${updateUrl}">
+                   	 <button class="update" style="margin-right: 10px;" id="update">수정</button>
+                  	</a>
+                    <button class="update delete" id="">판매중지</button>
+                	</div>
+             <%--  </c:if> --%>
             </div> 
         </div> 
     </section>

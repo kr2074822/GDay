@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* number 태그 화살표 제거 */
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
 	{
@@ -7,143 +5,171 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	margin: 0;
 }
 
-.wrapper {
-   width: 80%;
-   margin: 0 auto;
+header{
+    background: red;
+    height: 100px;
+    width: 100%;
+}
+section {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+section h1{
+    font-size: 40px;
+}
+section form{
+    margin-top: 50px;
+}
+section form .wrapper{
+}
+section form .wrapper .check_wrapper{
+    padding: 20px;
+    border: 1px solid #FE929F;  
+    border-radius: 10px;
 }
 
-.box {
-   background: rgba(0, 0, 0, .07);
-   width: 100%;
-   height: 15%;
-   padding: 20px;
-   margin-top: 20px;
-   margin-bottom: 20px;
+section form .wrapper .check_wrapper span{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+}
+section form .wrapper .check_wrapper span::before{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 70px;
+    height: 1px;
+    background:#fe929f;
+    color:#FE929F;
+}
+section form .wrapper .check_wrapper span{
+    display: block;
+    margin-bottom: 15px;
+}
+section form .wrapper .check_wrapper span:hover{
+    cursor: pointer;
+}
+section form .wrapper .check_wrapper ul{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    display: none;
+}
+section form .wrapper .check_wrapper ul li {
+    font-weight: 300;
+    color: #141414;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+section form .wrapper .check_wrapper ul li input[type="checkbox"]{
+    display: none;
+}
+section form .wrapper .check_wrapper ul li input[type="checkbox"]:checked+label{
+    transition: 0.3s ease-out;
+    color: #fe929f;
+}
+section form .wrapper .check_wrapper ul li input[type="text"]{
+    width: 100px;
 }
 
-.box h1 {
-   font-size: 1.2em;
-   font-weight: bold;
-   padding: 7px;
+section form .wrapper .check_wrapper ul li input[type="number"]{
+		width: 100px;
+}
+section form .wrapper .check_wrapper ul li label{
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+section form .wrapper .gift_title{
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+}
+section form .wrapper .gift_title > input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fe929f;
+    display: inline;
+    width: 30%;
+    padding: 5px 0;
+    font-size: 24px;
+    text-align: center;
+}
+section form .wrapper .gift_title .thumbnail{
+    width: 100%;
+    text-align: start;
+}
+section form .wrapper .gift_title .thumbnail > input{
+    display: none;
+}
+section form .wrapper .gift_title .thumbnail h1{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+section form .wrapper .gift_title .thumbnail .showImg{
+		border: 1px solid #fe929f;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+section form .wrapper .gift_title .thumbnail .showImg img{
+	object-fit: cover;
+	width: 100%;
+	height: 100%;	
+}
+section form .wrapper .editor{
+    width: 100%;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+section form .wrapper .buttons{
+    display: flex;
+    justify-content: center;
+    text-align: right;
+    margin-bottom: 50px;
+}
+section form .wrapper .buttons button{
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+section form .wrapper .buttons .submit{
+    background: #fe929f;
 }
 
-.box ul {
-	display: flex;
-	justify-content: start;
-	align-content: center;
-}
-
-.box ul li {
-	margin-bottom: 10px;
-}
-
-
-.box .item {
-	color: gray;
-	border: 1px solid gray;
-	border-radius: 40px;
-	padding-right: 8px;
-	padding-left: 8px;
-	margin: 5px;
-	line-height: 30px;	
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-
-
-.box input[type="checkbox"] {
-	display: none;
-}
-
-.box input[type="checkbox"]:checked + label {
-	transition: 0.3s ease-out;
-  background: #fe929f;
-  color:white;
-  border: 1px solid lightgray;
-}
-
-/* 수강인원/세션수/개강일 등 기입 */
-.extraInput {
-	margin-top: 30px;
-	display: flex;
-	justify-content: space-between;
-
-}
-
-.extraInput .optRow input {
-	width: 100px;
-	vertical-align: middle;
-	margin-left: 7px;
-}
-
-.extraInput .optRow input[type="date"] {
-	width: 150px;
-}
-
-/* 신청 제목, 내용 작성 */
-.boardRow {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-}
-
-.boardRow img {
-	margin-top:30px;
-	margin-bottom:20px;
-	display: inline-block;
-}
-
-#title {
-	height: 35px;
-	width: 82%;
-	border: 1px solid #c9c9c9;
-	border-radius: 5px;
-}
-
-/* 등록, 취소 버튼 */
-.btnArea {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 100px;
-}
-
-#submitBtn {
-	margin-top: 20px;
-	margin-right: 10px;
-	background: #fe929f;
-	border-radius: 5px;
-	border-style: none;
-	color: white;
-	width: 55px;
-	height: 2em;
-}
-
-#resetBtn {
-	margin-top: 20px;
-	background: gray;
-	border-radius: 5px;
-	border-style: none;
-	color: white;
-	width: 55px;
-	height: 2em;
-	
-}
-
-/* 주소 입력 */
 .address {
-	margin-right: 20px;
-	height: 25px;
-	border-radius: 5px;
-	border: 1px solid #c9c9c9;
+   margin-right: 20px;
+   height: 25px;
+   border-radius: 5px;
+   border: 1px solid #c9c9c9;
 }
 
-#sample5_address {
-	width: 48%;
+.boardRow {
+   width: 100%;
+   display:flex;
+	 justify-content: center;
 }
 
 #searchBtn {
-	border-style: none;
-	background: #fe929f;
-	color: white;
-}}
+   border-style: none;
+   background: #fe929f;
+   color: white;
+}
+section form .wrapper .check_wrapper ul li label .required {
+	color: red;
+	display: inline;
+}
+
+section form .wrapper .check_wrapper ul li label .required::before {
+	border: none;
+	width: 0px;
+}
