@@ -12,6 +12,7 @@ import org.springframework.web.util.WebUtils;
 import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	@Inject
@@ -20,6 +21,7 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
+		HttpSession session = request.getSession();
 		Cookie loginCookie = WebUtils.getCookie(request, "loginSessionId");
 		System.out.println(loginCookie);
 		if (loginCookie != null) {
@@ -32,12 +34,18 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 			if (userSession != null) {
 				// 멤버 가져오기
 				Member member = service.getMember(userSession.getMemberNo());
+				if( member != null) {
+					// 프사 가져오기
+					ProfileImg picture = service.getProfile(member.getMemberNo());
+					session.setAttribute("picture", picture);
+
+					//model.addAttribute("picture", picture);
+					
+				}
 				
-				// 프사 가져오기
 				
 				
 				System.out.println(member);
-				HttpSession session = request.getSession();
 				session.setAttribute("loginMember", member);
 			}
 		}
