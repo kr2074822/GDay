@@ -5,19 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-   <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css"/>
+   <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+   <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemSidebar.css"/>
    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/memberCart.css"/>
    
 </head>
 <body>
-	<div id="select-area">
-		<button id="gift-btn">선물</button>
-		<button id="class-btn">클래스</button>
-	</div>
-
+	<jsp:include page="../../common/header.jsp"/>	
+	
 	<div id="cart-wrapper">
-		<jsp:include page="gMemSidebar.jsp"/>
-		
+	
+	<jsp:include page="gMemSidebar.jsp"/>
+	
+		<div id="select-area">
+			<button id="gift-btn">선물</button>
+			<button id="class-btn">클래스</button>
+		</div>
+	
+	
 		<!-- 선물 부분 -->
 		<div id="gift-list-area">
 			<ul id="cart-list">
@@ -26,19 +31,6 @@
 					<i class="cancle-icon fas fa-times"></i>
 					<input type="checkbox"/>
 					<div class="img-box"> <img/> </div>					
-					<span class="product-name">상품명</span>
-					<span>[선물 옵션]</span>
-					<div class="acount-area">
-						<button class="plus-btn">-</button>
-						<input type="text" value="1" readonly />
-						<button class="minus-btn">+</button>
-					</div>
-				</li>
-				
-				<li class="cart-content">
-					<i class="cancle-icon fas fa-times"></i>
-					<input type="checkbox"/>
-					<div class="img-box"> <img/> </div>
 					<span class="product-name">상품명</span>
 					<span>[선물 옵션]</span>
 					<div class="acount-area">
@@ -62,20 +54,6 @@
 					<input type="checkbox"/>
 					<div class="img-box"> <img/> </div>
 					<span class="product-name">클래스명</span>
-					<span>[선물 옵션]</span>
-					<div class="acount-area">
-						<button class="plus-btn">-</button>
-						<input type="text" value="1" readonly />
-						<button class="minus-btn">+</button>
-					</div>
-				</li>
-				
-				<li class="cart-content">
-					<i class="cancle-icon fas fa-times"></i>
-					<input type="checkbox"/>
-					<div class="img-box"> <img/> </div>
-					<span class="product-name">클래스명</span>
-					<span>[선물 옵션]</span>
 					<div class="acount-area">
 						<button class="plus-btn">-</button>
 						<input type="text" value="1" readonly />
@@ -102,17 +80,6 @@
 		</div>
 				
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<jsp:include page="../../common/header.jsp"/>
-	
-	
 	
 	
 	
