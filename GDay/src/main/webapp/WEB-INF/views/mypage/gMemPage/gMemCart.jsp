@@ -35,7 +35,7 @@
 		<c:if test="${!empty bList}">
 			<div id="gift-list-area">
 				<ul id="cart-list">
-					<li><input type="checkbox" style="margin-bottom: 10px;"/>&nbsp; 전체 선택</li>
+					<li><input class="check-all" type="checkbox" style="margin-bottom: 10px;"/>&nbsp; 전체 선택</li>
 					<c:forEach var="cartItem" items="${bList}" varStatus="vs">	
 						<c:if test="${cartItem.prdtType eq 'G' }">	
 							<li class="cart-content">
@@ -66,7 +66,7 @@
 			<!-- 클래스 부분 -->
 			<div id="class-list-area">
 				<ul id="cart-list">
-					<li><input type="checkbox" style="margin-bottom: 10px;"/>&nbsp; 전체 선택</li>
+					<li><input class="check-all" type="checkbox" style="margin-bottom: 10px;"/>&nbsp; 전체 선택</li>
 					<c:forEach var="cartItem" items="${bList}" varStatus="vs">	
 						<c:if test="${cartItem.prdtType eq 'C' }">	
 							<li class="cart-content">
@@ -114,6 +114,8 @@
 	
 	
 <script>
+	var checkAry = []; // 선택된 체크 박스를 담기 위한 배열
+
 	/* 장바구니 취소 버튼(X) */
 	$(".cancle-icon").on("click", function() {
 		var cartNo = $(this).next().val();
@@ -150,27 +152,57 @@
 	$("#gift-btn").on("click", function() {
 		$("#gift-list-area").css("display", "block");
 		$("#class-list-area").css("display", "none");
+		
+		/* 체크박스 다 비워버리기 */
+		$(".product-check").prop("checked", false);
+		$(".check-all").prop("checked", false);
+		checkAry = [];
 	});
 	
 	$("#class-btn").on("click", function() {
 		$("#gift-list-area").css("display", "none");		
 		$("#class-list-area").css("display", "block");	
+		
+		/* 체크박스 다 비워버리기 */
+		$(".product-check").prop("checked", false);
+		$(".check-all").prop("checked", false);
+		checkAry = [];
 	});	
 	
 	/* 주문하기 영역 */
-	var checkAry = [];
  		
+	/* 전체 선택 */
+	$(".check-all").on("click", function(){
+		var ul = $(this).parent().parent();
+		var checkLength = ul.find(".hidden-input").length;
+		
+		if($(this).is(":checked")) {						
+ 			for(var i = 0; i < checkLength; ++i) {
+				checkAry.push(ul.find(".hidden-input").eq(i).val());
+			} 
+ 			
+ 			ul.find($(".product-check")).prop("checked", true);
+ 			
+			console.log(checkAry);
+		} else {
+			checkAry = [];
+			ul.find($(".product-check")).prop("checked", false);
+			console.log(checkAry);
+		}
+	});
+	
+	/* 개별 선택 */
 	$(".product-check").on("change", function() {
 		if($(this).is(":checked")) {
-			checkAry.push($(this).parent().next().next().text());
-			
+			checkAry.push($(this).prev().val());			
 		} else {
-			for(var i = 0; i < opAry.length; ++i) {
-				if(checkAry[i] == $(this).parent().next().next().text()) {
+			for(var i = 0; i < checkAry.length; ++i) {
+				if(checkAry[i] == $(this).prev().val()) {
 					checkAry.splice(i, 1);
 				}
 			} 		
 		}
+		console.log(checkAry);
 	});	
 	
 </script>
