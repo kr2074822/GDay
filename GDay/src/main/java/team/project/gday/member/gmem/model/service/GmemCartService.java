@@ -29,6 +29,16 @@ public interface GmemCartService {
 	 */
 	int insertClassCart(Map<String, Object> map);
 
+	
+	
+	/** 장바구니에서 상품 삭제 Service
+	 * @param map
+	 * @return
+	 */
+	int deleteCart(Map<String, Object> map);
+	
+
+
 
 
 

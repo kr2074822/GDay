@@ -39,6 +39,10 @@
 	display: none;
 }
 
+.hidden-input {
+	display: none;
+}
+
 .cart-content {
 	position: relative;
 	display: flex;
