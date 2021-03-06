@@ -258,7 +258,7 @@ display: none;
     
     <section class="">
         <div class="section_wrapper">
-            <h1>슬기로운 한 해 나기!</h1>
+            <h1>지금 제일 인기 있는 선물은?</h1>
 
             <div class="card_wrapper">
                 <h2>Class</h2>
