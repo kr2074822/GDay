@@ -73,4 +73,12 @@
 	</delete>
 	
 	
+	<!-- 문자 전송용 타겟 기념일 조회 -->
+	<select id="selectTarget" resultMap="calendar_rm" parameterType="_int">
+		SELECT * FROM V_CALENDAR 
+		WHERE TO_CHAR(DT_UNTIL, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
+		<if test="memberNo != 0">
+			AND MEM_NO = #{memberNo}
+		</if>
+	</select>
 </mapper>

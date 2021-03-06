@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -102,15 +103,22 @@ public class CalendarController {
 	}
 	
 	
-	//
+	//기념일에 맞춰서 문자 보내기 : 임시로 버튼 만들어놓음 -> 원래는 스케줄링으로 함
+	@ResponseBody
 	@RequestMapping("getTargetDt")
-	public String getTargetDt() {
+	public int getTargetDt(@RequestParam("memberNo") int memberNo) {
 		
-		SendSMSbyN sendSms = new SendSMSbyN();
-		sendSms.sendSMS();
+		List<Calendar> targetList = service.getMemTarget(memberNo);
+		
+		int responseCode = 0;
+		
+		if (targetList != null) {
+			SendSMSbyN sendSms = new SendSMSbyN();
+		
+			responseCode = sendSms.sendSMS(targetList);
+		}
 
-		
-		return "calendar/calendar";
+		return responseCode;
 	}
 	
 	

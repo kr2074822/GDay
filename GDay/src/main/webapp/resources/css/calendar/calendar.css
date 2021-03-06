@@ -186,3 +186,28 @@ display:none;
 /* 검색창 */
 #modal-search { height : 200px;}
 #search-input { height : 70px;}
+
+
+/* 날짜 확인용 버튼 */
+.temp { display : flex; justify-content : center; width : 100%;}
+.btn-temp {
+	display : flex;
+	justify-content : center;
+	width : 360px;
+	height : 40px;
+	color : white;
+	background-color : #000000;
+	cursor : pointer;
+	text-decoration : none;
+	margin : 0 0 10px 0;
+	border-radius : 25px;
+	font-family : 'TmoneyRoundWindRegular';
+	/* text-align : center; */
+	line-height : 36px;
+}
+.btn-temp:hover {
+	text-decoration : none;
+	background-color : #FF24A3;
+}
+
+
