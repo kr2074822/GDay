@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.member.model.vo.Member;
 
 @Repository
 public class GiftDAO {
@@ -55,7 +57,7 @@ public class GiftDAO {
 		return sqlSession.insert("giftMapper.insertAttachmentList");
 	}
 
-	/** 선물 옵션 추가
+	/** 선물 옵션 색상 추가
 	 * @param map
 	 * @return
 	 */
@@ -63,8 +65,52 @@ public class GiftDAO {
 		return sqlSession.insert("giftMapper.insertGiftOption", map);
 	}
 
+	/** 선물 옵션 사이즈 추가
+	 * @param map
+	 * @return
+	 */
 	public int insertGiftOption2(Map<String, Object> map) {
 		return sqlSession.insert("giftMapper.insertGiftOption2", map);
+	}
+
+	/** 선물 상세 조회
+	 * @param temp
+	 * @return
+	 */
+	public Gift selectGift(Gift temp) {
+		return sqlSession.selectOne("giftMapper.selectGift", temp);
+	}
+
+	/** 조회수 증가
+	 * @param prdtNo
+	 * @return
+	 */
+	public int increaseReadCount(int prdtNo) {
+		return sqlSession.update("giftMapper.increaseReadCount", prdtNo);
+	}
+
+	/** 이미지 조회
+	 * @param prdtNo
+	 * @return
+	 */
+	public List<Attachment> selectAttachmentList(int prdtNo) {
+		return sqlSession.selectList("giftMapper.selectAttachmentList", prdtNo);
+	}
+
+	/** 판매자 정보 조회
+	 * @param memNo
+	 * @return
+	 */
+	public Member selectMember(int memNo) {
+		return sqlSession.selectOne("giftMapper.selectMember", memNo);
+	}
+
+	/** 썸네일 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	public Attachment selectThumbnail(int prdtNo) {
+		return sqlSession.selectOne("classMapper.selectThumbnail", prdtNo);
 	}
 	
 	

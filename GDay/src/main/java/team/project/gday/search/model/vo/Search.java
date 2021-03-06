@@ -1,4 +1,4 @@
-package team.project.gday.Product.model.vo;
+package team.project.gday.search.model.vo;
 
 import java.util.Arrays;
 

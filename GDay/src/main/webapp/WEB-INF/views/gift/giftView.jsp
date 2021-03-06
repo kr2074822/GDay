@@ -25,7 +25,7 @@
             <form action="">
                 <div class="gift_img_wrapper">
                     <div class="gift_img">
-                        <img src="" alt="">
+                        <img src="${contextPath}${thumbnail.filePath}/${thumbnail.fileName}" alt="">
                     </div>
                     <div class="rate">
                         <span><i class="fas fa-star"></i>4.1</span>
@@ -35,8 +35,8 @@
                     <div class="gift_option">
                         <div class="title">
                             <div>
-                                <h1>상품명</h1>
-                                <span>가격</span>
+                                <h1>${gift.prdtName}</h1>
+                                <span>${gift.prdtPrice }</span>
                             </div>
                             <div>
                                 <i class="far fa-comments"></i>
@@ -51,12 +51,14 @@
                                 <option value="">다</option>
                             </select>
                             <div class="gift_cnt">
-                                <di class="opt_title">
+                                <div class="opt_title">
                                     <span>상품명</span>
                                     <span>[옵션명]</span>
-                                    </di>
+                                </div>
                                 <div class="cnt">
-                                    <i class="fas fa-plus"></i><input type="text" value="1"><i class="fas fa-minus"></i>
+                                    <i class="fas fa-minus"  onclick="del()"></i>
+                                    <input type="text"  class="amount" value=1>
+                                    <i class="fas fa-plus" onclick="add()"></i>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +67,7 @@
                         <p>총 <span>123</span>개</p>
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="total">12000</span>
+                            <span class="sum">${gift.prdtPrice }</span>
                         </div>
     
                         <div class="option_btn">
@@ -96,34 +98,34 @@
                 <div class="b_info">
                     <table>
                         <tr>
-                            <th colspan="2"><span>김영주</span> 판매자님</th>
+                            <th colspan="2"><span>${member.memberName}</span> 판매자님</th>
                         </tr>
                         <tr>
                             <td>이름</td>
-                            <td>이이1</td>
+                            <td>${member.memberName}</td>
                         </tr>
                         <tr>
                             <td>전화번호</td>
-                            <td>이이1</td>
+                            <td>${member.memberPhone}</td>
                         </tr>
                         <tr>
                             <td>주소</td>
-                            <td>이이1</td>
+                            <td>${member.memberAddress}</td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td>이이1</td>
+                            <td>${member.memberEmail}</td>
                         </tr>
                         <tr>
                             <td>상호명</td>
-                            <td>이이1</td>
+                            <td>${member.memberName}</td>
                         </tr>
                     </table>
                 </div>
                 <h1>상품 설명</h1>
                 <div class="about_gift">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        ${gift.prdtContent}
                     </p>
                 </div>
                 <div class="g_info">
@@ -265,6 +267,34 @@
         </div> 
     </section>
 
-    <script src="js/fontawesome.js"></script>
+    <script src="${contextPath}/resources/js/fontawesome.js"></script>
+    <script>
+	    var price = ${gift.prdtPrice };
+	    function add(){
+	    	console.log(3)
+	    	$(".amount").val( Number($(".amount").val()) + 1  );
+	    	$(".sum").text( Number($(".sum").text()) + price  );
+	    }
+	    
+	    function del(){
+	    	
+	    	if($(".amount").val() > 1 ){
+		    	$(".amount").val( Number($(".amount").val()) - 1  );
+		    	$(".sum").text( Number($(".sum").text()) - price  );
+	    	}
+	    }
+	    
+	    $(".amount").on("input", function(){
+	    	
+	    	if(isNaN(Number($(".amount").val())) ){ // 숫자 말고 다른 것 입력 시
+	    		$(".amount").val("");
+	    		$(".sum").text( price  );
+	    	}else{
+	    		$(".sum").text( Number($(".amount").val()) * price  );
+	    	}
+	    	
+	    	
+	    });
+    </script>
 </body>
 </html>

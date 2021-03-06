@@ -29,6 +29,8 @@
 		<typeAlias type="team.project.gday.admin.model.vo.Report" alias="Report"/>
 		<typeAlias type="team.project.gday.Product.model.vo.Product" alias="Product"/>
 		<typeAlias type="team.project.gday.admin.model.vo.Customor" alias="Customor"/>
+		<typeAlias type="team.project.gday.member.model.vo.Baguni" alias="Baguni"/>
+		<typeAlias type="team.project.gday.search.model.vo.Search" alias="Search"/>
 	</typeAliases>
 	
 	<mappers>
@@ -42,5 +44,7 @@
 		<mapper resource="/mappers/search/bmem/b-mem-search.xml"/>
 		<mapper resource="/mappers/message-mapper.xml"/>
 		<mapper resource="/mappers/admin-mapper.xml"/>
+		<mapper resource="/mappers/cart/cart-mapper.xml"/>
+		<mapper resource="/mappers/search/search-mapper.xml"/>
 	</mappers>
 </configuration>

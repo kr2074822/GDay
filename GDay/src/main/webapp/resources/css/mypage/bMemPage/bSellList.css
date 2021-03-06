@@ -77,10 +77,11 @@
 	font-size: 20px;
 	font-weight: bold;
 	display: inline-block;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden; 
-  text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    
 }
 
 /* 페이징바 영역 */

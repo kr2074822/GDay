@@ -39,6 +39,10 @@
 	display: none;
 }
 
+.hidden-input {
+	display: none;
+}
+
 .cart-content {
 	position: relative;
 	display: flex;
@@ -66,15 +70,21 @@
 }
 
 .img-box img {
+	object-fit: contain;
 	display: block;
-	width: 150px;
-	height: 150px;
-	margin: auto;
-	vertical-align: middle;	
-	background-image: url('../../images/logoTest.png'); 
- 	background-size: cover;
-	background-repeat: no-repeat;
-	transform: scale(1.5); 
+	margin: 0 auto;
+	width: 80%;
+	height: 80%;
+}
+
+.product-name {
+	font-size: 20px;
+	font-weight: bold;
+	display: inline-block;
+    width: 40%;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 .cart-content button {
