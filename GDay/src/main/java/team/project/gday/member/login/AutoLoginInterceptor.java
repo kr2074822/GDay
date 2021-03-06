@@ -23,14 +23,9 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		Cookie loginCookie = WebUtils.getCookie(request, "loginSessionId");
-		System.out.println(loginCookie);
 		if (loginCookie != null) {
 			String sessionId = loginCookie.getValue();
-			
-			
-			System.out.println(sessionId);
 			AutoLogin userSession = service.getCookie(sessionId);
-			System.out.println(userSession);
 			if (userSession != null) {
 				// 멤버 가져오기
 				Member member = service.getMember(userSession.getMemberNo());
@@ -38,22 +33,11 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 					// 프사 가져오기
 					ProfileImg picture = service.getProfile(member.getMemberNo());
 					session.setAttribute("picture", picture);
-
-					//model.addAttribute("picture", picture);
-					
 				}
-				
-				
-				
-				System.out.println(member);
 				session.setAttribute("loginMember", member);
 			}
 		}
 		return true;
 	}
 	   
-	  
-	
-	
-	
 }

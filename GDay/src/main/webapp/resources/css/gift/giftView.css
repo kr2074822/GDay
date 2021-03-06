@@ -25,6 +25,11 @@ section .gift_wrapper form .gift_img_wrapper .gift_img{
     height: 200px;
     overflow: hidden;
 }
+section .gift_wrapper form .gift_img_wrapper .gift_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 section .gift_wrapper form .gift_img_wrapper img{
     object-fit: cover;
 }
@@ -260,8 +265,12 @@ section .gift .describe .about_gift{
     margin-bottom: 30px;
 }
 section .gift .describe .about_gift p{
+	display: block;
     font-size: 20px;
     line-height: 1.3;
+}
+section .gift .describe .about_gift img{
+	width: 100%;
 }
 section .gift .describe .g_info {
     margin-bottom: 100px;

@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
@@ -104,5 +108,58 @@ public class GiftCtrl {
 	
 	
 	
+	
+	
+	
+	
+
+	//클래스 상세 조회
+	@RequestMapping("/gift/{prdtNo}") 
+	public String boardView(@PathVariable("prdtNo") int prdtNo,
+							Model model,
+							@RequestHeader(value="referer", required=false) String referer) {
+		//@RequestHeader(name="referer") String referer
+		// ---> HTTP 요청 헤더에 존재하는 "referer"값을 얻어와
+		//매개변수 String referer에 저장
+
+		Gift gift = service.selectGift(prdtNo);
+		
+		String url = null;
+		
+		if(gift != null) { //상세 조회 성공시
+			//상세 조회 성공한 게시물의 이미지 목록을 조회하는 Service 호출
+			List<Attachment> attachmentList = service.selectAttachmentList(prdtNo);
+			
+			//조회된 이미지 목록이 있을 경우
+			if(attachmentList != null && !attachmentList.isEmpty()) {
+				model.addAttribute("attachmentList", attachmentList);
+			}
+			
+			//판매자 정보 가져오기
+			Member member = service.selectMember(gift.getMemNo());
+			model.addAttribute("member", member);
+			
+			Attachment thumbnail = service.selectThumbnail(prdtNo);
+			if(thumbnail != null) {
+				model.addAttribute("thumbnail", thumbnail);
+			}
+			
+			model.addAttribute("gift", gift);
+			url = "gift/giftView";
+		} else {
+			
+			//즐겨찾기로 들어와서 referer이 null인 상태라면?
+			// -> 이전 요청 주소가 없는 경우
+			if(referer == null) { 
+				url = "redirect:../list/";
+			} else { //이전 요청 주소가 있는 경우
+				url = "redirect:" + referer;
+			}
+			 
+		}
+		
+		return url;
+	}
+
 	
 }

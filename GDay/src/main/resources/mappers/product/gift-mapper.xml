@@ -38,6 +38,28 @@
  		<result property="prdtNo" column="PRDT_NO"/>
 	</resultMap>	
 	
+	<!-- 상품 이미지 resultMap -->
+	<resultMap type="Attachment" id="attachment_rm">
+		<id property="fileNo" column="FILE_NO"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
+	<resultMap type="Member" id="member_rm">
+		<id property="memberNo" column="MEM_NO"/>
+   		<result property="memberEmail" column="MEM_EMAIL"/>
+  		<result property="memberPwd" column="MEM_PW"/>
+  		<result property="memberName" column="MEM_NAME"/>
+  		<result property="memberNick" column="MEM_NICK"/>
+  		<result property="memberPhone" column="MEM_PHONE"/>
+  		<result property="memberAddress" column="MEM_ADDR"/>
+  		<result property="memberGrade" column="MEM_GRADE"/>
+  		<result property="memberType" column="MEM_TYPE"/>
+  		<result property="memberSec" column="MEM_SEC"/>
+	</resultMap>
+	
 	
 	<!-- 다음 상품번호 조회 -->
 	<select id="selectNextNo" resultType="_int">
@@ -79,7 +101,7 @@
 		)A
 	</insert>
 	
-	<!-- 선물 옵션 추가 -->
+	<!-- 선물 옵션 추가 색상 -->
    <insert id="insertGiftOption" parameterType="map"> <!-- java.util.List == list -->
       INSERT INTO GIFT_OPTION
       SELECT SEQ_GOPTNO.NEXTVAL, A.* FROM (
@@ -94,6 +116,7 @@
       )A
    </insert>
    
+   <!-- 선물 옵션 추가 사이즈 -->
    <insert id="insertGiftOption2" parameterType="map"> <!-- java.util.List == list -->
       INSERT INTO GIFT_OPTION
       SELECT SEQ_GOPTNO.NEXTVAL, A.* FROM (
@@ -108,5 +131,36 @@
       )A
    </insert>
 	
+	<!-- 선물 상세 조회 -->
+	<select id="selectGift" parameterType="Gift" resultMap="gift_rm">
+		SELECT * 
+		FROM V_GIFT
+		WHERE G_STATUS = 'Y' AND PRDT_NO = #{prdtNo} 
+	</select>
+	
+	<!-- 선물 조회수 증가 -->
+	<update id="increaseReadCount" parameterType="_int">
+		UPDATE PRODUCT SET READ_COUNT = READ_COUNT+1 WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
+	<select id="selectAttachmentList" parameterType="_int" resultMap="attachment_rm">
+		SELECT * FROM PRODUCT_IMG
+		WHERE PRDT_NO = #{prdtNo}
+		ORDER BY FILE_LEVEL
+	</select>
+	
+	<!-- 판매자 정보 조회 -->
+	<select id="selectMember" parameterType="_int" resultMap="member_rm">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_NO = #{memNo}
+	</select>
+	
+	<!-- 클래스 상세 페이지의 썸네일 조회 -->
+	<select id="selectThumbnail" parameterType="_int" resultMap="attachment_rm">
+		SELECT FILE_NO, FILE_PATH, FILE_NAME FROM PRODUCT_IMG
+		WHERE PRDT_NO = #{prdtNo}
+		AND FILE_LEVEL = 0
+	</select>
 	
 </mapper>
