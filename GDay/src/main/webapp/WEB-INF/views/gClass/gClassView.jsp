@@ -356,8 +356,13 @@
    	    				"amount" : amount,
    	    				"imgPath" : imgPath},
    	    		type : "post",
-   	    		success : function() {
-   	    			window.alert("장바구니에 등록되었습니다.");
+   	    		success : function(result) {
+   	    			if(result > 0) {
+   	    				window.alert("장바구니에 등록되었습니다.");
+   	    			} else {
+   	    				window.alert("이미 등록된 상품입니다.");
+   	    			}
+   	    			
    	    		},
    	    		error : function() {
    	    			window.alert("장바구니에 등록 중 에러가 발생하였습니다.");
