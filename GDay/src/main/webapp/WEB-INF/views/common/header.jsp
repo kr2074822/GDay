@@ -59,7 +59,7 @@
 		
 			<div id="header-logo">
 				<a href="${contextPath}/">
-				<img id="logo" src="${contextPath}/resources/images/logo.png">
+				<img id="logo" src="${contextPath}/resources/images/123.png">
 				</a>
 			</div>		
 

@@ -69,4 +69,36 @@ public class MagazineDAO {
 	public int insertAttachmentList(List<MagazineImg> uploadImages) {
 		return sqlSession.insert("magazineMapper.insertAttachmentList", uploadImages);
 	}
+
+	/** 매거진 상세 조회
+	 * @param temp
+	 * @return
+	 */
+	public Magazine selectMagazine(Magazine temp) {
+		return sqlSession.selectOne("magazineMapper.selectMagazine", temp);
+	}
+
+	/** 조회수 증가
+	 * @param no
+	 * @return
+	 */
+	public int increaseReadCount(int no) {
+		return sqlSession.update("magazineMapper.increaseReadCount", no);
+	}
+
+	/** 매거진 이미지 가져오기
+	 * @param no
+	 * @return
+	 */
+	public List<MagazineImg> selectMimgList(int no) {
+		return sqlSession.selectList("magazineMapper.selectMimgList", no);
+	}
+
+	/** 썸네일 조회
+	 * @param no
+	 * @return
+	 */
+	public MagazineImg selectThumbnail(int no) {
+		return sqlSession.selectOne("magazineMapper.selectThumbnail", no);
+	}
 }
