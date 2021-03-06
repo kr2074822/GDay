@@ -81,6 +81,7 @@
     white-space: nowrap;
     overflow: hidden; 
     text-overflow: ellipsis;
+    
 }
 
 /* 페이징바 영역 */
