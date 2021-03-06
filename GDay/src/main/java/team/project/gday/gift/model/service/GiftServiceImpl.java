@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gift.model.dao.GiftDAO;
+import team.project.gday.member.model.vo.Member;
 
 @Service 
 public class GiftServiceImpl implements GiftService{
@@ -158,6 +160,45 @@ public class GiftServiceImpl implements GiftService{
 			throw new UserDefineException("summernote 파일 업로드에 실패했습니다.");
 		}
 		return at;
+	}
+	
+	
+	
+	// 선물 상세 조회
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Gift selectGift(int prdtNo) {
+		Gift temp = new Gift();
+		temp.setPrdtNo(prdtNo);
+		Gift gift = dao.selectGift(temp);
+		
+		if (gift != null) {
+			int result = dao.increaseReadCount(prdtNo);
+			
+			if (result > 0) {
+				gift.setReadCount(gift.getReadCount()+1);
+			}
+		}
+		
+		return gift;
+	}
+
+	// 이미지 조회
+	@Override
+	public List<Attachment> selectAttachmentList(int prdtNo) {
+		return dao.selectAttachmentList(prdtNo);
+	}
+
+	// 판매자 정보 조회
+	@Override
+	public Member selectMember(int memNo) {
+		return dao.selectMember(memNo);
+	}
+
+	// 썸네일 가져오기
+	@Override
+	public Attachment selectThumbnail(int prdtNo) {
+		return dao.selectThumbnail(prdtNo);
 	}
 
 }
