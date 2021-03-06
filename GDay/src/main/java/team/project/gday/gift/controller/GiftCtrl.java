@@ -46,7 +46,9 @@ public class GiftCtrl {
 	@RequestMapping("insert")
 	public String giftInsert(@ModelAttribute Gift gift, 
 			@ModelAttribute("loginMember") Member loginMember,
-			@RequestParam("hashNo") List<String> hashNo, 
+			@RequestParam(value="hashNo", required = false) List<String> hashNo, 
+			@RequestParam(value="color", required = false) List<String> color, 
+			@RequestParam(value="size", required = false) List<String> size, 
 			@RequestParam(value = "images", required = false) List<MultipartFile> images,
 			HttpServletRequest request) {
 		
@@ -57,8 +59,13 @@ public class GiftCtrl {
 		map.put("prdtName", gift.getPrdtName());
 		map.put("prdtContent", gift.getPrdtContent());
 		map.put("prdtPrice", gift.getPrdtPrice());
+		map.put("hashNo", hashNo);
+		map.put("color", color);
+		map.put("size", size);
 		System.out.println(gift);
 		System.out.println(hashNo);
+		System.out.println(color);
+		System.out.println(size);
 		
 		
 		// 파일 업로드 확인 
@@ -75,7 +82,6 @@ public class GiftCtrl {
 
 		// 게시글 삽입 Service 호출
 		int result = service.insertGift(map, images, savePath);
-		
 		
 		
 		System.out.println(1);
@@ -95,6 +101,8 @@ public class GiftCtrl {
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
 	}
+	
+	
 	
 	
 }

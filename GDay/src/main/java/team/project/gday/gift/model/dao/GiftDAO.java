@@ -54,6 +54,18 @@ public class GiftDAO {
 	public int insertAttachmentList(List<Attachment> uploadImages) {
 		return sqlSession.insert("giftMapper.insertAttachmentList");
 	}
+
+	/** 선물 옵션 추가
+	 * @param map
+	 * @return
+	 */
+	public int insertGiftOption(Map<String, Object> map) {
+		return sqlSession.insert("giftMapper.insertGiftOption", map);
+	}
+
+	public int insertGiftOption2(Map<String, Object> map) {
+		return sqlSession.insert("giftMapper.insertGiftOption2", map);
+	}
 	
 	
 	

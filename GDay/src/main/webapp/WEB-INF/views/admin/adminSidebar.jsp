@@ -79,10 +79,16 @@
                     </a>
 
 	                    <ul class="sub-menu">
+			                <li><a href="${contextPath}/admin/adminBoard">
+			                    <span class="submenu-icon"><i class="fas fa-book-open"></i></span>
+			                    <span class="submenu-text">전체 게시글 관리</span>
+			                    </a>
+			                </li>
 			                <li><a href="${contextPath}/admin/adminMagazine">
 			                    <span class="submenu-icon"><i class="fas fa-book-open"></i></span>
 			                    <span class="submenu-text">매거진 관리</span>
-			                    </a></li>
+			                    </a>
+			                </li>
 	                    </ul>
 					</li>
 								

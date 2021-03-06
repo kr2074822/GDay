@@ -46,6 +46,11 @@ public class GiftServiceImpl implements GiftService{
 					result = dao.insertTag(map);
 					
 					if(result>0) {
+						
+						// 옵션 삽입1
+						result = dao.insertGiftOption(map);
+						result = dao.insertGiftOption2(map);
+						System.out.println("-*-*-*"+result);
 						//5) 썸네일 이미지 정보 삽입 (경로차이O)
 						List<Attachment> uploadImages = new ArrayList<>();
 						

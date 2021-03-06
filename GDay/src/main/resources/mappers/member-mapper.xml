@@ -31,7 +31,7 @@
 	</resultMap>
 
 	
-	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<!-- 비즈니스회원 정보 -->
 	<resultMap type="BmemberInfo" id="bmemberInfo_rm">
 		<!-- DB의 기본 키 -->
 		<id property="bmemNo" column="MEM_NO"/>
@@ -42,7 +42,7 @@
 	</resultMap>
 	
 	
-	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<!-- 사업자등록증 -->
 	<resultMap type="LicenseImg" id="LicenseImg_rm">
 		<!-- DB의 기본 키 -->
 		<id property="memNo" column="MEM_NO"/>
@@ -55,7 +55,7 @@
 	</resultMap>
 	
 	
-	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<!-- 세션아이디 -->
 	<resultMap type="AutoLogin" id="autologin_rm">
 		<id property="sessionId" column="SESSION_ID"/>
 		
@@ -163,13 +163,27 @@
 	</insert>
 	
 	<!-- SID업데이트 -->
-	<update id="udateSID">
+	<update id="updateSID">
 		UPDATE AUTO_LOGIN SET SESSION_ID = #{sessionId} WHERE MEM_NO = #{mNo}
 	</update>
 	
+	<select id="getProfile" parameterType="ProfileImg" resultMap="profileImg_rm">
+		SELECT *
+		FROM PROFILE_IMG
+		WHERE MEM_NO = #{memberNo}
+	</select>
 	
+	<select id="getCookie" parameterType="AutoLogin" resultMap="autologin_rm">
+		SELECT * 
+		FROM AUTO_LOGIN
+		WHERE SESSION_ID = #{sessionId}
+	</select>
 	
-	
-	
+	<!-- 인터셉터 멤버 -->
+	<select id="getMember" parameterType="Member" resultMap="member_rm">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_NO = #{memberNo}
+	</select>
 	
 </mapper>

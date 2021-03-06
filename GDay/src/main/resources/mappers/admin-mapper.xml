@@ -18,11 +18,93 @@
   		<result property="memberType" column="MEM_TYPE"/>
   		<result property="memberSec" column="MEM_SEC"/>
 	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Report" id="report_rm">
+		<!-- DB의 기본 키 -->
+		<id property="reportNo" column="REP_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="reportType" column="REP_TYPE"/>
+  		<result property="parentNo" column="PARENT_NO"/>
+  		<result property="parentType" column="PARENT_TYPE"/>
+  		<result property="reportTarget" column="REP_TARGET"/>
+  		<result property="reportContent" column="REP_CONTENT"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Product" id="product_rm">
+		<!-- DB의 기본 키 -->
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Magazine" id="magazine_rm">
+		<!-- DB의 기본 키 -->
+		<id property="mgzNo" column="MGZ_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="mgzTitle" column="MGZ_TITLE"/>
+  		<result property="mgzContent" column="MGZ_CONTENT"/>
+  		<result property="mgzCreateDt" column="CREATE_DATE"/>
+  		<result property="mgzReadCnt" column="READ_CNT"/>
+  		<result property="mgzDelStatus" column="DELETE_STATUS"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Customor" id="customor_rm">
+		<!-- DB의 기본 키 -->
+		<id property="cusNo" column="CUS_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="cusContent" column="CUS_CONTENT"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		<result property="curNo" column="CUR_NO"/>
+  		<result property="curContent" column="CUR_CONTENT"/>
+	</resultMap>
 	
-	<!-- 페이징 처리(목록 갯수) -->
-	<select id="getListCount" parameterType="_int" resultType="_int">
+	
+	<!-- 전체회원 페이징 처리(목록 갯수) -->
+	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
+	</select>
+
+	<!-- 블랙리스트 회원 페이징 처리(목록 갯수) -->
+	<select id="getBmListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_GRADE = 'X'
+	</select>
+	
+	<!-- 전체 게시글 페이징 처리(목록 갯수) -->
+	<select id="getListBdCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
+	
+	<!-- 매거진 게시글 페이징 처리(목록 갯수) -->
+	<select id="getListMzCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MAGAZINE
+	</select>
+	
+	<!-- 관리자 고객센터 페이징 처리(목록 갯수) -->
+	<select id="getListAcCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM V_CUSTOMOR
 	</select>
 	
 	<!-- 회원 전체 조회 -->
@@ -32,6 +114,7 @@
 		ORDER BY MEM_NO DESC
 	</select>
 	
+	<!-- 회원 등급 변경 -->
 	<update id="updateMemberGrade" parameterType="map">
 		UPDATE MEMBER SET
 		MEM_GRADE = #{memberGrade}
@@ -39,7 +122,35 @@
 		<foreach collection="memberNo" item="no" open="(" close=")" separator=",">
 			#{no}
 		</foreach>
-		
-		
 	</update>
+	
+	<!-- 블랙리스트 회원 조회 -->
+	<select id="adminBlackMem" parameterType="_int" resultMap="member_rm">
+		SELECT MEM_NO, MEM_EMAIL, MEM_NAME, MEM_TYPE
+		FROM MEMBER
+		WHERE MEM_GRADE = 'X'
+		ORDER BY MEM_NO DESC
+	</select>
+	
+	<!-- 게시글 전체조회 -->
+	<select id="productBoard" parameterType="_int" resultMap="product_rm">
+		SELECT PRDT_NO, PRDT_TYPE, PRDT_NAME, CREATE_DATE, MODIFY_DATE, PRDT_STATUS
+        FROM PRODUCT
+        ORDER BY PRDT_NO DESC
+	</select>
+	
+	<!-- 매거진 전체 조회 -->
+	<select id="adminMagazine" parameterType="_int" resultMap="magazine_rm">
+		SELECT MGZ_NO, MGZ_TITLE, CREATE_DATE, DELETE_STATUS
+        FROM MAGAZINE
+        ORDER BY MGZ_NO DESC
+	</select>
+	
+	<!-- 관리자 고객센터 목록 전체 조회 -->
+	<select id="adminCustomor" parameterType="_int" resultMap="customor_rm">
+		SELECT *
+        FROM V_CUSTOMOR
+        ORDER BY CUS_NO DESC
+	</select>
+	
 </mapper>

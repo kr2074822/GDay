@@ -22,7 +22,7 @@
 	<resultMap type="GOption" id="option_rm">
 		<id property="gOptNo" column="G_OPT_NO"/>
 	
-  	<result property="gOptName" column="G_OPT_NAME"/>
+  		<result property="gOptName" column="G_OPT_NAME"/>
  		<result property="gOptType" column="G_OPT_TYPE"/>
  		<result property="gOptSold" column="G_OPT_SOLD"/>
  		<result property="prdtNo" column="PRDT_NO"/>
@@ -75,13 +75,38 @@
 				#{item.fileLevel} FILE_LEVEL,
 				#{item.prdtNo} PRDT_NO
 			FROM DUAL
-		</foreach>
+		</foreach>   
 		)A
 	</insert>
 	
-	
-	
-	
+	<!-- 선물 옵션 추가 -->
+   <insert id="insertGiftOption" parameterType="map"> <!-- java.util.List == list -->
+      INSERT INTO GIFT_OPTION
+      SELECT SEQ_GOPTNO.NEXTVAL, A.* FROM (
+      
+      <foreach collection="color" item="item" separator=" UNION ALL ">
+         SELECT #{item} G_OPT_NAME,
+                  1 AS G_OPT_TYPE,
+                  'N' G_OPT_SOLD,
+                  #{prdtNo} PRDT_NO
+         FROM DUAL
+      </foreach>
+      )A
+   </insert>
+   
+   <insert id="insertGiftOption2" parameterType="map"> <!-- java.util.List == list -->
+      INSERT INTO GIFT_OPTION
+      SELECT SEQ_GOPTNO.NEXTVAL, A.* FROM (
+      
+      <foreach collection="size" item="item" separator=" UNION ALL ">
+         SELECT #{item} G_OPT_NAME,
+                  1 AS G_OPT_TYPE,
+                  'N' G_OPT_SOLD,
+                  #{prdtNo} PRDT_NO
+         FROM DUAL
+      </foreach>
+      )A
+   </insert>
 	
 	
 </mapper>

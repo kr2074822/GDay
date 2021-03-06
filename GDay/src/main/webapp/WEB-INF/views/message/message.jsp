@@ -94,6 +94,48 @@
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
+    	function selectMessage(getter){
+    		 $.ajax({
+             	url: "${contextPath}/message/msgChat", 
+             	data: {
+             		getter: getter
+             	},
+             	success: function(result){
+             		console.log("성공");
+             		$(".msg_chat").html("");
+             		console.log(result[0].MSG_CONTENT);
+             		
+             		for(let j = 0; j <result.length; j++){
+ 						
+ 						if (result[j].GETTER == "${loginMember.memberNo}") {
+ 	    					var li = $("<li>").addClass("i");
+ 	    					var span = $("<span>").text(result[j].MSG_DATE)
+ 	    					var p = $("<p>").text(result[j].MSG_CONTENT)
+ 	    					
+ 	    					li.append(span).append(p)
+     						
+ 						}else{
+ 							
+ 							var li = $("<li>").addClass("you");
+ 	    					var span = $("<span>").text(result[j].MSG_DATE)
+ 	    					var p = $("<p>").text(result[j].MSG_CONTENT)
+ 	    					
+ 	    					li.append(span).append(p)
+ 						}
+
+     					$(".msg_chat").append(li);
+     					console.log(li)
+ 					}    
+             		 
+             	},
+             	error: function(){
+             		console.log("실패");
+             	}
+             	
+             });
+    	}
+    
+    
         // 팝업
         const popup = document.getElementById('popup');
         var getterNo =0;
@@ -104,50 +146,18 @@
             console.log("${loginMember.memberNo}")
             
             
-            	
-            $.ajax({
-            	url: "${contextPath}/message/msgChat", 
-            	data: {
-            		getter: $(this).next().val()
-            	},
-            	success: function(result){
-            		console.log("성공");
-            		$(".msg_chat").html("");
-            		console.log(result[0].MSG_CONTENT);
-            		
-            		for(let j = 0; j <result.length; j++){
-						
-						if (result[j].GETTER == "${loginMember.memberNo}") {
-	    					var li = $("<li>").addClass("i");
-	    					var span = $("<span>").text(result[j].MSG_DATE)
-	    					var p = $("<p>").text(result[j].MSG_CONTENT)
-	    					
-	    					li.append(span).append(p)
-    						
-						}else{
-							
-							var li = $("<li>").addClass("you");
-	    					var span = $("<span>").text(result[j].MSG_DATE)
-	    					var p = $("<p>").text(result[j].MSG_CONTENT)
-	    					
-	    					li.append(span).append(p)
-						}
-
-    					$(".msg_chat").append(li);
-    					console.log(li)
-					}    
-            		 
-            	},
-            	error: function(){
-            		console.log("실패");
-            	}
-            	
-            });
+           selectMessage(getterNo) ;	
+           console.log($(this).children().eq(0).children().eq(0))
+           $(this).children().eq(0).children().eq(0).removeClass("status");
+           $(this).children().eq(0).children().eq(0).text(" ");
+           $(this).children().eq(0).children().eq(0).addClass("read");
 
             $("#popup").addClass('active')
         });
+        
         function popupToggle(){
             const popup = document.getElementById('popup');
+            
             popup.classList.toggle('active')
         }
         
@@ -164,6 +174,8 @@
             	success: function(result){
             		console.log("성공");
             		$("#myMsg").val("")
+            		
+            		selectMessage(getterNo);
             		
             	},
             	error: function(){

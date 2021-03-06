@@ -50,7 +50,7 @@ public class BSellListSearchDAO {
 	public List<Gift> bSellDaySearchList2(PageInfo9 pInfo, Map<String, Object> map) {
 		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
 
-		RowBounds rowBounds = new RowBounds(offset, 10);
+		RowBounds rowBounds = new RowBounds(offset, 9);
 
 		return sqlSession.selectList("bMemSearchMapper.bSellDaySearchList2", map, rowBounds);
 	}

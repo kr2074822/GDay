@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.BmemberInfo;
 import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
@@ -104,7 +105,23 @@ public class LoginDAO {
 	}
 
 	public int updateSID(Map<String, Object> map) {
-		return sqlSession.update("memberMapper.udateSID", map);
+		return sqlSession.update("memberMapper.updateSID", map);
+	}
+
+	public ProfileImg getProfile(int memberNo) {
+		return sqlSession.selectOne("memberMapper.getProfile", memberNo);
+	}
+
+	/** JSESSION 비교
+	 * @param sessionId
+	 * @return
+	 */
+	public AutoLogin getCookie(String sessionId) {
+		return sqlSession.selectOne("memberMapper.getCookie", sessionId);
+	}
+
+	public Member getMember(int memberNo) {
+		return sqlSession.selectOne("memberMapper.getMember", memberNo);
 	}
 
 

@@ -40,7 +40,7 @@ import team.project.gday.member.model.vo.ProfileImg;
 
 @Controller
 @RequestMapping("/login/*")
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember", "picture"})
 public class LoginController {
 	
 	@Autowired
@@ -73,7 +73,7 @@ public class LoginController {
 			  @RequestParam(value="autoId", required=false) String autoId,
 			  @RequestParam(value="saveBmemId", required=false) String saveBmemId,
 			  @RequestParam(value="bmemAutoLogin", required=false) String bmemAutoLogin,
-			  HttpServletResponse response,
+			  HttpServletResponse response, HttpServletRequest request,
 			  HttpSession session,
 			  Model model) {
 		if (session.getAttribute("loginMember") !=null ){
@@ -81,11 +81,6 @@ public class LoginController {
         }
 
 		
-		System.out.println(saveId);
-		System.out.println(autoId);
-		System.out.println(saveBmemId);
-		System.out.println(bmemAutoLogin);
-		System.out.println(inputMember);
 		Member loginMember = service.loginAction(inputMember);
 		String url = null;
 		
@@ -100,22 +95,20 @@ public class LoginController {
 			
 			Cookie sid = new Cookie("JSESSIONID", session.getId());
 			String sessionId = sid.getValue();
-			System.out.println(sid.getValue());
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("sessionId", sessionId);
 			map.put("mNo", mNo);
-			System.out.println("map" +map);
+			
+			Cookie loginSessionId = new Cookie("loginSessionId", sessionId);
+			
 			int search = service.searchSID(map);
-			System.out.println("search: "+ search);
 			if (search == 0) {
 				int result = service.insertSID(map);
 			} else {
 				// 업데이트
 				int result = service.updateSID(map);
 				
-				
-				System.out.println(result);
 			}
 			
 			
@@ -129,9 +122,11 @@ public class LoginController {
 			
 			if (autoId != null) {
 				autoId_cookie.setMaxAge(60 * 60 * 24 * 30);
+				loginSessionId.setMaxAge(60 * 60 * 24 * 30);
 				
 			}else {
 				autoId_cookie.setMaxAge(0);
+				loginSessionId.setMaxAge(0);
 				
 			}
 			if(saveBmemId != null) { 
@@ -148,11 +143,19 @@ public class LoginController {
 				bmemAutoId_cookie.setMaxAge(0);
 				
 			}
+			
+			cookie.setPath(request.getContextPath());
+			autoId_cookie.setPath(request.getContextPath());
+			bmemCookie.setPath(request.getContextPath());
+			bmemAutoId_cookie.setPath(request.getContextPath());
+			loginSessionId.setPath("/");
+			System.out.println("경로"+request.getContextPath());
 				
 			response.addCookie(cookie);
 			response.addCookie(autoId_cookie);
 			response.addCookie(bmemCookie);
 			response.addCookie(bmemAutoId_cookie);
+			response.addCookie(loginSessionId);
 			
 			
 			if(inputMember.getMemberGrade().equals("B")) {
@@ -162,9 +165,10 @@ public class LoginController {
 				url ="redirect:/";
 			}
 			
-			
-			
-		
+			// 프사 갖고오기
+			ProfileImg picture = service.getProfile(loginMember.getMemberNo());
+
+			model.addAttribute("picture", picture);
 		}else {
 			url = "login/login";
 		}
@@ -177,8 +181,16 @@ public class LoginController {
 	
 	// 로그아웃
 	@RequestMapping("logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpServletResponse response) {
 		status.setComplete();
+		
+		Cookie loginSessionId = new Cookie("loginSessionId", null);
+		loginSessionId.setPath("/");
+		System.out.println("-------");
+		System.out.println(loginSessionId.getValue());
+		System.out.println("-------");
+		loginSessionId.setMaxAge(0);
+		response.addCookie(loginSessionId);
 		
 		return "redirect:/";
 	}
@@ -232,10 +244,10 @@ public class LoginController {
 	// 일반 회원 가입
 	@RequestMapping("signUp")
 	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop) {
-		System.out.println(member);
 		int result = service.signUp(member, bmemShop);
 		if (result > 0) {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+			result = 0;
 			result = service.insertImg(image, savePath, member) ;
 
 		}

@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import team.project.gday.member.model.vo.AutoLogin;
 import team.project.gday.member.model.vo.BMember;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 
 public interface LoginService {
 
@@ -89,6 +91,24 @@ public interface LoginService {
 	public abstract int insertSID(Map<String, Object> map);
 
 	public abstract int updateSID(Map<String, Object> map);
+
+	/** 프사 갖고오기
+	 * @param memberNo
+	 * @return 
+	 */
+	public abstract ProfileImg getProfile(int memberNo);
+
+	/** JSESSION 비교
+	 * @param sessionId
+	 * @return
+	 */
+	public abstract AutoLogin getCookie(String sessionId);
+
+	/** 인터셉터에서 불러오기
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract Member getMember(int memberNo);
 
 
 

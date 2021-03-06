@@ -22,7 +22,7 @@ div h3{
 #adminMember-search, #adminMember-Application, 
 #report-search, #report-Application,
 #adminBoard-search, #adminBoard-Application,
-#adminCus-search, #report-search, #report-Application {
+#adminCus-search, #report-search, #report-Application, #Magazine-Add {
 	float: right;
 	padding-top: 12px;
 	padding-bottom: 12px;
@@ -57,6 +57,35 @@ button {
 #sk, #adminMember-ap, #board-ap, #board-se, #adminCus-se, 
 #report-ap, #search {
 	padding: 5px;
+}
+
+.pagination li{
+	display: inline-block;
+	aling: center;
+} 
+
+.pagination li a{
+	display:inline-block;
+	margin:0 auto;
+	border:1px solid #FE929F;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#FE929F;
+	font-size:13px;
+	color:white;
+	text-decoration:none;
+} 
+
+.noteSelected{
+	background-color:#fff !important;
+	color:black !important;
+	border:1px solid #FE929F !important;
+}
+.pagination{
+	margin-top: 50px;
+	text-align:center;
 }
 
 @media(max-width: 768px){

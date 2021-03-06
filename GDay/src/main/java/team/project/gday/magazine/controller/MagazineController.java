@@ -152,7 +152,7 @@ public class MagazineController {
 		
 		
 		
-		return "magazine/magazine";
+		return "redirect:list";
 	}
 	
 	// summernote에 업로드된 이미지 저장 Controller

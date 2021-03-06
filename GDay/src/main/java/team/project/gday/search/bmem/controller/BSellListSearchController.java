@@ -64,6 +64,7 @@ public class BSellListSearchController {
 		model.addAttribute("gList", gList);
 		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("day", day);
+		model.addAttribute("selectDay", selectDay);
 		
 		return "mypage/bMemPage/bSellList";
 	}
@@ -93,6 +94,14 @@ public class BSellListSearchController {
 		PageInfo9 pInfo = service.getSellPageInfo2(cp, map);		
 		
 		List<Gift> gList = service.bSellDaySearchList2(pInfo, map);
+		
+		if(gList != null && !gList.isEmpty()) { // 게시글 목록 조회 성공 시
+			List<Attachment> bSellSearchThumbnailList = service.bSellSearchThumbnailList(gList);
+			
+			if(bSellSearchThumbnailList != null) {
+				model.addAttribute("thList", bSellSearchThumbnailList);
+			}
+		}
 		
 		model.addAttribute("gList", gList);
 		model.addAttribute("pInfo", pInfo);
