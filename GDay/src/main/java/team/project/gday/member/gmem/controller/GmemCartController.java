@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,26 +50,38 @@ public class GmemCartController {
 		
 		return "mypage/gMemPage/gMemCart";
 	}
-	
+		
 	
 	// 클래스 장바구니에 추가 Controller
 	@RequestMapping("memberClassCart")
 	@ResponseBody
 	public int memberClassCart(@RequestParam("prdtNo") int prdtNo,
 							   @RequestParam("amount") int amount,
-							   @RequestParam("imgPath") String imgPath,
 							   @ModelAttribute("loginMember") Member loginMember,
 							   Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("prdtNo", prdtNo);
 		map.put("amount", amount);
-		map.put("imgPath", imgPath);
 		map.put("memberNo", loginMember.getMemberNo());
 		
 		int result = service.insertClassCart(map);
 		
 		return result;
+	}
+	
+	
+	// 장바구니에서 제거 Controller
+	@RequestMapping("deleteCart/{cartNo}")
+	@ResponseBody
+	public int deleteCart(@ModelAttribute("loginMember") Member loginMember,
+						      @PathVariable("cartNo") int cartNo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("cartNo", cartNo);
+			
+		return service.deleteCart(map);
 	}
 	
 }

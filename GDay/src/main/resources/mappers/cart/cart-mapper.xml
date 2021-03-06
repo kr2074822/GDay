@@ -53,4 +53,13 @@
 		WHERE NOT EXISTS (SELECT 0 FROM BAGUNI WHERE PRDT_NO = #{prdtNo})
 	</insert>
 	
+	
+	
+	<!-- 장바구니에서 상품 제거 -->
+	<delete id="deleteCart" parameterType="map">
+		DELETE FROM BAGUNI
+		WHERE MEM_NO = #{memberNo}
+		AND CART_NO = #{cartNo}
+	</delete>
+	
 </mapper>

@@ -40,7 +40,8 @@
 						<c:if test="${cartItem.prdtType eq 'G' }">	
 							<li class="cart-content">
 								<i class="cancle-icon fas fa-times"></i>
-								<input type="checkbox"/>
+								<input type="text" class="hidden-input" value="${cartItem.cartNo}"/>
+								<input type="checkbox" class="product-check"/>
 								<div class="img-box"> 
 									<c:forEach items="${thList}" var="th">
 										<c:if test="${th.prdtNo == cartItem.prdtNo}">								
@@ -70,7 +71,8 @@
 						<c:if test="${cartItem.prdtType eq 'C' }">	
 							<li class="cart-content">
 								<i class="cancle-icon fas fa-times"></i>
-								<input type="checkbox"/>
+								<input type="text" class="hidden-input" value="${cartItem.cartNo}"/>
+								<input type="checkbox" class="product-check"/>
 								<div class="img-box"> 
 									<c:forEach items="${thList}" var="th">
 										<c:if test="${th.prdtNo == cartItem.prdtNo}">								
@@ -98,7 +100,7 @@
 				<span>&nbsp;결제 예정 금액</span>
 				<br/>
 				<div id="price-text">
-					<span>$</span> <span>10000원</span>
+					<span>$</span> <span id="priceSum"></span>
 				</div>			
 			</div>
 			
@@ -114,7 +116,21 @@
 <script>
 	/* 장바구니 취소 버튼(X) */
 	$(".cancle-icon").on("click", function() {
-		console.log("x버튼 클릭 확인");
+		var cartNo = $(this).next().val();
+		
+		if(window.confirm("장바구니에서 삭제하시겠습니까?")) {
+			$.ajax({
+				url : "${contextPath}/cart/deleteCart/" + cartNo,
+				success : function(result) {
+					if(result > 0) {
+/* 						window.alert("삭제 되었습니다."); */
+					}
+				}, error : function() {
+					
+				}
+			});
+		}
+		
 	});
 	
 	/* 장바구니 상품 수량 버튼(+,-) */
@@ -139,6 +155,22 @@
 	$("#class-btn").on("click", function() {
 		$("#gift-list-area").css("display", "none");		
 		$("#class-list-area").css("display", "block");	
+	});	
+	
+	/* 주문하기 영역 */
+	var checkAry = [];
+ 		
+	$(".product-check").on("change", function() {
+		if($(this).is(":checked")) {
+			checkAry.push($(this).parent().next().next().text());
+			
+		} else {
+			for(var i = 0; i < opAry.length; ++i) {
+				if(checkAry[i] == $(this).parent().next().next().text()) {
+					checkAry.splice(i, 1);
+				}
+			} 		
+		}
 	});	
 	
 </script>
