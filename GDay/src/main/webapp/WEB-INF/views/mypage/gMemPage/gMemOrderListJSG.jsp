@@ -6,8 +6,8 @@
 <script>
 
 var memberNo = "${loginMember.memberNo}";
-var cp = "${cp}";
-
+var cp;
+var periodRadio;
 var listContainer;
 var maxPage; //최대 페이지
 
@@ -19,11 +19,10 @@ $(document).ready(function(){//ready 함수
 	(function(){
 	
 		$("#7days").click();
+		cp = 1;//첫 페이지
+
 		console.log(cp);
-		
-		if(cp == ""){
-			cp = 1;//첫 페이지
-		}
+
 		for(var i=0; i<cp; i++){ 
 			//목록, 이전으로 버튼으로 돌아온 경우
 			selectOrderList(cp); 
@@ -38,8 +37,9 @@ $(document).ready(function(){//ready 함수
 	});
 	
 	//더보기 버튼 클릭
-	$("#btn-more").on("click", function(){
+	$(".btn-more").on("click", function(){
 		cp = cp + 1;
+		console.log(cp);
 		selectOrderList(cp);
 	});
 
@@ -50,7 +50,7 @@ $(document).ready(function(){//ready 함수
 function selectOrderList(cp){
 	var periodStart = $("#periodStart").val();//조회 시작일
 	var periodEnd = $("#periodEnd").val();//조회 마지막일
-	periodRadio = $("input=[name='periodRadio]").val();
+	periodRadio = $("input[name='periodRadio']").val();
 	
 	var statusNo = $("#giftStatus").val();//상태
 	

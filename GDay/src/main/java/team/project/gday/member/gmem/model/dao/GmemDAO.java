@@ -31,6 +31,7 @@ public class GmemDAO {
 	 * @return
 	 */
 	public int orderListCount(Map<String, Object> map) {
+		System.out.println("dao map : " +  map);
 		return sqlSession.selectOne("gMemMapper.orderListCount", map);
 	}
 

@@ -16,7 +16,13 @@ $(document).ready(function(){//ready 함수
 	
 //기본 화면 결제일 기간 : 일주일 / 전체  + list 초기화
 (function(){
+	
+	$("#7days").click();
 
+	cp=1;
+
+	console.log(cp);
+	
 	loadTab(cp); //로드 탭
 
 })();	
@@ -29,8 +35,9 @@ $("#list-search-btn").on("click", function(){
 });
 
 //더보기 버튼 클릭
-$("#btn-more").on("click", function(){
+$(".btn-more").on("click", function(){
 	cp = cp + 1;
+	console.log(cp);
 	selectOrderList(cp);
 });
 
@@ -44,8 +51,8 @@ function selectOrderList(cp){
 	var periodEnd = $("#periodEnd").val();//조회 마지막일
 	
 	var statusNo = $("#giftStatus").val();//상태
-	
-	periodRadio = $("input=[name='periodRadio]").val();
+	 
+	periodRadio = $("input[name='periodRadio']").val();
 	
 	tabMenu = $(".tab-active").prev().val();
 	
@@ -53,7 +60,7 @@ function selectOrderList(cp){
 		statusNo = 800;
 	}
 	
-	listContainer = $("#" + presentTab);
+	listContainer = $("#" + tabMenu);
 	
 	if(cp <= 1){
 		listContainer.html("");
@@ -185,8 +192,8 @@ function selectOrderList(cp){
 				var div = $("<div>").addClass('no-list');
 				
 				var msg;
-				if(presentTab == "readyClass") msg = "😥수강 내역이 없습니다😥";
-				else if(presentTab == "endClass") msg = "😥수강 완료 내역이 없습니다😥";
+				if(tabMenu == "readyClass") msg = "😥수강 내역이 없습니다😥";
+				else if(tabMenu == "endClass") msg = "😥수강 완료 내역이 없습니다😥";
 				
 			
 				var span = $("<span>").addClass('no-list-text').text();		
@@ -216,14 +223,6 @@ function selectOrderList(cp){
 
 //처음 화면 로딩 + tab 클릭시 진행되는 함수
 function loadTab(cp){
-	
-	$("#7days").click();
-	
-	console.log(cp);
-	
-	if(cp = ""){
-		cp = 1;
-	}
 	
 	for(var i=0; i<cp; i++){ 
 		//목록, 이전으로 버튼으로 돌아온 경우

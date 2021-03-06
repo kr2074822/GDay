@@ -16,7 +16,6 @@ public class ListCondition {
 	}
 	
 	
-	
 	public int getCp() {
 		return cp;
 	}

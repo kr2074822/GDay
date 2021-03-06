@@ -116,8 +116,12 @@
         </div>
 
 
+        <%-- 북마크나 주소로 인한 직접 접근 시 목록으로 버튼 경로 지정 --%>
+				<c:if test="${empty sessionScope.returnViewURL}">
+					<c:set var="returnViewURL" value="${contextPath}/gMember/orderView/C/${order.orderNo}" scope="session"/>
+				</c:if>
         <div class="wrap-btn">
-        <button type="button" class="rf-btn goback-btn">이전으로</button>
+        <button type="button" class="rf-btn goback-btn" onclick="location.href=${returnListURL}">이전으로</button>
         <button type="submit" class="rf-btn sumbit-btn">취소 요청</button>
         </div>
     </form>
@@ -144,6 +148,12 @@ function returnValidate(){
 			return false;
 		}
 }
+
+$(function(){
+	$(".goback-btn").on("click", function(){
+		location.href = "${returnViewURL}";
+	});
+});
 
 
 </script>

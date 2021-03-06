@@ -100,8 +100,7 @@
 	<select id="orderListCount" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM ${view}
 		WHERE PRDT_TYPE = #{type}
-		AND (ORDER_DATE BETWEEN TO_DATE(#{start}, 'YYYY/MM/DD HH24:MI:SS') 
-						AND TO_DATE(#{end}, 'YYYY/MM/DD HH24:MI:SS')+1)
+ 		AND (ORDER_DATE BETWEEN #{start} AND #{end}+1) 
 		AND BUYER_NO = #{memberNo}
 		
 		<if test="status.size() > 0">
@@ -116,8 +115,7 @@
 	<select id="selectOrderList" parameterType="map" resultMap="order_rm">
 		SELECT * FROM ${view}
 		WHERE PRDT_TYPE = #{type}
-		AND (ORDER_DATE BETWEEN TO_DATE(#{start}, 'YYYY/MM/DD HH24:MI:SS') 
-						AND TO_DATE(#{end}, 'YYYY/MM/DD HH24:MI:SS')+1)
+		AND (ORDER_DATE BETWEEN #{start} AND #{end}+1)
 		AND BUYER_NO = #{memberNo}
 		<if test="status.size() > 0">
 			AND STATUS_NO IN
