@@ -14,11 +14,10 @@ import team.project.gday.review.model.vo.Review;
 public interface GmemService {
 
 	/** 페이지 인포
-	 * @param cp
 	 * @param map
 	 * @return pInfo
 	 */
-	public abstract PageInfo9 getPageInfo(int cp, Map<String, Object> map);
+	public abstract PageInfo9 getPageInfo(Map<String, Object> map);
 	
 	/** 주문 목록 조회
 	 * @param pInfo 

@@ -162,7 +162,13 @@
                 <input type="text" name="newAddr" value="${order.shipAddr}" class="cancel-hidden"/>
             </div>
         </div> 
-  	</c:if>	      
+  	</c:if>
+  	
+  	
+  	    <%-- 북마크나 주소로 인한 직접 접근 시 목록으로 버튼 경로 지정 --%>
+				<c:if test="${empty sessionScope.returnViewURL}">
+					<c:set var="returnViewURL" value="${contextPath}/gMember/orderView/G/${order.orderNo}" scope="session"/>
+				</c:if>	      
         <div class="wrap-btn">
         <button type="button" class="rf-btn goback-btn">이전으로</button>
         <button type="submit" class="rf-btn sumbit-btn">신청</button>
@@ -200,6 +206,10 @@
 			$("input[name='address1']").val(basicAddr1);
 			$("input[name='address2']").val(basicAddr2);
 			
+		});
+		
+		$(".goback-btn").on("click", function(){
+			location.href = "${returnViewURL}";
 		});
 		
 	 });//레디함수 끝

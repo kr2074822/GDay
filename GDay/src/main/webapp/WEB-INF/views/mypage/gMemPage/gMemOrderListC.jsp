@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>클래스 리스트</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.5">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css?ver=1.8">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css?ver=1.6">
 
     <!-- icon : font-awesome -->

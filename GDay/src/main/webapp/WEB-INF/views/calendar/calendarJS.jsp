@@ -105,7 +105,7 @@ $(function(){
 							type : "post",
 							success : function(responseCode){
 								if(responseCode == 0 || responseCode == 400) {
-									swal.fire({icon: "warning", text :"오늘은 알림 문자를 할 기념일이 없습니다.", confirmButtonColor: "#54b39E"});
+									swal.fire({icon: "warning", text :"오늘은 알림 문자를 할 기념일이 없거나<br>올바른 전화번호가 아닙니다.", confirmButtonColor: "#54b39E"});
 								} else if(responseCode == 202){
 									swal.fire({icon: "success", title:"알림 문자 발송 완료!", text:"잠시만 기다려 주세요.", confirmButtonColor: "#54b39E"});
 								} else {

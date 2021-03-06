@@ -172,11 +172,6 @@
             </div>
         </div>
 
-				<%-- 북마크나 주소로 인한 직접 접근 시 목록으로 버튼 경로 지정 --%>
-				<c:if test="${empty sessionScope.returnListURL}">
-					<c:set var="returnListURL" value="../../orderList/C" scope="session"/>
-				</c:if>
-        <a href="${sessionScope.returnListURL}" class="btn-gotolist btn-view">목록</a>
     </div>
 </div>
 

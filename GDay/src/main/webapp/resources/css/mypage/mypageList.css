@@ -166,6 +166,8 @@ a { text-decoration: none;}
     text-decoration: none;
 }
 
+
+.btn-more:focus {color : #FE929F;}
 .btn-more {
     width : 200px;
     height : 50px;
@@ -174,9 +176,8 @@ a { text-decoration: none;}
     font-size : 30px;
     border : 1px solid #FE929F;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align : center;
+    line-height : 48px;
     margin-top : 20px;
     display: none;
 }

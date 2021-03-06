@@ -24,9 +24,10 @@ public class GmemServiceImpl implements GmemService {
 
 	//pInfo 생성service 구현
 	@Override
-	public PageInfo9 getPageInfo(int cp, Map<String, Object> map) {
+	public PageInfo9 getPageInfo(Map<String, Object> map) {
 		
 		String view = (String)(map.get("view"));
+		System.out.println("view: " +  view);
 		
 		int listCount = 0;
 		
@@ -38,7 +39,7 @@ public class GmemServiceImpl implements GmemService {
 		
 		System.out.println("listCount: " + listCount);
 		
-		return new PageInfo9(cp, listCount);
+		return new PageInfo9((Integer)map.get("cp"), listCount);
 	}
 	
 	//--------------------------------------------------------------------------------------

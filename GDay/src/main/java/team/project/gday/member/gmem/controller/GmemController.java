@@ -69,6 +69,7 @@ public class GmemController {
 		map.put("memberNo", memberNo);
 		map.put("start", listCd.getPeriodStart());		
 		map.put("end", listCd.getPeriodEnd());
+		map.put("cp", listCd.getCp());
 		
 		List<Integer> status = new ArrayList<Integer>();
 		
@@ -94,8 +95,8 @@ public class GmemController {
 		
 		
 		//pInfo 구하기
-		PageInfo9 pInfo = service.getPageInfo(listCd.getCp(), map);
-		pInfo.setLimit(10);
+		PageInfo9 pInfo = service.getPageInfo(map);
+		pInfo.setLimit(5);
 		
 		//System.out.println("pInfo: "+ pInfo);
 		
