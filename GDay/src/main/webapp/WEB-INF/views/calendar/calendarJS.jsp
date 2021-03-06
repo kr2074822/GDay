@@ -4,6 +4,11 @@
 <!-- calendar.jsp에 사용되는 js 모음 -->
 <!-- el 사용을 위해 jsp로 생성 -->
 <script>
+
+var memberNo = "${loginMember.memberNo}";
+var memberNick = "${loginMember.memberNick}";
+var memberPhone = "${loginMember.memberPhone}";
+
 //ready함수
 $(function(){
 	//목록 조회 + 풀캘린더 로드
@@ -78,12 +83,47 @@ $(function(){
 	  updateEventForm(no);
   });
   
+  /* 기념일 문자 보내기 */
+  $(".btn-temp").on("click", function(){
+	  swal.fire({icon:"question", 
+				title: "기념일 날짜와 휴대폰 번호를 확인하셨습니까?",
+				html: "<br><b>Gday의 알림 문자</b>는 <b style='color:#FF0000;'> 기념일 당일, 기념일 7일 전,<br>기념일 14일 전, 기념일 30일 전</b>일 경우에만 발송됩니다.<br>"
+							+ "또한, 내정보에 기입되어 있는 휴대폰 번호가 정확하지 않으면<br>정상적으로 문자가 발송되지 않습니다.<br><br>"
+							+ "<b style='font-size:24px;'>문자를 발송하시겠습니까?</b>",
+				showCancelButton: true,
+				width : 740,
+				confirmButtonText: "문자 발송",
+				confirmButtonColor: "#54b39E",
+				cancelButtonText: "취소",
+				cancelButtonColor: "#a9a9a9",
+				reverseButtons: true//버튼 위치 바꾸기
+				}).then((result) => {
+					if(result.isConfirmed){
+						$.ajax({
+							url : "${contextPath}/calendar/getTargetDt",
+							data : {"memberNo" : memberNo},
+							type : "post",
+							success : function(responseCode){
+								if(responseCode == 0 || responseCode == 400) {
+									swal.fire({icon: "warning", text :"오늘은 알림 문자를 할 기념일이 없습니다.", confirmButtonColor: "#54b39E"});
+								} else if(responseCode == 202){
+									swal.fire({icon: "success", title:"알림 문자 발송 완료!", text:"잠시만 기다려 주세요.", confirmButtonColor: "#54b39E"});
+								} else {
+									swal.fire({icon: "error", text :"알림 문자 발송 과정에서 오류가 발생했습니다.", confirmButtonColor: "#54b39E"});
+								}
+							},
+							error : function(){
+								console.log("기념일 문자 발송 중 문제 발생");
+							}
+						});
+					} 
+				});
+  });
+  
+  
+  
 
 });//레디 함수 끝---------------------------------------------------------------------
-
-var memberNo = "${loginMember.memberNo}";
-var memberNick = "${loginMember.memberNick}";
-var memberPhone = "${loginMember.memberPhone}";
 
 //풀캘린더 로드 메소드
 function loadFullCalendar(events){
@@ -186,7 +226,7 @@ function loadFullCalendar(events){
   
 //캘린더 기념일 목록 조회
 function selectCalendarList(loadFullCalender){
-	console.log("memberNo : " + memberNo);
+	//console.log("memberNo : " + memberNo);
 	  
 	   $.ajax({
 	       url : "${contextPath}/calendar/selectCalendarList",
@@ -194,7 +234,7 @@ function selectCalendarList(loadFullCalender){
 	       dataType : "json",
 	       data : { "memberNo" : memberNo }, /* memberId */
 	       success : function(eList){ 
-	    	   console.log("success");
+	    	  // console.log("success");
 	    	   var events = [];
 	    	   $.each(eList, function(index, item){
 	               var event = {

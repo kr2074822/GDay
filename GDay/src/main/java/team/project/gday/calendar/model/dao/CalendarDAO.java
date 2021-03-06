@@ -54,5 +54,14 @@ public class CalendarDAO {
 		return sqlSession.delete("calendarMapper.deleteEvent", gdayNo);
 	}
 
+	
+	/** dtUntil이 오늘 날짜보다 이상인 경우인 기념일 가져오기
+	 * @param memberNo 
+	 * @return
+	 */
+	public List<Calendar> getOriginList(int memberNo) {
+		return sqlSession.selectList("calendarMapper.selectTarget", memberNo);
+	}
+
 
 }

@@ -1,19 +1,26 @@
 package team.project.gday.calendar;
 
+import java.net.HttpURLConnection;
 import java.util.List;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import team.project.gday.calendar.model.service.CalendarService;
 import team.project.gday.calendar.model.vo.Calendar;
+import team.project.gday.common.scheduling.SendSMSbyN;
 
 @Controller
 @RequestMapping("/calendar/*")
@@ -96,14 +103,22 @@ public class CalendarController {
 	}
 	
 	
-	//
+	//기념일에 맞춰서 문자 보내기 : 임시로 버튼 만들어놓음 -> 원래는 스케줄링으로 함
+	@ResponseBody
 	@RequestMapping("getTargetDt")
-	public String getTargetDt() {
+	public int getTargetDt(@RequestParam("memberNo") int memberNo) {
 		
+		List<Calendar> targetList = service.getMemTarget(memberNo);
 		
+		int responseCode = 0;
 		
+		if (targetList != null) {
+			SendSMSbyN sendSms = new SendSMSbyN();
 		
-		return "calendar/calendar";
+			responseCode = sendSms.sendSMS(targetList);
+		}
+
+		return responseCode;
 	}
 	
 	

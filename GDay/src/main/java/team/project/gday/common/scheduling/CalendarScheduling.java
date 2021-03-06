@@ -1,10 +1,13 @@
 package team.project.gday.common.scheduling;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import team.project.gday.calendar.model.service.CalendarService;
+import team.project.gday.calendar.model.vo.Calendar;
 
 @Component
 public class CalendarScheduling {
@@ -52,20 +55,29 @@ public class CalendarScheduling {
 	 */
 	
 	@Autowired
-	private CalendarService calService;
+	private CalendarService service;
 	
-	
-	//매일 8시에 기념일 보내기
-	@Scheduled(cron="0 0 10 * * *") //매일 오전 10시에 발송 0 0 10 * * *
-	public void sendGdayMsg() {
+	//문자 발송비를 아끼기 위해 스케줄링은 잠시 주석처리 ^_<
+	//매일 9시에 기념일 보내기
+	//@Scheduled(fixedRate=300000)//5분마다 확인 : 임시 확인용
+	//@Scheduled(cron="0 0 9 * * *") //매일 오전 10시에 발송 0 0 10 * * *
+/*	public void sendGdayMsg() {
 		
+		List<Calendar> targetList = service.getTargetList();
+		
+		int responseCode = 0;
+		
+		if (targetList != null) {
+			SendSMSbyN sendSms = new SendSMSbyN();
+		
+			responseCode = sendSms.sendSMS(targetList);
+		}
+		
+		if(responseCode == 0 || responseCode == 400) System.out.println("문자를 발송할 기념일이 존재하지 않습니다.");
+		else if(responseCode == 202) System.out.println("문자 발송 완료");
+		else System.out.println("문자 발송 중 에러 발생");
 	}
-	
-	//캘린더 리스트 가져와서 모든 기념일 계산
-	//주기로 조건걸어서 기념일 계산(DB는 최초 등록일만 저장되어 있음)
-	
-	//계산한 기념일 -30 -7 당일에 문자 보내기
-	
+*/	
 	
 
 	

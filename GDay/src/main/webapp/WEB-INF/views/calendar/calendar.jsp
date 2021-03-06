@@ -27,7 +27,7 @@
 
 <!-- calendar자체 css / js -->
 <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=2.0"/>
-<link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css"/>
+<link rel="stylesheet" href="${contextPath}/resources/css/calendar/calendar.css?ver=1.1"/>
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
 </head>
@@ -40,9 +40,9 @@
 
  <div id="cal-wrapper">
     <div id='calendar'></div>
-  </div>
+</div>
 
-<a href="${contextPath}/calendar/getTargetDt">날짜 계산 확인용</a>
+<div class="temp"><a class="btn-temp">기념일 알림 문자 지금 경험해보기</a></div>
 
 <!-- 모달창1 : 등록 모달창 -->
 <div class="modal-cover">
