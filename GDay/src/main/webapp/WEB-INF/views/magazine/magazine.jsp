@@ -32,18 +32,18 @@
 			<c:forEach var="magazine" items="${mList}" varStatus="vs">
 
 		        <div class="card">
-		            <div class="imgBx" data-text="제목">
 			            <c:forEach items="${mThumbList }" var="imgList">
 							<c:if test="${imgList.mgzNo == magazine.mgzNo}">
-			                	<img src="${contextPath}${imgList.imgPath}/${imgList.imgName}" alt="">
+			            		<div class="imgBx" data-text="${magazine.mgzTitle}">
+				                	<img src="${contextPath}${imgList.imgPath}/${imgList.imgName}" alt="">
+			            		</div>
 			                </c:if>
 						</c:forEach>
-		            </div>
 		            <div class="content">
 		            
 						
 		                <div>
-		                    <h3>제목 ${magazine.mgzTitle}${magazine.mgzNo}</h3>
+		                    <h3>${magazine.mgzTitle}</h3>
 		                    <p>
 		                    
 		                    </p>
