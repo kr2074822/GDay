@@ -1,0 +1,52 @@
+/* SECTION */
+section{
+    width: 80%;
+    margin: 0 auto;
+}
+section .magazine_wrapper{
+    margin-top: 200px;
+}
+section .magazine_wrapper .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+    /* border-bottom: 1px solid #999; */
+}
+section .magazine_wrapper .title h1{
+    font-size: 34px;
+    
+}
+section .magazine_wrapper .title a{
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    color: #1d1d1d;
+}
+section .magazine_wrapper .title a:hover{
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, .7);
+
+}
+section .magazine_wrapper .magaine_title{
+    border-top: 2px solid #fe929f;
+    padding: 40px 80px;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section .magazine_wrapper .magaine_title h1{
+    font-size: 24px;
+}
+section .magazine_wrapper .magaine_title p{
+    color: #999;
+    font-size: 12px;
+}
+section .magazine_wrapper .magaine_title p span{
+    padding: 0 7px 0 0;
+}
+section .magazine_wrapper .magazine_content{
+    border-top: 1px solid #999;
+    margin-bottom: 200px;
+    padding: 20px 0;
+}

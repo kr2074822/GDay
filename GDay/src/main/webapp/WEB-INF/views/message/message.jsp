@@ -24,9 +24,8 @@
 	            <c:if test="${empty msgList }">
 					<h1>받은 쪽지가 없습니다.</h1>
 				</c:if>
-                <c:forEach var="message" items="${msgList}">
-	                <ul>
-	                		
+	            <ul>
+                	<c:forEach var="message" items="${msgList}">
 		                    <li>
 		                        <div class="msg_item">
 		                            <div class="top">
@@ -47,8 +46,8 @@
 		                        </div>
 		                        <input type="hidden" value=" ${message.you}">
 	                    	</li>
-	                </ul>
-                </c:forEach>
+                	</c:forEach>
+	            </ul>
             </div>
         </div>
 

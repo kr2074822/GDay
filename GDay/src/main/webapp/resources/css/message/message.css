@@ -40,6 +40,7 @@ section {
 .message_wrapper .msg_list ul li{
     border-top: 1px solid #999;
     padding: 20px;
+    background: #fff;
 }
 .message_wrapper .msg_list ul li:nth-child(1){
     border: none;

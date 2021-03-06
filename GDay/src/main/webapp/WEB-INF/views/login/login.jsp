@@ -237,11 +237,6 @@
 		                            		// 로그아웃 및 연결끊기
 		                            		
 		                            		
-		                 /*            		Kakao.Auth.logout(function() {
-		                            			  console.log(Kakao.Auth.getAccessToken());
-		                            			});        		
-		                            		
-		                            		
 		                            		
 		                            		
 		                            		
@@ -251,13 +246,22 @@
 		                            			  url: '/v1/user/unlink',
 		                            			  success: function(response) {
 		                            			    console.log(response);
+		                            			  	console.log("성공1")
 		                            			  },
 		                            			  fail: function(error) {
 		                            			    console.log(error);
 		                            			  },
 		                            			});
 		                            		
-         */
+		                              		Kakao.Auth.logout(function() {
+		                            			  console.log(Kakao.Auth.getAccessToken());
+		                            			  Kakao.Auth.logout();
+		                            			  console.log("성공2")
+		                            			});
+		                              		Kakao.Auth.logout()
+		                            		
+		                            		 
+         
     </script>
 </body>
 </html>
