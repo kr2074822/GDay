@@ -152,6 +152,18 @@ public class BmemController {
 		return "mypage/bMemPage/bMemUpdate";
 	}
 	
+	//비즈니스 비밀번호 변경 이동
+	@RequestMapping("bMemPwdUpdateForm")
+	public String bMemPwdUpdateForm() {
+		return "mypage/bMemPage/bMemUpdate";
+	}
+	
+	//비즈니스 회원 탈퇴 이동
+	@RequestMapping("bMemSessionUpdate")
+	public String bMemSessionUpdate() {
+		return "mypage/bMemPage/bMemUpdate";
+	}
+	
 	
 	
 	

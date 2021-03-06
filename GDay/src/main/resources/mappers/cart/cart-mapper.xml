@@ -12,10 +12,17 @@
   		<result property="prdtType" column="PRDT_TYPE"/>
 	</resultMap>
 	
+	<!-- 장바구니 조회 -->
+	<select id="selectBaguni" parameterType="_int" resultMap="cart_rm">
+		SELECT * FROM BAGUNI
+		WHERE MEM_NO = #{memberNo};
+	</select>
+	
 	<!-- 클래스 장바구니에 추가 -->
 	<insert id="insertClassCart" parameterType="map">
-		INSERT INTO BAGUNI
-		VALUES(SEQ_BGNNO.NEXTVAL, #{amount}, #{prdtNo}, #{memberNo}, null ,'C', #{price})
+		INSERT INTO BAGUNI(CART_NO, CART_AMOUNT, PRDT_NO, MEM_NO, G_OPT_NO ,PRDT_TYPE, PRDT_PRICE)
+		SELECT SEQ_BGNNO.NEXTVAL, #{amount}, #{prdtNo}, #{memberNo}, null ,'C', #{price} FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM BAGUNI WHERE PRDT_NO = #{prdtNo})
 	</insert>
 	
 </mapper>

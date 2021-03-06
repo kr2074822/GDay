@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,23 +30,29 @@
 		<!-- 선물 부분 -->
 		<div id="gift-list-area">
 			<ul id="cart-list">
+				<c:if test="${empty bList}">
+					장바구니가 비어있습니다.
+				</c:if>
 				<li><input type="checkbox" style="margin-bottom: 10px;"/>&nbsp; 전체 선택</li>
-				<li class="cart-content">
-					<i class="cancle-icon fas fa-times"></i>
-					<input type="checkbox"/>
-					<div class="img-box"> <img/> </div>					
-					<span class="product-name">상품명</span>
-					<span>[선물 옵션]</span>
-					<div class="acount-area">
-						<button class="plus-btn">-</button>
-						<input type="text" value="1" readonly />
-						<button class="minus-btn">+</button>
-					</div>
-				</li>
+				<c:if test="${!empty bList}">
+					<c:forEach var="cartItem" items="${bList}" varStatus="vs">				
+						<li class="cart-content">
+							<i class="cancle-icon fas fa-times"></i>
+							<input type="checkbox"/>
+							<div class="img-box"> <img/> </div>					
+							<span class="product-name">${cartItem.p }</span>
+							<span>${cartItem.gOptNo}</span>
+							<div class="acount-area">
+								<button class="plus-btn">-</button>
+								<input type="text" value="${cartItem.cartAmount}" readonly />
+								<button class="minus-btn">+</button>
+							</div>
+						</li>
+					</c:forEach>	
+				</c:if>
+				
 			</ul>	
-		</div>
-		
-		
+		</div>				
 		
 		
 		<!-- 클래스 부분 -->
