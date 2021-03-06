@@ -150,6 +150,53 @@ section .gift_wrapper form .gift_info .priceBtn .option_btn a:nth-child(3){
     background: #fe929f;
     border: 1px solid #fe929f;
 }
+
+
+
+/* ========================================================================== */
+/* 장바구니 버튼 */
+.cart {
+   margin-bottom: 5px;
+   width: 105%;
+   display: inline-block;
+   background: #999;
+   font-size: 100%;
+   padding: 10px;
+   text-align: center;
+   border: 1px solid #999;
+   color: #fff;
+   transition: .5s;
+}
+ 
+.cart:hover {
+   cursor: pointer;
+   transition: .5s;
+   border-radius: 10px;
+}
+
+
+/* 주문하기 버튼 */
+.order {
+	width: 105%;
+	display: inline-block;
+	background: #fe929f;
+	font-size: 100%;
+	padding: 10px;
+    text-align: center;
+    border: 1px solid #fe929f;
+    color: #fff;
+    transition: .5s;
+}
+
+.order:hover {
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 10px;
+}
+/* ========================================================================== */
+
+
+
 section .gift_wrapper form .gift_info .priceBtn .option_btn div {
     display: flex;
 }
