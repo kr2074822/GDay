@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.member.gmem.model.dao.GmemCartDAO;
 import team.project.gday.member.model.vo.Baguni;
 
@@ -22,6 +23,12 @@ public class GmemCartServiceImpl implements GmemCartService{
 		return dao.selectBaguni(memberNo);
 	}
 	
+	// 장바구니 썸네일 조회 Service 구현
+	@Override
+	public List<Attachment> cartThumbnailList(List<Baguni> baguniList) {
+		return dao.cartThumbnailList(baguniList);
+	}
+	
 	
 	// 클래스 장바구니에 추가 Service 구현
 	@Transactional(rollbackFor = Exception.class)
@@ -29,5 +36,8 @@ public class GmemCartServiceImpl implements GmemCartService{
 	public int insertClassCart(Map<String, Object> map) {			
 		return dao.insertClassCart(map);
 	}
+
+
+
 
 }
