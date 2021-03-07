@@ -43,6 +43,7 @@
 		<mapper resource="/mappers/magazine-mapper.xml"/>
 		<mapper resource="/mappers/search/bmem/b-mem-search.xml"/>
 		<mapper resource="/mappers/message-mapper.xml"/>
+		<mapper resource="/mappers/review-mapper.xml"/>
 		<mapper resource="/mappers/admin-mapper.xml"/>
 		<mapper resource="/mappers/cart/cart-mapper.xml"/>
 		<mapper resource="/mappers/search/search-mapper.xml"/>
