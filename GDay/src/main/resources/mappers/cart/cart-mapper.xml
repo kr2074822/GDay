@@ -53,6 +53,14 @@
 		WHERE NOT EXISTS (SELECT 0 FROM BAGUNI WHERE PRDT_NO = #{prdtNo})
 	</insert>
 	
+	<!-- 선물 장바구니에 추가 -->
+	<insert id="insertGiftCart" parameterType="map">
+		INSERT INTO BAGUNI(CART_NO, CART_AMOUNT, PRDT_NO, MEM_NO, G_OPT_NO)
+		SELECT SEQ_BGNNO.NEXTVAL, #{amount}, #{prdtNo}, #{memberNo}, #{gOption} FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM BAGUNI WHERE PRDT_NO = #{prdtNo} AND G_OPT_NO = #{gOption})
+	</insert>
+	
+	
 	
 	
 	<!-- 장바구니에서 상품 제거 -->

@@ -222,7 +222,7 @@
 			"rfContent" : false,
 	}
  	function returnValidate(){
-		
+		 
 		var sel = "";
  		
 		var $name = $("input[name='shipName']");
@@ -230,22 +230,31 @@
  		var $rfContent = $("textarea[name='rfContent']");
  		var $rfReasonCode = $("#rfReasonCode");
 
- 		//name 유효성 검사 : 한글 6글자 + 영어 20글자
- 		var regExp1 = /^[가-힣]{2,6}$/;
- 		var regExp2 = /^[A-Za-z]{2,20}$/;
  		
- 		if(!regExp1.test($name.val()) && !regExp2.test($name.val())){
- 			validateCheck.shipName = false;
- 		} else {
- 			validateCheck.shipName = true;
- 		}
- 		
- 		//phone 유효성 검사
- 		regExp1 = /^01\d{8,9}$/;
- 		if(!regExp1.test($phone.val())){
- 			validateCheck.shipPhone = false;
- 		} else {
+ 		var statusNo = "${order.statusNo}";
+ 		if(statusNo == 100) {//취소 요청일 때
+			validateCheck.shipName = true;
  			validateCheck.shipPhone = true;
+ 		
+ 		} else { //반품 요청일 때
+	 		//name 유효성 검사 : 한글 6글자 + 영어 20글자
+	 		var regExp1 = /^[가-힣]{2,6}$/;
+	 		var regExp2 = /^[A-Za-z]{2,20}$/;
+	 		
+	 		if(!regExp1.test($name.val()) && !regExp2.test($name.val())){
+	 			validateCheck.shipName = false;
+	 		} else {
+	 			validateCheck.shipName = true;
+	 		}
+	 		
+	 		//phone 유효성 검사
+	 		regExp1 = /^01\d{8,9}$/;
+	 		if(!regExp1.test($phone.val())){
+	 			validateCheck.shipPhone = false;
+	 		} else {
+	 			validateCheck.shipPhone = true;
+	 		}
+ 		
  		}
  		
  		console.log("사유: " + $rfReasonCode.val());
@@ -257,6 +266,7 @@
  		}
  		
  		for ( var key in validateCheck) {
+ 			
 			if (!validateCheck[key]) {
 				var str;
 				switch (key) {

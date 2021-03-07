@@ -124,6 +124,9 @@
 		                        <a class="btn-confirm" onclick="confirm(${order.opNo})">구매 확정</a> <!-- 발송 후 30일 이후에는 자동으로 확정 -->
 		                        <a href="${contextPath}/gMember/cancelRequest/G/${order.opNo}" class="btn-takeback">반품 신청</a> 
 		                    </c:if>	
+		                    <c:if test="${order.statusNo == 400 || order.statusNo == 500 || order.statusNo == 600 || order.statusNo == 700 }">
+		                   			<a class="btn-detail" onclick="location.href='${contextPath}/gMember/cancelView/G/${order.opNo}'">취소 정보</a>
+		                    </c:if>
                     </div>
                 </div>
             </div><!-- container-list 끝 -->

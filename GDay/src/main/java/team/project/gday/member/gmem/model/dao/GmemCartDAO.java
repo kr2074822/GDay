@@ -34,13 +34,18 @@ public class GmemCartDAO {
 		return sqlSession.insert("cartMapper.insertClassCart", map);
 	}
 
+	// 선물 장바구니에 추가 DAO
+	public int insertGiftCart(Map<String, Object> map) {
+		return sqlSession.insert("cartMapper.insertGiftCart", map);
+	}
+	
+	
+	
 	
 	// 장바구니에서 상품 삭제 DAO
 	public int deleteCart(Map<String, Object> map) {
 		return sqlSession.delete("cartMapper.deleteCart", map);
 	}
-
-
 
 
 }

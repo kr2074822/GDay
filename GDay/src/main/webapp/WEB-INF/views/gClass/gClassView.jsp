@@ -93,7 +93,7 @@
             <div class="describe">
                 <h1>판매자 정보</h1>
                 <div class="report">
-                    <a href="">
+                    <a href='javascript:;' onclick="window.open('${contextPath}/admin/reportForm', '', 'width=500, height=500, top=200, left=100, scrollbars=no'); return false;">
                         <i class="fas fa-siren-on"></i>
                     </a>
                 </div>
@@ -353,17 +353,13 @@
 
      $(".cart").on("click", function() {
     	 var prdtNo = ${gclass.prdtNo};
-    	 var price = ${gclass.prdtPrice};
     	 var amount = $(".amount").val();
-    	 var imgPath = $(".gift_img > img").attr("src");
     	 
     	 if(loginFlag == 1) {
     		 $.ajax({
    	    		url : "${contextPath}/cart/memberClassCart",
    	    		data : {"prdtNo" : prdtNo,
-   	    				"price" : price,
-   	    				"amount" : amount,
-   	    				"imgPath" : imgPath},
+   	    				"amount" : amount},
    	    		type : "post",
    	    		success : function(result) {
    	    			if(result > 0) {
