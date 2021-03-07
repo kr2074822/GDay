@@ -73,8 +73,14 @@ public interface GClassService {
 	/** 썸머노트에 이미지 저장 Service
 	 * @param uploadFile
 	 * @param savePath
-	 * @return
+	 * @return image
 	 */
 	Attachment insertImages(MultipartFile uploadFile, String savePath);
+
+	/** 클래스 마감하기 Service
+	 * @param prdtNo
+	 * @return result
+	 */
+	int pauseAction(int prdtNo);
 
 }

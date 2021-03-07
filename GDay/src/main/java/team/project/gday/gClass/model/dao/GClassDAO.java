@@ -156,6 +156,14 @@ public class GClassDAO {
 		return sqlSession.delete("classMapper.deleteAttachmentList", deleteFileNoList);
 	}
 
+	/**클래스 마감하기 DAO
+	 * @param prdtNo
+	 * @return result
+	 */
+	public int pauseAction(int prdtNo) {
+		return sqlSession.update("classMapper.pauseAction", prdtNo);
+	}
+
 
 	
 	
