@@ -21,7 +21,7 @@
             <span class="review-name">클래스명</span><br>
             <span class="review-text-1">임강사</span><br>
             <span class="review-text-2">100,000원</span><br>
-            <span class="review-text-3">수업일 │ 2021.03.04.~2021.03.10.</span>
+            <span class="review-text-3">(옵션/수업일)2021.03.04.~2021.03.10.</span>
         </div>
       </div>
       <div class="m-content-box">
@@ -84,17 +84,17 @@
 function popUp(opNo, type){
     modalInputReset();
     
-    var url;
+    var url = "";
 
     //ajax로 opNo에 맞는 상세 정보 가져오기
-    if(type == "g") url = "${contextPath}/review/insertReview/G/" +  opNo;
-    else if(type == "c") url = "${contextPath}/review/insertReview/C/" + opNo;
+    if(type == "g") url = "${contextPath}/review/getInfo/G/" +  opNo;
+    else if(type == "c") url = "${contextPath}/review/getInfo/C/" + opNo;
 
     //g == gift / c == class : g/c에 따라서 success에서 만드는 html이 달라지게 하기(콜백함수 쓰기)
-/*     $.ajax({
+    $.ajax({
         url : url,
         dataType : "json"
-    }) */
+    }) 
 
     $("#rvGift").parent().show();
 }
@@ -159,10 +159,13 @@ function LoadProfile(value, type) {
         // FileReader.onload
         // load 이벤트의 핸들러. 
         // 이 이벤트는 읽기 동작이 성공적으로 완료 되었을 때마다 발생합니다.	
-
+				
         // 읽어들인 내용(이미지 파일)을 화면에 출력
         $(".rv-img-view").css("background-image", "url("+e.target.result+")");
         // e.target.result : 파일 읽기 동작을 성공한 요소가 읽어들인 파일 내용
+        
+        $(".btn-rv-img").hide();//사진 첨부 버튼 숨기기
+        
         $(".rv-img-view").show();//img 보이게 하기
         }
     }
@@ -177,6 +180,17 @@ function modalInputReset(){
     $(".input-text").val("");
     /* $(".review-card").html(""); */ /* html 삭제 */
 }
+
+
+function insertReview(){
+    var url = "";
+
+    //ajax로 opNo에 맞는 상세 정보 가져오기
+    if(type == "g") url = "${contextPath}/review/insertReview/G/" +  opNo;
+    else if(type == "c") url = "${contextPath}/review/insertReview/C/" + opNo;
+	
+}
+
 
 
 
@@ -194,7 +208,6 @@ $(function(){
     //사진 첨부 파일 버튼 클릭
     $(".btn-rv-img").on("click", function(){
         $(this).prev().children().click();//파일 input
-        $(this).hide();
        /*  $(this).next().show(); */
     });
 

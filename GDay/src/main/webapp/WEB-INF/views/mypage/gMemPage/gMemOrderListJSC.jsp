@@ -20,9 +20,7 @@ $(document).ready(function(){//ready 함수
 	$("#7days").click();
 
 	cp=1;
-
 	console.log(cp);
-	
 	loadTab(cp); //로드 탭
 
 })();	

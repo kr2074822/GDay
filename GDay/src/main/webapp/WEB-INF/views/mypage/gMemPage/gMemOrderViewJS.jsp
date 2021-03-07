@@ -8,12 +8,12 @@ $(function(){
 	});
 
 
-
 	//지도 모달창 창닫기 버튼(x)
 	$("#modal-map .modal-close").on("click", function(){
 		 console.log("클릭?");
 	    $("#modal-map").parent().hide();
 	});
+	
 
 });
 
@@ -132,6 +132,10 @@ function mapView(addr){
 
 }
 
+//판매자한테 문의하기
+function gotoInquiry(sellerNo) {
+	
+}
 
 
 </script>

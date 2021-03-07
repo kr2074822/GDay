@@ -158,6 +158,14 @@ public class GmemDAO {
 		return sqlSession.update("gMemMapper.updateShipInfo", map);
 	}
 
+	/**취소/반품 상세 조회 dao
+	 * @param opNo
+	 * @return
+	 */
+	public Refund selectRefundInfo(int opNo) {
+		return sqlSession.selectOne("gMemMapper.selectRefundInfo", opNo);
+	}
+
 
 }
 
