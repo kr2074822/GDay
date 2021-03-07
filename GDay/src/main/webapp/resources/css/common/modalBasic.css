@@ -13,7 +13,7 @@ input[type=date], input[type=text],
 /* 모달 배경 */
 .modal-cover {
     display: none; 
-    z-index: 50;
+    z-index: 101;
     position:fixed; 
     left:0;
     top:0;

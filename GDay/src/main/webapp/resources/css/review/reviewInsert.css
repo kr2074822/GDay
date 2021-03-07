@@ -13,21 +13,28 @@
 
 .review-thumb{
     width : 30%;
-    height : 100%;
-    border : 1px solid black;
+    height : 95%;
+    border : 1px solid lightgray;
+    background-clip: border-box;
+    background-size: cover; /* 배경 이미지로 div 커버 */
+    overflow: hidden; /* 사진이 넘치면 hidden */
+    background-position: center center;
 }
 
 .review-info { 
     width :70%; 
     height : 100%;
     padding : 10px 20px;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
 }
 .review-info span {
     height : 23%;
 }
 
 .review-name { 
-    font-size : 18px;
+    font-size : 20px;
     font-weight: bold;
 }
 

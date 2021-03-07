@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=1.0">
-    <link rel="stylesheet" href="${contextPath}/resources/css/review/reviewInsert.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css?ver=1.1">
+    <link rel="stylesheet" href="${contextPath}/resources/css/review/reviewInsert.css?ver=1.0">
 
 <!-- <a href="#" onclick="popUp(1, 'g')">후기 쓰기 선물</a>
 <a href="#" onclick="popUp(1, 'c')">후기 쓰기 클래스</a> -->
@@ -14,86 +14,140 @@
     <div class="cal-modal rv-modal" id="rvGift">
       <a class="modal-close"><i class="fas fa-times"></i></a>
       <div class="review-card">
-        <div class="review-thumb">
-        </div>
-        <div class="review-info">
-            <span class="opNo review-hidden">21020423456</span> <!-- 상품 주문 번호 -->
-            <span class="review-name">클래스명</span><br>
-            <span class="review-text-1">임강사</span><br>
-            <span class="review-text-2">100,000원</span><br>
-            <span class="review-text-3">(옵션/수업일)2021.03.04.~2021.03.10.</span>
-        </div>
       </div>
-      <div class="m-content-box">
-        <div class="input-star">
-            <i class="fas fa-star star-1" onclick="checkStar(1)"></i>
-            <i class="fas fa-star star-2" onclick="checkStar(2)"></i>
-            <i class="fas fa-star star-3" onclick="checkStar(3)"></i>
-            <i class="fas fa-star star-4" onclick="checkStar(4)"></i>
-            <i class="fas fa-star star-5" onclick="checkStar(5)"></i>
-            <input type="number" class="star-count review-hidden" name="rvStar">
-        </div>
-        <div class="m-input-box">
-            <span class="input-title">후기를 작성해 주세요!</span>
-            <textarea name="rvContent" class="input-text" placeholder="150자 이내" maxlength="150"></textarea>
-        </div>
-        <div class="input-review-img">
-            <div class="review-hidden">
-                <input type="file" name="rvImage" class="rvImage" onchange="LoadProfile(this)">
-            </div>
-            <div class="btn-rv-img">사진 첨부하기</div>
-            <div class="rv-img-view">
-                <div class="img-del"><i class="fas fa-times"></i></div>
-            </div>
-        </div>
-      </div>
-      <div class="m-btn-box">
-        <button type="reset" class="modal-btn m-cancel-btns" id="m-cancel-btn">취소</button>    
-        <button type="button" class="modal-btn m-submit-btns" id="m-submit-btn" onclick="insertReview();">등록</button> <!-- ajax -->    
-      </div>
+	      <div class="m-content-box">
+	        <div class="input-star">
+	            <i class="fas fa-star star-1" onclick="checkStar(1)"></i>
+	            <i class="fas fa-star star-2" onclick="checkStar(2)"></i>
+	            <i class="fas fa-star star-3" onclick="checkStar(3)"></i>
+	            <i class="fas fa-star star-4" onclick="checkStar(4)"></i>
+	            <i class="fas fa-star star-5" onclick="checkStar(5)"></i>
+	            <input type="number" class="star-count review-hidden" name="rvStar">
+	        </div>
+	        <div class="m-input-box">
+	            <span class="input-title">후기를 작성해 주세요!</span>
+	            <textarea name="rvContent" class="input-text" placeholder="150자 이내" maxlength="150"></textarea>
+	        </div>
+	        <div class="input-review-img">
+	            <div class="review-hidden">
+	                <input type="file" name="rvImage" class="rvImage" onchange="LoadProfile(this)">
+	            </div>
+	            <div class="btn-rv-img">사진 첨부하기</div>
+	            <div class="rv-img-view">
+	                <div class="img-del"><i class="fas fa-times"></i></div>
+	            </div>
+	        </div>
+	      </div>
+	      <div class="m-btn-box">
+	        <button type="reset" class="modal-btn m-cancel-btns" id="m-cancel-btn">취소</button>    
+	        <button type="button" class="modal-btn m-submit-btns" id="m-submit-btn">등록</button> <!-- ajax -->    
+	      </div>
     </div>
   </div>
 
-<!-- 
-<div class="review-thumb">
-    <img src="#">
-</div>
-<div class="review-info">
-    <span class="opNo review-hidden">21020423456</span> 상품 주문 번호
-    <span class="review-name">선물명</span><br>
-    <span class="review-text-1">2021.03.02.</span><br>
-    <span class="review-text-2">100,000원</span><br>
-    <span class="review-text-3">옵션 │ 빨강, 1개</span>
-</div>
-
-<div class="review-thumb">
-    <img src="#">
-</div>
-<div class="review-info">
-    <span class="opNo review-hidden">21020423456</span> 상품 주문 번호
-    <span class="review-name">클래스명</span><br>
-    <span class="review-text-1">임강사</span><br>
-    <span class="review-text-2">100,000원</span><br>
-    <span class="review-text-3">수업일 │ 2021.03.04.~2021.03.10.</span>
-</div>
- -->
 
 <script>
-
 
 function popUp(opNo, type){
     modalInputReset();
     
+    
+    
     var url = "";
 
     //ajax로 opNo에 맞는 상세 정보 가져오기
-    if(type == "g") url = "${contextPath}/review/getInfo/G/" +  opNo;
-    else if(type == "c") url = "${contextPath}/review/getInfo/C/" + opNo;
+    if(type == "g") url = "${contextPath}/review/getOrderInfo/G/" +  opNo;
+    else if(type == "c") url = "${contextPath}/review/getOrderInfo/C/" + opNo;
 
     //g == gift / c == class : g/c에 따라서 success에서 만드는 html이 달라지게 하기(콜백함수 쓰기)
     $.ajax({
         url : url,
-        dataType : "json"
+        dataType : "json",
+        success : function(map){	
+        	if(map != null) {
+	        	var order = map.order;
+	        	var image = map.thumbnail;
+	        	console.log(image);
+	        	var rCard = $(".review-card");
+	        	rCard.html("");//초기화
+
+	        	//서밋버튼에 클릭이벤트 추가
+	        	$("#m-submit-btn").attr("onclick", "insertReview(" + order + ")");
+	        	
+						var thumb = $("<div>").addClass("review-thumb")
+											.css("background-image", "url(" + "${contextPath}" + image.filePath + "/" + image.fileName + ")");            	
+        		var info = $("<div>").addClass("review-info")
+		        var opNo = $("<span>").addClass("opNo review-hidden").text(order.opNo);
+        		
+        		
+        		var prdtName = order.prdtName
+        		if(prdtName.trim().length > 11){
+        			prdtName = prdtName.substring(0, 10) + "…";
+        		}
+        		var name = $("<span>").addClass("review-name").text(prdtName);
+	        	
+        		//gift일때
+	        	if(type == 'g') {
+	            	var option = map.gOption;
+	
+	/*     		<div class="review-thumb">
+	        	</div>
+	        	<div class="review-info">
+	        	    <span class="opNo review-hidden">21020423456</span> 상품 주문 번호
+	        	    <span class="review-name">선물명</span><br>
+	        	    <span class="review-text-1">2021.03.02.</span><br>
+	        	    <span class="review-text-2">100,000원</span><br>
+	        	    <span class="review-text-3">옵션 │ 빨강, 1개</span>
+	        	</div> */
+	            	
+	        		var text1 = $("<span>").addClass("review-text-1").text(order.orderDate);
+	        		
+	        		var price = (order.prdtPrice * order.opAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+	        		var text2 = $("<span>").addClass("review-text-2").text(price);
+	        		
+	        		var opt = "";
+	        		if(option != null) opt = option.gOptName + " / ";
+	        		opt += order.opAmount + "개";
+	        		
+	        		var text3 = $("<span>").addClass("review-text-3").text(opt);
+	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
+	        	}
+	        	
+	        	//class일때
+	        	else if (type == 'c'){
+	        		var gClass = map.gClass;
+	        		
+/* 	        <div class="review-thumb">
+	        	</div>
+	        	<div class="review-info">
+	        	    <span class="opNo review-hidden">21020423456</span> 상품 주문 번호
+	        	    <span class="review-name">클래스명</span><br>
+	        	    <span class="review-text-1">임강사</span><br>
+	        	    <span class="review-text-2">100,000원</span><br>
+	        	    <span class="review-text-3">수업일 │ 2021.03.04.~2021.03.10.</span>
+	        	</div> */
+		        	var text1 = $("<span>").addClass("review-text-1").text(order.sellerName);
+	        		
+	        		var price = (order.prdtPrice * order.opAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+	        		var text2 = $("<span>").addClass("review-text-2").text(price);
+	        		
+							var classDate = gClass.cStartDate + " ~ " + gClass.cEndDate;	        		
+	        		var text3 = $("<span>").addClass("review-text-3").text(classDate);
+	        	
+	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
+	        		rCard.append(thumb).append(info);//review-card에 추가
+	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
+	        	}
+
+        		rCard.append(thumb).append(info);//review-card에 추가
+        	
+        	} else {
+        		swal.fire({icon : "error", title : "후기를 작성할 수 있는 주문 정보가 없습니다."});
+        	}
+        },
+        error : function(){
+        	console.log("후기 작성을 위한 정보 조회 중 오류 발생");
+        }
     }) 
 
     $("#rvGift").parent().show();
@@ -182,12 +236,17 @@ function modalInputReset(){
 }
 
 
-function insertReview(){
+function insertReview(order){
     var url = "";
 
-    //ajax로 opNo에 맞는 상세 정보 가져오기
-    if(type == "g") url = "${contextPath}/review/insertReview/G/" +  opNo;
-    else if(type == "c") url = "${contextPath}/review/insertReview/C/" + opNo;
+    //ajax로 후기 삽입
+    url = "${contextPath}/review/insertReview/" + order.prdtType;
+    //order에 담긴 orderNo, prdtType 사용 
+    // + order+input 정보로 review에  
+    //    opNo(rvNo), prdtNo, buyer(writerNo), rvContent, rvStar 전달
+    // + 파일 정보(rvImage) type : multipart/form-data
+    
+    //success : cp 저장해서 reload
 	
 }
 
