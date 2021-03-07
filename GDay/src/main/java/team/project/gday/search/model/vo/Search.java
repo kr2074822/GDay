@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Search {
 	
 	private int[] category; //카테고리 번호
-	private int[] hashNo; //해시태그  번호
+	private int[] hashNo; //해시태그 번호
 	private String sv; //검색값
 
 	public Search() {
