@@ -69,7 +69,7 @@ section .gift_wrapper form .gift_info .gift_option .title div > i{
     margin-bottom: 1px;
     text-align: center;
 }
-section .gift_wrapper form .gift_info .gift_option .title div:hover{
+section .gift_wrapper form .gift_info .gift_option .title div:nth-child(2):hover{
     cursor: pointer;
 }
 section .gift_wrapper form .gift_info .gift_option .option{
