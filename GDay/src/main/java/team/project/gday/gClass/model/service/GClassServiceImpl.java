@@ -143,7 +143,6 @@ public class GClassServiceImpl implements GClassService {
 									removeFileList.add(old);
 								}
 							}
-							System.out.println(at);
 							
 							result = dao.updateAttachment(at);
 							
@@ -216,6 +215,8 @@ public class GClassServiceImpl implements GClassService {
 						boolean flag = true;
 						
 						for(Attachment oldAt : oldFiles) {
+							if(oldAt.getFileLevel() == 0) continue;
+							
 							if(fName.equals(oldAt.getFileName())) { //수정 후 / 수정 전 같은 파일이 있다 == 수정되지 않았다
 								flag = false;
 								break;
@@ -237,8 +238,9 @@ public class GClassServiceImpl implements GClassService {
 					//== 기존 수정 전 이미지가 삭제됨을 의미
 					
 					for(Attachment oldAt : oldFiles) {
+						if(oldAt.getFileLevel() == 0) continue;
 						boolean flag = true;
-						
+
 						for(String fName : fileNameList) {
 							if(oldAt.getFileName().equals(fName)) {
 								flag = false;
