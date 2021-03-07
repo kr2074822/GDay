@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +14,15 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.dao.GmemDAO;
+import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
 @Service
 public class GmemServiceImpl implements GmemService {
+	
+	@Autowired
+	private BCryptPasswordEncoder enc;
 	
 	@Autowired
 	private GmemDAO dao;
@@ -162,6 +167,24 @@ public class GmemServiceImpl implements GmemService {
 	public Refund selectRefundInfo(int opNo) {
 		return dao.selectRefundInfo(opNo);
 	}
+
+	// 회원 탈퇴
+		@Transactional(rollbackFor = Exception.class)
+		@Override
+		public int accountDel(Member loginMember) {
+			int result = 0;
+			System.out.println("----");
+			Member login = dao.loginAction(loginMember);
+			System.out.println(login);
+			if(enc.matches(loginMember.getMemberPwd(), login.getMemberPwd())) { 
+				System.out.println(1111);
+				result = dao.accountDel(loginMember.getMemberEmail());
+				System.out.println("결과: "+ result);
+			}else {
+			}
+
+			return result;
+		}
 
 	
 }

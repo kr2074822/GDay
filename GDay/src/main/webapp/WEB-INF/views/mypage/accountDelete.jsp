@@ -24,11 +24,17 @@
 	<jsp:include page="../common/header.jsp"/>
 			
 		<div id="wrapper">
-			<jsp:include page="bMemPage/bMemSidebar.jsp"/>	
+		
+			<c:if test="${loginMember.memberGrade == 'B' }">
+				<jsp:include page="bMemPage/bMemSidebar.jsp"/>	
+			</c:if>
+			<c:if test="${loginMember.memberGrade == 'G' }">
+				<jsp:include page="gMemPage/gMemSidebar.jsp"/>
+			</c:if>
 			
 			<div class="account_del">
 				<div class="title">
-					<h1>회원 탈퇴</h1>
+					<h1>회원 탈퇴${loginMember.memberGrade }</h1>
 				</div>
 				<div class="insert_info">
 					<div>

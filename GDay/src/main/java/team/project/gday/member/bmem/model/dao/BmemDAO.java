@@ -95,6 +95,10 @@ public class BmemDAO {
 		return sqlSession.update("memberMapper.accountDel", memberEmail);
 	}
 
+	/** 회원 조회
+	 * @param inputMember
+	 * @return
+	 */
 	public Member loginAction(Member inputMember) {
 		return sqlSession.selectOne("memberMapper.loginAction", inputMember);
 	}

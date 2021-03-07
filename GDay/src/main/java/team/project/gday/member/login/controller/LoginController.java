@@ -49,6 +49,11 @@ public class LoginController {
 	@Autowired 
 	private LoginService service;
 	
+	//sweet alert 메시지 전달용 변수 선언
+	private String swalIcon;
+	private String swalTitle;
+	private String swalText;
+	
 	// 로그인 화면
 	@SuppressWarnings("deprecation")
 	@RequestMapping("loginView")
@@ -157,8 +162,7 @@ public class LoginController {
 			response.addCookie(bmemAutoId_cookie);
 			response.addCookie(loginSessionId);
 			
-			
-			if(inputMember.getMemberGrade().equals("B")) {
+			if(loginMember.getMemberGrade().equals("B")) {
 				url = "common/bMain";
 			}else {
 				
@@ -243,12 +247,15 @@ public class LoginController {
 	
 	// 일반 회원 가입
 	@RequestMapping("signUp")
-	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop) {
+	public String signUp(@ModelAttribute Member member, @RequestParam(value="image", required = false) List<MultipartFile> image, HttpServletRequest request, @RequestParam(value="bmemShop", required = false) String bmemShop,  RedirectAttributes ra) {
 		int result = service.signUp(member, bmemShop);
 		if (result > 0) {
 			String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
 			result = 0;
 			result = service.insertImg(image, savePath, member) ;
+			
+			ra.addFlashAttribute("swalIcon", "success");
+			ra.addFlashAttribute("swalTitle", "회원가입 되었습니다.");
 
 		}
 		return "redirect:/";

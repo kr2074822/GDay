@@ -8,6 +8,7 @@ import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
@@ -107,6 +108,12 @@ public interface GmemService {
 	 * @return
 	 */
 	public abstract Refund selectRefundInfo(int opNo);
+
+	/** 회원 탈퇴
+	 * @param loginMember
+	 * @return
+	 */
+	public abstract int accountDel(Member loginMember);
 
 
 	

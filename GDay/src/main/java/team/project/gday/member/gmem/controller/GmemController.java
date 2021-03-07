@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -30,6 +33,7 @@ import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.service.GmemService;
 import team.project.gday.member.model.vo.ListCondition;
+import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
@@ -474,6 +478,41 @@ public class GmemController {
 	public String myReviews() {
 		return "mypage/gMemPage/gMemReviewList";
 	}
+	
+	
+	
+	// =================================== 회원 탈퇴 =====================================
+	
+	//비즈니스 회원 탈퇴 이동
+		@RequestMapping("bMemSessionUpdate")
+		public String bMemSessionUpdate() {
+			return "mypage/accountDelete";
+		}
+	
+	
+	@RequestMapping("accountDel")
+	@ResponseBody
+	public int accountDel(@ModelAttribute Member loginMember,SessionStatus status, HttpServletResponse response){
+		
+		System.out.println(loginMember);
+		int result = service.accountDel(loginMember);
+		System.out.println("컨트롤러 result"+result);
+		if (result >0) {
+			status.setComplete();
+			Cookie loginSessionId = new Cookie("loginSessionId", null);
+			loginSessionId.setPath("/");
+			System.out.println("-------");
+			System.out.println(loginSessionId.getValue());
+			System.out.println("-------");
+			loginSessionId.setMaxAge(0);
+			response.addCookie(loginSessionId);
+		}
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 }

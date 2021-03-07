@@ -13,6 +13,7 @@ import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.model.vo.Member;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
@@ -164,6 +165,22 @@ public class GmemDAO {
 	 */
 	public Refund selectRefundInfo(int opNo) {
 		return sqlSession.selectOne("gMemMapper.selectRefundInfo", opNo);
+	}
+
+	/** 회원 조회
+	 * @param loginMember
+	 * @return
+	 */
+	public Member loginAction(Member loginMember) {
+		return sqlSession.selectOne("memberMapper.loginAction", loginMember);
+	}
+
+	/** 일반 회원 탈퇴
+	 * @param memberEmail
+	 * @return
+	 */
+	public int accountDel(String memberEmail) {
+		return sqlSession.update("memberMapper.accountDel", memberEmail);
 	}
 
 

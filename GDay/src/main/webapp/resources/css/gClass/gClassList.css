@@ -167,11 +167,11 @@ section.gift .gift_wrapper .item div > img{
     height: 200px;
     object-fit: cover;
 }
-.sold_out{
+section.gift .gift_wrapper .item div > .sold_out{
     position: absolute;
     top: 0;
     text-align: center;
-    background: rgba(0, 0, 0, .5 );
+    background: rgba(0, 0, 0, .07 );
 }
 section.gift .gift_wrapper .item div h1{
     color: #fff;
