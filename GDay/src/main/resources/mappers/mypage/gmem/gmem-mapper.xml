@@ -95,6 +95,24 @@
 		<result property="giftOpNo" column="GIFT_OP_NO"/>
 	</resultMap>
 	
+	<!-- 환불 resultMap -->
+	<resultMap type="Refund" id="refund_rm">
+		<id property="opNo" column="OP_NO"/>
+		<result property="orderNo" column="ORDER_NO"/>		
+		<result property="rfReasonCode" column="RF_REASON_CODE"/>		
+		<result property="rfReasonName" column="RF_REASON_NAME"/>		
+		<result property="rfContent" column="REFUND_CONTENT"/>		
+		<result property="rfDate" column="REFUND_DATE"/>		
+		<result property="prdtType" column="PRDT_TYPE"/>		
+		<result property="prdtPrice" column="PRDT_PRICE"/>		
+		<result property="opAmount" column="OP_AMOUNT"/>		
+		<result property="statusNo" column="STATUS_NO"/>		
+		<result property="statusName" column="STATUS_NAME"/>		
+		<result property="impUid" column="IMP_UID"/>		
+		<result property="buyerNo" column="BUYER_NO"/>		
+		<result property="buyerNick" column="BUYER_NICK"/>		
+		<result property="shipName" column="SHIP_NAME"/>		
+	</resultMap>
 	
 	<!-- 주문 listcount 조회 -->
 	<select id="orderListCount" parameterType="map" resultType="_int">
@@ -193,7 +211,6 @@
 		SELECT * FROM V_ORDER
 		WHERE OP_NO = #{opNo}
 		AND PRDT_TYPE = #{type}
-		AND STATUS_NO IN (100, 200, 900)
 	</select>
 	
 	<!-- 상품 번호로 썸네일 조회  -->
@@ -245,6 +262,13 @@
 		SHIP_PHONE = #{shipPhone} 
 		WHERE ORDER_NO = #{orderNo}
 	</update>
+	
+	<!-- 취소, 반품 상세 조회 -->
+	<select id="selectRefundInfo" parameterType="_int" resultMap ="refund_rm">
+		SELECT OP_NO, REFUND_DATE, RF_REASON_NAME, REFUND_CONTENT
+		FROM V_REFUND
+		WHERE OP_NO = #{opNo}
+	</select>
 	
 </mapper>
 

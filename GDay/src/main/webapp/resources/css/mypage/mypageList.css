@@ -149,8 +149,8 @@
 
 a { text-decoration: none;}
 
-.btn-review, .btn-confirm { background-color: #FE929F; /*티클미*/}
-.btn-review:hover, .btn-confirm:hover { 
+.btn-review, .btn-confirm, .btn-detail { background-color: #FE929F; /*티클미*/}
+.btn-review:hover, .btn-confirm:hover, .btn-detail:hover { 
     background-color: #db7e89; 
     color : #fafafa;
     text-decoration: none;

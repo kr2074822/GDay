@@ -94,14 +94,15 @@ a { text-decoration: none;}
 
 .btn-view {
     color : #fafafa;
-    width : 80px;
+    min-width : 80px;
     text-align: center;
     padding : 5px;
     margin : 3px;
     border-radius: 5px;
     cursor: pointer;
 }
-.columns .btn-inquiry, .columns .btn-map,
+
+.columns .btn-inquiry, .columns .btn-map, .columns .btn-detail,
 .columns .btn-request, .columns .btn-review { 
 	height : 20px; 
 	line-height: 10px; 

@@ -156,7 +156,6 @@ public class GmemController {
 				} 
 			}
 		} 
-		
 	
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
@@ -321,6 +320,7 @@ public class GmemController {
 	}
 	
 	
+	//반품, 취소 요청 보내기
 	@RequestMapping("sendRequest/{type}")
 	public String sendRequest(@PathVariable("type") String type,
 								@ModelAttribute Refund refund,
@@ -366,11 +366,11 @@ public class GmemController {
 	    	else if(statusNo == 900) swalTitle = "수강 취소 요청을 완료했습니다.";
 	    	
 	    	//임시로 주문 조회 : 이후에 취소 요청 상세 조회로 이동시키기
-	    	//url = "redirect:../cancelView/" + type + "/" + opNo;
-	    	url = "redirect:../orderView/" + type + "/" + orderNo;
+	    	url = "redirect:../cancelView/" + type + "/" + opNo;
+	    	//url = "redirect:../orderView/" + type + "/" + orderNo;
 	    	
 	    	//취소 요청 상세 조회 이후 '목록' 버튼 클릭 시 주문 내역 조회로 이동
-	    	request.getSession().setAttribute("returnListURL", "../../orderList/" + type);
+	    	//request.getSession().setAttribute("returnListURL", "../../orderList/" + type);
 	    	
 	    } else {
 			
@@ -387,13 +387,73 @@ public class GmemController {
 	}
 	
 	
-	
 	//마이페이지 취소/반품 요청 상세 조회("cancelView/{type}/{opNo}")
 	@RequestMapping("cancelView/{type}/{opNo}")
 	public String gMemCancelView(@PathVariable("type") String type,
-									@PathVariable("opNo") int orderNo) {
+									@PathVariable("opNo") int opNo,
+									Model model, RedirectAttributes ra,
+									HttpServletRequest request) {
+		
+		String url = null;//주소 담기
+		
+		//파라미터 맵에 담기
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("opNo", opNo);
+		
+		//주문 상품 번호 + 타입으로 주문 정보 조회
+		Order order = service.selectAOrder(map);
+		
+		if(order != null) {
+
+			model.addAttribute("order", order);
+
+			//썸네일 리스트 구하기
+			Attachment thumbnail = service.selectAThumbnail(order.getPrdtNo());
+			System.out.println("thumbnail : " + thumbnail);
 			
-			return "mypage/gMemPage/gMemCancelView" + type;
+			if(thumbnail != null) {
+				//modelattribute로 보내기
+				model.addAttribute("thumbnail", thumbnail);
+				
+				Refund refund = service.selectRefundInfo(opNo);
+				
+				if(refund != null) {
+
+					model.addAttribute("refund", refund);
+					
+					if(type.equals("G")) {//선물일 때
+						
+						//선물이면 goption 가져와야 함
+						GOption gOption = service.selectOption(order.getGiftOpNo());
+						
+						if(gOption != null) {
+							model.addAttribute("gOption", gOption);
+							System.out.println("gOption : " + gOption);
+						}
+						
+					} else if (type.equals("C")) {//클래스일 때
+	
+						//클래스면 gclass를 가져와야 함
+						GClass gClass = service.selectGClass(order.getPrdtNo());
+						
+						if(gClass != null) {
+							model.addAttribute("gClass", gClass);
+							System.out.println("gClass: " + gClass);
+						}
+					}
+				}
+			}
+			url = "mypage/gMemPage/gMemCancelView" + type;
+			
+		} else {
+			url = "redirect: ../../orderList/" + type;
+			ra.addFlashAttribute("swalIcon", "error");
+			ra.addFlashAttribute("swalTitle", "취소/반품 상세 페이지 이동 과정 중 오류 발생");
+		}
+		
+		return url;
 	}
 		
 

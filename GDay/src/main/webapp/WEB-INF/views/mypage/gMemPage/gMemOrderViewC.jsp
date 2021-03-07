@@ -10,7 +10,7 @@
 <title>클래스 주문 상세 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/mypageList.css"> <!-- 같은 클래스 공유 -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.7"> <!-- 상세 페이지 고유 css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemOrderView.css?ver=1.8"> <!-- 상세 페이지 고유 css -->
 		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
     
     <!-- Bootstrap core JS-->
@@ -105,6 +105,9 @@
 									<c:if test="${order.statusNo == 900 }">	
 	                	<a href="${contextPath}/gMember/cancelRequest/C/${order.opNo}" class="btn-request btn-view">수강 취소</a>	
 									</c:if>
+								  <c:if test="${order.statusNo == 400 || order.statusNo == 500}">
+                  			<a class="btn-detail btn-view" onclick="location.href='${contextPath}/gMember/cancelView/C/${order.opNo}'">취소 정보</a>
+                   </c:if>
                 
                 </span>
             </div>
