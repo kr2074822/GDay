@@ -81,6 +81,7 @@
 			<jsp:include page="adminReply.jsp"></jsp:include>
 		</div>
 	</div>
+	<jsp:include page="../common/chatbot.jsp" />
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

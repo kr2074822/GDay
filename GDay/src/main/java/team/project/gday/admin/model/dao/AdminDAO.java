@@ -85,6 +85,14 @@ public class AdminDAO {
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());		
 		return sqlSession.selectList("adminMapper.productBoard", null, rowBounds);
 	}
+	
+	/** 게시글 상태 변경
+	 * @param map
+	 * @return result
+	 */
+	public int boardUpdate(Map<String, Object> map) {
+		return sqlSession.update("adminMapper.boardUpdate", map);
+	}
 
 	// ------------------------------------------------------------------------------
 	
@@ -123,6 +131,17 @@ public class AdminDAO {
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());	
 		return sqlSession.selectList("adminMapper.adminCustomor", null, rowBounds);
 	}
+
+	// --------------------------------------------------------------------------------------
+	
+	/** 회원 고객센터 페이징 
+	 * @param memberNo 
+	 * @return listMcCount
+	 */
+	public int getListMcCount(Member memberNo) {
+		return sqlSession.selectOne("adminMapper.getListMcCount", memberNo);
+	}
+
 
 
 

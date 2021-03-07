@@ -107,6 +107,13 @@
 		FROM V_CUSTOMOR
 	</select>
 	
+	<!-- 회원 고객센터 페이징 처리(목록 갯수) -->
+	<select id="getListMcCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM V_CUSTOMOR
+		WHERE MEM_NO = #{memberNo}
+	</select>
+	
 	<!-- 회원 전체 조회 -->
 	<select id="adminMember" parameterType="_int" resultMap="member_rm">
 		SELECT MEM_NO, MEM_EMAIL, MEM_NAME, MEM_TYPE, MEM_GRADE
@@ -138,6 +145,16 @@
         FROM PRODUCT
         ORDER BY PRDT_NO DESC
 	</select>
+	
+	<!-- 게시글 상태 변경 -->
+	<update id="boardUpdate" parameterType="map">
+		UPDATE PRODUCT SET
+		PRDT_STATUS = #{prdtStatus}
+		WHERE PRDT_NO IN
+		<foreach collection="prdtNo" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+	</update>
 	
 	<!-- 매거진 전체 조회 -->
 	<select id="adminMagazine" parameterType="_int" resultMap="magazine_rm">

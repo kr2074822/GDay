@@ -5,6 +5,7 @@ import java.util.Map;
 
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
@@ -17,8 +18,6 @@ public interface AdminService {
 	 * @return pInfo
 	 */
 	public abstract adminPageInfo getPageInfo(int cp);
-
-
 	
 	/** 회원 전체 조회 Service
 	 * @param pInfo
@@ -46,7 +45,7 @@ public interface AdminService {
 
 	/** 게시글 페이징처리 Service
 	 * @param cp
-	 * @return
+	 * @return pList
 	 */
 	public abstract adminPageInfo getPageBdInfo(int cp);
 
@@ -55,6 +54,12 @@ public interface AdminService {
 	 * @return product
 	 */
 	public abstract List<Product> productBoard(adminPageInfo pInfo);
+	
+	/** 게시글 상태 변경 Service
+	 * @param map
+	 * @return result
+	 */
+	public abstract int boardUpdate(Map<String, Object> map);
 
 	/** 매거진 페이징처리 Service
 	 * @param cp
@@ -79,6 +84,17 @@ public interface AdminService {
 	 * @return cList
 	 */
 	public abstract List<Customor> adminCustomor(adminPageInfo pInfo);
+
+	/** 회원 고객센터 페이징 처리 Service
+	 * @param cp
+	 * @param memberNo 
+	 * @return pInfo
+	 */
+	public abstract adminPageInfo getPageMcInfo(int cp, Member memberNo);
+
+	public abstract List<Report> memberCustomer(adminPageInfo pInfo, Member memberNo);
+
+
 
 
 
