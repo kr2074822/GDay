@@ -47,7 +47,7 @@
 		                    <p>
 		                    
 		                    </p>
-		                    <a href="">Read More</a>
+		                    <a href="${magazine.mgzNo}">Read More</a>
 		                </div>
 		            </div>
 		        </div>
@@ -55,7 +55,6 @@
 		</c:if>
         
     </section>
-    
     
     <jsp:include page="../common/footer.jsp"/>
     <script>
@@ -104,9 +103,8 @@
 			        	                    '</div>'+
 			        	                    '<div class="content">'+
 			        	                     '   <div>'+
-			        	                      '      <h3>제목' + result.mList[i].mgzTitle + '</h3>'+
-			        	                       '     <p>'+ result.mList[i].mgzNo+' </p>'+
-			        	                   '         <a href="">Read More</a>'+
+			        	                      '      <h3>' + result.mList[i].mgzTitle + '</h3>'+
+			        	                   '         <a href="'+ result.mList[i].mgzNo+'">Read More</a>'+
 			        	                    '    </div>'+
 			        	                   ' </div>'+
 			        	                '</div>';

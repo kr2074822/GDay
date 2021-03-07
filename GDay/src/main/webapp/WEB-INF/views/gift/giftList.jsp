@@ -407,7 +407,7 @@
     </section>
     
     <jsp:include page="../common/footer.jsp"/>
-
+	
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
         const img = document.getElementById("img");

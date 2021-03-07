@@ -134,6 +134,7 @@
 								        </li>
 								        <li>
 								            <a href="${contextPath}/login/logout" id="logout">
+								            <!-- <a id="logout"> --> 
 								                <div class="name">
 								                	<span data-text="Contact">로그아웃</span>
 								                </div>
@@ -305,33 +306,7 @@
 
       }
       
-      // 로그아웃
-      $("#logout").on("click", function(){
-		// window.location.href = "${contextPath}/login/logout";
-    	  
-    	  console.log(1)
-    	  
-    	  Kakao.Auth.logout(function() {
-			  console.log(Kakao.Auth.getAccessToken());
-			});    
-    	  
-		Kakao.API.request({
-			  url: '/v1/user/unlink',
-			  success: function(response) {
-			    console.log(response);
-			  },
-			  fail: function(error) {
-			    console.log(error);
-			  },
-			});
-		
-		windows.location
-		
-		
-		
-      })
-      
-      
+
   </script>
 
 

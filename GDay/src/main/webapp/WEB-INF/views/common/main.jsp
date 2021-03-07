@@ -256,6 +256,46 @@ display: none;
     </div>
     </section>
     
+    
+    
+    <section class="about">
+        <img src="${contextPath}/resources/images/mainBanner.jpg" alt="">
+        <div class="inner">
+            <h2>선물이 필요하다면, G-Day와 함께 하세요.</h2>
+            <div class="line">
+                <span></span>
+                <ul>
+                    <li class="a"></li>
+                    <li class="b"></li>
+                    <li class="c"></li>
+                </ul>
+            </div>
+            <ul>
+                <li>
+                    <h3>Our Class</h3>
+                    <p>Lorem Ipsum is simply dummy text of the  <br>
+                        printing and typesetting industry. <br>
+                        Lorem Ipsum has been the industry's </p>
+                </li>
+                <li>
+                    <h3>Our Gift</h3>
+                    <p>Lorem Ipsum is simply dummy text of the  <br>
+                        printing and typesetting industry. <br>
+                        Lorem Ipsum has been the industry's</p>
+                </li>
+                <li>
+                    <h3>Our Magazine</h3>
+                    <p>Lorem Ipsum is simply dummy text of the  <br>
+                        printing and typesetting industry. <br>
+                        Lorem Ipsum has been the industry's </p>
+                    </li>
+            </ul>
+        </div>
+    </section>
+    
+    
+    
+    
     <section class="">
         <div class="section_wrapper">
             <h1>지금 제일 인기 있는 선물은?</h1>
@@ -364,7 +404,7 @@ display: none;
                         <img src="images/profile.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>제목<br><span>내용입니다.</span></h2>
+                        <h2>제목<br><span>날짜</span></h2>
                     </div>
                 </a>
             </div>
@@ -374,7 +414,7 @@ display: none;
                         <img src="images/profile.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>제목<br><span>내용입니다.</span></h2>
+                        <h2>제목<br><span>날짜</span></h2>
                     </div>
                 </a>
             </div>
@@ -384,13 +424,13 @@ display: none;
                         <img src="images/profile.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>제목<br><span>내용입니다.</span></h2>
+                        <h2>제목<br><span>날짜</span></h2>
                     </div>
                 </a>
             </div>
         </div>
     </section>
-
+    
 	<jsp:include page="footer.jsp"/>
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
