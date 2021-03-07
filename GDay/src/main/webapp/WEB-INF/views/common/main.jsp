@@ -430,7 +430,7 @@ display: none;
             </div>
         </div>
     </section>
-
+    
 	<jsp:include page="footer.jsp"/>
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>

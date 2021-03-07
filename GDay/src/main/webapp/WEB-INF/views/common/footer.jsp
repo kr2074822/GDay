@@ -65,5 +65,6 @@
     <div class="copyrightText">
         <p>COPYRIGHT. COMPANY INC. ALL RIGHTS RESERVED.</p>
     </div>
+    <jsp:include page="../common/chatbot.jsp"/>
 </body>
 </html>

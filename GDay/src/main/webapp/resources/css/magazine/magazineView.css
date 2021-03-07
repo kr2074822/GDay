@@ -34,6 +34,7 @@ section .magazine_wrapper .magaine_title{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #999;
 }
 section .magazine_wrapper .magaine_title h1{
     font-size: 24px;
@@ -46,7 +47,9 @@ section .magazine_wrapper .magaine_title p span{
     padding: 0 7px 0 0;
 }
 section .magazine_wrapper .magazine_content{
-    border-top: 1px solid #999;
+	width: 80%;
+	margin: 0 auto;
     margin-bottom: 200px;
-    padding: 20px 0;
+    padding: 50px 0;
+    min-height: 600px;
 }

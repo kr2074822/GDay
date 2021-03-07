@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="application"/>
 <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +10,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+	<!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+
+	<!-- reset.css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/gift.css">
+    
+    <!-- magazine.css -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/search/mainSearch.css">
     <title>Document</title>
 </head>
 <body>
+    <header></header>
 
     <section class="search">
         <div class="search_wrapper">
@@ -180,14 +185,6 @@
                         <input type="checkbox" id="eh">
                         <label for="eh">입사ㆍ승진</label>
                     </li>
-                    <li class="tag">
-                        <input type="checkbox" id="ei">
-                        <label for="ei">퇴사</label>
-                    </li>
-                    <li class="tag">
-                        <input type="checkbox" id="ej">
-                        <label for="ej">명절</label>
-                    </li>
                 </ul>
                 <ul class="tagBx" data-text="5">
                     <li class="tag">
@@ -238,15 +235,11 @@
                     </li>
                     <li class="tag">
                         <input type="checkbox" id="gh">
-                        <label for="gh">Pink</label>
+                        <label for="gh">White</label>
                     </li>
                     <li class="tag">
                         <input type="checkbox" id="gi">
-                        <label for="gi">White</label>
-                    </li>
-                    <li class="tag">
-                        <input type="checkbox" id="gj">
-                        <label for="gj">Black</label>
+                        <label for="gi">Black</label>
                     </li>
                 </ul>
                 <ul class="tagBx" data-text="7">
@@ -305,6 +298,9 @@
             <p>
                 <span>인기순</span> | <span>최신순</span>
             </p>
+        </div>
+        <div class="title">
+            <span>Class</span>
         </div>
         <div class="gift_wrapper">
             <div class="item">
@@ -403,11 +399,215 @@
                     <span>가격</span>
                 </a>
             </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+        </div>
+        <div class="more">
+            <a href=""><span>More</span></a>
+        </div>
+    </section>
+
+
+
+
+    <section class="gift ver2">
+        <div class="title">
+            <span>Gift</span>
+        </div>
+        <div class="gift_wrapper">
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="">
+                    <div>
+                        <img src="images/gift1.jpg" alt="">
+                        <div class="sold_out">
+                            <h1>품절</h1>
+                        </div>
+                    </div>
+                    <h1>제목입니다</h1>
+                    <p>
+                        내용입니다.
+                    </p>
+                    <span>가격</span>
+                </a>
+            </div>
+        </div>
+        <div class="more">
+            <a href=""><span>More</span></a>
         </div>
     </section>
     
     <jsp:include page="../common/footer.jsp"/>
-	
+
+
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
         const img = document.getElementById("img");
@@ -424,20 +624,18 @@
         
         // 팝업 
         for (const button of item) {
-        	console.log(item)
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
                 
                 for(const pop of tagBx){                    
                     if(pop.getAttribute('data-text') == index) {
-                        tagBx[index].classList.toggle("action1");
+                        tagBx[index].classList.toggle("action");
 
                     }else{
-                        pop.classList.remove("action1");
+                        pop.classList.remove("action");
                     }
                 }
             });
-            
         }
 
         // 버튼 클릭 리플 효과
@@ -458,6 +656,9 @@
                     }, 1000)
                 })
             })
+
+
+
     </script>
 </body>
 </html>

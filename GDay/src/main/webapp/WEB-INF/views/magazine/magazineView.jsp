@@ -26,23 +26,24 @@
         <div class="magazine_wrapper">
             <div class="title">
                 <h1>매거진</h1>
-                <a href="">
+                <a href="list">
                     <span>목록으로</span>
                 </a>
             </div>
             <div class="magaine_title">
-                <h1>제목</h1>
+                <h1>${magazine.mgzTitle }</h1>
                 <p>
-                    <i class="fas fa-eye"></i>&nbsp;<span class="read_cnt">조회수</span>
-                    <i class="fas fa-clock"></i>&nbsp;<span class="date">날짜</span>
+                    <i class="fas fa-eye"></i>&nbsp;<span class="read_cnt">${magazine.mgzReadCnt }</span>
+                    <i class="fas fa-clock"></i>&nbsp;<span class="date">${magazine.mgzCreateDt }</span>
                 </p>
             </div>
             <div class="magazine_content">
-
+            	<img alt="" src="${contextPath}${thumbnail.imgPath}/${thumbnail.imgName}">
+				${magazine.mgzContent }
             </div>
         </div>
     </section>
-    
+    <jsp:include page="../common/footer.jsp"/>
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
 </body>
 </html>

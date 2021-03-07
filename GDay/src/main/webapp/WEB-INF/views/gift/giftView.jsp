@@ -267,6 +267,7 @@
         </div> 
     </section>
 
+	<jsp:include page="../common/footer.jsp"/>
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
 	    var price = ${gift.prdtPrice };

@@ -337,7 +337,8 @@
             </div>
         </form>
     </section>
-
+    
+	<jsp:include page="../common/footer.jsp"/>
     <script>
         const opt_name = document.getElementsByClassName("opt_name");
         console.log(opt_name);
