@@ -163,4 +163,11 @@
 		AND FILE_LEVEL = 0
 	</select>
 	
+	<!-- 선물 상세 옵션 -->
+	<select id="selectGoption" parameterType="list" resultMap="option_rm">
+		SELECT *
+		FROM GIFT_OPTION 
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
 </mapper>

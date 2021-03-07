@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.gift.model.service.GiftService;
 import team.project.gday.member.model.vo.Member;
@@ -138,6 +139,11 @@ public class GiftCtrl {
 			//판매자 정보 가져오기
 			Member member = service.selectMember(gift.getMemNo());
 			model.addAttribute("member", member);
+			
+			// 옵션 가져오기
+			List<GOption> goption = service.selectGoption(prdtNo);
+			System.out.println("상품*----"+ goption);
+			model.addAttribute("goption", goption);
 			
 			Attachment thumbnail = service.selectThumbnail(prdtNo);
 			if(thumbnail != null) {

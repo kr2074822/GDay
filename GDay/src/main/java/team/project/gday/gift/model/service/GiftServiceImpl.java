@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gift.model.dao.GiftDAO;
@@ -199,6 +200,12 @@ public class GiftServiceImpl implements GiftService{
 	@Override
 	public Attachment selectThumbnail(int prdtNo) {
 		return dao.selectThumbnail(prdtNo);
+	}
+
+	// 상품 옵션 가져오기
+	@Override
+	public List<GOption> selectGoption(int prdtNo) {
+		return dao.selectGoption(prdtNo);
 	}
 
 }

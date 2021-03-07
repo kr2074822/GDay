@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.model.vo.Member;
 
@@ -45,5 +46,11 @@ public interface GiftService {
 	 * @return
 	 */
 	Attachment selectThumbnail(int prdtNo);
+
+	/** 옵션번호 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	List<GOption> selectGoption(int prdtNo);
 
 }

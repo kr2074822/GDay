@@ -46,9 +46,9 @@
                         <div class="option">
                             <span>옵션</span>
                             <select name="" id="">
-                                <option value="">가가가가가</option>
-                                <option value="">나</option>
-                                <option value="">다</option>
+                            	<c:forEach var="goption" items="${goption}" varStatus="vs">
+	                                <option value="${goption.gOptNo}">${goption.gOptName}</option>
+                                </c:forEach>
                             </select>
                             <div class="gift_cnt">
                                 <div class="opt_title">
@@ -84,9 +84,9 @@
     <section>
         <div class="gift">
             <div class="gift_title">
-                <div><a href="">상품 설명</a></div>
-                <div><a href="">상품 후기</a></div>
-                <div><a href="">배송 교환 반품</a></div>
+                <div><a href="#about">상품 설명</a></div>
+                <div><a href="#review">상품 후기</a></div>
+                <div><a href="#refund">배송 교환 반품</a></div>
             </div>
             <div class="describe">
                 <h1>판매자 정보</h1>
@@ -122,7 +122,7 @@
                         </tr>
                     </table>
                 </div>
-                <h1>상품 설명</h1>
+                <h1 id="about">상품 설명</h1>
                 <div class="about_gift">
                     <p>
                         ${gift.prdtContent}
@@ -165,7 +165,7 @@
                     <img src="images/gift1.jpg" alt="">
                 </div>
 
-                <div class="refund">
+                <div class="refund" id="refund">
                     <h1>반품 / 교환정보</h1>
                     <div class="table_wrapper">
                         <table>
@@ -225,7 +225,7 @@
                     </div>
  -->
                  
-                    <div class="review">
+                    <div class="review" id="review">
                         <div class="item">
                             <div class="rank">
                                 <span>별점 <span>5</span></span>

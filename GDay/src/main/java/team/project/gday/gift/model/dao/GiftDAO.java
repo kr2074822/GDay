@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.model.vo.Member;
 
@@ -110,7 +111,15 @@ public class GiftDAO {
 	 * @return
 	 */
 	public Attachment selectThumbnail(int prdtNo) {
-		return sqlSession.selectOne("classMapper.selectThumbnail", prdtNo);
+		return sqlSession.selectOne("giftMapper.selectThumbnail", prdtNo);
+	}
+
+	/** 상품옵션 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	public List<GOption> selectGoption(int prdtNo) {
+		return sqlSession.selectList("giftMapper.selectGoption", prdtNo);
 	}
 	
 	
