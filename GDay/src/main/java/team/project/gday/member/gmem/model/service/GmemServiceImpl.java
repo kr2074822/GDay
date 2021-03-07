@@ -157,5 +157,11 @@ public class GmemServiceImpl implements GmemService {
 		return result;
 	}
 
+	//취소/반품 상세 조회
+	@Override
+	public Refund selectRefundInfo(int opNo) {
+		return dao.selectRefundInfo(opNo);
+	}
+
 	
 }

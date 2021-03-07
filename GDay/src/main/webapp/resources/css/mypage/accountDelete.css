@@ -1,1 +1,85 @@
- 
+.sidebar-area{
+	float: left;
+}
+.account_del{
+	width: 70%;
+	margin: auto;	
+	padding: 200px 0;
+}
+.account_del .title{
+	width: 100%;
+	text-align: center;
+	margin: 0 0 40px;
+    padding: 0;
+}
+
+
+
+.account_del .insert_info{
+	width: 50%;
+	margin: 0 auto;
+}
+.account_del .insert_info div{
+	position: relative;
+	width: 30%;
+	margin: 0 auto;
+
+}
+.account_del .insert_info div input{
+    padding: 10px 0;
+    margin-bottom: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: none;
+    border-bottom: 2px solid #999;
+}
+
+.account_del .insert_info  div label{
+	position: absolute;
+    top: 10px;
+    left: 0;
+    color: #999;
+    transition: .5s;
+    pointer-events: none;
+}
+
+
+
+
+.account_del .insert_info div input:focus ~ label,
+.account_del .insert_info div input:valid ~ label{
+    top: -12px;
+    left: 0;
+    color: #f7497d;
+    font-size: 12px;
+    font-weight: bold;
+}
+.account_del .insert_info div input:focus,
+.account_del .insert_info div input:valid{
+    border-bottom: 2px solid #f7497d;
+}
+.account_del .insert_info div input:focus{
+    outline:none;
+}
+
+.account_del .btn {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.account_del .btn button{
+	background: #fe929f;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+
+
+
+
+
+

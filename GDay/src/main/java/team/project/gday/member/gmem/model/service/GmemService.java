@@ -102,6 +102,12 @@ public interface GmemService {
 	 */
 	public abstract int updateShipInfo(Map<String, Object> map);
 
+	/**반품/취소 상세 페이지 조회
+	 * @param opNo
+	 * @return
+	 */
+	public abstract Refund selectRefundInfo(int opNo);
+
 
 	
 }
