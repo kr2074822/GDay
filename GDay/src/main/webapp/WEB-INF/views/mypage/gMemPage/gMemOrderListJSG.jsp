@@ -216,9 +216,6 @@ function selectOrderList(cp){
 
 
 
-
-
-
 //클릭 시 상세 이동
 	/* 목록 클릭 시 상세 조회로 이동(주문번호 사용) */
 function gotoDetail(orderNo, opNo, statusNo){

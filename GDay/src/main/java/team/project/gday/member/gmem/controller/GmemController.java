@@ -87,7 +87,7 @@ public class GmemController {
 		map.put("status", status);
 		map.put("view", "V_ORDER");
 		
-		System.out.println("map: " + map);
+		//System.out.println("map: " + map);
 		
 		
 		//json 형태 반환용 map returnMap 생성
@@ -106,7 +106,7 @@ public class GmemController {
 		//oList 구하기
 		List<Order> oList = service.selectOrderList(pInfo, map); 
 		
-		System.out.println("oList: " + oList);
+		//System.out.println("oList: " + oList);
 		
 		
 		//returnMap에 oList 넣기
@@ -152,7 +152,7 @@ public class GmemController {
 						returnMap.put("cList", cList);
 					}
 					
-					System.out.println(cList);
+					//System.out.println(cList);
 				} 
 			}
 		} 
@@ -199,7 +199,7 @@ public class GmemController {
 				//리뷰 확인하는 거 가져오기 (RV_NO = OP_NO)
 				List<Review> rCheck = service.selectRCheck(oList);
 				
-				System.out.println("rCheck : " + rCheck);
+				//System.out.println("rCheck : " + rCheck);
 				
 				if(rCheck != null && !rCheck.isEmpty()) {
 					model.addAttribute("rCheck", rCheck);
@@ -223,7 +223,7 @@ public class GmemController {
 						model.addAttribute("cList", cList);
 					}
 					
-					System.out.println(cList);
+					//System.out.println(cList);
 				} 
 			}
 			
@@ -277,7 +277,7 @@ public class GmemController {
 
 			//썸네일 리스트 구하기
 			Attachment thumbnail = service.selectAThumbnail(order.getPrdtNo());
-			System.out.println("thumbnail : " + thumbnail);
+			//System.out.println("thumbnail : " + thumbnail);
 			
 			if(thumbnail != null) {
 				//modelattribute로 보내기
@@ -290,7 +290,7 @@ public class GmemController {
 					
 					if(gOption != null) {
 						model.addAttribute("gOption", gOption);
-						System.out.println("gOption : " + gOption);
+						//System.out.println("gOption : " + gOption);
 					}
 					
 				} else if (type.equals("C")) {//클래스일 때
@@ -300,7 +300,7 @@ public class GmemController {
 					
 					if(gClass != null) {
 						model.addAttribute("gClass", gClass);
-						System.out.println("gClass: " + gClass);
+						//System.out.println("gClass: " + gClass);
 					}
 				} 
 			}
@@ -351,7 +351,7 @@ public class GmemController {
 				map.put("shipPhone", shipPhone);
 				map.put("shipAddr", shipAddr);
 				map.put("orderNo", orderNo);
-				System.out.println(shipAddr);
+				//System.out.println(shipAddr);
 				
 				//수거지 정보 변경
 				result = service.updateShipInfo(map);
@@ -411,7 +411,7 @@ public class GmemController {
 
 			//썸네일 리스트 구하기
 			Attachment thumbnail = service.selectAThumbnail(order.getPrdtNo());
-			System.out.println("thumbnail : " + thumbnail);
+			//System.out.println("thumbnail : " + thumbnail);
 			
 			if(thumbnail != null) {
 				//modelattribute로 보내기
@@ -430,7 +430,7 @@ public class GmemController {
 						
 						if(gOption != null) {
 							model.addAttribute("gOption", gOption);
-							System.out.println("gOption : " + gOption);
+							//System.out.println("gOption : " + gOption);
 						}
 						
 					} else if (type.equals("C")) {//클래스일 때
@@ -440,7 +440,7 @@ public class GmemController {
 						
 						if(gClass != null) {
 							model.addAttribute("gClass", gClass);
-							System.out.println("gClass: " + gClass);
+							//System.out.println("gClass: " + gClass);
 						}
 					}
 				}

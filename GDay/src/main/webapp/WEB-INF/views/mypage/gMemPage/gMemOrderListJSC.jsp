@@ -167,7 +167,7 @@ function selectOrderList(cp){
 						
 					} else if(status == 800){ //수강 완료
 						btn = $("<a>").addClass('btn-review')
-						.attr("onclick", "popUp("+ order.opNo + ", 'g'" +")").text("후기 쓰기");
+						.attr("onclick", "popUp("+ order.opNo + ", 'c'" +")").text("후기 쓰기");
 					
 						$.each(rCheck, function(index, review){
 							if(review.rvNo == order.opNo) btn = "";
@@ -223,7 +223,7 @@ function selectOrderList(cp){
 function loadTab(cp){
 	
 	for(var i=0; i<cp; i++){ 
-		//목록, 이전으로 버튼으로 돌아온 경우
+		//후기 작성 후, 구매 확정 후 재로드 등...
 		selectOrderList(cp); 
 	}
 	
@@ -243,6 +243,7 @@ if(statusNo >= 800){
 }
 	location.href = url;
 }
+
 
 //클릭 시 판매자에게 문의하는 창 연결
 function gotoInquiry(sellerNo){
