@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.dao.AdminDAO;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
@@ -73,6 +74,12 @@ public class AdminServiceImpl implements AdminService{
 		return dao.productBoard(pInfo);
 	}
 
+	// 게시글 상태 변경 Service 구현
+	@Transactional(rollbackFor =  Exception.class)
+	@Override
+	public int boardUpdate(Map<String, Object> map) {
+		return dao.boardUpdate(map);
+	}
 	// -------------------------------------------------------------------
 	
 	// 매거진 페이징 처리를 위한 Service 구현
@@ -95,7 +102,8 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public adminPageInfo getPageAcInfo(int cp) {
 		int listAcCount = dao.getListAcCount();
-		System.out.println(listAcCount);
+		//System.out.println(listAcCount);
+		
 		return new adminPageInfo(listAcCount, cp);
 	}
 
@@ -106,6 +114,19 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	// --------------------------------------------------------
+	// 회원 고객센터 페이징처리 Service 구현
+	@Override
+	public adminPageInfo getPageMcInfo(int cp, Member memberNo) {
+		int listMcCount = dao.getListMcCount(memberNo);
+		return new adminPageInfo(listMcCount, cp);
+	}
+
+	@Override
+	public List<Report> memberCustomer(adminPageInfo pInfo, Member memberNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

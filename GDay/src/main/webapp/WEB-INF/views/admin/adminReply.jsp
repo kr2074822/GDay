@@ -91,7 +91,7 @@
 </div>
 
 <script>
-var loginMemberId = "${loginMember.memberId}"; // 로그인한 회원 아이디(있으면 아이디, 없으면 빈문자열)
+var loginmemberEmail = "${loginMember.memberEmail}"; // 로그인한 회원 아이디(있으면 아이디, 없으면 빈문자열)
 var replyWriter = "${loginMember.memberNo}"; // 로그인한 회원 번호
 var parentBoardNo = ${board.boardNo}; // 게시글 번호
 
@@ -128,7 +128,7 @@ function selectReplyList(){
 	            
 	      // 작성자, 작성일, 수정일 영역 
 	      var div = $("<div>");
-	      var rWriter = $("<a>").addClass("rWriter").html(item.memberId);
+	      var rWriter = $("<a>").addClass("rWriter").html(item.memberEmail);
 	      var rDate = $("<p>").addClass("rDate").html("작성일 : " + item.replyCreateDate + "<br>마지막 수정 날짜 : " + item.replyModifyDate);
 	      					  div.append(rWriter).append(rDate)
 	            
@@ -139,7 +139,7 @@ function selectReplyList(){
 	      var replyBtnArea = $("<div>").addClass("replyBtnArea");
 	            
 	      // 현재 댓글의 작성자와 로그인한 멤버의 아이디가 같을 때 버튼 추가
-	      if(item.memberId == loginMemberId){
+	      if(item.memberEmail == loginmemberEmail){
 	         
 	      	// ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
 	        var showUpdate = $("<button>").addClass("btn btn-success btn-sm ml-1").text("수정").attr("onclick", "showUpdateReply(" + item.replyNo + ", this)");
@@ -168,7 +168,7 @@ function selectReplyList(){
 $("#addReply").on("click", function(){
 	
 	// 로그인이 되어있는지 확인
-	if(loginMemberId == ""){
+	if(loginmemberEmail == ""){
 		swal({icon: "info",
 					title: "로그인 후 이용해주세요."});
 	}else{ // 로그인이 되어있는 경우

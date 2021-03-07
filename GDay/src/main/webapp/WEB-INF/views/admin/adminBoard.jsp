@@ -19,10 +19,12 @@
 				<h3>게시글 관리</h3>
 				<div id="adminBoard-search">
 					<select name="board-se" id="board-se">
+						<option class="boardOp" value="none">-- 게시글 --</option>					
 						<option class="boardOp" value="C">선물</option>
 						<option class="boardOp" value="G">클래스</option>
 					</select>
-					<select name="board-ap" id="board-ap">
+					<select name="board-sea" id="board-sea">
+						<option class="boardAp" value="none">-- 상태 --</option>					
 						<option class="boardAp" value="Y">일반</option>
 						<option class="boardAp" value="B">블라인드</option>
 					</select>					
@@ -48,14 +50,14 @@
 						<tbody>
 							<tr>
 							<!-- 회원이 없을 경우 -->
-	                    	<c:if test="${empty product}">
+	                    	<c:if test="${empty pList}">
 	                    		<tr>
 	                    			<td colspan="6">존재하는 게시글이 없습니다.</td>
 	                    		</tr>
 	                    	</c:if>
-	                    	<c:if test="${!empty product}">
+	                    	<c:if test="${!empty pList}">
 		                    	<!-- 회원이 있을 경우 -->
-		                    	<c:forEach var="product" items="${product}">
+		                    	<c:forEach var="product" items="${pList}">
 									<tr>
 										<td>${product.prdtNo}</td>
 										<td>${product.prdtType}</td>
@@ -72,10 +74,11 @@
 
 					<div id="adminBoard-Application">
 						<select name="board-ap" id="board-ap">
+							<option class="boardAp" value="none">-- 상태 --</option>
 							<option class="boardAp" value="B">블라인드</option>
 							<option class="boardAp" value="Y">블라인드 해제</option>
 						</select>
-						<button type="submit">상태 변경</button>
+						<button type="button" id="changePdtBtn" class="form-control btn">상태 변경</button>
 					</div>
 				</form>
 			</div>
@@ -152,7 +155,6 @@
 		</div>
 		</div>
 	</div>
-
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
@@ -178,6 +180,52 @@
 			
 			location.href = "${contextPath}/admin/memberCustomerView"; 
 		}); */
+		
+		
+		// 게시글 등급변경하기
+		$("#changePdtBtn").on("click", function(){
+			var array = [];
+			var grade = $("select[name=board-ap] option:selected").val();
+			
+			$('input[type="checkbox"]:checked').each(function(index, item){
+				array.push($(item).val());
+			})
+			
+			
+			console.log(array);
+
+			if($('input[type="checkbox"]:checked') < 1){
+				alert("선택된 게시글이 없습니다.");
+				return;
+			}else{
+				
+				console.log($('input[type="checkbox"]:checked').val())
+				console.log($('#board-ap').val())
+				console.log(array)
+				if(confirm("게시글의 상태를 변경하시겠습니까?")){
+					$.ajax({
+						url: "${contextPath}/admin/boardApUpdate",
+						data: { "prdtStatus": $('#board-ap').val(),
+								"prdtNo": array},
+						type: "post",
+						traditional: true,
+						success: function(result){
+							console.log("성공");
+							if(result > 0){
+								location.reload();
+								alert("등급이 변경되었습니다.");
+							};
+						},
+						error: function(){
+							console.log("등급 변경 실패");
+						}
+					});
+				}else{
+					$("#changePdtBtn").blur();
+					return;
+				}
+			}
+		});		
 	</script>	
 </body>
 </html>

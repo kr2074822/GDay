@@ -90,27 +90,15 @@ button {
 			</form>
 		</div>
 	</div>
-	
+	<jsp:include page="../common/chatbot.jsp" />	
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
-	/* closer 챗봇 연동 설정(설치 스크립트) */
-		(function(c, l, o, s, e, r) {
-			c[e] = c[e] || {};
-			r = l.createElement('script');
-			s && (o += '?botId=' + s);
-			e && (r.setAttribute('data-bind', e));
-			r.src = o;
-			r.async = 1;
-			l.head.appendChild(r);
-		})(window, document, 'https://app.closer.ai/webchat.js', 'B266ew');
-		
-		
 		/* 게시글 상세보기 */
 		$("#list-table td").on("click", function(){
 			var boardNo = $(this).parent().children().eq(0).text();
 			
-			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
+			var boardViewURL = "../${pInfo.prdtType}/" + boardNo;
 			
 			location.href = "${contextPath}/admin/memberCustomerView"; 
 		});

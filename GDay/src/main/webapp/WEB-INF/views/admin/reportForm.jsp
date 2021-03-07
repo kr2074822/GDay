@@ -8,28 +8,33 @@
 <body>
 	
 	<div class="headerTitle">
-		<h3> 신고 하기 </h3>
+		<h2> 신고 하기 </h2>
 	</div>
 	<div>
-		<h2>신고 내용</h2>
+		<h3>신고 내용</h3>
 		<div>
 			<form method="post" action="#">
-				<label><input type="radio" name="reportName" value="">허위 게시물</label>
-				<label><input type="radio" name="reportName" value="">허위 게시물</label>
-				<label><input type="radio" name="reportName" value="">허위 게시물</label>
-				<label><input type="radio" name="reportName" value="">허위 게시물</label>
+				<label><input type="radio" name="reportName" value="C">욕설</label>
+				<label><input type="radio" name="reportName" value="F">허위 게시물</label>
+				<label><input type="radio" name="reportName" value="D">사기</label>
 				
-				<button type="submit">신고하기</button>
-				<button type="button">취소</button>
+				<button type="submit" id="reportAction">신고하기</button>
+				<button type="button" class="cancel" onclick="window.close();">취소</button>
 			</form>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		var id;
-		var result;
+		/* $(".cancel").on("click", function(){
+			self.close();
+			window.close();
+		}) */
 		
-		
+		/* function close(){
+			e.preventDefault();
+			self.close();
+			window.close();
+		} */
 	</script>
 
 </body>

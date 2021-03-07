@@ -11,16 +11,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.service.AdminService;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"loginMember"})
 @RequestMapping("/admin/*")
 public class AdminController {
 	
@@ -53,7 +56,7 @@ public class AdminController {
 	@RequestMapping("memberGrade")
 	@ResponseBody
 	public int memberGrade(@RequestParam String[] memberNo,
-							@RequestParam String memberGrade) {
+						   @RequestParam String memberGrade) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNo", memberNo);
@@ -110,16 +113,32 @@ public class AdminController {
 		// 페이징 처리
 		adminPageInfo pInfo = service.getPageBdInfo(cp);
 		
-		List<Product> product = service.productBoard(pInfo);
+		List<Product> pList = service.productBoard(pInfo);
 		
 		/*
 		 * for(Product p: product) { System.out.println(p); }
 		 */
 		
-		model.addAttribute("product", product);
+		model.addAttribute("pList", pList);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "admin/adminBoard";
+	}
+	
+	// 게시글 상태 변경 Controller
+	@RequestMapping("boardApUpdate")
+	@ResponseBody
+	public int boardUpdate(@RequestParam String[] prdtNo,
+						   @RequestParam String prdtStatus) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("prdtNo", prdtNo);
+		map.put("prdtStatus", prdtStatus);
+		
+		// System.out.println(map);
+		
+		int result = service.boardUpdate(map);
+		return result;
 	}
 	
 	// 게시판 상세조회 Controller
@@ -164,6 +183,18 @@ public class AdminController {
 		return "admin/adminReportStand";
 	}
 	
+	
+	// 신고하기 화면 팝업창 Controller
+	@RequestMapping("reportForm")
+	public String reportForm() {
+		return "admin/reportForm";
+	}
+	
+	// 신고하기 Controller
+	@RequestMapping("report")
+	public String report() {
+		return "redirect:" ;
+	}
 	// -----------------------------------------------------------------
 	
 	// 관리자 고객센터 목록 화면 전환 Controller
@@ -195,7 +226,20 @@ public class AdminController {
 	
 	// 회원 고객센터 목록 화면 전환 Controller
 	@RequestMapping("memberCustomer")
-	public String memberCustomer(){
+	public String memberCustomer(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+								 @ModelAttribute("loginMember") Member memberNo,
+								 Model model){
+		
+		// System.out.println(memberNo);
+		
+		memberNo.getMemberNo();
+		
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageMcInfo(cp, memberNo);
+		
+		// 회원의 게시글 목록 조회
+		List<Report> rList = service.memberCustomer(pInfo, memberNo);
+		
 		return "admin/memberCustomer";
 	}
 
