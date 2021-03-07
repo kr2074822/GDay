@@ -328,7 +328,7 @@ header #headerWrapper #header-member-area > a{
     top: 80px;
     visibility: visible;
     opacity: 1;
-    background: #ffe6ff;
+    background: #FE929F;
 }
 .action .menu ::before{
     content: '';
@@ -337,7 +337,7 @@ header #headerWrapper #header-member-area > a{
     right: 28px;
     width: 20px;
     height: 20px;
-    background: #ffe6ff;
+    background:#FE929F;
     transform: rotate(45deg);
 }
 .action .menu h3{
@@ -352,7 +352,7 @@ header #headerWrapper #header-member-area > a{
 }
 .action .menu h3 span{
     font-size: 14px;
-    color: #cecece;
+    color: #fff;
     font-weight: 400;
 }
 

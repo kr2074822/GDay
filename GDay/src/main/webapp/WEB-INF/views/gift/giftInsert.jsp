@@ -173,12 +173,12 @@
 				            <label for="eh" class="item">입사ㆍ승진</label>
 				        </li>
 				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="33" id="eh">
-				            <label for="eh" class="item">퇴사</label>
+				            <input type="checkbox" name="hashNo" value="33" id="ei">
+				            <label for="ei" class="item">퇴사</label>
 				        </li>
 				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="34" id="eh">
-				            <label for="eh" class="item">명절</label>
+				            <input type="checkbox" name="hashNo" value="34" id="ej">
+				            <label for="ej" class="item">명절</label>
 				        </li>
 				    </ul>
 				    <span class="opt_name">계절별</span>
@@ -231,8 +231,8 @@
 				            <label for="gg" class="item">Purple</label>
 				        </li>
 				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="46" id="gg">
-				            <label for="gg" class="item">Pink</label>
+				            <input type="checkbox" name="hashNo" value="46" id="gj">
+				            <label for="gj" class="item">Pink</label>
 				        </li>
 				        <li class="tag">
 				            <input type="checkbox" name="hashNo" value="47" id="gh">

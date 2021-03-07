@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
@@ -161,7 +165,7 @@ public class BmemController {
 	//비즈니스 회원 탈퇴 이동
 	@RequestMapping("bMemSessionUpdate")
 	public String bMemSessionUpdate() {
-		return "mypage/bMemPage/bMemUpdate";
+		return "mypage/accountDelete";
 	}
 	
 	
@@ -186,5 +190,29 @@ public class BmemController {
 		
 		return result;
 	}
+	
+	
+	// =================================== 회원 탈퇴 =====================================
+	
+	@RequestMapping("accountDel")
+	@ResponseBody
+	public int accountDel(@ModelAttribute Member loginMember,SessionStatus status, HttpServletResponse response){
+		
+		System.out.println(loginMember);
+		int result = service.accountDel(loginMember);
+		System.out.println("컨트롤러 result"+result);
+		if (result >0) {
+			status.setComplete();
+			Cookie loginSessionId = new Cookie("loginSessionId", null);
+			loginSessionId.setPath("/");
+			System.out.println("-------");
+			System.out.println(loginSessionId.getValue());
+			System.out.println("-------");
+			loginSessionId.setMaxAge(0);
+			response.addCookie(loginSessionId);
+		}
+		return result;
+	}
+	
 	
 }

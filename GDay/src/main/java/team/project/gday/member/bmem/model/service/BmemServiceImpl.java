@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,9 @@ import team.project.gday.member.model.vo.Member;
 @Service
 public class BmemServiceImpl implements BmemService {
 
+	@Autowired
+	private BCryptPasswordEncoder enc;
+	
 	@Autowired
 	private BmemDAO dao;
 
@@ -97,6 +101,25 @@ public class BmemServiceImpl implements BmemService {
 		
 		return result;
 	}
-	
+
+	// 회원 탈퇴
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int accountDel(Member loginMember) {
+		int result = 0;
+		System.out.println("----");
+		Member login = dao.loginAction(loginMember);
+		if(enc.matches(loginMember.getMemberPwd(), login.getMemberPwd())) { 
+		
+			System.out.println(1111);
+			result = dao.accountDel(loginMember.getMemberEmail());
+			System.out.println("결과: "+ result);
+		}else {
+			System.out.println("2222222222");
+		}
+
+		return result;
+	}
+
 
 }
