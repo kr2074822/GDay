@@ -42,8 +42,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
 
    <section class="mgz_wrapper">
-        <h1>클래스 등록 신청</h1>
-        <form action="${contextPath}/bMember2/insertClass" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate()">
+        <h1>클래스 수정</h1>
+        <form action="updateAction" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate()">            
             <div class="wrapper">
                 <div class="check_wrapper">
                     <span class="opt_name">연령대</span>
@@ -53,7 +53,7 @@
 				            <label for="aa" class="item">영유아</label>
 				        </li>
 				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="2" class="item" id="an">
+				            <input type="checkbox" name="hashNo" value="2" class="item" id="ab">
 				            <label for="an" class="item">어린이</label>
 				        </li>
 				        <li class="tag">
@@ -310,33 +310,33 @@
                     <ul class="tagBx" data-text="7">
 											<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>수강료</label>
-      									<input type="number" id="prdtPrice" name="prdtPrice" placeholder="50000" autocomplete=off>
+      									<input type="number" id="prdtPrice" name="prdtPrice" value="${gclass.prdtPrice}" placeholder="50000" autocomplete=off>
       								</li>
       								<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>정원 수</label>
-      									<input type="number" id="cCount" name="cCount" placeholder="15" autocomplete=off>
+      									<input type="number" id="cCount" name="cCount" value="${gclass.cCount}" placeholder="15" autocomplete=off>
       								</li>
       								<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>세션 수</label>
-      									<input type="number" id="cSession" name="cSession" placeholder="8" autocomplete=off>
+      									<input type="number" id="cSession" name="cSession" value="${gclass.cSession}" placeholder="8" autocomplete=off>
       								</li>
       								<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>개강일</label>
-      									<input type="text" id="cStartDate" name="cStartDate" autocomplete=off>
+      									<input type="text" id="cStartDate" name="cStartDate" value="${gclass.cStartDate}" autocomplete=off>
       								</li>
       								<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>종강일</label>
-      									<input type="text" id="cEndDate" name="cEndDate" autocomplete=off>
+      									<input type="text" id="cEndDate" name="cEndDate" value="${gclass.cEndDate}" autocomplete=off>
       								</li>
       								<li class="tag">
       									<label for="ha" class="item"><span class="required">*</span>수업일/시간</label>
-      									<input type="text" id="cDate" name="cDate" style="width:150px;" placeholder="금/토요일 18:00" autocomplete=off>
+      									<input type="text" id="cDate" name="cDate" style="width:150px;" value="${gclass.cDate}" placeholder="금/토요일 18:00" autocomplete=off>
       								</li>
                     </ul>
                 </div>
                   
                 <div class="gift_title">
-                    <input type="text" placeholder="클래스명을 입력해주세요" name="prdtName" id="prdtName" autocomplete=off>
+                    <input type="text" value="${gclass.prdtName}" placeholder="클래스명을 입력해주세요" name="prdtName" id="prdtName" autocomplete=off>
                     <div class="thumbnail">
                     <div class="boardRow">
 						<div id="fileArea">
@@ -350,27 +350,40 @@
                     </div>
                 </div>
                 <div class="editor boardRow">
-                    <textarea class="form-control" id="summernote" name="prdtContent" rows="10" style="resize: none;"></textarea>
+                    <textarea class="form-control" id="summernote" name="prdtContent" rows="10" style="resize: none;">${gclass.prdtContent}</textarea>
                 </div>
                 
                 			<!-- 카카오 맵 API -->
 								<div class="boardRow" style="margin-bottom: 0px;">
-									<input type="text" class="address" id="sample5_address" name="cLocal" style="width:585px;" placeholder="클래스가 진행될 장소를 필수로 입력해주세요." autocomplete=off readonly>
+									<input type="text" class="address" id="sample5_address" name="cLocal" style="width:585px;" value="${gclass.cLocal}" placeholder="클래스가 진행될 장소를 필수로 입력해주세요." autocomplete=off readonly>
 									<input type="button" class="address" id="searchBtn" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 									<div id="map" style="width:300px;height:200px;visibility:hidden"></div>
 								</div>
-                
-                
-                <div class="buttons">
-                    <button type="submit" class="submit">등록</button>	
-                    <button class="cancel">취소</button>	
-                </div>
-            </div>
+								
+								<div class="buttons">
+                 <button type="submit" class="submit">등록</button>	
+                 <button class="cancel">취소</button>	
+             	  </div>
+           </div>
         </form>
     </section>
 	<jsp:include page="../common/footer.jsp" />
-	
     <script>
+				// 이미지 배치
+				<c:forEach var="at" items="${attachmentList}">
+					$(".boardImg").eq(${at.fileLevel}).children("img").attr("src", "${contextPath}${at.filePath}/${at.fileName}");
+				</c:forEach>
+				
+				
+				// 해시태그 선택 
+				$.each($(".check_wrapper input:checkbox[name='hashNo']"), function(index, item){
+				<c:forEach var="tag" items="${prdtTagList}">
+						if($(item).val() == "${tag.tagNo}"){
+							$(item).prop("checked", "true");
+						}
+				</c:forEach>
+				});
+
         const opt_name = document.getElementsByClassName("opt_name");
         console.log(opt_name);
         $(".opt_name").on('click', function(){
@@ -393,7 +406,7 @@
         });
         
         
-  var flag = false;   
+  //var flag = false;   
  
   
 	function validate() {
@@ -549,7 +562,7 @@
 			  // value.files[0] : 여러 파일 중 첫번째 파일이 업로드 되어 있으면 true
 			  
 				if(value.files && value.files[0]){ // 해당 요소에 업로드된 파일이 있을 경우
-					flag = true;
+					//flag = true;
 					var reader = new FileReader();
 		    	// 자바스크립트 FileReader
 		   	// 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 
@@ -610,6 +623,8 @@
               }
             });
         });
+        
+        
     </script>
 
 </body>

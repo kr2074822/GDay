@@ -274,7 +274,7 @@
             </div> 
         </div> 
     </section>
-	
+		<jsp:include page="../common/footer.jsp" />
 		<script type="text/javascript" src="${contextPath}/resources/js/fontawesome.js"></script>
     
     <script>

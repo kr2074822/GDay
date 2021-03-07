@@ -17,6 +17,17 @@ public class Attachment {
 		this.prdtNo = prdtNo;
 	}
 
+	
+	
+	public Attachment(int fileNo, String filePath, String fileName, int fileLevel, int prdtNo) {
+		super();
+		this.fileNo = fileNo;
+		this.filePath = filePath;
+		this.fileName = fileName;
+		this.fileLevel = fileLevel;
+		this.prdtNo = prdtNo;
+	}
+
 	public int getFileNo() {
 		return fileNo;
 	}

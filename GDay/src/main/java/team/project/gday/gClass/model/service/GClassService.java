@@ -1,9 +1,13 @@
 package team.project.gday.gClass.model.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
@@ -50,5 +54,27 @@ public interface GClassService {
 	 * @return attachment
 	 */
 	Attachment selectThumbnail(int prdtNo);
+
+	/**상품별 해시태그 조회 Service
+	 * @param prdtNo
+	 * @return List<ProductCTag>
+	 */
+	List<ProductCTag> selectPrdtTagList(int prdtNo);
+
+	/**클래스 수정 Service
+	 * @param map
+	 * @param images
+	 * @param savePath
+	 * @param deleteImages
+	 * @return result
+	 */
+	int updateClass(Map<String, Object> map, List<MultipartFile> images, String savePath);
+
+	/** 썸머노트에 이미지 저장 Service
+	 * @param uploadFile
+	 * @param savePath
+	 * @return
+	 */
+	Attachment insertImages(MultipartFile uploadFile, String savePath);
 
 }
