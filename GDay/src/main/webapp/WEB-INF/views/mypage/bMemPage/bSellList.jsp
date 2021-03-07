@@ -50,8 +50,9 @@
 					</c:if>
 					
 					<c:if test="${!empty gList}">
-						<c:forEach var="gift" items="${gList}" varStatus="vs">
+						<c:forEach var="gift" items="${gList}" varStatus="vs">							
 							<div class="sell-item">
+								<input class="hidden-input prdt-no" type="text" value="${gift.prdtNo}"/>
 								<c:forEach items="${thList}" var="th">
 									<c:if test="${th.prdtNo == gift.prdtNo}">								
 										<img src="${contextPath}${th.filePath}/${th.fileName}">										
@@ -153,6 +154,14 @@
 	<jsp:include page="../../common/footer.jsp"/>
 	
 	<script>
+	
+	/* 상품 클릭 시 */
+	$(".sell-item").on("click", function(){
+		var prdtNo = Number($(this).find(".prdt-no").val());
+		location.href = "${contextPath}/gift/" + prdtNo;
+	});
+	
+	
 	/* 날짜 선택 시 */
 		$("[name='periodRadio']").on("click", function() {
 		var day = $(this).val();

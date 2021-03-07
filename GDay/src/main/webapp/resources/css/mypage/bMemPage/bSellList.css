@@ -59,6 +59,10 @@
   grid-template-columns: 33% 33% 34%;
 }
 
+.hidden-input {
+	display: none;
+}
+
 .sell-item {
 	display: flex;
 	flex-direction: column;

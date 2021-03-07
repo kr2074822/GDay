@@ -24,36 +24,21 @@
 			
 			<div id="wrapper-top-area">
 			<!-- 주문 목록 기간 검색 -->
-		    <div class="row" id="container-period">
-		        <form action="#" method="post" id="container-form">
+				<div class="row" id="container-period">
+		      <div id="date-form">
 		        <div class="list-search" id="list-search-1">
-		            <input type="radio" name="periodRadio" id="7days" value="7days">
-		            <label for="7days">일주일</label>
-		            <input type="radio" name="periodRadio" id="1Month" value="1Month">
-		            <label for="1Month">1개월</label>
-		            <input type="radio" name="periodRadio" id="3Months" value="3Months">
-		            <label for="3Months">3개월</label>
-		            <input type="radio" name="periodRadio" id="6Months" value="6Months">
-		            <label for="6Months">6개월</label>
-		            <input type="radio" name="periodRadio" id="selfInput" value="selfInput">
-		            <label for="selfInput">직접 입력</label>
+		        	<button type="button" class="day-btn" onclick="location.href='${contextPath}/bMember/bClassList'">전체</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="7days">일주일</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="1Month">1개월</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="3Months">3개월</button>
+		        	<button type="button" class="day-btn" name="periodRadio" value="6Months">6개월</button>
 		        </div>
 		        <div class="list-search" id="list-search-2">
 		            <input type="date" name="periodStart" id="periodStart">
 		            <span>~</span>
 		            <input type="date" name="periodEnd" id="periodEnd">
-		        </div>
-		        <div class="list-search" id="list-search-3">
-		            <select name="giftStatus" id="giftStatus">
-		                <option value="#">결제 완료</option>
-		                <option value="#">선물 발송</option>
-		                <option value="#">구매 확정</option>
-		                <option value="#">취소/반품 완료</option>
-		                <option value="#">취소/반품 처리 중</option>
-		            </select> <!-- giftStats : 주문 선물 상태 -->
-		            <button type="submit" id="list-search-btn">조회</button>
-		        </div>
-		        </form>
+		        </div>	
+		      </div>	        
 		    </div>
 			</div>
 					
@@ -67,6 +52,7 @@
 					<c:if test="${!empty cList}">
 						<c:forEach var="bClass" items="${cList}" varStatus="vs">
 							<div class="class-item">
+								<input class="hidden-input prdt-no" type="text" value="${bClass.prdtNo}"/>
 								<c:forEach items="${thList}" var="th">
 									<c:if test="${th.prdtNo == bClass.prdtNo}">								
 										<img src="${contextPath}${th.filePath}/${th.fileName}">										
@@ -85,8 +71,18 @@
 		
 					<ul class="pagination">
 		
-						<c:url var="pageUrl" value="bClassList?"/>
-		
+						<c:if test = "${empty selectDay}">
+							<c:url var="pageUrl" value="bClassList?"/> 
+						</c:if>
+						
+	 					<c:if test = "${!empty selectDay}">
+							<c:url var="pageUrl" value="${selectDay}?"/> 
+						</c:if>
+						
+						<c:if test = "${!empty startText && !empty endText}">
+							<c:url var="pageUrl" value="${endText}?"/> 
+						</c:if>
+			
 						<!-- 화살표에 들어갈 주소를 변수로 생성 -->
 						<c:set var="firstPage" value="${pageUrl}cp=1"/>
 						<c:set var="lastPage" value="${pageUrl}cp=${pInfo.maxPage}"/>
@@ -155,6 +151,67 @@
 			
 	</div>
 	
+<script>
+
+	/* 상품 클릭 시 */
+	$(".class-item").on("click", function(){
+		var prdtNo = Number($(this).find(".prdt-no").val());
+		location.href = "${contextPath}/gClass/" + prdtNo;
+	});
+
+	/* 날짜 선택 시 */
+	$("[name='periodRadio']").on("click", function() {
+		var day = $(this).val();
+		
+		location.href = "${contextPath}/bMemSearch/bClassDaySearch/" + day;
+		
+	});
+	
+	
+	/* 날짜 직접 선택 시  */
+	$("#periodStart").on("change", function() {
+ 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
+ 			 var startText = $(this).val();
+ 			 var endText = $("#periodEnd").val();
+ 			 
+ 			 var startAry = startText.split('-');
+ 			 var endAry = endText.split('-');
+ 			 
+ 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
+ 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
+ 			 
+ 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
+ 			 
+ 			 if(result < 0) {
+ 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
+ 			 } else {
+ 				 location.href = "${contextPath}/bMemSearch/bClassDaySearch2/" + startText + "/" + endText;
+ 			 }
+ 		} 	 		 			
+	});
+	
+	$("#periodEnd").on("change", function() {
+ 		if($("#periodStart").val() != "" && $("#periodEnd").val() != "") {
+ 			 var startText = $("#periodStart").val();
+ 			 var endText = $(this).val();
+ 			 
+ 			 var startAry = startText.split('-');
+ 			 var endAry = endText.split('-');
+ 			 
+ 			 var startDate = new Date(startAry[0], Number(startAry[1])-1, startAry[2]);
+ 			 var endDate = new Date(endAry[0], Number(endAry[1])-1, endAry[2]);
+ 			 
+ 			 var result = (endDate.getTime() - startDate.getTime()) / (1000*3600*24);
+ 			 
+ 			 if(result < 0) {
+ 				 window.alert("시작날짜가 마지막 날짜보다 작아야 합니다.");
+ 			 } else {
+ 				 location.href = "${contextPath}/bMemSearch/bClassDaySearch2/" + startText + "/" + endText;
+ 			 }
+ 		} 	 		 			
+	});
+	
+</script>
 	
 </body>
 </html>
