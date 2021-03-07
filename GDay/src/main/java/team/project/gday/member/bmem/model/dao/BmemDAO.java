@@ -89,6 +89,14 @@ public class BmemDAO {
 	// 주문 상태 변경 DAO
 	public int orderStatusChange(Map<String, Object> map) {
 		return sqlSession.update("bMemMapper.orderStatusChange", map);
-	}	
+	}
+
+	public int accountDel(String memberEmail) {
+		return sqlSession.update("memberMapper.accountDel", memberEmail);
+	}
+
+	public Member loginAction(Member inputMember) {
+		return sqlSession.selectOne("memberMapper.loginAction", inputMember);
+	}
 
 }

@@ -186,4 +186,9 @@
 		WHERE MEM_NO = #{memberNo}
 	</select>
 	
+	<update id="accountDel" parameterType="string">
+		UPDATE MEMBER SET MEM_SEC = 'Y' WHERE MEM_EMAIL = #{memberEmail} 
+	</update>
+	
+	
 </mapper>

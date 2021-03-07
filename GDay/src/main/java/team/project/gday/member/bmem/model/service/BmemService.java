@@ -97,6 +97,12 @@ public interface BmemService {
 	 */
 	int orderStatusChange(Map<String, Object> map);
 
+	/** 회원 탈퇴
+	 * @param map
+	 * @return
+	 */
+	int accountDel(Member loginMember);
+
 
 	
 }
