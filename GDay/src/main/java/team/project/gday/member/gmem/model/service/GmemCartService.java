@@ -28,20 +28,19 @@ public interface GmemCartService {
 	 * @return result
 	 */
 	int insertClassCart(Map<String, Object> map);
-
+ 
+	/** 선물 장바구니에 추가 Service
+	 * @param map
+	 * @return result
+	 */
+	int insertGiftCart(Map<String, Object> map);
+	
 	
 	
 	/** 장바구니에서 상품 삭제 Service
 	 * @param map
-	 * @return
+	 * @return result
 	 */
 	int deleteCart(Map<String, Object> map);
-	
-
-
-
-
-
-
 
 }

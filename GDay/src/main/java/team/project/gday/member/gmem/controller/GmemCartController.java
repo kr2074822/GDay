@@ -44,8 +44,6 @@ public class GmemCartController {
 			}
 		}
 		
-		System.out.println(baguniList);
-		
 		model.addAttribute("bList", baguniList);
 		
 		return "mypage/gMemPage/gMemCart";
@@ -69,6 +67,30 @@ public class GmemCartController {
 		
 		return result;
 	}
+	
+	// 선물 장바구니에 추가 Controller
+	@RequestMapping("memberGiftCart")
+	@ResponseBody
+	public int memberGiftCart(@RequestParam("prdtNo") int prdtNo,
+							   @RequestParam("amount") int amount,
+							   @RequestParam("gOption") int gOption,
+							   @ModelAttribute("loginMember") Member loginMember,
+							   Model model) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("prdtNo", prdtNo);
+		map.put("amount", amount);
+		map.put("gOption", gOption);
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		int result = service.insertGiftCart(map);
+		
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 	// 장바구니에서 제거 Controller
