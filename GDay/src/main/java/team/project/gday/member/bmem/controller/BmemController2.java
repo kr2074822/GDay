@@ -93,7 +93,7 @@ public class BmemController2 {
 			// /spring/list/1 -> 자유게시판의 첫페이지로 이동
 		} else {
 			swalIcon = "error";
-			swalTitle = "클래스 등록 중 문제가 발생";
+			swalTitle = "클래스 등록 중 문제 발생";
 			swalText = "문제가 계속될 시 관리자에게 연락 주세요.";
 			url = "redirect:/common/bMain";
 		}

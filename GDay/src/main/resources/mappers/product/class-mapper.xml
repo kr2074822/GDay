@@ -222,4 +222,10 @@
 			#{fileNo}
 		</foreach>
 	</delete>
+	
+	<!-- 클래스 마감하기 -->
+	<update id="pauseAction" parameterType="_int">
+		UPDATE PRODUCT SET PRDT_STATUS = 'N' WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
 </mapper>

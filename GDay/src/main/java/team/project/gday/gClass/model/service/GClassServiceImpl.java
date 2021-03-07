@@ -295,6 +295,7 @@ public class GClassServiceImpl implements GClassService {
 	}
 
 	//summernote에 업로드된 이미지 저장 serviceImpl
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public Attachment insertImages(MultipartFile uploadFile, String savePath) {
 		
@@ -315,5 +316,11 @@ public class GClassServiceImpl implements GClassService {
 			throw new UserDefineException("summernote 파일 업로드에 실패했습니다.");
 		}
 		return at;
+	}
+
+	//클래스 마감하기 Service 구현
+	@Override
+	public int pauseAction(int prdtNo) {
+		return dao.pauseAction(prdtNo);
 	}
 }

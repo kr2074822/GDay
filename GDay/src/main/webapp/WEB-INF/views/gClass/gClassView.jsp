@@ -263,14 +263,15 @@
                     </div>
                 </div>
                 <c:url var="updateUrl" value="${gclass.prdtNo}/update"/>
-          	<%--  <c:if test="${(loginMember != null) && (member.memberId == loginMember.memberId)}"> --%>
+                <c:url var="pauseUrl" value="${gclass.prdtNo}/pause"/>
+          	<c:if test="${(loginMember != null) && (member.memberEmail == loginMember.memberEmail)}">
                  	<div class="Gbutton">
                   	<a href="${updateUrl}">
                    	 <button class="update" style="margin-right: 10px;" id="update">수정</button>
                   	</a>
-                    <button class="update delete" id="">판매중지</button>
+                    	<button class="update delete" id="pause">마감하기</button>
                 	</div>
-             <%--  </c:if> --%>
+             </c:if>
             </div> 
         </div> 
     </section>
@@ -278,74 +279,38 @@
 		<script type="text/javascript" src="${contextPath}/resources/js/fontawesome.js"></script>
     
     <script>
-    var price = ${gclass.prdtPrice };
+    var price = ${gclass.prdtPrice};
     function add(){
-    	$(".amount").val( Number($(".amount").val()) + 1  );
-    	$(".sum").text( Number($(".sum").text()) + price  );
+    	$(".amount").val(Number($(".amount").val()) + 1);
+    	$(".sum").text(Number($(".sum").text()) + price);
     }
     
     function del(){
     	
-    	if($(".amount").val() > 1 ){
-	    	$(".amount").val( Number($(".amount").val()) - 1  );
-	    	$(".sum").text( Number($(".sum").text()) - price  );
+    	if($(".amount").val()> 1){
+	    	$(".amount").val( Number($(".amount").val()) - 1);
+	    	$(".sum").text( Number($(".sum").text()) - price);
     	}
     }
     
     $(".amount").on("input", function(){
     	
-    	if(isNaN(Number($(".amount").val())) ){ // 숫자 말고 다른 것 입력 시
+    	if(isNaN(Number($(".amount").val()))){ // 숫자 말고 다른 것 입력 시
     		$(".amount").val("");
-    		$(".sum").text( price  );
+    		$(".sum").text(price);
     	}else{
-    		$(".sum").text( Number($(".amount").val()) * price  );
+    		$(".sum").text(Number($(".amount").val()) * price);
     	}
-    	
-    	
     });
-    /* var sell_price;
-    var amount;
-    var hm;
-    
-    $(function() {
-    	init();
-    })
 
-  	
-  	function init() {
-  		sell_price = $(".sell_price").val();
-  		amount = $(".amount").val();
-  		$(".sum").val(sell_price);
-  		change();
-  	}
-  	
-  	function add() {
-  		hm = amount;
-  		sum = $(".sum").val();
-  		hm.value++;
-
-  		sum.val(parseInt(hm) * sell_price);
-  	}
-
-  	function del() {
-  		hm = amount;
-  		sum = $(".sum").val();
-  			if (hm.value > 1) {
-  				hm.value--;
-  				sum.value = parseInt(hm.value) * sell_price;
-  			}
-  	}
-
-  	function change() {
-  		hm = amount;
-  		sum = $(".sum").val();
-
-  			if (hm.value < 0) {
-  				hm.value = 0;
-  			}
-  		sum.value = parseInt(hm.value) * sell_price;  
-  	}
-     */
+     /* 품절 버튼 클릭시 */
+     $("#pause").on("click", function() {
+    	 var prdtNo = ${gclass.prdtNo};
+    	 
+    	 if(confirm("상품을 품절처리 하시겠습니까?")) {
+    		 location.href = prdtNo + "/pause"
+    	 }
+     });
      
      
      /* ======================== 장바구니 버튼 클릭 시 ======================== */

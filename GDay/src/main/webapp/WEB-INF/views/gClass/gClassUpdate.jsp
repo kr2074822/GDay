@@ -53,7 +53,7 @@
 				            <label for="aa" class="item">영유아</label>
 				        </li>
 				        <li class="tag">
-				            <input type="checkbox" name="hashNo" value="2" class="item" id="ab">
+				            <input type="checkbox" name="hashNo" value="2" class="item" id="an">
 				            <label for="an" class="item">어린이</label>
 				        </li>
 				        <li class="tag">

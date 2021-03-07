@@ -121,7 +121,7 @@ public class GClassController {
 	  //클래스 수정 화면 이동 controller
 	  
 	 @RequestMapping("{prdtNo}/update")
-	 public String updateAction(@PathVariable("prdtNo") int prdtNo, Model model){
+	 public String update(@PathVariable("prdtNo") int prdtNo, Model model){
 		
 		//게시글 상세 조회 
 		GClass gclass = service.selectGClass(prdtNo);
@@ -218,5 +218,31 @@ public class GClassController {
 		
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
+	}
+	
+	//클래스 마감하기 Controller
+	@RequestMapping("{prdtNo}/pause")
+	public String pauseAction(@PathVariable("prdtNo") int prdtNo, RedirectAttributes ra) {
+		
+		int result = service.pauseAction(prdtNo);
+		
+		String url = null;
+		 if(result > 0) {
+				swalIcon = "success";
+				swalTitle = "클래스 정상 마감";
+				swalText = "클래스가 마감되었습니다.";
+				url = "redirect:../"+prdtNo;
+			}else {
+				swalIcon = "error";
+				swalTitle = "클래스 마감 중 문제 발생";
+				swalText = "문제가 계속될 시 관리자에게 연락 주세요.";
+				url = "redirect:/"; 
+			}
+			
+			ra.addFlashAttribute("swalIcon", swalIcon);
+			ra.addFlashAttribute("swalTitle", swalTitle);
+			ra.addFlashAttribute("swalText", swalText);
+
+			return url;
 	}
 }
