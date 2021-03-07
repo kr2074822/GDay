@@ -353,17 +353,13 @@
 
      $(".cart").on("click", function() {
     	 var prdtNo = ${gclass.prdtNo};
-    	 var price = ${gclass.prdtPrice};
     	 var amount = $(".amount").val();
-    	 var imgPath = $(".gift_img > img").attr("src");
     	 
     	 if(loginFlag == 1) {
     		 $.ajax({
    	    		url : "${contextPath}/cart/memberClassCart",
    	    		data : {"prdtNo" : prdtNo,
-   	    				"price" : price,
-   	    				"amount" : amount,
-   	    				"imgPath" : imgPath},
+   	    				"amount" : amount},
    	    		type : "post",
    	    		success : function(result) {
    	    			if(result > 0) {

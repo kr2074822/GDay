@@ -37,6 +37,13 @@ public class GmemCartServiceImpl implements GmemCartService{
 		return dao.insertClassCart(map);
 	}
 
+	// 선물 장바구니에 추가 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertGiftCart(Map<String, Object> map) {
+		return dao.insertGiftCart(map);
+	}
+	
 	
 	// 장바구니에서 상품 삭제 Service 구현
 	@Transactional(rollbackFor = Exception.class)
@@ -44,8 +51,6 @@ public class GmemCartServiceImpl implements GmemCartService{
 	public int deleteCart(Map<String, Object> map) {
 		return dao.deleteCart(map);
 	}
-
-
 
 
 }

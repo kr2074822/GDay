@@ -20,6 +20,13 @@
 </head>
 <body>
 
+	<c:if test="${loginMember == null}">
+		<c:set var="loginFlag" value="0"></c:set>
+	</c:if>
+	<c:if test="${loginMember != null}">
+		<c:set var="loginFlag" value="1"></c:set>
+	</c:if>
+
     <section>
         <div class="gift_wrapper">
             <form action="">
@@ -45,7 +52,7 @@
                         </div>
                         <div class="option">
                             <span>옵션</span>
-                            <select name="" id="">
+                            <select name="gift-option" id="">
                             	<c:forEach var="goption" items="${goption}" varStatus="vs">
 	                                <option value="${goption.gOptNo}">${goption.gOptName}</option>
                                 </c:forEach>
@@ -71,9 +78,9 @@
                         </div>
     
                         <div class="option_btn">
-                            <a class="cart">장바구니에 넣기</a>
+                            <button type="button" class="cart">장바구니에 넣기</button>
                             <a class="wish">위시리스트로 등록하기</a>
-                            <a class="order">주문하기</a>
+                            <button type="button" class="order">주문하기</button>
                         </div>
                     </div>
                 </div>
@@ -296,6 +303,45 @@
 	    	
 	    	
 	    });
+	    
+	    
+	    
+	    
+	    
+ /* ======================== 장바구니 버튼 클릭 시 ======================== */
+	     var loginFlag = ${loginFlag};
+
+	     $(".cart").on("click", function() {
+	    	 var prdtNo = ${gift.prdtNo};
+	    	 var amount = $(".amount").val();
+ 	    	 var gOption = $("select[name='gift-option']").val();
+	    	 
+	    	 
+	    	 if(loginFlag == 1) {
+	    		 $.ajax({
+	   	    		url : "${contextPath}/cart/memberGiftCart",
+	   	    		data : {"prdtNo" : prdtNo,
+	   	    				"amount" : amount,
+	   	    				"gOption" : gOption},
+	   	    		type : "post",
+	   	    		success : function(result) {
+	   	    			if(result > 0) {
+	   	    				window.alert("장바구니에 등록되었습니다.");
+	   	    			} else {
+	   	    				window.alert("이미 등록된 상품입니다.");
+	   	    			}
+	   	    			
+	   	    		},
+	   	    		error : function() {
+	   	    			window.alert("장바구니에 등록 중 에러가 발생하였습니다.");
+	   	    		}
+	   	    	 });	 
+	    	 } else {
+	    		 window.alert("로그인 후 장바구니 사용이 가능합니다.");
+	    	 }
+	   			
+	    	 
+	     });
     </script>
 </body>
 </html>

@@ -19,7 +19,10 @@
 	
 	<div id="cart-wrapper">
 	
-	<jsp:include page="gMemSidebar.jsp"/>
+	<div id="side-fix">
+		<jsp:include page="gMemSidebar.jsp"/>
+	</div>
+	
 	
 		<div id="select-area">
 			<button id="gift-btn">선물</button>
@@ -39,8 +42,9 @@
 					<c:forEach var="cartItem" items="${bList}" varStatus="vs">	
 						<c:if test="${cartItem.prdtType eq 'G' }">	
 							<li class="cart-content">
+								<input type="text" class="hidden-input item-price" value="${cartItem.prdtPrice}"/>
 								<i class="cancle-icon fas fa-times"></i>
-								<input type="text" class="hidden-input" value="${cartItem.cartNo}"/>
+								<input type="text" class="hidden-input cart-number" value="${cartItem.cartNo}"/>
 								<input type="checkbox" class="product-check"/>
 								<div class="img-box"> 
 									<c:forEach items="${thList}" var="th">
@@ -53,7 +57,7 @@
 								<span>${cartItem.gOptName}</span>
 								<div class="acount-area">
 									<button class="minus-btn">-</button>
-									<input type="text" value="${cartItem.cartAmount}" readonly />
+									<input type="text" class="item-amount" value="${cartItem.cartAmount}" readonly />
 									<button class="plus-btn">+</button>
 								</div>
 							</li>
@@ -70,8 +74,9 @@
 					<c:forEach var="cartItem" items="${bList}" varStatus="vs">	
 						<c:if test="${cartItem.prdtType eq 'C' }">	
 							<li class="cart-content">
+								<input type="text" class="hidden-input item-price" value="${cartItem.prdtPrice}"/> 
 								<i class="cancle-icon fas fa-times"></i>
-								<input type="text" class="hidden-input" value="${cartItem.cartNo}"/>
+								<input type="text" class="hidden-input cart-number" value="${cartItem.cartNo}"/>
 								<input type="checkbox" class="product-check"/>
 								<div class="img-box"> 
 									<c:forEach items="${thList}" var="th">
@@ -83,7 +88,7 @@
 								<span class="product-name" title="${cartItem.prdtName}">${cartItem.prdtName}</span>
 								<div class="acount-area">
 									<button class="minus-btn">-</button>
-									<input type="text" value="${cartItem.cartAmount}" readonly />
+									<input type="text" class="item-amount" value="${cartItem.cartAmount}" readonly />
 									<button class="plus-btn">+</button>
 								</div>
 							</li>
@@ -100,11 +105,11 @@
 				<span>&nbsp;결제 예정 금액</span>
 				<br/>
 				<div id="price-text">
-					<span>$</span> <span id="priceSum"></span>
+					<span>$</span> <span id="price-sum"></span>
 				</div>			
 			</div>
 			
-			<button class="order-btn"  onclick="location.href='${contextPath}/payment/order'">주문하기</button>
+			<button class="order-btn">주문하기</button>
 			
 		</div>
 				
@@ -114,18 +119,37 @@
 	
 	
 <script>
-	var checkAry = []; // 선택된 체크 박스를 담기 위한 배열
 
+	var price = 0; // 상품 가격 합계를 담기 위한 변수
+	var checkAry = []; // 선택된 체크 박스를 담기 위한 배열
+	var checkArys = []; // 선택된 상품 정보를 담기 위한 배열
+	
+	$(document).ready(function(){
+		$("#price-sum").text(price);
+	});
+		
+	
 	/* 장바구니 취소 버튼(X) */
 	$(".cancle-icon").on("click", function() {
-		var cartNo = $(this).next().val();
+		var cartNo = $(this).next().val(); // 장바구니 번호
+		var li = $(this).parent();
+		var itemPrice = $(this).prev().val(); // 아이템 가격
+		var itemAmount = li.find(".item-amount").val(); // 아이템 수량
 		
 		if(window.confirm("장바구니에서 삭제하시겠습니까?")) {
 			$.ajax({
 				url : "${contextPath}/cart/deleteCart/" + cartNo,
 				success : function(result) {
 					if(result > 0) {
-/* 						window.alert("삭제 되었습니다."); */
+						for(var i = 0; i < checkAry.length; ++i) {
+							if(checkAry[i] == cartNo) {
+								checkAry.splice(i, 1);
+								price = Number(price) - (Number(itemPrice) * Number(itemAmount));
+							}
+						} 	
+						li.remove();
+						$("#price-sum").text(price);
+						console.log(checkAry);
 					}
 				}, error : function() {
 					
@@ -135,17 +159,40 @@
 		
 	});
 	
+	
+	
 	/* 장바구니 상품 수량 버튼(+,-) */
 	$(".plus-btn").on("click", function() {
-		var amount = $(this).prev();
-		amount.val(Number(amount.val()) + 1);
+		var li = $(this).parent().parent(); // 전체를 감싸는 li
+		var checkBox = li.find(".product-check"); // 아이템 별 체크 박스
+		var itemPrice = li.find(".item-price"); // 아이템 가격
+		var itemAmount = li.find(".item-amount"); // 아이템 수량
+		
+		itemAmount.val(Number(itemAmount.val()) + 1); // 수량 1증가
+		
+ 		if(checkBox.is(":checked")) {
+ 			price += Number(itemPrice.val());
+		}   	
+		
+ 		$("#price-sum").text(price);
 	});
 	$(".minus-btn").on("click", function() {
-		var amount = $(this).next();
-		if(amount.val() > 1) {
-			amount.val(Number(amount.val()) - 1);
-		}		
+		var li = $(this).parent().parent(); // 전체를 감싸는 li
+		var checkBox = li.find(".product-check"); // 아이템 별 체크 박스
+		var itemPrice = li.find(".item-price"); // 아이템 가격
+		var itemAmount = li.find(".item-amount"); // 아이템 수량
+		
+		if(itemAmount.val() > 1) {
+			itemAmount.val(Number(itemAmount.val()) - 1);
+	 		if(checkBox.is(":checked")) {	
+	 			price -= Number(itemPrice.val());
+			}   
+		}	
+	
+ 		
+ 		$("#price-sum").text(price);
 	});
+	
 	
 	
 	/* 선물 , 클래스 전환 */
@@ -157,6 +204,8 @@
 		$(".product-check").prop("checked", false);
 		$(".check-all").prop("checked", false);
 		checkAry = [];
+		price = 0;
+		$("#price-sum").text(price);
 	});
 	
 	$("#class-btn").on("click", function() {
@@ -167,6 +216,8 @@
 		$(".product-check").prop("checked", false);
 		$(".check-all").prop("checked", false);
 		checkAry = [];
+		price = 0;
+		$("#price-sum").text(price);
 	});	
 	
 	/* 주문하기 영역 */
@@ -174,36 +225,66 @@
 	/* 전체 선택 */
 	$(".check-all").on("click", function(){
 		var ul = $(this).parent().parent();
-		var checkLength = ul.find(".hidden-input").length;
+		var checkLength = ul.find(".cart-number").length;
+		var itemPrice = ul.find(".item-price"); // 아이템 가격
+		var itemAmount = ul.find(".item-amount"); // 아이템 수량
+		
+		// 한번 비우기
+		checkAry = [];
+		price = 0;
+		
+		// 상품 가격의 전체 합계
+	 	for(var i = 0; i < ul.find(".item-price").length; ++i) {
+	 		price = Number(price) + (Number(itemPrice.eq(i).val()) * Number(itemAmount.eq(i).val()));
+	 	} 
 		
 		if($(this).is(":checked")) {						
  			for(var i = 0; i < checkLength; ++i) {
-				checkAry.push(ul.find(".hidden-input").eq(i).val());
+				checkAry.push(ul.find(".cart-number").eq(i).val());
 			} 
- 			
  			ul.find($(".product-check")).prop("checked", true);
  			
-			console.log(checkAry);
 		} else {
-			checkAry = [];
+			checkAry = [];			
+			price = 0;
 			ul.find($(".product-check")).prop("checked", false);
-			console.log(checkAry);
 		}
+		
+		console.log(checkAry);
+		
+		$("#price-sum").text(price);
 	});
 	
 	/* 개별 선택 */
 	$(".product-check").on("change", function() {
+		var ul = $(this).parent().parent(); // 전체를 감싸는 ul
+		var li = $(this).parent(); // 전체를 감싸는 li
+		var itemPrice = $(this).prev().prev().prev().val(); // 아이템 가격
+		var itemAmount = li.find(".item-amount").val(); // 아이템 수량
+		
 		if($(this).is(":checked")) {
-			checkAry.push($(this).prev().val());			
+			checkAry.push($(this).prev().val());	
+			price = Number(price) + (Number(itemPrice) * Number(itemAmount));
 		} else {
 			for(var i = 0; i < checkAry.length; ++i) {
 				if(checkAry[i] == $(this).prev().val()) {
 					checkAry.splice(i, 1);
+					price = Number(price) - (Number(itemPrice) * Number(itemAmount));
 				}
 			} 		
 		}
+		
 		console.log(checkAry);
+		
+		$("#price-sum").text(price);
 	});	
+	
+	
+	/* 결제 페이지로 선택된 상품들 보내기 */
+	/* 상품번호 / 상품명 / 상품옵션(번호) / 가격 / 수량 */
+	$("#order-btn").on("click", function() {
+		location.href="${contextPath}/payment/order?" + checkAry;
+	});
 	
 </script>
 
