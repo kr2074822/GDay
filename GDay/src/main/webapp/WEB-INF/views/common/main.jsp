@@ -26,56 +26,45 @@ display: none;
 
 </head>
 <body>
-
-				<%-- 주소 조합 작업 --%>
 				<c:choose>
 						<%-- 검색이 된 경우 --%>
 					<c:when test="${!empty search}">
 						<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
-						<c:forEach items="${search.ct}" var="c">
+						<c:forEach items="${search.category}" var="c">
 							<c:set var="category" value="${category}ct=${c}&"/>
+								<c:forEach items="${search.hashNo}" var="t">
+									<c:set var="hashNo" value="${hashNo}tag=${t}&"/>
+								</c:forEach>
 						</c:forEach>
-						<c:set var="searchStr" value="${category}"/>
+						
+						<c:set var="searchStr" value="${category}${hashNo}"/>
 						
 						<%-- 검색된 내용이 있다면 --%>
 						<c:if test="${!empty serch.sv}">
-							<c:set var="searchStr" value="${category}sk=${search.sk}&sv=${search.sv}"/>
+							<c:set var="searchStr" value="${category}${hashNo}&sv=${search.sv}"/>
 						</c:if>
 						
-						<c:url var="pageUrl" value="../search/${search.boardType}?${searchStr}&"/>
-						<c:set var="returnListURL" 
-							value="${contextPath}/board/search/${pageUrl}cp=${pInfo.currentPage}" 
-							scope="session"/>
+						<c:url var="pageUrl" value="../search/MainSearch/${searchStr}&"/>
 					</c:when>
-					
-					<c:otherwise>
-							<c:url var="pageUrl" value="${pInfo.boardType}?"/>
-								<!-- 목록으로 버튼에 사용할 URL 저장 변수 선언 -->
-							<c:set var="returnListURL" 
-							value="${contextPath}/board/list/${pageUrl}cp=${pInfo.currentPage}" 
-							scope="session"/>
-							<!--spring/board/list/1?cp=3 어디서도 쓸 수 있게 session에 올림-->
-					</c:otherwise>
 				</c:choose>
-
 	<section class="">
+			<form action="search" method="GET">
         <div class="selectWrapper">
             <div class="select_container">
                 <div class="select">
                     <div class="input_wrapper">
-                        <form action="search" method="GET">
+                        
                         	<div id="hash_tag"><span id="hash_span"></span></div>
                             <input type="text" name="sv" id="search" placeholder="">
                             <input type="hidden" name="" id="hsearch" placeholder="">
                             <button type="submit" id=""><i class="fas fa-search"></i></button>
-                    </form>
                     <span>검색어 없어도 찾을수 있어요!</span>
                 </div>
                 <ul>
                     <li class="selectBtn" id="" data-text="0">연령대
                    	 <input type="checkbox" name="category" value="100"></li>
                     <li class="selectBtn" id="" data-text="1">가격
-                    	<input type="checkbox" name="category" value="200"></li>
+                    	<input type="checkbox" name="category" name="category" value="200"></li>
                     <li class="selectBtn" id="" data-text="2">분위기
                     	<input type="checkbox" name="category" value="300"></li>
                     <li class="selectBtn" id="" data-text="3">관계
@@ -251,9 +240,9 @@ display: none;
                     <label class="item" for="makeup">화장품</label>
                 </div>
             </div>
-            
         </div>
     </div>
+   </form>
     </section>
     
     

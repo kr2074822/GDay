@@ -43,4 +43,45 @@
   		<result property="cDate" column="C_DATE"/>
 	</resultMap>
 	
+	<select id="selectGiftSearchList" parameterType="Search">
+		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
+			SELECT * FROM PRODUCT
+			JOIN PRODUCT_TAG USING(PRDT_NO)
+			JOIN HASHTAG USING(TAG_NO)
+			JOIN G_CATEGORY USING(CT_NO)
+			WHERE PRDT_STATUS = 'Y'
+			AND PRDT_TYPE = 'G'
+			<if test="sv != null">
+				<bind name="val" value="'%' + sv + '%'"/>
+				AND PRDT_NAME LIKE '%' || #{val} || '%'
+			</if>
+			AND(CT_NO = #{ct} AND TAG_NO IN
+				<foreach collection="hashNo" item="tag" open="(" close=")" separator=",">
+				#{tag}
+				</foreach> 
+			)
+		</foreach>
+	</select>
+
+	<select id="selectClassSearchList" parameterType="Search">
+		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
+			SELECT * FROM PRODUCT
+			JOIN PRODUCT_TAG USING(PRDT_NO)
+			JOIN HASHTAG USING(TAG_NO)
+			JOIN G_CATEGORY USING(CT_NO)
+			WHERE PRDT_STATUS = 'Y'
+			AND PRDT_TYPE = 'C'
+			<if test="sv != null">
+				<bind name="val" value="'%' + sv + '%'"/>
+				AND PRDT_NAME LIKE '%' || #{val} || '%'
+			</if>
+			AND(CT_NO = #{ct} AND TAG_NO IN
+				<foreach collection="hashNo" item="tag" open="(" close=")" separator=",">
+				#{tag}
+				</foreach> 
+			)
+		</foreach>
+	</select>
+	
+	
 	</mapper>
