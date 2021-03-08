@@ -75,6 +75,8 @@ public class AdminController {
 	// 비즈니스 회원 목록 조회 화면 전환 Controller
 	@RequestMapping("adminBMemSub")
 	public String adminBMemSub(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+							   @ModelAttribute Member member,
+							   
 			  				   Model model) {
 		return "admin/adminBMemSub";
 	}
