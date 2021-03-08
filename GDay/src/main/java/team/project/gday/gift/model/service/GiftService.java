@@ -60,4 +60,12 @@ public interface GiftService {
 	 */
 	List<ProductCTag> selectPrdtTagList(int prdtNo);
 
+	/** 선물 수정
+	 * @param map
+	 * @param images
+	 * @param savePath
+	 * @return
+	 */
+	int updateGift(Map<String, Object> map, List<MultipartFile> images, String savePath);
+
 }

@@ -162,17 +162,55 @@
 		AND FILE_LEVEL = 0
 	</select>
 	
-	<!-- 상품별 해시태그 조회 -->
-	<select id="selectPrdtTagList" parameterType="_int" resultMap="tag_rm">
-		SELECT * FROM V_PRDT_CT_TAG
-		WHERE PRDT_NO = #{prdtNo}
-	</select>
-	
 	<!-- 선물 상세 옵션 -->
 	<select id="selectGoption" parameterType="list" resultMap="option_rm">
 		SELECT *
 		FROM GIFT_OPTION 
 		WHERE PRDT_NO = #{prdtNo}
 	</select>
+	
+	<!-- 해시태그 조회 -->
+	<select id="selectPrdtTagList" parameterType="_int" resultMap="tag_rm">
+		SELECT * FROM V_PRDT_CT_TAG
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
+	<!-- 상품 테이블 수정 -->
+	<update id="updateProduct" parameterType="map">
+		UPDATE PRODUCT SET 
+		PRDT_NAME = #{prdtName},
+		PRDT_CONTENT = #{prdtContent},
+		PRDT_PRICE = #{prdtPrice},
+		MODIFY_DATE = SYSDATE
+		WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
+	<!-- 선물 테이블 수정 -->
+	
+	
+	<!-- 상품 태그 테이블 삭제 -->	
+	<delete id="deletePrdtTag" parameterType="_int">
+		DELETE FROM PRODUCT_TAG
+		WHERE PRDT_NO = #{prdtNo}
+	</delete>
+	
+	<!-- 파일 정보 수정 -->
+	<update id="updateAttachment" parameterType="Attachment">
+		UPDATE PRODUCT_IMG SET
+		FILE_PATH = #{filePath},
+		FILE_NAME = #{fileName},
+		FILE_LEVEL = #{fileLevel}
+		WHERE FILE_NO = #{fileNo}
+	</update>
+	
+	<!-- 파일 정보 일괄 삭제 -->
+	<delete id="deleteAttachmentList" parameterType="list">
+		DELETE FROM PRODUCT_IMG
+		WHERE FILE_NO IN
+		<foreach collection="list" item="fileNo" open="(" close=")" separator=",">
+			#{fileNo}
+		</foreach>
+	</delete>
+	
 	
 </mapper>

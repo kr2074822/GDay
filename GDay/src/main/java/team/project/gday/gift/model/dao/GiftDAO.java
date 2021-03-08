@@ -13,6 +13,10 @@ import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.member.model.vo.Member;
 
+/**
+ * @author YJ
+ *
+ */
 @Repository
 public class GiftDAO {
 
@@ -130,12 +134,61 @@ public class GiftDAO {
 	public List<ProductCTag> selectPrdtTagList(int prdtNo) {
 		return sqlSession.selectList("giftMapper.selectPrdtTagList", prdtNo);
 	}
+
+	/** 상품 업데이트
+	 * @param map
+	 * @return
+	 */
+	public int updateProduct(Map<String, Object> map) {
+		return sqlSession.update("giftMapper.updateProduct", map);
+	}
+
+	/** 선물 업데이트
+	 * @param map
+	 * @return
+	 */
+	public int updateGift(Map<String, Object> map) {
+		return sqlSession.update("giftMapper.updateGift", map);
+	}
+
+	/** 상품 태그 상제
+	 * @param prdtNo
+	 * @return
+	 */
+	public int deletePrdtTag(int prdtNo) {
+		return sqlSession.delete("giftMapper.deletePrdtTag", prdtNo);
+	}
+
+	/** 파일 정보 수정
+	 * @param at
+	 * @return
+	 */
+	public int updateAttachment(Attachment at) {
+		return sqlSession.update("giftMapper.updateAttachment", at);
+	}
+
+	/** 파일 정보 삭제
+	 * @param deleteFileNoList
+	 * @return
+	 */
+	public int deleteAttachmentList(List<Integer> deleteFileNoList) {
+		return sqlSession.delete("giftMapper.deleteAttachmentList", deleteFileNoList);
+	}
+
+	/** 옵션 색 수정
+	 * @param map
+	 * @return
+	 */
+	public int updateOption(Map<String, Object> map) {
+		return sqlSession.update("giftMapper.updateOption", map);
+	}
 	
-	
-	
-	
-	
-	
-	
+	/** 옵션 사이즈 수정
+	 * @param map
+	 * @return
+	 */
+	public int updateOption2(Map<String, Object> map) {
+		return sqlSession.update("giftMapper.updateOption", map);
+	}
 	
 }
