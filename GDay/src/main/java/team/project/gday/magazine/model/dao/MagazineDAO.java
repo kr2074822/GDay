@@ -101,4 +101,28 @@ public class MagazineDAO {
 	public MagazineImg selectThumbnail(int no) {
 		return sqlSession.selectOne("magazineMapper.selectThumbnail", no);
 	}
+
+	/** 매거진 수정
+	 * @param map
+	 * @return
+	 */
+	public int updateMagazine(Map<String, Object> map) {
+		return sqlSession.update("magazineMapper.updateMagazine", map);
+	}
+
+	/** 매거진 사진 수정
+	 * @param at
+	 * @return
+	 */
+	public int updateMagazineImg(MagazineImg at) {
+		return sqlSession.update("magazineMapper.updateMagazineImg", at);
+	}
+
+	/** 이미지 정보 삭제
+	 * @param deleteFileNoList
+	 * @return
+	 */
+	public int deleteMagazineImg(List<Integer> deleteFileNoList) {
+		return sqlSession.delete("magazineMapper.deleteMagazineImg", deleteFileNoList);
+	}
 }

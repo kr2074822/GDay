@@ -47,5 +47,7 @@ public interface MagazineService {
 	 */
 	MagazineImg selectThumbnail(int no);
 
+	int updateMagazine(Map<String, Object> map, List<MultipartFile> images, String savePath);
+
 	
 }

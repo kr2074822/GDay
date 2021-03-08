@@ -103,8 +103,23 @@
 		WHERE MGZ_NO = #{no} AND MGZ_IMG_LEVEL = 0
 	</select>
 	
+	<!-- 매거진 업데이트 -->
+	<update id="updateMagazine" parameterType="map">
+		UPDATE MAGAZINE SET MGZ_TITLE = #{mgzTitle}, MGZ_CONTENT = #{mgzContent} WHERE MGZ_NO = #{mgzNo}
+	</update>
 	
+	<!-- 이미지 업데이트 -->
+	<update id="updateMagazineImg" parameterType="MagazineImg">
+		UPDATE MAGAZINE_IMG SET MGZ_IMG_PATH = #{imgPath}, MGZ_IMG_NAME = #{imgName}, MGZ_IMG_LEVEL = #{imgLevel} WHERE MGZ_NO = #{mgzNo}
+	</update>
 	
-	
+	<!-- 이미지 정보 삭제 -->
+	<delete id="deleteMagazineImg" parameterType="list">
+		DELETE FROM MAGAZINE_IMG
+		WHERE MGZ_NO IN
+		<foreach collection="list" item="mgzNo" open="(" close=")" separator=",">
+			#{mgzNo}
+		</foreach>
+	</delete>
 	
 </mapper>
