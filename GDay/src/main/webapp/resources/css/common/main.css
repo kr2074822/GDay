@@ -27,7 +27,11 @@ section {
 /* SECTION SEARCH*/
 section .selectWrapper{
     display: flex;
-	}
+}
+section .selectWrapper form{
+	border: 1px solid red;
+	width: 100%;
+}
 section .selectWrapper .select_container{
     margin: 0 50px;
 }
@@ -38,24 +42,23 @@ section .selectWrapper .select_container .select .input_wrapper {
     text-align: right;
     margin-bottom: 30px;    
 }
-section .selectWrapper .select_container .select .input_wrapper form{
+section .selectWrapper .select_container .select .input_wrapper .form{
 	position: relative;
     display: flex;
     border-radius: 40px;
     margin-bottom: 15px;
-
 }
-section .selectWrapper .select_container .select .input_wrapper form div{
+section .selectWrapper .select_container .select .input_wrapper .form div{
 	top: -10px;
 	left: 0;
 	position: absolute;
 }
-section .selectWrapper .select_container .select .input_wrapper form div span{
+section .selectWrapper .select_container .select .input_wrapper .form div span{
 	padding: 3px 5px;
 	color: #999;
 	font-size: 10px;
 }
-section .selectWrapper .select .input_wrapper form input{
+section .selectWrapper .select .input_wrapper .form input{
     width: 90%;
     display: inline-block;
     font-size: 16px;
@@ -67,7 +70,7 @@ section .selectWrapper .select .input_wrapper form input{
     background: #fff;
     box-sizing: border-box;
 }
-section .selectWrapper .select_container .select .input_wrapper form button{
+section .selectWrapper .select_container .select .input_wrapper .form button{
     width: 10%;
     outline: none;
     border: none;

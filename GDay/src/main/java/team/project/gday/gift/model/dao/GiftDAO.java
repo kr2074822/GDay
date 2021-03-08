@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.member.model.vo.Member;
 
 @Repository
@@ -120,6 +121,14 @@ public class GiftDAO {
 	 */
 	public List<GOption> selectGoption(int prdtNo) {
 		return sqlSession.selectList("giftMapper.selectGoption", prdtNo);
+	}
+
+	/** 상품별 해시태그 조회
+	 * @param prdtNo
+	 * @return
+	 */
+	public List<ProductCTag> selectPrdtTagList(int prdtNo) {
+		return sqlSession.selectList("giftMapper.selectPrdtTagList", prdtNo);
 	}
 	
 	

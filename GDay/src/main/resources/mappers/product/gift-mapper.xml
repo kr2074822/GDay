@@ -31,12 +31,11 @@
 	<!-- 상품 카테고리 해시태그 resultMap -->
 	<resultMap type="ProductCTag" id="tag_rm">
 		<id property="tagNo" column="TAG_NO"/>
-	
-  	<result property="tagName" column="G_OPT_NAME"/>
- 		<result property="ctNo" column="G_OPT_TYPE"/>
- 		<result property="ctName" column="G_OPT_SOLD"/>
+  	<result property="tagName" column="TAG_NAME"/>
+ 		<result property="ctNo" column="CT_NO"/>
+ 		<result property="ctName" column="CT_NAME"/>
  		<result property="prdtNo" column="PRDT_NO"/>
-	</resultMap>	
+	</resultMap>
 	
 	<!-- 상품 이미지 resultMap -->
 	<resultMap type="Attachment" id="attachment_rm">
@@ -161,6 +160,12 @@
 		SELECT FILE_NO, FILE_PATH, FILE_NAME FROM PRODUCT_IMG
 		WHERE PRDT_NO = #{prdtNo}
 		AND FILE_LEVEL = 0
+	</select>
+	
+	<!-- 상품별 해시태그 조회 -->
+	<select id="selectPrdtTagList" parameterType="_int" resultMap="tag_rm">
+		SELECT * FROM V_PRDT_CT_TAG
+		WHERE PRDT_NO = #{prdtNo}
 	</select>
 	
 	<!-- 선물 상세 옵션 -->

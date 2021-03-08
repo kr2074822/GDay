@@ -50,31 +50,34 @@
                                 <span>문의하기</span>
                             </div>
                         </div>
-                        <div class="option">
+                        <div class="option" id="options">
                             <span>옵션</span>
-                            <select name="gift-option" id="">
+                            <select name="gift-option" id="gift-option">
                             	<c:forEach var="goption" items="${goption}" varStatus="vs">
 	                                <option value="${goption.gOptNo}">${goption.gOptName}</option>
                                 </c:forEach>
                             </select>
-                            <div class="gift_cnt">
+       
+                            <div id="option_list">
+								<div class="gift_cnt">
                                 <div class="opt_title">
-                                    <span>상품명</span>
-                                    <span>[옵션명]</span>
-                                </div>
+                                    <span class="class-amount">참여 인원</span>
+                                    </div>
                                 <div class="cnt">
-                                    <i class="fas fa-minus"  onclick="del()"></i>
-                                    <input type="text"  class="amount" value=1>
+                              		  <i class="fas fa-minus" onclick="del()"></i>
+                                    <input type="number" class="item_cnt" value=1 style="width:30px">
                                     <i class="fas fa-plus" onclick="add()"></i>
                                 </div>
                             </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="priceBtn">
                         <p>총 <span>123</span>개</p>
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="sum">${gift.prdtPrice }</span>
+                            <span class="sum">0</span>
                         </div>
     
                         <div class="option_btn">
@@ -303,6 +306,99 @@
 	    	
 	    	
 	    });
+	    
+	    
+	    // 옵션 추가
+	    
+	    $("#gift-option").on("change", function(){
+	    	console.log($("#options option:selected").text())
+	    	console.log($("#options option:selected").val())
+	    	
+	    	var addContent = 
+	    		'<div class="gift_cnt">'+
+		            '<div class="opt_title">'+
+		                '<span>${gift.prdtName}</span>'+
+		                '<span>'+ $("#options option:selected").text() +'</span>'+
+		                '<input type="hidden" value="'+$("#options option:selected").val()+'">'+
+		                '<input type="hidden" value="'+1+'">'+
+		            '</div>'+
+		            '<div class="cnt">'+
+                    '<input type="number" class="item_cnt"  min="0">'+
+                	'</div>'+
+		        '</div>';
+		        
+
+		        
+	    	
+	    	$("#option_list").append(addContent)
+	    });
+	    
+
+	    $(document).on('input','.item_cnt',function(){
+			console.log(123);
+			console.log(123);
+		});    
+
+    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	    
 	    

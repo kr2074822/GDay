@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.member.model.vo.Member;
 
 public interface GiftService {
@@ -52,5 +53,11 @@ public interface GiftService {
 	 * @return
 	 */
 	List<GOption> selectGoption(int prdtNo);
+
+	/** 해시태그 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	List<ProductCTag> selectPrdtTagList(int prdtNo);
 
 }

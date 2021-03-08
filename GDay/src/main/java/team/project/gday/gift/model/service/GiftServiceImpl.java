@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gift.model.dao.GiftDAO;
 import team.project.gday.member.model.vo.Member;
@@ -206,6 +207,12 @@ public class GiftServiceImpl implements GiftService{
 	@Override
 	public List<GOption> selectGoption(int prdtNo) {
 		return dao.selectGoption(prdtNo);
+	}
+
+	//상품별 해시태그 조회 Service 구현
+	@Override
+	public List<ProductCTag> selectPrdtTagList(int prdtNo) {
+		return dao.selectPrdtTagList(prdtNo);
 	}
 
 }

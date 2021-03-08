@@ -22,8 +22,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.gift.model.service.GiftService;
 import team.project.gday.member.model.vo.Member;
 
@@ -145,6 +147,13 @@ public class GiftCtrl {
 			System.out.println("상품*----"+ goption);
 			model.addAttribute("goption", goption);
 			
+			//해시태그 목록 가져오기
+			List<ProductCTag> prdtTagList = service.selectPrdtTagList(prdtNo);
+			System.out.println(prdtTagList);
+			if (prdtTagList != null  && !prdtTagList.isEmpty()) {
+				model.addAttribute("prdtTagList", prdtTagList);
+			}
+			
 			Attachment thumbnail = service.selectThumbnail(prdtNo);
 			if(thumbnail != null) {
 				model.addAttribute("thumbnail", thumbnail);
@@ -168,4 +177,44 @@ public class GiftCtrl {
 	}
 
 	
+	// 클래스 수정 화면
+	@RequestMapping("{prdtNo}/updateGiftView")
+	public String updateGiftView(@PathVariable("prdtNo") int prdtNo, Model model) {
+		//게시글 상세 조회 
+		Gift gift = service.selectGift(prdtNo);
+		 
+		//해당 게시글에 포함된 이미지 목록 조회
+		if (gift != null) { // 상세 조회 성공시
+			//상세 조회 성공한 게시물의 이미지 목록을 조회하는 Service 호출
+			List<Attachment> attachmentList = service.selectAttachmentList(prdtNo);
+
+			//조회된 이미지 목록이 있을 경우
+			if (attachmentList != null && !attachmentList.isEmpty()) {
+				model.addAttribute("attachmentList", attachmentList);
+			}
+			//썸네일 가져오기
+			Attachment thumbnail = service.selectThumbnail(prdtNo);
+			if (thumbnail != null) {
+				model.addAttribute("thumbnail", thumbnail);
+			}
+			
+			// 옵션 가져오기
+			List<GOption> goption = service.selectGoption(prdtNo);
+			if (goption != null && !goption.isEmpty()) {
+				model.addAttribute("goption", goption);
+				
+			}
+
+			//해시태그 목록 가져오기
+			List<ProductCTag> prdtTagList = service.selectPrdtTagList(prdtNo);
+			if (prdtTagList != null  && !prdtTagList.isEmpty()) {
+				model.addAttribute("prdtTagList", prdtTagList);
+			}
+		}
+		
+		model.addAttribute("gift", gift);
+		String url = "gift/giftUpdate";
+		
+		return url;
+	}
 }
