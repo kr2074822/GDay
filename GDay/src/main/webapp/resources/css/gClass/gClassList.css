@@ -181,6 +181,7 @@ section.gift .gift_wrapper .item{
     margin-top: 40px;
     border: 1px solid rgba(0, 0,  0, .1);
     padding: 10px;
+    position: relative;
 }
 section.gift .gift_wrapper .item:hover{
     box-shadow: 0px 0px 10px #fe929f;
@@ -191,12 +192,12 @@ section.gift .gift_wrapper .item div {
     width: 100%;
     height: 200px;
 }
-section.gift .gift_wrapper .item div > img{
+section.gift .gift_wrapper .item > img{
     width: 250px;
     height: 200px;
     object-fit: cover;
 }
-section.gift .gift_wrapper .item div > .sold_out{
+section.gift .gift_wrapper .item .sold_out{
     position: absolute;
     top: 0;
     text-align: center;

@@ -236,8 +236,10 @@
 	</update>
 	
 	<!-- 별점 조회하기 -->
-		<select id="selectStarList" parameterType="list" resultMap="star_rm">
-		SELECT * FROM V_PRODUCT_STAR
-		WHERE PRDT_NO = #{prdtNo}
+	<select id="selectStarList" parameterType="list" resultMap="star_rm">
+		SELECT * FROM V_PRODUCT_STAR WHERE PRDT_NO IN
+		<foreach collection="list" item="prdt" open="(" close=")" separator=",">
+		 	#{prdt.prdtNo}
+		</foreach>
 	</select>
 </mapper>
