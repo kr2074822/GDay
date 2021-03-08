@@ -482,6 +482,8 @@ display: none;
             input_list.addEventListener('click', ()=> {
                 if(input_list.checked == true){
                     selectBtn[div_index].style.background="#FE929F";
+                   	console.log(selectBtn[div_index].lastChild.checked = true)
+                   	selectBtn[div_index].lastChild.checked = true
                 }else{
                     let cnt = 0;
                     let aa = input_list.parentElement.querySelectorAll('input')
@@ -494,6 +496,7 @@ display: none;
                     }
                     if(cnt*(-1) == aa.length){
                         selectBtn[div_index].style.background="rgba(0, 0, 0, .05)";
+                        selectBtn[div_index].lastChild.checked = false
                     }
                 }
                 
