@@ -59,22 +59,13 @@
                             </select>
        
                             <div id="option_list">
-								<div class="gift_cnt">
-                                <div class="opt_title">
-                                    <span class="class-amount">참여 인원</span>
-                                    </div>
-                                <div class="cnt">
-                              		  <i class="fas fa-minus" onclick="del()"></i>
-                                    <input type="number" class="item_cnt" value=1 style="width:30px">
-                                    <i class="fas fa-plus" onclick="add()"></i>
-                                </div>
-                            </div>
+
                             </div>
                             
                         </div>
                     </div>
                     <div class="priceBtn">
-                        <p>총 <span>123</span>개</p>
+                        <p>총 <span class="acnt">0</span>개</p>
                         <div class="price">
                             <span>총 상품금액</span>
                             <span class="sum">0</span>
@@ -334,11 +325,33 @@
 	    });
 	    
 
+	    
+	    var total_cnt = 0;
+	    var total_sum = 0;
 	    $(document).on('input','.item_cnt',function(){
-			console.log(123);
-			console.log(123);
+	    	
+	    	
+	    	
+	    
+			//console.log($(this).val());
+			
+			
+			cnt = Number($(this).val());
+			
+		    	var cnt = 0;
+			for (let i = 0; i < $(".item_cnt").length; i++) {
+		    	console.log(Number($(".item_cnt")[i].value))
+		    	cnt +=Number($(".item_cnt")[i].value)
+				console.log(cnt);
+			}
+			total_cnt = cnt;
+			
+			total_sum = total_cnt*'${gift.prdtPrice}'
+			$(".acnt").text(total_cnt);
+			$(".sum").text(total_sum);
 		});    
 
+	    
     
 	    
 	    
