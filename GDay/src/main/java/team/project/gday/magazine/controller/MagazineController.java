@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.magazine.model.service.MagazineService;
 import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.magazine.model.vo.MagazineImg;
@@ -37,6 +38,10 @@ public class MagazineController {
 	 @Autowired 
 	 private MagazineService service;
 	 
+	 private String swalIcon = null;
+	 private String swalTitle = null;
+	 private String swalText = null;
+	
 	@RequestMapping("list")
 	public String magazineList (@RequestParam(value="cp", required = false ,defaultValue = "1" ) int cp,
 			Model model) {
@@ -161,7 +166,7 @@ public class MagazineController {
 	}
 	
 	// summernote에 업로드된 이미지 저장 Controller
-	@RequestMapping("insertImage")
+	@RequestMapping(value = {"{no}/insertImage", "insertImage"})
 	@ResponseBody //응답시 값 자체를 돌려보냄
 	public String insertImage(HttpServletRequest request,
 								@RequestParam(value="uploadFile") MultipartFile uploadFile) {
@@ -223,7 +228,74 @@ public class MagazineController {
 		return url;
 	}
 	
+	// 매거진 수정 화면
+	@RequestMapping("{no}/update")
+	 public String magazineUpdateView(@PathVariable("no") int no, Model model){
+		
+		//게시글 상세 조회 
+		Magazine magazine = service.selectMagazine(no);
+		System.out.println(magazine);
+		//해당 게시글에 포함된 이미지 목록 조회
+		if (magazine != null) { // 상세 조회 성공시
+			//상세 조회 성공한 게시물의 이미지 목록을 조회하는 Service 호출
+			List<MagazineImg> attachmentList = service.selectMimgList(no);
+
+			//조회된 이미지 목록이 있을 경우
+			if (attachmentList != null && !attachmentList.isEmpty()) {
+				model.addAttribute("attachmentList", attachmentList);
+			}
+			//썸네일 가져오기
+			MagazineImg thumbnail = service.selectThumbnail(no);
+			if (thumbnail != null) {
+				model.addAttribute("thumbnail", thumbnail);
+			}
+			
+		}
+		
+		model.addAttribute("magazine", magazine);
+		String url = "magazine/magazineUpdate";
+		
+		return url;
+	 }
 	
-	
+	@RequestMapping("{no}/magazineUpdate")
+	public String magazineUpdate(@PathVariable("no") int no,
+		 	@ModelAttribute Magazine updateMagazine,
+			Model model, RedirectAttributes ra,
+			HttpServletRequest request,
+			//삽입해야하는 이미지들을 알려주는 역할을 하는 변수
+			@RequestParam(value="images", required=false) List<MultipartFile> images) {
+			
+		updateMagazine.setMgzNo(no);
+			
+		//파일 저장 경로 얻어오기
+		String savePath = request.getSession().getServletContext().getRealPath("resources/images/magazineImg");
+		System.out.println("업데이트매거진"+updateMagazine);
+		// map을 이용하여 필요한 데이터 모두 담기
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mgzNo", updateMagazine.getMgzNo());
+		map.put("mgzTitle", updateMagazine.getMgzTitle());
+		map.put("mgzContent", updateMagazine.getMgzContent());
+		
+		// 게시글 수정 Service 호출
+		int result = service.updateMagazine(map, images, savePath);
+		
+		String url = null;
+		if(result > 0) {
+			swalIcon = "success";
+			swalTitle = "클래스 수정 성공!";
+			url = "redirect:../"+no;
+		}else {
+			swalIcon = "error";
+			swalTitle = "클래스 수정 실패";
+			url = "redirect:" + request.getHeader("referer");
+		}
+		
+		ra.addFlashAttribute("swalIcon", swalIcon);
+		ra.addFlashAttribute("swalTitle", swalTitle);
+		
+		return url;
+			
+	}
 
 }
