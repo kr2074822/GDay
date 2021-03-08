@@ -94,6 +94,7 @@ public class GClassController {
 			
 			//해시태그 목록 가져오기
 			List<ProductCTag> prdtTagList = service.selectPrdtTagList(prdtNo);
+			System.out.println(prdtTagList);
 			if (prdtTagList != null  && !prdtTagList.isEmpty()) {
 				model.addAttribute("prdtTagList", prdtTagList);
 			}
@@ -111,7 +112,7 @@ public class GClassController {
 			}
 
 			ra.addFlashAttribute("swalIcon", "error");
-			ra.addFlashAttribute("swalTitle", "존재하지 않는 클래스입니다.");
+			ra.addFlashAttribute("swalTitle", "클래스가 마감되었습니다.");
 		}
 
 		return url;

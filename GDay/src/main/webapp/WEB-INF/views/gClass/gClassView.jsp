@@ -86,9 +86,9 @@
     <section>
         <div class="gift">
             <div class="gift_title">
-                <div><a href="">상품 설명</a></div>
-                <div><a href="">상품 후기</a></div>
-                <div><a href="">배송 교환 반품</a></div>
+                <div id="fnMove1"><a href="">상품 설명</a></div>
+                <div id="fnMove2"><a href="">상품 후기</a></div>
+                <div id="fnMove3"><a href="">배송 교환 반품</a></div>
             </div>
             <div class="describe">
                 <h1>판매자 정보</h1>
@@ -120,7 +120,7 @@
                         </tr>
                         <tr>
                             <td>상호명</td>
-                            <td>${member.memberName}</td>
+                            <td>${member.memberNick}</td>
                         </tr>
                     </table>
                 </div>
@@ -137,27 +137,75 @@
                         </tr>
                         <tr>
                             <td>연령대</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 100}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                             <td>가격대</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 200}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                         </tr>
                         <tr>
                             <td>분위기</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 300}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                             <td>관계</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 400}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                         </tr>
                         <tr>
                             <td>기념일/명절</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 500}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                             <td>계절</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 600}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                         </tr>
                         <tr>
                             <td>색상</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 700}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                             <td>종류</td>
-                            <td>이이1</td>
+                            <td>
+                            <c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 800}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -279,6 +327,21 @@
 		<script type="text/javascript" src="${contextPath}/resources/js/fontawesome.js"></script>
     
     <script>
+    /* 상단바 페이지 내 이동 */
+    $("#fnMove1").on("click", function() {
+    	var offset = $(".about_gift").offset();
+        $('html, body').animate({scrollTop : offset.top}, 30);
+    });
+    $("#fnMove2").on("click", function() {
+    	var offset = $(".g_info").offset();
+        $('html, body').animate({scrollTop : offset.top}, 200);
+    });
+    $("#fnMove3").on("click", function() {
+    	var offset = $(".refund").offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+    });
+    
+    /* 참여 인원에 따른 금액 증가 로직 */
     var price = ${gclass.prdtPrice};
     function add(){
     	$(".amount").val(Number($(".amount").val()) + 1);
@@ -303,14 +366,96 @@
     	}
     });
 
-     /* 품절 버튼 클릭시 */
+     /* 마감하기 버튼 클릭시 */
      $("#pause").on("click", function() {
     	 var prdtNo = ${gclass.prdtNo};
     	 
-    	 if(confirm("상품을 품절처리 하시겠습니까?")) {
+    	 if(confirm("클래스를 마감하시겠습니까?")) {
     		 location.href = prdtNo + "/pause"
     	 }
      });
+     
+/*      /* 댓글 보여지기 
+var parentBoardNo = ${prdtN.boardNo}; // 게시글 번호 --500 : EL이지만 쌍따옴표가 없어도 저장이 됨. (int)
+
+// 댓글
+// 페이지 로딩 완료 시 댓글 목록 호출
+$(function(){
+	selectReplyList();
+});
+
+// 댓글 목록 불러오기(AJAX)
+function selectReplyList(){
+	$.ajax({
+		url : "${contextPath}/reply/selectReplyList/" + parentBoardNo,
+		type: "post",
+		dataType: "json",
+		success: function(rList) {
+			// rList에는 현재 게시글의 댓글 List가 담겨 있음.
+	         
+						//댓글을 출력하기 위한 영역
+	         var replyListArea = $("#replyListArea");
+	         
+	         replyListArea.html(""); // 기존 정보 초기화
+	         
+	         
+	         // 댓글 List 반복 접근
+	         $.each(rList, function(index, item){   
+	            
+	            // 댓글을 출력할 li 요소를 생성
+	            var li = $("<li>").addClass("reply-row");
+	            
+	            
+	            // 댓글의 깊이가 1인 요소는 대댓글 이므로 별도 스타일을 적용할 수 있도록 childReply-li 클래스를 추가
+	            if(item.replyDepth == 1){
+	               li.addClass("childReply-li"); //클래스 지정 -> padding-left:50px. 안 쪽으로 더 들어가는 모양
+	            }
+	            
+	            // 작성자, 작성일, 수정일 영역 
+	            var div = $("<div>");
+	            var rWriter = $("<a>").addClass("rWriter").html(item.memberId);
+	            var rDate = $("<p>").addClass("rDate").html("작성일 : " + item.replyCreateDate + "<br>마지막 수정 날짜 : " + item.replyModifyDate);
+	            div.append(rWriter).append(rDate)
+	            
+	            
+	            // 댓글 내용
+	            var rContent = $("<p>").addClass("rContent").html(item.replyContent);
+	            
+	            // 대댓글, 수정, 삭제 버튼 영역
+	            var replyBtnArea = $("<div>").addClass("replyBtnArea");
+	            
+	            // 로그인 되어 있고, 대댓글이 아닐 경우 경우에 답글 버튼 추가
+	            // 댓글 아래에만 답글을 달 수 있는 모양(대대댓글 x)
+	            if(loginMemberId != "" && item.replyDepth != 1){
+	               var childReply = $("<button>").addClass("btn btn-sm btn-success ml-1 childReply").text("답글").attr("onclick", "addChildReplyArea(this, "+ item.parentReplyNo + ")");
+	               replyBtnArea.append(childReply);
+	            }
+	            
+	            // 현재 댓글의 작성자와 로그인한 멤버의 아이디가 같을 때 버튼 추가
+	            if(item.memberId == loginMemberId){
+	               
+	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+	               var showUpdate = $("<button>").addClass("btn btn-success btn-sm ml-1").text("수정").attr("onclick", "showUpdateReply(" + item.replyNo + ", this)");
+	               var deleteReply = $("<button>").addClass("btn btn-success btn-sm ml-1").text("삭제").attr("onclick", "deleteReply(" + item.replyNo + ")");
+	               
+	               replyBtnArea.append(showUpdate, deleteReply);
+	            }
+	            
+	            
+	            // 댓글 하나로 합치기
+	            li.append(div).append(rContent).append(replyBtnArea);
+	            
+	            // 댓글 영역을 화면에 배치
+	            replyListArea.append(li);
+	         });
+	         
+		},
+		error: function() {
+			console.log("댓글 목록 조회 실패")
+		}
+	});
+	
+} */
      
      
      /* ======================== 장바구니 버튼 클릭 시 ======================== */

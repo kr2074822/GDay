@@ -27,9 +27,9 @@
 	<!-- 상품 카테고리 해시태그 resultMap -->
 	<resultMap type="ProductCTag" id="tag_rm">
 		<id property="tagNo" column="TAG_NO"/>
-  	<result property="tagName" column="G_OPT_NAME"/>
- 		<result property="ctNo" column="G_OPT_TYPE"/>
- 		<result property="ctName" column="G_OPT_SOLD"/>
+  	<result property="tagName" column="TAG_NAME"/>
+ 		<result property="ctNo" column="CT_NO"/>
+ 		<result property="ctName" column="CT_NAME"/>
  		<result property="prdtNo" column="PRDT_NO"/>
 	</resultMap>		
 
@@ -225,7 +225,7 @@
 	
 	<!-- 클래스 마감하기 -->
 	<update id="pauseAction" parameterType="_int">
-		UPDATE PRODUCT SET PRDT_STATUS = 'N' WHERE PRDT_NO = #{prdtNo}
+		UPDATE G_CLASS SET C_STATUS = 'N' WHERE PRDT_NO = #{prdtNo}
 	</update>
 	
 </mapper>
