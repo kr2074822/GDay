@@ -144,7 +144,7 @@
 				url : "${contextPath}/cart/deleteCart/" + cartNo,
 				success : function(result) {
 					if(result > 0) {
-						for(var i = 0; i < checkAry.length; ++i) {
+						for(var i = 0; i < itemArys.length; ++i) {
 							if(itemArys[i].cartNo == cartNo) {
 								itemArys.splice(i, 1);
 								price = Number(price) - (Number(itemPrice) * Number(itemAmount));

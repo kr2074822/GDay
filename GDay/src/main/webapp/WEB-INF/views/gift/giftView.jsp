@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="priceBtn">
-                        <p>총 <span class="acnt">0</span>개</p>
+                        <p>총 <span class="acnt amount"></span>개</p>
                         <div class="price">
                             <span>총 상품금액</span>
                             <span class="sum">0</span>
@@ -271,6 +271,7 @@
 	<jsp:include page="../common/footer.jsp"/>
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
+		$("#option_list").html("");
 	    var price = ${gift.prdtPrice };
 	    function add(){
 	    	console.log(3)
@@ -305,12 +306,14 @@
 	    	console.log($("#options option:selected").text())
 	    	console.log($("#options option:selected").val())
 	    	
+	    	$("#option_list").html("");
+	    	
 	    	var addContent = 
 	    		'<div class="gift_cnt">'+
 		            '<div class="opt_title">'+
 		                '<span>${gift.prdtName}</span>'+
 		                '<span>'+ $("#options option:selected").text() +'</span>'+
-		                '<input type="hidden" value="'+$("#options option:selected").val()+'">'+
+		                '<input type="hidden" name="gift-option" value="'+$("#options option:selected").val()+'">'+
 		                '<input type="hidden" value="'+1+'">'+
 		            '</div>'+
 		            '<div class="cnt">'+
@@ -422,15 +425,15 @@
 
 	     $(".cart").on("click", function() {
 	    	 var prdtNo = ${gift.prdtNo};
-	    	 var amount = $(".amount").val();
- 	    	 var gOption = $("select[name='gift-option']").val();
+/* 	    	 var amount = Number($(".amount").val()); */
+ 	    	 var gOption = Number($("select[name='gift-option']").val());
 	    	 
 	    	 
 	    	 if(loginFlag == 1) {
 	    		 $.ajax({
 	   	    		url : "${contextPath}/cart/memberGiftCart",
 	   	    		data : {"prdtNo" : prdtNo,
-	   	    				"amount" : amount,
+	   	    				"amount" : total_cnt,
 	   	    				"gOption" : gOption},
 	   	    		type : "post",
 	   	    		success : function(result) {
