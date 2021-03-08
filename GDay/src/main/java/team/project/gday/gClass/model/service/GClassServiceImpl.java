@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gClass.model.dao.GClassDAO;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
@@ -322,5 +323,11 @@ public class GClassServiceImpl implements GClassService {
 	@Override
 	public int pauseAction(int prdtNo) {
 		return dao.pauseAction(prdtNo);
+	}
+
+	//평균 별점 가져오기 Service 구현
+	@Override
+	public List<ProductStar> selectStarList(List<GClass> gCList) {
+		return dao.selectStarList(gCList);
 	}
 }

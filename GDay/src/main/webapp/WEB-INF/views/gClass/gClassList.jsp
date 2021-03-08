@@ -21,13 +21,34 @@
     </style>
 </head>
 <body>
-	<form action="search" method="get" role="form" onsubmit="return validate();">
+				<c:choose>
+						<%-- 검색이 된 경우 --%>
+					<c:when test="${!empty search}">
+						<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
+						<c:forEach items="${search.category}" var="c">
+							<c:set var="category" value="${category}ct=${c}&"/>
+								<c:forEach items="${search.hashNo}" var="t">
+									<c:set var="hashNo" value="${hashNo}tag=${t}&"/>
+								</c:forEach>
+						</c:forEach>
+						
+						<c:set var="searchStr" value="${category}${hashNo}"/>
+						
+						<%-- 검색된 내용이 있다면 --%>
+						<c:if test="${!empty search.sv}">
+							<c:set var="searchStr" value="${category}${hashNo}&sv=${search.sv}"/>
+						</c:if>
+					</c:when>
+				</c:choose>
+				
+				
+	<form action="../classSearch" method="get" role="form" onsubmit="return validate();">
     <section class="search">
         <div class="search_wrapper">
             <h1>클래스 찾기</h1>
             
             <div class="">
-                <input type="text" name="" id="" placeholder="">
+                <input type="text" name="sv" id="" placeholder="">
                 <button type="submit" id=""><i class="fas fa-search"></i></button>
             </div>
         </div>

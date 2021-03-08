@@ -71,7 +71,14 @@
   		<result property="memberSec" column="MEM_SEC"/>
 	</resultMap>
 	
-
+		<!-- 별점 resultMap -->
+		<resultMap type="ProductStar" id="star_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvStarAvg" column="RV_STAR_AVG"/>
+			<result property="rvStarView"  column="RG_STAR_VIEW"/>
+		</resultMap>
+		
 	<!-- 다음 상품번호 조회 -->
 	<select id="selectNextNo" resultType="_int">
 		SELECT SEQ_PNO.NEXTVAL FROM DUAL
@@ -228,4 +235,9 @@
 		UPDATE G_CLASS SET C_STATUS = 'N' WHERE PRDT_NO = #{prdtNo}
 	</update>
 	
+	<!-- 별점 조회하기 -->
+		<select id="selectStarList" parameterType="list" resultMap="star_rm">
+		SELECT * FROM V_PRODUCT_STAR
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
@@ -82,5 +83,11 @@ public interface GClassService {
 	 * @return result
 	 */
 	int pauseAction(int prdtNo);
+
+	/**평균 별점 가져오기 Service
+	 * @param gCList
+	 * @return List
+	 */
+	List<ProductStar> selectStarList(List<GClass> gCList);
 
 }
