@@ -59,7 +59,7 @@
 				<div class="wrapper-tab">
 				
         <!-- 주문 목록 기간 검색 -->
-        <div id="list-title-period"><span>개강 일시</span></div>
+        <div id="list-title-period"><span>수강신청일</span></div>
         <div class="row" id="container-period">
             <form method="post" id="container-form">
             <div class="list-search" id="list-search-1">

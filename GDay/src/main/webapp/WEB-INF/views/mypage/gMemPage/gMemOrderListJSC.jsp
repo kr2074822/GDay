@@ -12,16 +12,15 @@ var periodRadio;
 var listContainer;
 var maxPage; //최대 페이지
 
+
 $(document).ready(function(){//ready 함수
-	
+
 //기본 화면 결제일 기간 : 일주일 / 전체  + list 초기화
 (function(){
 	
 	$("#7days").click();
 
-	cp=1;
-	console.log(cp);
-	loadTab(cp); //로드 탭
+	loadNewPage(); //로드 탭
 
 })();	
 
@@ -42,6 +41,27 @@ $(".btn-more").on("click", function(){
 });//ready 함수 끝
 
 
+
+//처음 화면 로딩 + tab 클릭시 진행되는 함수
+function loadNewPage(){
+		tabMenu = $(".tab-active").prev().val();
+		listContainer = $("#" + tabMenu);
+		
+		listContainer.html("");
+		
+		if(cp == undefined || cp <= 0) {
+			cp = 1;//첫 페이지
+		} 
+		//cp 조작 : 만약 이전에 현재 페이지에서 selectOrderList를 진행했다면 
+		//그 당시 cp가 남아 있을 것 => 해당 페이지만큼 다시 리스트 로드해야 함
+
+		console.log(cp);
+
+		for(var i=1; i<=cp; i++){ 
+			//목록, 이전으로 버튼으로 돌아온 경우
+				selectOrderList(i); 
+		}
+}
 
 /* 주문 내역 조회 */
 function selectOrderList(cp){
@@ -210,6 +230,8 @@ function selectOrderList(cp){
 				$(".btn-more").show();
 			}
 			
+			cp = pInfo.currentPage;//재로딩시를 대비하여 cp 저장
+			
 		},
 		error : function(){
 			console.log("주문 내역 조회 중 오류");
@@ -217,17 +239,6 @@ function selectOrderList(cp){
 		
 	});//ajax 끝
 }//selectOrderList 끝
-
-
-//처음 화면 로딩 + tab 클릭시 진행되는 함수
-function loadTab(cp){
-	
-	for(var i=0; i<cp; i++){ 
-		//후기 작성 후, 구매 확정 후 재로드 등...
-		selectOrderList(cp); 
-	}
-	
-}
 
 
 //클릭 시 상세 이동

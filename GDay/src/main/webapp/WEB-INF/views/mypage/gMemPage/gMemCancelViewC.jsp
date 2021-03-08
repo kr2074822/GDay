@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 화폐단위 체크용 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- 개행문자 처리용 -->
     
 <!DOCTYPE html>
 <html>
@@ -100,7 +102,10 @@
           </div>
           <div class="columns">
               <span class="column-label">사유 상세 내용</span>
-              <span class="column-content" id="rfContent">${refund.rfContent}</span>
+              <span class="column-content" id="rfContent">
+								<%-- JSTL을 이용한 개행문자 처리 : 출력 시 개행문자 처리함. boardContent에 있는  "\n"을 <br>로--%>
+								<% pageContext.setAttribute("newLine", "\n"); %>
+								${fn:replace(refund.rfContent, newLine, "<br>")}</span>
           </div>
       </div>
 

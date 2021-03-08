@@ -15,6 +15,7 @@
       <a class="modal-close"><i class="fas fa-times"></i></a>
       <div class="review-card">
       </div>
+      <form id="review-form" enctype="multipart/form-data">
 	      <div class="m-content-box">
 	        <div class="input-star">
 	            <i class="fas fa-star star-1" onclick="checkStar(1)"></i>
@@ -24,9 +25,13 @@
 	            <i class="fas fa-star star-5" onclick="checkStar(5)"></i>
 	            <input type="number" class="star-count review-hidden" name="rvStar">
 	        </div>
+	        <input type="number" class="review-hidden rvNo" name="rvNo"/>
+	        <input type="number" class="review-hidden prdtNo" name="prdtNo"/>
+	        <input type="number" class="review-hidden writerNo" name="writerNo"/>
+	        
 	        <div class="m-input-box">
 	            <span class="input-title">후기를 작성해 주세요!</span>
-	            <textarea name="rvContent" class="input-text" placeholder="150자 이내" maxlength="150"></textarea>
+	            <textarea name="rvContent" class="input-text" placeholder="10자 이상 150자 이내" maxlength="150"></textarea>
 	        </div>
 	        <div class="input-review-img">
 	            <div class="review-hidden">
@@ -42,16 +47,18 @@
 	        <button type="reset" class="modal-btn m-cancel-btns" id="m-cancel-btn">취소</button>    
 	        <button type="button" class="modal-btn m-submit-btns" id="m-submit-btn">등록</button> <!-- ajax -->    
 	      </div>
+	  	</form>
     </div>
   </div>
+  
+  
+  
 
 
+<script type="text/javascript" src="${contextPath}/resources/js/jquery.form.min.js"></script>
 <script>
-
 function popUp(opNo, type){
     modalInputReset();
-    
-    
     
     var url = "";
 
@@ -71,15 +78,27 @@ function popUp(opNo, type){
 	        	var rCard = $(".review-card");
 	        	rCard.html("");//초기화
 
+						/* var param = {"orderNo" : order.orderNo, "opNo" : order.opNo,
+	        								"writerNo" : order.buyer, "prdtNo" : order.prdtNo,
+	        								"prdtType" : order.prdtType } */
+	        	
+	        /* 	var submitUrl = "insertReview(" 
+	        									+ order.opNo + ","
+	        									+ order.buyer + ","
+	        									+ order.prdtNo 
+	        									+ ")"; */
+	        	
+	        	$(".rvNo").val(order.opNo);
+	        	$(".prdtNo").val(order.prdtNo);
+	        	$(".writerNo").val(order.buyer);
+	        									
 	        	//서밋버튼에 클릭이벤트 추가
-	        	$("#m-submit-btn").attr("onclick", "insertReview(" + order + ")");
+	        	$("#m-submit-btn").attr("onclick", "insertReview()");
 	        	
 						var thumb = $("<div>").addClass("review-thumb")
 											.css("background-image", "url(" + "${contextPath}" + image.filePath + "/" + image.fileName + ")");            	
         		var info = $("<div>").addClass("review-info")
-		        var opNo = $("<span>").addClass("opNo review-hidden").text(order.opNo);
-        		
-        		
+		      
         		var prdtName = order.prdtName
         		if(prdtName.trim().length > 11){
         			prdtName = prdtName.substring(0, 10) + "…";
@@ -110,7 +129,7 @@ function popUp(opNo, type){
 	        		opt += order.opAmount + "개";
 	        		
 	        		var text3 = $("<span>").addClass("review-text-3").text(opt);
-	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
+	        		info.append(name).append(text1).append(text2).append(text3);
 	        	}
 	        	
 	        	//class일때
@@ -134,9 +153,7 @@ function popUp(opNo, type){
 							var classDate = gClass.cStartDate + " ~ " + gClass.cEndDate;	        		
 	        		var text3 = $("<span>").addClass("review-text-3").text(classDate);
 	        	
-	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
-	        		rCard.append(thumb).append(info);//review-card에 추가
-	        		info.append(opNo).append(name).append(text1).append(text2).append(text3);
+	        		info.append(name).append(text1).append(text2).append(text3);
 	        	}
 
         		rCard.append(thumb).append(info);//review-card에 추가
@@ -235,21 +252,66 @@ function modalInputReset(){
     /* $(".review-card").html(""); */ /* html 삭제 */
 }
 
-
-function insertReview(order){
-    var url = "";
-
-    //ajax로 후기 삽입
-    url = "${contextPath}/review/insertReview/" + order.prdtType;
-    //order에 담긴 orderNo, prdtType 사용 
-    // + order+input 정보로 review에  
-    //    opNo(rvNo), prdtNo, buyer(writerNo), rvContent, rvStar 전달
-    // + 파일 정보(rvImage) type : multipart/form-data
-    
-    //success : cp 저장해서 reload
+//후기 삽입
+function insertReview(){
+		
+		//유효성 검사
+		var flag = false;
+		var rvStar = $("input[name='rvStar']").val();
+		var rvContent = $("textarea[name='rvContent']").val();
+		
+		if(rvStar.length == 0) {
+			flag = false;
+			swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>"});
+			return false;
+		} else {
+			flag = true;
+		}
+		if(rvContent.trim().length < 10){
+			flag = false;
+			swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>"});
+			return false;
+		} else {
+			flag = true;
+		}
 	
+		if(flag){
+	    /* ajax로 파일과 텍스트를 같이 보낼 수 있는 jquery.form.min.js 사용 */
+	    $("#review-form").ajaxForm({
+	    	url : "${contextPath}/review/insertReview",
+	    	type : "post",
+				enctype : "multipart/form-data",
+				success : function(result) {
+					if(result > 0) {
+						$(".modal-cover").hide();//모달창 닫기
+						loadNewPage();//새로 리스트 고침 or view 화면 새로 고침
+	
+					} else {
+						swal.fire({icon:"error", title:"후기 등록 실패"});
+					}
+				},
+				error : function(){
+					console.log("후기 등록 과정에서 오류");
+				}
+	    });
+	    $("#review-form").submit();
+		}
 }
 
+//유효성 검사
+function insertValidate(){
+	var rvStar = $("input[name='rvStar']").val();
+	var rvContent = $("textarea[name='rvContent']").val();
+	
+	if(rvStar.length == 0) {
+		swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>"});
+		return false;
+	}
+	if(rvContent.trim().length < 10){
+		swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>"})
+		return false;
+	}
+}
 
 
 

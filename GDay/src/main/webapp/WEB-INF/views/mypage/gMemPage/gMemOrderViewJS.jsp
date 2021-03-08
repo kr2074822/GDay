@@ -17,6 +17,10 @@ $(function(){
 
 });
 
+function loadNewPage(){
+	location.reload(); //
+}
+
 //구매확정 메소드
 function confirm(opNo){
 	

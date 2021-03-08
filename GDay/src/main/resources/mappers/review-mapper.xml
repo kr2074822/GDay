@@ -3,4 +3,32 @@
 <mapper namespace="reviewMapper">
 	
 	
+	<!-- V_REVIEW resultMap -->
+	<resultMap type="Review" id="review_rm">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="rvContent" column="RV_CONTENT"/>
+		<result property="rvStar" column="RV_STAR"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="rvStatus" column="RV_STATUS"/>
+		<result property="writerNo" column="WRITER_NO"/>
+		<result property="writer" column="WRITER"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="giftOpNo" column="GIFT_OP_NO"/>
+		<result property="rvImgPath" column="RV_IMG_PATH"/>
+		<result property="rvImgName" column="RV_IMG_NAME"/>
+	</resultMap>
+	
+	<!-- 후기 삽입 -->
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO REVIEW VALUES
+		(#{rvNo}, SYSDATE, DEFAULT, #{rvContent},	#{prdtNo}, #{writerNo}, #{rvStar})
+	</insert>
+	
+	
+	<!-- 후기 사진 삽입 -->
+	<insert id="insertRvImg" parameterType="review">
+		INSERT INTO REVIEW_IMG VALUES
+		(SEQ_RIMG.NEXTVAL, #{rvImgPath}, #{rvImgName}, 0, #{rvNo})
+	</insert>
+	
 </mapper>
