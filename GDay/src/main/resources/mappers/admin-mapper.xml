@@ -108,7 +108,7 @@
 	</select>
 	
 	<!-- 회원 고객센터 페이징 처리(목록 갯수) -->
-	<select id="getListMcCount" resultType="_int">
+	<select id="getListMcCount"	resultType="_int">
 		SELECT COUNT(*)
 		FROM V_CUSTOMOR
 		WHERE MEM_NO = #{memberNo}
@@ -170,4 +170,18 @@
         ORDER BY CUS_NO DESC
 	</select>
 	
+	<!-- 신고하기 -->
+	<insert id="getReport" parameterType="map">
+		INSERT INTO REPORT(REP_NO, REP_TYPE, PARENT_NO, PARENT_TYPE, REP_TARGET, REP_CONTENT, MEM_NO)
+		VALUES(SEQ_REP.NEXTVAL, #{reportType}, #{parentNo}, #{parentType}, 
+			   #{reportTarget}, #{reportContent}, #{memberNo})
+	</insert>
+	
+	<!-- 회원 고객센터 목록 전체 조회 -->
+	<select id="memberCustomer" parameterType="_int" resultMap="customor_rm">
+		SELECT *
+		FROM V_CUSTOMOR
+		WHERE MEM_NO = #{memberNo}
+		ORDER BY CUS_NO DESC
+	</select>
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
 import team.project.gday.member.model.vo.Member;
@@ -138,12 +139,29 @@ public class AdminDAO {
 	 * @param memberNo 
 	 * @return listMcCount
 	 */
-	public int getListMcCount(Member memberNo) {
-		return sqlSession.selectOne("adminMapper.getListMcCount", memberNo);
+	public int getListMcCount(Member loginMember) {
+		return sqlSession.selectOne("adminMapper.getListMcCount", loginMember);
 	}
 
-
-
-
+	/** 회원 고객센터 목록 조회
+	 * @param pInfo
+	 * @param memberNo
+	 * @return rList
+	 */
+	public List<Report> memberCustomer(adminPageInfo pInfo, Member loginMember) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		
+		return sqlSession.selectList("adminMapper.memberCustomer", loginMember, rowBounds);
+	}
+	// ---------------------------------------------------------------------------------------
+	
+	/** 신고하기
+	 * @param map
+	 * @return result
+	 */
+	public int report(Map<String, Object> map) {
+		return sqlSession.insert("adminMapper.getReport", map);
+	}
 
 }
