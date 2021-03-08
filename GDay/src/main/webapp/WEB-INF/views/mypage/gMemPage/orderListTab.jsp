@@ -80,7 +80,7 @@
         
         cp=1;
     		$("#7days").click();
-        loadTab(cp);
+    		loadNewPage();
     });
 	});
 </script>

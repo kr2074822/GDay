@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!-- orderListJS 용 JSP -->    
-    
+
 <script>
 
 var memberNo = "${loginMember.memberNo}";
@@ -17,17 +17,8 @@ $(document).ready(function(){//ready 함수
 	
 	//기본 화면 결제일 기간 : 일주일 / 전체  + list 초기화
 	(function(){
-	
 		$("#7days").click();
-		cp = 1;//첫 페이지
-
-		console.log(cp);
-
-		for(var i=0; i<cp; i++){ 
-			//목록, 이전으로 버튼으로 돌아온 경우
-			selectOrderList(cp); 
-		}
-
+		loadNewPage();//
 	})();	
 	
 	//period 조회 버튼 클릭
@@ -44,6 +35,24 @@ $(document).ready(function(){//ready 함수
 	});
 
 });//ready 함수 끝
+
+
+//화면 리로드 느낌
+function loadNewPage(){
+		
+		listContainer.html("");
+		
+		if(cp == undefined || cp <= 0) {
+			cp = 1;//첫 페이지
+		} 
+		console.log(cp);
+
+		for(var i=1; i<=cp; i++){ 
+		//목록, 이전으로 버튼으로 돌아온 경우
+			selectOrderList(i); 
+		}
+
+}
 
 
 /* 주문 내역 조회 */
@@ -205,6 +214,8 @@ function selectOrderList(cp){
 			} else {
 				$(".btn-more").show();
 			}
+			
+			cp = pInfo.currentPage;//재로딩시를 대비하여 cp 저장
 			
 		},
 		error : function(){

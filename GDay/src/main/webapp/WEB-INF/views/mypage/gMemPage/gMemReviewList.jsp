@@ -144,7 +144,7 @@
 	  	</div> <!--wrapper-tab -->
       
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
-      	<a href="#" class="btn-more"><i class="fas fa-plus"></i></a>
+      	<a href="" class="btn-more"><i class="fas fa-plus"></i></a>
  		</div>
  </div>
         

@@ -1,14 +1,21 @@
 package team.project.gday.review.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,8 +26,10 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.gmem.model.service.GmemService;
 import team.project.gday.review.model.service.ReviewService;
+import team.project.gday.review.model.vo.Review;
 
-@Controller
+//전체가 ajax로 통신되기 때문에 restController 사용
+@RestController
 @RequestMapping("/review/*")
 @SessionAttributes({"loginMember"})
 public class ReviewController {
@@ -38,7 +47,6 @@ public class ReviewController {
 	
 	
 	//리뷰창 팝업 시 정보 조회
-	@ResponseBody
 	@RequestMapping("getOrderInfo/{type}/{opNo}")
 	public String getOrderInfo(@PathVariable("type") String type,
 								@PathVariable("opNo") int opNo) {
@@ -93,5 +101,23 @@ public class ReviewController {
 		return gson.toJson(returnMap); 
 	}
 	
+	
+	@RequestMapping("insertReview")
+	public int insertReview(@ModelAttribute Review review,
+							/* @RequestParam("orderNo") int orderNo, */
+							@RequestParam(value="rvImage", required=false) List<MultipartFile> rvImg,
+							HttpServletRequest request) {
+		
+		System.out.println("review : " + review);
+		System.out.println("rvImg : " + rvImg);
+		
+		//첨부 파일 삽입을 위한 준비
+		String savePath = null;//
+		savePath = request.getSession().getServletContext().getRealPath("resources/images/reviewImg");
+		
+		int result = rService.insertReview(review, rvImg, savePath);
+		
+		return result;
+	}
 	
 }

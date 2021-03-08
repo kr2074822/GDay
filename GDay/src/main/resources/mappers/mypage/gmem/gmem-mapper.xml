@@ -141,7 +141,7 @@
 				#{statusNo}
 			</foreach>
 		</if>
-		ORDER BY OP_NO DESC
+		ORDER BY ORDER_DATE DESC
 	</select>
 
 	
