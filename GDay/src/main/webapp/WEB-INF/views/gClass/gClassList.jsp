@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.0">
     <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassList.css">
     <title>클래스 찾기</title>
     <style>

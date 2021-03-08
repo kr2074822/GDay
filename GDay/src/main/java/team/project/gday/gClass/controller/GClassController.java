@@ -106,7 +106,7 @@ public class GClassController {
 			// 즐겨찾기로 들어와서 referer이 null인 상태라면?
 			// -> 이전 요청 주소가 없는 경우
 			if (referer == null) {
-				url = "redirect:../list/";
+				url = "redirect:/";
 			} else { // 이전 요청 주소가 있는 경우
 				url = "redirect:" + referer;
 			}
@@ -223,7 +223,8 @@ public class GClassController {
 	
 	//클래스 마감하기 Controller
 	@RequestMapping("{prdtNo}/pause")
-	public String pauseAction(@PathVariable("prdtNo") int prdtNo, RedirectAttributes ra) {
+	public String pauseAction(@PathVariable("prdtNo") int prdtNo, RedirectAttributes ra,
+								@RequestHeader(value = "referer", required = false) String referer) {
 		
 		int result = service.pauseAction(prdtNo);
 		
@@ -232,7 +233,7 @@ public class GClassController {
 				swalIcon = "success";
 				swalTitle = "클래스 정상 마감";
 				swalText = "클래스가 마감되었습니다.";
-				url = "redirect:../"+prdtNo;
+				url = "redirect:/" + referer;
 			}else {
 				swalIcon = "error";
 				swalTitle = "클래스 마감 중 문제 발생";
