@@ -43,7 +43,7 @@
   		<result property="cDate" column="C_DATE"/>
 	</resultMap>
 	
-	<select id="selectGiftSearchList" parameterType="Search">
+	<select id="selectGiftSearchList" parameterType="Search" resultMap="gift_rm">
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
 			SELECT * FROM PRODUCT
 			JOIN PRODUCT_TAG USING(PRDT_NO)
@@ -63,7 +63,7 @@
 		</foreach>
 	</select>
 
-	<select id="selectClassSearchList" parameterType="Search">
+	<select id="selectClassSearchList" parameterType="Search" resultMap="class_rm">
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
 			SELECT * FROM PRODUCT
 			JOIN PRODUCT_TAG USING(PRDT_NO)

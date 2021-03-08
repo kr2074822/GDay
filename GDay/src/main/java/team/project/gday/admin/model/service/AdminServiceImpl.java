@@ -117,16 +117,24 @@ public class AdminServiceImpl implements AdminService{
 	// --------------------------------------------------------
 	// 회원 고객센터 페이징처리 Service 구현
 	@Override
-	public adminPageInfo getPageMcInfo(int cp, Member memberNo) {
-		int listMcCount = dao.getListMcCount(memberNo);
+	public adminPageInfo getPageMcInfo(int cp, Member loginMember) {
+		int listMcCount = dao.getListMcCount(loginMember);
+		
+		System.out.println("서비스" + listMcCount);
 		return new adminPageInfo(listMcCount, cp);
 	}
 
+	// 회원 고객센터 목록 조회 Service 구현
 	@Override
-	public List<Report> memberCustomer(adminPageInfo pInfo, Member memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Report> memberCustomer(adminPageInfo pInfo, Member loginMember) {
+		return dao.memberCustomer(pInfo, loginMember);
 	}
-
-
+	
+	// -------------------------------------------------------------
+	
+	// 신고하기 Service 구현
+	@Override
+	public int report(Map<String, Object> map) {
+		return dao.report(map);
+	}
 }
