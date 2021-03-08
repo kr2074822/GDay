@@ -40,11 +40,10 @@ display: none;
 						<c:set var="searchStr" value="${category}${hashNo}"/>
 						
 						<%-- 검색된 내용이 있다면 --%>
-						<c:if test="${!empty serch.sv}">
+						<c:if test="${!empty search.sv}">
 							<c:set var="searchStr" value="${category}${hashNo}&sv=${search.sv}"/>
 						</c:if>
 						
-						<c:url var="pageUrl" value="../search/MainSearch/${searchStr}&"/>
 					</c:when>
 				</c:choose>
 	<form action="search" method="GET">

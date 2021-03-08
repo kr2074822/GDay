@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.gClass.model.service.GClassServiceImpl;
+import team.project.gday.gift.model.service.GiftServiceImpl;
 import team.project.gday.gift.model.vo.Gift;
 import team.project.gday.search.model.service.SearchService;
 import team.project.gday.search.model.vo.PageInfoMain;
@@ -34,14 +37,15 @@ public class SearchController {
 		List<GClass> cList = service.selectClassSearchList(search, pInfo); 
 		
 		//3. 썸네일 가져오기
-		
-		
+		//if(gList!=null) { List<Attachment> gThumbnailList = new GiftServiceImpl().selectThumbnaiList(gList); }
+		if(cList!=null) { List<Attachment> cThumbnailList = new GClassServiceImpl().selectThumbnailList(cList); }
+				
 		model.addAttribute("gList", gList);
 		model.addAttribute("cList", cList);
 		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("search", search);
 		
-		return "mainSearch";
+		return "search/mainSearch";
 	}
 	
 }

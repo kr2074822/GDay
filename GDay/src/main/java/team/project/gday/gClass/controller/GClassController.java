@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
@@ -48,9 +49,14 @@ public class GClassController {
 		List<GClass> gCList = service.selectList(pInfo);
 
 		if (gCList != null && !gCList.isEmpty()) {
+			//썸네일 가져오기
 			List<Attachment> thumbnailList = service.selectThumbnailList(gCList);
 			if (thumbnailList != null) {
 				model.addAttribute("thList", thumbnailList);
+				
+				//평균 별점 가져오기
+				List<ProductStar> selectStarList = service.selectStarList(gCList);
+				
 			}
 		}
 
@@ -99,6 +105,8 @@ public class GClassController {
 				model.addAttribute("prdtTagList", prdtTagList);
 			}
 			
+			//후기 가져오기
+			//List<Review> reviewList = service.selectReviewList(prdtNo);
 
 			model.addAttribute("gclass", gclass);
 			url = "gClass/gClassView";
