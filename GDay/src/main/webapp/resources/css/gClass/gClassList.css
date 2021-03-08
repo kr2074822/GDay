@@ -122,6 +122,35 @@ section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]:check
     color: #fe929f;
 }
 
+/* pagination */
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 150px;	
+}
+
+.pagination li{
+	list-style: none;
+	margin-left: 10px;
+} 
+
+.pagination li a{
+	display:inline-block;
+	margin:0 auto;
+	border:1px solid #FE929F;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#FE929F;
+	font-size:13px;
+	color:white;
+	text-decoration:none;
+} 
+
+
+
 
 /* SECTION GIFT */
 section.gift{
