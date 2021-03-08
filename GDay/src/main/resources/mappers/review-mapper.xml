@@ -17,6 +17,76 @@
 		<result property="rvImgPath" column="RV_IMG_PATH"/>
 		<result property="rvImgName" column="RV_IMG_NAME"/>
 	</resultMap>
+		<!-- 선물 resultMap -->
+	<resultMap type="Gift" id="gift_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="readCount" column="READ_COUNT"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		<result property="gStatus" column="G_STATUS"/>
+	</resultMap>
+	
+	<!-- 선물 옵션 resultMap -->
+	<resultMap type="GOption" id="option_rm">
+		<id property="gOptNo" column="G_OPT_NO"/>
+		<result property="gOptName" column="G_OPT_NAME"/>
+		<result property="gOptType" column="G_OPT_TYPE"/>
+		<result property="gOptSold" column="G_OPT_SOLD"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+	</resultMap>
+	
+	<!-- 클래스 resultMap -->
+	<resultMap type="Class" id="class_rm">
+		<id property="prdtNo" column="PRDT_NO"/>
+		
+   		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
+  		<result property="prdtContent" column="PRDT_CONTENT"/>
+  		<result property="prdtPrice" column="PRDT_PRICE"/>
+  		<result property="readCount" column="READ_COUNT"/>
+  		<result property="createDate" column="CREATE_DATE"/>
+  		<result property="modifyDate" column="MODIFY_DATE"/>
+  		<result property="prdtStatus" column="PRDT_STATUS"/>
+  		<result property="memNo" column="MEM_NO"/>
+  		
+  		<result property="cCount" column="C_COUNT"/>
+  		<result property="cNowCount" column="C_NOWCOUNT"/>
+  		<result property="cSession" column="C_SESSION"/>
+  		<result property="cLocal" column="C_LOCATE"/>
+  		<result property="cStartDate" column="C_START_DATE"/>
+  		<result property="cEndDate" column="C_END_DATE"/>
+  		<result property="cStatus" column="C_STATUS"/>
+  		<result property="cDate" column="C_DATE"/>
+	</resultMap>
+	
+		<!-- 주문 resultMap V_ORDER-->
+	<resultMap type="Order" id="order_rm">
+		<id property="opNo" column="OP_NO"/>
+		<result property="orderNo" column="ORDER_NO"/>
+		<result property="prdtNo" column="PRDT_NO"/>
+		<result property="prdtType" column="PRDT_TYPE"/>
+		<result property="prdtName" column="PRDT_NAME"/>
+		<result property="prdtPrice" column="PRDT_PRICE"/>
+		<result property="sellerNo" column="SELLER_NO"/>
+		<result property="sellerName" column="SELLER_NM"/>
+		<result property="statusNo" column="STATUS_NO"/>
+		<result property="statusName" column="STATUS_NAME"/>
+		<result property="orderDate" column="ORDER_DATE"/>
+		<result property="opAmount" column="OP_AMOUNT"/>
+		<result property="giftOpNo" column="GIFT_OP_NO"/>
+		<result property="buyer" column="BUYER_NO"/>
+		<result property="shipName" column="SHIP_NAME"/>
+		<result property="shipAddr" column="SHIP_ADDR"/>
+		<result property="shipPhone" column="SHIP_PHONE"/>
+		<result property="impUid" column="IMP_UID"/>
+	</resultMap>
 	
 	<!-- 후기 삽입 -->
 	<insert id="insertReview" parameterType="review">
@@ -30,5 +100,65 @@
 		INSERT INTO REVIEW_IMG VALUES
 		(SEQ_RIMG.NEXTVAL, #{rvImgPath}, #{rvImgName}, 0, #{rvNo})
 	</insert>
+	
+	<!-- 후기 리스트 카운트 조회 -->
+	<select id="reviewListCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM V_REVIEW
+		JOIN V_ORDER ON(RV_NO = OP_NO)
+		WHERE PRDT_TYPE = #{type}
+		AND WRITER_NO = #{writerNo}
+		AND (CREATE_DATE BETWEEN #{start} AND #{end}+1)
+		AND RV_STATUS_NO = 'Y'
+	</select>
+	
+	<!-- 후기 리스트 조회 -->
+	<select id="selectReviewList" parameterType="map" resultMap="review_rm">
+	 SELECT RV_NO, RV_CONTENT, RV_STAR, 
+	 	CREATE_DATE, WRITER_NO, A.PRDT_NO,
+	  A.GIFT_OP_NO, RV_IMG_PATH, RV_IMG_NAME
+	  FROM V_REVIEW
+		JOIN V_ORDER ON(RV_NO = OP_NO)
+		WHERE PRDT_TYPE = #{type}
+		AND WRITER_NO = #{writerNo}
+		AND (CREATE_DATE BETWEEN #{start} AND #{end}+1)
+		AND RV_STATUS_NO = 'Y'
+	</select>
+	
+	
+	<!-- 후기 주문 내역 -->
+	<select id="selectOList" parameterType="list" resultMap="class_rm">
+		SELECT OP_NO, ORDER_NO, PRDT_NO, 
+			PRDT_TYPE, PRDT_NAME, ORDER_DATE, SELLER_NM
+		FROM V_ORDER
+		WHERE PRDT_NO IN (
+		<foreach collection="list" item="review" separator=",">
+			#{review.prdtNo}
+		</foreach>		
+		)
+	</select>
+	
+	
+	<select id="selectOptList" parameterType="list" resultMap="review_rm">
+		SELECT G_OPT_NO, G_OPT_NAME 
+		FROM GIFT_OPTION
+		WHERE G_OPT_NO IN (
+		<foreach collection="list" item="review" separator=",">
+			#{review.giftOpNo}
+		</foreach>
+		)
+	</select>
+	
+	
+	<select id="selectCList" parameterType="list" resultMap="review_rm">
+		SELECT PRDT_NO, C_START_DATE, C_END_DATE
+		FROM V_CLASS 
+		WHERE PRDT_NO IN (
+		<foreach collection="list" item="order" separator=",">
+			#{order.prdtNo}
+		</foreach>
+		)
+	</select>
+	
+	
 	
 </mapper>
