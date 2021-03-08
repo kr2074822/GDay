@@ -130,6 +130,21 @@ public class BmemServiceImpl implements BmemService {
 	}
 	
 	
+	// 판매 회원 수강 취소 목록 페이징 처리 객체 생성 Service 구현
+	@Override
+	public PageInfo9 getCcListPageInfo(int cp, Member loginMember) {
+		int classCancelListCount = dao.getCcListCount(loginMember);
+
+		return new PageInfo9(cp, classCancelListCount);
+	}
+	
+	// 판매 회원 수강 취소 목록 조회 Service 구현
+	@Override
+	public List<RefundList> bClassCancelList(PageInfo9 pInfo, Member loginMember) {
+		return dao.bClassCancelList(pInfo, loginMember);
+	}
+	
+	
 	
 	
 	// 주문 상태 변경 Service 구현
@@ -165,6 +180,15 @@ public class BmemServiceImpl implements BmemService {
 		
 		return result;
 	}
+	
+	// 수강 취소 상태 변경
+	@Override
+	public int classCancelStatusChange(Map<String, Object> map) {
+		int result = dao.classCancelStatusChange(map);
+		
+		return result;
+	}
+	
 	
 	
 	
