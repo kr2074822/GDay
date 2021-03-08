@@ -56,7 +56,7 @@ public class GClassController {
 				
 				//평균 별점 가져오기
 				List<ProductStar> selectStarList = service.selectStarList(gCList);
-				
+				model.addAttribute("selectStarList", selectStarList);
 			}
 		}
 

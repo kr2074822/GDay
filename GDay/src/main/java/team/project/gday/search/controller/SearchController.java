@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.gClass.model.service.GClassServiceImpl;
 import team.project.gday.gift.model.service.GiftServiceImpl;
 import team.project.gday.gift.model.vo.Gift;
@@ -24,7 +25,10 @@ public class SearchController {
 	@Autowired
 	private SearchService service;
 	
-	@RequestMapping("/search/*")
+	@Autowired
+	private GClassService gService;
+	
+	@RequestMapping("/search")
 	public String searchItem(@RequestParam(value="cp", required=false, defaultValue = "1") int cp,
 							@ModelAttribute Search search,
 							Model model) {
@@ -38,7 +42,7 @@ public class SearchController {
 		
 		//3. 썸네일 가져오기
 		//if(gList!=null) { List<Attachment> gThumbnailList = new GiftServiceImpl().selectThumbnaiList(gList); }
-		if(cList!=null) { List<Attachment> cThumbnailList = new GClassServiceImpl().selectThumbnailList(cList); }
+		if(cList!=null) { List<Attachment> cThumbnailList = gService.selectThumbnailList(cList); }
 				
 		model.addAttribute("gList", gList);
 		model.addAttribute("cList", cList);
