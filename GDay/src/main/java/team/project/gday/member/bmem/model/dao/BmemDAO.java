@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
-import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.bmem.model.vo.RefundList;
 import team.project.gday.member.model.vo.Member;
 
 @Repository // 저장소 (DB) 연결 객체임을 알려줌 + bean 등록
@@ -77,19 +77,77 @@ public class BmemDAO {
 		RowBounds rowBounds = new RowBounds(offset, 10);
 
 		return sqlSession.selectList("bMemMapper.bOrderList", loginMember, rowBounds);
-	}
-	
-	// 상품별 옵션 이름 가져오기 DAO
-	public List<GOption> gOptionList(int opNo) {
-		return sqlSession.selectList("bMemMapper.gOptionList", opNo);
-	}
-	
-	
+	}	
 
+	
+	// 판매 회원 선물 주문 목록 개수 조회 DAO
+	public int getRfListCount(Member loginMember) {
+		return sqlSession.selectOne("bMemMapper.getRfListCount", loginMember);
+	}
+	
+	// 판매 회원 선물 주문 목록 페이징 처리 객체 생성  DAO
+	public List<RefundList> bRefundList(PageInfo9 pInfo, Member loginMember) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemMapper.bRefundList", loginMember, rowBounds);
+	}
+	
+	
+	// 판매 회원 선물 주문 취소 목록 개수 조회 DAO
+	public int getOcListCount(Member loginMember) {
+		return sqlSession.selectOne("bMemMapper.getOcListCount", loginMember);
+	}
+	
+	// 판매 회원 선물 주문 취소 목록 페이징 처리 객체 생성 DAO
+	public List<RefundList> bCancelList(PageInfo9 pInfo, Member loginMember) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemMapper.bCancelList", loginMember, rowBounds);
+	}
+	
+	
+	// 판매 회원 수강 신청 목록 개수 조회 DAO
+	public int getEmListCount(Member loginMember) {
+		return sqlSession.selectOne("bMemMapper.getEmListCount", loginMember);
+	}
+	
+	// 판매 회원 수강 신청 목록 페이징 처리 객체 생성 DAO
+	public List<OrderList> bEnrolmentlList(PageInfo9 pInfo, Member loginMember) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemMapper.bEnrolmentlList", loginMember, rowBounds);
+	}
+	
+	
+	
+	
 	// 주문 상태 변경 DAO
 	public int orderStatusChange(Map<String, Object> map) {
 		return sqlSession.update("bMemMapper.orderStatusChange", map);
 	}
+	
+	// 환불 상태 변경 DAO
+	public int refundStatusChange(Map<String, Object> map) {
+		return sqlSession.update("bMemMapper.refundStatusChange", map);
+	}
+	
+	// 주문 취소 상태 변경
+	public int cancelStatusChange(Map<String, Object> map) {
+		return sqlSession.update("bMemMapper.cancelStatusChange", map);
+	}
+
+	// 수강 신청 상태 변경
+	public int enrolmentStatusChange(Map<String, Object> map) {
+		return sqlSession.update("bMemMapper.enrolmentStatusChange", map);
+	}
+	
+	
 
 	public int accountDel(String memberEmail) {
 		return sqlSession.update("memberMapper.accountDel", memberEmail);
@@ -102,5 +160,6 @@ public class BmemDAO {
 	public Member loginAction(Member inputMember) {
 		return sqlSession.selectOne("memberMapper.loginAction", inputMember);
 	}
+
 
 }

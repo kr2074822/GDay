@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
-import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.dao.BmemDAO;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.bmem.model.vo.RefundList;
 import team.project.gday.member.model.vo.Member;
 
 @Service
@@ -84,13 +84,52 @@ public class BmemServiceImpl implements BmemService {
 	@Override
 	public List<OrderList> bOrderList(PageInfo9 pInfo, Member loginMember) {
 		return dao.bOrderList(pInfo, loginMember);
+	}	
+	
+	// 판매 회원 환불 목록 페이징 처리 객체 생성 Service 구현
+	@Override
+	public PageInfo9 getRfListPageInfo(int cp, Member loginMember) {
+		int refundListCount = dao.getRfListCount(loginMember);
+
+		return new PageInfo9(cp, refundListCount);
 	}
 
-	// 상품별 옵션 이름 가져오기 Service 구현
+	//판매 회원 환불 목록 조회 Service 구현
 	@Override
-	public List<GOption> gOptionList(int opNo) {
-		return dao.gOptionList(opNo);
+	public List<RefundList> bRefundList(PageInfo9 pInfo, Member loginMember) {
+		return dao.bRefundList(pInfo, loginMember);
 	}
+	
+	// 판매 회원 주문 취소 목록 페이징 처리 객체 생성 Service 구현
+	@Override
+	public PageInfo9 getOcListPageInfo(int cp, Member loginMember) {
+		int cancelListCount = dao.getOcListCount(loginMember);
+
+		return new PageInfo9(cp, cancelListCount);
+	}
+	
+	// 판매 회원 주문 취소 목록 조회 Service 구현
+	@Override
+	public List<RefundList> bCancelList(PageInfo9 pInfo, Member loginMember) {
+		return dao.bCancelList(pInfo, loginMember);
+	}
+	
+	
+	// 판매 회원 수강 신청 목록 페이징 처리 객체 생성 Service 구현
+	@Override
+	public PageInfo9 getEmListPageInfo(int cp, Member loginMember) {
+		int enrolmentListCount = dao.getEmListCount(loginMember);
+
+		return new PageInfo9(cp, enrolmentListCount);
+	}
+	
+	// 판매 회원 수강 신청 목록 조회 Service 구현
+	@Override
+	public List<OrderList> bEnrolmentlList(PageInfo9 pInfo, Member loginMember) {
+		return dao.bEnrolmentlList(pInfo, loginMember);
+	}
+	
+	
 	
 	
 	// 주문 상태 변경 Service 구현
@@ -101,7 +140,34 @@ public class BmemServiceImpl implements BmemService {
 		
 		return result;
 	}
-
+	
+	// 환불 상태 변경 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int refundStatusChange(Map<String, Object> map) {
+		int result = dao.refundStatusChange(map);
+		
+		return result;
+	}
+	
+	// 주문 취소 변경 Service 구현
+	@Override
+	public int cancelStatusChange(Map<String, Object> map) {
+		int result = dao.cancelStatusChange(map);
+		
+		return result;
+	}
+	
+	// 수강 신청 상태 변경
+	@Override
+	public int enrolmentStatusChange(Map<String, Object> map) {
+		int result = dao.enrolmentStatusChange(map);
+		
+		return result;
+	}
+	
+	
+	
 	// 회원 탈퇴
 	@Transactional(rollbackFor = Exception.class)
 	@Override

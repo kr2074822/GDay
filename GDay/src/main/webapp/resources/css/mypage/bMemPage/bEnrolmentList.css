@@ -5,7 +5,7 @@
 	margin-bottom: 100px;
 }
 
-#b-cancel-list-wrapper {
+#b-enrolment-list-wrapper {
 	width: 70%;
 	margin: 100px auto;	
 }
@@ -41,7 +41,7 @@
 
 
 /* 판매 글 목록 */
-#cancel-list {
+#enrolment-list {
 	min-height: 500px;
 	min-width: 1200px;
 }
@@ -54,7 +54,7 @@
 	padding: 10px 0;
 }
 
-.cancel-td {
+.enrolment-td {
 	padding: 5px 20px;
 	border-bottom: 1px solid lightgray;
 	text-align: center;
@@ -106,7 +106,7 @@
 		width: auto;
 	}
 
-  #cancel-list {
+  #enrolment-list {
     display: flex;
   	flex-direction: column;
   	min-height: auto;
@@ -116,5 +116,4 @@
   .hide{
 		display: none;
   }
-  
 }
