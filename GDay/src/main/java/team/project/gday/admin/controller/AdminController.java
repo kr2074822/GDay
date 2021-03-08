@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -72,7 +74,8 @@ public class AdminController {
 	
 	// 비즈니스 회원 목록 조회 화면 전환 Controller
 	@RequestMapping("adminBMemSub")
-	public String adminBMemSub() {
+	public String adminBMemSub(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+			  				   Model model) {
 		return "admin/adminBMemSub";
 	}
 
@@ -185,15 +188,20 @@ public class AdminController {
 	
 	
 	// 신고하기 화면 팝업창 Controller
-	@RequestMapping("reportForm")
-	public String reportForm() {
+	@RequestMapping("reportForm/{prdtNo}")
+	public String reportForm(@PathVariable int prdtNo) {
 		return "admin/reportForm";
 	}
 	
 	// 신고하기 Controller
-	@RequestMapping("report")
-	public String report() {
-		return "redirect:" ;
+	@RequestMapping(value="report", method=RequestMethod.POST)
+	public String report(@ModelAttribute Member member,
+						 @RequestParam int report,
+						 @RequestParam String prdtNo) {
+		
+		System.out.println(prdtNo);
+		System.out.println(member);
+		return "admin/reportForm" ;
 	}
 	// -----------------------------------------------------------------
 	
@@ -224,21 +232,30 @@ public class AdminController {
 		return "admin/memberCustomerInsert";
 	}
 	
+	// 고객센터 문의 작성 Controller
+	@RequestMapping("customerInsert")
+	public String customerInsert(@ModelAttribute Customor customer,
+								 @ModelAttribute("loginMember") Member loginMember) {
+		
+		return "admin/memberCustomerView";
+	}
+	
 	// 회원 고객센터 목록 화면 전환 Controller
 	@RequestMapping("memberCustomer")
 	public String memberCustomer(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
-								 @ModelAttribute("loginMember") Member memberNo,
+								 @ModelAttribute("loginMember") Member loginMember,
 								 Model model){
 		
-		// System.out.println(memberNo);
-		
-		memberNo.getMemberNo();
-		
 		// 페이징 처리
-		adminPageInfo pInfo = service.getPageMcInfo(cp, memberNo);
+		adminPageInfo pInfo = service.getPageMcInfo(cp, loginMember);
+		System.out.println(pInfo);
 		
 		// 회원의 게시글 목록 조회
-		List<Report> rList = service.memberCustomer(pInfo, memberNo);
+		List<Report> rList = service.memberCustomer(pInfo, loginMember);
+		System.out.println(rList);
+		
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("rList", rList);
 		
 		return "admin/memberCustomer";
 	}

@@ -90,9 +90,20 @@ public interface AdminService {
 	 * @param memberNo 
 	 * @return pInfo
 	 */
-	public abstract adminPageInfo getPageMcInfo(int cp, Member memberNo);
+	public abstract adminPageInfo getPageMcInfo(int cp, Member loginMember);
 
-	public abstract List<Report> memberCustomer(adminPageInfo pInfo, Member memberNo);
+	/** 회원 고객센터 목록 조회
+	 * @param pInfo
+	 * @param memberNo
+	 * @return rList
+	 */
+	public abstract List<Report> memberCustomer(adminPageInfo pInfo, Member loginMember);
+
+	/** 신고하기 Service
+	 * @param map
+	 * @return result
+	 */
+	public abstract int report(Map<String, Object> map);
 
 
 

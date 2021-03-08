@@ -73,14 +73,14 @@ hr {
 		</div><br>
 		<hr>
 		<div class="input-area">
-			<form action="#" method="POST">
+			<form action="customerInsert" method="POST">
 				<div class="title-area">
 					<span>제목</span> <input type="text" name="title" id="titleInput"
 						required="제목을 입력해주세요.">
 				</div>
 				<div class="content-area">
 					<span>내용</span>
-					<textarea class="content" id="summernote"></textarea>
+					<textarea class="content" id="summernote" name="content"></textarea>
 				</div>
 				<div id="form-btn" class="form-size">
 					<button type="submit" class="inquiry">문의하기</button>
