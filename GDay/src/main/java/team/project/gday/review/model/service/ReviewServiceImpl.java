@@ -4,12 +4,17 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import team.project.gday.Product.model.vo.GClass;
+import team.project.gday.Product.model.vo.GOption;
+import team.project.gday.Product.model.vo.Order;
+import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.review.model.dao.ReviewDAO;
 import team.project.gday.review.model.exception.UpdateAttachmentFailException;
 import team.project.gday.review.model.vo.Review;
@@ -91,5 +96,42 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return date + str + ext;
 	}
+
+
+	//pInfo 생성service 구현
+	@Override
+	public PageInfo9 getPageInfo(Map<String, Object> map) {
+		
+		int listCount = dao.reviewListCount(map); //주문 목록
+		
+		System.out.println("listCount: " + listCount);
+		return new PageInfo9((Integer)map.get("cp"), listCount);
+	}
+
+	//후기 목록 조회
+	@Override
+	public List<Review> selectReviewList(PageInfo9 pInfo, Map<String, Object> map) {
+		return dao.selectReviewList(pInfo, map);
+	}
+
+
+	//후기에 맞는 주문 내역 조회하기
+	@Override
+	public List<Order> selectOList(List<Review> rList) {
+		return dao.selectOList(rList);
+	}
+
+
+	@Override
+	public List<GOption> selectOptList(List<Review> rList) {
+		return dao.selectOptList(rList);
+	}
+
+
+	@Override
+	public List<GClass> selectCList(List<Review> rList) {
+		return dao.selectCList(rList);
+	}
+	
 	
 }

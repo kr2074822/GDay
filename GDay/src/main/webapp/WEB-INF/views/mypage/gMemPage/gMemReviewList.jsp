@@ -9,8 +9,9 @@
 <title>나의 후기</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=1.0">
-
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=2.3">
+		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
+		
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     
@@ -58,7 +59,7 @@
 		<div class="wrapper-tab">
 				
         <!-- 주문 목록 기간 검색 -->
-        <div id="list-title-period"><span>개강 일시</span></div>
+        <div id="list-title-period"><span>작성일</span></div>
         <div class="row" id="container-period">
             <form action="#" method="post" id="container-form">
             <div class="list-search" id="list-search-1">
@@ -89,6 +90,7 @@
         <div class="container-reviews wrap-tab-l" id="review-gift">
 	        <div class="container-review">
 			        <a class="a-delete">삭제</a>
+							<div class="review-img"></div>
 			        <div class="review-card">
 			            <div class="review-date">
 			                <span class="date-text">리뷰 작성일</span>
@@ -109,7 +111,6 @@
 			            </div>
 			            <div class="review-content">후기후기후기</div>
 			        </div>
-			        <div class="review-img"></div>
 			      </div>
 			    </div><!--container-orders 끝 -->
 			
@@ -118,6 +119,7 @@
 	        <div class="container-reviews wrap-tab-r" id="review-class">
 		        <div class="container-review">
 				        <a class="a-delete">삭제</a>
+				        <div class="review-img"></div>
 				        <div class="review-card">
 				            <div class="review-date">
 				                <span class="date-text">리뷰 작성일</span>
@@ -138,15 +140,25 @@
 				            </div>
 				            <div class="review-content">후기후기후기</div>
 				        </div>
-				        <div class="review-img"></div>
-				        </div>
-				    </div>
+			        </div>
+			    </div>
 	  	</div> <!--wrapper-tab -->
       
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
       	<a href="" class="btn-more"><i class="fas fa-plus"></i></a>
  		</div>
  </div>
+ 
+ <!-- 모달창 : 이미지 확대 팝업-->
+<div class="modal-cover">
+  <div class="cal-modal" id="modal-img" style="width:600px; height:600px;">
+    <a class="modal-close"><i class="fas fa-times map-close"></i></a>
+    <div class="m-content-box">
+    		<img id="big-img">
+   	</div>
+  </div>
+</div>
+ 
         
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
 
