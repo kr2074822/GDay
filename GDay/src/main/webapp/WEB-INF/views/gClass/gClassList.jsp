@@ -167,23 +167,24 @@ input[name='category'] {
 			<div class="gift_wrapper">
 				<c:forEach var="gClass" items="${gCList}" varStatus="vs">
 					<div class="item">
+					
 						<c:forEach items="${thList}" var="th">
 							<c:if test="${th.prdtNo == gClass.prdtNo}">
 								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
 							</c:if>
 
+						</c:forEach>
 							<c:if test="${gClass.cStatus == 'N'}">
 								<div class="sold_out">
 									<h1>마감</h1>
 								</div>
 							</c:if>
-						</c:forEach>
 
 
 
 						<a href="${gClass.prdtNo}">
-							<div></div>
-							<h1>${gClass.prdtName}</h1> <c:forEach var="star" items="${selectStarList}" varStatus="vs">
+							<h1>${gClass.prdtName}</h1> 
+							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
 									<span>${gClass.prdtPrice}</span>
