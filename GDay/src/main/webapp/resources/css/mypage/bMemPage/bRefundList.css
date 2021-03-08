@@ -1,33 +1,119 @@
 @charset "UTF-8";
 
 #wrapper {
-	display: flex;
+	display: flex;	
+	margin-bottom: 100px;
 }
 
 #b-refund-list-wrapper {
 	width: 70%;
-	margin: auto;
+	margin: 100px auto;	
 }
 
 /* 페이지 상단 부분 */
 #wrapper-top-area {
 	width: 100%;
+	min-width: 800px;
 	margin: 20px 0;
 	display: flex; 
-}
-
-#container-form {
-	width: 100%;
-	display: flex;
 	justify-content: space-between;
 }
 
+#list-search-1, #list-search-2, #date-form{
+	width: 100%;
+	display: flex;
+}
 
-/* 주문 내역 목록 */
+#list-search-1 {
+	padding-right: 20px;
+}
+
+.day-btn {
+	border: 0;
+	outline: 0;
+}
+
+.day-btn:hover, #status-change-btn:hover , #list-search-btn:hover {
+	cursor: pointer;
+	background-color: #8e8989;
+	color: #FFF;
+}
+
+
+/* 반품 글 목록 */
 #refund-list {
-	
+	min-height: 500px;
+	min-width: 1200px;
 }
 
 #list-table {
-	border: 1px solid black;
+	width: 100%;
+}
+
+#table-head > th{
+	padding: 10px 0;
+}
+
+.refund-td {
+	padding: 5px 20px;
+	border-bottom: 1px solid lightgray;
+	text-align: center;
+	word-break:break-all
+}
+
+/* .prdt-name {
+  white-space: nowrap;
+} */
+
+
+/* 검색 영역 */
+#container-form {
+	text-align: right;
+}
+
+
+/* 페이징바 영역 */
+#page-area {
+	margin-top: 15px;
+	text-align: center;
+}
+
+
+
+
+
+/* 반응형 */
+@media screen and (max-width:768px) {
+ 
+  #wrapper-top-area {
+		flex-direction: column;
+		align-items: center;
+		min-width: 500px;
+	}
+	
+	#date-form {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.list-search {
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	#list-search-1 {
+		padding-right: 0;
+		width: auto;
+	}
+
+  #refund-list {
+    display: flex;
+  	flex-direction: column;
+  	min-height: auto;
+  	min-width: 500px;
+  }
+  
+  .hide{
+		display: none;
+  }
 }

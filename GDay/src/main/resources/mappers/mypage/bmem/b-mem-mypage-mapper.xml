@@ -59,6 +59,20 @@
   		<result property="giftOpNo" column="GIFT_OP_NO"/>
 	</resultMap>		
 	
+	<!-- 비즈니스 회원 마이페이지 환불/취소 목록 조회용 resultMap -->
+	<resultMap type="BmemRcList" id="brc_rm">
+		<id property="opNo" column="OP_NO"/>
+		
+  		<result property="refundDate" column="REFUND_DATE"/>
+  		<result property="memName" column="MEM_NAME"/>
+  		<result property="rfReasonName" column="RF_REASON_NAME"/>
+  		<result property="statusName" column="STATUS_NAME"/>
+  		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="memNo" column="MEM_NO"/>
+	</resultMap>	
+	
+		
+	
 	<!-- 파일 resultMap -->
 	<resultMap type="Attachment" id="attachment_rm">	
 		<id property="fileNo" column="FILE_NO"/>
@@ -149,16 +163,7 @@
 		WHERE MEM_NO = #{memberNo}
 		AND PRDT_TYPE = 'G'
 		AND STATUS_NAME IN ('결제 완료', '발송 완료', '구매 확정')
-	</select>
-	
-	<!-- 상품별 옵션 이름 조회 -->
-	<select id="gOptionList" parameterType="_int" resultMap="option_rm">
-		SELECT OP_NO, G_OPT_NAME
-		FROM GIFT_OPTION
-		JOIN ORDER_PRODUCT USING(PRDT_NO)
-		WHERE OP_NO = #{opNo}
-	</select>
-	
+	</select>	
 
 	<!-- 주문 상태 변경 -->
 	<update id="orderStatusChange" parameterType="map">
@@ -168,7 +173,94 @@
 		<foreach collection="opAry" item="item" separator=" OR OP_NO = ">
 			 #{item}
 		</foreach>	
-
+	</update>
+	
+	
+	
+	
+	<!-- 판매 회원 환불 목록 전체 게시글 수 개수 조회 -->
+	<select id="getRfListCount" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM V_BMEMBER_RFLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'G'
+		AND STATUS_NAME IN ('반품 요청', '반품 완료')
+	</select>
+	
+	<!-- 판매 회원 선물 환불 목록 조회 -->
+	<select id="bRefundList" parameterType="Member" resultMap="brc_rm">
+		SELECT * FROM V_BMEMBER_RFLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'G'
+		AND STATUS_NAME IN ('반품 요청', '반품 완료')
+	</select>	
+	
+	<!-- 환불 상태 변경 -->
+	<update id="refundStatusChange" parameterType="map">
+		UPDATE ORDER_PRODUCT SET
+		STATUS_NO = #{status}
+		WHERE OP_NO = 
+		<foreach collection="opAry" item="item" separator=" OR OP_NO = ">
+			 #{item}
+		</foreach>	
+	</update>
+	
+	
+	
+	
+	<!-- 판매 회원 주문 취소 목록 전체 게시글 수 개수 조회 -->
+	<select id="getOcListCount" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM V_BMEMBER_RFLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'G'
+		AND STATUS_NAME IN ('취소 요청', '취소 완료')
+	</select>
+	
+	<!-- 판매 회원 선물 주문 취소 목록 조회 -->
+	<select id="bCancelList" parameterType="Member" resultMap="brc_rm">
+		SELECT * FROM V_BMEMBER_RFLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'G'
+		AND STATUS_NAME IN ('취소 요청', '취소 완료')
+	</select>	
+	
+	<!-- 주문 취소 상태 변경 -->
+	<update id="cancelStatusChange" parameterType="map">
+		UPDATE ORDER_PRODUCT SET
+		STATUS_NO = #{status}
+		WHERE OP_NO = 
+		<foreach collection="opAry" item="item" separator=" OR OP_NO = ">
+			 #{item}
+		</foreach>	
+	</update>
+	
+	
+	
+	
+	
+	<!-- 판매 회원 수강 신청 목록 전체 게시글 수 개수 조회 -->
+	<select id="getEmListCount" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM V_BMEMBER_ORDERLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'C'
+		AND STATUS_NAME IN ('구매 확정', '결제 완료')
+	</select>
+	
+	<!-- 판매 회원 수강 신청 취소 목록 조회 -->
+	<select id="bEnrolmentlList" parameterType="Member" resultMap="bOrder_rm">
+		SELECT * FROM V_BMEMBER_ORDERLIST
+		WHERE MEM_NO = #{memberNo}
+		AND PRDT_TYPE = 'C'
+		AND STATUS_NAME IN ('구매 확정', '결제 완료')
+	</select>	
+	
+	<!-- 수강 신청 상태 변경 -->
+	<update id="enrolmentStatusChange" parameterType="map">
+		UPDATE ORDER_PRODUCT SET
+		STATUS_NO = #{status}
+		WHERE OP_NO = 
+		<foreach collection="opAry" item="item" separator=" OR OP_NO = ">
+			 #{item}
+		</foreach>	
 	</update>
 	
 </mapper>

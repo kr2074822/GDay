@@ -1,6 +1,5 @@
 package team.project.gday.member.bmem.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +20,11 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
-import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.service.BmemService;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
+import team.project.gday.member.bmem.model.vo.RefundList;
 import team.project.gday.member.model.vo.Member;
 
 
@@ -74,29 +73,7 @@ public class BmemController {
 		
 		List<OrderList> oList = service.bOrderList(pInfo, loginMember);		
 
-		List<String> gOpName = new ArrayList<String>();
-		
-		
-		for(int i = 0; i < oList.size(); ++i) {
-			String optName = "";
-			List<GOption> gOptNames = service.gOptionList(oList.get(i).getOpNo());
-			
-			for(GOption opt : gOptNames) {
-				optName = opt.getgOptName() + ", ";
-			}
-			
-			gOpName.add(optName);
-		}
-		
-		Map<String, Object> map = new HashMap<String, Object>(); 
-		map.put("oList", oList);
-		map.put("gOpName", gOpName);
-		
-		System.out.println(map.get("oList")); 
-		System.out.println(map.get("gOpName")); 
-		
 		model.addAttribute("oList", oList);
-		model.addAttribute("map", map);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "mypage/bMemPage/bOrderList";
@@ -104,15 +81,39 @@ public class BmemController {
 	
 	//비즈니스 환불 목록 조회 이동
 	@RequestMapping("bRefundList")
-	public String bRefundList() {
+	public String bRefundList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							  @ModelAttribute("loginMember") Member loginMember,
+							  Model model) {
+		
+		PageInfo9 pInfo = service.getRfListPageInfo(cp, loginMember);
+		
+		List<RefundList> rList = service.bRefundList(pInfo, loginMember);		
+
+		model.addAttribute("rList", rList);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "mypage/bMemPage/bRefundList";
 	}
 	
 	//비즈니스 주문 취소 목록 조회 이동
 	@RequestMapping("bCancelList")
-	public String bCancelList() {
+	public String bCancelList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+							  @ModelAttribute("loginMember") Member loginMember,
+							  Model model) {
+		
+		PageInfo9 pInfo = service.getOcListPageInfo(cp, loginMember);
+		
+		List<RefundList> oCList = service.bCancelList(pInfo, loginMember);		
+
+		System.out.println(oCList); 
+		
+		model.addAttribute("oCList", oCList);
+		model.addAttribute("pInfo", pInfo);
+		
+		
 		return "mypage/bMemPage/bCancelList";
 	}
+	
 	
 	//비즈니스 회원이 등록한 클래스 목록 조회 Controller
 	@RequestMapping("bClassList")
@@ -140,7 +141,19 @@ public class BmemController {
 	
 	//비즈니스 수강 신청 목록 조회
 	@RequestMapping("bEnrolmentList")
-	public String bEnrolmentList() {
+	public String bEnrolmentList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+								 @ModelAttribute("loginMember") Member loginMember,
+								 Model model) {
+		
+		PageInfo9 pInfo = service.getEmListPageInfo(cp, loginMember);
+		
+		List<OrderList> eList = service.bEnrolmentlList(pInfo, loginMember);		
+
+		System.out.println(eList); 
+		
+		model.addAttribute("eList", eList);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "mypage/bMemPage/bEnrolmentList";
 	}
 	
@@ -186,6 +199,58 @@ public class BmemController {
 		
 		int result = service.orderStatusChange(map);
 				
+		return result;
+	}
+	
+	// 환불 목록 상태 변경
+	@ResponseBody
+	@RequestMapping("refundStatusChange/{status}")
+	public int refundStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
+								  @ModelAttribute("loginMember") Member loginMember,
+								  @PathVariable("status") int status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("status", status);
+		map.put("opAry", opAry);
+		
+		int result = service.refundStatusChange(map);
+		
+		return result;
+	}
+	
+	// 취소 목록 상태 변경
+	@ResponseBody
+	@RequestMapping("cancelStatusChange/{status}")
+	public int cancelStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
+							      @ModelAttribute("loginMember") Member loginMember,
+								  @PathVariable("status") int status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("status", status);
+		map.put("opAry", opAry);
+		
+		int result = service.cancelStatusChange(map);
+		
+		return result;
+	}
+	
+	
+	// 취소 목록 상태 변경
+	@ResponseBody
+	@RequestMapping("enrolmentStatusChange/{status}")
+	public int enrolmentStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
+			@ModelAttribute("loginMember") Member loginMember,
+			@PathVariable("status") int status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("status", status);
+		map.put("opAry", opAry);
+		
+		int result = service.enrolmentStatusChange(map);
+		
 		System.out.println(result);
 		
 		return result;
