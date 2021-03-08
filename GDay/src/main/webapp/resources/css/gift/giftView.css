@@ -118,7 +118,7 @@ section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .cnt i{
 section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .cnt input{
     text-align: center;
     padding: 2px;
-    width: 20px;
+    width: 50px;
 }
 section .gift_wrapper form .gift_info .priceBtn{
     

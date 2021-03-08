@@ -47,203 +47,205 @@ display: none;
 						<c:url var="pageUrl" value="../search/MainSearch/${searchStr}&"/>
 					</c:when>
 				</c:choose>
-	<section class="">
-			<form action="search" method="GET">
-        <div class="selectWrapper">
-            <div class="select_container">
-                <div class="select">
-                    <div class="input_wrapper">
-                        
-                        	<div id="hash_tag"><span id="hash_span"></span></div>
-                            <input type="text" name="sv" id="search" placeholder="">
-                            <input type="hidden" name="" id="hsearch" placeholder="">
-                            <button type="submit" id=""><i class="fas fa-search"></i></button>
-                    <span>검색어 없어도 찾을수 있어요!</span>
-                </div>
-                <ul>
-                    <li class="selectBtn" id="" data-text="0">연령대
-                   	 <input type="checkbox" name="category" value="100"></li>
-                    <li class="selectBtn" id="" data-text="1">가격
-                    	<input type="checkbox" name="category" name="category" value="200"></li>
-                    <li class="selectBtn" id="" data-text="2">분위기
-                    	<input type="checkbox" name="category" value="300"></li>
-                    <li class="selectBtn" id="" data-text="3">관계
-                    	<input type="checkbox" name="category" value="400"></li>
-                    <li class="selectBtn" id="" data-text="4">기념일/명절
-                    	<input type="checkbox" name="category" value="500"></li>
-                    <li class="selectBtn" id="" data-text="5">계절
-                    	<input type="checkbox" name="category" value="600"></li>
-                    <li class="selectBtn" id="" data-text="6">색상
-                    <input type="checkbox" name="category" value="700"></li>
-                    <li class="selectBtn" id="" data-text="7">종류
-                    <input type="checkbox" name="category" value="800"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal_section">
-            <img src="${contextPath}/resources/images/gift3.jpeg" alt="" id="img">
-            <div class="popup" data-text="0">
-                <h1>연령대</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="1" id="baby">
-                    <label class="item" for="baby">영유아</label>
-                    <input type="checkbox" name="hashNo" value="2" id="child">
-                    <label class="item" for="child">어린이</label>
-                    <input type="checkbox" name="hashNo" value="3" id="teenager">
-                    <label class="item" for="teenager">청소년</label>
-                    <input type="checkbox" name="hashNo" value="4" id="adult">
-                    <label class="item" for="adult">청년</label>
-                    <input type="checkbox" name="hashNo" value="5" id="midage">
-                    <label class="item" for="midage">중년</label>
-                    <input type="checkbox" name="hashNo" value="6" id="oldage">
-                    <label class="item" for="oldage">장년</label>
-                </div>
-            </div>
-            <div class="popup" data-text="1">
-                <h1>가격</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="7" id="under_one">
-                    <label class="item" for="under_one">1만원 미만</label>
-                    <input type="checkbox" name="hashNo" value="8" id="one_two">
-                    <label class="item" for="one_two">2~3만원대</label>
-                    <input type="checkbox" name="hashNo" value="9" id="three_for">
-                    <label class="item" for="three_for">3~4만원대</label>
-                    <input type="checkbox" name="hashNo" value="10" id="five_eight">
-                    <label class="item" for="five_eight">5~8만원대</label>
-                    <input type="checkbox" name="hashNo" value="11" id="nine_ten">
-                    <label class="item" for="nine_ten">9~10만원대</label>
-                    <input type="checkbox" name="hashNo" value="12" id="over_ten">
-                    <label class="item" for="over_ten">11만원 이상</label>
-                </div>
-            </div>
-            <div class="popup" data-text="2">
-                <h1>분위기</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="13" id="lovely">
-                    <label class="item" for="lovely">사랑스러운</label>
-                    <input type="checkbox" name="hashNo" value="14" id="modern">
-                    <label class="item" for="modern">모던한</label>
-                    <input type="checkbox" name="hashNo" value="15" id="special">
-                    <label class="item" for="special">독특한</label>
-                    <input type="checkbox" name="hashNo" value="16" id="casual">
-                    <label class="item" for="casual">캐쥬얼</label>
-                    <input type="checkbox" name="hashNo" value="17" id="useful">
-                    <label class="item" for="useful">실용적인</label>
-                    <input type="checkbox" name="hashNo" value="18" id="luxury">
-                    <label class="item" for="luxury">럭셔리</label>
-                </div>
-            </div>
-            <div class="popup" data-text="3">
-                <h1>관계</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="19" id="honey">
-                    <label class="item" for="honey">애인</label>
-                    <input type="checkbox" name="hashNo" value="20" id="parents">
-                    <label class="item" for="parents">부모님</label>
-                    <input type="checkbox" name="hashNo" value="21" id="sibling">
-                    <label class="item" for="sibling">형제ㆍ자매</label>
-                    <input type="checkbox" name="hashNo" value="22" id="friend">
-                    <label class="item" for="friend">친구ㆍ동료</label>
-                    <input type="checkbox" name="hashNo" value="23" id="teacher">
-                    <label class="item" for="teacher">선생님ㆍ상사</label>
-                    <input type="checkbox" name="hashNo" value="24" id="relEtc">
-                    <label class="item" for="relEtc">기타</label>
-                </div>
-            </div>
-            <div class="popup" data-text="4">
-                <h1>기념일/명절</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="25" id="bday">
-                    <label class="item" for="bday">생일</label>
-                    <input type="checkbox" name="hashNo" value="26" id="couple_day">
-                    <label class="item" for="couple_day">커플기념일</label>
-                    <input type="checkbox" name="hashNo" value="27" id="school_day">
-                    <label class="item" for="school_day">입학ㆍ졸업ㆍ합격</label>
-                    <input type="checkbox" name="hashNo" value="28" id="marriage">
-                    <label class="item" for="marriage">결혼</label>
-                    <input type="checkbox" name="hashNo" value="29" id="childbirth">
-                    <label class="item" for="childbirth">출산</label>
-                    <input type="checkbox" name="hashNo" value="30" id="parent">
-                    <label class="item" for="parent">어버이날</label>
-                    <input type="checkbox" name="hashNo" value="31" id="teacherDay">
-                    <label class="item" for="teacherDay">스승의날</label>
-                    <input type="checkbox" name="hashNo" value="32" id="hire">
-                    <label class="item" for="hire">입사ㆍ승진</label>
-                    <input type="checkbox" name="hashNo" value="33" id="hire">
-                    <label class="item" for="resign">퇴사</label>
-                    <input type="checkbox" name="hashNo" value="34" id="hire">
-                    <label class="item" for="holiday">명절</label>
-                </div>
-            </div>
-            <div class="popup" data-text="5">
-                <h1>계절</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="35" id="spring">
-                    <label class="item" for="spring">봄</label>
-                    <input type="checkbox" name="hashNo" value="36" id="summer">
-                    <label class="item" for="summer">여름</label>
-                    <input type="checkbox" name="hashNo" value="37" id="fall">
-                    <label class="item" for="fall">가을</label>
-                    <input type="checkbox" name="hashNo" value="38" id="winter">
-                    <label class="item" for="winter">겨울</label>
-                </div>
-            </div>
-            <div class="popup" data-text="6">
-                <h1>색상</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="39" id="red">
-                    <label class="item" for="red">Red</label>
-                    <input type="checkbox" name="hashNo" value="40" id="orange">
-                    <label class="item" for="orange">Orange</label>
-                    <input type="checkbox" name="hashNo" value="41" id="yellow">
-                    <label class="item" for="yellow">Yellow</label>
-                    <input type="checkbox" name="hashNo" value="42" id="green">
-                    <label class="item" for="green">Green</label>
-                    <input type="checkbox" name="hashNo" value="43" id="blue">
-                    <label class="item" for="blue">Blue</label>
-										<input type="checkbox" name="hashNo" value="44" id="navy">
-                    <label class="item" for="navy">Navy</label>
-                    <input type="checkbox" name="hashNo" value="45" id="purple">
-                    <label class="item" for="purple">Purple</label>
-                    <input type="checkbox" name="hashNo" value="46" id="white">
-                    <label class="item" for="white">Pink</label>
-                    <input type="checkbox" name="hashNo" value="47" id="white">
-                    <label class="item" for="white">White</label>
-                    <input type="checkbox" name="hashNo" value="48" id="black">
-                    <label class="item" for="black">Black</label>
-                    <input type="checkbox" name="hashNo" value="59" id="etc">
-                    <label class="item" for="etc">기타</label>
-                </div>
-            </div>
-            <div class="popup" data-text="7">
-                <h1>종류</h1>
-                <div class="listBx">
-                    <input type="checkbox" name="hashNo" value="49" id="stationery">
-                    <label class="item" for="stationery">디자인문구</label>
-                    <input type="checkbox" name="hashNo" value="50" id="elec_equip">
-                    <label class="item" for="elec_equip">전자기기</label>
-                    <input type="checkbox" name="hashNo" value="51" id="leports">
-                    <label class="item" for="leports">여행ㆍ레포츠</label>
-                    <input type="checkbox" name="hashNo" value="52" id="house_design">
-                    <label class="item" for="house_design">디자인가전</label>
-                    <input type="checkbox" name="hashNo" value="53" id="interior">
-                    <label class="item" for="interior">인테리어ㆍ수납</label>
-                    <input type="checkbox" name="hashNo" value="54" id="life">
-                    <label class="item" for="life">패브릭ㆍ생활</label>
-                    <input type="checkbox" name="hashNo" value="55" id="food">
-                    <label class="item" for="food">키친ㆍ푸드</label>
-                    <input type="checkbox" name="hashNo" value="56" id="fashion">
-                    <label class="item" for="fashion">패션의류</label>
-                    <input type="checkbox" name="hashNo" value="57" id="fash_goods">
-                    <label class="item" for="fash_goods">패션잡화ㆍ주얼리</label>
-                    <input type="checkbox" name="hashNo" value="58" id="makeup">
-                    <label class="item" for="makeup">화장품</label>
-                </div>
-            </div>
-        </div>
-    </div>
-   </form>
-    </section>
+	<form action="search" method="GET">
+		<section class="">
+	        <div class="selectWrapper">
+	            <div class="select_container">
+	                <div class="select">
+	                    <div class="input_wrapper">
+	                    	<div class="form">
+	                        
+	                        	<div id="hash_tag"><span id="hash_span"></span></div>
+	                            <input type="text" name="sv" id="search" placeholder="">
+	                            <input type="hidden" name="" id="hsearch" placeholder="">
+	                            <button type="submit" id=""><i class="fas fa-search"></i></button>
+	                    	</div>
+	                    <span>검색어 없어도 찾을수 있어요!</span>
+	                </div>
+	                <ul>
+	                    <li class="selectBtn" id="" data-text="0">연령대
+	                   	 <input type="checkbox" name="category" value="100"></li>
+	                    <li class="selectBtn" id="" data-text="1">가격
+	                    	<input type="checkbox" name="category" name="category" value="200"></li>
+	                    <li class="selectBtn" id="" data-text="2">분위기
+	                    	<input type="checkbox" name="category" value="300"></li>
+	                    <li class="selectBtn" id="" data-text="3">관계
+	                    	<input type="checkbox" name="category" value="400"></li>
+	                    <li class="selectBtn" id="" data-text="4">기념일/명절
+	                    	<input type="checkbox" name="category" value="500"></li>
+	                    <li class="selectBtn" id="" data-text="5">계절
+	                    	<input type="checkbox" name="category" value="600"></li>
+	                    <li class="selectBtn" id="" data-text="6">색상
+	                    <input type="checkbox" name="category" value="700"></li>
+	                    <li class="selectBtn" id="" data-text="7">종류
+	                    <input type="checkbox" name="category" value="800"></li>
+	                </ul>
+	            </div>
+	        </div>
+	        <div class="modal_section">
+	            <img src="${contextPath}/resources/images/gift3.jpeg" alt="" id="img">
+	            <div class="popup" data-text="0">
+	                <h1>연령대</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="1" id="baby">
+	                    <label class="item" for="baby">영유아</label>
+	                    <input type="checkbox" name="hashNo" value="2" id="child">
+	                    <label class="item" for="child">어린이</label>
+	                    <input type="checkbox" name="hashNo" value="3" id="teenager">
+	                    <label class="item" for="teenager">청소년</label>
+	                    <input type="checkbox" name="hashNo" value="4" id="adult">
+	                    <label class="item" for="adult">청년</label>
+	                    <input type="checkbox" name="hashNo" value="5" id="midage">
+	                    <label class="item" for="midage">중년</label>
+	                    <input type="checkbox" name="hashNo" value="6" id="oldage">
+	                    <label class="item" for="oldage">장년</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="1">
+	                <h1>가격</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="7" id="under_one">
+	                    <label class="item" for="under_one">1만원 미만</label>
+	                    <input type="checkbox" name="hashNo" value="8" id="one_two">
+	                    <label class="item" for="one_two">2~3만원대</label>
+	                    <input type="checkbox" name="hashNo" value="9" id="three_for">
+	                    <label class="item" for="three_for">3~4만원대</label>
+	                    <input type="checkbox" name="hashNo" value="10" id="five_eight">
+	                    <label class="item" for="five_eight">5~8만원대</label>
+	                    <input type="checkbox" name="hashNo" value="11" id="nine_ten">
+	                    <label class="item" for="nine_ten">9~10만원대</label>
+	                    <input type="checkbox" name="hashNo" value="12" id="over_ten">
+	                    <label class="item" for="over_ten">11만원 이상</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="2">
+	                <h1>분위기</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="13" id="lovely">
+	                    <label class="item" for="lovely">사랑스러운</label>
+	                    <input type="checkbox" name="hashNo" value="14" id="modern">
+	                    <label class="item" for="modern">모던한</label>
+	                    <input type="checkbox" name="hashNo" value="15" id="special">
+	                    <label class="item" for="special">독특한</label>
+	                    <input type="checkbox" name="hashNo" value="16" id="casual">
+	                    <label class="item" for="casual">캐쥬얼</label>
+	                    <input type="checkbox" name="hashNo" value="17" id="useful">
+	                    <label class="item" for="useful">실용적인</label>
+	                    <input type="checkbox" name="hashNo" value="18" id="luxury">
+	                    <label class="item" for="luxury">럭셔리</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="3">
+	                <h1>관계</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="19" id="honey">
+	                    <label class="item" for="honey">애인</label>
+	                    <input type="checkbox" name="hashNo" value="20" id="parents">
+	                    <label class="item" for="parents">부모님</label>
+	                    <input type="checkbox" name="hashNo" value="21" id="sibling">
+	                    <label class="item" for="sibling">형제ㆍ자매</label>
+	                    <input type="checkbox" name="hashNo" value="22" id="friend">
+	                    <label class="item" for="friend">친구ㆍ동료</label>
+	                    <input type="checkbox" name="hashNo" value="23" id="teacher">
+	                    <label class="item" for="teacher">선생님ㆍ상사</label>
+	                    <input type="checkbox" name="hashNo" value="24" id="relEtc">
+	                    <label class="item" for="relEtc">기타</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="4">
+	                <h1>기념일/명절</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="25" id="bday">
+	                    <label class="item" for="bday">생일</label>
+	                    <input type="checkbox" name="hashNo" value="26" id="couple_day">
+	                    <label class="item" for="couple_day">커플기념일</label>
+	                    <input type="checkbox" name="hashNo" value="27" id="school_day">
+	                    <label class="item" for="school_day">입학ㆍ졸업ㆍ합격</label>
+	                    <input type="checkbox" name="hashNo" value="28" id="marriage">
+	                    <label class="item" for="marriage">결혼</label>
+	                    <input type="checkbox" name="hashNo" value="29" id="childbirth">
+	                    <label class="item" for="childbirth">출산</label>
+	                    <input type="checkbox" name="hashNo" value="30" id="parent">
+	                    <label class="item" for="parent">어버이날</label>
+	                    <input type="checkbox" name="hashNo" value="31" id="teacherDay">
+	                    <label class="item" for="teacherDay">스승의날</label>
+	                    <input type="checkbox" name="hashNo" value="32" id="hire">
+	                    <label class="item" for="hire">입사ㆍ승진</label>
+	                    <input type="checkbox" name="hashNo" value="33" id="hire">
+	                    <label class="item" for="resign">퇴사</label>
+	                    <input type="checkbox" name="hashNo" value="34" id="hire">
+	                    <label class="item" for="holiday">명절</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="5">
+	                <h1>계절</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="35" id="spring">
+	                    <label class="item" for="spring">봄</label>
+	                    <input type="checkbox" name="hashNo" value="36" id="summer">
+	                    <label class="item" for="summer">여름</label>
+	                    <input type="checkbox" name="hashNo" value="37" id="fall">
+	                    <label class="item" for="fall">가을</label>
+	                    <input type="checkbox" name="hashNo" value="38" id="winter">
+	                    <label class="item" for="winter">겨울</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="6">
+	                <h1>색상</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="39" id="red">
+	                    <label class="item" for="red">Red</label>
+	                    <input type="checkbox" name="hashNo" value="40" id="orange">
+	                    <label class="item" for="orange">Orange</label>
+	                    <input type="checkbox" name="hashNo" value="41" id="yellow">
+	                    <label class="item" for="yellow">Yellow</label>
+	                    <input type="checkbox" name="hashNo" value="42" id="green">
+	                    <label class="item" for="green">Green</label>
+	                    <input type="checkbox" name="hashNo" value="43" id="blue">
+	                    <label class="item" for="blue">Blue</label>
+						<input type="checkbox" name="hashNo" value="44" id="navy">
+	                    <label class="item" for="navy">Navy</label>
+	                    <input type="checkbox" name="hashNo" value="45" id="purple">
+	                    <label class="item" for="purple">Purple</label>
+	                    <input type="checkbox" name="hashNo" value="46" id="white">
+	                    <label class="item" for="white">Pink</label>
+	                    <input type="checkbox" name="hashNo" value="47" id="white">
+	                    <label class="item" for="white">White</label>
+	                    <input type="checkbox" name="hashNo" value="48" id="black">
+	                    <label class="item" for="black">Black</label>
+	                    <input type="checkbox" name="hashNo" value="59" id="etc">
+	                    <label class="item" for="etc">기타</label>
+	                </div>
+	            </div>
+	            <div class="popup" data-text="7">
+	                <h1>종류</h1>
+	                <div class="listBx">
+	                    <input type="checkbox" name="hashNo" value="49" id="stationery">
+	                    <label class="item" for="stationery">디자인문구</label>
+	                    <input type="checkbox" name="hashNo" value="50" id="elec_equip">
+	                    <label class="item" for="elec_equip">전자기기</label>
+	                    <input type="checkbox" name="hashNo" value="51" id="leports">
+	                    <label class="item" for="leports">여행ㆍ레포츠</label>
+	                    <input type="checkbox" name="hashNo" value="52" id="house_design">
+	                    <label class="item" for="house_design">디자인가전</label>
+	                    <input type="checkbox" name="hashNo" value="53" id="interior">
+	                    <label class="item" for="interior">인테리어ㆍ수납</label>
+	                    <input type="checkbox" name="hashNo" value="54" id="life">
+	                    <label class="item" for="life">패브릭ㆍ생활</label>
+	                    <input type="checkbox" name="hashNo" value="55" id="food">
+	                    <label class="item" for="food">키친ㆍ푸드</label>
+	                    <input type="checkbox" name="hashNo" value="56" id="fashion">
+	                    <label class="item" for="fashion">패션의류</label>
+	                    <input type="checkbox" name="hashNo" value="57" id="fash_goods">
+	                    <label class="item" for="fash_goods">패션잡화ㆍ주얼리</label>
+	                    <input type="checkbox" name="hashNo" value="58" id="makeup">
+	                    <label class="item" for="makeup">화장품</label>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    </section>
+   	</form>
     
     
     
