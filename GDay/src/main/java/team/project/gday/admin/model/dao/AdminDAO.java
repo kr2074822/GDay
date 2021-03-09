@@ -202,4 +202,11 @@ public class AdminDAO {
 	public int report(Map<String, Object> map) {
 		return 0;
 	}
+
+	/** 신고 대기 페이징
+	 * @return getListRsCount
+	 */
+	public int getListRsCount() {
+		return sqlSession.selectOne("adminMapper.getListRsCount");
+	}
 }

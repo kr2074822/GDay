@@ -105,6 +105,18 @@ public interface AdminService {
 	 */
 	public abstract int report(Map<String, Object> map, Report report);
 
+	/** 신고 대기 페이징 처리 Service
+	 * @param cp
+	 * @return pInfo
+	 */
+	public abstract adminPageInfo getPageRsInfo(int cp);
+
+	/** 신고페이지 목록 조회 Service
+	 * @param pInfo
+	 * @return
+	 */
+	public abstract List<Report> adminReportStand(adminPageInfo pInfo);
+
 
 
 
