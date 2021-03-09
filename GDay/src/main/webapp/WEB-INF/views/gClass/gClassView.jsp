@@ -456,6 +456,51 @@ function selectReplyList(){
 	});
 	
 } */
+
+
+
+
+		$(".fa-comments").on('click', function(){
+		    
+		    Swal.fire({ 
+		    	  input: 'textarea',
+		    	  inputLabel: 'Message',
+		    	  inputPlaceholder: '내용을 입력해주세요', 
+		    	  inputAttributes: {
+		    	    'aria-label': 'Type your message here'
+		    	  },
+		    	  showCancelButton: true
+		    	}).then((result) => {
+				    $.ajax({
+				    	url: "${contextPath}/message/gcMsg",
+				    	type: "post",
+				    	data: {
+				    		msgContent: result.value,
+				    		me: "${loginMember.memberNo}",
+				    		you: "${member.memberNo}",
+				    		
+				    	},
+				    	success: (result) => {
+				    		console.log("성공")
+				    		Swal.fire(
+							  '문의가 전송되었습니다',
+							  ' ',
+							  'success'
+							)
+				    	},
+				    	error: () => {
+				    		console.log("실패")
+				    		
+				    	}
+				    	
+				    });
+		    		
+		    	})
+		
+		    	
+		    
+		});
+
      
      
      /* ======================== 장바구니 버튼 클릭 시 ======================== */

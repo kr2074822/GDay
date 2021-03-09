@@ -1,5 +1,7 @@
 package team.project.gday.member.model.vo;
 
+import java.sql.Date;
+
 public class Member {
 	private int memberNo;
 	private String memberEmail;
@@ -11,6 +13,13 @@ public class Member {
 	private String memberGrade;
 	private String memberType;
 	private String memberSec;
+	
+	
+	private int mImgNo;
+	private String mImgPath;
+	private String mImgName;
+	private String mImgStatus;
+	private Date mImgDate;
 	
 	public Member() {
 	}
@@ -95,12 +104,55 @@ public class Member {
 		this.memberSec = memberSec;
 	}
 
+	public int getmImgNo() {
+		return mImgNo;
+	}
+
+	public void setmImgNo(int mImgNo) {
+		this.mImgNo = mImgNo;
+	}
+
+	public String getmImgPath() {
+		return mImgPath;
+	}
+
+	public void setmImgPath(String mImgPath) {
+		this.mImgPath = mImgPath;
+	}
+
+	public String getmImgName() {
+		return mImgName;
+	}
+
+	public void setmImgName(String mImgName) {
+		this.mImgName = mImgName;
+	}
+
+	public String getmImgStatus() {
+		return mImgStatus;
+	}
+
+	public void setmImgStatus(String mImgStatus) {
+		this.mImgStatus = mImgStatus;
+	}
+
+	public Date getmImgDate() {
+		return mImgDate;
+	}
+
+	public void setmImgDate(Date mImgDate) {
+		this.mImgDate = mImgDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberEmail=" + memberEmail + ", memberPwd=" + memberPwd
 				+ ", memberName=" + memberName + ", memberNick=" + memberNick + ", memberPhone=" + memberPhone
 				+ ", memberAddress=" + memberAddress + ", memberGrade=" + memberGrade + ", memberType=" + memberType
-				+ ", memberSec=" + memberSec + "]";
+				+ ", memberSec=" + memberSec + ", mImgNo=" + mImgNo + ", mImgPath=" + mImgPath + ", mImgName="
+				+ mImgName + ", mImgStatus=" + mImgStatus + ", mImgDate=" + mImgDate + "]";
 	}
+
+	
 	
 }
