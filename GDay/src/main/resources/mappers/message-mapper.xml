@@ -19,10 +19,10 @@
 	
 	<!-- 목록 불러오기 -->
 	<select id="messageList" parameterType="Message" resultMap="message_rm">
-		SELECT  GETTER, MAX(MSG_DATE) AS MSG_DATE, MEM_NICK, MAX(MSG_STATUS) AS MSG_STATUS
+		SELECT GETTER, MEM_NICK, MIN(MSG_STATUS) AS MSG_STATUS, MAX(MSG_DATE) AS MSG_DATE
 		FROM MESSAGE
 		JOIN MEMBER ON (GETTER = MEM_NO)
-		WHERE SENDER = #{memNo}
+		WHERE GETTER != #{memNo}
 		GROUP BY GETTER, MEM_NICK
 		ORDER BY MSG_DATE DESC
 	</select>
@@ -46,7 +46,10 @@
 			UPDATE MESSAGE SET MSG_STATUS = 1 WHERE (SENDER = #{memNo} AND GETTER = #{getter}) OR (SENDER = #{getter} AND GETTER = #{memNo})
 	</update>
 	
-	
+	<!-- 메시지 보내기 -->
+	<insert id="gcMsg" parameterType="Message">
+		INSERT INTO MESSAGE VALUES(SEQ_MSGNO.NEXTVAL, #{msgContent}, SYSDATE, 0, #{you}, #{me})
+	</insert>
 	
 	
 </mapper>

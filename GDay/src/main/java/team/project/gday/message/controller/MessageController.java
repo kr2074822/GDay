@@ -93,7 +93,17 @@ public class MessageController {
 		return "";
 	}
 	
-	
+	@RequestMapping("gcMsg")
+	@ResponseBody
+	public String gcMsg(@ModelAttribute Message message) {
+		
+		System.out.println(message);
+		
+		int result = service.gcMsg(message);
+		System.out.println(result);
+		
+		return "";
+	}
 	
 	
 	

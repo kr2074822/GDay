@@ -31,4 +31,10 @@ public interface MessageService {
 	 */
 	int read(Map<String, Object> map);
 
+	/** 상품에서 메시지 보내기
+	 * @param message
+	 * @return
+	 */
+	int gcMsg(Message message);
+
 }

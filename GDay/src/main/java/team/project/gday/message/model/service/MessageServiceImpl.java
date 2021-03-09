@@ -39,4 +39,9 @@ public class MessageServiceImpl implements MessageService{
 		return dao.read(map);
 	}
 
+	@Override
+	public int gcMsg(Message message) {
+		return dao.gcMsg(message);
+	}
+
 }

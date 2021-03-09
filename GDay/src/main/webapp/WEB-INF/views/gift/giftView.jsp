@@ -356,10 +356,46 @@
 
 	    
     
-	    
-	    
-	    
-	    
+	    $(".fa-comments").on('click', function(){
+	     
+		    Swal.fire({ 
+		    	  input: 'textarea',
+		    	  inputLabel: 'Message',
+		    	  inputPlaceholder: 'Type your message here...', 
+		    	  inputAttributes: {
+		    	    'aria-label': 'Type your message here'
+		    	  },
+		    	  showCancelButton: true
+		    	}).then((result) => {
+				    $.ajax({
+				    	url: "${contextPath}/message/gcMsg",
+				    	type: "post",
+				    	data: {
+				    		msgContent: result.value,
+				    		me: "${loginMember.memberNo}",
+				    		you: "${member.memberNo}",
+				    		
+				    	},
+				    	success: (result) => {
+				    		console.log("성공")
+				    		Swal.fire(
+							  '무니무니',
+							  'That thing is still around?',
+							  'success'
+							)
+				    	},
+				    	error: () => {
+				    		console.log("실패")
+				    		
+				    	}
+				    	
+				    });
+		    		
+		    	})
+	
+		    	
+		    
+	    });
 	    
 	    
 	    
