@@ -203,6 +203,13 @@ public class AdminDAO {
 		return 0;
 	}
 
+
+	/** 신고 대기 페이징
+	 * @return getListRsCount
+	 */
+	public int getListRsCount() {
+		return sqlSession.selectOne("adminMapper.getListRsCount");
+
 	/** 비즈니스 회원 목록 조회
 	 * @return
 	 */
@@ -220,5 +227,6 @@ public class AdminDAO {
 	 */
 	public String bmemShop(int memberNo) {
 		return sqlSession.selectOne("adminMapper.bmemShop", memberNo);
+
 	}
 }

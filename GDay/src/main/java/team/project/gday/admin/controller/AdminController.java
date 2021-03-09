@@ -204,7 +204,17 @@ public class AdminController {
 
 	// 신고 회원대기 화면 전환 Controller
 	@RequestMapping("adminReportStand")
-	public String adminReportStand() {
+	public String adminReportStand(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
+								   Model model) {
+		
+		// 신고 대기 페이징 처리
+		adminPageInfo pInfo = service.getPageRsInfo(cp);
+		
+		// 신고 페이지 조회
+		List<Report> rpList = service.adminReportStand(pInfo);
+		
+		model.addAttribute("pInfo", pInfo);
+		
 		return "admin/adminReportStand";
 	}
 	
