@@ -28,6 +28,8 @@ import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.service.SearchService;
+import team.project.gday.search.model.vo.Search;
 
 @Controller
 @SessionAttributes({ "loginMember" })
@@ -36,7 +38,7 @@ public class GClassController {
 
 	@Autowired
 	private GClassService service;
-
+	
 	private String swalIcon = null;
 	private String swalTitle = null;
 	private String swalText = null;
@@ -256,5 +258,29 @@ public class GClassController {
 			ra.addFlashAttribute("swalText", swalText);
 
 			return url;
+	}
+	
+	//클래스 검색
+	@RequestMapping("search")
+	public String searchClass (@RequestParam(value="cp", required=false, defaultValue = "1") int cp,
+								@ModelAttribute Search search, Model model) {
+	
+				//1) 검색 조건이 포함된 페이징 처리용 객체 얻어오기
+				PageInfo10 pInfo = service.getSearchPageInfo(search, cp);
+				
+				//2) 검색 조건이 포함된 클래스 목록 조회
+				List<GClass> gCList = service.selectSearchList(search, pInfo);
+				
+				//3) 썸네일 목록 조회
+				if(!gCList.isEmpty()) {
+					List<Attachment> thList = service.selectThumbnailList(gCList);
+					model.addAttribute("thList", thList);
+				}
+				
+				model.addAttribute("gCList", gCList);
+				model.addAttribute("pInfo", pInfo);
+				model.addAttribute("search", search);
+				
+				return "gClass/gClassList";
 	}
 }

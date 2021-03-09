@@ -21,7 +21,8 @@ input[name='category'] {
 </style>
 </head>
 <body> 
-	<c:choose>
+
+<c:choose>
 		<%-- 검색이 된 경우 --%>
 		<c:when test="${!empty search}">
 			<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
@@ -42,7 +43,7 @@ input[name='category'] {
 	</c:choose>
 
 
-	<form action="../classSearch" method="get" role="form" onsubmit="return validate();">
+	<form action="search" method="get" role="form" onsubmit="return validate();">
 		<section class="search">
 			<div class="search_wrapper">
 				<h1>클래스 찾기</h1>
@@ -179,8 +180,6 @@ input[name='category'] {
 									<h1>마감</h1>
 								</div>
 							</c:if>
-
-
 
 						<a href="${gClass.prdtNo}">
 							<h1>${gClass.prdtName}</h1> 

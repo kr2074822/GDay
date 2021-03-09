@@ -11,6 +11,7 @@ import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.vo.Search;
 
 public interface GClassService {
  
@@ -94,5 +95,19 @@ public interface GClassService {
 	 * @return gList
 	 */
 	List<GClass> selectClassList3();
+	
+	/**검색 조건이 포함된 페이징 처리용 객체 얻어오기
+	 * @param search
+	 * @param cp
+	 * @return pageInfo10
+	 */
+	PageInfo10 getSearchPageInfo(Search search, int cp);
+
+	/**검색 조건이 포함된 클래스 목록 조회
+	 * @param search
+	 * @param pInfo
+	 * @return
+	 */
+	List<GClass> selectSearchList(Search search, PageInfo10 pInfo);
 
 }

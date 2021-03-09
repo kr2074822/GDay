@@ -48,12 +48,10 @@ public class HomeController {
 		List<GClass> cList = cService.selectClassList3();
 			if(cList != null && !cList.isEmpty()) {
 				List<Attachment> thList = cService.selectThumbnailList(cList);
-				System.out.println(thList);
 				model.addAttribute("thList", thList);
 				
 				//평균 별점 가져오기
 				List<ProductStar> selectStarList = cService.selectStarList(cList);
-				System.out.println(selectStarList);
 				model.addAttribute("selectStarList", selectStarList);
 			}
 		//List<Gift> selectGiftList3 = gService.selectGiftList3();

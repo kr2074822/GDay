@@ -35,7 +35,7 @@ public class SearchController {
 		
 		//1. (선물 찾기 + 10개만 보여주기) 검색 조건이 포함된 클래스 목록 조회
 		PageInfoMain pInfo = new PageInfoMain(cp);
-		List<Gift> gList = service.selectGiftSearchList(search, pInfo);
+		List<Gift> gCList = service.selectGiftSearchList(search, pInfo);
 		
 		//2. (클래스 찾기 + 10개만 보여주기) 검색 조건이 포함된 선물 목록 조회
 		List<GClass> cList = service.selectClassSearchList(search, pInfo); 
@@ -44,7 +44,7 @@ public class SearchController {
 		//if(gList!=null) { List<Attachment> gThumbnailList = new GiftServiceImpl().selectThumbnaiList(gList); }
 		if(cList!=null) { List<Attachment> cThumbnailList = gService.selectThumbnailList(cList); }
 				
-		model.addAttribute("gList", gList);
+		model.addAttribute("gCList", gCList);
 		model.addAttribute("cList", cList);
 		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("search", search);

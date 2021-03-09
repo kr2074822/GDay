@@ -43,6 +43,7 @@
   		<result property="cDate" column="C_DATE"/>
 	</resultMap>
 	
+	<!-- 카테고리가 포함된 선물 검색 결과 -->
 	<select id="selectGiftSearchList" parameterType="Search" resultMap="gift_rm">
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
 			SELECT * FROM PRODUCT
@@ -63,6 +64,7 @@
 		</foreach>
 	</select>
 	
+		<!-- 카테고리가 포함되지 않은 선물 검색 결과 -->
 		<select id="selectGiftListAll" resultMap="gift_rm">
 			SELECT * FROM PRODUCT
 			JOIN PRODUCT_TAG USING(PRDT_NO)
@@ -72,6 +74,7 @@
 			AND PRDT_TYPE = 'G'
 	</select>
 
+	<!-- 카테고리가 포함된 클래스 검색 결과 -->
 	<select id="selectClassSearchList" parameterType="Search" resultMap="class_rm">
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
 			SELECT * FROM PRODUCT
@@ -92,6 +95,7 @@
 		</foreach>
 	</select>
 	
+				<!-- 카테고리가 포함되지 않은 선물 검색 결과 -->
 			<select id="selectClassListAll" resultMap="gift_rm">
 			SELECT * FROM PRODUCT
 			JOIN PRODUCT_TAG USING(PRDT_NO)
@@ -99,6 +103,10 @@
 			JOIN G_CATEGORY USING(CT_NO)
 			WHERE PRDT_STATUS = 'Y'
 			AND PRDT_TYPE = 'C'
+			<if test="sv != null">
+				<bind name="val" value="'%' + sv + '%'"/>
+				AND PRDT_NAME LIKE '%' || #{val} || '%'
+			</if>
 	</select>
 	
 	</mapper>
