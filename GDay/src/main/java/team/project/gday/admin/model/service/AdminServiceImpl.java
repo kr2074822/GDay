@@ -133,8 +133,38 @@ public class AdminServiceImpl implements AdminService{
 	// -------------------------------------------------------------
 	
 	// 신고하기 Service 구현
+	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int report(Map<String, Object> map) {
+	public int report(Map<String, Object> map, Report report) {
+		
+		// 게시자 조회
+		int writerCheck = dao.writerCheck(map);
+		System.out.println(writerCheck);
+		
+		report.setReportTarget(writerCheck);
+		
+		// 게시글 타입 조회
+		String boardType = dao.boardType(map);
+		System.out.println("게시글 타입 조회" +  boardType);
+		
+		report.setParentType(boardType);
+		
+		// 게시글 신고
+		System.out.println("-----------"+map.get("reportType"));
+		
+		int reportPost = dao.reportPost(report);
+		System.out.println("게시글 신고: " + reportPost);
+		
+		// 게시자 신고받 횟수
+		int reportCount = dao.reportCount(report);
+		System.out.println("신고받은 횟수 : " + reportCount);
+		
+		if(reportCount > 2) {
+			int reportMember = dao.reportMember(writerCheck);
+			System.out.println("신고당한 횟수: " + reportMember);
+		}
 		return dao.report(map);
 	}
+
+
 }
