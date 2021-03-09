@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>비즈니스 회원 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.2"/>
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -25,19 +27,21 @@
     <div class="sidebar-area">
 		    <div class="pageTitle">마이 페이지</div>
         <div id="sidebar-mypage">
-            <img src="#" id="myProfile">
-            <span id="nickName">닉네임</span>
+           	<c:url var="pfUrl" value="${picture.pfPath}/${picture.pfName}"/>
+        		
+            <div id="myProfile" style="background-image:url(${pfUrl})"></div>
+            <span id="nickName">${loginMember.memberNick}</span>
         </div>
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
-                <li class="active-sidebar">
+                <li>
                 		<a href="${contextPath}/bMember/bSellList" class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                     <span class="menu-text">판매 목록 조회</span>
                     </a>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/bMember/bSellList">
+                        <li><a href="${contextPath}/bMember/bSellList">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">판매글</span>
                             </a>
@@ -60,14 +64,14 @@
                     </ul>
 								</li>
 								
-								<li class="active-sidebar">
-                		<a href="#" class="up-menu">
+								<li>
+                		<a class="up-menu">
                     <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                     <span class="menu-text">클래스 관리</span>
                     </a>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/bMember/bClassList">
+                        <li><a href="${contextPath}/bMember/bClassList">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">내 클래스</span>
                             </a>
@@ -118,7 +122,7 @@
         
         /* 임시 - db 연결 후에는? c:if로 함 session에 넣기? flashAttribute?
         		어쨋든 해당 메뉴가 활성화되고 있다는 걸 알려주는 장치 필요*/
-        $(".sidebar-menu > li > a").on("click", function(){
+       /*  $(".sidebar-menu > li > a").on("click", function(){
 	        	$(this).parent().addClass("active-sidebar");
 	        	if($(".sidebar-menu > li").eq(0).hasClass("active-sidebar")){
 		        	$(".sub-menu > li").removeClass("active-sidebar");
@@ -134,7 +138,7 @@
 					$(".sidebar-menu > li").eq(0).addClass("active-sidebar");
 					$(this).parent().siblings().removeClass("active-sidebar");
 					$(".sidebar-menu > li").eq(0).siblings().removeClass("active-sidebar");
-        });
+        }); */
         		
         		
     </script>

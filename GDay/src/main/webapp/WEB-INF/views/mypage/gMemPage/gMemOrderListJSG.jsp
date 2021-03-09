@@ -271,9 +271,7 @@ function confirm(opNo){
 																			title : "구매 확정되었습니다.",
 																			confirmButtonColor: "#54b39E"});	
 													
-													for(var i=1; i<=cp; i++) {
-														selectOrderList(cp);
-													} 
+													loadNewPage();
 													//ajax로 페이지를 불러와 누적하기 때문에 새로 해당 페이지까지 로드하려면
 													//cp 수만큼 selectOrderList(cp)를 다시해야 함
 													

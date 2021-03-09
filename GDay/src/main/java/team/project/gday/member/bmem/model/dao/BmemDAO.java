@@ -199,5 +199,37 @@ public class BmemDAO {
 		return sqlSession.selectOne("bMemMapper.getLicense", memberNo);
 	}
 
+	/**bmember 테이블에 업데이트
+	 * @param bmemInfo
+	 * @return
+	 */
+	public int udpateBmemInfo(BmemberInfo bmemInfo) {
+		return sqlSession.update("bMemMapper.updateBmemInfo", bmemInfo);
+	}
+
+	/**라이선스 업데이트
+	 * @param newImg
+	 * @return
+	 */
+	public int updateLicense(LicenseImg newImg) {
+		return sqlSession.update("bMemMapper.updateLicense", newImg);
+	}
+
+	/**라이선스 삽입
+	 * @param newImg
+	 * @return
+	 */
+	public int insertLicense(LicenseImg newImg) {
+		return sqlSession.insert("bMemMapper.insertLicense", newImg);
+	}
+
+	/** 비즈니스 회원 등급 변경
+	 * @param memberNo
+	 * @return
+	 */
+	public int updateMemGrade(int memberNo) {
+		return sqlSession.update("bMemMapper.updateMemGrade", memberNo);
+	}
+
 	
 }

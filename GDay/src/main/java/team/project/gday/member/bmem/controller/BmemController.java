@@ -223,9 +223,9 @@ public class BmemController {
 									@RequestParam(value="deleteProfile", required=false) boolean profileFlag, 
 									HttpServletRequest request,	SessionStatus status,
 									RedirectAttributes ra, Model model) {
-		System.out.println(updateMember);
-		System.out.println(profile);
-		System.out.println("profileFlag: " + profileFlag);
+		//System.out.println(updateMember);
+		//System.out.println(profile);
+		//System.out.println("profileFlag: " + profileFlag);
 		
 			
 		String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
@@ -262,6 +262,32 @@ public class BmemController {
 		ra.addFlashAttribute("swalTitle", swalTitle);
 		return "redirect:bMemUpdate/" + updateMember.getMemberNo();
 	}
+	
+	
+	//비즈니스 인증 재신청
+	@ResponseBody
+	@RequestMapping("recertifyLcs/{memberNo}")
+	public int recertifyLcs(@PathVariable("memberNo") int memberNo,
+							@ModelAttribute BmemberInfo bmemInfo,
+							@RequestParam("license") MultipartFile license,
+							HttpServletRequest request) {
+		
+		System.out.println("memberNo:" + memberNo);
+		System.out.println("license:" + license);
+		
+		bmemInfo.setBmemNo(memberNo);
+		
+		System.out.println("bmemberInfo:" + bmemInfo);
+		
+		//첨부 파일 삽입을 위한 준비
+				String savePath = null;//
+				savePath = request.getSession().getServletContext().getRealPath("resources/images/licenseImg");
+		
+		int result = service.recertifyLcs(bmemInfo, license, savePath);
+		
+		return result;
+	}
+	
 	
 	//비즈니스 비밀번호 변경 이동
 	@RequestMapping("bMemPwdUpdateForm")
