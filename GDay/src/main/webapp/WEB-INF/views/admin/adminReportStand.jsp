@@ -17,11 +17,9 @@
 	<div class="container">
 		<div id="container-tb">
 			<div>
-<<<<<<< HEAD
+
 				<h3>신고 게시판</h3>
-=======
-				<h3>신고된 게시글</h3>
->>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
+
 				<div id="report-search">
 					<!-- <input type="text" id="search">
 					<button type="submit">검색</button> -->
@@ -33,26 +31,19 @@
 						<thead>
 							<tr>
 								<th>신고 번호</th>
-<<<<<<< HEAD
+
 								<th>게시글 타입</th>
 								<th>게시글 번호</th>
 								<th>신고 타입</th>
 								<th>신고한 회원</th>
 								<th>신고 받은 회원</th>
 								<th>신고 받은 횟수</th>
-=======
-								<th>분류</th>
-								<th>게시글 번호</th>
-								<th>신고받은 회원</th>
-								<th>신고한 회원</th>
-								<th>신고 사유</th>
-								<th>신고받은 횟수</th>
->>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
+
 							</tr>
 						</thead>
 						<tbody>
 							<!-- 회원이 없을 경우 -->
-<<<<<<< HEAD
+
 	                    	<c:if test="${empty rsList}">
 	                    		<tr>
 	                    			<td colspan="7">존재하는 신고글이 없습니다.</td>
@@ -69,23 +60,6 @@
 										<td>${report.memberNo}</td>
 										<td>${report.reportTarget}</td>
 										<td>${report.reportCount}</td>
-=======
-	                    	<c:if test="${empty mList}">
-	                    		<tr>
-	                    			<td colspan="7">존재하는 회원이 없습니다.</td>
-	                    		</tr>
-	                    	</c:if>
-	                    	<c:if test="${!empty mList}">
-		                    	<!-- 회원이 있을 경우 -->
-		                    	<c:forEach var="member" items="${mList}">
-									<tr>
-										<td>${member.memberNo}</td>
-										<td>${member.memberEmail}</td>
-										<td>${member.memberName}</td>
-										<td>${member.memberType}</td>
-										<td>${member.memberGrade}</td>
-										<td><input type="checkbox" class="check-input" id="checkMember" value="${member.memberNo}"></td>
->>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
 									</tr>
 								</c:forEach> 
 							</c:if>

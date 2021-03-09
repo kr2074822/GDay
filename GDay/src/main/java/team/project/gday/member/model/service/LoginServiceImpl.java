@@ -90,13 +90,14 @@ public class LoginServiceImpl implements LoginService{
 				image.get(0).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
 	
 
-				if (member.getMemberGrade().equals("B")) {
+				if (member.getMemberGrade().equals("U")) {
 					savePath = savePath.replace("profileImg", "licenseImg");
 					image.get(1).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
 					
 					filePath = "/resources/images/licenseImg";
 					LicenseImg li = new LicenseImg(result, filePath, fileName);
 					result = dao.insertLicense(li);
+					System.out.println("사업지"+result);
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
