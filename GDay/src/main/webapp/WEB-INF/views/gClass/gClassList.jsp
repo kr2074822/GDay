@@ -20,7 +20,7 @@ input[name='category'] {
 }
 </style>
 </head>
-<body>
+<body> 
 	<c:choose>
 		<%-- 검색이 된 경우 --%>
 		<c:when test="${!empty search}">
