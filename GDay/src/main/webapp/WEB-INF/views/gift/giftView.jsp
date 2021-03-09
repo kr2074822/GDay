@@ -358,7 +358,7 @@
 		    Swal.fire({
 		    	  input: 'textarea',
 		    	  inputLabel: 'Message',
-		    	  inputPlaceholder: 'Type your message here...',
+		    	  inputPlaceholder: 'Type your message here...', 
 		    	  inputAttributes: {
 		    	    'aria-label': 'Type your message here'
 		    	  },
