@@ -319,135 +319,7 @@
                         </div>
                     </div>
                     <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
+
                     <span>가격</span>
                 </a>
             </div>
@@ -458,13 +330,15 @@
     </section>
 
 
-
-
     <section class="gift ver2">
         <div class="title">
             <span>Gift</span>
         </div>
         <div class="gift_wrapper">
+			    <c:if test="${empty gCList}">
+			      		<div class="non">조건에 맞는 상품이 없습니다.</div>
+					</c:if>
+					<c:if test="${!empty gCList}">
             <div class="item">
                 <a href="">
                     <div>
@@ -474,138 +348,10 @@
                         </div>
                     </div>
                     <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
                     <span>가격</span>
                 </a>
             </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
+        </c:if>
         </div>
         <div class="more">
             <a href=""><span>More</span></a>
