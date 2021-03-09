@@ -166,5 +166,23 @@ public class AdminServiceImpl implements AdminService{
 		return dao.report(map);
 	}
 
+	// 신청 회원들 조회
+	@Override
+	public List<Member> getMember() {
+		return dao.getMember();
+	}
+
+	// 신청자 상세 조회
+	@Override
+	public Member getbMember(int memberNo) {
+		return dao.getbMember(memberNo);
+	}
+
+	// 업체명 가져오기
+	@Override
+	public String bmemShop(int memberNo) {
+		return dao.bmemShop(memberNo);
+	}
+
 
 }

@@ -76,14 +76,34 @@ public class AdminController {
 	@RequestMapping("adminBMemSub")
 	public String adminBMemSub(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
 							   @ModelAttribute Member member,
-							   
 			  				   Model model) {
+		
+		List<Member> bmList = service.getMember();
+		System.out.println(bmList);
+		if (bmList != null) {
+			model.addAttribute("bmList", bmList);
+		}
+		
 		return "admin/adminBMemSub";
 	}
 
 	// 비즈니스 회원신청 상세조회 화면 전환 Controller
-	@RequestMapping("adminBMemView")
-	public String adminBMemView() {
+	@RequestMapping("adminBMemView/{memberNo}")
+	public String adminBMemView(@PathVariable("memberNo") int memberNo, Model model) {
+		System.out.println(memberNo);
+		
+		Member member = service.getbMember(memberNo);
+		System.out.println(member);
+		if (member != null) {
+			model.addAttribute("member", member);
+			
+			String bmemShop = service.bmemShop(memberNo);
+			if (bmemShop != null) {
+				model.addAttribute("bmemShop", bmemShop);
+				
+			}
+		}
+		
 		return "admin/adminBMemView";
 	}
 

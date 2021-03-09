@@ -361,7 +361,7 @@
 		    Swal.fire({ 
 		    	  input: 'textarea',
 		    	  inputLabel: 'Message',
-		    	  inputPlaceholder: 'Type your message here...', 
+		    	  inputPlaceholder: '내용을 입력해주세요', 
 		    	  inputAttributes: {
 		    	    'aria-label': 'Type your message here'
 		    	  },
@@ -379,8 +379,8 @@
 				    	success: (result) => {
 				    		console.log("성공")
 				    		Swal.fire(
-							  '무니무니',
-							  'That thing is still around?',
+							  '문의가 전송되었습니다',
+							  ' ',
 							  'success'
 							)
 				    	},

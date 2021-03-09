@@ -125,7 +125,7 @@ img{
 	<div class="container">
 		<div id="container-tb">
 			<div>
-				<h3 style="font-weight: bold;">비즈니스 회원 신청</h3>
+				<h3 style="font-weight: bold;">비즈니스 회원 신청 ${member }</h3>
 			</div>
 			<div class="bMemStandView">
 				<form action="#" method="POST" id="businessView">
@@ -135,15 +135,15 @@ img{
 					</div>
 					<div class="content-body">
 						<div class="body-business">
-							<p>성명: 비즈니스</p>
-							<p>업체명: 비즈니스</p>
-							<p>주소: 서울시 구로구</p>
-							<p>연락처: 010-1111-1111</p>
+							<p>성명: ${member.memberName }</p>
+							<p>업체명: ${bmemShop}</p>
+							<p>주소: ${member.memberAddress }</p>
+							<p>연락처: ${member.memberPhone}</p>
 							<p>비즈니스 신청 분야: 선물(또는 클래스)</p>
 						</div>
 						<br><br><br>
 						<div class="registration">
-							<img class="registration-img" src="https://cdn.ready-market.com/103/387ef51e//Templates/pic/Category_new_product_gift.jpg?v=3c8678f2">
+							<img class="img" src="${contextPath}/resources/images/licenseImg/${member.mImgName}">
 						</div>
 						<div id="business-Application" style="text-align: center; margin: 0 auto; padding: 20px;">
 							<button type="submit" id="approval">비즈니스 회원 승인</button>
@@ -201,6 +201,11 @@ img{
 	$(".close").on('click', function(){
 		$("#modal").hide();
 	})
+	
+	
+	
+	
+	
 	</script>
 </body>
 </html>

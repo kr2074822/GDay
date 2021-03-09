@@ -17,6 +17,12 @@
   		<result property="memberGrade" column="MEM_GRADE"/>
   		<result property="memberType" column="MEM_TYPE"/>
   		<result property="memberSec" column="MEM_SEC"/>
+  		
+  		<result property="mImgNo" column="MEM_NO"/>
+  		<result property="mImgPath" column="LCS_PATH"/>
+  		<result property="mImgName" column="LCS_NAME"/>
+  		<result property="mImgStatus" column="LCS_STATUS"/>
+  		<result property="mImgDate" column="LCS_DATE"/>
 	</resultMap>
 
 	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
@@ -74,6 +80,15 @@
   		<result property="curNo" column="CUR_NO"/>
   		<result property="curContent" column="CUR_CONTENT"/>
 	</resultMap>
+	
+	
+	<resultMap type="BmemberInfo" id="bmemberInfo">
+		<id property="bmemNo" column="MEM_NO"/>
+		
+   		<result property="bmemShop" column="BMEM_SHOP"/>
+  		<result property="bmemIntro" column="BMEM_INTRO"/>
+	</resultMap>
+	
 	
 	
 	<!-- 전체회원 페이징 처리(목록 갯수) -->
@@ -212,4 +227,27 @@
 		WHERE MEM_NO = #{memberNo}
 		ORDER BY CUS_NO DESC
 	</select>
+	
+	<select id="getMember" resultMap="member_rm">
+		SELECT * 
+		FROM V_BMEMBER
+		JOIN LICENSE_IMG USING(MEM_NO)
+		WHERE MEM_GRADE = 'U'
+	</select>
+	
+	<!-- 회원 상세 조회  -->
+	<select id="getbMember" resultMap="member_rm" parameterType="_int">
+		SELECT * 
+		FROM V_BMEMBER
+		JOIN LICENSE_IMG USING(MEM_NO)
+		WHERE MEM_GRADE = 'U' AND MEM_NO = #{memberNo}
+	</select>
+	
+	<select id="bmemShop" resultType="string">
+		SELECT BMEM_SHOP
+		FROM BMEMBER
+		WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	
 </mapper>
