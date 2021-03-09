@@ -156,12 +156,69 @@ public class AdminDAO {
 	}
 	// ---------------------------------------------------------------------------------------
 	
-	/** 신고하기
+	/** 게시글 작성자 조회
+	 * @param map 
 	 * @param map
-	 * @return result
+	 * @return wirterCheck
 	 */
-	public int report(Map<String, Object> map) {
-		return sqlSession.insert("adminMapper.getReport", map);
+	public int writerCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.writerCheck", map);
 	}
 
+	/** 게시글 신고(게시자 신고)
+	 * @param map
+	 * @param writerCheck
+	 * @return reportPost
+	 */
+	public int reportPost(Report report) {
+		System.out.println("-------------------"+report);
+		return sqlSession.insert("adminMapper.reportPost", report);
+	}
+
+	/** 게시글 타입 조회
+	 * @param map
+	 * @return
+	 */
+	public String boardType(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.boardType", map);
+	}
+
+	/** 신고 횟수 조회
+	 * @param report
+	 * @return reportCount
+	 */
+	public int reportCount(Report report) {
+		return sqlSession.selectOne("adminMapper.reportCount", report);
+	}
+
+	/** 신고횟수 3회 이상 시 등급 변겅
+	 * @param writerCheck
+	 * @return reportMember
+	 */
+	public int reportMember(int writerCheck) {
+		return sqlSession.update("adminMapper.reportMember", writerCheck);
+	}
+	
+	public int report(Map<String, Object> map) {
+		return 0;
+	}
+
+	/** 비즈니스 회원 목록 조회
+	 * @return
+	 */
+	public List<Member> getMember() {
+		return sqlSession.selectList("adminMapper.getMember");
+	}
+
+	public Member getbMember(int memberNo) {
+		return sqlSession.selectOne("adminMapper.getbMember", memberNo);
+	}
+
+	/** 업체명 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public String bmemShop(int memberNo) {
+		return sqlSession.selectOne("adminMapper.bmemShop", memberNo);
+	}
 }

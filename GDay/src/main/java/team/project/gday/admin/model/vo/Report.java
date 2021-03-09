@@ -6,8 +6,8 @@ public class Report {
 	private int parentNo; // 부모 게시글 번호
 	private String parentType; // 부모 게시글 타입
 	private int reportTarget; // 신고대상
-	private String reportContent; // 신고 내용
 	private int memberNo; // 회원 번호
+	private int reportCount; // 신고당한 횟수
 	
 	public Report() {}
 
@@ -17,6 +17,14 @@ public class Report {
 
 	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 	public String getReportType() {
@@ -51,14 +59,6 @@ public class Report {
 		this.reportTarget = reportTarget;
 	}
 
-	public String getReportContent() {
-		return reportContent;
-	}
-
-	public void setReportContent(String reportContent) {
-		this.reportContent = reportContent;
-	}
-
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -70,7 +70,8 @@ public class Report {
 	@Override
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", reportType=" + reportType + ", parentNo=" + parentNo
-				+ ", parentType=" + parentType + ", reportTarget=" + reportTarget + ", reportContent=" + reportContent
-				+ ", memberNo=" + memberNo + "]";
-	};
+				+ ", parentType=" + parentType + ", reportTarget=" + reportTarget + ", memberNo=" + memberNo
+				+ ", reportCount=" + reportCount + "]";
+	}
+
 }

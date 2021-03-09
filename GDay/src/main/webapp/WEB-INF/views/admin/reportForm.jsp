@@ -8,7 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>신고하기</title>
-	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="reset.css" type="text/css">
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<style>
 		div{
 			margin: 0 auto;
@@ -47,7 +50,7 @@
 <body>
 	
 	<div class="headerTitle">
-		<h2> 신고 하기${prdtNo}</h2>
+		<h2> 신고 하기</h2>
 	</div>
 	<hr>
 	<div class="bodyContent">
@@ -58,14 +61,11 @@
 				<label><input type="radio" name="reportType" value="F">허위 게시물</label><br>
 				<label><input type="radio" name="reportType" value="D">사기</label><br><br>
 				
-				<button type="submit" class="reportAction" id="report">신고하기</button>
+				<input type="hidden" value="${prdtNo}" name="prdtNo">
+				<button type="submit" class="reportAction" id="report" >신고하기</button>
 				<button type="button" class="cancel"  id="report" onclick="window.close();">취소</button>
 			</form>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-	</script>
-
 </body>
 </html>

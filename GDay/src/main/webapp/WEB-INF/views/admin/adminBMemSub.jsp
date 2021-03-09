@@ -51,6 +51,9 @@ div {
 .album-title {
 	font-size: 13px;
 }
+img{
+	width: 100%;
+}
 </style>
 </head>
 
@@ -66,58 +69,22 @@ div {
 			<div>
 				<form action="#" method="POST" id="adminBusinessMember">
 					<ul>
-						<li>
-							<div class="album-item">
-								<div class="album-info">
-									<p class="album-text">비즈니스 회원 신청자</p>
-									<p class="album-title">
-										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p><br>
-									<div class="album-cover">
-										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
+						<c:forEach items="${bmList}" var="mb">
+							<li>
+								<div class="album-item">
+									<div class="album-info">
+										<p class="album-text">${mb.memberName }</p>
+										<p class="album-title">
+											승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
+										</p><br>
+										<div class="album-cover">
+											<img class="img" id="${mb.memberNo }" src="${contextPath}/resources/images/licenseImg/${mb.mImgName}">
+										</div>
 									</div>
 								</div>
-							</div>
-						</li>
-						<li>
-							<div class="album-item">
-								<div class="album-info">
-									<p class="album-text">비즈니스 회원 신청자</p>
-									<p class="album-title">
-										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p><br>
-									<div class="album-cover">
-										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="album-item">
-								<div class="album-info">
-									<p class="album-text">비즈니스 회원 신청자</p>
-									<p class="album-title">
-										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p><br>
-									<div class="album-cover">
-										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="album-item">
-								<div class="album-info">
-									<p class="album-text">비즈니스 회원 신청자</p>
-									<p class="album-title">
-										승인을 기다리는 회원입니다.<i class="fas fa-caret-down"></i>
-									</p><br>
-									<div class="album-cover">
-										<img src="http://www.wellnesstea.co.kr/shopimages/yurim00/0220000000393.jpg">
-									</div>
-								</div>
-							</div>
-						</li>
+							</li>
+						
+						</c:forEach>
 					</ul>
 				</form>
 
@@ -127,8 +94,9 @@ div {
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
-		$("img").on("click", function(){
-			location.href = "${contextPath}/admin/adminBMemView"
+		$(".img").on("click", function(){
+			console.log($(this).attr('id'));
+			 location.href = "${contextPath}/admin/adminBMemView/"+$(this).attr('id');
 		})
 	</script>
 </body>

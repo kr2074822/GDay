@@ -26,7 +26,9 @@ import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.gift.model.service.GiftService;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
 @Controller 
@@ -43,7 +45,28 @@ public class GiftCtrl {
 	
 	// 선물 리스트 화면
 	@RequestMapping("list")
-	public String giftList() {
+	public String giftList(@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model) {
+		PageInfo10 pInfo = service.getPageInfo(cp);
+
+		List<Gift> gift = service.selectList(pInfo);
+
+		if (gift != null && !gift.isEmpty()) {
+			//썸네일 가져오기
+			List<Attachment> thumbnailList = service.selectThumbnailList(gift);
+			
+			if (thumbnailList != null) {
+				model.addAttribute("thList", thumbnailList);
+				
+				//평균 별점 가져오기
+				List<ProductStar> selectStarList = service.selectStarList(gift);
+				
+				model.addAttribute("selectStarList", selectStarList);
+			}
+		}
+
+		model.addAttribute("gift", gift);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "gift/giftList";
 	}
 	// 선물 등록 화면

@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bMemMapper">
+	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
+	<resultMap type="Member" id="member_rm">
+		<!-- DB의 기본 키 -->
+		<id property="memberNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="memberEmail" column="MEM_EMAIL"/>
+  		<result property="memberPwd" column="MEM_PW"/>
+  		<result property="memberName" column="MEM_NAME"/>
+  		<result property="memberNick" column="MEM_NICK"/>
+  		<result property="memberPhone" column="MEM_PHONE"/>
+  		<result property="memberAddress" column="MEM_ADDR"/>
+  		<result property="memberGrade" column="MEM_GRADE"/>
+  		<result property="memberType" column="MEM_TYPE"/>
+  		<result property="memberSec" column="MEM_SEC"/>
+	</resultMap>
+
+	
+	<resultMap type="ProfileImg" id="profileImg_rm">
+		<!-- DB의 기본 키 -->
+		<id property="pfNo" column="PF_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="pfPath" column="PF_PATH"/>
+  		<result property="pfName" column="PF_NAME"/>
+  		<result property="memberNo" column="MEM_NO"/>
+	</resultMap>
+
+
+	<!-- 비즈니스회원 정보 -->
+	<resultMap type="BmemberInfo" id="bmemberInfo_rm">
+		<!-- DB의 기본 키 -->
+		<id property="bmemNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="bmemShop" column="BMEM_SHOP"/>
+  		<result property="bmemIntro" column="BMEM_INTRO"/>
+	</resultMap>
+	
+	<!-- 사업자등록증 -->
+	<resultMap type="LicenseImg" id="LicenseImg_rm">
+		<!-- DB의 기본 키 -->
+		<id property="memNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="lcsPath" column="LCS_PATH"/>
+  		<result property="lcsName" column="LCS_NAME"/>
+  		<result property="lcsStatus" column="LCS_STATUS"/>
+  		<result property="lcsDate" column="BMEM_LCS_DATEINTRO"/>
+	</resultMap>
+
 
 	<!-- 선물 resultMap -->
 	<resultMap type="Gift" id="gift_rm">
@@ -292,6 +343,22 @@
 			 #{item}
 		</foreach>	
 	</update>
+	
+	
+	
+	<!-- 비즈니스 회원 정보 조회 -->
+	<select id="getBmemInfo" parameterType="_int" resultMap="bmemberInfo_rm">
+		SELECT * FROM BMEMBER WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	<!-- 비즈니스 회원 라이선스 조회 -->
+	<select id="getLicense" parameterType="_int" resultMap="LicenseImg_rm">
+		SELECT * FROM LICENSE_IMG WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	
+	
+	
 	
 	
 </mapper>

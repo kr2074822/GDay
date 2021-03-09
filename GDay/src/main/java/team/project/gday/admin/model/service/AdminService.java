@@ -103,7 +103,24 @@ public interface AdminService {
 	 * @param map
 	 * @return result
 	 */
-	public abstract int report(Map<String, Object> map);
+	public abstract int report(Map<String, Object> map, Report report);
+
+	/** 비즈니스 회원 조회
+	 * @return
+	 */
+	public abstract List<Member> getMember();
+
+	/** 신청자 상세
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract Member getbMember(int memberNo);
+
+	/** 업체명 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract String bmemShop(int memberNo);
 
 
 

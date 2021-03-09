@@ -300,111 +300,108 @@
     </section>
 
     <section class="gift">
-        <div class="search_result">
-            <h2>검색결과 <span>여러</span>개</h2>
-            <p>
-                <span>인기순</span> | <span>최신순</span>
-            </p>
-        </div>
-        <div class="gift_wrapper">
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <p>
-                        내용입니다.
-                    </p>
-                    <span>가격</span>
-                </a>
-            </div>
-        </div>
-    </section>
+		<div class="search_result">
+			<h2>
+				<span>${pInfo.listCount}</span>개 상품
+			</h2>
+			<p>
+				<span class="order" id="Popularity">인기순</span> | <span class="order" id="Newest">최신순</span>
+			</p>
+		</div>
+		<!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
+		<c:if test="${empty gift}">
+			<div class="">조건에 맞는 상품이 없습니다.</div>
+		</c:if>
+		<c:if test="${!empty gift}">
+			<div class="gift_wrapper">
+				<c:forEach var="gift" items="${gift}" varStatus="vs">
+					<div class="item">
+					
+						<c:forEach items="${thList}" var="th">
+							<c:if test="${th.prdtNo == gift.prdtNo}">
+								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+							</c:if>
+
+						</c:forEach>
+							<c:if test="${gift.gStatus == 'N'}">
+								<div class="sold_out">
+									<h1>마감</h1>
+								</div>
+							</c:if>
+
+						<a href="${gift.prdtNo}">
+							<h1>${gift.prdtName}</h1> 
+							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
+								<c:if test="${star.prdtNo == gift.prdtNo}">
+									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
+									<span>${gift.prdtPrice}</span>
+								</c:if>
+							</c:forEach>
+						</a>
+					</div>
+
+				</c:forEach>
+			</div>
+		</c:if>
+	</section>
+	
+	<div class="pagination">
+
+		<c:url var="pageUrl" value="list?" />
+
+		<!-- 화살표에 들어갈 주소를 변수로 생성 -->
+		<c:set var="firstPage" value="${pageUrl}cp=1" />
+		<c:set var="lastPage" value="${pageUrl}cp=${pInfo.maxPage}" />
+
+		<%-- EL을 이용한 숫자 연산의 단점 : 연산이 자료형에 영향을 받지 않는다--%>
+		<%-- 
+					<fmt:parseNumber>   : 숫자 형태를 지정하여 변수 선언 
+					integerOnly="true"  : 정수로만 숫자 표현 (소수점 버림)--%>
+
+
+		<fmt:parseNumber var="c1" value="${(pInfo.currentPage - 1) / 10 }" integerOnly="true" />
+		<fmt:parseNumber var="prev" value="${ c1 * 10 }" integerOnly="true" />
+		<c:set var="prevPage" value="${pageUrl}cp=${prev}" />
+
+		<fmt:parseNumber var="c2" value="${(pInfo.currentPage + 9) / 10 }" integerOnly="true" />
+		<fmt:parseNumber var="next" value="${ c2 * 10 + 1 }" integerOnly="true" />
+		<c:set var="nextPage" value="${pageUrl}cp=${next}" />
+
+		<c:if test="${pInfo.currentPage > pInfo.pageSize}">
+			<li>
+				<!-- 첫 페이지로 이동(<<) --> <a class="page-link" href="${firstPage}">&lt;&lt;</a>
+			</li>
+
+			<li>
+				<!-- 이전 페이지로 이동 (<) --> <a class="page-link" href="${prevPage}">&lt;</a>
+			</li>
+		</c:if>
+
+
+		<!-- 페이지 목록 -->
+		<c:forEach var="page" begin="${pInfo.startPage}" end="${pInfo.endPage}">
+			<c:choose>
+				<c:when test="${pInfo.currentPage == page }">
+					<li><a class="page-link">${page}</a></li>
+				</c:when>
+
+				<c:otherwise>
+					<li><a class="page-link" href="${pageUrl}cp=${page}">${page}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</div>
+
+	<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
+	<c:if test="${next <= pInfo.maxPage}">
+		<li>
+			<!-- 다음 페이지로 이동 (>) --> <a class="page-link" href="${nextPage}">&gt;</a>
+		</li>
+
+		<li>
+			<!-- 마지막 페이지로 이동(>>) --> <a class="page-link" href="${lastPage}">&gt;&gt;</a>
+		</li>
+	</c:if>
     
     <jsp:include page="../common/footer.jsp"/>
 	

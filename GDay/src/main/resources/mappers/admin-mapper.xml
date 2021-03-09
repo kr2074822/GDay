@@ -17,6 +17,12 @@
   		<result property="memberGrade" column="MEM_GRADE"/>
   		<result property="memberType" column="MEM_TYPE"/>
   		<result property="memberSec" column="MEM_SEC"/>
+  		
+  		<result property="mImgNo" column="MEM_NO"/>
+  		<result property="mImgPath" column="LCS_PATH"/>
+  		<result property="mImgName" column="LCS_NAME"/>
+  		<result property="mImgStatus" column="LCS_STATUS"/>
+  		<result property="mImgDate" column="LCS_DATE"/>
 	</resultMap>
 
 	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
@@ -29,8 +35,8 @@
   		<result property="parentNo" column="PARENT_NO"/>
   		<result property="parentType" column="PARENT_TYPE"/>
   		<result property="reportTarget" column="REP_TARGET"/>
-  		<result property="reportContent" column="REP_CONTENT"/>
   		<result property="memberNo" column="MEM_NO"/>
+  		<result property="reportCount" column="REP_COUNT"/>
 	</resultMap>
 
 	<!-- resultMap: 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매칭시키는 역할 -->
@@ -74,6 +80,15 @@
   		<result property="curNo" column="CUR_NO"/>
   		<result property="curContent" column="CUR_CONTENT"/>
 	</resultMap>
+	
+	
+	<resultMap type="BmemberInfo" id="bmemberInfo">
+		<id property="bmemNo" column="MEM_NO"/>
+		
+   		<result property="bmemShop" column="BMEM_SHOP"/>
+  		<result property="bmemIntro" column="BMEM_INTRO"/>
+	</resultMap>
+	
 	
 	
 	<!-- 전체회원 페이징 처리(목록 갯수) -->
@@ -170,12 +185,40 @@
         ORDER BY CUS_NO DESC
 	</select>
 	
-	<!-- 신고하기 -->
-	<insert id="getReport" parameterType="map">
-		INSERT INTO REPORT(REP_NO, REP_TYPE, PARENT_NO, PARENT_TYPE, REP_TARGET, REP_CONTENT, MEM_NO)
-		VALUES(SEQ_REP.NEXTVAL, #{reportType}, #{parentNo}, #{parentType}, 
-			   #{reportTarget}, #{reportContent}, #{memberNo})
+	<!-- 게시글 작성자 조회 -->
+	<select id="writerCheck" parameterType="map" resultType="_int">
+		SELECT MEM_NO
+		FROM PRODUCT
+		JOIN MEMBER USING(MEM_NO)
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
+	<!-- 게시글 신고(게시자 신고) -->
+	<insert id="reportPost" parameterType="Report">
+		INSERT INTO REPORT
+		VALUES(SEQ_REP.NEXTVAL, #{reportType}, #{parentNo}, #{parentType}, #{reportTarget}, #{memberNo}, DEFAULT)
 	</insert>
+	
+	<!-- 신고할 게시글 타입 조회 -->
+	<select id="boardType" parameterType="map" resultType="string">
+		SELECT PRDT_TYPE
+		FROM PRODUCT
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
+	<!-- 신고받은 사람 횟수 조회 -->
+	<select id="reportCount" parameterType="Report" resultType="_int">
+		SELECT COUNT(REP_COUNT)
+		FROM REPORT
+		WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	<!-- 신고 3회이상 등급 변경 -->
+	<update id="reportMember" parameterType="_int">
+		UPDATE MEMBER SET
+		MEM_GRADE = 'X'
+		WHERE MEM_NO = #{writerCheck}
+	</update>
 	
 	<!-- 회원 고객센터 목록 전체 조회 -->
 	<select id="memberCustomer" parameterType="_int" resultMap="customor_rm">
@@ -184,4 +227,27 @@
 		WHERE MEM_NO = #{memberNo}
 		ORDER BY CUS_NO DESC
 	</select>
+	
+	<select id="getMember" resultMap="member_rm">
+		SELECT * 
+		FROM V_BMEMBER
+		JOIN LICENSE_IMG USING(MEM_NO)
+		WHERE MEM_GRADE = 'U'
+	</select>
+	
+	<!-- 회원 상세 조회  -->
+	<select id="getbMember" resultMap="member_rm" parameterType="_int">
+		SELECT * 
+		FROM V_BMEMBER
+		JOIN LICENSE_IMG USING(MEM_NO)
+		WHERE MEM_GRADE = 'U' AND MEM_NO = #{memberNo}
+	</select>
+	
+	<select id="bmemShop" resultType="string">
+		SELECT BMEM_SHOP
+		FROM BMEMBER
+		WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	
 </mapper>

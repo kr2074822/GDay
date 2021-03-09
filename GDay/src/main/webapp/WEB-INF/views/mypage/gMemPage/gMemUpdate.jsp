@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
    <title>내 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.1">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css?ver=1.6"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gMemInfoUpdate.css"/>
     
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -29,8 +32,9 @@
    
 </head>
 <body>
-<!-- js -->
-<jsp:include page="gMemUpdateJS.jsp"/>
+
+<!-- js용 jsp -->
+<jsp:include page="../memUpdateJS.jsp"/>
 
 <jsp:include page="../../common/header.jsp"/>
 
@@ -44,7 +48,7 @@
 
         <!-- 일반 정보 수정 -->
         <div class="row" id="container-info-form-1">
-            <form action="#" method="post" id="container-form-1">
+            <form action="${contextPath}/gMember/updateMember" method="POST" id="container-form-1" enctype="multipart/form-data" onsubmit="return updateInfoVal(this);">
             <div class="info-form" id="info-profile">
                 <label class="info-title">프로필 사진</label>
                 <div id="profile-div">
@@ -56,53 +60,56 @@
             <div id="profile-area">
                 <input type="file" id="profile" name="profile" onchange="LoadProfile(this,0)"> 
             </div>
+             <input type="hidden" name="deleteProfile" class="delete-profile">
 
+						<input type=number class="info-hidden" value="${loginMember.memberNo}" name="memberNo"/>
             <div class="info-form" id="info-emain">
                 <label class="info-title">이메일</label>
-                <span class="info-content">user01@gmail.com</span><!-- 회원 이메일 -->
+                <span class="info-content">${loginMember.memberEmail}</span><!-- 회원 이메일 -->
             </div>
             <div class="info-form" id="info-name">
                 <label class="info-title">이름</label>
-                <span class="info-content">김이름</span><!-- 회원 이름 -->
+                <span class="info-content">${loginMember.memberName}</span><!-- 회원 이름 -->
             </div>
 
             <div class="info-form" id="info-nickname">
                 <label class="info-title"><span class="star">*</span>닉네임</label>
-                <input type="text" name="memberNick" value="지데이샵" class="info-content-1" 
-                	maxlength="6" required/>
-                <span class="info-content-2" id="check-nickname">한글 최대 6글자, 영문 최대 20글자</span>
+                <input type="text" name="memberNick" value="${loginMember.memberNick}" class="info-content-1" required/>
+                <span class="info-content-2" id="check-nickname"></span>
                 <!-- 닉네임 중복확인 ajax : 문구 출력(check-nickname)-->
             </div>
             
             <div class="info-form" id="info-phone">
                 <label class="info-title">연락처</label>
-                <input type="text" name="memberPhone" value="01011111111" class="info-content" 
+                <input type="text" name="memberPhone" value="${loginMember.memberPhone}" class="info-content" 
                 	maxlength='11' placeholder="'-' 없이 숫자만 입력" required/><!-- 회원 전화번호 -->
             </div>
 
+						<c:set var="address" value="${fn:split(loginMember.memberAddress, ',')}" />		
+            <input type="text" class="info-hidden info-addr" name="memberAddress" value="${loginMember.memberAddress}">
             <div class="info-form" id="info-address-1">
                 <label class="info-title">우편번호</label>
                 <div class="input-btn">
-                    <input type="text" name="address1" value="01234" class="info-content-1 postcodify_postcode5" readonly/>
+                    <input type="text" name="address0" value="${address[0]}" class="postcodify_postcode5 info-content-1 postcodify_postcode5" readonly/>
                     <button type="button" class="info-btn" id="post-search-btn">검색</button>
                 <!-- 회원 주소1 : 우편번호-->
                 </div>
             </div>
             <div class="info-form" id="info-address-2">
                 <label class="info-title">도로명 주소</label>
-                <input type="text" name="address2" value="서울특별시 중구 남대문로 120" class="info-content postcodify_address" readonly/>
+                <input type="text" name="address1" value="${address[1]}" class="postcodify_address info-content postcodify_address" readonly/>
                 <!-- 회원 주소2 : 도로명 주소-->
             </div>
 
             <div class="info-form" id="info-address-3">
                 <label for="address3" class="info-title">상세 주소</label>
-                <input type="text" name="address3" value="대일빌딩 2층" class="info-content postcodify_details"/>
+                <input type="text" name="address2" value="${address[3]}" class="postcodify_details info-content postcodify_details"/>
                 <!-- 회원 주소1 : 우편번호-->
             </div>
             
 		        <div class="wrap-btn">
-				        <button type="reset" class="reset-btn">초기화</button>
-				        <button type="submit" class="sumbit-btn">정보 변경</button>
+				        <button type="reset" class="reset-btn info-btn">초기화</button>
+				        <button type="submit" class="submit-btn info-btn">정보 변경</button>
 		        </div>
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
