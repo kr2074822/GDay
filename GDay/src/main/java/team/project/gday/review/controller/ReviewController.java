@@ -122,7 +122,7 @@ public class ReviewController {
 		return result;
 	}
 	
-	@RequestMapping("selectReviewList/{memberNo}")
+	@RequestMapping("selectReviewList")
 	public String selectReviewList(@ModelAttribute ListCondition listCd,
 									@RequestParam("writerNo") int memberNo,
 									@RequestParam("type") String type) {
@@ -152,17 +152,17 @@ public class ReviewController {
 			if(oList != null & !oList.isEmpty()) {
 				returnMap.put("oList", oList);
 			
-			
-			if(type.equals("G")) {//선물일 때
-					
+				
+				if(type.equals("G")) {//선물일 때
+						
 					//선물이면 goption 가져와야 함
 					List<GOption> optList = rService.selectOptList(rList);
 					
 					if(optList != null && !optList.isEmpty()) {
 						returnMap.put("optList", optList);//선물 : returnMap에 optList 추가
 					}
-						//System.out.println("optList : " + optList);
-					
+					System.out.println("optList : " + optList);
+						
 				} else if (type.equals("C")) {//클래스일 때
 					//클래스면 gclass를 가져와야 함
 					
@@ -171,16 +171,27 @@ public class ReviewController {
 					if(cList != null && !cList.isEmpty()) {
 						returnMap.put("cList", cList);
 					}
-					
-					//System.out.println(cList);
+					System.out.println(cList);
 				} 
-			
 			}
-			
 		}
 		
-		return "";
+		System.out.println(returnMap);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		return gson.toJson(returnMap); 
 	}
+	
+	
+	@RequestMapping("deleteReview/{rvNo}")
+	public int deleteReview(@PathVariable("rvNo") int rvNo) {
+		
+		int result = rService.deleteReview(rvNo);
+		
+		return result;
+	}
+	
 	
 	
 }

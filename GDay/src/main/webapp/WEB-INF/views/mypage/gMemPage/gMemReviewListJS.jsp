@@ -17,7 +17,7 @@ $(document).ready(function(){//ready 함수
 
 //기본 화면 결제일 기간 : 일주일 / 전체  + list 초기화
 (function(){
-	
+	console.log("진행")
 	$("#7days").click();
 
 	loadNewPage(); //로드 탭
@@ -27,8 +27,7 @@ $(document).ready(function(){//ready 함수
 //period 조회 버튼 클릭
 $("#list-search-btn").on("click", function(){
 	cp = 1;
-	listContainer.html("");
-	selectOrderList(cp);
+	selectReviewList(cp);
 });
 
 //더보기 버튼 클릭
@@ -80,6 +79,8 @@ function selectReviewList(cp){
 	
 	listContainer = $("#" + tabMenu);
 	
+	console.log(tabMenu);
+	
 	if(cp <= 1){
 		listContainer.html("");
 	}
@@ -88,7 +89,7 @@ function selectReviewList(cp){
 //	jQuery.ajaxSettings.traditional = true;
 
 	$.ajax({
-		url : "../selectReviewList", /* 회원번호*/
+		url : "../review/selectReviewList", /* 회원번호*/
 		data : { "cp" : cp, 
 						"periodStart" : periodStart, 
 						"periodEnd" : periodEnd, 
@@ -115,11 +116,11 @@ function selectReviewList(cp){
 		     	
 					/* 썸네일 부분 */
 					/* 썸네일 부분 */
-					var imgUrl = "${contextPath}" + review.rvImgPath + "/" + review.rvImgName;
+					var imgUrl = review.rvImgPath + "/" + review.rvImgName;
 			    	
 					var reviewImg = $("<div>").addClass('review-img')
-													.css("background-image", "url(" + imgUrl + ")")
-													.attr("onclick", "imageView("+ imgUrl +")");
+													.css("background-image", "url(" + "${contextPath}" + imgUrl + ")");
+												/* 	.attr("onclick", "imageView("+ imgUrl +")"); */
 
 					container.append(aDelete).append(reviewImg);
 					
@@ -127,7 +128,7 @@ function selectReviewList(cp){
 					var reviewCard = $("<div>").addClass('review-card');
 
 					var reviewDt = $("<div>").addClass("review-date");
-					var dateText1 = $("<span>").addClass("date-text");
+					var dateText1 = $("<span>").addClass("date-text").text("리뷰 작성일");
 					var dateText2 = $("<span>").text(review.createDate);
 					
 					reviewDt.append(dateText1).append(dateText2);
@@ -138,14 +139,20 @@ function selectReviewList(cp){
 					
 					var infoName;//상품명, 클래스명
 					
-					if(type = "G"){//선물일 때
+					if(type == "G"){//선물일 때
 						var optList = map.optList;
 
 						//상품명, 결제일
 						var infoDate;
 						$.each(oList, function(index, order){
 								if(order.prdtNo == review.prdtNo){
-									infoName = $("<a>").addClass("info-name").text(order.prdtName)
+			        		
+									var name = order.prdtName;
+			        		if(name.trim().length > 20){
+			        			name = name.substring(0, 19) + "…";
+			        		}
+									
+									infoName = $("<a>").addClass("info-name").text(name)
 															.attr("href", "${contextPath}/gift/" + order.prdtNo);
 									infoDate = $("<span>").addClass("info-date").text(order.orderDate);
 								}
@@ -163,15 +170,21 @@ function selectReviewList(cp){
 						
 					}//선물 끝
 					
-					else if(type = "C"){//클래스일때
+					else if(type == "C"){//클래스일때
 						var cList = map.cList;
 						
 						//클래스명, 강사명
 						var infoTeacher;
 						$.each(oList, function(index, order){
 							if(order.prdtNo == review.prdtNo){
-								infoName = $("<a>").addClass("info-name").text(order.prdtName)
-														.attr("href", "${contextPath}/gClass/" + order.prdtNo);
+								
+								var name = order.prdtName;
+		        		if(name.trim().length > 20){
+		        			name = name.substring(0, 19) + "…";
+		        		}
+								
+								infoName = $("<a>").addClass("info-name").text(name)
+														.attr("href", "${contextPath}/gClass/" + review.prdtNo);
 								infoTeacher = $("<span>").addClass("info-opt").text(order.sellerName);
 							}
 						});
@@ -201,19 +214,26 @@ function selectReviewList(cp){
 						if(review.rvStar >= i) {
 							$icon.css("color", "#ffe600");
 						}
-						star.append(icon);
+						star.append($icon);
 					}
 					
 					reviewCard.append(star);
 					
+					var beforeContent = review.rvContent;
+					 beforeContent = beforeContent.replace(/&amp;/g, "&");   
+				   beforeContent = beforeContent.replace(/&lt;/g, "<");   
+				   beforeContent = beforeContent.replace(/&gt;/g, ">");   
+				   beforeContent = beforeContent.replace(/&quot;/g, "\"");   
+			  	 beforeContent = beforeContent.replace(/<br>/g, "\n");
+
 					//후기 내용
-					var content = $("<div>").addClass("review-content").text(review.rvContent);
+					var content = $("<div>").addClass("review-content").text(beforeContent);
 					
 					reviewCard.append(content);
 					
 					container.append(reviewCard);
 					
-					listContainer.container;
+					listContainer.append(container);
 					
 				});//rList 담기 끝
 				
@@ -254,11 +274,26 @@ function selectReviewList(cp){
 
 function deleteReview(rvNo){
 	
+	$.ajax({
+		url : "${contextPath}/review/deleteReview/" + rvNo,
+		type : "get",
+		success : function(result){
+			if(result > 0){
+				loadNewPage();
+			} else {
+				swal.fire({icon: "error", title:"후기 삭제 실패!", text: "다시 시도해 주세요."});
+			}
+		},
+		error : function(){
+			console.log("후기 삭제 중 오류 발생");
+		}
+	});
 }
 
 //큰 이미지 보여주기
 function imageView(imgUrl){
-	$("#big-img").attr("src", imgUrl);
+	console.loge(imgUrl);
+	$("#big-img").attr("src", "${contextPath}" + imgUrl);
 	$("#modal-img").parent().show();
 }
 

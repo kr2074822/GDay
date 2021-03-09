@@ -98,7 +98,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
-	//pInfo 생성service 구현
+	//마이페이지 pInfo 생성service 구현
 	@Override
 	public PageInfo9 getPageInfo(Map<String, Object> map) {
 		
@@ -108,29 +108,34 @@ public class ReviewServiceImpl implements ReviewService {
 		return new PageInfo9((Integer)map.get("cp"), listCount);
 	}
 
-	//후기 목록 조회
+	//마이페이지 후기 목록 조회
 	@Override
 	public List<Review> selectReviewList(PageInfo9 pInfo, Map<String, Object> map) {
 		return dao.selectReviewList(pInfo, map);
 	}
 
-
-	//후기에 맞는 주문 내역 조회하기
+	//마이페이지 후기에 맞는 주문 내역 조회하기
 	@Override
 	public List<Order> selectOList(List<Review> rList) {
 		return dao.selectOList(rList);
 	}
 
-
+	//마이페이지 후기 조회 옵션 부분
 	@Override
 	public List<GOption> selectOptList(List<Review> rList) {
 		return dao.selectOptList(rList);
 	}
 
-
+	//마이페이지 후기 조회 클래스부분
 	@Override
 	public List<GClass> selectCList(List<Review> rList) {
 		return dao.selectCList(rList);
+	}
+
+	//
+	@Override
+	public int deleteReview(int rvNo) {
+		return dao.deleteReview(rvNo);
 	}
 	
 	
