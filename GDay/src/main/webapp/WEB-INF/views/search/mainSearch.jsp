@@ -80,7 +80,7 @@ input[name='category'] {
 				<div class="tag_wrapper">
 					<ul class="tagBx" data-text="0">
 						<li class="tag"><input type="checkbox" name="hashNo" value="1" id="aa"> <label for="aa" class="item">영유아</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="2" class="item" id="an"> <label for="an" class="item">어린이</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="2" id="an"> <label for="an" class="item">어린이</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="3" id="ac"> <label for="ac" class="item">청소년</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="4" id="ad"> <label for="ad" class="item">청년</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="5" id="ae"> <label for="ae" class="item">중년</label></li>
@@ -119,8 +119,8 @@ input[name='category'] {
 						<li class="tag"><input type="checkbox" name="hashNo" value="30" id="ef"> <label for="ef" class="item">어버이날</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="31" id="eg"> <label for="eg" class="item">스승의날</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="32" id="eh"> <label for="eh" class="item">입사ㆍ승진</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="33" id="eh"> <label for="eh" class="item">퇴사</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="34" id="eh"> <label for="eh" class="item">명절</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="33" id="ei"> <label for="ei" class="item">퇴사</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="34" id="ej"> <label for="ej" class="item">명절</label></li>
 					</ul>
 					<ul class="tagBx" data-text="5">
 						<li class="tag"><input type="checkbox" name="hashNo" value="35" id="fa"> <label for="fa" class="item">봄</label></li>
@@ -136,9 +136,9 @@ input[name='category'] {
 						<li class="tag"><input type="checkbox" name="hashNo" value="43" id="ge"> <label for="ge" class="item">Blue</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="44" id="gf"> <label for="gf" class="item">Navy</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="45" id="gg"> <label for="gg" class="item">Purple</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="46" id="gg"> <label for="gg" class="item">Pink</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="47" id="gh"> <label for="gh" class="item">White</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="48" id="gi"> <label for="gi" class="item">Black</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="46" id="gh"> <label for="gh" class="item">Pink</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="47" id="gi"> <label for="gi" class="item">White</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="48" id="gj"> <label for="gj" class="item">Black</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="59" id="gk"> <label for="gk" class="item">기타</label></li>
 					</ul>
 					<ul class="tagBx" data-text="7">
@@ -191,13 +191,8 @@ input[name='category'] {
 								</div>
 							</c:if>
 						
-		     <div class="more">
-            <a href=""><span>More</span></a>
-        </div>					
-						
-
-						<a href="${gClass.prdtNo}">
 							<h1>${gClass.prdtName}</h1> 
+						<a href="gClass/${gClass.prdtNo}">
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
@@ -210,6 +205,9 @@ input[name='category'] {
 				</c:forEach>
 			</div>
 		</c:if>
+				     <div class="more">
+            <a href="gClass/search?${searchStr}"><span>More</span></a>
+        </div>			
 	</section>
 
     <section class="gift ver2">
