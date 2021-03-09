@@ -24,17 +24,17 @@ public class SearchDAO {
 	 */
 	public List<Gift> selectGiftSearchList(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectGiftSearchList", search, rowBounds);
+		return sqlSession.selectList("searchMapper.selectSearchList", search, rowBounds);
 	}
 
-	/**메인 검색결과 선물 10개 보여주기
+	/**메인 검색결과 클래스 10개 보여주기
 	 * @param search
 	 * @param pInfo
 	 * @return cList
 	 */
 	public List<GClass> selectClassSearchList(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectClassSearchList", search, rowBounds);
+		return sqlSession.selectList("classMapper.selectSearchList", search, rowBounds);
 	}
 
 	/** 카테고리가 없을 때 검색 조건이 포함된 선물 목록 조회 DAO
@@ -51,7 +51,7 @@ public class SearchDAO {
 	 */
 	public List<GClass> selectClassListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectClassListAll", search, rowBounds);
+		return sqlSession.selectList("classMapper.selectClassListAll", search, rowBounds);
 	}
 
 }
