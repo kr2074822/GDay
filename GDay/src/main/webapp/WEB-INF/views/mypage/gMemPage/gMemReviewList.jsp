@@ -9,7 +9,7 @@
 <title>나의 후기</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=2.3">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=2.4">
 		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
 		
     <!-- icon : font-awesome -->
@@ -29,6 +29,7 @@
   	
   	#wrapper-list {
   		display : flex;
+  		
   	}
   	body { height : 100vh;}
   	</style>
@@ -39,6 +40,7 @@
 
 <!-- js 파일 -->
 <jsp:include page="orderListTab.jsp"/>
+<jsp:include page="gMemReviewListJS.jsp"/>
 
 <div id="wrapper-list">
 		<jsp:include page="gMemSidebar.jsp"/>
@@ -61,7 +63,7 @@
         <!-- 주문 목록 기간 검색 -->
         <div id="list-title-period"><span>작성일</span></div>
         <div class="row" id="container-period">
-            <form action="#" method="post" id="container-form">
+            <form method="post" id="container-form">
             <div class="list-search" id="list-search-1">
                 <input type="radio" name="periodRadio" id="7days" value="7days" checked>
                 <label for="7days" class="radio-active">일주일</label>
@@ -80,7 +82,7 @@
                 <input type="date" name="periodEnd" id="periodEnd">
             </div>
             <div class="list-search" id="list-search-3">
-                <button type="submit" id="list-search-btn">조회</button>
+                <button type="button" id="list-search-btn">조회</button>
             </div>
             </form>
         </div>
@@ -88,7 +90,7 @@
         
         <!-- 선물 -->
         <div class="container-reviews wrap-tab-l" id="review-gift">
-	        <div class="container-review">
+<!-- 	        <div class="container-review">
 			        <a class="a-delete">삭제</a>
 							<div class="review-img"></div>
 			        <div class="review-card">
@@ -97,7 +99,7 @@
 			                <span>2021.03.01.</span>
 			            </div>
 			            <div class="review-info">
-			                <a href="#상품번호" class="info-name">선물2</a>
+			                <a href="" class="info-name">선물2</a>
 			                <span class="info-opt">옵션 │ 빨강, 1개</span>
 			                <span class="info-date">구매일 │ 2021.02.20.</span>
 			            </div>
@@ -111,13 +113,13 @@
 			            </div>
 			            <div class="review-content">후기후기후기</div>
 			        </div>
-			      </div>
+			      </div> -->
 			    </div><!--container-orders 끝 -->
 			
 			
 			    <!-- 클래스 -->
 	        <div class="container-reviews wrap-tab-r" id="review-class">
-		        <div class="container-review">
+<!-- 		        <div class="container-review">
 				        <a class="a-delete">삭제</a>
 				        <div class="review-img"></div>
 				        <div class="review-card">
@@ -126,7 +128,7 @@
 				                <span>2021.03.01.</span>
 				            </div>
 				            <div class="review-info">
-				                <a href="#상품번호" class="info-name">클래스2</a>
+				                <a href="" class="info-name">클래스2</a>
 				                <span class="info-date">수업일 │ 2021.03.21 ~ 2021.04.20.</span>
 				                <span class="info-opt">강사 │ 임강사</span>
 				            </div>
@@ -140,12 +142,12 @@
 				            </div>
 				            <div class="review-content">후기후기후기</div>
 				        </div>
-			        </div>
+			        </div> -->
 			    </div>
 	  	</div> <!--wrapper-tab -->
       
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
-      	<a href="" class="btn-more"><i class="fas fa-plus"></i></a>
+      	<a class="btn-more"><i class="fas fa-plus"></i></a>
  		</div>
  </div>
  

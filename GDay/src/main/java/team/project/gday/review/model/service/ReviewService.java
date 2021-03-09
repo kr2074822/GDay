@@ -27,29 +27,35 @@ public interface ReviewService {
 	 */
 	PageInfo9 getPageInfo(Map<String, Object> map);
 
-	/** 후기 조회하기
+	/**마이페이지 후기 조회하기
 	 * @param map 
 	 * @param pInfo 
 	 * @return
 	 */
 	List<Review> selectReviewList(PageInfo9 pInfo, Map<String, Object> map);
 
-	/** 후기에 맞는 주문 내역 조회하기
+	/**마이페이지 후기에 맞는 주문 내역 조회하기
 	 * @param rList
 	 * @return
 	 */
 	List<Order> selectOList(List<Review> rList);
 
-	/**후기에 맞는 oList 가져오기
+	/**마이페이지 후기에 맞는 oList 가져오기
 	 * @param oList
 	 * @return
 	 */
 	List<GOption> selectOptList(List<Review> rList);
 
-	/**후기에 맞는 클래스 리스트 조회
+	/**마이페이지 후기에 맞는 클래스 리스트 조회
 	 * @param rList
 	 * @return
 	 */
 	List<GClass> selectCList(List<Review> rList);
+
+	/**후기 삭제
+	 * @param rvNo
+	 * @return
+	 */
+	int deleteReview(int rvNo);
 
 }

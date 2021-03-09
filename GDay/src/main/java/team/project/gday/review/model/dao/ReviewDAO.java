@@ -44,7 +44,7 @@ public class ReviewDAO {
 	}
 
 	
-	/**후기 목록 조회
+	/**마이페이지 후기 목록 조회
 	 * @param pInfo
 	 * @param map
 	 * @return
@@ -57,7 +57,7 @@ public class ReviewDAO {
 		return sqlSession.selectList("reviewMapper.selectReviewList", map, rowBounds);
 	}
 
-	/**후기 조회 시 알맞은 값 조회를 위한 조회
+	/**마이페이지 후기 조회 시 알맞은 값 조회를 위한 조회
 	 * @param rList
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class ReviewDAO {
 		return sqlSession.selectList("reviewMapper.selectOList", rList);
 	}
 
-	/** 후기 조회(G) 옵션 조회
+	/**마이페이지 후기 조회(G) 옵션 조회
 	 * @param rList
 	 * @return
 	 */
@@ -73,12 +73,20 @@ public class ReviewDAO {
 		return sqlSession.selectList("reviewMapper.selectOptList", rList);
 	}
 
-	/**후기 조회(C) 클래스 조회
+	/**마이페이지 후기 조회(C) 클래스 조회
 	 * @param rList
 	 * @return
 	 */
 	public List<GClass> selectCList(List<Review> rList) {
 		return sqlSession.selectList("reviewMapper.selectCList", rList);
+	}
+
+	/** 마이페이지 후기 삭제
+	 * @param rvNo
+	 * @return
+	 */
+	public int deleteReview(int rvNo) {
+		return sqlSession.update("reviewMapper.deleteReview", rvNo);
 	}
 	
 	
