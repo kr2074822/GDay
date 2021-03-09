@@ -87,7 +87,7 @@
 	<!-- 상품 테이블에 삽입 -->
 	<insert id="insertProduct" parameterType="map">
 		INSERT INTO PRODUCT(PRDT_NO, PRDT_NAME, PRDT_TYPE, PRDT_CONTENT, PRDT_PRICE, READ_COUNT, CREATE_DATE, MODIFY_DATE, PRDT_STATUS, MEM_NO)
-		VALUES(#{prdtNo}, #{prdtName}, 'C', #{prdtContent}, #{prdtPrice}, DEFAULT, DEFAULT, NULL, DEFAULT, 1)
+		VALUES(#{prdtNo}, #{prdtName}, 'C', #{prdtContent}, #{prdtPrice}, DEFAULT, DEFAULT, NULL, DEFAULT, #{memNo})
 	</insert>
 	
 	<!--클래스 테이블에 삽입-->

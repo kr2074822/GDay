@@ -72,11 +72,11 @@ section form .wrapper .check_wrapper ul li input[type="checkbox"]:checked+label{
     color: #fe929f;
 }
 section form .wrapper .check_wrapper ul li input[type="text"]{
-    width: 100px;
+    width: 90px;
 }
 
 section form .wrapper .check_wrapper ul li input[type="number"]{
-		width: 100px;
+		width: 90px;
 }
 section form .wrapper .check_wrapper ul li label{
     transition: 0.3s ease-out;

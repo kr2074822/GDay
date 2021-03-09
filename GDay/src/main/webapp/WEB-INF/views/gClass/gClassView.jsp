@@ -86,9 +86,9 @@
     <section>
         <div class="gift">
             <div class="gift_title">
-                <div id="fnMove1"><a href="">상품 설명</a></div>
-                <div id="fnMove2"><a href="">상품 후기</a></div>
-                <div id="fnMove3"><a href="">배송 교환 반품</a></div>
+                <div id="fnMove1" class="pointCursor"><a>상품 설명</a></div>
+                <div id="fnMove2" class="pointCursor"><a>상품 후기</a></div>
+                <div id="fnMove3" class="pointCursor"><a>배송 교환 반품</a></div>
             </div>
             <div class="describe">
                 <h1>판매자 정보</h1>
@@ -120,17 +120,21 @@
                         </tr>
                         <tr>
                             <td>상호명</td>
-                            <td>${member.memberNick}</td>
+                            <td id="memberNick">${member.memberNick}</td>
                         </tr>
                     </table>
                 </div>
                 <h1>상품 설명</h1>
-                <div class="about_gift">
+                <div class="about_gift" id="about_gift">
                     <p>
                        ${gclass.prdtContent}
+                       
+                <h1>강의장 위치</h1>
+                       <div id="cLocal">${gclass.cLocal}</div>
+                       <div id="map" style="width:100%;height:350px;margin-top:30px;margin-bottom:20px;"></div>
                     </p>
                 </div>
-                <div class="g_info">
+                <div class="g_info" id="g_info">
                     <table>
                         <tr>
                             <th colspan="4">상품 태그</th>
@@ -209,7 +213,7 @@
                         </tr>
                     </table>
                 </div>
-
+							<!-- 이게 모지 -->
                 <div class="gift_pic">
                     <img src="images/gift1.jpg" alt="">
                     <img src="images/gift1.jpg" alt="">
@@ -325,19 +329,20 @@
     </section>
 		<jsp:include page="../common/footer.jsp" />
 		<script type="text/javascript" src="${contextPath}/resources/js/fontawesome.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930f7a74b0fd1bdc17d81c3d8fb76bf4&libraries=services"></script>
     
     <script>
-    /* 상단바 페이지 내 이동 */
+    //상단바 페이지 내 이동
     $("#fnMove1").on("click", function() {
     	var offset = $(".about_gift").offset();
-        $('html, body').animate({scrollTop : offset.top}, 30);
+        $('html, body').animate({scrollTop : offset.top}, 400);
     });
     $("#fnMove2").on("click", function() {
-    	var offset = $(".g_info").offset();
-        $('html, body').animate({scrollTop : offset.top}, 200);
+    	var offset = $(".review_wrapper").offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
     });
     $("#fnMove3").on("click", function() {
-    	var offset = $(".refund").offset();
+    	var offset = $(".g_info").offset();
         $('html, body').animate({scrollTop : offset.top}, 400);
     });
     
@@ -374,6 +379,48 @@
     		 location.href = prdtNo + "/pause"
     	 }
      });
+     
+     
+     /* 맵 표시 */
+     var cLocal = $("#cLocal").text();
+     var memberNick = $("#memberNick").text();
+     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(cLocal, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">' + memberNick + '</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+     
      
 /*      /* 댓글 보여지기 
 var parentBoardNo = ${prdtN.boardNo}; // 게시글 번호 --500 : EL이지만 쌍따옴표가 없어도 저장이 됨. (int)

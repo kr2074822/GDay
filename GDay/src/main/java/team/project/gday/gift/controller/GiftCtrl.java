@@ -89,7 +89,7 @@ public class GiftCtrl {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("hashNo", hashNo);
-		map.put("memberNo", loginMember.getMemberNo());
+		map.put("memNo", loginMember.getMemberNo());
 		map.put("prdtName", gift.getPrdtName());
 		map.put("prdtContent", gift.getPrdtContent());
 		map.put("prdtPrice", gift.getPrdtPrice());

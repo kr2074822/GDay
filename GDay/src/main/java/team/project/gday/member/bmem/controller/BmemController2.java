@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +24,7 @@ import team.project.gday.member.bmem.model.service.BmemService2;
 import team.project.gday.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"loginMember"})
 @RequestMapping("/bMember2/*")
 public class BmemController2 {
 
@@ -37,7 +39,8 @@ public class BmemController2 {
 
 	// 클래스 등록 신청 화면 이동
 	@RequestMapping("gClassInsert")
-	public String gClassInsert() {
+	public String gClassInsert(@ModelAttribute Member loginMember) {
+		System.out.println(loginMember);
 		return "gClass/gClassInsert";
 	}
 
@@ -46,14 +49,17 @@ public class BmemController2 {
 	// 클래스 등록 신청 Controller
 
 	@RequestMapping("insertClass")
-	public String insertAction(@ModelAttribute GClass gClass, @ModelAttribute("loginMember") Member loginMember,
+	public String insertAction(@ModelAttribute GClass gClass, @ModelAttribute Member loginMember,
 			@RequestParam("hashNo") List<String> hashNo,
 			@RequestParam(value = "images", required = false) List<MultipartFile> images, HttpServletRequest request,
 			RedirectAttributes ra) {
-
+		
+		System.out.println(loginMember);
+		System.out.println(loginMember.getMemberNo());
+		
 		// map을 이용하여 필요한 데이터 모두 담기
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("memberNo", loginMember.getMemberNo());
+		map.put("memNo", loginMember.getMemberNo());
 		map.put("prdtPrice", gClass.getPrdtPrice());
 		map.put("cCount", gClass.getcCount());
 		map.put("cSession", gClass.getcSession());
