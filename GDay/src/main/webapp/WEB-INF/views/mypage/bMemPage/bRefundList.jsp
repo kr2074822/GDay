@@ -104,13 +104,13 @@
 			
 			
 			<c:if test="${!empty day}">	
-				<c:set var="url" value="${contextPath}/bMemSearch/bRfSearch/${day}"/>
+				<c:set var="url" value="${contextPath}/bMemSearch/bRefundSearch/${day}"/>
 			</c:if>		
 			<c:if test="${empty day}">	
-		 	  <c:set var="url" value="${contextPath}/bMemSearch/bRfSearch"/>
+		 	  <c:set var="url" value="${contextPath}/bMemSearch/bRefundSearch"/>
 			</c:if>
 			<c:if test="${!empty startText && !empty endText}">	
-		 	  <c:set var="url" value="${contextPath}/bMemSearch/bRfSearch/${startText}/${endText}"/>
+		 	  <c:set var="url" value="${contextPath}/bMemSearch/bRefundSearch/${startText}/${endText}"/>
 			</c:if>
 
 			
@@ -118,7 +118,7 @@
 		    <div class="list-search" id="list-search-3 container-form">
            <select name="sk" id="searchKey">
                <option value="memName">회원명</option>
-               <option value="prdtName">상품명</option>
+               <option value="rfReasonName">반품사유</option>
                <option value="status">상태</option>
            </select>
            <input type="text" name="sv" id="searchValue"/>

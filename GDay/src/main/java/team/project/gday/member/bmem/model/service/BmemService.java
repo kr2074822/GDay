@@ -127,6 +127,21 @@ public interface BmemService {
 	List<OrderList> bEnrolmentlList(PageInfo9 pInfo, Member loginMember);
 	
 	
+	/** 페이징 처리 객체 생성 Service
+	 * @param cp
+	 * @param loginMember
+	 * @return pInfo
+	 */
+	PageInfo9 getCcListPageInfo(int cp, Member loginMember);
+
+	/** 판매 회원 수강 취소 목록 조회 Service
+	 * @param pInfo
+	 * @param loginMember
+	 * @return cList
+	 */
+	List<RefundList> bClassCancelList(PageInfo9 pInfo, Member loginMember);
+	
+	
 	
 	
 	/** 주문 상태 변경 Service
@@ -141,11 +156,17 @@ public interface BmemService {
 	 */
 	int refundStatusChange(Map<String, Object> map);
 	
-	/** 주문 취소 변경 Service
+	/** 수강 신청 변경 Service
 	 * @param map
 	 * @return result
 	 */
 	int cancelStatusChange(Map<String, Object> map);
+		
+	/** 수강 취소 변경 Service
+	 * @param map
+	 * @return result
+	 */
+	int classCancelStatusChange(Map<String, Object> map);
 	
 	
 	
@@ -157,8 +178,4 @@ public interface BmemService {
 
 	int enrolmentStatusChange(Map<String, Object> map);
 
-
-
-
-	
 }

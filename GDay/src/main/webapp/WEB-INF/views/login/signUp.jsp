@@ -130,7 +130,7 @@
                             <label for="">업체명</label>
                         </div>
                         <div>
-                            <input type="file" class="postcodify_details license" name="image" id="limg">
+                            <input type="file" class="postcodify_details license" name="image" id="limg" required>
                             <label for="">사업자등록증</label>
                         </div>
                         <div>
@@ -147,7 +147,7 @@
                         <p class="seller">
                             <a href="${contextPath}/login/loginView">로그인</a>
                         </p>
-                        <input type="hidden" name="memberGrade" value="B">
+                        <input type="hidden" name="memberGrade" value="U">
                     </form>
                 </div>
                 <div class="imgBox"><img src="${contextPath}/resources/images/signin2.jpg" alt=""></div>

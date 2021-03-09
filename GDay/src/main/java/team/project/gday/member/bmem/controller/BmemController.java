@@ -159,7 +159,19 @@ public class BmemController {
 	
 	//비즈니스 수강 취소 목록 조회
 	@RequestMapping("bClassCancelList")
-	public String bClassCancelList() {
+	public String bClassCancelList(@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+								   @ModelAttribute("loginMember") Member loginMember,
+								   Model model) {
+		
+		PageInfo9 pInfo = service.getCcListPageInfo(cp, loginMember);
+		
+		List<RefundList> cList = service.bClassCancelList(pInfo, loginMember);		
+
+		System.out.println(cList); 
+		
+		model.addAttribute("cList", cList);
+		model.addAttribute("pInfo", pInfo);
+		
 		return "mypage/bMemPage/bClassCancelList";
 	}
 		
@@ -237,7 +249,7 @@ public class BmemController {
 	}
 	
 	
-	// 취소 목록 상태 변경
+	// 클래스 상태 변경
 	@ResponseBody
 	@RequestMapping("enrolmentStatusChange/{status}")
 	public int enrolmentStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
@@ -251,7 +263,23 @@ public class BmemController {
 		
 		int result = service.enrolmentStatusChange(map);
 		
-		System.out.println(result);
+		return result;
+	}
+	
+	
+	// 클래스 취소 목록 상태 변경
+	@ResponseBody
+	@RequestMapping("classCancelStatusChange/{status}")
+	public int classCancelStatusChange(@RequestParam(value = "opAry[]") List<String> opAry,
+									   @ModelAttribute("loginMember") Member loginMember,
+									   @PathVariable("status") int status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("status", status);
+		map.put("opAry", opAry);
+		
+		int result = service.classCancelStatusChange(map);
 		
 		return result;
 	}

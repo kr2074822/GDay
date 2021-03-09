@@ -37,6 +37,10 @@ public class GiftCtrl {
 	@Autowired
 	private GiftService service;
 	
+	private String swalIcon = null;
+	private String swalTitle = null;
+	private String swalText = null;
+	
 	// 선물 리스트 화면
 	@RequestMapping("list")
 	public String giftList() {
@@ -177,7 +181,7 @@ public class GiftCtrl {
 	}
 
 	
-	// 클래스 수정 화면
+	// 선물 수정 화면
 	@RequestMapping("{prdtNo}/updateGiftView")
 	public String updateGiftView(@PathVariable("prdtNo") int prdtNo, Model model) {
 		//게시글 상세 조회 
@@ -217,4 +221,53 @@ public class GiftCtrl {
 		
 		return url;
 	}
+	
+	// 선물 업데이트 수행
+	@RequestMapping("{prdtNo}/updateGift")
+	 public String updateAction(@PathVariable("prdtNo") int prdtNo,
+							 	@ModelAttribute Gift updateGift,
+							 	@RequestParam("hashNo") List<String> hashNo,
+								Model model, RedirectAttributes ra,
+								HttpServletRequest request,
+								@RequestParam(value="color", required = false) List<String> color, 
+								@RequestParam(value="size", required = false) List<String> size,
+								//삽입해야하는 이미지들을 알려주는 역할을 하는 변수
+								@RequestParam(value="images", required=false) List<MultipartFile> images) {
+		
+		 
+		updateGift.setPrdtNo(prdtNo);
+		 
+		 //파일 저장 경로 얻어오기
+		 String savePath = request.getSession().getServletContext().getRealPath("resources/images/thumbnailImg");
+		 System.out.println(updateGift);
+		// map을 이용하여 필요한 데이터 모두 담기
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("prdtNo", updateGift.getPrdtNo());
+			map.put("prdtPrice", updateGift.getPrdtPrice());
+			map.put("prdtName", updateGift.getPrdtName());
+			map.put("prdtContent", updateGift.getPrdtContent());
+			map.put("hashNo", hashNo);
+			map.put("size", size);
+			map.put("color", color);
+		 
+		 // 게시글 수정 Service 호출
+		 int result = service.updateGift(map, images, savePath);
+		 
+		 String url = null;
+		 if(result > 0) {
+				swalIcon = "success";
+				swalTitle = "선물 수정 성공!";
+				url = "redirect:../"+prdtNo;
+			}else {
+				swalIcon = "error";
+				swalTitle = "선물 수정 실패";
+				url = "redirect:" + request.getHeader("referer");
+			}
+			
+			ra.addFlashAttribute("swalIcon", swalIcon);
+			ra.addFlashAttribute("swalTitle", swalTitle);
+
+			return url;
+	 
+	 }
 }

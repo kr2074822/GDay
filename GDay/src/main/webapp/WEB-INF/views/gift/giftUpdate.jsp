@@ -31,7 +31,7 @@
 
     <section class="mgz_wrapper">
         <h1>선물 등록 신청</h1>
-        <form action="requestAction" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
+        <form action="updateGift" method="post" enctype="multipart/form-data" role="form" onsubmit="return validate();">
             <div class="wrapper">
                 <div class="check_wrapper">
                     <span class="opt_name">연령대</span>
