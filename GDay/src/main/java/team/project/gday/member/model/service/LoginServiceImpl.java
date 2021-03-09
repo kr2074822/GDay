@@ -74,12 +74,15 @@ public class LoginServiceImpl implements LoginService{
 	public int insertImg(List<MultipartFile> image, String savePath, Member member) {
 		List<ProfileImg> uploadImages = new ArrayList<ProfileImg>();
 		
+		String filePath = "/resources/images/profileImg";
+		
 		// 회원 번호 조회
 		int result = dao.checkMemNo(member);
 		
 		if (!image.get(0).getOriginalFilename().equals("")) {
 			String fileName = rename(image.get(0).getOriginalFilename());
-			ProfileImg pf = new ProfileImg(0, savePath, fileName, result);
+						
+			ProfileImg pf = new ProfileImg(0, filePath, fileName, result);
 			
 			dao.insertImg(pf);
 			uploadImages.add(pf);
@@ -90,14 +93,16 @@ public class LoginServiceImpl implements LoginService{
 				if (member.getMemberGrade().equals("B")) {
 					savePath = savePath.replace("profileImg", "licenseImg");
 					image.get(1).transferTo(new File(savePath + "/" + uploadImages.get(0).getPfName()));
-					LicenseImg li = new LicenseImg(result, savePath, fileName);
+					
+					filePath = "/resources/images/licenseImg";
+					LicenseImg li = new LicenseImg(result, filePath, fileName);
 					result = dao.insertLicense(li);
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else {
-			ProfileImg pf = new ProfileImg(0, savePath, "pfp.png", result);
+			ProfileImg pf = new ProfileImg(0, filePath, "profile.jpg", result);
 			result = dao.insertImg(pf);
 		}
 		

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -32,19 +33,23 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.service.GmemService;
+import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.ListCondition;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
 @Controller
 @RequestMapping("/gMember/*")
-@SessionAttributes({"loginMember"})
-
+@SessionAttributes({"loginMember", "picture"})
 public class GmemController {
 
 	@Autowired
 	private GmemService service;
+	
+	@Autowired
+	private LoginService lService;
 	
 	//sweet alert 메시지 전달용 변수 선언
 	private String swalIcon;
@@ -466,6 +471,54 @@ public class GmemController {
 	public String gMemUpdate() {
 		return "mypage/gMemPage/gMemUpdate";
 	}
+	
+	//내정보 수정
+	@RequestMapping("updateMember")
+	public String gMemInfoUpdate(@ModelAttribute(name="loginMember", binding=false) Member loginMember,
+								@ModelAttribute Member updateMember,
+								@RequestParam(value="profile", required = false) List<MultipartFile> profile,
+								@RequestParam(value="deleteProfile", required=false) boolean profileFlag, 
+								HttpServletRequest request,	SessionStatus status,
+								RedirectAttributes ra, Model model) {
+		System.out.println(updateMember);
+		System.out.println(profile);
+		System.out.println("profileFlag: " + profileFlag);
+		
+			
+		String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+		int result = service.updateProfile(profile, savePath, updateMember, profileFlag) ;
+
+		if(result > 0 ) {
+			
+			swalIcon = "success";
+			swalTitle = "내 정보 수정 성공";
+			
+			Member newLoginMember = new Member();
+			newLoginMember = loginMember;
+			newLoginMember.setMemberNick(updateMember.getMemberNick());
+			newLoginMember.setMemberPhone(updateMember.getMemberPhone());
+			newLoginMember.setMemberAddress(updateMember.getMemberAddress());
+			
+			ProfileImg picture = lService.getProfile(loginMember.getMemberNo());
+			if(picture == null) {
+				picture = new ProfileImg();
+				picture.setPfName("profile.jpg");
+			} 
+			model.addAttribute("picture", picture);
+			
+			System.out.println("newLogin : "+ newLoginMember);
+			model.addAttribute("loginMember", newLoginMember);
+			
+		} else {
+			swalIcon = "error";
+			swalTitle = "내 정보 수정 실패";
+		}
+		
+		ra.addFlashAttribute("swalIcon", swalIcon);
+		ra.addFlashAttribute("swalTitle", swalTitle);
+		return "redirect:updateInfo";
+	}
+	
 	
 	//위시리스트 페이지 이동
 	@RequestMapping("myWishList")

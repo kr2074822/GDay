@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
@@ -25,7 +28,11 @@ import team.project.gday.member.bmem.model.service.BmemService;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.bmem.model.vo.RefundList;
+import team.project.gday.member.gmem.model.service.GmemService;
+import team.project.gday.member.model.vo.BmemberInfo;
+import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 
 
 @Controller
@@ -36,6 +43,15 @@ public class BmemController {
 
 	@Autowired 
 	private BmemService service;
+	
+	@Autowired
+	private GmemService gService;
+	
+	//sweet alert 메시지 전달용 변수 선언
+	private String swalIcon;
+	private String swalTitle;
+	private String swalText;
+
 	
 //	===================================== 화면 이동 관련 ======================================
 	
@@ -176,9 +192,58 @@ public class BmemController {
 	}
 		
 	//비즈니스 내 정보 수정 이동
-	@RequestMapping("bMemUpdate")
-	public String bMemUpdateForm() {
+	@RequestMapping("bMemUpdate/{memberNo}")
+	public String bMemUpdateForm(@PathVariable("memberNo") int memberNo,
+								Model model) {
+		
+		System.out.println("memberNo : " + memberNo );
+		
+		//bMeminfo
+		BmemberInfo bmemInfo = service.getBmemInfo(memberNo);
+		
+		model.addAttribute("bmemInfo", bmemInfo);
+		
+		//license
+		LicenseImg licenseImg = service.getLicense(memberNo);
+		
+		model.addAttribute("licenseImg", licenseImg);
+		
 		return "mypage/bMemPage/bMemUpdate";
+	}
+	
+	//내정보 수정
+	@RequestMapping("updateMember")
+	public String bMemInfoUpdate(@ModelAttribute(name="loginMember", binding=false) Member loginMember,
+									@ModelAttribute Member updateMember,
+									@RequestParam(value="profile", required = false) List<MultipartFile> profile,
+									@RequestParam(value="deleteProfile", required=false) boolean profileFlag, 
+									HttpServletRequest request,	SessionStatus status,
+									RedirectAttributes ra, Model model) {
+		System.out.println(updateMember);
+		System.out.println(profile);
+		System.out.println("profileFlag: " + profileFlag);
+		
+			
+		String savePath = request.getSession().getServletContext().getRealPath("resources/images/profileImg");
+		int result = gService.updateProfile(profile, savePath, updateMember, profileFlag) ;
+
+		if(result > 0 ) {
+			swalIcon = "success";
+			swalTitle = "내 정보 수정 성공";
+			
+			loginMember.setMemberNick(updateMember.getMemberNick());
+			loginMember.setMemberPhone(updateMember.getMemberPhone());
+			loginMember.setMemberAddress(updateMember.getMemberAddress());
+			
+			model.addAttribute("loginMember", loginMember);
+			
+		} else {
+			swalIcon = "error";
+			swalTitle = "내 정보 수정 실패";
+		}
+		ra.addFlashAttribute("swalIcon", swalIcon);
+		ra.addFlashAttribute("swalTitle", swalTitle);
+		return "redirect:bMemUpdate/" + updateMember.getMemberNo();
 	}
 	
 	//비즈니스 비밀번호 변경 이동
