@@ -207,6 +207,7 @@ public class AdminController {
 	public String adminReportStand(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
 								   Model model) {
 		
+<<<<<<< HEAD
 		// 페이징 처리
 		adminPageInfo pInfo = service.getPageRsInfo(cp);
 		// System.out.println(pInfo);
@@ -217,6 +218,16 @@ public class AdminController {
 		
 		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("rsList", rsList);
+=======
+		// 신고 대기 페이징 처리
+		adminPageInfo pInfo = service.getPageRsInfo(cp);
+		
+		// 신고 페이지 조회
+		List<Report> rpList = service.adminReportStand(pInfo);
+		
+		model.addAttribute("pInfo", pInfo);
+		
+>>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
 		return "admin/adminReportStand";
 	}
 	

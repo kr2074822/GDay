@@ -129,9 +129,15 @@
 		WHERE MEM_NO = #{memberNo}
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 신고 게시판 페이징 처리(목록 갯수) -->
 	<select id="getListRsCount" resultType="_int">
 		SELECT COUNT(*)
+=======
+	<!-- 신고 대기 페이징 처리(목록 갯수) -->
+	<select id="getListRsCount" resultType="_int">
+		SELECT *
+>>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
 		FROM REPORT
 	</select>
 	
