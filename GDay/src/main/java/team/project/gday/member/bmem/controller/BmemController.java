@@ -29,6 +29,7 @@ import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.bmem.model.vo.RefundList;
 import team.project.gday.member.gmem.model.service.GmemService;
+import team.project.gday.member.model.service.LoginService;
 import team.project.gday.member.model.vo.BmemberInfo;
 import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
@@ -46,6 +47,9 @@ public class BmemController {
 	
 	@Autowired
 	private GmemService gService;
+	
+	@Autowired
+	private LoginService lService;
 	
 	//sweet alert 메시지 전달용 변수 선언
 	private String swalIcon;
@@ -231,12 +235,25 @@ public class BmemController {
 			swalIcon = "success";
 			swalTitle = "내 정보 수정 성공";
 			
-			loginMember.setMemberNick(updateMember.getMemberNick());
-			loginMember.setMemberPhone(updateMember.getMemberPhone());
-			loginMember.setMemberAddress(updateMember.getMemberAddress());
+			Member newLoginMember = new Member();
+			newLoginMember = loginMember;
+			newLoginMember.setMemberNick(updateMember.getMemberNick());
+			newLoginMember.setMemberPhone(updateMember.getMemberPhone());
+			newLoginMember.setMemberAddress(updateMember.getMemberAddress());
 			
-			model.addAttribute("loginMember", loginMember);
+			ProfileImg picture = lService.getProfile(loginMember.getMemberNo());
+			if(picture == null) {
+				picture = new ProfileImg();
+				picture.setPfName("profile.jpg");
+				//status.setComplete();
+			} 
+			model.addAttribute("picture", picture);
 			
+			System.out.println("newLogin : "+ newLoginMember);
+			//로그인 새로 올리기
+			model.addAttribute("loginMember", newLoginMember);
+			
+			//request.getSession().setAttribute("loginMember", newLoginMember);
 		} else {
 			swalIcon = "error";
 			swalTitle = "내 정보 수정 실패";

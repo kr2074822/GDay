@@ -75,7 +75,7 @@
             <div class="info-form" id="info-nickname">
                 <label class="info-title"><span class="star">*</span>닉네임</label>
                 <input type="text" name="memberNick" value="${loginMember.memberNick}" class="info-content-1" required/>
-                <span class="info-content-2" id="check-nickname"></span>
+                <span class="info-content-2 info-hidden" id="check-nickname"></span>
                 <!-- 닉네임 중복확인 ajax : 문구 출력(check-nickname)-->
             </div>
             
@@ -103,7 +103,7 @@
 
             <div class="info-form" id="info-address-3">
                 <label for="address3" class="info-title">상세 주소</label>
-                <input type="text" name="address2" value="${address[3]}" class="postcodify_details info-content postcodify_details"/>
+                <input type="text" name="address2" value="${address[2]}" class="postcodify_details info-content postcodify_details"/>
                 <!-- 회원 주소1 : 우편번호-->
             </div>
             
@@ -129,6 +129,9 @@
 	        </div>
 	    </div>
     </div>
+
+<jsp:include page="../../common/footer.jsp"/>
+
     
 <!-- 도로명 주소 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>    

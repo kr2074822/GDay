@@ -12,7 +12,7 @@
 	<!-- sweetalert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/header.css" >
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/header.css?ver=1.0" >
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	
 	 <!-- swal2 -->
@@ -27,9 +27,8 @@
       <script>
          swal.fire({icon : "${swalIcon}",
              title : "${swalTitle}",
-             text : "${swalText}"
-             /* , confirmButtonColor:  */
-         			
+             text : "${swalText}", 
+             confirmButtonColor: "#54b39E"
          		});
       </script>
    </c:if>
@@ -108,11 +107,19 @@
 						            </c:if>
 						            
 						        </div>
+						        
+						        <c:if test="${loginMember.memberGrade == 'G'}">
+						        	<c:url var="mypageUrl" value="/gMember/orderList/G"/>
+						        </c:if>
+						        <c:if test="${loginMember.memberGrade == 'B' || loginMember.memberGrade == 'U'}">
+						        	<c:url var="mypageUrl" value="/bMember/bSellList"/>
+						        </c:if>
+						        
 						        <div class="menu">
 						            <h3>${loginMember.memberNick}<br><span>반갑습니다</span></h3>
 						            <ul>
 								        <li>
-								            <a href="#">
+								            <a href="${mypageUrl}">
 								                <div class="name"><span data-text="Home">마이페이지</span></div>
 								            </a>
 								        </li>
@@ -152,7 +159,7 @@
 									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
 									<li class="media-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
 									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>
-									<li class="media-li"><a href="#">마이페이지</a></li>
+									<li class="media-li"><a href="${mypageUrl}">마이페이지</a></li>
 									<li class="media-li"><a href="${contextPath}/message/message">쪽지</a></li>
 									<li class="media-li"><a href="#">고객센터</a></li>
 									<li class="media-li"><a href="${contextPath}/login/logout">로그아웃</a></li>
