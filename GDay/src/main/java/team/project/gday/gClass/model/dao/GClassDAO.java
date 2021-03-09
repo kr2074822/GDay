@@ -30,6 +30,7 @@ public class GClassDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	
 	/**전체 클래스 수 조회 DAO
 	 * @return classCount
 	 */
@@ -191,8 +192,8 @@ public class GClassDAO {
 	 * @param search
 	 * @return
 	 */
-	public int getSearchListCountAll(Search search) {
-		return sqlSession.selectOne("classMapper.getSearchListCountAll", search);
+	public int getSearchListCountAll(String sv) {
+		return sqlSession.selectOne("classMapper.getSearchListCountAll", sv);
 	}
 	
 	/**카테고리 검색 조건이 포함된 페이징 처리용 객체 얻어오기 DAO

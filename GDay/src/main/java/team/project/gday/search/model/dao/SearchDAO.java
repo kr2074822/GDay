@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.gift.model.vo.Gift;
-import team.project.gday.search.model.vo.PageInfoMain;
 import team.project.gday.search.model.vo.Search;
 
 @Repository
@@ -23,9 +22,8 @@ public class SearchDAO {
 	 * @param pInfo
 	 * @return gList
 	 */
-	public List<Gift> selectGiftSearchList(Search search, PageInfoMain pInfo) {
-		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+	public List<Gift> selectGiftSearchList(Search search) {
+		RowBounds rowBounds = new RowBounds(0, 10);
 		return sqlSession.selectList("searchMapper.selectGiftSearchList", search, rowBounds);
 	}
 
@@ -34,12 +32,15 @@ public class SearchDAO {
 	 * @param pInfo
 	 * @return cList
 	 */
-	public List<GClass> selectClassSearchList(Search search, PageInfoMain pInfo) {
-		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+	public List<GClass> selectClassSearchList(Search search) {
+		RowBounds rowBounds = new RowBounds(0, 10);
 		return sqlSession.selectList("searchMapper.selectClassSearchList", search, rowBounds);
 	}
 
+	/** 카테고리가 없을 때 검색 조건이 포함된 선물 목록 조회 DAO
+	 * @param search
+	 * @return
+	 */
 	public List<Gift> selectGiftListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
 		return sqlSession.selectList("searchMapper.selectGiftListAll", search, rowBounds);

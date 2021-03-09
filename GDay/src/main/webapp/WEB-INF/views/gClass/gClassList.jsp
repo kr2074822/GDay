@@ -323,12 +323,24 @@ input[name='category'] {
                 });
             });
 	
+
+        //맨 처음 페이지를 로드했을 때 hashNo가 체크되어 있으면 해당 카테고리를 선택
+         $(document).ready(function() {
+        		if($("input[name='hashNo']").is(":checked") == true){
+              let index = $(this).parent().parent().attr("data-text");
+          		$category = $("li[data-text='"+index+"'] > input[name='category']");
+
+          		$category.prop("checked", true);
+        		}
+        	});
+         
+         
         
-        
-        $("input[name='hashNo']").on("change", function(){
+       $("input[name='hashNo']").on("change", function(){
         	
         	let index = $(this).parent().parent().attr("data-text");
         	$category = $("li[data-text='"+index+"'] > input[name='category']");
+
         	
         	if($category.prop("checked")){
         		$category.prop("checked", false);
