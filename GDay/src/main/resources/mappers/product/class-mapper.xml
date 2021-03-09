@@ -242,4 +242,12 @@
 		 	#{prdt.prdtNo}
 		</foreach>
 	</select>
+	
+	<!-- 메인에서 상위 3개 클래스 가져오기 DAO -->
+	<select id="selectClassList3" resultMap="class_rm">
+		SELECT PRDT_NO, PRDT_NAME, PRDT_CONTENT, PRDT_PRICE, C_STATUS FROM V_CLASS 
+		WHERE PRDT_TYPE = 'C' AND PRDT_STATUS = 'Y'
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
 </mapper>

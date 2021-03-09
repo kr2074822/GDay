@@ -19,6 +19,10 @@ import team.project.gday.member.model.vo.Member;
  * @author hy
  *
  */
+/**
+ * @author hy
+ *
+ */
 @Repository
 public class GClassDAO {
 
@@ -171,6 +175,15 @@ public class GClassDAO {
 	 */
 	public List<ProductStar> selectStarList(List<GClass> gCList) {
 		return sqlSession.selectList("classMapper.selectStarList", gCList);
+	}
+
+
+	/**메인에서 상위 3개 클래스 가져오기 DAO
+	 * @return
+	 */
+	public List<GClass> selectClassList3() {
+		RowBounds rowBounds = new RowBounds(0, 3);
+		return sqlSession.selectList("classMapper.selectClassList3", null, rowBounds);
 	}
 
 

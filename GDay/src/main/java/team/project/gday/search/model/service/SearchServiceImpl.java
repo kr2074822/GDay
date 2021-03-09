@@ -20,12 +20,18 @@ public class SearchServiceImpl implements SearchService {
 	//메인 검색결과 선물 10개 보여주기
 	@Override
 	public List<Gift> selectGiftSearchList(Search search, PageInfoMain pInfo) {
+		if(search.getCategory() == null) {
+			return dao.selectGiftListAll();
+		}
 		return dao.selectGiftSearchList(search, pInfo);
 	}
 	
 	//메인 검색결과 클래스 10개 보여주기
 	@Override
 	public List<GClass> selectClassSearchList(Search search, PageInfoMain pInfo) {
+		if(search.getCategory() == null) {
+			return dao.selectClassListAll();
+		}
 		return dao.selectClassSearchList(search, pInfo);
 	}
 	
