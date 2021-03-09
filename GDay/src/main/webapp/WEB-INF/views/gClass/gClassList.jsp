@@ -73,7 +73,7 @@ input[name='category'] {
 				<div class="tag_wrapper">
 					<ul class="tagBx" data-text="0">
 						<li class="tag"><input type="checkbox" name="hashNo" value="1" id="aa"> <label for="aa" class="item">영유아</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="2" class="item" id="an"> <label for="an" class="item">어린이</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="2" id="an"> <label for="an" class="item">어린이</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="3" id="ac"> <label for="ac" class="item">청소년</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="4" id="ad"> <label for="ad" class="item">청년</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="5" id="ae"> <label for="ae" class="item">중년</label></li>
@@ -112,8 +112,8 @@ input[name='category'] {
 						<li class="tag"><input type="checkbox" name="hashNo" value="30" id="ef"> <label for="ef" class="item">어버이날</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="31" id="eg"> <label for="eg" class="item">스승의날</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="32" id="eh"> <label for="eh" class="item">입사ㆍ승진</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="33" id="eh"> <label for="eh" class="item">퇴사</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="34" id="eh"> <label for="eh" class="item">명절</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="33" id="ei"> <label for="ei" class="item">퇴사</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="34" id="ej"> <label for="ej" class="item">명절</label></li>
 					</ul>
 					<ul class="tagBx" data-text="5">
 						<li class="tag"><input type="checkbox" name="hashNo" value="35" id="fa"> <label for="fa" class="item">봄</label></li>
@@ -129,7 +129,7 @@ input[name='category'] {
 						<li class="tag"><input type="checkbox" name="hashNo" value="43" id="ge"> <label for="ge" class="item">Blue</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="44" id="gf"> <label for="gf" class="item">Navy</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="45" id="gg"> <label for="gg" class="item">Purple</label></li>
-						<li class="tag"><input type="checkbox" name="hashNo" value="46" id="gg"> <label for="gg" class="item">Pink</label></li>
+						<li class="tag"><input type="checkbox" name="hashNo" value="46" id="gl"> <label for="gl" class="item">Pink</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="47" id="gh"> <label for="gh" class="item">White</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="48" id="gi"> <label for="gi" class="item">Black</label></li>
 						<li class="tag"><input type="checkbox" name="hashNo" value="59" id="gk"> <label for="gk" class="item">기타</label></li>
@@ -272,7 +272,7 @@ input[name='category'] {
      */
     
     
-        const img = document.getElementById("img");
+       /*  const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");
         const tagBx = document.getElementsByClassName("tagBx");
 
@@ -285,6 +285,43 @@ input[name='category'] {
         const aaa = document.getElementById('baby');
         
         const li = document.querySelectorAll('li.item');
+        
+        
+        
+        
+        const selectBtn = document.getElementsByClassName("selectBtn"); */
+        
+        
+        
+        
+        
+        
+        
+        const img = document.getElementById("img");
+        const item = document.getElementsByClassName("item");
+        const tagBx = document.getElementsByClassName("tagBx");
+        
+        const search = document.getElementById("search");
+        var text = '';
+        var change = '';
+        
+        const listBx = document.getElementsByClassName('listBx');
+        const input = document.querySelectorAll('input[type="checkbox"]');
+        const aaa = document.getElementById('baby');
+        
+        const li = document.querySelectorAll('li.item');
+        
+        const selectBtn = document.getElementsByClassName("selectBtn");
+        
+        const popup = document.getElementsByClassName("popup");
+        const hash_tag = document.getElementById("hash_span");
+        const hsearch = document.getElementById("hsearch");
+
+        
+        
+        
+        
+        
         
 		  	//Javascript
 		    var count = 0;
@@ -335,7 +372,7 @@ input[name='category'] {
         	});
          
          
-        
+     /*    
        $("input[name='hashNo']").on("change", function(){
         	
         	let index = $(this).parent().parent().attr("data-text");
@@ -343,12 +380,56 @@ input[name='category'] {
 
         	
         	if($category.prop("checked")){
-        		$category.prop("checked", false);
+        		
+        		console.log($category.prop("checked"));
         	}else{
-        		$category.prop("checked", true);
+        		//$category.prop("checked", true);
+        		console.log($category.prop("checked"));
         	}
         });
+       
+        */
+       
+        
 
+       // 체크된 갯수
+       
+        for (const input_list of input) {
+            let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
+            input_list.addEventListener('click', ()=> {
+                if(input_list.checked == true){
+                   	console.log(input_list.checked)
+                   	
+                   	
+                   	console.log(item[div_index].firstChild.nextSibling.checked = true)
+                }else{
+                	let cnt = 0;
+                    let aa = input_list.parentElement.parentElement.querySelectorAll('input')
+                    console.log(input_list.parentElement.parentElement.querySelectorAll('input'))
+                    for (const bb of aa) {
+                    	console.log(123)
+                        if(bb.checked){
+                            cnt=cnt+1;
+                        }else{
+                            cnt=cnt-1
+                        }
+                    	console.log(cnt)
+                    }
+                    if(cnt*(-1) == aa.length){
+                    	item[div_index].firstChild.nextSibling.checked = false
+                    }
+                }
+                
+            });
+        } 
+       
+       
+       
+       
+       
+       
+       
+       
     </script>
 </body>
 </html>
