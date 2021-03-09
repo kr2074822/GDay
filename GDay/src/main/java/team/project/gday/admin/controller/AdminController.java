@@ -196,14 +196,28 @@ public class AdminController {
 	}
 	
 	// 신고하기 Controller
-	@RequestMapping(value="report", method=RequestMethod.POST)
-	public String report(@ModelAttribute Member member,
-						 @RequestParam int report,
-						 @RequestParam String prdtNo) {
+	@RequestMapping(value="reportForm/report", method=RequestMethod.POST)
+	public String report(@ModelAttribute(name="loginMember", binding=false) Member loginMember,
+						 @ModelAttribute Report report,
+						 @RequestParam int prdtNo
+						 ) {
 		
 		System.out.println(prdtNo);
-		System.out.println(member);
-		return "admin/reportForm" ;
+		System.out.println(report);
+		System.out.println(loginMember);
+		
+		report.setParentNo(prdtNo);
+		report.setMemberNo(loginMember.getMemberNo());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("loginMember", loginMember);
+		map.put("prdtNo", prdtNo);
+		
+		
+		System.out.println("map " + map);
+		
+		int result = service.report(map, report);
+		
+		return "admin/reportResult";
 	}
 	// -----------------------------------------------------------------
 	

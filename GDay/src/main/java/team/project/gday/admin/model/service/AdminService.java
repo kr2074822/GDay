@@ -103,7 +103,7 @@ public interface AdminService {
 	 * @param map
 	 * @return result
 	 */
-	public abstract int report(Map<String, Object> map);
+	public abstract int report(Map<String, Object> map, Report report);
 
 
 
