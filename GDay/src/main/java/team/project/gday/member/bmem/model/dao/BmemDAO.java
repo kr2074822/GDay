@@ -125,6 +125,21 @@ public class BmemDAO {
 	}
 	
 	
+	// 판매 회원 수강 취소 목록 개수 조회 DAO
+	public int getCcListCount(Member loginMember) {
+		return sqlSession.selectOne("bMemMapper.getCcListCount", loginMember);
+	}
+
+	// 판매 회원 수강 취소 목록 페이징 처리 객체 생성 DAO
+	public List<RefundList> bClassCancelList(PageInfo9 pInfo, Member loginMember) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, 10);
+
+		return sqlSession.selectList("bMemMapper.bClassCancelList", loginMember, rowBounds);
+	}
+	
+	
 	
 	
 	// 주문 상태 변경 DAO
@@ -147,6 +162,11 @@ public class BmemDAO {
 		return sqlSession.update("bMemMapper.enrolmentStatusChange", map);
 	}
 	
+	// 수강 취소 상태 변경
+	public int classCancelStatusChange(Map<String, Object> map) {
+		return sqlSession.update("bMemMapper.classCancelStatusChange", map);
+	}
+	
 	
 
 	public int accountDel(String memberEmail) {
@@ -161,5 +181,5 @@ public class BmemDAO {
 		return sqlSession.selectOne("memberMapper.loginAction", inputMember);
 	}
 
-
+	
 }

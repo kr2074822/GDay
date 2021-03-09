@@ -38,9 +38,9 @@ td{
 					<table class="table" id="list-table">
 						<thead>
 							<tr>
-								<th>작성자</th>
+								<th>문의 번호</th>
 								<th>문의 내용</th>
-								<th>작성일</th>
+								<th>작성자</th>
 								<th>게시글 상태</th>
 							</tr>
 						</thead>
@@ -49,7 +49,7 @@ td{
 							<!-- 고객센터 문의글이 없을 경우 -->
 	                    	<c:if test="${empty cList}">
 	                    		<tr>
-	                    			<td colspan="6">존재하는 문의글이 없습니다.</td>
+	                    			<td colspan="4">존재하는 문의글이 없습니다.</td>
 	                    		</tr>
 	                    	</c:if>
 	                    	<c:if test="${!empty cList}">
@@ -58,6 +58,7 @@ td{
 									<tr>
 										<td>${customor.cusNo}</td>
 										<td>${customor.cusContent}</td>
+										<td>${customor.memNo}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>

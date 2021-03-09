@@ -24,7 +24,9 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
+import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.service.GmemService;
+import team.project.gday.member.model.vo.ListCondition;
 import team.project.gday.review.model.service.ReviewService;
 import team.project.gday.review.model.vo.Review;
 
@@ -119,5 +121,66 @@ public class ReviewController {
 		
 		return result;
 	}
+	
+	@RequestMapping("selectReviewList/{memberNo}")
+	public String selectReviewList(@ModelAttribute ListCondition listCd,
+									@RequestParam("writerNo") int memberNo,
+									@RequestParam("type") String type) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("writerNo", memberNo);
+		map.put("start", listCd.getPeriodStart());		
+		map.put("end", listCd.getPeriodEnd());
+		map.put("cp", listCd.getCp());
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		PageInfo9 pInfo = rService.getPageInfo(map);
+		pInfo.setLimit(5);
+		
+		returnMap.put("pInfo", pInfo);
+		
+		List<Review> rList = rService.selectReviewList(pInfo, map);
+		
+		returnMap.put("rList", rList);
+		
+		if(rList != null && !rList.isEmpty()) {
+			List<Order> oList = rService.selectOList(rList);
+			
+			if(oList != null & !oList.isEmpty()) {
+				returnMap.put("oList", oList);
+			
+			
+			if(type.equals("G")) {//선물일 때
+					
+					//선물이면 goption 가져와야 함
+					List<GOption> optList = rService.selectOptList(rList);
+					
+					if(optList != null && !optList.isEmpty()) {
+						returnMap.put("optList", optList);//선물 : returnMap에 optList 추가
+					}
+						//System.out.println("optList : " + optList);
+					
+				} else if (type.equals("C")) {//클래스일 때
+					//클래스면 gclass를 가져와야 함
+					
+					List<GClass> cList = rService.selectCList(rList);
+					
+					if(cList != null && !cList.isEmpty()) {
+						returnMap.put("cList", cList);
+					}
+					
+					//System.out.println(cList);
+				} 
+			
+			}
+			
+		}
+		
+		return "";
+	}
+	
 	
 }

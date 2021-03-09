@@ -19,7 +19,7 @@
 		
 		<div id="b-cancel-list-wrapper">
 		
-			<h1>주문 조회</h1>
+			<h1>주문 취소 조회</h1>
 			
 			<div id="wrapper-top-area">
 			<!-- 주문 목록 기간 검색 -->
@@ -57,14 +57,10 @@
 				<thead>
 					<tr id="table-head" style="border-bottom: 1px solid black; background-color: lightgray;">
 						<th></th>
-						<th class="hide">주문번호</th>
 						<th class="hide">상품 번호</th>
-						<th class="hide">주문일</th>
-						<th class="hide">주문자</th>
-						<th>상품명</th>
-						<th class="hide">옵션</th>
-						<th class="hide">수량</th>
-						<th class="hide">금액</th>
+						<th class="hide">반품일</th>
+						<th class="hide">구매자</th>
+						<th class="hide">반품 사유</th>
 						<th class="hide">상태</th>
 					</tr>
 				</thead>
@@ -79,30 +75,22 @@
 						<c:forEach var="cancel" items="${oCList}" varStatus="vs">
 							<tr class="cancel-rows">
 								<td><input type="checkbox" name="cancelSelectBox"/></td>
-								<td class="cancel-td hide">${cancel.orderNo}</td>
 								<td class="cancel-td hide">${cancel.opNo}</td>
 								<td class="cancel-td hide">
 									<%-- 날짜 출력 모양 지정 --%>
-									<fmt:formatDate var="createDate" value="${cancel.orderDate }" pattern="yyyy-MM-dd"/>
+									<fmt:formatDate var="createDate" value="${cancel.refundDate }" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate var="now" value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/> 
 									<c:choose>
 										<c:when test="${createDate != now}">
 											${createDate }
 										</c:when>
 										<c:otherwise>
-											<fmt:formatDate value="${cancel.orderDate }" pattern="HH:mm"/>
+											<fmt:formatDate value="${cancel.refundDate }" pattern="HH:mm"/>
 										</c:otherwise>
 									</c:choose>
 								</td>
 								<td class="cancel-td hide">${cancel.memName}</td>
-								<td class="cancel-td prdt-name">${cancel.prdtName}</td>
-								<td class="cancel-td opName hide">
-									<c:if test="${!empty gOpName}">
-										<c:forEach var="optName" items="${gOpName}}"></c:forEach>
-									</c:if>
-								</td>
-								<td class="cancel-td hide">${cancel.opAmount}</td>
-								<td class="cancel-td hide">${cancel.prdtPrice}</td>
+								<td class="cancel-td hide">${cancel.rfReasonName}</td>
 								<td class="cancel-td hide">${cancel.statusName}</td>
 
 							</tr>
@@ -273,11 +261,11 @@
  		
  		$("[name='cancelSelectBox']").on("change", function() {
  			if($(this).is(":checked")) {
- 				opAry.push($(this).parent().next().next().text());
+ 				opAry.push($(this).parent().next().text());
  				
  			} else {
  				for(var i = 0; i < opAry.length; ++i) {
- 					if(opAry[i] == $(this).parent().next().next().text()) {
+ 					if(opAry[i] == $(this).parent().next().text()) {
  						opAry.splice(i, 1);
  					}
  				} 		
