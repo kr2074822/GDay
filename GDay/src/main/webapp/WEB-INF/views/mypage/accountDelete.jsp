@@ -32,7 +32,7 @@
 			
 		<div id="wrapper">
 		
-			<c:if test="${loginMember.memberGrade == 'B' }">
+			<c:if test="${loginMember.memberGrade == 'B' || loginMember.memberGrade == 'U'}">
 				<jsp:include page="bMemPage/bMemSidebar.jsp"/>	
 			</c:if>
 			<c:if test="${loginMember.memberGrade == 'G' }">
