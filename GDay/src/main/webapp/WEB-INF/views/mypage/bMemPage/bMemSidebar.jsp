@@ -27,7 +27,13 @@
     <div class="sidebar-area">
 		    <div class="pageTitle">마이 페이지</div>
         <div id="sidebar-mypage">
-           	<c:url var="pfUrl" value="${picture.pfPath}/${picture.pfName}"/>
+	       		<c:if test="${!empty picture}">
+        			<c:url var="pfUrl" value="/resources/images/profileImg/${picture.pfName}"/>
+        		</c:if>
+        		<c:if test="${empty pictures}">
+        			<c:url var="pfUrl" value="/resources/images/profileImg/profile.jpg"/>
+        		</c:if>
+        		
         		
             <div id="myProfile" style="background-image:url(${pfUrl})"></div>
             <span id="nickName">${loginMember.memberNick}</span>

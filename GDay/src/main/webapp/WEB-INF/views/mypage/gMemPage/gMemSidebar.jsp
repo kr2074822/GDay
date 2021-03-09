@@ -15,7 +15,14 @@
   <div class="sidebar-area">
     <div class="pageTitle">마이 페이지</div>
         <div id="sidebar-mypage">
-        		<c:url var="pfUrl" value="${picture.pfPath}/${picture.pfName}"/>
+        
+        		<c:if test="${!empty picture}">
+        			<c:url var="pfUrl" value="/resources/images/profileImg/${picture.pfName}"/>
+        		</c:if>
+        		<c:if test="${empty pictures}">
+        			<c:url var="pfUrl" value="/resources/images/profileImg/profile.jpg"/>
+        		</c:if>
+        		
         		
             <div id="myProfile" style="background-image:url(${pfUrl})"></div>
             <span id="nickName">${loginMember.memberNick}</span>
@@ -51,11 +58,11 @@
                   <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                   <span class="menu-text">내 정보</span>
                   </a></li>
-              <li><a >
+              <li><a>
                   <span class="menu-icon"><i class="fas fa-user-shield" style="font-size : 20px"></i></span>
                   <span class="menu-text">비밀번호 변경</span>
                   </a></li>
-              <li><a >
+              <li><a href="${contextPath}/gMember/bMemSessionUpdate">
                   <span class="menu-icon"><i class="fas fa-sad-tear"></i></span>
                   <span class="menu-text">회원 탈퇴</span>
                   </a></li>
