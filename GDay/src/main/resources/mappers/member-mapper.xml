@@ -114,7 +114,7 @@
 	<!-- 일반 회원 가입 -->
 	<insert id="signUp" parameterType="Member">
 		INSERT INTO MEMBER(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_NICK, MEM_PHONE, MEM_GRADE, MEM_TYPE, MEM_SEC)
-		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberPhone}, #{memberNick}, #{memberGrade}, 'G', DEFAULT)
+		VALUES(SEQ_MNO.NEXTVAL, #{memberEmail}, #{memberPwd}, #{memberName}, #{memberNick}, #{memberPhone}, #{memberGrade}, 'G', DEFAULT)
 	</insert>
 	
 	<!-- 회원 번호 조회 -->
