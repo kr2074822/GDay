@@ -29,6 +29,7 @@
   	
   	#wrapper-list {
   		display : flex;
+  		
   	}
   	body { height : 100vh;}
   	</style>
