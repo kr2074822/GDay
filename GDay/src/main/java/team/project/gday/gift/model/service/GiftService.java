@@ -9,6 +9,8 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
 public interface GiftService {
@@ -67,5 +69,29 @@ public interface GiftService {
 	 * @return
 	 */
 	int updateGift(Map<String, Object> map, List<MultipartFile> images, String savePath);
+
+	/** 페이지 처리 객체 생성 Service
+	 * @param cp
+	 * @return
+	 */
+	PageInfo10 getPageInfo(int cp);
+
+	/** 선물 목록 조회 Service
+	 * @param pInfo
+	 * @return
+	 */
+	List<Gift> selectList(PageInfo10 pInfo);
+
+	/** 썸네일 목록 조회
+	 * @param gift
+	 * @return
+	 */
+	List<Attachment> selectThumbnailList(List<Gift> gift);
+
+	/** 평균 별점
+	 * @param gift
+	 * @return
+	 */
+	List<ProductStar> selectStarList(List<Gift> gift);
 
 }
