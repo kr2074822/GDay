@@ -159,6 +159,9 @@ input[name='category'] {
 	</form>
 
 	<section class="gift">
+	 <div class="title">
+     <span>Class</span>
+   </div>
 		<div class="search_result">
 			<h2>
 				<span>${pInfo.listCount}</span>개 상품
@@ -169,7 +172,7 @@ input[name='category'] {
 		</div>
 		<!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
 		<c:if test="${empty gCList}">
-			<div class="">조건에 맞는 상품이 없습니다.</div>
+			<div class="gift_wrapper">조건에 맞는 상품이 없습니다.</div>
 		</c:if>
 		<c:if test="${!empty gCList}">
 			<div class="gift_wrapper">
@@ -180,13 +183,18 @@ input[name='category'] {
 							<c:if test="${th.prdtNo == gClass.prdtNo}">
 								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
 							</c:if>
-
 						</c:forEach>
+						
 							<c:if test="${gClass.cStatus == 'N'}">
 								<div class="sold_out">
 									<h1>마감</h1>
 								</div>
 							</c:if>
+						
+		     <div class="more">
+            <a href=""><span>More</span></a>
+        </div>					
+						
 
 						<a href="${gClass.prdtNo}">
 							<h1>${gClass.prdtName}</h1> 

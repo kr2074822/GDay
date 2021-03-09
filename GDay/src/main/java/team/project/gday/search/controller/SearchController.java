@@ -16,7 +16,6 @@ import team.project.gday.gClass.model.service.GClassServiceImpl;
 import team.project.gday.gift.model.service.GiftServiceImpl;
 import team.project.gday.gift.model.vo.Gift;
 import team.project.gday.search.model.service.SearchService;
-import team.project.gday.search.model.vo.PageInfoMain;
 import team.project.gday.search.model.vo.Search;
 
 @Controller
@@ -34,11 +33,10 @@ public class SearchController {
 							Model model) {
 		
 		//1. (선물 찾기 + 10개만 보여주기) 검색 조건이 포함된 클래스 목록 조회
-		PageInfoMain pInfo = new PageInfoMain(cp);
-		List<Gift> gCList = service.selectGiftSearchList(search, pInfo);
+		List<Gift> gCList = service.selectGiftSearchList(search);
 		
 		//2. (클래스 찾기 + 10개만 보여주기) 검색 조건이 포함된 선물 목록 조회
-		List<GClass> cList = service.selectClassSearchList(search, pInfo); 
+		List<GClass> cList = service.selectClassSearchList(search); 
 		
 		//3. 썸네일 가져오기
 		//if(gList!=null) { List<Attachment> gThumbnailList = new GiftServiceImpl().selectThumbnaiList(gList); }
@@ -46,7 +44,6 @@ public class SearchController {
 				
 		model.addAttribute("gCList", gCList);
 		model.addAttribute("cList", cList);
-		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("search", search);
 		
 		return "search/mainSearch";
