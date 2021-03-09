@@ -43,5 +43,9 @@ public class MessageDAO {
 		return sqlSession.update("messageMapper.read", map);
 	}
 
+	public int gcMsg(Message message) {
+		return sqlSession.insert("messageMapper.gcMsg", message);
+	}
+
 
 }
