@@ -3,6 +3,8 @@ package team.project.gday.member.bmem.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.Gift;
@@ -191,5 +193,14 @@ public interface BmemService {
 	 * @return
 	 */
 	LicenseImg getLicense(int memberNo);
+
+	
+	/** 비즈니스 인증 재신청
+	 * @param bmemberInfo
+	 * @param license
+	 * @param savePath 
+	 * @return
+	 */
+	int recertifyLcs(BmemberInfo bmemberInfo, MultipartFile license, String savePath);
 
 }

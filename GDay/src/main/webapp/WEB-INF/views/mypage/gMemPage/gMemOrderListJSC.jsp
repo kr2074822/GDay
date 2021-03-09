@@ -214,7 +214,7 @@ function selectOrderList(cp){
 				else if(tabMenu == "endClass") msg = "😥수강 완료 내역이 없습니다😥";
 				
 			
-				var span = $("<span>").addClass('no-list-text').text();		
+				var span = $("<span>").addClass('no-list-text').text(msg);		
 				div.append(span);
 				listContainer.append(div);
 				

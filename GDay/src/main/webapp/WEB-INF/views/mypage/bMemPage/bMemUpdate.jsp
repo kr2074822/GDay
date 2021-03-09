@@ -61,7 +61,7 @@
             </div>
             <input type="hidden" name="deleteProfile" class="delete-profile">
 
-						<input type=number class="info-hidden" value="${loginMember.memberNo}" name="memberNo"/>
+						<input type="number" class="info-hidden" value="${loginMember.memberNo}" name="memberNo"/>
             <div class="info-form" id="info-emain">
                 <label class="info-title">이메일</label>
                 <span class="info-content">${loginMember.memberEmail}</span><!-- 회원 이메일 -->
@@ -117,29 +117,35 @@
         <c:if test="${loginMember.memberGrade == 'B'}">    
         	<c:set var="status" value="비즈니스 인증 완료"/>
         </c:if>
-        <c:if test="${loginMember.memberGrade == 'U'}">
+        <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'N'}">
         	<c:set var="status" value="비즈니스 인증 대기"/>
+        </c:if>  
+        <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'R'}">
+        	<c:set var="status" value="인증 재신청 필요"/>
         </c:if>  
         <!-- 비즈니스 회원 정보 인증? -->
         <div class="row" id="container-info-form-2">
-            <form method="post" id="container-form-2">
+           <form id="container-form-2" enctype="multipart/form-data">
             <div class="info-form" id="info-b-update">
                 <label class="info-title">비즈니스 인증 정보</label>
                 <div class="info-btns">
                     <button type="button" class="info-btn" id="b-update-btn">수정</button>
-                    <button type="button" class="info-btn" id="b-validate-btn">인증</button>
+                    <button type="button" class="info-btn" id="b-validate-btn" onclick="recertification();">인증</button>
                     <button type="button" class="info-btn" id="b-cancel-btn">취소</button>
                 </div>
                 <div class="status-text">${status}</div>
             </div>
             <div class="info-form" id="info-b-company">
                 <label class="info-title"><span class="star">*</span>업체명/강사명</label>
-                <input type="text" id="company" name="bmemShop" value="${bmemInfo.bmemShop}" class="info-content" readonly/>
+                <input type="text" id="company" name="bmemShop" value="${bmemInfo.bmemShop}" 
+                		class="info-content" maxlength="30" readonly/>
                 <div class="info-content" id="check-company">※ 등록증(자격증)과 동일한 이름을 기입해야 승인됩니다.</div>
             </div>
             <div class="info-form" id="info-b-explain">
                 <label for="explain" class="info-title">비즈니스 소개</label>
-                <textarea name="bmemIntro" id="explain" class="info-b-textarea" readonly>${bmemInfo.bmemIntro}</textarea>
+                <textarea name="bmemIntro" id="explain" class="info-b-textarea"
+                	placeholder="소개는 10자 이상 작성하는 것이 좋습니다."
+                	 maxlength="650" readonly>${bmemInfo.bmemIntro}</textarea>
                 <!-- 회원 주소1 : 우편번호-->
             </div>
             <div class="info-form" id="info-b-license">
@@ -154,7 +160,7 @@
             <div id="license-area">
                 <input type="file" id="license" name="license" onchange="LoadLicense(this,0)"> 
             </div>
-            </form>
+           </form>
         </div>
     </div>
 
@@ -175,7 +181,9 @@
   
 <jsp:include page="../../common/footer.jsp"/>
    
-    <!-- 도로명 주소 -->
+<script type="text/javascript" src="${contextPath}/resources/js/jquery.form.min.js"></script>
+<!-- <script src="http://malsup.github.com/jquery.form.js"></script>  -->
+<!-- 도로명 주소 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>  
     <script>
 	/* 도로명 주소 API */

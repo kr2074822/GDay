@@ -245,7 +245,7 @@ function selectReviewList(cp){
 				
 				var msg = "작성한 후기가 없습니다😥";
 
-				var span = $("<span>").addClass('no-list-text').text();		
+				var span = $("<span>").addClass('no-list-text').text(msg);		
 				div.append(span);
 				listContainer.append(div);
 				

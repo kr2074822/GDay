@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
-    
-  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.0"/>
+  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.1"/>
   <!-- icon : font-awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -14,20 +14,22 @@
 
   <div class="sidebar-area">
     <div class="pageTitle">마이 페이지</div>
-<!--       <div id="sidebar-mypage">
-          <img src="#" id="myProfile">
-          <span id="nickName">닉네임</span>
-      </div> -->
+        <div id="sidebar-mypage">
+        		<c:url var="pfUrl" value="${picture.pfPath}/${picture.pfName}"/>
+        		
+            <div id="myProfile" style="background-image:url(${pfUrl})"></div>
+            <span id="nickName">${loginMember.memberNick}</span>
+        </div>
       <div id="sidebar-ul">
           <ul class="sidebar-menu">
-              <li class="active-sidebar">
+              <li>
               		<a class="up-menu">
                   <span class="menu-icon"><i class="far fa-credit-card"></i></span>
                   <span class="menu-text">주문 내역</span>
-                  </a></li>
+                  </a>
 
                   <ul class="sub-menu">
-                      <li class="active-sidebar"><a href="${contextPath}/gMember/orderList/G">
+                      <li><a href="${contextPath}/gMember/orderList/G">
                           <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                           <span class="submenu-text">선물 리스트</span>
                           </a></li>
@@ -36,10 +38,11 @@
                           <span class="submenu-text">클래스 리스트</span>
                           </a></li>
                   </ul>
-              <li><a href="${contextPath}/gMember/myWishList">
+              </li>    
+             <%--  <li><a href="${contextPath}/gMember/myWishList">
                   <span class="menu-icon"><i class="fas fa-heart"></i></span>
                   <span class="menu-text">위시 리스트</span>
-                  </a></li>
+                  </a></li> --%>
               <li><a href="${contextPath}/gMember/myReviews">
                   <span class="menu-icon"><i class="fas fa-feather"></i></span>
                   <span class="menu-text">나의 후기</span>

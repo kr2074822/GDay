@@ -262,14 +262,14 @@ function insertReview(){
 		
 		if(rvStar.length == 0) {
 			flag = false;
-			swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>"});
+			swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>",confirmButtonColor: "#54b39E"});
 			return false;
 		} else {
 			flag = true;
 		}
 		if(rvContent.trim().length < 10){
 			flag = false;
-			swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>"});
+			swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>",confirmButtonColor: "#54b39E"});
 			return false;
 		} else {
 			flag = true;
@@ -304,11 +304,11 @@ function insertValidate(){
 	var rvContent = $("textarea[name='rvContent']").val();
 	
 	if(rvStar.length == 0) {
-		swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>"});
+		swal.fire({icon:"warning", html:"<h2>별을 클릭해</h2><h2>별점을 매겨주세요!</h2>", confirmButtonColor: "#54b39E"});
 		return false;
 	}
 	if(rvContent.trim().length < 10){
-		swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>"})
+		swal.fire({icon:"warning", html:"<h2>후기를 10자 이상</h2><h2>작성해주세요.</h2>", confirmButtonColor: "#54b39E"})
 		return false;
 	}
 }

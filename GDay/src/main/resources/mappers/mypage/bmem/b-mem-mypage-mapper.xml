@@ -357,8 +357,35 @@
 	</select>
 	
 	
+	<!-- 비즈니스 회원 정보 수정 -->
+	<update id="updateBmemInfo" parameterType="BmemberInfo">
+		UPDATE BMEMBER SET
+		BMEM_SHOP = #{bmemShop},
+		BMEM_INTRO = #{bmemIntro}
+		WHERE MEM_NO = #{bmemNo}
+	</update> 
 	
+	<!-- 라이선스 업데이트 -->
+	<update id="updateLicense" parameterType="LicenseImg">
+		UPDATE LICENSE_IMG SET
+		LCS_PATH = #{lcsPath},
+		LCS_NAME = #{lcsName},
+		LCS_STATUS = 'N'
+		WHERE MEM_NO = #{memNo}
+	</update>
 	
+	<!-- 라이선스 삽입 -->
+	<insert id="insertLicense" parameterType="LicenseImg">
+		INSERT INTO LICENSE_IMG VALUES
+		(#{memNo}, #{lcsPath}, #{lcsName}, 'N', SYSDATE)
+	</insert>
+	
+	<!-- 멤버 테이블 등급 변경 -->
+	<update id="updateMemGrade" parameterType="_int">
+		UPDATE MEMBER SET 
+		MEM_GRADE = 'U'
+		WHERE MEM_NO = #{memberNo}
+	</update>
 	
 	
 </mapper>
