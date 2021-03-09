@@ -4,9 +4,9 @@ public class PaymentInfo {
 	private int cartNo;
 	private int prdtNo;
 	private String prdtName;
-	private int optNo;
+	private int gOptNo;
 	private int prdtPrice;
-	private int prdtAmount;
+	private int cartAmount;
 	
 	public PaymentInfo() {
 		// TODO Auto-generated constructor stub
@@ -36,12 +36,12 @@ public class PaymentInfo {
 		this.prdtName = prdtName;
 	}
 
-	public int getOptNo() {
-		return optNo;
+	public int getgOptNo() {
+		return gOptNo;
 	}
 
-	public void setOptNo(int optNo) {
-		this.optNo = optNo;
+	public void setgOptNo(int gOptNo) {
+		this.gOptNo = gOptNo;
 	}
 
 	public int getPrdtPrice() {
@@ -52,20 +52,19 @@ public class PaymentInfo {
 		this.prdtPrice = prdtPrice;
 	}
 
-	public int getPrdtAmount() {
-		return prdtAmount;
+	public int getCartAmount() {
+		return cartAmount;
 	}
 
-	public void setPrdtAmount(int prdtAmount) {
-		this.prdtAmount = prdtAmount;
+	public void setCartAmount(int cartAmount) {
+		this.cartAmount = cartAmount;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderInfo [cartNo=" + cartNo + ", prdtNo=" + prdtNo + ", prdtName=" + prdtName + ", optNo=" + optNo
-				+ ", prdtPrice=" + prdtPrice + ", prdtAmount=" + prdtAmount + "]";
+		return "PaymentInfo [cartNo=" + cartNo + ", prdtNo=" + prdtNo + ", prdtName=" + prdtName + ", gOptNo=" + gOptNo
+				+ ", prdtPrice=" + prdtPrice + ", cartAmount=" + cartAmount + "]";
 	}
-	
 	
 	
 }

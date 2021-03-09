@@ -2,18 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="paymentMapper">
 
-	<!-- 장바구니 resultMap -->
-	<resultMap type="Baguni" id="cart_rm">
+	<!-- 결제 정보 resultMap -->
+	<resultMap type="PaymentInfo" id="payment_rm">
 		<id property="cartNo" column="CART_NO"/>
 		
-   		<result property="prdtName" column="PRDT_NAME"/>
   		<result property="prdtNo" column="PRDT_NO"/>
-  		<result property="memNo" column="MEM_NO"/>
-  		<result property="gOptName" column="G_OPT_NAME"/>
+  		<result property="prdtName" column="PRDT_NAME"/>
   		<result property="gOptNo" column="G_OPT_NO"/>
-  		<result property="cartAmount" column="CART_AMOUNT"/>
   		<result property="prdtPrice" column="PRDT_PRICE"/>
-  		<result property="prdtType" column="PRDT_TYPE"/>
+  		<result property="cartAmount" column="CART_AMOUNT"/>
 	</resultMap>
 	
 	<!-- 파일 resultMap -->
@@ -29,9 +26,11 @@
 	
 	
 	<!-- 결제창 주문목록 조회 -->
-	<select id="orderList" parameterType="_int" resultMap="cart_rm">
+	<select id="orderList" parameterType="map" resultMap="payment_rm">
 		SELECT * FROM V_BAGUNI
-		WHERE MEM_NO = #{memberNo}
+		<foreach collection="oList" item="orderProduct" open="WHERE CART_NO = " separator="OR CART_NO = ">
+			#{orderProduct.cartNo}
+		</foreach>
 	</select>
 	
 	<!-- 결제창 주문목록 썸네일 조회 -->
