@@ -9,6 +9,8 @@ import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.bmem.model.vo.RefundList;
+import team.project.gday.member.model.vo.BmemberInfo;
+import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
 
 public interface BmemService {
@@ -177,5 +179,17 @@ public interface BmemService {
 	int accountDel(Member loginMember);
 
 	int enrolmentStatusChange(Map<String, Object> map);
+
+	/** 비즈니스 회원 정보 조회
+	 * @param memberNo
+	 * @return
+	 */
+	BmemberInfo getBmemInfo(int memberNo);
+
+	/** 비즈니스 회원 라이선스 조회
+	 * @param memberNo
+	 * @return
+	 */
+	LicenseImg getLicense(int memberNo);
 
 }

@@ -14,6 +14,7 @@ import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
@@ -183,8 +184,74 @@ public class GmemDAO {
 		return sqlSession.update("memberMapper.accountDel", memberEmail);
 	}
 
+	
+	//----------------------------------------------
+
+	/** 내정보 기본 정보 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public Member getMemInfo(int memberNo) {
+		return sqlSession.selectOne("gMemMapper.getMemInfo", memberNo);
+	}
+
+	/** 내정보 기본 프로필 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public ProfileImg getProfile(int memberNo) {
+		return sqlSession.selectOne("gMemMapper.getProfile", memberNo);
+	}
+
+	/** 회원 일반 정보 update
+	 * @param updateMember
+	 * @return
+	 */
+	public int updateAction(Member updateMember) {
+		return sqlSession.update("gMemMapper.updateAction", updateMember);
+	}
+
+	/** 기존 프로필 가져오기
+	 * @param memberNo
+	 * @return oldImg
+	 */
+	public ProfileImg selectProfile(int memberNo) {
+		return sqlSession.selectOne("gMemMapper.selectProfile", memberNo);
+	}
+
+	/**새이미지로 프로필 업데이트
+	 * @param pf
+	 * @return
+	 */
+	public int updateProfile(ProfileImg pf) {
+		return sqlSession.update("gMemMapper.updateProfile", pf);
+	}
+
+	/* 프로필 이미지 삽입
+	 * @param pf
+	 * @return
+	 */
+	public int insertProfile(ProfileImg pf) {
+		return sqlSession.insert("gMemMapper.insertProfile", pf);
+	}
+
+	/**프로필 삭제
+	 * @param memberNo
+	 * @return
+	 */
+	public int deleteProfile(int memberNo) {
+		return sqlSession.delete("gMemMapper.deleteProfile", memberNo);
+	}
+
+	
+	
+	
+	
 
 }
+
+
+
 
 
 

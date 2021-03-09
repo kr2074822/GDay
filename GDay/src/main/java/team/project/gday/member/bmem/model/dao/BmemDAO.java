@@ -14,6 +14,8 @@ import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.member.bmem.model.vo.OrderList;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.bmem.model.vo.RefundList;
+import team.project.gday.member.model.vo.BmemberInfo;
+import team.project.gday.member.model.vo.LicenseImg;
 import team.project.gday.member.model.vo.Member;
 
 @Repository // 저장소 (DB) 연결 객체임을 알려줌 + bean 등록
@@ -179,6 +181,22 @@ public class BmemDAO {
 	 */
 	public Member loginAction(Member inputMember) {
 		return sqlSession.selectOne("memberMapper.loginAction", inputMember);
+	}
+
+	/** 비즈니스 회원 정보 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public BmemberInfo getBmemInfo(int memberNo) {
+		return sqlSession.selectOne("bMemMapper.getBmemInfo", memberNo);
+	}
+
+	/** 비즈니스 회원 라이선스 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public LicenseImg getLicense(int memberNo) {
+		return sqlSession.selectOne("bMemMapper.getLicense", memberNo);
 	}
 
 	

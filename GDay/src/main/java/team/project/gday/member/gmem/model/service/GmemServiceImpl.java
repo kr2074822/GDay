@@ -1,5 +1,7 @@
 package team.project.gday.member.gmem.model.service;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
@@ -15,7 +18,9 @@ import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.dao.GmemDAO;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 import team.project.gday.member.model.vo.Refund;
+import team.project.gday.review.model.exception.UpdateAttachmentFailException;
 import team.project.gday.review.model.vo.Review;
 
 @Service
@@ -185,6 +190,99 @@ public class GmemServiceImpl implements GmemService {
 
 			return result;
 		}
+
+		
+		//회원 일반 정보 업데이트
+		@Transactional(rollbackFor = Exception.class)
+		@Override
+		public int updateProfile(List<MultipartFile> profile, String savePath, Member updateMember, boolean profileFlag) {
+			
+			int result = 0;
+			
+			result = dao.updateAction(updateMember);
+			int memberNo = updateMember.getMemberNo();
+			
+			if(result > 0) {
+
+				String fileName = null;
+				String filePath = "/resources/images/profileImg";
+				
+				//기존 프로필 확인
+				ProfileImg oldImg = dao.selectProfile(memberNo);
+				//삭제 파일
+				ProfileImg removeImg = new ProfileImg();
+			
+				boolean serverFlag = false;
+				
+				if (!profile.isEmpty() && !profile.get(0).getOriginalFilename().equals("")) {
+					
+					fileName = rename(profile.get(0).getOriginalFilename());
+					ProfileImg pf = new ProfileImg(0, filePath, fileName, memberNo);
+					//새로운 이미지
+	
+					if(oldImg != null) {
+						result = dao.updateProfile(pf);
+						
+						removeImg = oldImg;//서버 삭제
+						
+					} else {
+						result = dao.insertProfile(pf);
+						
+					}
+				
+					serverFlag = true;
+					
+				} else {//새 프로필이 없을 때
+					if(profileFlag && oldImg != null) {//프로필 삭제 + 기존 프로필 없을 때
+						result = dao.deleteProfile(memberNo);
+						
+						removeImg = oldImg;//서버 삭제
+					}
+					
+					serverFlag = false;
+				}
+				//db 관련 기능 끝
+				
+				//서버 삽입 / 삭제
+				if(result > 0 && serverFlag) { //삽입, 수정 성공  → 서버에 프로필 삽입
+					
+					try {
+						profile.get(0).transferTo(new File(savePath + "/" + fileName));
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new UpdateAttachmentFailException("프로필 수정 실패");
+					}
+				}
+				
+				if(result > 0 && removeImg != null) { //서버에서 프로필 삭제
+					File tmp = new File(savePath + "/" + removeImg.getPfName());
+					tmp.delete();
+				}
+				
+			}
+			
+			
+			return result;
+		}
+
+		
+		// 파일명 변경 메소드
+		public String rename(String originFileName) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
+			String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
+			
+			int ranNum = (int)(Math.random()*100000); // 5자리 랜덤 숫자 생성
+			
+			String str = "_" + String.format("%05d", ranNum);
+			//String.format : 문자열을 지정된 패턴의 형식으로 변경하는 메소드
+			// %05d : 오른쪽 정렬된 십진 정수(d) 5자리(5)형태로 변경. 빈자리는 0으로 채움(0)
+			
+			String ext = originFileName.substring(originFileName.lastIndexOf("."));
+			
+			return date + str + ext;
+		}
+
 
 	
 }
