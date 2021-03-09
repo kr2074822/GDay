@@ -354,7 +354,7 @@
 	    
     
 	    $(".fa-comments").on('click', function(){
-	    	 
+	    	
 		    Swal.fire({
 		    	  input: 'textarea',
 		    	  inputLabel: 'Message',
