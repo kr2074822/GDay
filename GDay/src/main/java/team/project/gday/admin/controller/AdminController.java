@@ -90,20 +90,19 @@ public class AdminController {
 	// 비즈니스 회원신청 상세조회 화면 전환 Controller
 	@RequestMapping("adminBMemView/{memberNo}")
 	public String adminBMemView(@PathVariable("memberNo") int memberNo, Model model) {
-		System.out.println(memberNo);
+		// System.out.println(memberNo);
 		
 		Member member = service.getbMember(memberNo);
-		System.out.println(member);
+		// System.out.println(member);
+		
 		if (member != null) {
 			model.addAttribute("member", member);
 			
 			String bmemShop = service.bmemShop(memberNo);
 			if (bmemShop != null) {
 				model.addAttribute("bmemShop", bmemShop);
-				
 			}
 		}
-		
 		return "admin/adminBMemView";
 	}
 
@@ -167,7 +166,14 @@ public class AdminController {
 	}
 	
 	// 게시판 상세조회 Controller
-	
+	@RequestMapping("adView/{prdtNo}")
+	@ResponseBody
+	public String boardView(@PathVariable("prdtNo") int productNo) {
+		
+		System.out.println(productNo);
+		
+		return "redirect:/admin/adView";
+	}
 	
 	
 	// ----------------------------------------------------------
@@ -195,18 +201,24 @@ public class AdminController {
 	// 매거진 상세조회 Controller
 	
 	// ----------------------------------------------------------------
-	
-	// 신고 회원 화면 전환 Controller
-	@RequestMapping("adminReportEnd")
-	public String adminReportEnd() {
-		return "admin/adminReportEnd";
-	}
 
-	// 신고 회원대기 화면 전환 Controller
+	// 신고 게시판 화면 전환 Controller
 	@RequestMapping("adminReportStand")
 	public String adminReportStand(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
 								   Model model) {
 		
+<<<<<<< HEAD
+		// 페이징 처리
+		adminPageInfo pInfo = service.getPageRsInfo(cp);
+		// System.out.println(pInfo);
+		
+		// 신고 게시판 목록 조회
+		List<Report> rsList = service.adminReportStand(pInfo);
+		// System.out.println(rsList);
+		
+		model.addAttribute("pInfo", pInfo);
+		model.addAttribute("rsList", rsList);
+=======
 		// 신고 대기 페이징 처리
 		adminPageInfo pInfo = service.getPageRsInfo(cp);
 		
@@ -215,6 +227,7 @@ public class AdminController {
 		
 		model.addAttribute("pInfo", pInfo);
 		
+>>>>>>> branch 'master' of https://github.com/kr2074822/GDay.git
 		return "admin/adminReportStand";
 	}
 	
@@ -232,18 +245,19 @@ public class AdminController {
 						 @RequestParam int prdtNo
 						 ) {
 		
-		System.out.println(prdtNo);
-		System.out.println(report);
-		System.out.println(loginMember);
+		// System.out.println(prdtNo);
+		// System.out.println(report);
+		// System.out.println(loginMember);
 		
 		report.setParentNo(prdtNo);
 		report.setMemberNo(loginMember.getMemberNo());
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("loginMember", loginMember);
 		map.put("prdtNo", prdtNo);
 		
 		
-		System.out.println("map " + map);
+		// System.out.println("map " + map);
 		
 		int result = service.report(map, report);
 		

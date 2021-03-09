@@ -8,6 +8,12 @@
 <title>관리자 페이지 - 게시글 관리</title>
 <link rel="stylesheet" href="reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
+
+<style>
+td{
+	cursor:pointer;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -18,7 +24,7 @@
 			<div>
 				<h3>게시글 관리</h3>
 				<div id="adminBoard-search">
-					<select name="board-se" id="board-se">
+<!-- 					<select name="board-se" id="board-se">
 						<option class="boardOp" value="none">-- 게시글 --</option>					
 						<option class="boardOp" value="C">선물</option>
 						<option class="boardOp" value="G">클래스</option>
@@ -29,7 +35,7 @@
 						<option class="boardAp" value="B">블라인드</option>
 					</select>					
 					<input type="text" id="search">
-					<button type="submit">게시글 보기</button>
+					<button type="submit">게시글 보기</button> -->
 				</div>
 			</div>
 			<div class="my-4">
@@ -173,14 +179,19 @@
 		
 		
 		/* 게시글 상세보기 */
-/* 		$("#list-table td").on("click", function(){
-			var boardNo = $(this).parent().children().eq(0).text();
+		$("#list-table td").on("click", function(){
+			var prdtNo = $(this).parent().children().eq(0).text();
+			console.log("123aAD")
+			var type = "../${product.prdtType}/" + prdtNo;
 			
-			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
-			
-			location.href = "${contextPath}/admin/memberCustomerView"; 
-		}); */
-		
+			<c:if test="${product.prdtType == C}">
+				window.location.href="${contextPath}/gClass/"+prdtNo;
+			</c:if>
+			<c:if test="${product.prdtType == G}">
+				window.location.href="${contextPath}/gift/"+prdtNo;
+			</c:if>
+		});
+		 
 		
 		// 게시글 등급변경하기
 		$("#changePdtBtn").on("click", function(){

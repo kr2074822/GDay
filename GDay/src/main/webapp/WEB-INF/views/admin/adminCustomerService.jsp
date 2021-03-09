@@ -25,12 +25,12 @@ td{
 			<div>
 				<h3>고객 센터</h3>
 				<div id="adminCus-search">
-					<select name="adminCus-se" id="adminCus-se">
+					<!-- <select name="adminCus-se" id="adminCus-se">
 						<option class="" value="">작성자</option>
 						<option class="" value="">문의 내용</option>
 						<option class="" value="">게시글 상태</option>
 					</select> <input type="text" id="search">
-					<button type="submit">검색</button>
+					<button type="submit">검색</button> -->
 				</div>
 			</div>
 			<div class="my-4">

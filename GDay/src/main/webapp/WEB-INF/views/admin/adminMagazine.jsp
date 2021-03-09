@@ -134,6 +134,20 @@
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
+	
+	// 게시물 상세보기
+	$("#list-table td").on("click", function(){
+		var mgzNo = $(this).parent().children().eq(0).text();
+		console.log("123aAD")
+		var type = "../${product.prdtType}/" + prdtNo;
+		
+		<c:if test="${product.prdtType == C}">
+			window.location.href="${contextPath}/gClass/"+prdtNo;
+		</c:if>
+		<c:if test="${product.prdtType == G}">
+			window.location.href="${contextPath}/gift/"+prdtNo;
+		</c:if>
+	});	
 	</script>
 </body>
 </html>
