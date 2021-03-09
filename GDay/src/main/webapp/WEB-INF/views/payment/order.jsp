@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,23 +23,24 @@
       <h2>주문 상품</h2>
       <table id="goods" class="tables">
          <tr id="goods-header">
-            <th class="goods-header-th1" colspan="2">상품명</th>
+            <th class="goods-header-th1" colspan="2">상품</th>
             <th class="goods-header-th2">가격</th>
             <th class="goods-header-th3">수량</th>
          </tr>
-         <tr id="goods-list">
-            <td class="goods-list"><img/></td>         
-            <td class="goods-list" style="vertical-align: middle;">상품명</td>
-            <td class="goods-list" style="vertical-align: middle;">1,000</td>
-            <td class="goods-list" style="vertical-align: middle;">1개</td>
-         </tr>
-         
-         <tr id="goods-list">
-            <td class="goods-list"><img/></td>
-            <td class="goods-list" style="vertical-align: middle;">상품명</td>
-            <td class="goods-list" style="vertical-align: middle;">1,000</td>
-            <td class="goods-list" style="vertical-align: middle;">1개</td>
-         </tr>
+         <c:forEach var="paymentItem" items="${olList}" varStatus="vs">
+	         <tr id="goods-list">
+	            <td id="img-box" class="goods-list">
+         			<c:forEach items="${thList}" var="th">
+						<c:if test="${th.prdtNo == paymentItem.prdtNo}">								
+							<img src="${contextPath}${th.filePath}/${th.fileName}">										
+						</c:if>
+					</c:forEach> 
+	            </td>         
+	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtName}</td>
+	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtPrice}</td>
+	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtAmount}</td>
+	         </tr>         
+         </c:forEach>
       </table>
       
       <br>
