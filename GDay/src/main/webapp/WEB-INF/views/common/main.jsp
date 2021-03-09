@@ -29,6 +29,9 @@ display: none;
 				<c:choose>
 						<%-- 검색이 된 경우 --%>
 					<c:when test="${!empty search}">
+						<c:set var="searchStr" value=""/>	
+						<%--카테고리가 있는 경우--%>
+					<c:when test="${!empty search.category}">
 						<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
 						<c:forEach items="${search.category}" var="c">
 							<c:set var="category" value="${category}ct=${c}&"/>
@@ -39,11 +42,11 @@ display: none;
 						
 						<c:set var="searchStr" value="${category}${hashNo}"/>
 						
-						<%-- 검색된 내용이 있다면 --%>
+						<%-- 검색하려는 값이 있다면 --%>
 						<c:if test="${!empty search.sv}">
 							<c:set var="searchStr" value="${category}${hashNo}&sv=${search.sv}"/>
 						</c:if>
-						
+						</c:when>
 					</c:when>
 				</c:choose>
 	<form action="search" method="GET">
@@ -288,59 +291,34 @@ display: none;
     
     <section class="">
         <div class="section_wrapper">
-            <h1>지금 제일 인기 있는 선물은?</h1>
+            <h1>방금 새로 올라온 선물은?</h1>
 
             <div class="card_wrapper">
                 <h2>Class</h2>
                 <div class="card_container">
+                  <c:forEach items="${cList}" var="c">
                     <div class="card">
-                        <a href="">
-                            <img src="images/gift1.jpg" alt="">
-                            <div class="title">제목 입니다.</div>
+                        <a href="gClass/${c.prdtNo}">
+                         <c:forEach items="${thList}" var="th">
+														<c:if test="${th.prdtNo == c.prdtNo}">
+															<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+														</c:if>
+												</c:forEach>
+                            <div class="title">${c.prdtName}</div>
                             <div class="content">
-                                <h3>박혜윤</h3>
+                            	<c:forEach items="${selectStarList}" var="star">
+                            		<c:if test="${star.prdtNo == c.prdtNo}">
+                                <h3><i class="fas fa-star"></i>${star.rvStarAvg}</h3>
+                                </c:if>
+                              </c:forEach>
                                 <p>
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam
+                                    <i class="fas fa-won-sign"></i>${c.prdtPrice}
+                                    
                                 </p>
                             </div>
                         </a>
                     </div>
-                    <div class="card">
-                        <a href="">
-                            <img src="images/gift2.jpg" alt="">
-                            <div class="title">제목 입니다.</div>
-                            <div class="content">
-                                <h3>박혜윤</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="">
-                            <img src="images/gift3.jpeg" alt="">
-                            <div class="title">제목 입니다.</div>
-                            <div class="content">
-                                <h3>박혜윤</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+                           </c:forEach>
                 </div>
             </div>
 

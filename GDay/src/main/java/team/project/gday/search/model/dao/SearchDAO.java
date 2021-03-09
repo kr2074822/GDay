@@ -39,7 +39,15 @@ public class SearchDAO {
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		return sqlSession.selectList("searchMapper.selectClassSearchList", search, rowBounds);
 	}
-	
 
+	public List<Gift> selectGiftListAll() {
+		RowBounds rowBounds = new RowBounds(0, 10);
+		return sqlSession.selectList("searchMapper.selectGiftListAll", null, rowBounds);
+	}
+	
+	public List<GClass> selectClassListAll() {
+		RowBounds rowBounds = new RowBounds(0, 10);
+		return sqlSession.selectList("searchMapper.selectClassListAll", null, rowBounds);
+	}
 
 }

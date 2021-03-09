@@ -62,6 +62,15 @@
 			)
 		</foreach>
 	</select>
+	
+		<select id="selectGiftListAll" resultMap="gift_rm">
+			SELECT * FROM PRODUCT
+			JOIN PRODUCT_TAG USING(PRDT_NO)
+			JOIN HASHTAG USING(TAG_NO)
+			JOIN G_CATEGORY USING(CT_NO)
+			WHERE PRDT_STATUS = 'Y'
+			AND PRDT_TYPE = 'G'
+	</select>
 
 	<select id="selectClassSearchList" parameterType="Search" resultMap="class_rm">
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
@@ -83,5 +92,13 @@
 		</foreach>
 	</select>
 	
+			<select id="selectClassListAll" resultMap="gift_rm">
+			SELECT * FROM PRODUCT
+			JOIN PRODUCT_TAG USING(PRDT_NO)
+			JOIN HASHTAG USING(TAG_NO)
+			JOIN G_CATEGORY USING(CT_NO)
+			WHERE PRDT_STATUS = 'Y'
+			AND PRDT_TYPE = 'C'
+	</select>
 	
 	</mapper>

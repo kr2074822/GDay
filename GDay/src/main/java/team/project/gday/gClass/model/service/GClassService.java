@@ -90,4 +90,9 @@ public interface GClassService {
 	 */
 	List<ProductStar> selectStarList(List<GClass> gCList);
 
+	/**메인에서 상위 3개 클래스 가져오기
+	 * @return gList
+	 */
+	List<GClass> selectClassList3();
+
 }

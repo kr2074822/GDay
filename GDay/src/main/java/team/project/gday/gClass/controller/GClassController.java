@@ -51,11 +51,13 @@ public class GClassController {
 		if (gCList != null && !gCList.isEmpty()) {
 			//썸네일 가져오기
 			List<Attachment> thumbnailList = service.selectThumbnailList(gCList);
+			
 			if (thumbnailList != null) {
 				model.addAttribute("thList", thumbnailList);
 				
 				//평균 별점 가져오기
 				List<ProductStar> selectStarList = service.selectStarList(gCList);
+				
 				model.addAttribute("selectStarList", selectStarList);
 			}
 		}
