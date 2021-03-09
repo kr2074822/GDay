@@ -77,9 +77,9 @@ $(function(){
         
     /* 비즈니스 정보 수정 버튼 관련 */
     /* 수정 버튼 누르면 -> 수정 가능해짐(수정 버튼은 hide()) + 인증, 취소, 등록증 버튼 show() */
-    $("#b-validate-btn").hide();
+   /*  $("#b-validate-btn").hide();
     $("#b-cancel-btn").hide();
-    $("#license-btn").hide();
+    $("#license-btn").hide(); */
     var status = $(".status-text").text();//수정 -> 취소 대비 : 현재 인증 상태
     
     $("#b-update-btn").on("click", function(){
@@ -115,16 +115,18 @@ $(function(){
     $("input[name='memberNick']").on("input paste", function(){
     	
 			//name 유효성 검사 : 한글 6글자 + 영어 20글자
-			var regExp1 = /^[가-힣\d\s_-]{1,10}$/;
+			var regExp1 = /^[가-힣ㄱ-ㅎㅏ-ㅣ\d\s_-]{1,10}$/;
 			var regExp2 = /^[A-Za-z\d\s_-]{1,30}$/;
 			
 			var nickName = $(this).val();
 			
 			if(!regExp1.test(nickName) && !regExp2.test(nickName)){
 					$("#check-nickname").text("한글 최대 10글자").css("color", "red");
+					$("#check-nickname").show();
 					validateCheck.memberNick = false;
 				} else {
 					$("#check-nickname").text("가능한 닉네임👌👌").css("color", "green");
+					$("#check-nickname").show();
 					validateCheck.memberNick = true;
 				}
 			
@@ -142,7 +144,7 @@ function updateInfoVal(){
 	var nickName = $("input[name='memberNick']").val();
 	
 		//name 유효성 검사 : 한글 6글자 + 영어 20글자
-		var regExp1 = /^[가-힣\d\s_-]{1,10}$/;
+		var regExp1 = /^[가-힣ㄱ-ㅎㅏ-ㅣ\d\s_-]{1,10}$/;
 		var regExp2 = /^[A-Za-z\d\s_-]{1,30}$/;
 	
 		
@@ -189,6 +191,8 @@ function updateInfoVal(){
 		
 		console.log(address);
 		$("input[name='memberAddress']").val(address);
+		var inputAddr = $("input[name='memberAddress']").val();
+		console.log(inputAddr);
 		
 		if(deleteProfile == undefined){
 			deleteProfile = false;
@@ -196,7 +200,12 @@ function updateInfoVal(){
 		
 		console.log("deleteProfile:" + deleteProfile);
 		$(".delete-profile").val(deleteProfile);
+
 }
+    
+    
+    
+    
     
     
     
@@ -243,12 +252,6 @@ function LoadLicense(value, num){
         }
     }
 }
-
-
-
-
-
-
 
 
 

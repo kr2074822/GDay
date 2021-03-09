@@ -19,6 +19,7 @@ button:active { outline: none !important;}
     width : 80%;
     align-items: center;
     margin : 30px auto;
+    min-height : 900px;
 }
 
 /* 내정보 제목 */
@@ -218,6 +219,7 @@ button:active { outline: none !important;}
     color : #FE929F;
     font-weight : bold;
 }
+
 
 
 /* 반응형 */

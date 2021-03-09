@@ -178,8 +178,12 @@ button:active { outline: none !important;}
     background-repeat: no-repeat;
     z-index: 1;
 }
-#license-btn { width : 75px;}
+#license-btn { width : 75px; }
 #license-div { display : flex; }
+
+#b-validate-btn, 
+#b-cancel-btn, #license-btn {display: none;}
+
 
 /* 비즈니스 회원 부분 */
 #check-company {

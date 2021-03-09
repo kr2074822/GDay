@@ -503,11 +503,15 @@ public class GmemController {
 			if(picture == null) {
 				picture = new ProfileImg();
 				picture.setPfName("profile.jpg");
+				//status.setComplete();
 			} 
 			model.addAttribute("picture", picture);
 			
 			System.out.println("newLogin : "+ newLoginMember);
+			//로그인 새로 올리기
 			model.addAttribute("loginMember", newLoginMember);
+			
+			//request.getSession().setAttribute("loginMember", newLoginMember);
 			
 		} else {
 			swalIcon = "error";

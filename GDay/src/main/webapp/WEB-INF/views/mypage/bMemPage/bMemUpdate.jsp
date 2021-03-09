@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
    <title>내 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemInfoUpdate.css?ver=1.0"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemInfoUpdate.css?ver=1.1"/>
     
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -74,7 +74,7 @@
             <div class="info-form" id="info-nickname">
                 <label class="info-title"><span class="star">*</span>닉네임</label>
                 <input type="text" name="memberNick" value="${loginMember.memberNick}" class="info-content-1" required/>
-                <span class="info-content-2" id="check-nickname"></span>
+                <span class="info-content-2 info-hidden " id="check-nickname"></span>
                 <!-- 닉네임 중복확인 ajax : 문구 출력(check-nickname)-->
             </div>
             
@@ -86,7 +86,7 @@
 
 
 						<c:set var="address" value="${fn:split(loginMember.memberAddress, ',')}" />
-            <input type="text" class="info-hidden info-addr" value="memberAddress" value="${loginMember.memberAddress}">
+            <input type="text" class="info-hidden info-addr" name="memberAddress" value="${loginMember.memberAddress}">
             
             <div class="info-form" id="info-address-1">
                 <label class="info-title">우편번호</label>
@@ -173,7 +173,7 @@
     </div>
   </div> 
   
-
+<jsp:include page="../../common/footer.jsp"/>
    
     <!-- 도로명 주소 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>  
