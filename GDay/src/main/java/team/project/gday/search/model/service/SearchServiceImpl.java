@@ -21,7 +21,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<Gift> selectGiftSearchList(Search search, PageInfoMain pInfo) {
 		if(search.getCategory() == null) {
-			return dao.selectGiftListAll();
+			return dao.selectGiftListAll(search);
 		}
 		return dao.selectGiftSearchList(search, pInfo);
 	}
@@ -30,7 +30,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<GClass> selectClassSearchList(Search search, PageInfoMain pInfo) {
 		if(search.getCategory() == null) {
-			return dao.selectClassListAll();
+			return dao.selectClassListAll(search);
 		}
 		return dao.selectClassSearchList(search, pInfo);
 	}

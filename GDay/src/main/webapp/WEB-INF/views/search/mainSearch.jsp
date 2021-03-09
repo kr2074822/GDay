@@ -158,36 +158,51 @@ input[name='category'] {
 		</section>
 	</form>
 
-    <section class="gift">
-        <div class="search_result">
-            <h2>검색결과 <span>여러</span>개</h2>
-            <p>
-                <span>인기순</span> | <span>최신순</span>
-            </p>
-        </div>
-        <div class="title">
-            <span>Class</span>
-        </div>
-        <div class="gift_wrapper">
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
+	<section class="gift">
+		<div class="search_result">
+			<h2>
+				<span>${pInfo.listCount}</span>개 상품
+			</h2>
+			<p>
+				<span class="order" id="Popularity">인기순</span> | <span class="order" id="Newest">최신순</span>
+			</p>
+		</div>
+		<!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
+		<c:if test="${empty gCList}">
+			<div class="">조건에 맞는 상품이 없습니다.</div>
+		</c:if>
+		<c:if test="${!empty gCList}">
+			<div class="gift_wrapper">
+				<c:forEach var="gClass" items="${gCList}" varStatus="vs">
+					<div class="item">
+					
+						<c:forEach items="${thList}" var="th">
+							<c:if test="${th.prdtNo == gClass.prdtNo}">
+								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+							</c:if>
 
-                    <span>가격</span>
-                </a>
-            </div>
-        </div>
-        <div class="more">
-            <a href=""><span>More</span></a>
-        </div>
-    </section>
+						</c:forEach>
+							<c:if test="${gClass.cStatus == 'N'}">
+								<div class="sold_out">
+									<h1>마감</h1>
+								</div>
+							</c:if>
 
+						<a href="${gClass.prdtNo}">
+							<h1>${gClass.prdtName}</h1> 
+							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
+								<c:if test="${star.prdtNo == gClass.prdtNo}">
+									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
+									<span>${gClass.prdtPrice}</span>
+								</c:if>
+							</c:forEach>
+						</a>
+					</div>
+
+				</c:forEach>
+			</div>
+		</c:if>
+	</section>
 
     <section class="gift ver2">
         <div class="title">

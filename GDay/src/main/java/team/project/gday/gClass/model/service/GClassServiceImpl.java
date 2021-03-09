@@ -20,6 +20,7 @@ import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gClass.model.dao.GClassDAO;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.vo.Search;
 
 @Service
 public class GClassServiceImpl implements GClassService {
@@ -335,5 +336,27 @@ public class GClassServiceImpl implements GClassService {
 	@Override
 	public List<GClass> selectClassList3() {
 		return dao.selectClassList3();
+	}
+
+	//검색 조건이 포함된 페이징 처리용 객체 얻어오기 Service 구현
+	@Override
+	public PageInfo10 getSearchPageInfo(Search search, int cp) {
+		int listCount = 0;
+		
+		if(search.getCategory() == null) {
+			listCount = dao.getSearchListCountAll(search);
+		}
+		listCount = dao.getSearchListCount(search);
+		
+		return new PageInfo10(cp, listCount);
+	}
+	
+	//검색 조건이 포함된 클래스 목록 조회 Service 구현
+	@Override
+	public List<GClass> selectSearchList(Search search, PageInfo10 pInfo) {
+		if(search.getCategory() == null) {
+			return dao.selectClassListAll(search, pInfo);
+		}
+		return dao.selectSearchList(search, pInfo);
 	}
 }

@@ -40,14 +40,17 @@ public class SearchDAO {
 		return sqlSession.selectList("searchMapper.selectClassSearchList", search, rowBounds);
 	}
 
-	public List<Gift> selectGiftListAll() {
+	public List<Gift> selectGiftListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectGiftListAll", null, rowBounds);
+		return sqlSession.selectList("searchMapper.selectGiftListAll", search, rowBounds);
 	}
 	
-	public List<GClass> selectClassListAll() {
+	/** 카테고리가 없을 때 검색 조건이 포함된 클래스 목록 조회 DAO
+	 * @return
+	 */
+	public List<GClass> selectClassListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectClassListAll", null, rowBounds);
+		return sqlSession.selectList("searchMapper.selectClassListAll", search, rowBounds);
 	}
 
 }

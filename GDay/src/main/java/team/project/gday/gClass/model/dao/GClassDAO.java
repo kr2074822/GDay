@@ -14,6 +14,7 @@ import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.vo.Search;
 
 /**
  * @author hy
@@ -185,6 +186,44 @@ public class GClassDAO {
 		RowBounds rowBounds = new RowBounds(0, 3);
 		return sqlSession.selectList("classMapper.selectClassList3", null, rowBounds);
 	}
+
+	/**카테고리 검색 조건이 포함되지 않은 페이징 처리용 객체 얻어오기 DAO
+	 * @param search
+	 * @return
+	 */
+	public int getSearchListCountAll(Search search) {
+		return sqlSession.selectOne("classMapper.getSearchListCountAll", search);
+	}
+	
+	/**카테고리 검색 조건이 포함된 페이징 처리용 객체 얻어오기 DAO
+	 * @param search
+	 * @return
+	 */
+	public int getSearchListCount(Search search) {
+		return sqlSession.selectOne("classMapper.getSearchListCount", search);	
+	}
+
+	/** 검색 조건이 포함된 클래스 목록 조회 DAO
+	 * @param search
+	 * @param pInfo
+	 * @return cList
+	 */
+	public List<GClass> selectSearchList(Search search, PageInfo10 pInfo) {
+		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		return sqlSession.selectList("classMapper.selectSearchList", search, rowBounds);
+	}
+
+	/** 카테고리가 없을 때 검색 조건이 포함된 클래스 목록 조회 DAO
+	 * @return
+	 */
+	public List<GClass> selectClassListAll(Search search, PageInfo10 pInfo) {
+		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		return sqlSession.selectList("classMapper.selectClassListAll", search, rowBounds);
+	}
+
+
 
 
 }
