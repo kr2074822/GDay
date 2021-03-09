@@ -312,8 +312,22 @@
 	/* 결제 페이지로 선택된 상품들 보내기 */
 	/* 상품번호 / 상품명 / 상품옵션(번호) / 가격 / 수량 */
 	$(".order-btn").on("click", function() {	
-		var url = encodeURI( "${contextPath}/payment/order?" + itemArys)
-		location.href = url;
+		
+		$.ajax({
+			url : "${contextPath}/payment/order",
+			type : "post",
+			data : JSON.stringify(itemArys),
+			contentType : "application/json",
+			traditional: true,
+			success : function(result) {
+				if(result > 0) {
+					location.href ="${contextPath}/payment/paymentForm"
+				}
+			}, error : function() {
+				window.alert("에러!");
+			}
+		});
+		
 	});
 	
 </script>

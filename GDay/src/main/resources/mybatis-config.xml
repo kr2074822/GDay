@@ -49,5 +49,6 @@
 		<mapper resource="/mappers/admin-mapper.xml"/>
 		<mapper resource="/mappers/cart/cart-mapper.xml"/>
 		<mapper resource="/mappers/search/search-mapper.xml"/>
+		<mapper resource="/mappers/payment/payment-mapper.xml"/>
 	</mappers>
 </configuration>
