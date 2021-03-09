@@ -22,7 +22,7 @@
 				<h3>전체 회원 보기</h3>
 				<div id="adminMember-search">
 					<form action=# onsubmit="" method="GET" class="text-right" id="searchForm">
-						<select id="sk" name="sk" class="form-control sf-margin">
+						<!-- <select id="sk" name="sk" class="form-control sf-margin">
 							<option class="updateMem" value="none">-- 등급 --</option>
 							<option class="updateMem" value="G">일반</option>
 							<option class="updateMem" value="B">비즈니스</option>
@@ -30,7 +30,7 @@
 							<option class="updateMem" value="X">블랙리스트</option>
 						</select> 
 						<input type="text" name="sv" class="form-control sf-margin" id="search" placeholder="검색어를 입력하세요.">
-						<button type="submit">등급 보기</button>
+						<button type="submit">등급 보기</button> -->
 					</form>
 				</div>
 			</div>

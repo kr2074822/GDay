@@ -20,8 +20,8 @@
 			<div>
 				<h3>블랙리스트 보기</h3>
 				<div id="report-search">
-					<input type="text" id="search">
-					<button type="submit">검색</button>
+					<!-- <input type="text" id="search">
+					<button type="submit">검색</button> -->
 				</div>
 			</div>
 			<div class="my-4">

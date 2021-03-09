@@ -139,33 +139,48 @@ public class AdminServiceImpl implements AdminService{
 		
 		// 게시자 조회
 		int writerCheck = dao.writerCheck(map);
-		System.out.println(writerCheck);
+		// System.out.println(writerCheck);
 		
 		report.setReportTarget(writerCheck);
 		
 		// 게시글 타입 조회
 		String boardType = dao.boardType(map);
-		System.out.println("게시글 타입 조회" +  boardType);
+		// System.out.println("게시글 타입 조회" +  boardType);
 		
 		report.setParentType(boardType);
 		
 		// 게시글 신고
-		System.out.println("-----------"+map.get("reportType"));
+		// System.out.println("-----------"+map.get("reportType"));
 		
 		int reportPost = dao.reportPost(report);
-		System.out.println("게시글 신고: " + reportPost);
+		// System.out.println("게시글 신고: " + reportPost);
 		
 		// 게시자 신고받 횟수
 		int reportCount = dao.reportCount(report);
-		System.out.println("신고받은 횟수 : " + reportCount);
+		// System.out.println("신고받은 횟수 : " + reportCount);
 		
 		if(reportCount > 2) {
 			int reportMember = dao.reportMember(writerCheck);
-			System.out.println("신고당한 횟수: " + reportMember);
+			// System.out.println("신고당한 횟수: " + reportMember);
 		}
 		return dao.report(map);
 	}
 
+	// 신고 게시판 페이징처리 Service 구현
+	@Override
+	public adminPageInfo getPageRsInfo(int cp) {
+		int listRsCount = dao.getListRsCount();
+		
+		return new adminPageInfo(listRsCount, cp);
+	}
+
+	// 신고 게시판 목록 조회 Service 구현
+	@Override
+	public List<Report> adminReportStand(adminPageInfo pInfo) {
+		return dao.adminReportStand(pInfo);
+	}
+	// ------------------------------------------------------------------------
+	
 	// 신청 회원들 조회
 	@Override
 	public List<Member> getMember() {
@@ -183,6 +198,4 @@ public class AdminServiceImpl implements AdminService{
 	public String bmemShop(int memberNo) {
 		return dao.bmemShop(memberNo);
 	}
-
-
 }

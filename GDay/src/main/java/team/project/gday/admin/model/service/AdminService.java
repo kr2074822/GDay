@@ -122,6 +122,18 @@ public interface AdminService {
 	 */
 	public abstract String bmemShop(int memberNo);
 
+	/** 신고 게시판 페이징 처리
+	 * @param cp
+	 * @return pInfo
+	 */
+	public abstract adminPageInfo getPageRsInfo(int cp);
+
+	/** 신고 게시판 목록 조회
+	 * @param pInfo
+	 * @return rsList
+	 */
+	public abstract List<Report> adminReportStand(adminPageInfo pInfo);
+
 
 
 

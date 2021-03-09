@@ -171,7 +171,7 @@ public class AdminDAO {
 	 * @return reportPost
 	 */
 	public int reportPost(Report report) {
-		System.out.println("-------------------"+report);
+		// System.out.println("-------------------"+report);
 		return sqlSession.insert("adminMapper.reportPost", report);
 	}
 
@@ -214,6 +214,25 @@ public class AdminDAO {
 		return sqlSession.selectOne("adminMapper.getbMember", memberNo);
 	}
 
+	/** 신고 게시판 페이징
+	 * @return
+	 */
+	public int getListRsCount() {
+		return sqlSession.selectOne("adminMapper.getListRsCount");
+	}
+
+	/** 신고 게시판 목록 조회
+	 * @param pInfo
+	 * @return rsList
+	 */
+	public List<Report> adminReportStand(adminPageInfo pInfo) {
+		int offset = (pInfo.getCurrentPage() - 1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		return sqlSession.selectList("adminMapper.adminReportStand", null, rowBounds);
+	}
+	
+	// --------------------------------------------------------------------------
+	
 	/** 업체명 가져오기
 	 * @param memberNo
 	 * @return
@@ -221,4 +240,6 @@ public class AdminDAO {
 	public String bmemShop(int memberNo) {
 		return sqlSession.selectOne("adminMapper.bmemShop", memberNo);
 	}
+
+
 }

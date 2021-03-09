@@ -125,7 +125,7 @@ img{
 	<div class="container">
 		<div id="container-tb">
 			<div>
-				<h3 style="font-weight: bold;">비즈니스 회원 신청 ${member }</h3>
+				<h3 style="font-weight: bold;">비즈니스 회원 신청</h3>
 			</div>
 			<div class="bMemStandView">
 				<form action="#" method="POST" id="businessView">
@@ -188,7 +188,7 @@ img{
 	
 	<script>
 	/* 이미지 클릭 시 새 창으로 열기 */
-	var img = document.getElementsByClassName('registration-img'); 
+	var img = document.getElementsByClassName('img'); 
 	for (var x = 0; x < img.length; x++) { 
 		img.item(x).onclick = function() {window.open(this.src)}; 
 	}
