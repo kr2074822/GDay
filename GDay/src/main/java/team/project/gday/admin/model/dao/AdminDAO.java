@@ -203,10 +203,30 @@ public class AdminDAO {
 		return 0;
 	}
 
+
 	/** 신고 대기 페이징
 	 * @return getListRsCount
 	 */
 	public int getListRsCount() {
 		return sqlSession.selectOne("adminMapper.getListRsCount");
+
+	/** 비즈니스 회원 목록 조회
+	 * @return
+	 */
+	public List<Member> getMember() {
+		return sqlSession.selectList("adminMapper.getMember");
+	}
+
+	public Member getbMember(int memberNo) {
+		return sqlSession.selectOne("adminMapper.getbMember", memberNo);
+	}
+
+	/** 업체명 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public String bmemShop(int memberNo) {
+		return sqlSession.selectOne("adminMapper.bmemShop", memberNo);
+
 	}
 }

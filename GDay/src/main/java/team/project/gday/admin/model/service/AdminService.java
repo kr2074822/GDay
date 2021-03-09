@@ -105,6 +105,7 @@ public interface AdminService {
 	 */
 	public abstract int report(Map<String, Object> map, Report report);
 
+
 	/** 신고 대기 페이징 처리 Service
 	 * @param cp
 	 * @return pInfo
@@ -116,6 +117,24 @@ public interface AdminService {
 	 * @return
 	 */
 	public abstract List<Report> adminReportStand(adminPageInfo pInfo);
+
+	/** 비즈니스 회원 조회
+	 * @return
+	 */
+	public abstract List<Member> getMember();
+
+	/** 신청자 상세
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract Member getbMember(int memberNo);
+
+	/** 업체명 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract String bmemShop(int memberNo);
+
 
 
 

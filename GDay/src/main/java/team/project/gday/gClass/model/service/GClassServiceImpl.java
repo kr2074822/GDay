@@ -344,10 +344,10 @@ public class GClassServiceImpl implements GClassService {
 		int listCount = 0;
 		
 		if(search.getCategory() == null) {
-			listCount = dao.getSearchListCountAll(search);
-		}
+			listCount = dao.getSearchListCountAll(search.getSv());
+		} else {
 		listCount = dao.getSearchListCount(search);
-		
+		}
 		return new PageInfo10(cp, listCount);
 	}
 	

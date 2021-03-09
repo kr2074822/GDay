@@ -70,7 +70,7 @@ button:active { outline: none !important;}
     position: absolute;
     bottom : 0px;
     right : 0px;
-    z-index: 5;
+    z-index: 1;
     background-color : rgba(44, 44, 44, 0.815);
     font-size : 22px;
     text-align: center;
@@ -81,6 +81,9 @@ button:active { outline: none !important;}
     border-radius: 20%;
 }
 
+.info-hidden {
+	display: none;
+}
 
 /* 내 정보 각 행 div */
 .info-form {
@@ -132,7 +135,7 @@ button:active { outline: none !important;}
 
 /* 버튼 */
 .info-btn {
-    width : 60px;
+    min-width : 60px;
     height : 36px;
     border-radius: 10px;
     border : none;
@@ -141,17 +144,28 @@ button:active { outline: none !important;}
     margin-left : 5px;
 }
 /* 티클미색 버튼 */
-#post-search-btn, #b-update-btn, #b-validate-btn { background-color: #FE929F; /*티클미*/}
-#post-search-btn:hover, #b-update-btn:hover, #b-validate-btn:hover { 
+#post-search-btn, #b-update-btn, #b-validate-btn, .submit-btn { background-color: #FE929F; /*티클미*/}
+#post-search-btn:hover, #b-update-btn:hover, 
+#b-validate-btn:hover, .submit-btn:hover { 
     background-color: #db7e89; 
     cursor: pointer;
 }
 /* 회색 버튼 */
-#b-cancel-btn, #license-btn { background-color: darkgray;}
-#b-cancel-btn:hover, #license-btn:hover { 
+#b-cancel-btn, #license-btn, .reset-btn { background-color: darkgray;}
+#b-cancel-btn:hover, #license-btn:hover, .reset-btn:hover { 
     background-color: rgb(128, 128, 128); 
     cursor: pointer;
 }
+
+
+.wrap-btn {
+	height : 60px;
+	display: flex;
+	justify-content : center;
+	align-items : flex-end;
+}
+
+
 
 
 /* 증명서 사진 */
@@ -164,8 +178,12 @@ button:active { outline: none !important;}
     background-repeat: no-repeat;
     z-index: 1;
 }
-#license-btn { width : 75px;}
+#license-btn { width : 75px; }
 #license-div { display : flex; }
+
+#b-validate-btn, 
+#b-cancel-btn, #license-btn {display: none;}
+
 
 /* 비즈니스 회원 부분 */
 #check-company {
@@ -188,6 +206,18 @@ button:active { outline: none !important;}
     height : 100px;
     resize: none;
 }
+
+#info-b-update .status-text {
+	font-size : 14px;
+	font-weight : bold;
+	color : #54B39E;
+	border : 2px solid #54B39E;
+	border-radius : 25px;
+	width : 160px;
+	line-height : 40px;
+	text-align : center;
+}
+
 
 /* ---------------------------------------------------------------- */
 

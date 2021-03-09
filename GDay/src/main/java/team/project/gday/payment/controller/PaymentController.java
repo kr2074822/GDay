@@ -38,9 +38,6 @@ public class PaymentController {
 		
 		int result = 0;
 		
-		// 결제할 상품 정보 담을 객체
-		PaymentInfo orderInfo = new PaymentInfo();
-		
 		// 결제할 상품들을 담을 리스트
 		List<PaymentInfo> oList = new ArrayList<PaymentInfo>();
 
@@ -54,8 +51,6 @@ public class PaymentController {
 		
 		// item 문자열에서 , 를 기준으로 다시 자르기
 		for(int i = 0; i < items.length; ++i) {
-			System.out.println(items[i]);
-
 			String[] itemTemp = items[i].split(",");
 
 			// itemTemp에서 : 뒤 값들만 챙기기
@@ -64,16 +59,19 @@ public class PaymentController {
 				itemTemp[j] = itemTemp[j].replace(":", "");				
 			}
 			
+			// 결제할 상품 정보 담을 객체
+			PaymentInfo paymentInfo = new PaymentInfo();
+			
 			// 주문정보 객체에 가공된 값 넣어주기
-			orderInfo.setCartNo(Integer.parseInt(itemTemp[0]));
-			orderInfo.setPrdtNo(Integer.parseInt(itemTemp[1]));
-			orderInfo.setPrdtName(itemTemp[2]);
-			orderInfo.setOptNo(Integer.parseInt(itemTemp[3]));
-			orderInfo.setPrdtPrice(Integer.parseInt(itemTemp[4]));
-			orderInfo.setPrdtAmount(Integer.parseInt(itemTemp[5]));
+			paymentInfo.setCartNo(Integer.parseInt(itemTemp[0]));
+			paymentInfo.setPrdtNo(Integer.parseInt(itemTemp[1]));
+			paymentInfo.setPrdtName(itemTemp[2]);
+			paymentInfo.setgOptNo(Integer.parseInt(itemTemp[3]));
+			paymentInfo.setPrdtPrice(Integer.parseInt(itemTemp[4]));
+			paymentInfo.setCartAmount(Integer.parseInt(itemTemp[5]));
 			
 			// 주문 정보 주문 정보 리스트에 저장
-			oList.add(orderInfo);
+			oList.add(paymentInfo);
 		}
 		
 		if(oList != null) {
@@ -81,15 +79,13 @@ public class PaymentController {
 			result = 1;
 		}
 		
-		
 		return result;
 	}
 		
 	
 	@RequestMapping("paymentForm")
 	public String paymentForm(@ModelAttribute("loginMember") Member loginMember,
-							  @ModelAttribute("loginMember") Member oList,
-							  HttpSession session,
+							  @ModelAttribute("oList") List<PaymentInfo> oList,
 							  Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -106,9 +102,15 @@ public class PaymentController {
 			}
 		}
 		
+		for(int i = 0; i < olList.size(); ++i) {
+			if(olList.get(i).getCartNo() == oList.get(i).getCartNo()) {
+				olList.get(i).setCartAmount(oList.get(i).getCartAmount());
+			}
+		}
+		
 		model.addAttribute("olList", olList);
 		
-		session.removeAttribute("oList");
+		System.out.println(olList);
 		
 		return "payment/order";
 	}

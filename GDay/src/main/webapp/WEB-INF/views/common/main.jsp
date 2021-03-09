@@ -464,6 +464,7 @@ display: none;
                 }else{
                     let cnt = 0;
                     let aa = input_list.parentElement.querySelectorAll('input')
+                    console.log(aa)
                     for (const bb of aa) {
                         if(bb.checked){
                             cnt=cnt+1;

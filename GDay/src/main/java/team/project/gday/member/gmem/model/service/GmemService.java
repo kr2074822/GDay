@@ -3,12 +3,15 @@ package team.project.gday.member.gmem.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.member.model.vo.ProfileImg;
 import team.project.gday.member.model.vo.Refund;
 import team.project.gday.review.model.vo.Review;
 
@@ -116,5 +119,15 @@ public interface GmemService {
 	public abstract int accountDel(Member loginMember);
 
 
+	/** 회원 프로필 update
+	 * @param profile
+	 * @param savePath
+	 * @param memberNo
+	 * @param profileFlag 
+	 * @return
+	 */
+	public abstract int updateProfile(List<MultipartFile> profile, String savePath, Member updateMember, boolean profileFlag);
+
+	
 	
 }

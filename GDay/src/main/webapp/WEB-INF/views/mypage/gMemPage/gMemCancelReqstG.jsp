@@ -219,7 +219,7 @@
 	var validateCheck = {
 			"shipName" : false,
 			"shipPhone" : false,
-			"rfContent" : false,
+			"rfContent" : false
 	}
  	function returnValidate(){
 		 
@@ -238,8 +238,8 @@
  		
  		} else { //반품 요청일 때
 	 		//name 유효성 검사 : 한글 6글자 + 영어 20글자
-	 		var regExp1 = /^[가-힣]{2,6}$/;
-	 		var regExp2 = /^[A-Za-z]{2,20}$/;
+	 		var regExp1 = /^[가-힣\s]{2,6}$/;
+	 		var regExp2 = /^[A-Za-z\s]{2,20}$/;
 	 		
 	 		if(!regExp1.test($name.val()) && !regExp2.test($name.val())){
 	 			validateCheck.shipName = false;

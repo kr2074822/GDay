@@ -85,7 +85,7 @@
                     </ul>
 								</li>
 								
-                <li><a href="${contextPath}/bMember/bMemUpdate">
+                <li><a href="${contextPath}/bMember/bMemUpdate/${loginMember.memberNo}">
                     <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                     <span class="menu-text">내 정보</span>
                     </a></li>

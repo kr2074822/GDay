@@ -19,12 +19,12 @@ public class PaymentDAO {
 	
 	// 결제창 주문목록 리스트 dao
 	public List<PaymentInfo> orderList(Map<String, Object> map) {
-		return sqlSession.selectList("sqlSession.orderList", map);
+		return sqlSession.selectList("paymentMapper.orderList", map);
 	}
 
 	// 결제창 주문목록 썸네일 리스트 dao
 	public List<Attachment> bOrderThumbnailList(List<PaymentInfo> olList) {
-		return sqlSession.selectList("sqlSession.bOrderThumbnailList", olList);
+		return sqlSession.selectList("paymentMapper.bOrderThumbnailList", olList);
 	}
 
 }

@@ -19,6 +19,7 @@ button:active { outline: none !important;}
     width : 80%;
     align-items: center;
     margin : 30px auto;
+    min-height : 900px;
 }
 
 /* 내정보 제목 */
@@ -76,6 +77,9 @@ button:active { outline: none !important;}
     border-radius: 20%;
 }
 
+.info-hidden {
+	display: none;
+}
 
 /* 내 정보 각 행 div */
 .info-form {
@@ -133,7 +137,7 @@ button:active { outline: none !important;}
 
 /* 버튼 */
 .info-btn {
-    width : 60px;
+    min-width : 60px;
     height : 36px;
     border-radius: 10px;
     border : none;
@@ -142,14 +146,21 @@ button:active { outline: none !important;}
     margin-left : 5px;
 }
 /* 티클미색 버튼 */
-#post-search-btn{ background-color: #FE929F; /*티클미*/}
-#post-search-btn:hover{ 
+#post-search-btn, .submit-btn { background-color: #FE929F; /*티클미*/}
+#post-search-btn:hover, .submit-btn:hover{ 
     background-color: #db7e89; 
     cursor: pointer;
 }
 
+.reset-btn { background-color : darkgray;}
+.reset-btn:hover { background-color: rgb(128, 128, 128); ; cursor: pointer;}
 
-
+.wrap-btn {
+	height : 60px;
+	display: flex;
+	justify-content : center;
+	align-items : flex-end;
+}
 
 
 /* ---------------------------------------------------------------- */
@@ -208,6 +219,7 @@ button:active { outline: none !important;}
     color : #FE929F;
     font-weight : bold;
 }
+
 
 
 /* 반응형 */

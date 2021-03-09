@@ -38,10 +38,12 @@
 	            </td>         
 	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtName}</td>
 	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtPrice}</td>
-	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtAmount}</td>
+	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.cartAmount}</td>
 	         </tr>         
          </c:forEach>
       </table>
+      
+      <c:remove var="oList" scope="session"/>
       
       <br>
       
