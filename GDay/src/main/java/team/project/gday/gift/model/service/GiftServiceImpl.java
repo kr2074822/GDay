@@ -17,8 +17,10 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.common.model.exception.UserDefineException;
 import team.project.gday.gift.model.dao.GiftDAO;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
 @Service 
@@ -402,6 +404,32 @@ public class GiftServiceImpl implements GiftService{
 		
 		
 		return 0;
+	}
+
+	// 페이징 처리 객체 Service 구현
+	@Override
+	public PageInfo10 getPageInfo(int cp) {
+		//전체 클래스 수 조회
+		int classCount = dao.getGiftCount();
+		return new PageInfo10(cp, classCount);
+	}
+
+	// 선물 목록 조회 
+	@Override
+	public List<Gift> selectList(PageInfo10 pInfo) {
+		return dao.selectList(pInfo);
+	}
+
+	// 썸네일 목록 조회
+	@Override
+	public List<Attachment> selectThumbnailList(List<Gift> gift) {
+		return dao.selectThumbnailList(gift);
+	}
+
+	// 평균별점
+	@Override
+	public List<ProductStar> selectStarList(List<Gift> gift) {
+		return dao.selectStarList(gift);
 	}
 
 }

@@ -3,6 +3,7 @@ package team.project.gday.gift.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,8 @@ import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
+import team.project.gday.Product.model.vo.ProductStar;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
 
 /**
@@ -189,6 +192,34 @@ public class GiftDAO {
 	 */
 	public int updateOption2(Map<String, Object> map) {
 		return sqlSession.update("giftMapper.updateOption", map);
+	}
+
+	/** 전체 선물 수 조회 DAO
+	 * @return
+	 */
+	public int getGiftCount() {
+		return sqlSession.selectOne("giftMapper.getGiftCount");
+	}
+
+	/** 선물 목록 조회
+	 * @param pInfo
+	 * @return
+	 */
+	public List<Gift> selectList(PageInfo10 pInfo) {
+		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		
+		return sqlSession.selectList("giftMapper.selectList", null, rowBounds);
+	}
+
+	public List<Attachment> selectThumbnailList(List<Gift> gift) {
+		System.out.println(gift);
+		return sqlSession.selectList("giftMapper.selectThumbnailList", gift);
+	}
+
+	public List<ProductStar> selectStarList(List<Gift> gift) {
+		return sqlSession.selectList("giftMapper.selectStarList", gift);
 	}
 	
 }
