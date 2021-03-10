@@ -39,7 +39,7 @@ td{
 						<thead>
 							<tr>
 								<th>문의 번호</th>
-								<th>문의 내용</th>
+								<th>문의 제목</th>
 								<th>작성자</th>
 								<th>게시글 상태</th>
 							</tr>
@@ -57,8 +57,8 @@ td{
 		                    	<c:forEach var="customor" items="${cList}">
 									<tr>
 										<td>${customor.cusNo}</td>
-										<td>${customor.cusContent}</td>
-										<td>${customor.memNo}</td>
+										<td>${customor.cusTitle}</td>
+										<td>${customor.memberName}</td>
 										<td>${customor.replyStatus}</td>
 									</tr>
 								</c:forEach> 

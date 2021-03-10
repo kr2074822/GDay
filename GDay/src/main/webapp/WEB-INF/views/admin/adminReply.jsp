@@ -72,12 +72,13 @@
 	<!-- 댓글 작성 부분 -->
 	<div class="replyWrite">
 		<table align="center">
-			<tr>
-				<td id="replyContentArea"><textArea rows="3" id="replyContent"></textArea>
-				</td>
-				<td id="replyBtnArea">
-					<button class="btn btn-success" id="addReply">답변 등록</button>
-				</td>
+				<tr>
+					<td id="replyContentArea"><textArea rows="3" id="replyContent"></textArea>
+					</td>
+					<td id="replyBtnArea">
+						<button class="btn btn-success" id="addReply">답변 등록</button>
+					</td>
+				</tr>
 		</table>
 	</div>
 
@@ -104,6 +105,7 @@ $(function(){
 
 console.log(loginmemberEmail)
 console.log(parentCustomerNo)
+
 // 댓글 목록 불러오기(AJAX)
 function selectReplyList(){
 	$.ajax({
@@ -138,38 +140,27 @@ function selectReplyList(){
 
 // 댓글 등록
 $("#addReply").on("click", function(){
-	
-	// 로그인이 되어있는지 확인
-	if(loginmemberEmail == ""){
+	if(replyContent.trim().lenght == 0){
 		swal({icon: "info",
-					title: "로그인 후 이용해주세요."});
-	}else{ // 로그인이 되어있는 경우
-		var replyContent = $("#replyContent").val(); // 작성된 댓글 내용을 얻어와 저장
-		
-		if(replyContent.trim().length == 0){ // 댓글이 작성되지 않은 경우
-			swal({icon: "info",
-						title: "댓글 작성 후 클릭해주세요."});
-			
-		}else{ // 로그인 O, 댓글작성 O인 경우
-			$.ajax({
-				url: "${contextPath}/reply/insertReply/" + parentBoardNo,
-				type: "post",
-				data: {"replyWriter" : replyWriter,
-							 "replyContent" : replyContent},
-				success: function(result){
+			  title: "댓글을 작성해주세요."});
+	}else{
+		$.ajax({
+			url:"${contextPath}/admin/insertReply/" + parentCustomerNo,
+			type: "post",
+			data: {"curWriter": curWriter,
+				   "curContent": curContent},
+			success: function(result){
+				if(result > 0){
+					$("#replyContent").val("");
 					
-					if(result > 0){ // 댓글 삽입 성공
-						$("#replyContent").val(""); // 작성한 댓글 내용을 삭제
-						swal({icon: "success", 
-									title: "댓글 삽입 성공"});
-						selectReplyList(); // 다시 목록 조회
-					}
-				},
-				error: function(){
-					console.log("댓글 삽입 실패");
-				} 
-			});
-		}
+					swal({icon: "success",
+						  title: "댓글 삽입 성공"});
+				}
+			},
+			error: function(){
+				console.log("댓글 삽입 실패");
+			}
+		})
 	}
 });
 

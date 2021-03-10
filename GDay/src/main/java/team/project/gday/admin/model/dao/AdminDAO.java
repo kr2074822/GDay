@@ -279,5 +279,13 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.deny", memberNo);
 	}
 
+	/** 댓글 삽입
+	 * @param map
+	 * @return
+	 */
+	public int insertReply(Map<String, Object> map) {
+		return sqlSession.insert("adminMapper.insertReply", map);
+	}
+
 
 }

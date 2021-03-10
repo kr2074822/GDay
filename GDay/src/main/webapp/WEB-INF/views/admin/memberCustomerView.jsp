@@ -59,7 +59,7 @@
 		</div>
 		<div class="board-area">
 			<div class="title-area">
-				<h2 style="font-weight: bold; font-size: 20px;">안녕하세요${customer}</h2>
+				<h2 style="font-weight: bold; font-size: 20px;">${customer.cusTitle}</h2>
 			</div>
 			<div class="info-area">
 				<h4>작성자: ${customer.memberName}</h4>
