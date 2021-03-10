@@ -130,7 +130,7 @@ img{
 			<div class="bMemStandView">
 				<form action="#" method="POST" id="businessView">
 					<div class="header-business">
-						<h1><span class="form-business">비즈니스 회원 신청자${member}</span></h1>
+						<h1><span class="form-business">비즈니스 회원 신청자</span></h1>
 						<hr>
 					</div>
 					<div class="content-body">
@@ -139,7 +139,6 @@ img{
 							<p>업체명: ${bmemShop}</p>
 							<p>주소: ${member.memberAddress }</p>
 							<p>연락처: ${member.memberPhone}</p>
-							<p>비즈니스 신청 분야: 선물(또는 클래스)</p>
 						</div>
 						<br><br><br>
 						<div class="registration">
