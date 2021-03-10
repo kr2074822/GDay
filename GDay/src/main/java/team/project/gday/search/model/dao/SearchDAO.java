@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.gift.model.vo.Gift;
 import team.project.gday.search.model.vo.Search;
@@ -22,9 +23,9 @@ public class SearchDAO {
 	 * @param pInfo
 	 * @return gList
 	 */
-	public List<Gift> selectGiftSearchList(Search search) {
+	public List<team.project.gday.Product.model.vo.Gift> selectGiftSearchList(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectSearchList", search, rowBounds);
+		return sqlSession.selectList("giftMapper.selectSearchList", search, rowBounds);
 	}
 
 	/**메인 검색결과 클래스 10개 보여주기
@@ -41,9 +42,9 @@ public class SearchDAO {
 	 * @param search
 	 * @return
 	 */
-	public List<Gift> selectGiftListAll(Search search) {
+	public List<team.project.gday.Product.model.vo.Gift> selectGiftListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
-		return sqlSession.selectList("searchMapper.selectGiftListAll", search, rowBounds);
+		return sqlSession.selectList("giftMapper.selectGiftListAll", search, rowBounds);
 	}
 	
 	/** 카테고리가 없을 때 검색 조건이 포함된 클래스 목록 조회 DAO
@@ -52,6 +53,14 @@ public class SearchDAO {
 	public List<GClass> selectClassListAll(Search search) {
 		RowBounds rowBounds = new RowBounds(0, 10);
 		return sqlSession.selectList("classMapper.selectClassListAll", search, rowBounds);
+	}
+
+	/**썸네일 목록 조회 DAO
+	 * @param gCList
+	 * @return
+	 */
+	public List<Attachment> selectThumbnailList(List<GClass> gCList) {
+		return sqlSession.selectList("classMapper.selectThumbnailList", gCList);
 	}
 
 }

@@ -54,9 +54,8 @@ public class GClassDAO {
 	 * @param gCList
 	 * @return thList
 	 */
-	public List<Attachment> selectThumbnailList(List<GClass> gCList) {
-		System.out.println(gCList);
-		return sqlSession.selectList("classMapper.selectThumbnailList", gCList);
+	public List<Attachment> selectThumbnailList(List<GClass> GCList) {
+		return sqlSession.selectList("classMapper.selectThumbnailList", GCList);
 	}
 
 	/**클래스 상세 조회 DAO 

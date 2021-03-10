@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.gift.model.vo.Gift;
 import team.project.gday.search.model.dao.SearchDAO;
@@ -18,7 +19,7 @@ public class SearchServiceImpl implements SearchService {
 
 	//메인 검색결과 선물 10개 보여주기
 	@Override
-	public List<Gift> selectGiftSearchList(Search search) {
+	public List<team.project.gday.Product.model.vo.Gift> selectGiftSearchList(Search search) {
 		if(search.getCategory() == null) {
 			return dao.selectGiftListAll(search);
 		}
@@ -32,6 +33,12 @@ public class SearchServiceImpl implements SearchService {
 			return dao.selectClassListAll(search);
 		}
 		return dao.selectClassSearchList(search);
+	}
+
+	//썸네일 목록 조회 Service 구현
+	@Override
+	public List<Attachment> selectThumbnailList(List<GClass> gCList) {
+		return dao.selectThumbnailList(gCList);
 	}
 	
 
