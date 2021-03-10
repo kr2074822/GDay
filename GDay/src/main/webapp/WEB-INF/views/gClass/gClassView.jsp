@@ -72,7 +72,7 @@
                         <!-- <p>총 <span>123</span>개</p> -->
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="sum" style="font-size: 30px;"><fmt:formatNumber value="${gclass.prdtPrice}"/>원</span>
+                            <span class="sum" style="font-size: 30px;">${gclass.prdtPrice}</span>
                         </div>
     
                         <div class="option_btn">
