@@ -60,7 +60,7 @@
 	
 	<!-- 메시지 보내기 -->
 	<insert id="gcMsg" parameterType="Message">
-		INSERT INTO MESSAGE VALUES(SEQ_MSGNO.NEXTVAL, #{msgContent}, SYSDATE, 0, #{you}, #{me})
+		INSERT INTO MESSAGE VALUES(SEQ_MSGNO.NEXTVAL, #{msgContent}, SYSDATE, 0, #{me}, #{you})
 	</insert>
 	
 	
