@@ -58,7 +58,7 @@
 					
 				<table id="list-table">
 				<thead>
-					<tr id="table-head" style="border-bottom: 1px solid black; background-color: lightgray;">
+					<tr id="table-head" style = "background-color: #fdd7dc;">
 						<th></th>
 						<th class="hide">주문번호</th>
 						<th class="hide">상품 번호</th>
@@ -73,7 +73,13 @@
 				<tbody>
 					<c:if test="${empty oList}">
 						<tr>
-							<td colspan="6">존재하는 주문글이 없습니다.</td>
+							<td colspan="9" rowspan="10" style=
+							"text-align: center; 
+							 padding-top: 200px;
+							 font-family: 'TmoneyRoundWindRegular';
+							 font-size: 20px;">
+								존재하는 주문글이 없습니다.
+							</td>
 						</tr>
 					</c:if>
 

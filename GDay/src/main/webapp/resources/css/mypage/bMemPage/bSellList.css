@@ -5,6 +5,11 @@
 	margin-bottom: 100px;
 }
 
+#wrapper h1 {
+	font-family: 'TmoneyRoundWindRegular';
+	font-size: 20px;
+}
+
 #b-sell-list-wrapper {
 	width: 70%;
 	margin: 100px auto;
@@ -42,16 +47,17 @@
 .day-btn {
 	height : 36px; 
 	font-size : 16px; 
-	background-color: #FE929F; 
+	background-color: #fdd7dc; 
 	border: 0;
 	outline: 0;
 	font-family: 'TmoneyRoundWindRegular';
+	transition: .5s;
 }
 
 .day-btn:hover, #status-change-btn:hover , #list-search-btn:hover {
 	cursor: pointer;
-	background-color: #8e8989;
-	color: #FFF;
+	background-color: #f1abb4;
+	transition: .5s;
 }
 
 
@@ -75,8 +81,6 @@
 }
 
 .sell-item:hover {
-	border: 1px solid #fe929f;
-	box-sizing: border-box;
 	cursor: pointer;
 }
 
@@ -106,8 +110,26 @@
 	text-align: center;
 }
 
-.pagination li {
+.pagination li{
 	display: inline-block;
+	aling: center;
+} 
+
+.pagination li a{
+	display:inline-block;
+	margin:0 auto;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fdd7dc;
+	font-size:13px;
+	color:white;
+	text-decoration:none;
+}
+
+.pagination li a:hover {
+	background-color: #8e8989;
 }
 
 @media screen and ( max-width: 768px ) {
