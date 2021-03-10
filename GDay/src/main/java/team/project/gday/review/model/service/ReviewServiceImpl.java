@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.review.model.dao.ReviewDAO;
 import team.project.gday.review.model.exception.UpdateAttachmentFailException;
@@ -132,10 +133,33 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.selectCList(rList);
 	}
 
-	//
+	//후기 삭제
 	@Override
 	public int deleteReview(int rvNo) {
 		return dao.deleteReview(rvNo);
+	}
+
+	//상세 페이지 후기 조회용 pInfo
+	@Override
+	public PageInfo10 getPageInfo5(Map<String, Object> map) {
+		
+		int listCount = dao.getViewListCount(map); //주문 목록
+		
+		System.out.println("listCount: " + listCount);
+
+		return new PageInfo10((Integer)map.get("cp"), listCount);
+	}
+
+	//상세페이지 후기 조회
+	@Override
+	public List<Review> selectReviewView(PageInfo10 pInfo, Map<String, Object> map) {
+		return dao.selectReviewView(pInfo, map);
+	}
+
+	//제품 후기 별점 평균
+	@Override
+	public int getStarAvg(int prdtNo) {
+		return dao.getStarAvg(prdtNo);
 	}
 	
 	

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=1.0">
+<link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=1.1">
 <link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
 		
    <h1>후기</h1>
@@ -11,12 +11,12 @@
         <div class="info">
             <span>별점 평균</span>
         </div>
-        <div class="progress_line"><span style="width: 70%;">3.5</span></div>
+        <div class="progress_line"><span></span></div>
     </div>
 		<div id="container-reviews">
 		
 					<!-- 클래스 -->		
-				<div class="container-review">
+<!-- 				<div class="container-review">
 	        <div class="review-img-v"></div>
 	        <div class="review-card">
 	        		<div class="review-date">
@@ -38,9 +38,9 @@
 	            <a class="a-report">신고</a>
 	        </div>
         </div>
-		
+		 -->
 				<!-- 선물 -->
-				<div class="container-review">
+<!-- 				<div class="container-review">
 					<div class="review-img-v"></div>
 	        <div class="review-card">
 	        	  <div class="review-date">
@@ -62,7 +62,7 @@
 	            <div class="review-content-v">후기후기후기</div>
 	            <a class="a-report">신고</a>
 	        </div>
-	      </div> 
+	      </div>  -->
 			</div>
 
 			<div class="r-pagination">
@@ -119,7 +119,7 @@ function selectReviewView(cp){
 	//cp, prdtNo, pages[2]==type
 	
 	$.ajax({
-		url: "../../review/selectReviewView",
+		url: "../review/selectReviewView",
 		data : { "cp" : cp, "prdtNo" : prdtNo, "type" : type},
 		type : "POST",
 		dataType : "json",
@@ -129,8 +129,12 @@ function selectReviewView(cp){
 		  	if(rList.length > 0){
 		  		
 				  $.each(rList, function(index, review){   
-					  
-				  		var container = $("<div>").addClass("container-review");
+					  	
+					  	var starAvg = map.starAvg;
+					  	var starLine = $(".progress_line span");
+					  	starLine.text(starAvg).css("width", starAvg*20+"%");
+
+					  	var container = $("<div>").addClass("container-review");
 				  		
 				  		var imgUrl = review.rvImgPath + "/" + review.rvImgName;
 				  		var reviewImg = $("<div>").addClass("review-img-v").css("background-image", "url(" + "${contextPath}" + imgUrl + ")");
@@ -172,7 +176,7 @@ function selectReviewView(cp){
 								star.append($icon);
 							}
 							
-							reviewCard.append(star);
+							rCard.append(star);
 							
 							var beforeContent = review.rvContent;
 							 beforeContent = beforeContent.replace(/&amp;/g, "&");   
@@ -182,7 +186,7 @@ function selectReviewView(cp){
 					  	 beforeContent = beforeContent.replace(/<br>/g, "\n");
 		
 							//후기 내용
-							var content = $("<div>").addClass("review-content").text(beforeContent);
+							var content = $("<div>").addClass("review-content-v").text(beforeContent);
 							
 							//신고 버튼 
 							var aReport = $("<div>").addClass("a-report")
@@ -203,7 +207,7 @@ function selectReviewView(cp){
 			
 					var span = $("<span>").addClass('no-list-text').text(msg);		
 					div.append(span);
-					listContainer.append(div);
+					rContainer.append(div);
 		  	}
 		  	
 			  //더보기 버튼 현재 페이지가 마지막 페이지이면 숨기기 + 아니면 보이기
@@ -215,16 +219,17 @@ function selectReviewView(cp){
 				pagination.html("");
 				
 				if(cp > pInfo.pageSize){
-					var first = $("<a>").addClass("r-page").text("<<").attr("href", "selectReviewView(1)");
+					var first = $("<a>").addClass("r-page").text("<<").attr("onclick", "goToPage(1)");
 					
-					var prevNum = ((cp -1)/10)*10;
-					var prev =  $("<a>").addClass("r-page").text("<").attr("href", "selectReviewView(" + prevNum + ")");
+					/* 5개 페이지사이즈 */
+					var prevNum = ((cp - 1)/5)*5; 
+					var prev =  $("<a>").addClass("r-page").text("<").attr("onclick", "goToPage(" + prevNum + ")");
 					
 					pagination.append(first).append(prev);
 				}
 				
 				for(var i=pInfo.startPage; i<=pInfo.endPage; i++){
-					var num = $("<a>").addClass("r-page").text(i).attr("href", "selectReviewView("+ i +")");
+					var num = $("<a>").addClass("r-page").text(i).attr("onclick", "goToPage("+ i +")");
 					
 					if(cp == i){
 						num.css("color", "#FE929F");
@@ -233,10 +238,11 @@ function selectReviewView(cp){
 					pagination.append(num);
 				}
 				
-				var nextNum = ((cp +9)/10)*10 + 1;
+				/* 5개 페이지사이즈 */
+				var nextNum = ((cp + 9)/5)*5 + 1; 
 				if(nextNum <= maxPage){
-					var next =  $("<a>").addClass("r-page").text(">").attr("href", "selectReviewView(" + nextNum + ")");
-					var last =	$("<a>").addClass("r-page").text(">>").attr("href", "selectReviewView(" + maxPage + ")");
+					var next =  $("<a>").addClass("r-page").text(">").attr("onclick", "goToPage(" + nextNum + ")");
+					var last =	$("<a>").addClass("r-page").text(">>").attr("onclick", "goToPage(" + maxPage + ")");
 					pagination.append(next).append(last);
 				}
 		
@@ -248,5 +254,11 @@ function selectReviewView(cp){
 	});//ajax 끝
 	
 }
+
+function goToPage(cp){
+	selectReviewView(cp);
+}
+
+
 
 </script>

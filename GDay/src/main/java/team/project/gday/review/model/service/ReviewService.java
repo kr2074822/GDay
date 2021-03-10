@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.review.model.vo.Review;
 
@@ -57,5 +58,24 @@ public interface ReviewService {
 	 * @return
 	 */
 	int deleteReview(int rvNo);
+
+	/**상세 페이지 후기 조회용 pInfo
+	 * @param map
+	 * @return
+	 */
+	PageInfo10 getPageInfo5(Map<String, Object> map);
+
+	/** 상세 페이지 후기 조회
+	 * @param pInfo
+	 * @param map
+	 * @return
+	 */
+	List<Review> selectReviewView(PageInfo10 pInfo, Map<String, Object> map);
+
+	/** 제품별 평균 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	int getStarAvg(int prdtNo);
 
 }
