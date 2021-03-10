@@ -56,7 +56,7 @@ section form .wrapper .check_wrapper ul{
     justify-content: start;
     align-items: center;
     flex-wrap: wrap;
-    display: none;
+    /* display: none; */
 }
 section form .wrapper .check_wrapper ul li {
     font-weight: 300;

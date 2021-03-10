@@ -340,7 +340,7 @@
     
 	<jsp:include page="../common/footer.jsp"/>
     <script>
-        const opt_name = document.getElementsByClassName("opt_name");
+/*         const opt_name = document.getElementsByClassName("opt_name");
         console.log(opt_name);
         $(".opt_name").on('click', function(){
             console.log($(this).next());
@@ -359,7 +359,7 @@
                 }else{
                 $(this).next().slideUp().css("display", "flex");
             }
-        })
+        }) */
         
         
         
