@@ -20,4 +20,11 @@ public interface PaymentService {
 	 */
 	List<Attachment> bOrderThumbnailList(List<PaymentInfo> olList);
 
+	
+	/** 결제 성공 시 결제 정보 삽입 Service
+	 * @param map
+	 * @return result
+	 */
+	int insertOrderInfo(Map<String, Object> map);
+
 }

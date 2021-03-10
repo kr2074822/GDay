@@ -27,4 +27,9 @@ public class PaymentDAO {
 		return sqlSession.selectList("paymentMapper.bOrderThumbnailList", olList);
 	}
 
+	// 결제 성공 시 정보 삽입dao
+	public int insertOrderInfo(Map<String, Object> map) {
+		return sqlSession.insert("paymentMapper.insertOrderInfo", map);
+	}
+
 }

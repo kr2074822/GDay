@@ -127,6 +127,8 @@
 	var price = 0; // 상품 가격 합계를 담기 위한 변수
 	var itemArys = []; // 선택된 상품 정보를 담기 위한 배열
 	
+	var itemInfo;
+	
 	$(document).ready(function(){
 		$("#price-sum").text(price);
 	});
@@ -175,7 +177,7 @@
 		
  		if(checkBox.is(":checked")) {
  			price += Number(itemPrice.val());
-		}   	
+		}   
 		
  		$("#price-sum").text(price);
 	});
@@ -191,8 +193,7 @@
 	 			price -= Number(itemPrice.val());
 			}   
 		}	
-	
- 		
+		
  		$("#price-sum").text(price);
 	});
 	
@@ -251,7 +252,7 @@
 		
 		if($(this).is(":checked")) {						
  			for(var i = 0; i < checkLength; ++i) {
- 				var itemInfo = {
+ 				itemInfo = {
  					cartNo : cartNo.eq(i).val(),
  					prdtNo : prdtNo.eq(i).val(),
  					prdtName : itemName.eq(i).text(),
@@ -270,7 +271,7 @@
 			price = 0;
 			ul.find($(".product-check")).prop("checked", false);
 		}
-		console.log(itemArys);
+		
 		$("#price-sum").text(price);
 	});
 	
@@ -286,7 +287,7 @@
 		var itemOptNo = li.find(".item-opt_no"); // 아이템 옵션 이름
 		
 		if($(this).is(":checked")) {
-			var itemInfo = {
+			itemInfo = {
 				cartNo : cartNo.val(),
 				prdtNo : prdtNo.val(),
 				prdtName : itemName.text(),
@@ -304,7 +305,7 @@
 				}
 			} 		
 		}
-		console.log(itemArys);
+		
 		$("#price-sum").text(price);
 	});	
 	
@@ -313,20 +314,25 @@
 	/* 상품번호 / 상품명 / 상품옵션(번호) / 가격 / 수량 */
 	$(".order-btn").on("click", function() {	
 		
-		$.ajax({
-			url : "${contextPath}/payment/order",
-			type : "post",
-			data : JSON.stringify(itemArys),
-			contentType : "application/json",
-			traditional: true,
-			success : function(result) {
-				if(result > 0) {
-					location.href ="${contextPath}/payment/paymentForm"
+		if(itemArys.length > 0) {
+			$.ajax({
+				url : "${contextPath}/payment/order",
+				type : "post",
+				data : JSON.stringify(itemArys),
+				contentType : "application/json",
+				traditional: true,
+				success : function(result) {
+					if(result > 0) {
+						location.href ="${contextPath}/payment/paymentForm"
+					} 
+				}, error : function() {
+					window.alert("에러!");
 				}
-			}, error : function() {
-				window.alert("에러!");
-			}
-		});
+			});
+		} else {
+			window.alert("하나 이상의 상품을 선택해주세요.");
+		}
+		
 		
 	});
 	
