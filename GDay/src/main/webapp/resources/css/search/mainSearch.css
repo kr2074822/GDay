@@ -172,6 +172,7 @@ section.gift .title:after{
 
 
 section.gift .gift_wrapper{
+		margin-top: 36px;
     display: flex;
     justify-content: start;
     align-content: center;
