@@ -320,4 +320,11 @@
 		INSERT INTO CUS_REPLY
 		VALUES(SEQ_CRNO.NEXTVAL, #{curContent}, #{cusNo}, DEFAULT)
 	</insert>
+	
+	
+	<!-- 고객센터 문의 작성 -->
+	<insert id="customerInsert" parameterType="map">
+		INSERT INTO CUSTOMOR
+		VALUES(SEQ_CNO.NEXTVAL, #{content}, #{memberNo}, DEFAULT, SYSDATE, #{title})
+	</insert>
 </mapper>

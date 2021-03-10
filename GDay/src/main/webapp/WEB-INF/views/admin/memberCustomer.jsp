@@ -114,7 +114,9 @@ button {
 		                    	<c:forEach var="customor" items="${rList}">
 									<tr>
 										<td>${customor.cusNo}</td>
-										<td>${customor.cusContent}</td>
+										<td>${customor.cusTitle}</td>
+										<td>${customor.cusCreateDate}</td>
+										<td>${customor.replyStatus}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -198,6 +200,14 @@ button {
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
+	// 문의글 상세보기
+	$("#list-table td").on("click", function() {
+		var cusNo = $(this).parent().children().eq(0).text();
+		
+		var cusViewURL = "memberCustomerView/" + cusNo;
+		
+		location.href = cusViewURL;
+	});
 	</script>
 </body>
 

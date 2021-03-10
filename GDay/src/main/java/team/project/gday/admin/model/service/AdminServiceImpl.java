@@ -256,5 +256,25 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	// 고객센터 문의 작성 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int customerInsert(Map<String, Object> map) {
+		String title = (String)map.get("title");
+		String content = (String)map.get("content");
+		
+		// 크로스 사이트 스크리빙 방지 처리 적용
+		title = replaceParameter(title);
+		content = replaceParameter(content);		
+		content = content.replaceAll("\n", "<br>");
+		
+		// 처리된 문자열을 다시 map에 세팅
+		map.put("title", title);
+		map.put("content", content);
+		
+		return dao.customerInsert(map);
+	}
+
+
 
 }

@@ -167,6 +167,14 @@ public interface AdminService {
 	public abstract int insertReply(Map<String, Object> map);
 
 	
+	
+	/** 고객센터 문의 작성 Service
+	 * @param map
+	 * @return 
+	 */
+	public abstract int customerInsert(Map<String, Object> map);
+
+	
 
 
 
