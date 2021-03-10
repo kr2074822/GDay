@@ -215,7 +215,6 @@ input[name='category'] {
         <div class="title">
             <span>Gift</span>
         </div>
-        <div class="gift_wrapper">
 			    <c:if test="${empty gList}">
 			      		<div class="gift_wrapper">조건에 맞는 상품이 없습니다.</div>
 					</c:if>
@@ -225,7 +224,7 @@ input[name='category'] {
 					<div class="item">
 						<a href="gClass/${gift.prdtNo}">
 					
-						<c:forEach items="${thList}" var="th">
+						<c:forEach items="${gthList}" var="th">
 							<c:if test="${th.prdtNo == gift.prdtNo}">
 								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
 							</c:if>

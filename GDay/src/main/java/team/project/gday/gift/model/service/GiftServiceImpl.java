@@ -461,5 +461,11 @@ public class GiftServiceImpl implements GiftService{
 	public ProductStar selectStar(int prdtNo) {
 		return dao.selectStar(prdtNo);
 	}
+	
+	//메인에서 상위 3개 클래스 가져오기
+	@Override
+	public List<Gift> selectGiftList3() {
+		return dao.selectGiftList3();
+	}
 
 }

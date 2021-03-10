@@ -116,6 +116,4 @@ public interface GClassService {
 	 */
 	List<GClass> selectSearchList(Search search, PageInfo10 pInfo);
 
-
-
 }

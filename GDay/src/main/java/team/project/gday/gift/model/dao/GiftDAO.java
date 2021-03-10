@@ -265,5 +265,10 @@ public class GiftDAO {
 	public ProductStar selectStar(int prdtNo) {
 		return sqlSession.selectOne("classMapper.selectStar", prdtNo);
 	}
+
+	public List<Gift> selectGiftList3() {
+		RowBounds rowBounds = new RowBounds(0, 3);
+		return sqlSession.selectList("giftMapper.selectGiftList3", null, rowBounds);
+	}
 	
 }
