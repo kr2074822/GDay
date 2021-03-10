@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#order-wrapper {
+	min-height: 700px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#order-result {
+	padding-top: 300px;
+}
+
+#order-result > h1 {
+	font-size: 30px;
+	font-weight: bold;
+	padding-bottom: 20px;
+	font-family: 'TmoneyRoundWindRegular';
+}
+
+#order-result > button {
+  	background-color: #FE929F;
+ 	height : 36px;
+  	border-radius: 10px;
+  	border : none;
+ 	color : #fafafa;
+ 	font-size : 14px;
+  	margin-left : 5px;	
+  	font-family: 'TmoneyRoundWindRegular';
+}
+
+#order-result > button:hover {
+	background-color: rgb(128, 128, 128); 
+   	cursor: pointer;
+  	color: #000000;
+}

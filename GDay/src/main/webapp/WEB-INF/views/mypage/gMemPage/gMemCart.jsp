@@ -19,11 +19,6 @@
 	
 	<div id="cart-wrapper">
 	
-	<div id="side-fix">
-		<jsp:include page="gMemSidebar.jsp"/>
-	</div>
-	
-	
 		<div id="select-area">
 			<button id="gift-btn">선물</button>
 			<button id="class-btn">클래스</button>

@@ -90,6 +90,7 @@ img {
 }
 
 .member-address {
+	display: flex;
 	line-height: 30px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
@@ -125,7 +126,7 @@ img {
 
 /* 공용 버튼 */
 .pink-btn {
-	background-color: #FE929F;
+  background-color: #FE929F;
   height : 36px;
   border-radius: 10px;
   border : none;
