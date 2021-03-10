@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
-  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.1"/>
+  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.2"/>
   <!-- icon : font-awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
         		<c:if test="${!empty picture}">
         			<c:url var="pfUrl" value="/resources/images/profileImg/${picture.pfName}"/>
         		</c:if>
-        		<c:if test="${empty pictures}">
+        		<c:if test="${empty picture}">
         			<c:url var="pfUrl" value="/resources/images/profileImg/profile.jpg"/>
         		</c:if>
         		
@@ -58,11 +58,14 @@
                   <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                   <span class="menu-text">내 정보</span>
                   </a></li>
-              <li><a>
+                  
+              <c:if test="${loginMember.memberType != 'K'}">    
+              <li><a href="${contextPath}/gMember/gMempwdForm">
                   <span class="menu-icon"><i class="fas fa-user-shield" style="font-size : 20px"></i></span>
                   <span class="menu-text">비밀번호 변경</span>
                   </a></li>
-              <li><a href="${contextPath}/gMember/bMemSessionUpdate">
+              </c:if>
+              <li><a href="${contextPath}/gMember/gMemSessionUpdate">
                   <span class="menu-icon"><i class="fas fa-sad-tear"></i></span>
                   <span class="menu-text">회원 탈퇴</span>
                   </a></li>

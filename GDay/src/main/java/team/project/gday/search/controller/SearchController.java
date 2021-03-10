@@ -41,7 +41,7 @@ public class SearchController {
 		
 		//3. 썸네일 가져오기
 		//if(gList!=null) { List<Attachment> gThumbnailList = new GiftServiceImpl().selectThumbnaiList(gList); }
-		if(gCList!=null) { 
+		if(gCList!=null  && !gCList.isEmpty()) { 
 			thList = cService.selectThumbnailList(gCList);
 			selectStarList = cService.selectStarList(gCList);
 			}

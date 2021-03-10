@@ -105,7 +105,7 @@ $(function(){
 							type : "post",
 							success : function(responseCode){
 								if(responseCode == 0 || responseCode == 400) {
-									swal.fire({icon: "warning", text :"오늘은 알림 문자를 할 기념일이 없거나<br>올바른 전화번호가 아닙니다.", confirmButtonColor: "#54b39E"});
+									swal.fire({icon: "warning", html :"오늘은 알림 문자를 할 기념일이 없거나<br>올바른 전화번호가 아닙니다.", confirmButtonColor: "#54b39E"});
 								} else if(responseCode == 202){
 									swal.fire({icon: "success", title:"알림 문자 발송 완료!", text:"잠시만 기다려 주세요.", confirmButtonColor: "#54b39E"});
 								} else {
@@ -176,7 +176,7 @@ function loadFullCalendar(events){
 	      },
 
 	      views: {
-	      today: {buttonText: '오늘'}, 
+	    	todayBtn: {buttonText: '오늘'}, 
 	      dayGridMonth: {buttonText: '캘린더'},
 	      list: {buttonText: '목록'},
 	      },
@@ -431,7 +431,7 @@ function updateEventForm(gdayNo){
 	});
 }
 
-
+//기념일 수정
 function updateEvent(){
 	
 	  if(ValidateCheck("update")) { //유효성 검사 값이 true 이면 진행 
@@ -512,11 +512,11 @@ function deleteEvent(gdayNo){
 		data : { "gdayNo" : gdayNo },
 		success : function(result){
 			if(result>0){
-				swal.fire({icon: "success", title: "기념일 삭제 완료"});
+				swal.fire({icon: "success", title: "기념일 삭제 완료",  confirmButtonColor: "#54b39E"});
 				$("#modal-view").parent().hide();
 		   	selectCalendarList(loadFullCalendar);
 			} else {
-				swal.fire({icon: "error", title: "기념일 삭제에 실패했습니다."});
+				swal.fire({icon: "error", title: "기념일 삭제에 실패했습니다.",  confirmButtonColor: "#54b39E"});
 			}
 		},
 		error : function(){

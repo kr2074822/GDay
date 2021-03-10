@@ -548,7 +548,48 @@ function selectReplyList(){
 		    
 		});
 
-     
+/* ======================== 주문하기 버튼 클릭 시 ======================== */    
+	var loginFlag = ${loginFlag};  
+	
+$(".order").on("click", function() {
+	var prdtNo = ${gclass.prdtNo};
+	var prdtName = "${gclass.prdtName}";
+	var prdtPrice = ${gclass.prdtPrice};
+	var prdtAmount = $(".amount").val();
+
+	console.log(prdtNo);
+	console.log(prdtName);
+	console.log(prdtPrice);
+	console.log(prdtAmount);
+	
+	 if(loginFlag == 1) {
+		 $.ajax({
+	    		url : "${contextPath}/payment/onePaymentInfo2",
+	    		data : {"prdtNo" : prdtNo,
+	    				"prdtName" : prdtName,
+	    				"prdtPrice" : prdtPrice,
+	    				"prdtAmount" : prdtAmount},
+	    		type : "post",
+	    		success : function(result) {
+	    			if(result > 0) {
+	    				location.href = "${contextPath}/payment/onePaymentForm";
+	    			} else {
+	    				window.alert("주문 페이지 이동 중 에러가 발생했습니다.");
+	    			}
+	    			
+	    		},
+	    		error : function() {
+	    			window.alert("장바구니에 등록 중 에러가 발생하였습니다.");
+	    		}
+	    	 });	 
+	 } else {
+		 window.alert("로그인 후 장바구니 사용이 가능합니다.");
+	 }
+	
+	
+});    
+
+
      
      /* ======================== 장바구니 버튼 클릭 시 ======================== */
      var loginFlag = ${loginFlag};

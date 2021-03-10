@@ -5,6 +5,7 @@ import java.util.Map;
 
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Reply;
 import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
@@ -134,7 +135,20 @@ public interface AdminService {
 	 */
 	public abstract List<Report> adminReportStand(adminPageInfo pInfo);
 
+	/** 댓글 조회
+	 * @param parentCustomerNo
+	 * @return
+	 */
+	public abstract Reply selectReplyList(int parentCustomerNo);
 
+
+	/** 문의글 번호 확인
+	 * @param cusNo
+	 * @return
+	 */
+	public abstract Customor memberView(int cusNo);
+
+	
 
 
 

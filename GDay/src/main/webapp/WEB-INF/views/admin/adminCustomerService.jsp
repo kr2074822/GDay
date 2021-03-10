@@ -59,6 +59,7 @@ td{
 										<td>${customor.cusNo}</td>
 										<td>${customor.cusContent}</td>
 										<td>${customor.memNo}</td>
+										<td>${customor.replyStatus}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -145,10 +146,8 @@ td{
 		/* 게시글 상세보기 */
 		$("#list-table td").on("click", function(){
 			var cusNo = $(this).parent().children().eq(0).text();
-			
-			var boardViewURL = cusNo;
-			
-			location.href = "${contextPath}/admin/memberCustomorView/" + boardViewURL; 
+			window.location.href="${contextPath}/admin/memberCustomerView/"+cusNo;
+			console.log(123);
 		});
 	</script>
 </body>

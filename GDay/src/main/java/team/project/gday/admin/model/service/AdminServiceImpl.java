@@ -1,4 +1,3 @@
-
 package team.project.gday.admin.model.service;
 
 import java.util.List;
@@ -11,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.dao.AdminDAO;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Reply;
 import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
@@ -121,7 +121,7 @@ public class AdminServiceImpl implements AdminService{
 	public adminPageInfo getPageMcInfo(int cp, Member loginMember) {
 		int listMcCount = dao.getListMcCount(loginMember);
 		
-		System.out.println("서비스" + listMcCount);
+		// System.out.println("서비스" + listMcCount);
 		return new adminPageInfo(listMcCount, cp);
 	}
 
@@ -199,4 +199,17 @@ public class AdminServiceImpl implements AdminService{
 	public String bmemShop(int memberNo) {
 		return dao.bmemShop(memberNo);
 	}
+
+	// 댓글 목록 조회
+	@Override
+	public Reply selectReplyList(int parentCustomerNo) {
+		return dao.selectReplyList(parentCustomerNo);
+	}
+
+	// 문의글 번호 확인
+	@Override
+	public Customor memberView(int cusNo) {
+		return dao.memberView(cusNo);
+	}
+
 }

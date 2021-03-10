@@ -8,7 +8,7 @@ import team.project.gday.payment.model.vo.PaymentInfo;
 
 public interface PaymentService {
 
-	/** 결제창 주문목록 리스트 Service
+	/** 장바구니에서 결제창 주문목록 리스트 Service
 	 * @param map
 	 * @return olList
 	 */
@@ -26,5 +26,11 @@ public interface PaymentService {
 	 * @return result
 	 */
 	int insertOrderInfo(Map<String, Object> map);
+
+	/** 상품 하나만 일 시 썸네일 가져오기 Service
+	 * @param prdtNo
+	 * @return tList
+	 */
+	List<Attachment> oneThumbnail(int prdtNo);
 
 }

@@ -192,7 +192,7 @@ section.gift .gift_wrapper .item div {
     width: 100%;
     height: 200px;
 }
-section.gift .gift_wrapper .item > img{
+section.gift .gift_wrapper .item img{
     width: 250px;
     height: 200px;
     object-fit: cover;
@@ -232,8 +232,8 @@ section.gift .gift_wrapper .item p{
     font-weight: 300;
 }
 section.gift .gift_wrapper .item span{
-    font-size: 12px;
     font-weight: 600;
+    font-size: 12px;
 }
 section.gift .gift_wrapper .item a{
     display: block;

@@ -14,6 +14,7 @@
     width : 220px;
     height : 100vh;
     float: left;
+    font : 12px/24px "TmoneyRoundWindRegular";
 }
 
 .sidebar-area a, .sidebar-area span { 
@@ -31,6 +32,7 @@
 	margin-bottom : 5px;
 	background-color : #fafafa;
 	color : #FE929F;
+		font-family: 'yg-jalnan';
 }
 
 
@@ -112,7 +114,7 @@
 
     .sidebar-area {
         position: fixed; 
-        left : -180px;
+        left : -220px;
         transition : 1s;
         z-index: 100;
     }

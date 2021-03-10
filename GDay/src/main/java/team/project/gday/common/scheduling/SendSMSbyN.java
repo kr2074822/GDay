@@ -64,20 +64,20 @@ public class SendSMSbyN {
 			JsonObject msgJson = new JsonObject();
 			msgJson.addProperty("to", target.getMemberPhone());//받는 사람의 target.getMemberPhone() (혜윤)
 		
-			String tSubject = target.getGdayTitle() + " D-" + leftDay + "!";
+			String tSubject = "HELLO! GDAY!\n";
 			
-			String tContent = "HELLO! GDAY!\n" + target.getMemberNick() + "님의 '" + target.getGdayTitle() + "'이/가 ";
+			String tContent = target.getGdayTitle() + " D-" + leftDay + "!\n" + target.getMemberNick() + "님의 '" + target.getGdayTitle() + "'이/가 ";
 			 
 			if(leftDay == 0) {
 				tContent += "오늘입니다!\n마음을 담은 선물을 전하고 상대방에게 Good-day를 만들어 주세요!:D";
 			} else if(leftDay <= 7) { 
 				tContent += "얼마 남지 않았어요!\n선물을 준비하셨나요?\n아직 준비하지 않았다면 지금 바로 GDAY에서 선물을 준비하세요!XD"; 
 			} else { 
-				tContent += "다가옵니다.\n선물을 준비하셨나요?\n미리 선물을 준비해 "
-								+ target.getGdayTitle() + "을/를 Good-day를 만들어 보세요!^O^"; }
+				tContent += "다가옵니다.\n선물을 준비하셨나요?\n미리 선물을 준비해 '"
+								+ target.getGdayTitle() + "'을/를 Good-day를 만들어 보세요!^O^"; }
 			
 			msgJson.addProperty("subject", "[GDAY]" + tSubject);
-			msgJson.addProperty("content", tContent);//tContent
+			msgJson.addProperty("content", tSubject+tContent);//tContent
 			
 			msgArr.add(msgJson);
 			System.out.println("msgArr : " + msgArr);

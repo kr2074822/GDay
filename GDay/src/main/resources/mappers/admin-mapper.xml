@@ -77,8 +77,9 @@
 		<!-- DB의 일반 컬럼들 -->
    		<result property="cusContent" column="CUS_CONTENT"/>
   		<result property="memNo" column="MEM_NO"/>
-  		<result property="curNo" column="CUR_NO"/>
-  		<result property="curContent" column="CUR_CONTENT"/>
+  		<result property="replyStatus" column="REPLY_STATUS"/>
+  		<result property="memberName" column="MEM_NAME"/>
+  		<result property="cusCreateDate" column="CUS_CREATE_DT"/>
 	</resultMap>
 	
 	
@@ -87,6 +88,14 @@
 		
    		<result property="bmemShop" column="BMEM_SHOP"/>
   		<result property="bmemIntro" column="BMEM_INTRO"/>
+	</resultMap>
+
+	<resultMap type="Reply" id="reply_rm">
+		<id property="curNo" column="CUR_NO"/>
+		
+   		<result property="curContent" column="CUR_CONTENT"/>
+  		<result property="replyCreateDate" column="REPLY_CREATE_DT"/>
+  		<result property="cusNo" column="CUS_NO"/>
 	</resultMap>
 	
 	
@@ -180,7 +189,7 @@
 	
 	<!-- 매거진 전체 조회 -->
 	<select id="adminMagazine" parameterType="_int" resultMap="magazine_rm">
-		SELECT MGZ_NO, MGZ_TITLE, CREATE_DATE, DELETE_STATUS
+		SELECT MGZ_NO, MGZ_TITLE, CREATE_DATE
         FROM MAGAZINE
         ORDER BY MGZ_NO DESC
 	</select>
@@ -265,5 +274,16 @@
 		WHERE MEM_NO = #{memberNo}
 	</select>
 	
+	<!-- 댓글 목록 조회 -->
+	<select id="selectReplyList" parameterType="_int" resultMap="reply_rm">
+		SELECT * FROM CUS_REPLY
+		WHERE CUS_NO = #{cusNo}
+	</select>
 	
+	<!-- 문의글 확인 -->
+	<select id="memberView" parameterType="_int" resultMap="customor_rm">
+		SELECT *
+		FROM V_CUSTOMOR
+		WHERE CUS_NO = #{cusNo}
+	</select>
 </mapper>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비즈니스 회원 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.2"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.4"/>
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -30,10 +30,9 @@
 	       		<c:if test="${!empty picture}">
         			<c:url var="pfUrl" value="/resources/images/profileImg/${picture.pfName}"/>
         		</c:if>
-        		<c:if test="${empty pictures}">
+        		<c:if test="${empty picture}">
         			<c:url var="pfUrl" value="/resources/images/profileImg/profile.jpg"/>
         		</c:if>
-        		
         		
             <div id="myProfile" style="background-image:url(${pfUrl})"></div>
             <span id="nickName">${loginMember.memberNick}</span>

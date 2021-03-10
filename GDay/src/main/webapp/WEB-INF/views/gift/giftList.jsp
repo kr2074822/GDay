@@ -316,7 +316,7 @@
 			<div class="gift_wrapper">
 				<c:forEach var="gift" items="${gift}" varStatus="vs">
 					<div class="item">
-					
+						<a href="${gift.prdtNo}">
 						<c:forEach items="${thList}" var="th">
 							<c:if test="${th.prdtNo == gift.prdtNo}">
 								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
@@ -329,7 +329,6 @@
 								</div>
 							</c:if>
 
-						<a href="${gift.prdtNo}">
 							<h1>${gift.prdtName}</h1> 
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gift.prdtNo}">
