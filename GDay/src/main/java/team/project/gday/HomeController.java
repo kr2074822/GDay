@@ -27,7 +27,7 @@ import team.project.gday.gift.model.vo.Gift;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+ 	
 	@Autowired
 	private GClassService cService;
 	@Autowired
