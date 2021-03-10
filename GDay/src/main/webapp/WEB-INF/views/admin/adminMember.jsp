@@ -61,8 +61,8 @@
 										<td>${member.memberNo}</td>
 										<td>${member.memberEmail}</td>
 										<td>${member.memberName}</td>
-										<td>${member.memberType}</td>
-										<td>${member.memberGrade}</td>
+										<td class="memType">${member.memberType}</td>
+										<td class="memGType">${member.memberGrade}</td>
 										<td><input type="checkbox" class="check-input" id="checkMember" value="${member.memberNo}"></td>
 									</tr>
 								</c:forEach> 
@@ -220,6 +220,33 @@
 				}
 			}
 		});
+		
+		// 회원 가입 수단 명 변경
+		(function(){
+			$(".memGType").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "A" : $(item).text("관리자"); break;
+				case "G" : $(item).text("일반"); break;
+				case "B" : $(item).text("비즈니스"); break;
+				case "U" : $(item).text("미인증"); break;
+				case "X" : $(item).text("블랙리스트"); break;
+				}
+			});
+		})();
+		
+		// 가입 수단 명 변경
+		(function(){
+			$(".memType").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "G" : $(item).text("일반"); break;
+				case "K" : $(item).text("카카오톡"); break;
+				}
+			});
+		})();
 	</script>
 </body>
 </html>

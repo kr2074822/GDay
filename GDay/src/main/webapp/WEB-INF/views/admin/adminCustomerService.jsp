@@ -59,7 +59,7 @@ td{
 										<td>${customor.cusNo}</td>
 										<td>${customor.cusTitle}</td>
 										<td>${customor.memberName}</td>
-										<td>${customor.replyStatus}</td>
+										<td class="reStu">${customor.replyStatus}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -149,6 +149,18 @@ td{
 			window.location.href="${contextPath}/admin/memberCustomerView/"+cusNo;
 			console.log(123);
 		});
+		
+		// 게시글 상태명
+		(function(){
+			$(".reStu").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "Y" : $(item).text("답변 완료"); break;
+				case "B" : $(item).text("미답변"); break;
+				}
+			});
+		})();			
 	</script>
 </body>
 </html>

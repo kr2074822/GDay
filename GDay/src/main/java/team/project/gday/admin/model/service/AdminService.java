@@ -180,7 +180,10 @@ public interface AdminService {
 	 */
 	public abstract int customerInsert(Map<String, Object> map);
 
-	
+	/** 문의글 상태변경
+	 * @param map
+	 */
+	public abstract int cusUpdateStatus(Map<String, Object> map);
 
 
 

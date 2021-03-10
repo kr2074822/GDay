@@ -221,11 +221,18 @@
 		JOIN MEMBER USING(MEM_NO)
 		WHERE PRDT_NO = #{prdtNo}
 	</select>
+
+	<!-- 게시글 조회 -->
+	<select id="prdtCheck" parameterType="map" resultType="_int">
+		SELECT PRDT_NO
+		FROM PRODUCT
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
 	
 	<!-- 게시글 신고(게시자 신고) -->
 	<insert id="reportPost" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(SEQ_REP.NEXTVAL, #{reportType}, #{parentNo}, #{parentType}, #{reportTarget}, #{memberNo}, DEFAULT)
+		VALUES(SEQ_REP.NEXTVAL, #{reportType}, #{parentNo}, #{parentType}, #{reportTarget}, #{memberNo}, 1)
 	</insert>
 	
 	<!-- 신고할 게시글 타입 조회 -->
@@ -235,18 +242,48 @@
 		WHERE PRDT_NO = #{prdtNo}
 	</select>
 	
+	<!-- 신고 중복검사 -->
+	<select id="reportDupCheck" parameterType="map" resultMap="report_rm">
+		SELECT *
+		FROM REPORT
+		WHERE PARENT_NO = #{prdtNo}
+		AND MEM_NO = #{memberNo}
+	</select>
+	
+	<!-- 신고 횟수 증가 -->
+	<update id="increaseRpCount" parameterType="map">
+		UPDATE REPORT SET
+		REP_COUNT = REP_COUNT + 1
+		WHERE PARENT_NO = #{prdtNo}
+		AND MEM_NO = #{memberNo}
+	</update>
+	
 	<!-- 신고받은 사람 횟수 조회 -->
-	<select id="reportCount" parameterType="Report" resultType="_int">
+	<select id="reportCount" parameterType="map" resultType="_int">
 		SELECT COUNT(REP_COUNT)
 		FROM REPORT
 		WHERE MEM_NO = #{memberNo}
 	</select>
+
+	<!-- 신고받은 게시물 횟수 조회 -->
+	<select id="reportPrdt" parameterType="map" resultType="_int">
+		SELECT REP_COUNT
+		FROM REPORT
+		WHERE PARENT_NO = #{prdtNo}
+	</select>
 	
-	<!-- 신고 3회이상 등급 변경 -->
+	<!-- 신고 3회이상 회원 등급 변경 -->
 	<update id="reportMember" parameterType="_int">
 		UPDATE MEMBER SET
 		MEM_GRADE = 'X'
 		WHERE MEM_NO = #{writerCheck}
+	</update>
+
+	<!-- 신고 3회이상 게시물 등급 변경 -->
+	<update id="reportProduct" parameterType="_int">
+		UPDATE PRODUCT SET
+		PRDT_STATUS = 'B'
+		WHERE PRDT_NO = #{prdtCheck}
 	</update>
 	
 	<!-- 신고 게시판 목록 조회 -->
@@ -326,11 +363,18 @@
 		INSERT INTO CUS_REPLY
 		VALUES(SEQ_CRNO.NEXTVAL, #{curContent}, #{parentCustomerNo}, DEFAULT)
 	</insert>
-	
+
+	<!-- 문의글 상태변경 -->
+	<update id="cusUpdateStatus" parameterType="map">
+		UPDATE CUSTOMOR SET
+		REPLY_STATUS = 'Y'
+		WHERE CUS_NO = #{parentCustomerNo}
+	</update>
 	
 	<!-- 고객센터 문의 작성 -->
 	<insert id="customerInsert" parameterType="map">
 		INSERT INTO CUSTOMOR
 		VALUES(SEQ_CNO.NEXTVAL, #{content}, #{memberNo}, DEFAULT, SYSDATE, #{title})
 	</insert>
+	
 </mapper>

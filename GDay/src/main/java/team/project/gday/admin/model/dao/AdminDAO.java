@@ -185,11 +185,11 @@ public class AdminDAO {
 	}
 
 	/** 신고 횟수 조회
-	 * @param report
+	 * @param map
 	 * @return reportCount
 	 */
-	public int reportCount(Report report) {
-		return sqlSession.selectOne("adminMapper.reportCount", report);
+	public int reportCount(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.reportCount", map);
 	}
 
 	/** 신고횟수 3회 이상 시 등급 변겅
@@ -200,10 +200,6 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.reportMember", writerCheck);
 	}
 	
-	public int report(Map<String, Object> map) {
-		return 0;
-	}
-
 	/** 비즈니스 회원 목록 조회
 	 * @return
 	 */
@@ -303,6 +299,53 @@ public class AdminDAO {
 	 */
 	public int deleteReply(Map<String, Object> map) {
 		return sqlSession.delete("adminMapper.deleteReply", map);
+	}
+
+	/** 문의 상태 변경 
+	 * @param map
+	 * @return
+	 */
+	public int cusUpdateStatus(Map<String, Object> map) {
+		return sqlSession.update("adminMapper.cusUpdateStatus", map);
+	}
+
+	/**  신고 중복 검사
+	 * @param map
+	 * @return
+	 */
+	public Report reportDupCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.reportDupCheck", map);
+	}
+
+	/** 신고받은 횟수 증가
+	 * @param map2
+	 */
+	public int increaseRpCount(Map<String, Object> map2) {
+		return sqlSession.update("adminMapper.increaseRpCount", map2);
+	}
+
+	/** 신고할 게시글 조회
+	 * @param map
+	 * @return
+	 */
+	public int prdtCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.prdtCheck", map);
+	}
+
+	/** 신고받은 게시글 횟수 조회
+	 * @param map
+	 * @return
+	 */
+	public int reportPrdt(Map<String, Object> map) {
+		return sqlSession.selectOne("adminMapper.reportPrdt", map);
+	}
+
+	/** 신고받은 게시물 3회이상 블라인드 처리
+	 * @param prdtCheck
+	 * @return
+	 */
+	public int reportProduct(int prdtCheck) {
+		return sqlSession.update("adminMapper.reportProduct", prdtCheck);
 	}
 
 

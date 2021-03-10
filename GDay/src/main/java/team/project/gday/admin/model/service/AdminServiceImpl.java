@@ -1,5 +1,6 @@
 package team.project.gday.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -137,11 +138,34 @@ public class AdminServiceImpl implements AdminService{
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int report(Map<String, Object> map, Report report) {
+		int result = 0;
+		int result3 = 0;
 		
 		// 게시자 조회
 		int writerCheck = dao.writerCheck(map);
-		// System.out.println(writerCheck);
+		// System.out.println("게시자: " + writerCheck);
+		// System.out.println(map.get("memberNo"));
+		// System.out.println(map.get("prdtNo"));
 		
+		// 게시글 조회
+		int prdtCheck = dao.prdtCheck(map);
+		System.out.println("게시글: " + prdtCheck);
+		
+		Report rDuc = dao.reportDupCheck(map);
+		
+		// System.out.println("rduc" + rDuc);
+		
+		if(rDuc != null) {
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("prdtNo", rDuc.getParentNo());
+			map2.put("memberNo", rDuc.getMemberNo());
+		
+			// System.out.println("map: " + map2.get("memberNo"));
+			// System.out.println("map: "+ map2.get("prdtNo"));
+
+			result = dao.increaseRpCount(map2);
+		}
+
 		report.setReportTarget(writerCheck);
 		
 		// 게시글 타입 조회
@@ -150,21 +174,39 @@ public class AdminServiceImpl implements AdminService{
 		
 		report.setParentType(boardType);
 		
+		// System.out.println(result);
+		
 		// 게시글 신고
 		// System.out.println("-----------"+map.get("reportType"));
+		if(result == 0) {
+			int reportPost = dao.reportPost(report);
+			// System.out.println("게시글 신고: " + reportPost);
+		}
 		
-		int reportPost = dao.reportPost(report);
-		// System.out.println("게시글 신고: " + reportPost);
 		
-		// 게시자 신고받 횟수
-		int reportCount = dao.reportCount(report);
+		// 게시자 신고받은 횟수
+		int reportCount = dao.reportCount(map);
 		// System.out.println("신고받은 횟수 : " + reportCount);
 		
 		if(reportCount > 2) {
+			// 게시자
 			int reportMember = dao.reportMember(writerCheck);
 			// System.out.println("신고당한 횟수: " + reportMember);
+			// System.out.println("회원 변경: " + reportMember);
 		}
-		return dao.report(map);
+		
+		// 게시글 신고받은 횟수
+		int reportPrdt = dao.reportPrdt(map);
+		System.out.println("게시글 신고횟수: " + reportPrdt);
+		
+		if(reportPrdt > 2) {
+			int reportProduct = dao.reportProduct(prdtCheck);
+			System.out.println("게시글 변경: " + reportProduct);
+			
+			result3 = 1;
+		}
+		 
+		return result3;
 	}
 
 	// 신고 게시판 페이징처리 Service 구현
@@ -279,6 +321,13 @@ public class AdminServiceImpl implements AdminService{
 		map.put("content", content);
 		
 		return dao.customerInsert(map);
+	}
+
+	// 문의글 상태변경 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int cusUpdateStatus(Map<String, Object> map) {
+		return dao.cusUpdateStatus(map);
 	}
 
 	

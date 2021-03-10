@@ -235,8 +235,8 @@ public class AdminController {
 	@RequestMapping(value="reportForm/report", method=RequestMethod.POST)
 	public String report(@ModelAttribute(name="loginMember", binding=false) Member loginMember,
 						 @ModelAttribute Report report,
-						 @RequestParam int prdtNo
-						 ) {
+						 @RequestParam int prdtNo,
+						 Model model) {
 		
 		// System.out.println(prdtNo);
 		// System.out.println(report);
@@ -245,14 +245,16 @@ public class AdminController {
 		report.setParentNo(prdtNo);
 		report.setMemberNo(loginMember.getMemberNo());
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("loginMember", loginMember);
-		map.put("prdtNo", prdtNo);
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("prdtNo", prdtNo);
+		map.put("memberNo", loginMember.getMemberNo());
 		
 		// System.out.println("map " + map);
 		
 		int result = service.report(map, report);
+		
+		model.addAttribute("result", result);
 		
 		return "admin/reportResult";
 	}
@@ -396,7 +398,12 @@ public class AdminController {
 		
 		service.deleteReply(map);
 		
-		int result = service.insertReply(map); 			
+		int result = service.insertReply(map); 		
+		
+		if(result > 0) {
+			service.cusUpdateStatus(map);
+			System.out.println(1);
+		}
 		
 		return result;
 	}

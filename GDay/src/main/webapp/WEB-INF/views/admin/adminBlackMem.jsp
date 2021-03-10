@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지 - 회원 관리</title>
+<style type="text/css">
+
+
+</style>
 
 <link rel="stylesheet" href="reset.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminPage.css">
@@ -15,7 +19,7 @@
 	<jsp:include page="../common/header.jsp" />
 	<jsp:include page="adminSidebar.jsp" />
 	
-	<div class="container">
+	<div class="container clearfix">
 		<div id="container-tb">
 			<div>
 				<h3>블랙리스트 보기</h3>
@@ -50,7 +54,7 @@
 										<td>${member.memberNo}</td>
 										<td>${member.memberEmail}</td>
 										<td>${member.memberName}</td>
-										<td>${member.memberType}</td>
+										<td class="memBType">${member.memberType}</td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -59,10 +63,7 @@
 				</form>
  			</div>
 		</div>
-	</div>
-	
-	<!-- 페이징처리 -->
- 	<div class="my-4">
+ 	<div class="my-4 paging">
 		<ul class="pagination">
 
 			<%-- 주소 조합 작업 --%>
@@ -130,10 +131,24 @@
 			</c:if>
 		</ul>
 	</div>	
+	</div>
+	
+	<!-- 페이징처리 -->
 	<jsp:include page="../common/footer.jsp" />
 	
 	<script>
-		
+	// 블랙 리스트 사유 명 변경
+	(function(){
+		$(".memBType").each(function(index, item){
+			var type = $(item).text();
+			
+			switch(type){
+			case "C" : $(item).text("욕설"); break;
+			case "F" : $(item).text("허위광고"); break;
+			case "D" : $(item).text("사기"); break;
+			}
+		});
+	})();		
 	</script>
 </body>
 </html>
