@@ -19,6 +19,9 @@ import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.gift.model.service.GiftService;
 import team.project.gday.gift.model.vo.Gift;
+import team.project.gday.magazine.model.service.MagazineService;
+import team.project.gday.magazine.model.vo.Magazine;
+import team.project.gday.magazine.model.vo.MagazineImg;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +35,9 @@ public class HomeController {
 	private GClassService cService;
 	@Autowired
 	private GiftService gService;
+	
+	@Autowired
+	private MagazineService mService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -65,9 +71,20 @@ public class HomeController {
 				List<ProductStar> gSelectStarList = gService.selectStarList(gList);
 				model.addAttribute("gSelectStarList", gSelectStarList);
 			}
+			
+		// 매거진 3개 가져오기
+		List<Magazine> mList = mService.selectMagazine3();
+		System.out.println(mList);
+			if (mList != null && !mList.isEmpty()) {
+				List<MagazineImg> mthList = mService.selectThumbnail2(mList);
+				System.out.println("**************************************************");
+				System.out.println(mthList);
+				model.addAttribute("mthList", mthList);
+			}
 		
 		model.addAttribute("cList", cList);
 		model.addAttribute("gList", gList);
+		model.addAttribute("mList", mList);
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "common/main";

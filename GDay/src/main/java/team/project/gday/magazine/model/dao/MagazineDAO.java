@@ -125,4 +125,13 @@ public class MagazineDAO {
 	public int deleteMagazineImg(List<Integer> deleteFileNoList) {
 		return sqlSession.delete("magazineMapper.deleteMagazineImg", deleteFileNoList);
 	}
+
+	public List<Magazine> selectMagazine3() {
+		RowBounds rowBounds = new RowBounds(0, 3);
+		return sqlSession.selectList("magazineMapper.selectMagazine3", null, rowBounds);
+	}
+
+	public List<MagazineImg> selectThumbnail2(List<Magazine> mList) {
+		return sqlSession.selectList("magazineMapper.selectThumbnail2", mList);
+	}
 }

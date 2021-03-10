@@ -98,8 +98,8 @@
 		        				
 			        			var addContent = 
 			        	            '<div class="card">'+
-			        	                    '<div class="imgBx" data-text="제목">'+
-			        	                        '<img src='+ result.mThumbList[i].imgPath + '/' + result.mThumbList[i].imgName +' alt="">'+
+			        	                    '<div class="imgBx" data-text="'+ result.mList[i].mgzTitle + '">'+
+			        	                        '<img src='+'${contextPath}'+ result.mThumbList[i].imgPath + '/' + result.mThumbList[i].imgName +' alt="">'+
 			        	                    '</div>'+
 			        	                    '<div class="content">'+
 			        	                     '   <div>'+

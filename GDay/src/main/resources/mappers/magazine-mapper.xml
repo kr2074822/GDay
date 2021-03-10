@@ -122,4 +122,21 @@
 		</foreach>
 	</delete>
 	
+	<!-- 메인 매거진 -->
+	<select id="selectMagazine3" resultMap="magazine_rm">
+		SELECT MGZ_TITLE, MGZ_NO, CREATE_DATE
+		FROM MAGAZINE
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<!-- 메인 썸네일  -->
+	<select id="selectThumbnail2" parameterType="list" resultMap="magazineImg_rm">
+		SELECT * 
+		FROM MAGAZINE_IMG
+		WHERE MGZ_IMG_LEVEL = 0 AND MGZ_NO IN
+		<foreach collection="list" item="magazine" open="(" close=")" separator=",">
+			#{magazine.mgzNo}
+		</foreach>
+	</select>
+	
 </mapper>

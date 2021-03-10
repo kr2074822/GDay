@@ -351,36 +351,22 @@ display: none;
     <section class="magazine">
         <h1>Magazine</h1>
         <div class="magazine_wrapper">
-            <div class="box">
-                <a href="">
-                    <div class="imgBx">
-                        <img src="images/profile.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>제목<br><span>날짜</span></h2>
-                    </div>
-                </a>
-            </div>
-            <div class="box">
-                <a href="">
-                    <div class="imgBx">
-                        <img src="images/profile.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>제목<br><span>날짜</span></h2>
-                    </div>
-                </a>
-            </div>
-            <div class="box">
-                <a href="">
-                    <div class="imgBx">
-                        <img src="images/profile.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>제목<br><span>날짜</span></h2>
-                    </div>
-                </a>
-            </div>
+        	<c:forEach items="${mList}" var="m">
+	            <div class="box">
+	                <a href="magazine/${m.mgzNo }">
+	                    <div class="imgBx">
+		                	<c:forEach items="${mthList}" var="th">
+		                    	<c:if test="${th.mgzNo == m.mgzNo}">
+		                        	<img src="${contextPath}${th.imgPath}/${th.imgName}" alt="">
+		                    	</c:if>
+		                	</c:forEach>
+	                    </div>
+	                    <div class="content">
+	                        <h2>${m.mgzTitle}<br><span>${m.mgzCreateDt}</span></h2>
+	                    </div>
+	                </a>
+	            </div>
+            </c:forEach>
         </div>
     </section>
     
