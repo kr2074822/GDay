@@ -123,6 +123,13 @@
 								                <div class="name"><span data-text="Home">마이페이지</span></div>
 								            </a>
 								        </li>
+								        <c:if test="${loginmember.memberGrade == 'G'}">
+       								        <li>
+									            <a href="${contextPath}/cart/memberCart">
+									                <div class="name"><span data-text="Home">장바구니</span></div>
+									            </a>
+								       		</li>
+								        </c:if>
 								        <li>
 								            <a href="${contextPath}/message/message">
 								                <div class="name">

@@ -237,7 +237,7 @@ header #headerWrapper #header-member-area > a{
 	min-height: 0;
 	background-color: #fafafa;
 	transition-property: min-height;
-  transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
 
 #media-menu {
@@ -324,6 +324,12 @@ header #headerWrapper #header-member-area > a{
     visibility: hidden;
     opacity: 0;
 }
+
+.menu span {
+	font-family: 'TmoneyRoundWindRegular';
+}
+
+
 .action .menu.active{
     top: 80px;
     visibility: visible;
