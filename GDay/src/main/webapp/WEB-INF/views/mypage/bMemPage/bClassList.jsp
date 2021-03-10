@@ -45,7 +45,13 @@
 			<div id="class-list">					
 					<c:if test="${empty cList}">
 						<tr>
-							<td colspan="6">존재하는 클래스글이 없습니다.</td>
+							<td colspan="9" rowspan="10" style=
+							"text-align: center; 
+							 padding-top: 200px;
+							 font-family: 'TmoneyRoundWindRegular';
+							 font-size: 20px;">
+								존재하는 주문글이 없습니다.
+							</td>
 						</tr>
 					</c:if>
 					

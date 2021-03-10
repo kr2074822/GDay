@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>주문/결제</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.0">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css?ver=1.0">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css?ver=1.1">
 
 </head>
 <body>
@@ -95,9 +95,6 @@
           
       </div>
       
-      
-      
-      <h2>결제 수단</h2>   
       
       <div id="payment-area">
          <div id="payment-other">

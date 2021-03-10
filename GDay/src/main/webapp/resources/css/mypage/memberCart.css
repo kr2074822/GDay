@@ -94,7 +94,6 @@
 
 .product-name {
 	font-size: 20px;
-	font-weight: bold;
 	display: inline-block;
     width: 40%;
     white-space: nowrap;
@@ -109,9 +108,26 @@
 	text-align: center;
 }
 
-.product-name {
-	font-size: 24px;
-	font-weight: bold;
+.cart-content i {
+	font-size: 12px;
+	color: #999;
+}
+
+.product-check {
+	border: 1px solid #FE929F;
+	background-color: #FE929F;
+}
+
+.plus-btn, .minus-btn {
+	background-color: #FFF;
+	cursor: pointer;
+	border: 0px;
+	outline: none;
+}
+
+.item-amount {
+	border: none;
+	border-bottom: 1px solid #FE929F;
 }
 
 .acount-area input {

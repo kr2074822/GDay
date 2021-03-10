@@ -45,7 +45,7 @@
                <option value="400">취소 요청</option>
                <option value="600">취소 완료</option>
            </select> <!-- giftStats : 주문 선물 상태 -->
-           <button type="button" id="status-change-btn">변경</button>
+           <button type="button" id="status-change-btn" class="day-btn">변경</button>
         </div>
 			</div>
 			
@@ -55,7 +55,7 @@
 					
 				<table id="list-table">
 				<thead>
-					<tr id="table-head" style="border-bottom: 1px solid black; background-color: lightgray;">
+					<tr id="table-head" style = "background-color: #fdd7dc;">
 						<th></th>
 						<th class="hide">상품 번호</th>
 						<th class="hide">반품일</th>
@@ -67,7 +67,13 @@
 				<tbody>
 					<c:if test="${empty oCList}">
 						<tr>
-							<td colspan="6">존재하는 주문글이 없습니다.</td>
+							<td colspan="9" rowspan="10" style=
+							"text-align: center; 
+							 padding-top: 200px;
+							 font-family: 'TmoneyRoundWindRegular';
+							 font-size: 20px;">
+								존재하는 주문글이 없습니다.
+							</td>
 						</tr>
 					</c:if>
 
@@ -121,7 +127,7 @@
                <option value="status">상태</option>
            </select>
            <input type="text" name="sv" id="searchValue"/>
-           <button type="submit" id="list-search-btn">검색</button>
+           <button type="submit" id="list-search-btn" class="day-btn">검색</button>
         </div>
       </form>			
 			

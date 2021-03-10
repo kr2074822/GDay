@@ -62,8 +62,18 @@ img {
 
 
 /* 회원정보 */
-#member-info {
-	border-top: 3px solid lightgray;
+#order-wrapper h2 {
+	position: relative;
+}
+
+#order-wrapper h2:after {
+	position: absolute;
+	content: "";
+	width: 150px;
+	height: 3px;
+	bottom: -10px;
+	left: 0;
+	background-color: rgb(254, 146, 159);
 }
 
 .member-info-tr > .member-info-td {
@@ -86,7 +96,7 @@ img {
 }
 
 #address-area {
-	border-top: 3px solid lightgray;
+	
 }
 
 .col-md-3 > label {

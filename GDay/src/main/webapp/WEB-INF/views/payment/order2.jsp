@@ -95,9 +95,6 @@
       </div>
       
       
-      
-      <h2>결제 수단</h2>   
-      
       <div id="payment-area">
          <div id="payment-other">
          	<h3></h3>
