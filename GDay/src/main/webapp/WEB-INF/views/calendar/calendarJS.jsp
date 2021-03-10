@@ -8,7 +8,7 @@
 var memberNo = "${loginMember.memberNo}";
 var memberNick = "${loginMember.memberNick}";
 var memberPhone = "${loginMember.memberPhone}";
-
+var calendar;
 //ready함수
 $(function(){
 	//목록 조회 + 풀캘린더 로드
@@ -126,11 +126,11 @@ $(function(){
 });//레디 함수 끝---------------------------------------------------------------------
 
 //풀캘린더 로드 메소드
-function loadFullCalendar(events){
+function loadFullCalendar(events, setDate){
 	//풀캘린더 설정
 	//document.addEventListener('DOMContentLoaded', function() {
 	  var calendarEl = document.getElementById('calendar');
-	  var calendar = new FullCalendar.Calendar(calendarEl, {
+	  calendar = new FullCalendar.Calendar(calendarEl, {
 	      //themeSystem: 'bootstrap',
 	      //aspectRatio: 1.5, 비율
 	      height : '95%',//달력형 스크롤바 X
@@ -206,6 +206,9 @@ function loadFullCalendar(events){
 	  });
 	  
 	  calendar.render();
+	  
+	  if(setDate != undefined) calendar.gotoDate(setDate);
+	  
 	//});
 	//캘린더 설정 끝
 	
@@ -225,7 +228,7 @@ function loadFullCalendar(events){
  }
   
 //캘린더 기념일 목록 조회
-function selectCalendarList(loadFullCalender){
+function selectCalendarList(loadFullCalender, setDate){
 	//console.log("memberNo : " + memberNo);
 	  
 	   $.ajax({
@@ -251,7 +254,8 @@ function selectCalendarList(loadFullCalender){
 	                           }
 	               events.push(event);
 	           });
-	    	   loadFullCalendar(events);//콜백함수로 loadFullCalendar -> 캘린더 로드
+	    	   loadFullCalendar(events, setDate);//콜백함수로 loadFullCalendar -> 캘린더 로드
+	    	   
 	       },
 	       error : function(){
 	           console.log("기념일 목록 조회 실패");
@@ -316,7 +320,8 @@ function insertEvent(){
 	    		swal.fire({icon: "success", title: "기념일을 등록했습니다.", confirmButtonColor: "#54b39E" });
 	    		modalReset();
 		    	$("#modal-insert").parent().hide();
-	    		selectCalendarList(loadFullCalendar);
+	    		selectCalendarList(loadFullCalendar, dtStart);
+		    	
 	    	} else {
 		    	swal.fire({icon: "error", title: "기념일 등록에 실패했습니다.",  confirmButtonColor: "#54b39E"});
 	    	}
@@ -488,7 +493,7 @@ function updateEvent(){
 		    		swal.fire({icon: "success", title: "기념일을 수정했습니다.",  confirmButtonColor: "#54b39E"});
 		    		modalReset();
 			    	$("#modal-update").parent().hide();
-		    		selectCalendarList(loadFullCalendar);
+		    		selectCalendarList(loadFullCalendar, dtStart);
 		    		viewEvent(gdayNo, new Date(dtStart));
 		    	} else {
 			    	swal.fire({icon: "error", title: "기념일 수정에 실패했습니다.",  confirmButtonColor: "#54b39E"});
@@ -498,7 +503,7 @@ function updateEvent(){
 		    	console.log("기념일 수정 중 오류");
 		    	modalReset();
 		    	$(".modal-cover").parent().hide();
-		    	selectCalendarList(loadFullCalendar);
+		    	selectCalendarList(loadFullCalendar,);
 		    }
 		  });
 	}
