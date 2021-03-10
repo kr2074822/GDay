@@ -333,11 +333,11 @@ public class AdminController {
 	@ResponseBody
 	public String selectReplyList(@PathVariable("parentCustomerNo") int parentCustomerNo,
 								  Model model) {
-		System.out.println(parentCustomerNo);
+		// System.out.println(parentCustomerNo);
 		Reply reply = service.selectReplyList(parentCustomerNo);
-		System.out.println(reply);
+		// System.out.println(reply);
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd / HH:mm:ss").create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd / HH:mm").create();
 		
 		if(reply != null) {
 			model.addAttribute("customer" , reply);
@@ -346,39 +346,23 @@ public class AdminController {
 	}
 	
 	// 고객센터 댓글 작성 Controller
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("insertReply/{parentCustomerNo}")
+	public int insertReply(@PathVariable("parentCustomerNo") int parentCustomerNo,
+						   @RequestParam("curWriter") int curWriter,
+						   String replyContent) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("parentCustomerNo", parentCustomerNo);
+		map.put("curWriter", curWriter);
+		map.put("replyContent", replyContent);
+		
+		System.out.println(map);
+		
+		int result = service.insertReply(map); 
+		
+		
+		return result;
+	}
 	
 	//----------------------------------
 	

@@ -160,6 +160,12 @@ public interface AdminService {
 	 */
 	public abstract int deny(int memberNo);
 
+	/** 댓글 삽입
+	 * @param map
+	 * @return
+	 */
+	public abstract int insertReply(Map<String, Object> map);
+
 	
 
 

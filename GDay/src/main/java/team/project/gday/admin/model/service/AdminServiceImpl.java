@@ -205,7 +205,30 @@ public class AdminServiceImpl implements AdminService{
 	public Reply selectReplyList(int parentCustomerNo) {
 		return dao.selectReplyList(parentCustomerNo);
 	}
+	
+	// 댓글 삽입
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertReply(Map<String, Object> map) {
+		map.put("curContent", ((String)map.get("curContent")).replaceAll("\n", "<br>"));
+		return dao.insertReply(map);
+	}
 
+	
+	// 크로스 사이트 스크립트 방지 메소드
+	private String replaceParameter(String param) {
+		String result = param;
+		if(param != null) {
+			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("<", "&lt;");
+			result = result.replaceAll(">", "&gt;");
+			result = result.replaceAll("\"", "&quot;");
+		}
+			
+		return result;
+	}
+	
+	
 	// 문의글 번호 확인
 	@Override
 	public Customor memberView(int cusNo) {
@@ -231,5 +254,7 @@ public class AdminServiceImpl implements AdminService{
 	public int deny(int memberNo) {
 		return dao.deny(memberNo);
 	}
+
+
 
 }

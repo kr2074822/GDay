@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Reply {
 	private int curNo; // 댓글 번호
 	private String curContent; // 댓글 내용
-	private Timestamp replyCreateDate; // 작성자명
+	private Timestamp replyCreateDate; // 작성일자
 	private int cusNo; // 문의글 번호
 	
 	

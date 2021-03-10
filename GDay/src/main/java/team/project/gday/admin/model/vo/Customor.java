@@ -9,6 +9,7 @@ public class Customor {
 	private String replyStatus; // 댓글 여부
 	private String memberName; // 작성자명
 	private Timestamp cusCreateDate; // 작성자명
+	private String cusTitle; // 글제목
 	
 	
 	public Customor() {
@@ -76,9 +77,21 @@ public class Customor {
 	}
 
 
+	public String getCusTitle() {
+		return cusTitle;
+	}
+
+
+	public void setCusTitle(String cusTitle) {
+		this.cusTitle = cusTitle;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Customor [cusNo=" + cusNo + ", cusContent=" + cusContent + ", memNo=" + memNo + ", replyStatus="
-				+ replyStatus + ", memberName=" + memberName + ", cusCreateDate=" + cusCreateDate + "]";
+				+ replyStatus + ", memberName=" + memberName + ", cusCreateDate=" + cusCreateDate + ", cusTitle="
+				+ cusTitle + "]";
 	}
+
 }

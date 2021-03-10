@@ -79,6 +79,7 @@
   		<result property="memNo" column="MEM_NO"/>
   		<result property="replyStatus" column="REPLY_STATUS"/>
   		<result property="memberName" column="MEM_NAME"/>
+  		<result property="cusTitle" column="CUS_TITLE"/>
   		<result property="cusCreateDate" column="CUS_CREATE_DT"/>
 	</resultMap>
 	
@@ -314,5 +315,9 @@
 		UPDATE LICENSE_IMG SET LCS_STATUS = 'R' WHERE MEM_NO = #{memberNo}
 	</update>
 	
-	
+	<!-- 댓글 삽입 -->
+	<insert id="insertReply" parameterType="map">
+		INSERT INTO CUS_REPLY
+		VALUES(SEQ_CRNO.NEXTVAL, #{curContent}, #{cusNo}, DEFAULT)
+	</insert>
 </mapper>
