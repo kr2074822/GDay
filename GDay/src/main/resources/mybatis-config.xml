@@ -34,6 +34,7 @@
 		<typeAlias type="team.project.gday.search.model.vo.Search" alias="Search"/>
 		<typeAlias type="team.project.gday.Product.model.vo.ProductStar" alias="ProductStar"/>
 		<typeAlias type="team.project.gday.payment.model.vo.PaymentInfo" alias="PaymentInfo"/>
+		<typeAlias type="team.project.gday.admin.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<mappers>

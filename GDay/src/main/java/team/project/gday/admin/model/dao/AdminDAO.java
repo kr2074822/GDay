@@ -1,4 +1,3 @@
-
 package team.project.gday.admin.model.dao;
 
 import java.util.List;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Reply;
 import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
@@ -240,6 +240,23 @@ public class AdminDAO {
 	 */
 	public String bmemShop(int memberNo) {
 		return sqlSession.selectOne("adminMapper.bmemShop", memberNo);
+	}
+
+	/** 댓글 목록 조회
+	 * @param parentCustomerNo
+	 * @return
+	 */
+	public Reply selectReplyList(int parentCustomerNo) {
+		return sqlSession.selectOne("adminMapper.selectReplyList", parentCustomerNo);
+	}
+
+
+	/** 문의글 번호 확인
+	 * @param cusNo
+	 * @return
+	 */
+	public Customor memberView(int cusNo) {
+		return sqlSession.selectOne("adminMapper.memberView", cusNo);
 	}
 
 

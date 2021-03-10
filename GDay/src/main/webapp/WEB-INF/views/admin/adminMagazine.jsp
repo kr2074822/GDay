@@ -29,7 +29,6 @@
 								<th>게시글 번호</th>
 								<th>제목</th>
 								<th>작성 일자</th>
-								<th>삭제 여부</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,7 +45,6 @@
 										<td>${Magazine.mgzNo}</td>
 										<td>${Magazine.mgzTitle}</td>
 										<td>${Magazine.mgzCreateDt}</td>
-										<td>${Magazine.mgzDelStatus}</td>
 									</tr>
 								</c:forEach> 
 							</c:if>
@@ -139,14 +137,8 @@
 	$("#list-table td").on("click", function(){
 		var mgzNo = $(this).parent().children().eq(0).text();
 		console.log("123aAD")
-		var type = "../${product.prdtType}/" + prdtNo;
 		
-		<c:if test="${product.prdtType == C}">
-			window.location.href="${contextPath}/gClass/"+prdtNo;
-		</c:if>
-		<c:if test="${product.prdtType == G}">
-			window.location.href="${contextPath}/gift/"+prdtNo;
-		</c:if>
+		window.location.href="${contextPath}/magazine/"+mgzNo;
 	});	
 	</script>
 </body>
