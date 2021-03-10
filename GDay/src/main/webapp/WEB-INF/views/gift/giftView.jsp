@@ -51,18 +51,31 @@
                             </div>
                         </div>
                         
-<%--                         <c:choose>
-													<c:when test="${!empty goption}">
- --%>                       		 <div class="option" id="options">
+                        <c:choose>
+							<c:when test="${!empty goption}">
+                      		 <div class="option" id="options">
                             	<span>옵션</span>
                            		 <select name="gift-option" id="gift-option">
                             		<c:forEach var="goption" items="${goption}" varStatus="vs">
 	                                <option value="${goption.gOptNo}">${goption.gOptName}</option>
                                 </c:forEach>
                             	</select>
-       										</div>
-                        <%-- 	</c:when>
-                        </c:choose> --%>
+       						</div>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<div class="gift_cnt">
+		                                <div class="opt_title">
+		                                    <span class="class-amount">갯수</span>
+		                                </div>
+		                                <div class="cnt">
+		                              		  <i class="fas fa-minus" onclick="del()"></i>
+		                                    <input type="text" class="amount" value=1 style="width:30px">
+		                                    <i class="fas fa-plus" onclick="add()"></i>
+		                                   <!--  <input type=hidden name="sell_price" value="${gclass.prdtPrice}"> -->
+		                                </div>
+		                            </div>
+                        	</c:otherwise>
+                        </c:choose> 
                            	 <div id="option_list">
 
                            	 </div>
@@ -259,9 +272,12 @@
 		$("#option_list").html("");
 	    var price = ${gift.prdtPrice };
 	    function add(){
-	    	console.log(3)
 	    	$(".amount").val( Number($(".amount").val()) + 1  );
 	    	$(".sum").text( Number($(".sum").text()) + price  );
+	    	$(".acnt.amount").text($(".amount").val() )
+	    	total_cnt = Number($(".amount").val())
+	    	console.log(total_cnt)
+	    	
 	    }
 	    
 	    function del(){
@@ -269,6 +285,9 @@
 	    	if($(".amount").val() > 1 ){
 		    	$(".amount").val( Number($(".amount").val()) - 1  );
 		    	$(".sum").text( Number($(".sum").text()) - price  );
+		    	$(".acnt.amount").text($(".amount").val() )
+		    	total_cnt = Number($(".amount").val())
+	    		console.log(total_cnt)
 	    	}
 	    }
 	    
@@ -432,7 +451,13 @@
 /* 	    	 var amount = Number($(".amount").val()); */
  	    	 var gOption = Number($("select[name='gift-option']").val());
 	    	 
+	    	 if (isNaN(gOption)==true) {
+	    		 
+	    		gOption = 0;
+				console.log("//////")
+			}
 	    	 
+	    	 console.log(gOption)
 	    	 if(loginFlag == 1) {
 	    		 $.ajax({
 	   	    		url : "${contextPath}/cart/memberGiftCart",

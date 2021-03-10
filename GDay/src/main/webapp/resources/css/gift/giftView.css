@@ -95,7 +95,7 @@ section .gift_wrapper form .gift_info .gift_option .option > select option{
 section .gift_wrapper form .gift_info .gift_option .option > div{
     margin-top: 20px;
 }
-section .gift_wrapper form .gift_info .gift_option .option .gift_cnt{
+section .gift_wrapper form .gift_info .gift_option  .gift_cnt{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,6 +106,12 @@ section .gift_wrapper form .gift_info .gift_option .option .gift_cnt{
 section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .opt_title{
     
 }
+
+section .gift_wrapper form .gift_info .gift_option #option_list .gift_cnt .cnt input{
+	width: 30px;
+	margin-left: 10px
+}
+
 section .gift_wrapper form .gift_info .gift_option .option .gift_cnt .opt_title span{
     display: block;
     font-size: 14px;
