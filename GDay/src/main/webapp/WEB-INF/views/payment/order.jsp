@@ -209,7 +209,7 @@
                      },
                  }).done(function (data) {
                    // 가맹점 서버 결제 API 성공시 로직
-                    console.log("데이터 삽입 성공");
+                    location.href = "${contextPath}/payment/orderSuccess";
                  });
              } else {
                   var msg = '결제에 실패하였습니다.';

@@ -98,12 +98,6 @@ public class PaymentController {
 		
 		int result = 0;
 		
-		System.out.println(prdtNo);
-		System.out.println(prdtName);
-		System.out.println(prdtPrice);
-		System.out.println(prdtAmount);
-		System.out.println(gOptName);
-		
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("prdtNo", prdtNo);
 		map.put("prdtName", prdtName);
@@ -122,12 +116,47 @@ public class PaymentController {
 		return result;
 	}
 	
+	
+	// 클래스 상세 페이지에서 바로 주문하기 눌렀을 시 상품 정보 담기
+	@RequestMapping("onePaymentInfo2")
+	@ResponseBody
+	public int onePaymentInfo2(@RequestParam("prdtNo") int prdtNo,
+							  @RequestParam("prdtName") String prdtName,
+							  @RequestParam("prdtPrice") int prdtPrice,
+							  @RequestParam("prdtAmount") int prdtAmount,
+							  HttpSession session) {
+		
+		int result = 0;
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("prdtNo", prdtNo);
+		map.put("prdtName", prdtName);
+		map.put("prdtPrice", prdtPrice);
+		map.put("prdtAmount", prdtAmount);
+		
+		List<Attachment> thumbnailList = service.oneThumbnail(prdtNo);
+		
+		if(thumbnailList != null) {
+			session.setAttribute("tList", thumbnailList);
+			session.setAttribute("item", map);
+			result = 1;
+		}
+		
+		return result;
+	}
+	
+	
 	// 주문하기에서 바로 결제창으로
 	@RequestMapping("onePaymentForm")
 	public String onePaymentForm() {
 		return "payment/order2";
 	}
 		
+	// 주문 성공 시
+	@RequestMapping("orderSuccess")
+	public String orderSuccess() {
+		return "payment/orderSuccess";
+	}
 	
 	@RequestMapping("paymentForm")
 	public String paymentForm(@ModelAttribute("loginMember") Member loginMember,
