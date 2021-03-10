@@ -1,5 +1,7 @@
 package team.project.gday.payment.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -55,6 +58,7 @@ public class PaymentController {
 
 			// itemTemp에서 : 뒤 값들만 챙기기
 			for(int j = 0; j < itemTemp.length; ++j) {
+				System.out.println(itemTemp[i]);
 				itemTemp[j] = itemTemp[j].substring(itemTemp[j].indexOf(":"));
 				itemTemp[j] = itemTemp[j].replace(":", "");				
 			}
@@ -118,9 +122,32 @@ public class PaymentController {
 	
 	// 결제 성공 시 주문 정보 테이블에 담는 Controller
 	@RequestMapping("insertOrderInfo")
-	public String insertOrderInfo() {
-		System.out.println("잘 넘어온듯?");
-		return null;
+	@ResponseBody
+	public int insertOrderInfo(@ModelAttribute("loginMember") Member loginMember,
+								@RequestParam("memberName") String memberName,
+								@RequestParam("memberAddress") String memberAddress,
+								@RequestParam("memberPhone") String memberPhone,
+								@RequestBody String merchant_uid) throws UnsupportedEncodingException {
+		
+		memberName = URLDecoder.decode(memberName, "UTF-8");
+		memberAddress = URLDecoder.decode(memberAddress, "UTF-8");
+		
+		int start = merchant_uid.indexOf("merchant_uid");
+		int end = merchant_uid.indexOf("memberName");
+		
+		String importKey = merchant_uid.substring(start,end);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("memberNick", loginMember.getMemberNick());
+		map.put("memberName", memberName);
+		map.put("memberAddress", memberAddress);
+		map.put("memberPhone", memberPhone);
+		map.put("importKey", importKey);
+		
+		int result = service.insertOrderInfo(map);
+		
+		return result;
 	}
 	
 }

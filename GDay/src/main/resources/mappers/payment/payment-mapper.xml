@@ -42,6 +42,12 @@
 			#{orderProduct.prdtNo}
 		</foreach>		
 	</select>
+	
+	<!-- 결제 성공 시 결제 정보 삽입 -->
+	<insert id="insertOrderInfo" parameterType="map">
+		INSERT INTO ORDER_INFO
+		VALUES(SEQ_ORDER.NEXTVAL, #{memberNick}, #{memberAddress}, #{memberPhone}, SYSDATE, #{importKey}, #{memberNo})
+	</insert>
 		
 	
 </mapper>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setContentType("text/html; charset=utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -9,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문/결제</title>
-
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css" >
 
 </head>
@@ -28,17 +30,17 @@
             <th class="goods-header-th3">수량</th>
          </tr>
          <c:forEach var="paymentItem" items="${olList}" varStatus="vs">
-	         <tr id="goods-list">
-	            <td id="img-box" class="goods-list">
+	         <tr id="goods-list" class="items">
+	            <td class="goods-list img-box">
          			<c:forEach items="${thList}" var="th">
 						<c:if test="${th.prdtNo == paymentItem.prdtNo}">								
 							<img src="${contextPath}${th.filePath}/${th.fileName}">										
 						</c:if>
 					</c:forEach> 
 	            </td>         
-	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtName}</td>
-	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.prdtPrice}</td>
-	            <td class="goods-list" style="vertical-align: middle;">${paymentItem.cartAmount}</td>
+	            <td class="goods-list prdt-name"  style="vertical-align: middle;">${paymentItem.prdtName}</td>
+	            <td class="goods-list prdt-price"  style="vertical-align: middle;">${paymentItem.prdtPrice}</td>
+	            <td class="goods-list cart-amount"  style="vertical-align: middle;">${paymentItem.cartAmount}</td>
 	         </tr>         
          </c:forEach>
       </table>
@@ -52,15 +54,15 @@
       <table id="member-info" class="tables">   
          <tr class="member-info-tr">
             <td class="member-info-td">이름</td>
-            <td><input size="8" type="text" class="member-info-input" id="member-name" name="member-name" value="강성혁"/></td>
+            <td><input size="8" type="text" class="member-info-input" id="member-name" name="member-name" value="${loginMember.memberName}"/></td>
          </tr>
          <tr class="member-info-tr">
             <td class="member-info-td">이메일</td>
-            <td><input type="email" class="member-info-input" id="email" name="email" value="kang2x2@naver.com"/></td>
+            <td><input type="email" class="member-info-input" id="email" name="email" value="${loginMember.memberEmail}"/></td>
          </tr>
          <tr class="member-info-tr">
             <td class="member-info-td">휴대폰 번호</td>
-            <td><input type="tel" class="member-info-input" id="phone" name="phone" value="010-9462-2303"/></td>
+            <td><input type="tel" class="member-info-input" id="phone" name="phone" value="${loginMember.memberPhone}"/></td>
          </tr>   
       </table>
    
@@ -70,18 +72,36 @@
       <div id="address-area">
          <h3><i class="fas fa-thumbtack"></i>&nbsp;배송지</h3>
          
-         <div class="address-div">
-            <input size="8" type="text" class="member-address" id="address1" name="address" value="우편번호"/>
-            <button class="pink-btn" type="button">우편번호 검색</button>
-         </div>
-         <div class="address-div">
-            <input size="30" type="text" class="member-address" id="address2" name="address" value="주소"/>
-         </div>
-         <div class="address-div">
-            <input size="30" type="text" class="member-address" id="address3" name="address" value="상세주소"/>
-         </div>   
-         
-         <button class="pink-btn" type="button">배송지 변경</button>   
+			<div class="row mb-3 form-row">
+				<div class="col-md-3">
+					<label for="postcodify_search_button">우편번호</label>
+				</div>
+				<div class="col-md-3">
+					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="btn btn-success" id="postcodify_search_button">검색</button>
+				</div>
+			</div>
+
+			<div class="row mb-3 form-row">
+				<div class="col-md-3">
+					<label for="address1">도로명 주소</label>
+				</div>
+				<div class="col-md-9">
+					<input type="text" class="form-control postcodify_address" name="address1" id="address1">
+				</div>
+			</div>
+
+			<div class="row mb-3 form-row">
+				<div class="col-md-3">
+					<label for="address2">상세주소</label>
+				</div>
+				<div class="col-md-9">
+					<input type="text" class="form-control postcodify_details" name="address2" id="address2">
+				</div>
+			</div>
+          
       </div>
       
       
@@ -89,19 +109,14 @@
       <h2>결제 수단</h2>   
       
       <div id="payment-area">
-         <div id="payment-api">
-            api 들어가는 곳
-         </div>
-         
          <div id="payment-other">
-            <h3>결제 금액</h3>
+         	<h3></h3>
             <button class="pink-btn" onclick="requestPay()">결제하기</button>
-            <button class="pink-btn" onclick="cancelPay()">임시환불버튼</button>
-            <a href="${contextPath}/cart/memberCart">임시장바구니 링크</a>
          </div>
       </div>
 
    </div>
+   
    
    <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -115,24 +130,65 @@
        crossorigin="anonymous">
    </script><!-- jQuery CDN --->
    
-  <script>
- 
+   	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script>
+		// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
+		$(function() {
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+		
+/* 		$memberAddress = $("<input>", {type : "hidden", name : "memberAddress",
+			value : $("#post").val() + "," + $("#address1").val() + "," + $("#address2").val()
+		}); */
+	</script>
+   
+   
+   
+  <script>  
      var IMP = window.IMP; 
      IMP.init("imp81888393"); 
      
+     var prices = $(".prdt-price");
+     var amounts = $(".cart-amount");
+     
+     var sum = 0;
+     
+     for(var i = 0; i < prices.length; ++i) {
+    	 var price = Number(prices.eq(i).text()) * Number(amounts.eq(i).text());
+    	 sum += price;
+     }
+     
+     console.log(sum);
+     
+     $("#payment-other > h3").append("결제금액 : " + sum);
+     
      /* 결제 */
      var requestPay = function(){
+        var phone = $("#phone").val();
+        var memberName = $("#member-name").val();
+        var prdtName = $(".prdt-name").text();
+        var memberEmail = $("#email").val();
+        var memberPhone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4);
+        var postCode = $("#post").val();
+    	var memberAddress = $("#address1").val() + "," + $("#address2").val();    	
+    	
+    	for(var i = 0; i < $(".prdt-name").length; ++i) {
+    		if(i > 1) {
+    			prdtName = $(".prdt-name").eq(0).text() + "외 " + (i-1);
+    		}
+    	}
+    	
         IMP.request_pay({
              pg : 'inicis', // version 1.1.0부터 지원.
              pay_method : 'card',
              merchant_uid : 'merchant_' + new Date().getTime(),
-             name : '주문명:결제테스트',
+             name : prdtName,
              amount : 100,
-             buyer_email : 'kang2x2@naver.com',
-             buyer_name : '구매자이름',
-             buyer_tel : '010-9462-2303',
-             buyer_addr : '서울특별시 동대문구 이문동 신이문 금호 어울림 아파트 102동 906호',
-             buyer_postcode : '123-456',
+             buyer_email : memberEmail,
+             buyer_name : memberName,
+             buyer_tel : memberPhone,
+             buyer_addr : memberAddress,
+             buyer_postcode : postCode,
              m_redirect_url : 'https://www.myservice.com/payments/complete/mobile'
          }, function(rsp) {
              if ( rsp.success ) {
@@ -142,16 +198,18 @@
                  msg += '결제 금액 : ' + rsp.paid_amount;
                  msg += '카드 승인번호 : ' + rsp.apply_num; 
                  jQuery.ajax({
-                     url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+                     url: "${contextPath}/payment/insertOrderInfo", // 가맹점 서버
                      method: "POST",
-                     headers: { "Content-Type": "application/json" },
                      data: {
-                         imp_uid: rsp.imp_uid, // 테이블에 들어가야 할 것
-                         merchant_uid: rsp.merchant_uid
-                     }
+                         imp_uid: rsp.imp_uid,
+                         merchant_uid: rsp.merchant_uid,
+                         "memberName" : rsp.buyer_name,
+                         "memberAddress" : rsp.buyer_addr,
+                         "memberPhone" : rsp.buyer_tel              
+                     },
                  }).done(function (data) {
                    // 가맹점 서버 결제 API 성공시 로직
-                    console.log("결제 성공했어요.");
+                    console.log("데이터 삽입 성공");
                  });
              } else {
                   var msg = '결제에 실패하였습니다.';
