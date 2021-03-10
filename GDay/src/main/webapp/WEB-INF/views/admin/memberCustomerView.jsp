@@ -59,15 +59,15 @@
 		</div>
 		<div class="board-area">
 			<div class="title-area">
-				<h2 style="font-weight: bold; font-size: 20px;">안녕하세요</h2>
+				<h2 style="font-weight: bold; font-size: 20px;">안녕하세요${customer}</h2>
 			</div>
 			<div class="info-area">
-				<h4>작성자: 회원명</h4>
-				<h5>작성일자: 2021-02-20</h5>
+				<h4>작성자: ${customer.memberName}</h4>
+				<h5>작성일자: ${customer.cusCreateDate}</h5>
 			</div>
 			<hr>
 			<div class="board-content">
-				<span>내용</span>
+				<span>${customer.cusContent}</span>
 			</div>
 			
 			<div class="float-right">

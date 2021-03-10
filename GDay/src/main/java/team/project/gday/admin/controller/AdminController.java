@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.service.AdminService;
 import team.project.gday.admin.model.vo.Customor;
+import team.project.gday.admin.model.vo.Reply;
 import team.project.gday.admin.model.vo.Report;
 import team.project.gday.admin.model.vo.adminPageInfo;
 import team.project.gday.magazine.model.vo.Magazine;
@@ -165,17 +170,6 @@ public class AdminController {
 		return result;
 	}
 	
-	// 게시판 상세조회 Controller
-	@RequestMapping("adView/{prdtNo}")
-	@ResponseBody
-	public String boardView(@PathVariable("prdtNo") int productNo) {
-		
-		System.out.println(productNo);
-		
-		return "redirect:/admin/adView";
-	}
-	
-	
 	// ----------------------------------------------------------
 	
 	// 매거진 게시판 조회 화면 전환 Controller
@@ -197,8 +191,6 @@ public class AdminController {
 		
 		return "admin/adminMagazine";
 	}
-	
-	// 매거진 상세조회 Controller
 	
 	// ----------------------------------------------------------------
 
@@ -305,11 +297,11 @@ public class AdminController {
 		
 		// 페이징 처리
 		adminPageInfo pInfo = service.getPageMcInfo(cp, loginMember);
-		System.out.println(pInfo);
+		// System.out.println(pInfo);
 		
 		// 회원의 게시글 목록 조회
 		List<Report> rList = service.memberCustomer(pInfo, loginMember);
-		System.out.println(rList);
+		// System.out.println(rList);
 		
 		model.addAttribute("pInfo", pInfo);
 		model.addAttribute("rList", rList);
@@ -318,9 +310,40 @@ public class AdminController {
 	}
 
 	// 회원 고객센터 상세조회 화면 전환 Controller
-	@RequestMapping("memberCustomerView")
-	public String memberCustomerView(){
+	@RequestMapping("memberCustomerView/{cusNo}")
+	public String memberCustomerView(@PathVariable("cusNo") int cusNo,
+									 Model model){
+		
+		// 문의글 확인
+		// System.out.println(cusNo);
+		Customor customer = service.memberView(cusNo);
+		//System.out.println(customer);
+		
+		if(customer != null) {
+			model.addAttribute("customer", customer);
+		}
+		
 		return "admin/memberCustomerView";
 	}
+	
+	
+	// 고객센터 댓글 목록 조회 Controller
+	@RequestMapping("selectReplyList/{parentCustomerNo}")
+	@ResponseBody
+	public String selectReplyList(@PathVariable("parentCustomerNo") int parentCustomerNo,
+								  Model model) {
+		System.out.println(parentCustomerNo);
+		Reply reply = service.selectReplyList(parentCustomerNo);
+		System.out.println(reply);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd / HH:mm:ss").create();
+		
+		if(reply != null) {
+			model.addAttribute("customer" , reply);
+		}
+		return gson.toJson(reply);
+	}
+	
+	// 고객센터 댓글 작성 Controller
 	
 }
