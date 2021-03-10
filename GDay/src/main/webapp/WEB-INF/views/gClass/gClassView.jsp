@@ -262,7 +262,7 @@
 
 					<div id="review" class="review_wrapper">
              
-             <jsp:include page="../review/reviewView.jsp"></jsp:include>
+          <jsp:include page="../review/reviewView.jsp"></jsp:include>
              
           </div>
                 <c:url var="updateUrl" value="${gclass.prdtNo}/update"/>

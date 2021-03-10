@@ -80,10 +80,12 @@
   </div>
 </div>
  
- 
+
 <script>
+
 var pagePath = window.location.pathname; // /gday/gift/34 이런식
 var pages = pagePath.split("/"); // pages[2] == gift / gClass
+var type = pages[2];
 
 var prdtNo; //상품 번호
 var cp;
@@ -92,14 +94,15 @@ var maxPage;
 var rContainer = $("#container-reviews");//review 컨테이너
 
 
-if(pages[2] == "gift") prdtNo = "${gift.prdtNo}";
-else if(pages[2] == "gClass") prdtNo = "${gclass.prdtNo}";
+if(type == "gift") prdtNo = "${gift.prdtNo}";
+else if(type == "gClass") prdtNo = "${gclass.prdtNo}";
 
 
 $(function(){
-	console.log("현재 페이지 : " + pages[2]);
+	console.log("현재 페이지 : " + type);
 	console.log("cp: " + cp);
 	
+	selectReviewView(cp);
 	
 });//레디함수 끝
 
@@ -116,142 +119,134 @@ function selectReviewView(cp){
 	//cp, prdtNo, pages[2]==type
 	
 	$.ajax({
-		url: "${contextPath}/review/selectReviewView".
-		data : { "cp" : cp, "prdtNo" : prdtNo, "type" : page[2] },
-		type : "post",
-		dataType = "json",
+		url: "../../review/selectReviewView",
+		data : { "cp" : cp, "prdtNo" : prdtNo, "type" : type},
+		type : "POST",
+		dataType : "json",
 		success : function(map){
-
-			var rList = map.rList;
-  	if(rList.length > 0){
-  		
-		  $.each(rList, function(index, review){   
-			  
-		  		var container = $("<div>").addClass("container-review");
+		
+				var rList = map.rList;
+		  	if(rList.length > 0){
 		  		
-		  		var imgUrl = review.rvImgPath + "/" + review.rvImgName;
-		  		var reviewImg = $("<div>").addClass("review-img-v").css("background-image", "url(" + "${contextPath}" + imgUrl + ")");
-
-		  		container.append(reviewImg);
-		  		
-		  		var rCard = $("<div>").addClass("review-card");
-		  		
-		  		var rDate = $("<div>").addClass("review-date");
-		  		var dateText = $("<span>").addClass("date-text").text("후기 작성일");
-		  		var date = $("<span>").text(review.createDate);
-					rDate.append(dateText).append(date);
-					
-					var rInfo = $("<div>").addClass("review-info-v");
-					var writer = $("<span>").addClass("info-writer").text(review.writer);
-					rInfo.append(writer);
-					
-					if(type == "gift"){
-						var optList = map.optList;
-						
-						$.each(optList, function(index, option){
-							if(option.gOptNo == review.giftOpNo){
-								var opt = $("<span>").addClass("info-opt").text(option.gOptName);
-								rInfo.append(opt);
+				  $.each(rList, function(index, review){   
+					  
+				  		var container = $("<div>").addClass("container-review");
+				  		
+				  		var imgUrl = review.rvImgPath + "/" + review.rvImgName;
+				  		var reviewImg = $("<div>").addClass("review-img-v").css("background-image", "url(" + "${contextPath}" + imgUrl + ")");
+		
+				  		container.append(reviewImg);
+				  		
+				  		var rCard = $("<div>").addClass("review-card");
+				  		
+				  		var rDate = $("<div>").addClass("review-date");
+				  		var dateText = $("<span>").addClass("date-text").text("후기 작성일");
+				  		var date = $("<span>").text(review.createDate);
+							rDate.append(dateText).append(date);
+							
+							var rInfo = $("<div>").addClass("review-info-v");
+							var writer = $("<span>").addClass("info-writer").text(review.writer);
+							rInfo.append(writer);
+							
+							if(type == "gift"){
+								var optList = map.optList;
+								
+								$.each(optList, function(index, option){
+									if(option.gOptNo == review.giftOpNo){
+										var opt = $("<span>").addClass("info-opt").text(option.gOptName);
+										rInfo.append(opt);
+									}
+								});
 							}
-						});
+							
+							//별점
+							var star = $("<div>").addClass("review-star");
+							
+							for(var i=1; i<=5; i++){
+								
+								var $icon = $("<i>").addClass("fas fa-star");
+								
+								if(review.rvStar >= i) {
+									$icon.css("color", "#ffe600");
+								}
+								star.append($icon);
+							}
+							
+							reviewCard.append(star);
+							
+							var beforeContent = review.rvContent;
+							 beforeContent = beforeContent.replace(/&amp;/g, "&");   
+						   beforeContent = beforeContent.replace(/&lt;/g, "<");   
+						   beforeContent = beforeContent.replace(/&gt;/g, ">");   
+						   beforeContent = beforeContent.replace(/&quot;/g, "\"");   
+					  	 beforeContent = beforeContent.replace(/<br>/g, "\n");
+		
+							//후기 내용
+							var content = $("<div>").addClass("review-content").text(beforeContent);
+							
+							//신고 버튼 
+							var aReport = $("<div>").addClass("a-report")
+				     								.text("수정").attr("onclick", "reportReview(" + review.rvNo + ")");
+		
+							
+							rCard.append(rDate).append(rInfo).append(star).append(content).append(aReport)
+							
+							container.append(rCard);
+							
+							rContainer.append(container);
+				  });
+					
+		  	} else { //후기 없을 때
+		  		var div = $("<div>").addClass('no-list');
+				
+					var msg = "작성된 후기가 없습니다😥";
+			
+					var span = $("<span>").addClass('no-list-text').text(msg);		
+					div.append(span);
+					listContainer.append(div);
+		  	}
+		  	
+			  //더보기 버튼 현재 페이지가 마지막 페이지이면 숨기기 + 아니면 보이기
+				var pInfo = map.pInfo;
+				maxPage = pInfo.maxPage;
+				cp = pInfo.currentPage;
+				
+				var pagination = $(".r-pagination");
+				pagination.html("");
+				
+				if(cp > pInfo.pageSize){
+					var first = $("<a>").addClass("r-page").text("<<").attr("href", "selectReviewView(1)");
+					
+					var prevNum = ((cp -1)/10)*10;
+					var prev =  $("<a>").addClass("r-page").text("<").attr("href", "selectReviewView(" + prevNum + ")");
+					
+					pagination.append(first).append(prev);
+				}
+				
+				for(var i=pInfo.startPage; i<=pInfo.endPage; i++){
+					var num = $("<a>").addClass("r-page").text(i).attr("href", "selectReviewView("+ i +")");
+					
+					if(cp == i){
+						num.css("color", "#FE929F");
 					}
 					
-					//별점
-					var star = $("<div>").addClass("review-star");
-					
-					for(var i=1; i<=5; i++){
-						
-						var $icon = $("<i>").addClass("fas fa-star");
-						
-						if(review.rvStar >= i) {
-							$icon.css("color", "#ffe600");
-						}
-						star.append($icon);
-					}
-					
-					reviewCard.append(star);
-					
-					var beforeContent = review.rvContent;
-					 beforeContent = beforeContent.replace(/&amp;/g, "&");   
-				   beforeContent = beforeContent.replace(/&lt;/g, "<");   
-				   beforeContent = beforeContent.replace(/&gt;/g, ">");   
-				   beforeContent = beforeContent.replace(/&quot;/g, "\"");   
-			  	 beforeContent = beforeContent.replace(/<br>/g, "\n");
-
-					//후기 내용
-					var content = $("<div>").addClass("review-content").text(beforeContent);
-					
-					//신고 버튼 
-					var aReport = $("<div>").addClass("a-report")
-		     								.text("수정").attr("onclick", "reportReview(" + review.rvNo + ")");
-
-					
-					rCard.append(rDate).append(rInfo).append(star).append(content).append(aReport)
-					
-					container.append(rCard);
-					
-					rContainer.append(container);
-					
-		  });
-			
-  	} else { //후기 없을 때
-  		var div = $("<div>").addClass('no-list');
-		
-			var msg = "작성된 후기가 없습니다😥";
-	
-			var span = $("<span>").addClass('no-list-text').text(msg);		
-			div.append(span);
-			listContainer.append(div);
-  	}
-  	
-	  //더보기 버튼 현재 페이지가 마지막 페이지이면 숨기기 + 아니면 보이기
-		var pInfo = map.pInfo;
-		maxPage = pInfo.maxPage;
-		cp = pInfo.currentPage;
-		
-		
-		var pagination = $(".r-pagination");
-		pagination.html("");
-		
-		if(cp > pInfo.pageSize){
-			var first = $("<a>").addClass("r-page").text("<<").attr("href", "selectReviewView(1)");
-			
-			var prevNum = ((cp -1)/10)*10;
-			var prev =  $("<a>").addClass("r-page").text("<").attr("href", "selectReviewView(" + prevNum + ")");
-			
-			pagination.append(first).append(prev);
-		}
-		
-		for(var i=pInfo.startPage; i<=pInfo.endPage; i++){
-			var num = $("<a>").addClass("r-page").text(i).attr("href", "selectReviewView("+ i +")");
-			
-			if(cp == i){
-				num.css("color", "#FE929F");
-			}
-			
-			pagination.append(num);
-		}
-		
-		var nextNum = ((cp +9)/10)*10 + 1;
-		if(nextNum <= maxPage){
-			var next =  $("<a>").addClass("r-page").text(">").attr("href", "selectReviewView(" + nextNum + ")");
-			var last =	$("<a>").addClass("r-page").text(">>").attr("href", "selectReviewView(" + maxPage + ")");
-			pagination.append(next).append(last);
-		}
-		
+					pagination.append(num);
+				}
+				
+				var nextNum = ((cp +9)/10)*10 + 1;
+				if(nextNum <= maxPage){
+					var next =  $("<a>").addClass("r-page").text(">").attr("href", "selectReviewView(" + nextNum + ")");
+					var last =	$("<a>").addClass("r-page").text(">>").attr("href", "selectReviewView(" + maxPage + ")");
+					pagination.append(next).append(last);
+				}
 		
 		},
 		error : function(){
 			console.log("후기 조회 중 오류");
 		}
 		
-	});
-	
+	});//ajax 끝
 	
 }
 
-
-
-
 </script>
-

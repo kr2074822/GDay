@@ -9,7 +9,7 @@
 <title>나의 후기</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/mypage/listPeriod.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/reviewList.css?ver=1.0">
 		<link rel="stylesheet" href="${contextPath}/resources/css/common/modalBasic.css"/>
 		
     <!-- icon : font-awesome -->

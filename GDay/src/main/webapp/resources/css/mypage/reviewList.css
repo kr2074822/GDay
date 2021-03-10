@@ -25,7 +25,7 @@
 }
 
 
-.container-reviews{
+.container-reviews, #container-review {
     box-sizing: border-box;
     margin : 30px;
     width : 80%;
@@ -33,7 +33,7 @@
 
 .container-review {
     position: relative;
-    width : 100%;
+   /*  width : 100%; */
     /* border-bottom : 1px solid lightgray; */
     padding : 10px 10px 15px 10px;
     border: 1px solid lightgray;
@@ -53,7 +53,23 @@
     cursor: pointer;
     z-index: 1;
 }
-.a-delete:hover { color : #FE929F; text-decoration: none;}
+.a-report{
+		position : absolute;
+		bottom : 0px;
+    right: 10px;
+    color : gray;
+    background-color : white;
+    width : 60px;
+    height : 30px;
+    /* border : 1px solid lightgray; */
+    border-top-left-radius : 5px;
+		line-height : 30px;
+    text-align : center;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1;
+}
+.a-delete:hover, .a-report:hover { color : #FE929F; text-decoration: none;}
 
 .review-card {
     width : 100%;
@@ -87,19 +103,24 @@
     height : 70px;
     justify-content: space-around;
 }
-.review-info .info-name {
+
+.review-info-v {    
+    min-height : 20px;
+}
+
+.review-info .info-name, .review-info-v .info-writer {
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
     color : black;
 }
-.review-info .info-opt, .review-info .info-date {
+ .info-opt, .review-info .info-date {
     color: gray;
     font-size : 14px;
 }
 
 .review-star {
-    height : 40px;
+    height : 60px;
     align-items: center;
     color : lightgray;
 }
@@ -113,9 +134,32 @@
     padding : 10px;
     color : #2c2c2c;
 }
+
+.review-content-v {
+    min-height : 50px;
+    border-radius: 5px;
+    background-color : #c5abae3b;
+    padding : 10px;
+    color : #2c2c2c;
+}
+
  .review-img{
  		position : absolute;
  		top : 45px;
+ 		right : 20px;
+    width : 120px;
+    height : 120px;
+    background-clip: border-box;
+    background-size: cover; /* 배경 이미지로 div 커버 */
+    overflow: hidden; /* 사진이 넘치면 hidden */
+    background-position: center center;
+    /* cursor : pointer; */
+    z-index : 1;
+}
+ .review-img-v{
+ 		position : absolute;
+ 		border : solid 1px black;
+ 		top : 16px;
  		right : 20px;
     width : 100px;
     height : 100px;
@@ -126,7 +170,6 @@
     /* cursor : pointer; */
     z-index : 1;
 }
-
 
 /* 더보기 */
 .btn-more {

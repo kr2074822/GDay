@@ -24,6 +24,7 @@
     <!-- swal2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
   	
   	<style>
   	
@@ -123,7 +124,7 @@
            </div><!-- container-list 끝 -->  --%>
         </div> <!-- container-orders 끝 -->
         <!-- 더보기 버튼 : 목록이 더 있을 때만 표시 -->
-        <a href="#" class="btn-more"><i class="fas fa-plus"></i></a>
+        <a class="btn-more"><i class="fas fa-plus"></i></a>
     </div> <!-- wrapper-box 끝 -->
    </div>
 </div>
