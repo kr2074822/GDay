@@ -18,6 +18,7 @@ section.search{
 }
 section.search .search_wrapper{
     width: 100%;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.search .search_wrapper h1{
     text-align: center;
@@ -60,6 +61,7 @@ section.option .option_wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.option .option_wrapper .item_wrapper{
     width: 100%;
@@ -128,6 +130,7 @@ section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]:check
 	display: flex;
 	justify-content: center;
 	margin-bottom: 150px;	
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 .pagination li{
@@ -156,6 +159,7 @@ section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]:check
 section.gift{
     width: 80%;
     margin: 200px auto;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.gift .search_result{
     text-align: right;

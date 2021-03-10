@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.0">
-<link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassList.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassList.css?ver=1.0">
 <title>클래스 찾기</title>
 <style>
 input[name='category'] {
@@ -186,7 +186,7 @@ input[name='category'] {
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
-									<span>${gClass.prdtPrice}</span>
+									<span><fmt:formatNumber value="${gClass.prdtPrice}"/>원</span>
 								</c:if>
 							</c:forEach>
 						</a>
@@ -242,7 +242,7 @@ input[name='category'] {
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</div>
+
 
 	<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
 	<c:if test="${next <= pInfo.maxPage}">
@@ -254,7 +254,7 @@ input[name='category'] {
 			<!-- 마지막 페이지로 이동(>>) --> <a class="page-link" href="${lastPage}">&gt;&gt;</a>
 		</li>
 	</c:if>
-
+</div>
 
 	<jsp:include page="../common/footer.jsp" />
 
