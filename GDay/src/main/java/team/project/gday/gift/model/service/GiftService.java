@@ -116,4 +116,9 @@ public interface GiftService {
 	 */
 	ProductStar selectStar(int prdtNo);
 
+	/**메인에서 상위 3개 클래스 가져오기
+	 * @return
+	 */
+	List<Gift> selectGiftList3();
+
 }

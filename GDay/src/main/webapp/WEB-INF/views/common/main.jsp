@@ -266,21 +266,18 @@ display: none;
             <ul>
                 <li>
                     <h3>Our Class</h3>
-                    <p>Lorem Ipsum is simply dummy text of the  <br>
-                        printing and typesetting industry. <br>
-                        Lorem Ipsum has been the industry's </p>
+                    <p>특별한 사람과 특별한 날을 위해, <br>
+                       	직접 정성을 담은 여러가지 선물을 만들어보세요!</p>
                 </li>
                 <li>
                     <h3>Our Gift</h3>
-                    <p>Lorem Ipsum is simply dummy text of the  <br>
-                        printing and typesetting industry. <br>
-                        Lorem Ipsum has been the industry's</p>
+                    <p>빛나는 하루를 위해,  <br>
+                       	나를 위한 멋진 선물을 골라보는건 어떠신가요?</p>
                 </li>
                 <li>
                     <h3>Our Magazine</h3>
-                    <p>Lorem Ipsum is simply dummy text of the  <br>
-                        printing and typesetting industry. <br>
-                        Lorem Ipsum has been the industry's </p>
+                    <p>트렌디한 선물을 찾는다면, 소식지를 읽어보세요! <br>
+                       G-day가 센스있는 Gift-day를 응원합니다. </p>
                     </li>
             </ul>
         </div>
@@ -291,7 +288,7 @@ display: none;
     
     <section class="">
         <div class="section_wrapper">
-            <h1>방금 새로 올라온 선물은?</h1>
+            <h1>지금 제일 인기있는 선물은?</h1>
 
             <div class="card_wrapper">
                 <h2>Class</h2>
@@ -328,7 +325,7 @@ display: none;
                    <c:forEach items="${gList}" var="g">
                     <div class="card">
                         <a href="gift/${g.prdtNo}">
-                         <c:forEach items="${thList}" var="th">
+                         <c:forEach items="${gthList}" var="th">
 														<c:if test="${th.prdtNo == g.prdtNo}">
 															<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
 														</c:if>
@@ -336,7 +333,7 @@ display: none;
                             <div class="gredient"></div>
                             <h2>${g.prdtName}</h2>
                             <div class="info">
-                            	<c:forEach items="${selectStarList}" var="star">
+                            	<c:forEach items="${gSelectStarList}" var="star">
                             		<c:if test="${star.prdtNo == g.prdtNo}">
                                 <span><i class="fas fa-star"></i>${star.rvStarAvg}</span>
                             		<span><i class="fas fa-won-sign"></i>${g.prdtPrice}</span>

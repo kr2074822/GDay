@@ -339,4 +339,12 @@
 		SELECT * FROM V_PRODUCT_STAR WHERE PRDT_NO = #{prdtNo}
 	</select>
 	
+	<!-- 메인에서 상위 3개 클래스 가져오기 DAO -->
+	<select id="selectGiftList3" resultMap="gift_rm">
+		SELECT * FROM V_GIFT
+    JOIN V_PRODUCT_STAR USING(PRDT_NO)
+		WHERE PRDT_TYPE = 'G' AND PRDT_STATUS = 'Y'
+		ORDER BY RV_STAR_VIEW DESC
+	</select>
+	
 </mapper>
