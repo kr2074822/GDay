@@ -406,6 +406,31 @@
 	
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
+    
+	//검색 파라미터 유지
+	$(function() {
+		//카테고리
+		<c:forEach items="${search.category}" var="category">
+		$("input[name=category]").each(function(index, item) {
+			if($(item).val == "${category}") {
+				$(item).prop("checked", true);
+			}
+		});
+			</c:forEach>
+		
+		//해시태그
+		<c:forEach items="${search.hashNo}" var="hashNo">
+			$("input[name=hashNo]").each(function(index, item){
+				if($(item).val() == "${hashNo}"){
+					$(item).prop("checked", true);
+				}
+			});
+			</c:forEach>
+			
+			//검색값(sv)
+			$("input[name=sv]").val("${search.sv}");
+	});
+    
         const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");
         const tagBx = document.getElementsByClassName("tagBx");
@@ -453,7 +478,38 @@
                         ripples.remove()
                     }, 1000)
                 })
-            })
+            });
+        
+     // hashtag 체크되면 category와 hashtag 모두 parameter로 넘겨줌
+        
+        for (const input_list of input) {
+            let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
+            input_list.addEventListener('click', ()=> {
+                if(input_list.checked == true){
+                   	console.log(input_list.checked)
+                   	
+                   	
+                   	console.log(item[div_index].firstChild.nextSibling.checked = true)
+                }else{
+                	let cnt = 0;
+                    let aa = input_list.parentElement.parentElement.querySelectorAll('input')
+                    console.log(input_list.parentElement.parentElement.querySelectorAll('input'))
+                    for (const bb of aa) {
+                    	console.log(123)
+                        if(bb.checked){
+                            cnt=cnt+1;
+                        }else{
+                            cnt=cnt-1
+                        }
+                    	console.log(cnt)
+                    }
+                    if(cnt*(-1) == aa.length){
+                    	item[div_index].firstChild.nextSibling.checked = false
+                    }
+                }
+                
+            });
+        }   
     </script>
 </body>
 </html>
