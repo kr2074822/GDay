@@ -1,33 +1,36 @@
-.sidebar-area{
-	float: left;
-}
-.account_del{
+
+.update-cover{
 	width: 70%;
 	margin: auto;	
 	padding: 200px 0;
-  font-family: 'TmoneyRoundWindRegular'; 
+	font-family: 'TmoneyRoundWindRegular'; 
 }
-.account_del .title{
+.update-cover .title{
 	width: 100%;
 	text-align: center;
 	margin: 0 0 40px;
   padding: 0;
- 	font-size : 24px;
+
+  font-size : 24px;
 }
 
+.input-hidden { display:none;}
+#checkPwd{
+	font-size: 14px;
+}
 
-
-.account_del .insert_info{
+.update-cover .insert_info{
 	width: 400px;
 	margin: 0 auto;
+	margin-bottom : 20px;
 }
-.account_del .insert_info div{
+.update-cover .insert_info div{
 	position: relative;
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 
 }
-.account_del .insert_info div input{
+.update-cover .insert_info div input{
     padding: 10px 0;
     margin-bottom: 30px;
     width: 100%;
@@ -35,10 +38,11 @@
     box-shadow: none;
     border: none;
     border-bottom: 2px solid #999;
-      font-family: 'TmoneyRoundWindRegular'; 
+    font-family: 'TmoneyRoundWindRegular'; 
 }
+#newPw2 { margin-bottom : 10px;}
 
-.account_del .insert_info  div label{
+.update-cover .insert_info  div label{
 	position: absolute;
     top: 10px;
     left: 0;
@@ -50,29 +54,29 @@
 
 
 
-.account_del .insert_info div input:focus ~ label,
-.account_del .insert_info div input:valid ~ label{
+.update-cover .insert_info div input:focus ~ label,
+.update-cover .insert_info div input:valid ~ label{
     top: -12px;
     left: 0;
     color: #f7497d;
     font-size: 12px;
     font-weight: bold;
 }
-.account_del .insert_info div input:focus,
-.account_del .insert_info div input:valid{
+.update-cover .insert_info div input:focus,
+.update-cover .insert_info div input:valid{
     border-bottom: 2px solid #f7497d;
 }
-.account_del .insert_info div input:focus{
+.update-cover .insert_info div input:focus{
     outline:none;
 }
 
-.account_del .btn {
+.update-cover .btn {
 	display: flex;
 	justify-content: center;
 	margin: 0 auto;
 }
 
-.account_del .btn button{
+.update-cover .btn button{
 	background: #fe929f;
 	outline: none;
 	border: none;
@@ -89,13 +93,24 @@
   font-family: 'TmoneyRoundWindRegular'; 
 }
 
-#delete:hover { 
+
+#update-btn:hover { 
     background-color: #db7e89; 
     color : #fafafa;
     text-decoration: none;
 }
 
 
-
-
+.showpw{
+    position: absolute;
+    top: 17%;
+    right: 0;
+    color:#141414;
+}
+.show{
+	display: none;
+}
+.showpw:hover{
+    cursor: pointer;
+}
 

@@ -128,6 +128,12 @@ public interface GmemService {
 	 */
 	public abstract int updateProfile(List<MultipartFile> profile, String savePath, Member updateMember, boolean profileFlag);
 
+	/**비밀번호 변경
+	 * @param map
+	 * @return
+	 */
+	public abstract int updatePwd(Map<String, Object> map);
+
 	
 	
 }

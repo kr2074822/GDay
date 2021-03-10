@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminSidebar.css"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminSidebar.css?ver=1.0"/>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">    
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -27,14 +27,14 @@
         <div id="sidebar-adminPage"></div>
         <div id="sidebar-ul">
             <ul class="sidebar-menu">
-                <li class="active-sidebar">
+                <li>
                 		<a href="${contextPath}/admin/adminMember" class="up-menu">
                     <span class="menu-icon"><i class="fas fa-users-cog"></i></span>
                     <span class="menu-text">회원 관리</span>
                     </a>
 
                     <ul class="sub-menu">
-                        <li class="active-sidebar"><a href="${contextPath}/admin/adminMember">
+                        <li><a href="${contextPath}/admin/adminMember">
                             <span class="submenu-icon"><i class="fas fa-users"></i></span>
                             <span class="submenu-text">전체회원 보기</span>
                             </a>
@@ -52,7 +52,7 @@
                     </ul>
 								</li>
 
-					<li class="active-sidebar">
+					<li>
                 		<a href="${contextPath}/admin/adminBoard" class="up-menu">
 	                    <span class="menu-icon"><i class="fas fa-clipboard-list"></i></span>
 	                    <span class="menu-text">게시글 관리</span>

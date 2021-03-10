@@ -243,6 +243,22 @@ public class GmemDAO {
 		return sqlSession.delete("gMemMapper.deleteProfile", memberNo);
 	}
 
+	/** 비번변경용 비밀번호 가져오기
+	 * @param i
+	 * @return
+	 */
+	public String selectPwd(int memberNo) {
+		return sqlSession.selectOne("gMemMapper.selectPwd", memberNo);
+	}
+
+	/**비밀번호 업데이트
+	 * @param map
+	 * @return 
+	 */
+	public int updatePwd(Map<String, Object> map) {
+		return sqlSession.update("gMemMapper.updatePwd", map);
+	}
+
 	
 	
 	
