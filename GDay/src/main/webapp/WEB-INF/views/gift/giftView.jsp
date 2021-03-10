@@ -50,25 +50,30 @@
                                 <span>문의하기</span>
                             </div>
                         </div>
-                        <div class="option" id="options">
-                            <span>옵션</span>
-                            <select name="gift-option" id="gift-option">
-                            	<c:forEach var="goption" items="${goption}" varStatus="vs">
+                        
+<%--                         <c:choose>
+													<c:when test="${!empty goption}">
+ --%>                       		 <div class="option" id="options">
+                            	<span>옵션</span>
+                           		 <select name="gift-option" id="gift-option">
+                            		<c:forEach var="goption" items="${goption}" varStatus="vs">
 	                                <option value="${goption.gOptNo}">${goption.gOptName}</option>
                                 </c:forEach>
-                            </select>
-       
-                            <div id="option_list">
+                            	</select>
+       										</div>
+                        <%-- 	</c:when>
+                        </c:choose> --%>
+                           	 <div id="option_list">
 
-                            </div>
-                            
-                        </div>
+                           	 </div>
+                           		 
+                        		
                     </div>
                     <div class="priceBtn">
                         <p>총 <span class="acnt amount"></span>개</p>
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="sum">0</span>
+                            <span class="sum"></span>
                         </div>
     
                         <div class="option_btn">
