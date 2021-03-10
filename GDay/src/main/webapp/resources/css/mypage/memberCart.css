@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #side-fix {
-	align-self: flex-start;
+	height: 100%;
 }
 
 #select-area {
@@ -11,12 +11,18 @@
 	transform:translateX(-50%);
 }
 
+#gift-btn, #class-btn {
+	font-family: 'TmoneyRoundWindRegular';
+	color: #FFF;
+}
+
 #select-area > button {
 	width: 100px;
 	padding: 15px 0;
 	margin-top: 20px;
 	border-radius: 10px;
 	border: none;
+	background-color: #FE929F;
 }
 
 #select-area > button:hover {
@@ -27,8 +33,10 @@
 
 
 #cart-wrapper {
+	min-height: 800px;
 	display: flex;
 	justify-content: space-between;
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 
@@ -78,8 +86,8 @@
 	object-fit: contain;
 	display: block;
 	margin: 0 auto;
-	width: 80%;
-	height: 80%;
+	width: 150px;
+	height: 150px;
 }
 
 .product-name {
@@ -142,6 +150,7 @@
 	border-radius: 40px;
 	color: #fafafa;
 	border: none;
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 .order-btn:hover {
@@ -154,6 +163,16 @@
 
 
 /* 반응형 */
+@media screen and ( max-width: 1080px ) {
+	.product-name {
+		width: 30%;
+	}
+	.acount-area {
+		width: 100px;
+	}
+}
+
+
 @media screen and ( max-width: 768px ) {
 	#cart-wrapper {
 		flex-direction: column;
@@ -172,6 +191,10 @@
 	
 	#payment-info {
 		margin: auto;
+	}
+	
+	.product-name {
+		width: 30%;
 	}
 	
 }

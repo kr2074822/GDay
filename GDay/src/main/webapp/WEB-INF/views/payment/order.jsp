@@ -72,14 +72,14 @@
       <div id="address-area">
          <h3><i class="fas fa-thumbtack"></i>&nbsp;배송지</h3>
          
-			<div class="row mb-3 form-row">
+			<div class="row mb-3 form-row member-address">
 				<div class="col-md-3">
 					<label for="postcodify_search_button">우편번호</label>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 member-address">
 					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 member-address">
 					<button type="button" class="btn btn-success" id="postcodify_search_button">검색</button>
 				</div>
 			</div>

@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>주문 완료</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css" >
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/orderSuccess.css" >
 
 </head>
 <body>
@@ -17,12 +17,15 @@
    
    <div id="order-wrapper">
    
+   	  <div id="order-result">
    		<h1>주문이 성공적으로 완료되었습니다.</h1>
-		<button onclick="location.href = ''">메인으로</button>
-		<button onclick="location.href = ''">선물 보러 가기</button>
-		<button onclick="location.href = ''">클래스 보러 가기</button>
+		<button onclick="location.href = '${contextPath}/'">메인으로</button>
+		<button onclick="location.href = '${contextPath}/gift/list'">선물 보러 가기</button>
+		<button onclick="location.href = '${contextPath}/gClass/list'">클래스 보러 가기</button>   	  
+   	  </div>
+		
    </div>
    
-
+   <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
