@@ -22,14 +22,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import team.project.gday.Product.model.vo.Attachment;
-import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.Product.model.vo.ProductStar;
+import team.project.gday.gClass.model.service.GClassService;
 import team.project.gday.gift.model.service.GiftService;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.vo.Search;
 
 @Controller 
 @SessionAttributes({"loginMember"})
@@ -38,6 +39,7 @@ public class GiftCtrl {
 	
 	@Autowired
 	private GiftService service;
+	private GClassService cService;
 	
 	private String swalIcon = null;
 	private String swalTitle = null;
@@ -48,23 +50,23 @@ public class GiftCtrl {
 	public String giftList(@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model) {
 		PageInfo10 pInfo = service.getPageInfo(cp);
 
-		List<Gift> gift = service.selectList(pInfo);
+		List<Gift> gList = service.selectList(pInfo);
 
-		if (gift != null && !gift.isEmpty()) {
+		if (gList != null && !gList.isEmpty()) {
 			//썸네일 가져오기
-			List<Attachment> thumbnailList = service.selectThumbnailList(gift);
+			List<Attachment> thumbnailList = service.selectThumbnailList(gList);
 			
 			if (thumbnailList != null) {
 				model.addAttribute("thList", thumbnailList);
 				
 				//평균 별점 가져오기
-				List<ProductStar> selectStarList = service.selectStarList(gift);
+				List<ProductStar> selectStarList = service.selectStarList(gList);
 				
 				model.addAttribute("selectStarList", selectStarList);
 			}
 		}
 
-		model.addAttribute("gift", gift);
+		model.addAttribute("gList", gList);
 		model.addAttribute("pInfo", pInfo);
 		
 		return "gift/giftList";
@@ -117,8 +119,6 @@ public class GiftCtrl {
 		// 게시글 삽입 Service 호출
 		int result = service.insertGift(map, images, savePath);
 		
-		
-		System.out.println(1);
 		return "redirect:/";
 	}
 	
@@ -135,19 +135,12 @@ public class GiftCtrl {
 		//java->js로 객체 전달 : json
 		return new Gson().toJson(at);
 	}
-	
-	
-	
-	
-	
-	
-	
 
 	//클래스 상세 조회
 	@RequestMapping("/gift/{prdtNo}") 
 	public String boardView(@PathVariable("prdtNo") int prdtNo,
 							Model model,
-							@RequestHeader(value="referer", required=false) String referer) {
+							@RequestHeader(value="referer", required=false) String referer, RedirectAttributes ra) {
 		//@RequestHeader(name="referer") String referer
 		// ---> HTTP 요청 헤더에 존재하는 "referer"값을 얻어와
 		//매개변수 String referer에 저장
@@ -171,12 +164,12 @@ public class GiftCtrl {
 			
 			// 옵션 가져오기
 			List<GOption> goption = service.selectGoption(prdtNo);
-			System.out.println("상품*----"+ goption);
-			model.addAttribute("goption", goption);
+			if (goption != null && !goption.isEmpty()) {
+				model.addAttribute("goption", goption);
+			}
 			
 			//해시태그 목록 가져오기
 			List<ProductCTag> prdtTagList = service.selectPrdtTagList(prdtNo);
-			System.out.println(prdtTagList);
 			if (prdtTagList != null  && !prdtTagList.isEmpty()) {
 				model.addAttribute("prdtTagList", prdtTagList);
 			}
@@ -184,6 +177,12 @@ public class GiftCtrl {
 			Attachment thumbnail = service.selectThumbnail(prdtNo);
 			if(thumbnail != null) {
 				model.addAttribute("thumbnail", thumbnail);
+			}
+			
+			//상품별 평균 별점 가져오기
+			ProductStar star = cService.selectStar(prdtNo);
+			if(star != null) {
+				model.addAttribute("star", star);
 			}
 			
 			model.addAttribute("gift", gift);
@@ -204,7 +203,7 @@ public class GiftCtrl {
 	}
 
 	
-	// 선물 수정 화면
+	// 선물 수정 화면 이동 controller
 	@RequestMapping("{prdtNo}/updateGiftView")
 	public String updateGiftView(@PathVariable("prdtNo") int prdtNo, Model model) {
 		//게시글 상세 조회 
@@ -279,11 +278,11 @@ public class GiftCtrl {
 		 String url = null;
 		 if(result > 0) {
 				swalIcon = "success";
-				swalTitle = "선물 수정 성공!";
+				swalTitle = "선물 페이지 수정 성공!";
 				url = "redirect:../"+prdtNo;
 			}else {
 				swalIcon = "error";
-				swalTitle = "선물 수정 실패";
+				swalTitle = "선물 페이지 수정 실패";
 				url = "redirect:" + request.getHeader("referer");
 			}
 			
@@ -293,4 +292,61 @@ public class GiftCtrl {
 			return url;
 	 
 	 }
+	
+	//선물 마감하기 Controller
+	@RequestMapping("{prdtNo}/pauseAction")
+	public String pauseAction(@PathVariable("prdtNo") int prdtNo, RedirectAttributes ra,
+								@RequestHeader(value = "referer", required = false) String referer) {
+		
+		int result = cService.pauseAction(prdtNo);
+		
+		String url = null;
+		 if(result > 0) {
+				swalIcon = "success";
+				swalTitle = "품절 정상 처리";
+				swalText = "상품이 품절되었습니다.";
+				url = "redirect:/" + referer;
+			}else {
+				swalIcon = "error";
+				swalTitle = "품절 처리 중 문제 발생";
+				swalText = "문제가 계속될 시 관리자에게 연락 주세요.";
+				url = "redirect:/"; 
+			}
+			
+			ra.addFlashAttribute("swalIcon", swalIcon);
+			ra.addFlashAttribute("swalTitle", swalTitle);
+			ra.addFlashAttribute("swalText", swalText);
+
+			return url;
+	}
+	
+	//선물 검색
+	@RequestMapping("search")
+	public String searchGift (@RequestParam(value="cp", required=false, defaultValue = "1") int cp,
+								@ModelAttribute Search search, Model model) {
+	
+				//1) 검색 조건이 포함된 페이징 처리용 객체 얻어오기
+				PageInfo10 pInfo = service.getSearchPageInfo(search, cp);
+				
+				//2) 검색 조건이 포함된 선물 목록 조회
+				List<Gift> gList = service.selectSearchList(search, pInfo);
+				
+				//3) 썸네일 목록 조회
+				if(!gList.isEmpty()) {
+					List<Attachment> thList = service.selectThumbnailList(gList);
+					model.addAttribute("thList", thList);
+					System.out.println(thList);
+				}
+				
+				System.out.println(pInfo);
+				System.out.println(gList);
+				System.out.println(search);
+				
+				model.addAttribute("gList", gList);
+				model.addAttribute("pInfo", pInfo);
+				model.addAttribute("search", search);
+				
+				return "gift/giftList";
+	}
+	
 }

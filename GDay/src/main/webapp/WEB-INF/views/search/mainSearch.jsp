@@ -216,28 +216,48 @@ input[name='category'] {
             <span>Gift</span>
         </div>
         <div class="gift_wrapper">
-			    <c:if test="${empty gCList}">
+			    <c:if test="${empty gList}">
 			      		<div class="gift_wrapper">조건에 맞는 상품이 없습니다.</div>
 					</c:if>
-					<c:if test="${!empty gCList}">
-            <div class="item">
-                <a href="">
-                    <div>
-                        <img src="images/gift1.jpg" alt="">
-                        <div class="sold_out">
-                            <h1>품절</h1>
-                        </div>
-                    </div>
-                    <h1>제목입니다</h1>
-                    <span>가격</span>
-                </a>
-            </div>
+					<c:if test="${!empty gList}">
+            <div class="gift_wrapper">
+				<c:forEach var="gift" items="${gList}" varStatus="vs">
+					<div class="item">
+						<a href="gClass/${gift.prdtNo}">
+					
+						<c:forEach items="${thList}" var="th">
+							<c:if test="${th.prdtNo == gift.prdtNo}">
+								<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+							</c:if>
+						</c:forEach>
+						
+							<c:if test="${gift.cStatus == 'N'}">
+								<div class="sold_out">
+									<h1>마감</h1>
+								</div>
+							</c:if>
+						
+							<h1>${gift.prdtName}</h1> 
+							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
+								<c:if test="${star.prdtNo == gift.prdtNo}">
+									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
+									<span>${gift.prdtPrice}</span>
+								</c:if>
+							</c:forEach>
+						</a>
+					</div>
+
+				</c:forEach>
+			</div>
         </c:if>
-        </div>
-        <div class="more">
-            <a href=""><span>More</span></a>
-        </div>
-    </section>
+        <c:if test="${!empty gList}">
+				<div class="more">
+					<a href="gift/search?${searchStr}">
+						<span>More</span>
+					</a>
+        </div>			
+      </c:if>
+	</section>
     
     <jsp:include page="../common/footer.jsp"/>
 
@@ -260,6 +280,10 @@ input[name='category'] {
 			$("input[name=hashNo]").each(function(index, item){
 				if($(item).val() == "${hashNo}"){
 					$(item).prop("checked", true);
+					
+					let index = $(item).parent().parent().attr("data-text");
+	        $category = $("li[data-text='"+index+"'] > input[name='category']");
+	        $category.prop("checked", true);	
 				}
 			});
 			</c:forEach>
