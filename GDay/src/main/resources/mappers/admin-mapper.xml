@@ -99,6 +99,18 @@
 	</resultMap>
 	
 	
+	<!-- 사업자등록증 -->
+	<resultMap type="LicenseImg" id="LicenseImg_rm">
+		<!-- DB의 기본 키 -->
+		<id property="memNo" column="MEM_NO"/>
+		
+		<!-- DB의 일반 컬럼들 -->
+   		<result property="lcsPath" column="LCS_PATH"/>
+  		<result property="lcsName" column="LCS_NAME"/>
+  		<result property="lcsStatus" column="LCS_STATUS"/>
+  		<result property="lcsDate" column="BMEM_LCS_DATEINTRO"/>
+	</resultMap>
+	
 	
 	<!-- 전체회원 페이징 처리(목록 갯수) -->
 	<select id="getListCount" resultType="_int">
@@ -255,8 +267,7 @@
 	<select id="getMember" resultMap="member_rm">
 		SELECT * 
 		FROM V_BMEMBER
-		JOIN LICENSE_IMG USING(MEM_NO)
-		WHERE MEM_GRADE = 'U'
+		WHERE MEM_GRADE = 'U' AND LCS_STATUS = 'N'
 	</select>
 	
 	<!-- 회원 상세 조회  -->
@@ -286,4 +297,22 @@
 		FROM V_CUSTOMOR
 		WHERE CUS_NO = #{cusNo}
 	</select>
+	
+	
+	<!-- 승인 성공 -->
+	<update id="approval" parameterType="_int">
+		UPDATE MEMBER SET MEM_GRADE = 'B' WHERE MEM_NO = #{memberNo}
+	</update>
+	
+	<!-- 라이센스 변경 -->
+	<update id="lcsApproval" parameterType="_int">
+		UPDATE LICENSE_IMG SET LCS_STATUS = 'Y' WHERE MEM_NO = #{memberNo}
+	</update>
+	
+	<!-- 라이센스 변경 -->
+	<update id="deny" parameterType="_int">
+		UPDATE LICENSE_IMG SET LCS_STATUS = 'R' WHERE MEM_NO = #{memberNo}
+	</update>
+	
+	
 </mapper>

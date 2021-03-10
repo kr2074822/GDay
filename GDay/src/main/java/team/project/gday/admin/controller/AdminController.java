@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -345,5 +346,59 @@ public class AdminController {
 	}
 	
 	// 고객센터 댓글 작성 Controller
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------
+	
+	@RequestMapping("approval")
+	@ResponseBody
+	public int approval(@RequestParam int memberNo) {
+		int result = service.approval(memberNo);
+		return result;
+	}
+	
+	
+	
+	@RequestMapping("deny")
+	@ResponseBody
+	public int deny(@RequestParam int memberNo) {
+		
+		System.out.println(memberNo);
+		
+		int result = service.deny(memberNo);
+		return result;
+	}
 	
 }
