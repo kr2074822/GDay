@@ -34,11 +34,11 @@ input[name='category'] {
 		<c:when test="${!empty search}">
 			<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
 			<c:forEach items="${search.category}" var="c">
-				<c:set var="category" value="${category}ct=${c}&" />
-				<c:forEach items="${search.hashNo}" var="t">
-					<c:set var="hashNo" value="${hashNo}tag=${t}&" />
-				</c:forEach>
+				<c:set var="category" value="${category}category=${c}&" />
 			</c:forEach>
+				<c:forEach items="${search.hashNo}" var="t">
+					<c:set var="hashNo" value="${hashNo}hashNo=${t}&" />
+				</c:forEach>
 
 			<c:set var="searchStr" value="${category}${hashNo}" />
 
@@ -50,10 +50,10 @@ input[name='category'] {
 	</c:choose>
 
 
-	<form action="../classSearch" method="get" role="form" onsubmit="return validate();">
+	<form action="search" method="get" role="form" onsubmit="return validate();">
 		<section class="search">
 			<div class="search_wrapper">
-				<h1>클래스 찾기</h1>
+				<h1>클래스/선물 찾기</h1>
 
 				<div class="">
 					<input type="text" name="sv" id="" placeholder="">
@@ -185,7 +185,7 @@ input[name='category'] {
 							</c:if>
 						</c:forEach>
 						
-							<c:if test="${gClass.cStatus == 'N'}">
+							<c:if test="${gclass.cStatus == 'N'}">
 								<div class="sold_out">
 									<h1>마감</h1>
 								</div>
@@ -244,6 +244,30 @@ input[name='category'] {
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
+	//검색 파라미터 유지
+	$(function() {
+		//카테고리
+		<c:forEach items="${search.category}" var="category">
+		$("input[name=category]").each(function(index, item) {
+			if($(item).val == "${category}") {
+				$(item).prop("checked", true);
+			}
+		});
+			</c:forEach>
+		
+		//해시태그
+		<c:forEach items="${search.hashNo}" var="hashNo">
+			$("input[name=hashNo]").each(function(index, item){
+				if($(item).val() == "${hashNo}"){
+					$(item).prop("checked", true);
+				}
+			});
+			</c:forEach>
+			
+			//검색값(sv)
+			$("input[name=sv]").val("${search.sv}");
+	});
+    
     const img = document.getElementById("img");
     const item = document.getElementsByClassName("item");
     const tagBx = document.getElementsByClassName("tagBx");
@@ -295,7 +319,35 @@ input[name='category'] {
             });
         });
 
-    
+ 		// hashtag 체크되면 category와 hashtag 모두 parameter로 넘겨줌
+    for (const input_list of input) {
+        let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
+        input_list.addEventListener('click', ()=> {
+            if(input_list.checked == true){
+               	console.log(input_list.checked)
+               	
+               	
+               	console.log(item[div_index].firstChild.nextSibling.checked = true)
+            }else{
+            	let cnt = 0;
+                let aa = input_list.parentElement.parentElement.querySelectorAll('input')
+                console.log(input_list.parentElement.parentElement.querySelectorAll('input'))
+                for (const bb of aa) {
+                	console.log(123)
+                    if(bb.checked){
+                        cnt=cnt+1;
+                    }else{
+                        cnt=cnt-1
+                    }
+                	console.log(cnt)
+                }
+                if(cnt*(-1) == aa.length){
+                	item[div_index].firstChild.nextSibling.checked = false
+                }
+            }
+            
+        });
+    } 
     
     $("input[name='hashNo']").on("change", function(){
     	

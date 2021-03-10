@@ -27,9 +27,9 @@ input[name='category'] {
 		<c:when test="${!empty search}">
 			<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
 			<c:forEach items="${search.category}" var="c">
-				<c:set var="category" value="${category}ct=${c}&" />
+				<c:set var="category" value="${category}category=${c}&" />
 				<c:forEach items="${search.hashNo}" var="t">
-					<c:set var="hashNo" value="${hashNo}tag=${t}&" />
+					<c:set var="hashNo" value="${hashNo}hashNo=${t}&" />
 				</c:forEach>
 			</c:forEach>
 
@@ -49,7 +49,7 @@ input[name='category'] {
 				<h1>클래스 찾기</h1>
 
 				<div class="">
-					<input type="text" name="sv" id="" placeholder="">
+					<input type="text" name="sv" id="sv" placeholder="">
 					<button type="submit" id="">
 						<i class="fas fa-search"></i>
 					</button>
@@ -260,6 +260,31 @@ input[name='category'] {
 
 	<script src="${contextPath}/resources/js/fontawesome.js"></script>
 	<script>    
+	
+	//검색 파라미터 유지
+	$(function() {
+		//카테고리
+		<c:forEach items="${search.category}" var="category">
+		$("input[name=category]").each(function(index, item) {
+			if($(item).val == "${category}") {
+				$(item).prop("checked", true);
+			}
+		});
+			</c:forEach>
+		
+		//해시태그
+		<c:forEach items="${search.hashNo}" var="hashNo">
+			$("input[name=hashNo]").each(function(index, item){
+				if($(item).val() == "${hashNo}"){
+					$(item).prop("checked", true);
+				}
+			});
+			</c:forEach>
+			
+			//검색값(sv)
+			$("input[name=sv]").val("${search.sv}");
+	});
+	
     
 /*     $(".item div").on("click", function(){
 		var prdtNo = $(this).children().eq(0).text();
@@ -285,17 +310,7 @@ input[name='category'] {
         const aaa = document.getElementById('baby');
         
         const li = document.querySelectorAll('li.item');
-        
-        
-        
-        
         const selectBtn = document.getElementsByClassName("selectBtn"); */
-        
-        
-        
-        
-        
-        
         
         const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");
@@ -390,9 +405,7 @@ input[name='category'] {
        
         */
        
-        
-
-       // 체크된 갯수
+       // hashtag 체크되면 category와 hashtag 모두 parameter로 넘겨줌
        
         for (const input_list of input) {
             let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
@@ -422,14 +435,6 @@ input[name='category'] {
                 
             });
         } 
-       
-       
-       
-       
-       
-       
-       
-       
     </script>
 </body>
 </html>
