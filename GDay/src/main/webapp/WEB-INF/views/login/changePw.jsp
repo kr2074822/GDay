@@ -916,12 +916,14 @@
                 <div>
                     <input type="password" id="pw1" name="memberPwd" required>
                     <label for="pw1">새 비밀번호</label>
-                    <i class="showpw fas fa-eye"></i>
+                    <i class="showpw show fas fa-eye see"></i>
+                    <i class="showpw none fas fa-eye-slash"></i>
                 </div>
                 <div>
                     <input type="password" id="pw2" required>
                     <label for="pw2">새 비밀번호 확인</label>
-                    <i class="showpw fas fa-eye"></i>
+                    <i class="showpw show fas fa-eye see"></i>
+                    <i class="showpw none fas fa-eye-slash"></i>
                 </div>
                 <input type="hidden" value="${memberEmail}" name="memberEmail">
                 <button type="submit">변경</button>
@@ -929,14 +931,20 @@
         </div>
     </div>
     <script>
-        $(".showpw").on('click', function(){
-            $(this).toggleClass("fa-eye-slash");
-            if($(this).hasClass("fa-eye-slash")){
-                $(this).parent().children().first().attr('type', 'text');
-            }else{
-                $(this).parent().children().first().attr('type', 'password');
-            }
-        });
+        
+        /* 비밀번호 표시 */
+        $(".show").on('click', function(){
+            console.log($(this).next())
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'password');
+            $(this).next().css("display",'inline-block');
+        })
+        $(".none").on('click', function(){
+            console.log($(".show"))
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'text');
+            $(this).prev().css("display",'inline-block');
+        })
 
     </script>
 </body>
