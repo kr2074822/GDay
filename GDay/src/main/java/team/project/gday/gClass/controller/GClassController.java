@@ -79,7 +79,6 @@ public class GClassController {
 		// 매개변수 String referer에 저장
 
 		GClass gclass = service.selectGClass(prdtNo);
-		System.out.println(gclass);
 		String url = null;
 
 		if (gclass != null) { // 상세 조회 성공시
@@ -129,7 +128,7 @@ public class GClassController {
 			}
 
 			ra.addFlashAttribute("swalIcon", "error");
-			ra.addFlashAttribute("swalTitle", "클래스가 마감되었습니다.");
+			ra.addFlashAttribute("swalTitle", "상품이 품절되었습니다.");
 		}
 
 		return url;
@@ -209,11 +208,11 @@ public class GClassController {
 		 String url = null;
 		 if(result > 0) {
 				swalIcon = "success";
-				swalTitle = "클래스 수정 성공!";
+				swalTitle = "클래스 페이지 수정 성공!";
 				url = "redirect:../"+prdtNo;
 			}else {
 				swalIcon = "error";
-				swalTitle = "클래스 수정 실패";
+				swalTitle = "클래스 페이지 수정 실패";
 				url = "redirect:" + request.getHeader("referer");
 			}
 			

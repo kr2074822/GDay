@@ -197,7 +197,7 @@ public class GClassDAO {
 		return sqlSession.selectList("classMapper.selectClassList3", null, rowBounds);
 	}
 
-	/**카테고리 검색 조건이 포함되지 않은 페이징 처리용 객체 얻어오기 DAO
+	/**카테고리 검색 조건이 포함되지 않은 페이징 처리용 객체 얻어오기(클래스) DAO
 	 * @param search
 	 * @return
 	 */

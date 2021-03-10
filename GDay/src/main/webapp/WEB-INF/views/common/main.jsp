@@ -325,17 +325,29 @@ display: none;
             <div class="card_wrapper">
                 <h2>Gifts</h2>
                 <div class="card_container">
+                   <c:forEach items="${gList}" var="g">
                     <div class="card">
-                        <a href="">
-                            <img src="images/pattern.jpg" alt="">
-                            <div class="gradient"></div>
-                            <h2>목걸이 제목</h2>
+                        <a href="gift/${g.prdtNo}">
+                         <c:forEach items="${thList}" var="th">
+														<c:if test="${th.prdtNo == g.prdtNo}">
+															<img src="${contextPath}${th.filePath}/${th.fileName}" alt="">
+														</c:if>
+												</c:forEach>
+                            <div class="gredient"></div>
+                            <h2>${g.prdtName}</h2>
                             <div class="info">
-                                <span>목걸이</span>
-                                <span>10,000</span>
+                            	<c:forEach items="${selectStarList}" var="star">
+                            		<c:if test="${star.prdtNo == g.prdtNo}">
+                                <span><i class="fas fa-star"></i>${star.rvStarAvg}</span>
+                            		<span><i class="fas fa-won-sign"></i>${g.prdtPrice}</span>
+                                </c:if>
+                              </c:forEach>
                             </div>
                         </a>
                     </div>
+                   </c:forEach>
+                              
+                              
                     <div class="card">
                         <a href="">
                             <img src="images/pattern.jpg" alt="">
@@ -403,6 +415,34 @@ display: none;
 
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
+    
+  //검색 파라미터 유지
+	$(function() {
+		//카테고리
+		<c:forEach items="${search.category}" var="category">
+		$("input[name=category]").each(function(index, item) {
+			if($(item).val == "${category}") {
+				$(item).prop("checked", true);
+			}
+		});
+			</c:forEach>
+		
+		//해시태그
+		<c:forEach items="${search.hashNo}" var="hashNo">
+			$("input[name=hashNo]").each(function(index, item){
+				if($(item).val() == "${hashNo}"){
+					$(item).prop("checked", true);
+					
+					let index = $(item).parent().parent().attr("data-text");
+	        $category = $("li[data-text='"+index+"'] > input[name='category']");
+	        $category.prop("checked", true);	
+				}
+			});
+			</c:forEach>
+			
+			//검색값(sv)
+			$("input[name=sv]").val("${search.sv}");
+	});
         const img = document.getElementById("img");
         const selectBtn = document.getElementsByClassName("selectBtn");
         const popup = document.getElementsByClassName("popup");

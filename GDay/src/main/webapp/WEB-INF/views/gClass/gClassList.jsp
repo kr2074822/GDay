@@ -260,7 +260,6 @@ input[name='category'] {
 
 	<script src="${contextPath}/resources/js/fontawesome.js"></script>
 	<script>    
-	
 	//검색 파라미터 유지
 	$(function() {
 		//카테고리
@@ -277,6 +276,10 @@ input[name='category'] {
 			$("input[name=hashNo]").each(function(index, item){
 				if($(item).val() == "${hashNo}"){
 					$(item).prop("checked", true);
+					
+					let index = $(item).parent().parent().attr("data-text");
+	        $category = $("li[data-text='"+index+"'] > input[name='category']");
+	        $category.prop("checked", true);	
 				}
 			});
 			</c:forEach>
@@ -284,7 +287,7 @@ input[name='category'] {
 			//검색값(sv)
 			$("input[name=sv]").val("${search.sv}");
 	});
-	
+		
     
 /*     $(".item div").on("click", function(){
 		var prdtNo = $(this).children().eq(0).text();
@@ -331,12 +334,6 @@ input[name='category'] {
         const popup = document.getElementsByClassName("popup");
         const hash_tag = document.getElementById("hash_span");
         const hsearch = document.getElementById("hsearch");
-
-        
-        
-        
-        
-        
         
 		  	//Javascript
 		    var count = 0;

@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.project.gday.Product.model.vo.Attachment;
+import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.ProductCTag;
 import team.project.gday.Product.model.vo.ProductStar;
 import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.model.vo.Member;
+import team.project.gday.search.model.vo.Search;
 
 /**
  * @author YJ
@@ -220,6 +222,44 @@ public class GiftDAO {
 
 	public List<ProductStar> selectStarList(List<Gift> gift) {
 		return sqlSession.selectList("giftMapper.selectStarList", gift);
+	}
+
+	/**카테고리 검색 조건이 포함되지 않은 페이징 처리용 객체 얻어오기(선물) DAO
+	 * @param sv
+	 * @return
+	 */
+	public int getSearchListCountAll(String sv) {
+		return sqlSession.selectOne("giftMapper.getSearchListCountAll", sv);
+	}
+
+	/**카테고리 검색 조건이 포함된 페이징 처리용 객체 얻어오기 DAO
+	 * @param search
+	 * @return
+	 */
+	public int getSearchListCount(Search search) {
+		return sqlSession.selectOne("giftMapper.getSearchListCount", search);
+	}
+
+	/**검색 조건이 포함된 선물 목록 조회 DAO
+	 * @param search
+	 * @param pInfo
+	 * @return
+	 */
+	public List<Gift> selectGiftListAll(Search search, PageInfo10 pInfo) {
+		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		return sqlSession.selectList("giftMapper.selectGiftListAll", search, rowBounds);
+	}
+
+	/** 검색 조건이 포함된 선물 목록 조회 DAO
+	 * @param search
+	 * @param pInfo
+	 * @return cList
+	 */
+	public List<Gift> selectSearchList(Search search, PageInfo10 pInfo) {
+		int offset = (pInfo.getCurrentPage() -1) * pInfo.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
+		return sqlSession.selectList("giftMapper.selectSearchList", search, rowBounds);
 	}
 	
 }
