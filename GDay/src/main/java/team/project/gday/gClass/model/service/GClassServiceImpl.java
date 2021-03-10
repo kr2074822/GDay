@@ -326,11 +326,18 @@ public class GClassServiceImpl implements GClassService {
 		return dao.pauseAction(prdtNo);
 	}
 
-	//평균 별점 가져오기 Service 구현
+	//평균 별점 목록 가져오기 Service 구현
 	@Override
 	public List<ProductStar> selectStarList(List<GClass> gCList) {
 		return dao.selectStarList(gCList);
 	}
+	
+	//상품별 평균 별점 가져오기	
+	@Override
+	public ProductStar selectStar(int prdtNo) {
+		return dao.selectStar(prdtNo);
+	}
+
 
 	//메인에서 상위 3개 클래스 가져오기
 	@Override
@@ -359,4 +366,5 @@ public class GClassServiceImpl implements GClassService {
 		}
 		return dao.selectSearchList(search, pInfo);
 	}
+
 }

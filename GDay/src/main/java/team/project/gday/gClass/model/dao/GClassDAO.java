@@ -172,12 +172,20 @@ public class GClassDAO {
 		return sqlSession.update("classMapper.pauseAction", prdtNo);
 	}
 
-	/**평균 별점 가져오기 DAO
+	/**상품별 평균 별점 가져오기 DAO
 	 * @param gCList
 	 * @return List
 	 */
 	public List<ProductStar> selectStarList(List<GClass> gCList) {
 		return sqlSession.selectList("classMapper.selectStarList", gCList);
+	}
+	
+	/** 상품별 평균 별점 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	public ProductStar selectStar(int prdtNo) {
+		return sqlSession.selectOne("classMapper.selectStar", prdtNo);
 	}
 
 
@@ -224,6 +232,8 @@ public class GClassDAO {
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		return sqlSession.selectList("classMapper.selectClassListAll", search, rowBounds);
 	}
+
+
 
 
 
