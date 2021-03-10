@@ -149,7 +149,7 @@
 			</div>
 			
 	</div>
-	
+	<jsp:include page="../../common/footer.jsp"/>
 <script>
 
 	/* 상품 클릭 시 */

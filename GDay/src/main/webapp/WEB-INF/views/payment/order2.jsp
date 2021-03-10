@@ -11,8 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문/결제</title>
-<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css" >
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css?ver=1.0">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/payment/order.css?ver=1.0" >
 
 </head>
 <body>
@@ -69,35 +69,26 @@
       <h2>배송 주소</h2>
       
       <div id="address-area">
-         <h3><i class="fas fa-thumbtack"></i>&nbsp;배송지</h3>
+         <h3><i class="fas fa-thumbtack address-icon"></i>&nbsp;배송지</h3>
          
-			<div class="row mb-3 form-row">
-				<div class="col-md-3">
-					<label for="postcodify_search_button">우편번호</label>
-				</div>
-				<div class="col-md-3">
+			<div class="row mb-3 form-row address-info">
+				<div class="col-md-3 address-info">
 					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 address-info">
 					<button type="button" class="btn btn-success" id="postcodify_search_button">검색</button>
 				</div>
 			</div>
 
-			<div class="row mb-3 form-row">
-				<div class="col-md-3">
-					<label for="address1">도로명 주소</label>
-				</div>
-				<div class="col-md-9">
-					<input type="text" class="form-control postcodify_address" name="address1" id="address1">
+			<div class="row mb-3 form-row address-info">
+				<div class="col-md-9 address-info">
+					<input type="text" class="form-control postcodify_address" name="address1" id="address1" style="width: 400px;">
 				</div>
 			</div>
 
-			<div class="row mb-3 form-row">
-				<div class="col-md-3">
-					<label for="address2">상세주소</label>
-				</div>
-				<div class="col-md-9">
-					<input type="text" class="form-control postcodify_details" name="address2" id="address2">
+			<div class="row mb-3 form-row address-info">
+				<div class="col-md-9 address-info">
+					<input type="text" class="form-control postcodify_details" name="address2" id="address2" style="width: 400px;">
 				</div>
 			</div>
           
@@ -116,6 +107,7 @@
 
    </div>
    
+   <jsp:include page="../common/footer.jsp"/>
    
    <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>

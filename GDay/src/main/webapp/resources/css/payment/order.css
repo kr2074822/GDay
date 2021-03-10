@@ -89,12 +89,28 @@ img {
 	border-top: 3px solid lightgray;
 }
 
-.member-address {
+.col-md-3 > label {
+	font-size: 18px;
+    font-weight: bold;
+    margin-right: 100px;
+    padding: 15px;
+}
+
+.address-icon {
+	margin-bottom: 5px;
+}
+
+#address1, #address2, #post {
+	line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+}
+
+.address-info {
 	display: flex;
 	line-height: 30px;
 	border-radius: 5px;
-	border: 1px solid lightgray;
-	box-sizing: border-box;
 }
 
 .address-div {
@@ -107,13 +123,13 @@ img {
 	width: 100%;
 	border-top: 3px solid lightgray;
 	display: flex;
-}
-
-#payment-api {
-	width: 65%;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 150px;
 }
 
 #payment-other {
+	display: inline-block;
 	margin: auto;
 	width: 35%;
 }
@@ -121,11 +137,13 @@ img {
 #payment-other > h3 {
 	font-size: 18px;
 	font-weight: bold;
+	margin : 20px 0;
 }
 
 
 /* 공용 버튼 */
 .pink-btn {
+  width: 200px;
   background-color: #FE929F;
   height : 36px;
   border-radius: 10px;
@@ -133,6 +151,7 @@ img {
   color : #fafafa;
   font-size : 14px;
   margin-left : 5px;
+  font-family: 'TmoneyRoundWindRegular';
 }
 
 .pink-btn:hover {
