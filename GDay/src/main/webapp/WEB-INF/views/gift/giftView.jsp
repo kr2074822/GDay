@@ -92,7 +92,7 @@
             <div class="describe">
                 <h1>판매자 정보</h1>
                 <div class="report">
-                    <a href='javascript:;' onclick="window.open('${contextPath}/admin/reportForm', '_blank', 'width=500, height=500, top=200, left=100, scrollbars=no'); return false;">
+                    <a href='javascript:;' onclick="window.open('${contextPath}/admin/reportForm/${gift.prdtNo}', '_blank', 'width=500, height=500, top=200, left=100, scrollbars=no'); return false;">
                         <i class="fas fa-siren-on"></i>
                     </a>
                 </div>
