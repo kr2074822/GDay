@@ -73,7 +73,7 @@ hr {
 		</div><br>
 		<hr>
 		<div class="input-area">
-			<form action="customerInsert" method="POST">
+			<form action="${contextPath}/admin/customerInsert" method="POST">
 				<div class="title-area">
 					<span>제목</span> <input type="text" name="title" id="titleInput"
 						required="제목을 입력해주세요.">

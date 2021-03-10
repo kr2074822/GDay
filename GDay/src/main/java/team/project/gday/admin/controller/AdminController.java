@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import team.project.gday.Product.model.vo.Gift;
 import team.project.gday.Product.model.vo.Product;
 import team.project.gday.admin.model.service.AdminService;
 import team.project.gday.admin.model.vo.Customor;
@@ -38,6 +38,9 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 
+	private String swalIcon = null;
+	private String swalTitle = null;
+	
 	// 관리자 페이지/전체 회원관리로 이동 Controller
 	@RequestMapping("adminMember")
 	public String adminMember(@RequestParam(value = "cp", required = false, defaultValue= "1") int cp,
@@ -284,11 +287,45 @@ public class AdminController {
 	
 	// 고객센터 문의 작성 Controller
 	@RequestMapping("customerInsert")
-	public String customerInsert(@ModelAttribute Customor customer,
-								 @ModelAttribute("loginMember") Member loginMember) {
+	public String customerInsert(@ModelAttribute("loginMember") Member loginMember,
+								 @RequestParam("title") String title,
+								 @RequestParam("content") String content,
+								 HttpServletRequest request,
+								 RedirectAttributes ra) {
 		
-		return "admin/memberCustomerView";
+		String url = "";
+		
+		System.out.println(title);
+		System.out.println(content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		map.put("title", title);
+		map.put("content", content);
+		
+		int result = service.customerInsert(map);
+		
+		String referer = request.getHeader("Referer");
+		
+		if(result > 0) {
+			ra.addFlashAttribute("swalIcon", "success");
+			ra.addFlashAttribute("swalTitle", "문의글이 등록되었습니다.");
+			
+			System.out.println(1);
+			
+			url = "redirect:memberCustomer";
+		} else {
+			ra.addFlashAttribute("swalIcon", "error");
+			ra.addFlashAttribute("swalTitle", "문의글 등록 중 에러가 발생하였습니다.");
+			
+			System.out.println(2);
+			
+			url = "redirect:" + referer;
+		}
+		
+		return url;
 	}
+	
 	
 	// 회원 고객센터 목록 화면 전환 Controller
 	@RequestMapping("memberCustomer")

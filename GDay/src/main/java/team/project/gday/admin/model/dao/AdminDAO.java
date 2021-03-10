@@ -287,5 +287,14 @@ public class AdminDAO {
 		return sqlSession.insert("adminMapper.insertReply", map);
 	}
 
+	
+	/** 고객센터 문의 작성 DAO
+	 * @param map
+	 * @return result
+	 */
+	public int customerInsert(Map<String, Object> map) {
+		return sqlSession.insert("adminMapper.customerInsert", map);
+	}
+
 
 }
