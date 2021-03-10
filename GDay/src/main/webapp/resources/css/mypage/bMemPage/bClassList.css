@@ -41,8 +41,12 @@
 }
 
 .day-btn {
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #FE929F; 
 	border: 0;
 	outline: 0;
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 .day-btn:hover, #status-change-btn:hover , #list-search-btn:hover {
@@ -54,9 +58,8 @@
 
 /* 판매 글 목록 */
 #class-list {
-  height: 800px;
+  min-height: 800px;
   display: grid;
-  grid-template-rows: 33% 33% 34%;
   grid-template-columns: 33% 33% 34%;
 }
 
@@ -70,15 +73,22 @@
 	text-align: center;
 }
 
+.class-item:hover {
+	border: 1px solid #fe929f;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
 .class-item > img {
 	object-fit: contain;
 	display: block;
-	margin: 0 auto;
-	width: 80%;
-	height: 80%;
+	margin: auto;
+	width: 150px;
+	height: 150px;
 }
 
-.class-name {
+.item-name {
+	font-family: 'TmoneyRoundWindRegular';
 	font-size: 20px;
 	font-weight: bold;
 	display: inline-block;
@@ -91,10 +101,21 @@
 
 /* 페이징바 영역 */
 #page-area {
-	margin-top: 15px;
+	margin-top: 40px;
 	text-align: center;
 }
 
 .pagination li {
 	display: inline-block;
+}
+
+
+@media screen and ( max-width: 768px ) {
+	#class-list {
+	  display: grid;
+	  grid-template-columns: 100%;
+	  column-gap: 0;
+	  row-gap: 20px;
+	}
+	
 }

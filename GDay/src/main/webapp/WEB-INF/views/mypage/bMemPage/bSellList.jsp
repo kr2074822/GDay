@@ -59,7 +59,7 @@
 									</c:if>
 								</c:forEach>
 								
-								<span class="item-no">[${gift.prdtNo}]</span>		
+								<span class="item-no hidden-input">[${gift.prdtNo}]</span>		
 								<span class="item-name" title="${gift.prdtName}">${gift.prdtName}</span>
 							</div>
 						</c:forEach>					
