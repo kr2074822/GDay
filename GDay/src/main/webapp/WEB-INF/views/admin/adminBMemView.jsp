@@ -130,7 +130,7 @@ img{
 			<div class="bMemStandView">
 				<form action="#" method="POST" id="businessView">
 					<div class="header-business">
-						<h1><span class="form-business">비즈니스 회원 신청자</span></h1>
+						<h1><span class="form-business">비즈니스 회원 신청자${member}</span></h1>
 						<hr>
 					</div>
 					<div class="content-body">
@@ -146,7 +146,7 @@ img{
 							<img class="img" src="${contextPath}/resources/images/licenseImg/${member.mImgName}">
 						</div>
 						<div id="business-Application" style="text-align: center; margin: 0 auto; padding: 20px;">
-							<button type="submit" id="approval">비즈니스 회원 승인</button>
+							<button type="button" id="approval">비즈니스 회원 승인</button>
 							<button type="button" id="none" data-toggle="modal">비즈니스 회원 부적합</button>
 						</div>
 					</div>
@@ -168,7 +168,7 @@ img{
 											<option>사유 부적합</option>
 										</select>
 										<div class="btn-area">
-											<button type="button" class="btn btn-primary">부적합</button>
+											<button type="button" class="btn btn-primary" id="deny">부적합</button>
 											<button type="button" class="btn btn-secondary close"
 												data-dismiss="modal">닫기</button>
 										</div>
@@ -186,6 +186,7 @@ img{
 	</div>
 	<jsp:include page="../common/footer.jsp" />
 	
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script>
 	/* 이미지 클릭 시 새 창으로 열기 */
 	var img = document.getElementsByClassName('img'); 
@@ -203,7 +204,62 @@ img{
 	})
 	
 	
+	//-------------------------------------------------------\
 	
+	
+	var memberNo = "${member.memberNo }";
+	$("#approval").on('click', function(){
+		$.ajax({
+			url: "${contextPath}/admin/approval",
+			data:{
+				memberNo: memberNo
+			},
+			type: "post",
+			success: function(result){
+				console.log("성공");
+				if (result > 0) {
+					Swal.fire({
+						  icon: 'success',
+						  title: '승인되었습니다.',
+					}).then((result)=> {
+						window.location.href = "${contextPath}/admin/adminBMemSub"
+						
+					});
+					
+				}
+			},
+			error: function(){
+				console.log("실패");
+			}
+		})
+	})
+	
+	
+	$("#deny").on('click', function(){
+		$.ajax({
+			url: "${contextPath}/admin/deny",
+			data:{
+				memberNo: memberNo
+			},
+			type: "post",
+			success: function(result){
+				console.log("성공");
+				if (result > 0) {
+					Swal.fire({
+						  icon: 'success',
+						  title: '부적합으로 처리했습니다..',
+					}).then((result)=> {
+						window.location.href = "${contextPath}/admin/adminBMemSub"
+						
+					});
+					
+				}
+			},
+			error: function(){
+				console.log("실패");
+			}
+		})
+	})
 	
 	
 	</script>

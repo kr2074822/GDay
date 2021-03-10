@@ -259,5 +259,25 @@ public class AdminDAO {
 		return sqlSession.selectOne("adminMapper.memberView", cusNo);
 	}
 
+	public int approval(int memberNo) {
+		return sqlSession.update("adminMapper.approval", memberNo);
+	}
+
+	/** 라이센스 변경
+	 * @param memberNo
+	 * @return
+	 */
+	public int lcsApproval(int memberNo) {
+		return sqlSession.update("adminMapper.lcsApproval", memberNo);
+	}
+
+	/** 부적합 처리
+	 * @param memberNo
+	 * @return
+	 */
+	public int deny(int memberNo) {
+		return sqlSession.update("adminMapper.deny", memberNo);
+	}
+
 
 }

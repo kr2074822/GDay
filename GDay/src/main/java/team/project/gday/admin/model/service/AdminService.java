@@ -148,6 +148,18 @@ public interface AdminService {
 	 */
 	public abstract Customor memberView(int cusNo);
 
+	/** 승인 확인
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract int approval(int memberNo);
+
+	/** 부적합 처리
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract int deny(int memberNo);
+
 	
 
 

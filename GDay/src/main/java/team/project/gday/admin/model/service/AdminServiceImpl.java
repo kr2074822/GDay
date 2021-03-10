@@ -212,4 +212,24 @@ public class AdminServiceImpl implements AdminService{
 		return dao.memberView(cusNo);
 	}
 
+	// 승인 성공
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int approval(int memberNo) {
+		
+		int result = dao.approval(memberNo);
+		System.out.println("---"+result);
+		if (result > 0) {
+			result = dao.lcsApproval(memberNo);
+			System.out.println("*****"+ result);
+		}
+		return result ;
+	}
+
+	// 부적합 처리
+	@Override
+	public int deny(int memberNo) {
+		return dao.deny(memberNo);
+	}
+
 }
