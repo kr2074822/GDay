@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- magazine.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/magazine/magazineView.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/magazine/magazineView.css?ver=1.0">
     <title>Document</title>
 </head>
 <body>

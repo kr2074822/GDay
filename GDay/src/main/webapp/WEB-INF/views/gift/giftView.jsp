@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftView.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css?ver=1.0">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css?ver=1.1">
     <title>선물 상세 페이지</title>
 </head>
 <body>
@@ -43,7 +43,7 @@
                         <div class="title">
                             <div>
                                 <h1>${gift.prdtName}</h1>
-                                <span>${gift.prdtPrice}원</span>
+                                <span><fmt:formatNumber value="${gift.prdtPrice}"/>원</span>
                             </div>
                             <div>
                                 <i class="far fa-comments"></i>
@@ -104,8 +104,12 @@
                         <%-- <tr>
                             <td>이름</td>
                             <td>${member.memberName}</td>
+                        </tr>--%>
+                         <tr>
+                            <td>상호명</td>
+                            <td>${member.memberNick}</td>
                         </tr>
-                        <tr> --%>
+                        <tr> 
                             <td>전화번호</td>
                             <td>${member.memberPhone}</td>
                         </tr>
@@ -116,10 +120,6 @@
                         <tr>
                             <td>이메일</td>
                             <td>${member.memberEmail}</td>
-                        </tr>
-                        <tr>
-                            <td>상호명</td>
-                            <td>${member.memberNick}</td>
                         </tr>
                     </table>
                 </div>

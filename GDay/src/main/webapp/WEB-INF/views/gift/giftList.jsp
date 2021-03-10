@@ -183,7 +183,7 @@ input[name='category'] {
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gift.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
-									<span>${gift.prdtPrice}</span>
+									<span><fmt:formatNumber value="${gift.prdtPrice}"/>원</span>
 								</c:if>
 							</c:forEach>
 						</a>
@@ -239,7 +239,6 @@ input[name='category'] {
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</div>
 
 	<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
 	<c:if test="${next <= pInfo.maxPage}">
@@ -251,7 +250,8 @@ input[name='category'] {
 			<!-- 마지막 페이지로 이동(>>) --> <a class="page-link" href="${lastPage}">&gt;&gt;</a>
 		</li>
 	</c:if>
-    
+</div>    
+
     <jsp:include page="../common/footer.jsp"/>
 	
     <script src="${contextPath}/resources/js/fontawesome.js"></script>

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftView.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassView.css?ver=1.0">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassView.css?ver=1.1">
     <title>클래스 상세 페이지</title>
     
 </head>
