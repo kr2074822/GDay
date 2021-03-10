@@ -57,7 +57,7 @@ public class GClassController {
 			if (thumbnailList != null) {
 				model.addAttribute("thList", thumbnailList);
 				
-				//평균 별점 가져오기
+				//평균 별점 목록 가져오기
 				List<ProductStar> selectStarList = service.selectStarList(gCList);
 				
 				model.addAttribute("selectStarList", selectStarList);
@@ -78,9 +78,8 @@ public class GClassController {
 		// ---> HTTP 요청 헤더에 존재하는 "referer"값을 얻어와
 		// 매개변수 String referer에 저장
 
-		System.out.println("prdtNo: " + prdtNo);
-
 		GClass gclass = service.selectGClass(prdtNo);
+		System.out.println(gclass);
 		String url = null;
 
 		if (gclass != null) { // 상세 조회 성공시
@@ -104,9 +103,15 @@ public class GClassController {
 			
 			//해시태그 목록 가져오기
 			List<ProductCTag> prdtTagList = service.selectPrdtTagList(prdtNo);
-			System.out.println(prdtTagList);
 			if (prdtTagList != null  && !prdtTagList.isEmpty()) {
 				model.addAttribute("prdtTagList", prdtTagList);
+			}
+			
+			//상품별 평균 별점 가져오기
+			ProductStar star = service.selectStar(prdtNo);
+			System.out.println(star);
+			if(star != null) {
+				model.addAttribute("star", star);
 			}
 			
 			//후기 가져오기

@@ -235,12 +235,17 @@
 		UPDATE G_CLASS SET C_STATUS = 'N' WHERE PRDT_NO = #{prdtNo}
 	</update>
 	
-	<!-- 별점 조회하기 -->
+	<!-- 평균 별점 목록 조회하기 -->
 	<select id="selectStarList" parameterType="list" resultMap="star_rm">
 		SELECT * FROM V_PRODUCT_STAR WHERE PRDT_NO IN
 		<foreach collection="list" item="prdt" open="(" close=")" separator=",">
 		 	#{prdt.prdtNo}
 		</foreach>
+	</select>
+	
+	<!-- 상품별 별점 조회하기 -->
+	<select id="selectStar" parameterType="_int" resultMap="star_rm">
+		SELECT * FROM V_PRODUCT_STAR WHERE PRDT_NO = #{prdtNo}
 	</select>
 	
 	<!-- 메인에서 상위 3개 클래스 가져오기 DAO -->

@@ -85,12 +85,18 @@ public interface GClassService {
 	 */
 	int pauseAction(int prdtNo);
 
-	/**평균 별점 가져오기 Service
+	/**평균 별점 목록 가져오기 Service
 	 * @param gCList
 	 * @return List
 	 */
 	List<ProductStar> selectStarList(List<GClass> gCList);
 
+	/**상품별 평균 별점 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	ProductStar selectStar(int prdtNo);
+	
 	/**메인에서 상위 3개 클래스 가져오기
 	 * @return gList
 	 */
@@ -109,5 +115,7 @@ public interface GClassService {
 	 * @return
 	 */
 	List<GClass> selectSearchList(Search search, PageInfo10 pInfo);
+
+
 
 }

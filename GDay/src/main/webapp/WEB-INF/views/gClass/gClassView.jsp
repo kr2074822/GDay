@@ -18,6 +18,7 @@
     <!-- giftView.css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/gClass/gClassView.css">
     <title>클래스 상세 페이지</title>
+    
 </head>
 <body>
 
@@ -36,7 +37,7 @@
                         <img src="${contextPath}${thumbnail.filePath}/${thumbnail.fileName}" alt="">
                     </div>
                     <div class="rate">
-                        <span><i class="fas fa-star"></i>4.1</span>
+                        <span><i class="fas fa-star"></i>${star.rvStarView}</span>
                     </div>
                 </div>
                 <div class="gift_info">
@@ -44,7 +45,9 @@
                         <div class="title">
                             <div>
                                 <h1>${gclass.prdtName}</h1>
-                                <span>${gclass.prdtPrice}</span>
+                                <span>${gclass.prdtPrice}원 / ${gclass.cCount}회 수업</span><br>
+                                <span>${gclass.cStartDate} ~ ${gclass.cEndDate}</span><br>
+                                <span>전체 정원 <b>${gclass.cCount}</b>명 중 <b>${gclass.cNowCount}</b>명이 수업을 신청했어요.</span>
                             </div>
                             <div>
                                 <i class="far fa-comments"></i>
@@ -69,7 +72,7 @@
                         <!-- <p>총 <span>123</span>개</p> -->
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="sum">${gclass.prdtPrice }</span>
+                            <span class="sum" style="font-size: 30px;">${gclass.prdtPrice}</span>
                         </div>
     
                         <div class="option_btn">
@@ -100,7 +103,7 @@
                 <div class="b_info">
                     <table>
                         <tr>
-                            <th colspan="2"><span>${member.memberName}</span> 강사님</th>
+                            <th colspan="2"><span>${member.memberNick}</span></th>
                         </tr>
                         <tr>
                             <td>이름</td>
