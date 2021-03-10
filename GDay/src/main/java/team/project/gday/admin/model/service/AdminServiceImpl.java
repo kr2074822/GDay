@@ -206,6 +206,12 @@ public class AdminServiceImpl implements AdminService{
 		return dao.selectReplyList(parentCustomerNo);
 	}
 	
+	// 댓글 삽입 전 같은 게시판에 있는 댓글들 삭제 Service 구현
+	@Override
+	public int deleteReply(Map<String, Object> map) {
+		return dao.deleteReply(map);
+	}
+	
 	// 댓글 삽입
 	@Transactional(rollbackFor = Exception.class)
 	@Override
@@ -275,6 +281,6 @@ public class AdminServiceImpl implements AdminService{
 		return dao.customerInsert(map);
 	}
 
-
+	
 
 }

@@ -160,6 +160,12 @@ public interface AdminService {
 	 */
 	public abstract int deny(int memberNo);
 
+	/** 댓글 삽입 전 같은 게시판에 있는 댓글들 삭제 Service
+	 * @param map
+	 * @return deleteCheck
+	 */
+	public abstract int deleteReply(Map<String, Object> map);
+	
 	/** 댓글 삽입
 	 * @param map
 	 * @return

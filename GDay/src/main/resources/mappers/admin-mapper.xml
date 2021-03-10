@@ -315,10 +315,16 @@
 		UPDATE LICENSE_IMG SET LCS_STATUS = 'R' WHERE MEM_NO = #{memberNo}
 	</update>
 	
+	<!-- 댓글 삽입 전 기존 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="map">
+		DELETE FROM CUS_REPLY
+		WHERE CUS_NO = #{parentCustomerNo}
+	</delete>
+	
 	<!-- 댓글 삽입 -->
 	<insert id="insertReply" parameterType="map">
 		INSERT INTO CUS_REPLY
-		VALUES(SEQ_CRNO.NEXTVAL, #{curContent}, #{cusNo}, DEFAULT)
+		VALUES(SEQ_CRNO.NEXTVAL, #{curContent}, #{parentCustomerNo}, DEFAULT)
 	</insert>
 	
 	
