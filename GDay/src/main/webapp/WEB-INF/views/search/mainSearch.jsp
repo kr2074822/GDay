@@ -164,7 +164,6 @@ input[name='category'] {
    </div>
 		<div class="search_result">
 			<h2>
-				<span>${pInfo.listCount}</span>개 상품
 			</h2>
 			<p>
 				<span class="order" id="Popularity">인기순</span> | <span class="order" id="Newest">최신순</span>
@@ -178,6 +177,7 @@ input[name='category'] {
 			<div class="gift_wrapper">
 				<c:forEach var="gClass" items="${gCList}" varStatus="vs">
 					<div class="item">
+						<a href="gClass/${gClass.prdtNo}">
 					
 						<c:forEach items="${thList}" var="th">
 							<c:if test="${th.prdtNo == gClass.prdtNo}">
@@ -192,7 +192,6 @@ input[name='category'] {
 							</c:if>
 						
 							<h1>${gClass.prdtName}</h1> 
-						<a href="gClass/${gClass.prdtNo}">
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
@@ -205,9 +204,11 @@ input[name='category'] {
 				</c:forEach>
 			</div>
 		</c:if>
-				     <div class="more">
+			<c:if test="${!empty gCList}">
+				<div class="more">
             <a href="gClass/search?${searchStr}"><span>More</span></a>
         </div>			
+      </c:if>
 	</section>
 
     <section class="gift ver2">
@@ -216,7 +217,7 @@ input[name='category'] {
         </div>
         <div class="gift_wrapper">
 			    <c:if test="${empty gCList}">
-			      		<div class="non">조건에 맞는 상품이 없습니다.</div>
+			      		<div class="gift_wrapper">조건에 맞는 상품이 없습니다.</div>
 					</c:if>
 					<c:if test="${!empty gCList}">
             <div class="item">

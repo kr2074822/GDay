@@ -39,7 +39,7 @@ public class BmemController2 {
 
 	// 클래스 등록 신청 화면 이동
 	@RequestMapping("gClassInsert")
-	public String gClassInsert(@ModelAttribute Member loginMember) {
+	public String gClassInsert(@ModelAttribute("loginMember") Member loginMember) {
 		System.out.println(loginMember);
 		return "gClass/gClassInsert";
 	}
@@ -49,7 +49,7 @@ public class BmemController2 {
 	// 클래스 등록 신청 Controller
 
 	@RequestMapping("insertClass")
-	public String insertAction(@ModelAttribute GClass gClass, @ModelAttribute Member loginMember,
+	public String insertAction(@ModelAttribute GClass gClass, @ModelAttribute("loginMember") Member loginMember,
 			@RequestParam("hashNo") List<String> hashNo,
 			@RequestParam(value = "images", required = false) List<MultipartFile> images, HttpServletRequest request,
 			RedirectAttributes ra) {

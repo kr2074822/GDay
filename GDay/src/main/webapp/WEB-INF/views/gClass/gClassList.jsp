@@ -168,6 +168,7 @@ input[name='category'] {
 			<div class="gift_wrapper">
 				<c:forEach var="gClass" items="${gCList}" varStatus="vs">
 					<div class="item">
+						<a href="${gClass.prdtNo}">
 					
 						<c:forEach items="${thList}" var="th">
 							<c:if test="${th.prdtNo == gClass.prdtNo}">
@@ -181,7 +182,6 @@ input[name='category'] {
 								</div>
 							</c:if>
 
-						<a href="${gClass.prdtNo}">
 							<h1>${gClass.prdtName}</h1> 
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
