@@ -140,15 +140,17 @@ function selectReplyList(){
 
 // 댓글 등록
 $("#addReply").on("click", function(){
+	var replyContent = $("#replyContent").val();
+	
 	if(replyContent.trim().lenght == 0){
 		swal({icon: "info",
 			  title: "댓글을 작성해주세요."});
 	}else{
+		
 		$.ajax({
 			url:"${contextPath}/admin/insertReply/" + parentCustomerNo,
 			type: "post",
-			data: {"curWriter": curWriter,
-				   "curContent": curContent},
+			data: {"curContent": replyContent},
 			success: function(result){
 				if(result > 0){
 					$("#replyContent").val("");
