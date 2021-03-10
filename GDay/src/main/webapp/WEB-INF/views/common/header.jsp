@@ -125,6 +125,9 @@
 						        <c:if test="${loginMember.memberGrade == 'B' || loginMember.memberGrade == 'U'}">
 						        	<c:url var="mypageUrl" value="/bMember/bSellList"/>
 						        </c:if>
+						        <c:if test="${loginMember.memberGrade == 'A'}">
+						        	<c:url var="mypageUrl" value="/admin/adminMember"/>
+						        </c:if>
 						        
 						        <div class="menu">
 						            <h3>${loginMember.memberNick}<br><span>반갑습니다</span></h3>
