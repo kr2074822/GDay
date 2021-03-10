@@ -5,6 +5,7 @@ section{
 }
 section .magazine_wrapper{
     margin-top: 200px;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section .magazine_wrapper .title{
     display: flex;

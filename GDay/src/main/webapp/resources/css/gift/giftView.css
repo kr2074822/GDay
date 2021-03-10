@@ -175,6 +175,7 @@ section .gift_wrapper form .gift_info .priceBtn .option_btn a:nth-child(3){
    border: 1px solid #999;
    color: #fff;
    transition: .5s;
+   font-family: 'TmoneyRoundWindRegular';
 }
  
 .cart:hover {
@@ -195,6 +196,7 @@ section .gift_wrapper form .gift_info .priceBtn .option_btn a:nth-child(3){
     border: 1px solid #fe929f;
     color: #fff;
     transition: .5s;
+    font-family: 'TmoneyRoundWindRegular';
 }
 
 .order:hover {
