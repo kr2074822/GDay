@@ -165,7 +165,23 @@
 		WHERE RV_NO = #{rvNo}
 	</update>
 	
+	<!-- 상세페이지 후기 조회 listcount -->
+	<select id="viewRListCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM V_REVIEW
+		WHERE PRDT_NO = #{prdtNo}
+		AND RV_STATUS = 'Y'
+	</select>
 	
+	<!-- 상세페이지 후기 조회 -->
+	<select id="selectReviewView" parameterType="map" resultMap="review_rm">
+		SELECT * FROM V_REVIEW
+		WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
+	<!-- 별점 조회 -->
+	<select id="getStarAvg" parameterType="_int" resultType="_int">
+		SELECT RV_STAR_VIEW FROM V_PRODUCT_STAR WHERE PRDT_NO = #{prdtNo}
+	</select>
 	
 	
 </mapper>

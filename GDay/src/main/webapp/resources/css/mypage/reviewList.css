@@ -61,13 +61,13 @@
     background-color : white;
     width : 60px;
     height : 30px;
-    /* border : 1px solid lightgray; */
     border-top-left-radius : 5px;
 		line-height : 30px;
     text-align : center;
     text-decoration: none;
     cursor: pointer;
     z-index: 1;
+    font-size : 14px;
 }
 .a-delete:hover, .a-report:hover { color : #FE929F; text-decoration: none;}
 
@@ -141,6 +141,7 @@
     background-color : #c5abae3b;
     padding : 10px;
     color : #2c2c2c;
+    font-size : 14px;
 }
 
  .review-img{
@@ -158,7 +159,7 @@
 }
  .review-img-v{
  		position : absolute;
- 		border : solid 1px black;
+ 		/* border : solid 1px black; */
  		top : 16px;
  		right : 20px;
     width : 100px;
@@ -170,6 +171,21 @@
     /* cursor : pointer; */
     z-index : 1;
 }
+
+/* 상세 조회 후기 pagination */
+.r-pagination {
+	display: flex;
+	align-items : center;
+	justify-content : center;
+}
+.r-pagination a {
+	color : gray;
+	display : inline-block;
+	width : 20px;
+	text-align : center;
+	cursor : pointer;
+}
+
 
 /* 더보기 */
 .btn-more {

@@ -20,10 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import oracle.net.ano.Service;
 import team.project.gday.Product.model.vo.Attachment;
 import team.project.gday.Product.model.vo.GClass;
 import team.project.gday.Product.model.vo.GOption;
 import team.project.gday.Product.model.vo.Order;
+import team.project.gday.member.bmem.model.vo.PageInfo10;
 import team.project.gday.member.bmem.model.vo.PageInfo9;
 import team.project.gday.member.gmem.model.service.GmemService;
 import team.project.gday.member.model.vo.ListCondition;
@@ -103,7 +105,7 @@ public class ReviewController {
 		return gson.toJson(returnMap); 
 	}
 	
-	
+	//후기 삽입
 	@RequestMapping("insertReview")
 	public int insertReview(@ModelAttribute Review review,
 							/* @RequestParam("orderNo") int orderNo, */
@@ -122,6 +124,7 @@ public class ReviewController {
 		return result;
 	}
 	
+	//후기 조회
 	@RequestMapping("selectReviewList")
 	public String selectReviewList(@ModelAttribute ListCondition listCd,
 									@RequestParam("writerNo") int memberNo,
@@ -183,7 +186,7 @@ public class ReviewController {
 		return gson.toJson(returnMap); 
 	}
 	
-	
+	//후기 삭제
 	@RequestMapping("deleteReview/{rvNo}")
 	public int deleteReview(@PathVariable("rvNo") int rvNo) {
 		
@@ -191,6 +194,56 @@ public class ReviewController {
 		
 		return result;
 	}
+	
+	
+	//선물, 클래스 상세 페이지 후기 조회(prdtNo)
+	@RequestMapping("selectReviewView")
+	public String selectReviewView(@RequestParam("cp") int cp,
+									@RequestParam("prdtNo") int prdtNo,
+									@RequestParam("type") String type) {
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("cp", cp);
+		map.put("prdtNo", prdtNo);
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();		
+		
+		PageInfo10 pInfo = rService.getPageInfo5(map);
+		pInfo.setLimit(5);
+		pInfo.setPageSize(5);
+		
+		returnMap.put("pInfo", pInfo);
+		
+		List<Review> rList = rService.selectReviewView(pInfo, map);
+		
+		returnMap.put("rList", rList);
+		
+		if(rList != null && !rList.isEmpty()) {
+			if(type.equals("G")) {//선물일 때
+				
+				//선물이면 goption 가져와야 함
+				List<GOption> optList = rService.selectOptList(rList);
+				
+				if(optList != null && !optList.isEmpty()) {
+					returnMap.put("optList", optList);//선물 : returnMap에 optList 추가
+				}
+				System.out.println("optList : " + optList);
+			}
+			
+			//별점 평균
+			int starAvg = rService.getStarAvg(prdtNo);
+			returnMap.put("starAvg", starAvg);
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		return gson.toJson(returnMap); 
+	}
+	
+	
 	
 	
 	
