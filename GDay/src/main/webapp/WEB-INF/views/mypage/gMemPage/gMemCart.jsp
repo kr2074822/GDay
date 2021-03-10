@@ -122,8 +122,6 @@
 	var price = 0; // 상품 가격 합계를 담기 위한 변수
 	var itemArys = []; // 선택된 상품 정보를 담기 위한 배열
 	
-	var itemInfo;
-	
 	$(document).ready(function(){
 		$("#price-sum").text(price);
 	});
@@ -247,7 +245,7 @@
 		
 		if($(this).is(":checked")) {						
  			for(var i = 0; i < checkLength; ++i) {
- 				itemInfo = {
+ 				var itemInfo = {
  					cartNo : cartNo.eq(i).val(),
  					prdtNo : prdtNo.eq(i).val(),
  					prdtName : itemName.eq(i).text(),
@@ -256,10 +254,45 @@
  					prdtAmount : itemAmount.eq(i).val()
  				}
 	
+ 				$(".plus-btn").on("click", function() {
+ 					var itemInfo = {
+ 						cartNo : cartNo.val(),
+ 						prdtNo : prdtNo.val(),
+ 						prdtName : itemName.text(),
+ 						optNo : itemOptNo.val(),
+ 						prdtPrice : itemPrice.val(),
+ 						prdtAmount : itemAmount.val()
+ 			 		}
+ 					for(var i = 0; i < itemArys.length; ++i) {
+ 						if(itemInfo.cartNo == itemArys[i].cartNo) {
+ 							itemArys[i].prdtAmount = itemInfo.prdtAmount;
+ 						}
+ 					}
+ 				});
+ 				
+ 				$(".minus-btn").on("click", function() {
+ 					var itemInfo = {
+ 							cartNo : cartNo.val(),
+ 							prdtNo : prdtNo.val(),
+ 							prdtName : itemName.text(),
+ 							optNo : itemOptNo.val(),
+ 							prdtPrice : itemPrice.val(),
+ 							prdtAmount : itemAmount.val()
+ 				 		}
+ 						for(var i = 0; i < itemArys.length; ++i) {
+ 							if(itemInfo.cartNo == itemArys[i].cartNo) {
+ 								itemArys[i].prdtAmount = itemInfo.prdtAmount;
+ 							}
+ 						}
+ 				});
+ 				
  				itemArys.push(itemInfo);
 			} 
  			
  			ul.find($(".product-check")).prop("checked", true);
+ 			
+ 			
+ 			
  			
 		} else {
 			itemArys = [];			
@@ -282,7 +315,7 @@
 		var itemOptNo = li.find(".item-opt_no"); // 아이템 옵션 이름
 		
 		if($(this).is(":checked")) {
-			itemInfo = {
+			var itemInfo = {
 				cartNo : cartNo.val(),
 				prdtNo : prdtNo.val(),
 				prdtName : itemName.text(),
@@ -292,6 +325,43 @@
  			}
 			itemArys.push(itemInfo);
 			price = Number(price) + (Number(itemPrice.val()) * Number(itemAmount.val()));
+
+			$(".plus-btn").on("click", function() {
+				var itemInfo = {
+					cartNo : cartNo.val(),
+					prdtNo : prdtNo.val(),
+					prdtName : itemName.text(),
+					optNo : itemOptNo.val(),
+					prdtPrice : itemPrice.val(),
+					prdtAmount : itemAmount.val()
+		 		}
+				for(var i = 0; i < itemArys.length; ++i) {
+					if(itemInfo.cartNo == itemArys[i].cartNo) {
+						itemArys[i].prdtAmount = itemInfo.prdtAmount;
+					}
+				}
+				console.log(itemArys);
+			});
+			
+			$(".minus-btn").on("click", function() {
+				var itemInfo = {
+						cartNo : cartNo.val(),
+						prdtNo : prdtNo.val(),
+						prdtName : itemName.text(),
+						optNo : itemOptNo.val(),
+						prdtPrice : itemPrice.val(),
+						prdtAmount : itemAmount.val()
+			 		}
+					for(var i = 0; i < itemArys.length; ++i) {
+						if(itemInfo.cartNo == itemArys[i].cartNo) {
+							itemArys[i].prdtAmount = itemInfo.prdtAmount;
+						}
+					}
+				console.log(itemArys);
+			});
+			
+			
+			
 		} else {
 			for(var i = 0; i < itemArys.length; ++i) {
 				if(itemArys[i].cartNo == $(this).prev().val()) {

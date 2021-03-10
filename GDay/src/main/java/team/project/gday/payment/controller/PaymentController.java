@@ -177,9 +177,11 @@ public class PaymentController {
 			}
 		}
 		
-		for(int i = 0; i < olList.size(); ++i) {
-			if(olList.get(i).getCartNo() == oList.get(i).getCartNo()) {
-				olList.get(i).setCartAmount(oList.get(i).getCartAmount());
+		for(int i = 0; i < oList.size(); ++i) {
+			for(int j = 0; j < olList.size(); ++j) {
+				if(olList.get(j).getCartNo() == oList.get(i).getCartNo()) {
+					olList.get(j).setCartAmount(oList.get(i).getCartAmount());
+				}
 			}
 		}
 		
