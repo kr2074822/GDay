@@ -93,9 +93,16 @@ var maxPage;
 
 var rContainer = $("#container-reviews");//review 컨테이너
 
+var sellerNo;
 
-if(type == "gift") prdtNo = "${gift.prdtNo}";
-else if(type == "gClass") prdtNo = "${gclass.prdtNo}";
+if(type == "gift") {
+	prdtNo = "${gift.prdtNo}"; 
+	sellerNo = "${gift.memNo}";
+
+} else if(type == "gClass") {
+	prdtNo = "${gclass.prdtNo}"; 
+	sellerNo = "${gclass.memNo}";
+}
 
 
 $(function(){
@@ -188,12 +195,18 @@ function selectReviewView(cp){
 							//후기 내용
 							var content = $("<div>").addClass("review-content-v").text(beforeContent);
 							
-							//신고 버튼 
-							var aReport = $("<div>").addClass("a-report")
-				     								.text("수정").attr("onclick", "reportReview(" + review.rvNo + ")");
-		
+							rCard.append(rDate).append(rInfo).append(star).append(content);
 							
-							rCard.append(rDate).append(rInfo).append(star).append(content).append(aReport)
+							
+								//신고 버튼 
+/* 							if("${loginMember.memberNo}" == review.sellerNo){
+								var aReport = $("<div>").addClass("a-report")
+					     								.text("신고").attr("onclick", "reportReview(" + review.rvNo + ")");
+									
+									rCard.append(aReport);
+							}
+							 */
+
 							
 							container.append(rCard);
 							
