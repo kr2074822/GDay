@@ -256,8 +256,7 @@ input[name='category'] {
 	
     <script src="${contextPath}/resources/js/fontawesome.js"></script>
     <script>
-    
-	//검색 파라미터 유지
+  //검색 파라미터 유지
 	$(function() {
 		//카테고리
 		<c:forEach items="${search.category}" var="category">
@@ -284,8 +283,20 @@ input[name='category'] {
 			//검색값(sv)
 			$("input[name=sv]").val("${search.sv}");
 	});
+		
     
-        const img = document.getElementById("img");
+/*     $(".item div").on("click", function(){
+		var prdtNo = $(this).children().eq(0).text();
+	
+		//상대경로
+		var boardViewURL = prdtNo;
+		
+		location.href = boardViewURL;
+	}) 
+     */
+    
+    
+       /*  const img = document.getElementById("img");
         const item = document.getElementsByClassName("item");
         const tagBx = document.getElementsByClassName("tagBx");
 
@@ -297,12 +308,34 @@ input[name='category'] {
         const input = document.querySelectorAll('input[type="checkbox"]');
         const aaa = document.getElementById('baby');
         
-      //Javascript
-	    var count = 0;
+        const li = document.querySelectorAll('li.item');
+        const selectBtn = document.getElementsByClassName("selectBtn"); */
+        
+        const img = document.getElementById("img");
+        const item = document.getElementsByClassName("item");
+        const tagBx = document.getElementsByClassName("tagBx");
+        
+        const search = document.getElementById("search");
+        var text = '';
+        var change = '';
+        
+        const listBx = document.getElementsByClassName('listBx');
+        const input = document.querySelectorAll('input[type="checkbox"]');
+        const aaa = document.getElementById('baby');
+        
+        const li = document.querySelectorAll('li.item');
+        
+        const selectBtn = document.getElementsByClassName("selectBtn");
+        
+        const popup = document.getElementsByClassName("popup");
+        const hash_tag = document.getElementById("hash_span");
+        const hsearch = document.getElementById("hsearch");
+        
+		  	//Javascript
+		    var count = 0;
         
         // 팝업 
-        for (const button of item) {
-        	console.log(item)
+        for (const button of li) {
             button.addEventListener('click', function(){
                 let index = this.getAttribute('data-text');
                 
@@ -315,11 +348,9 @@ input[name='category'] {
                     }
                 }
             });
-            
         }
 
         // 버튼 클릭 리플 효과
-        const li = document.querySelectorAll('li.item');
         console.log(li)
         li.forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -334,11 +365,41 @@ input[name='category'] {
                     setTimeout(() => {
                         ripples.remove()
                     }, 1000)
-                })
+                });
             });
-        
-     // hashtag 체크되면 category와 hashtag 모두 parameter로 넘겨줌
-        
+	
+
+        //맨 처음 페이지를 로드했을 때 hashNo가 체크되어 있으면 해당 카테고리를 선택
+         $(document).ready(function() {
+        		if($("input[name='hashNo']").is(":checked") == true){
+              let index = $(this).parent().parent().attr("data-text");
+          		$category = $("li[data-text='"+index+"'] > input[name='category']");
+
+          		$category.prop("checked", true);
+        		}
+        	});
+         
+         
+     /*    
+       $("input[name='hashNo']").on("change", function(){
+        	
+        	let index = $(this).parent().parent().attr("data-text");
+        	$category = $("li[data-text='"+index+"'] > input[name='category']");
+
+        	
+        	if($category.prop("checked")){
+        		
+        		console.log($category.prop("checked"));
+        	}else{
+        		//$category.prop("checked", true);
+        		console.log($category.prop("checked"));
+        	}
+        });
+       
+        */
+       
+       // hashtag 체크되면 category와 hashtag 모두 parameter로 넘겨줌
+       
         for (const input_list of input) {
             let div_index = input_list.parentNode.parentNode.getAttribute('data-text');
             input_list.addEventListener('click', ()=> {
@@ -366,7 +427,7 @@ input[name='category'] {
                 }
                 
             });
-        }   
+        } 
     </script>
 </body>
 </html>
