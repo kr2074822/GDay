@@ -332,7 +332,11 @@
 				</foreach>
 				)
 		</foreach>
-		
-		
 	</select>
+	
+		<!-- 상품별 별점 조회하기 -->
+	<select id="selectStar" parameterType="_int" resultMap="star_rm">
+		SELECT * FROM V_PRODUCT_STAR WHERE PRDT_NO = #{prdtNo}
+	</select>
+	
 </mapper>

@@ -455,5 +455,11 @@ public class GiftServiceImpl implements GiftService{
 		}
 		return dao.selectSearchList(search, pInfo);
 	}
+	
+	//상품별 평균 별점 가져오기
+	@Override
+	public ProductStar selectStar(int prdtNo) {
+		return dao.selectStar(prdtNo);
+	}
 
 }

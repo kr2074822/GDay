@@ -261,5 +261,9 @@ public class GiftDAO {
 		RowBounds rowBounds = new RowBounds(offset, pInfo.getLimit());
 		return sqlSession.selectList("giftMapper.selectSearchList", search, rowBounds);
 	}
+
+	public ProductStar selectStar(int prdtNo) {
+		return sqlSession.selectOne("classMapper.selectStar", prdtNo);
+	}
 	
 }

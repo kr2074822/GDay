@@ -16,7 +16,7 @@
     
     <!-- giftView.css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css?ver=1.0">
-    <title>Document</title>
+    <title>선물 상세 페이지</title>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
                         <img src="${contextPath}${thumbnail.filePath}/${thumbnail.fileName}" alt="">
                     </div>
                     <div class="rate">
-                        <span><i class="fas fa-star"></i>4.1</span>
+                        <span><i class="fas fa-star"></i>${star.rvStarView}</span>
                     </div>
                 </div>
                 <div class="gift_info">
@@ -43,7 +43,7 @@
                         <div class="title">
                             <div>
                                 <h1>${gift.prdtName}</h1>
-                                <span>${gift.prdtPrice }</span>
+                                <span>${gift.prdtPrice}원</span>
                             </div>
                             <div>
                                 <i class="far fa-comments"></i>
@@ -101,11 +101,11 @@
                         <tr>
                             <th colspan="2"><span>${member.memberName}</span> 판매자님</th>
                         </tr>
-                        <tr>
+                        <%-- <tr>
                             <td>이름</td>
                             <td>${member.memberName}</td>
                         </tr>
-                        <tr>
+                        <tr> --%>
                             <td>전화번호</td>
                             <td>${member.memberPhone}</td>
                         </tr>
@@ -119,7 +119,7 @@
                         </tr>
                         <tr>
                             <td>상호명</td>
-                            <td>${member.memberName}</td>
+                            <td>${member.memberNick}</td>
                         </tr>
                     </table>
                 </div>
@@ -136,27 +136,59 @@
                         </tr>
                         <tr>
                             <td>연령대</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 100}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                             <td>가격대</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 200}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                         </tr>
                         <tr>
                             <td>분위기</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 300}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                             <td>관계</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 400}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                         </tr>
                         <tr>
                             <td>기념일/명절</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 500}">
+                            		${tag.tagName}
+                            	</c:if>
+                            	</c:forEach></td>
                             <td>계절</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 600}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                         </tr>
                         <tr>
                             <td>색상</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 700}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                             <td>종류</td>
-                            <td>이이1</td>
+                            <td><c:forEach var="tag" items="${prdtTagList}" varStatus="vs">
+                            	<c:if test="${tag.ctNo == 800}">
+                            		${tag.tagName}
+                            	</c:if>
+                            </c:forEach></td>
                         </tr>
                     </table>
                 </div>
