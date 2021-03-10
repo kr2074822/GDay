@@ -65,7 +65,6 @@
 						<th class="hide">주문일</th>
 						<th class="hide">주문자</th>
 						<th>상품명</th>
-						<th class="hide">옵션</th>
 						<th class="hide">수량</th>
 						<th class="hide">금액</th>
 						<th class="hide">상태</th>
@@ -99,11 +98,6 @@
 								</td>
 								<td class="order-td hide">${order.memName}</td>
 								<td class="order-td prdt-name">${order.prdtName}</td>
-								<td class="order-td opName hide">
-									<c:if test="${!empty gOpName}">
-										<c:forEach var="optName" items="${gOpName}}"></c:forEach>
-									</c:if>
-								</td>
 								<td class="order-td hide">${order.opAmount}</td>
 								<td class="order-td hide">${order.prdtPrice}</td>
 								<td class="order-td hide">${order.statusName}</td>

@@ -93,7 +93,7 @@
 							<i id="member-icon" class="fas fa-bars"></i>	
 							<div id="header-media-menu">
 								<ul id="media-menu">
-									<li class="media-li"><a href="#">로그인</a></li>
+									<li class="media-li"><a href="${contextPath}/login/loginView">로그인</a></li>
 									<li class="media-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
 									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
 									<li class="media-li"><a href="${calendarUrl}">마이캘린더</a></li>
@@ -179,7 +179,7 @@
 									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 									<li class="media-li"><a href="${mypageUrl}">마이페이지</a></li>
 									<li class="media-li"><a href="${contextPath}/message/message">쪽지</a></li>
-									<li class="media-li"><a href="#">고객센터</a></li>
+									<li class="media-li"><a href="${contextPath}/admin/memberCustomer">고객센터</a></li>
 									<li class="media-li"><a href="${contextPath}/login/logout">로그아웃</a></li>
 								</ul>		
 							</div>
@@ -302,7 +302,13 @@
     	  var link = $(this).children().attr("href");
     	  console.log(link);
     	  location.href = link;
-    	});
+      });
+      
+      $(".media-li").on("click", function() {
+    	  var link = $(this).children().attr("href");
+    	  console.log(link);
+    	  location.href = link;
+      });
       
       
       /* header-left */
