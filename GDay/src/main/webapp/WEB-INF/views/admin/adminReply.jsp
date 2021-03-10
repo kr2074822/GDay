@@ -103,9 +103,6 @@ $(function(){
 	selectReplyList();
 });
 
-console.log(loginmemberEmail)
-console.log(parentCustomerNo)
-
 // 댓글 목록 불러오기(AJAX)
 function selectReplyList(){
 	$.ajax({
@@ -113,20 +110,23 @@ function selectReplyList(){
 		type: "post",
 		dataType: "json",
 		success: function(customer){
-			// 조회된 댓글을 화면에 추가(새로운 요소(태그) 생성)
-			console.log("성공");
-			console.log(customer);
-			var replyListArea = $("#replyListArea");
-			
-			replyListArea.html(""); // 기존 정보 초기화
-			
-			// 댓글 출력할 li요소 생성
-			var li = "<li>관리자<p> "+customer.curContent+"</p> 작성일자: "+customer.replyCreateDate+" </li>"
+			if(customer != null) {
+				// 조회된 댓글을 화면에 추가(새로운 요소(태그) 생성)
+				var replyListArea = $("#replyListArea");
 				
+				replyListArea.html(""); // 기존 정보 초기화
 				
+				// 댓글 출력할 li요소 생성
+				var li = "<li>관리자<p> "+customer.curContent+"</p> 작성일자: "+customer.replyCreateDate+" </li>"
+					
+					
 			    // 댓글 영역 화면에 배치
 			    replyListArea.append(li);
 			 	//console.log(df);
+			} else {
+				console.log(123);
+			}
+			
 		
 		},
 		error: function(){
@@ -141,22 +141,30 @@ function selectReplyList(){
 // 댓글 등록
 $("#addReply").on("click", function(){
 	var replyContent = $("#replyContent").val();
+	var memberGrade = "${loginMember.memberGrade}";
 	
-	if(replyContent.trim().lenght == 0){
-		swal({icon: "info",
+	console.log(replyContent.length);
+	
+	if(replyContent.trim().length == 0){
+		swal.fire({icon: "info",
 			  title: "댓글을 작성해주세요."});
-	}else{
-		
+	} else if(memberGrade != "A" && replyContent.trim().length > 0) {
+		swal.fire({icon: "info",
+			  title: "관리자만 작성 가능합니다."});
+	}
+	else{		
 		$.ajax({
 			url:"${contextPath}/admin/insertReply/" + parentCustomerNo,
 			type: "post",
-			data: {"curContent": replyContent},
+			data: {"replyContent": replyContent},
 			success: function(result){
 				if(result > 0){
 					$("#replyContent").val("");
 					
-					swal({icon: "success",
+					swal.fire({icon: "success",
 						  title: "댓글 삽입 성공"});
+					
+					selectReplyList();
 				}
 			},
 			error: function(){

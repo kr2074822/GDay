@@ -374,6 +374,8 @@ public class AdminController {
 		Reply reply = service.selectReplyList(parentCustomerNo);
 		// System.out.println(reply);
 		
+		System.out.println(reply);
+		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd / HH:mm").create();
 		
 		if(reply != null) {
@@ -384,19 +386,17 @@ public class AdminController {
 	
 	// 고객센터 댓글 작성 Controller
 	@RequestMapping("insertReply/{parentCustomerNo}")
+	@ResponseBody
 	public int insertReply(@PathVariable("parentCustomerNo") int parentCustomerNo,
-						   @RequestParam("curWriter") int curWriter,
-						   String replyContent) {
+						   @RequestParam("replyContent") String replyContent) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("parentCustomerNo", parentCustomerNo);
-		map.put("curWriter", curWriter);
-		map.put("replyContent", replyContent);
+		map.put("curContent", replyContent);
 		
-		System.out.println(map);
+		service.deleteReply(map);
 		
-		int result = service.insertReply(map); 
-		
+		int result = service.insertReply(map); 			
 		
 		return result;
 	}

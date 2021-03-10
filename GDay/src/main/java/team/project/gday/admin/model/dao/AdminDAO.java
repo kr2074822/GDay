@@ -296,5 +296,14 @@ public class AdminDAO {
 		return sqlSession.insert("adminMapper.customerInsert", map);
 	}
 
+	
+	/** 글 삽입 전 같은 게시판에 있는 댓글들 삭제 dao 
+	 * @param map
+	 * @return deleteCheck
+	 */
+	public int deleteReply(Map<String, Object> map) {
+		return sqlSession.delete("adminMapper.deleteReply", map);
+	}
+
 
 }
