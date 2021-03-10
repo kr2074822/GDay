@@ -144,9 +144,43 @@ function gotoDetail(orderNo){
 	location.href = url;
 }
 
-//판매자한테 문의하기
-function gotoInquiry(sellerNo) {
-	
+
+//클릭 시 판매자에게 문의하는 창 연결
+function gotoInquiry(sellerNo){
+
+  Swal.fire({ 
+  	  input: 'textarea',
+  	  inputLabel: 'Message',
+  	  inputPlaceholder: '내용을 입력해주세요', 
+  	  inputAttributes: {
+  	    'aria-label': 'Type your message here'
+  	  },
+  	  showCancelButton: true
+  	}).then((result) => {
+		    $.ajax({
+		    	url: "${contextPath}/message/gcMsg",
+		    	type: "post",
+		    	data: {
+		    		msgContent: result.value,
+		    		me: "${loginMember.memberNo}",
+		    		you: sellerNo,
+		    		
+		    	},
+		    	success: (result) => {
+		    		console.log("성공")
+		    		Swal.fire(
+					  '문의가 전송되었습니다',
+					  ' ',
+					  'success'
+					)
+		    	},
+		    	error: () => {
+		    		console.log("실패")
+		    		
+		    	}
+		    });
+  	})
+  	
 }
 
 </script>

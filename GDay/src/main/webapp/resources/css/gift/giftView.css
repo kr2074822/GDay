@@ -8,9 +8,11 @@ header{
 section{
     width: 80%;
     margin: 0 auto;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section .gift_wrapper{
     margin-top: 100px;
+
 }
 section .gift_wrapper form{
     display: flex;

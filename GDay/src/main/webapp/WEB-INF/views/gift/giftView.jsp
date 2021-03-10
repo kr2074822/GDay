@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- giftView.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/gift/giftView.css?ver=1.0">
     <title>Document</title>
 </head>
 <body>
@@ -73,7 +73,7 @@
     
                         <div class="option_btn">
                             <button type="button" class="cart">장바구니에 넣기</button>
-                            <a class="wish">위시리스트로 등록하기</a>
+                           <!--  <a class="wish">위시리스트로 등록하기</a> -->
                             <button type="button" class="order">주문하기</button>
                         </div>
                     </div>
