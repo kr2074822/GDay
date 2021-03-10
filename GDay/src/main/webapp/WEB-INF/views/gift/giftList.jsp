@@ -50,7 +50,7 @@ input[name='category'] {
         <div class="search_wrapper">
             <h1>선물 찾기</h1>
             <div class="">
-                <input type="text" name="" id="" placeholder="">
+                <input type="text" name="sv" id="sv" placeholder="">
                 <button type="submit" id=""><i class="fas fa-search"></i></button>
             </div>
         </div>

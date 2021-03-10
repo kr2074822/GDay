@@ -110,4 +110,10 @@ public interface GiftService {
 	 */
 	List<Gift> selectSearchList(Search search, PageInfo10 pInfo);
 
+	/**상품별 평균 별점 가져오기
+	 * @param prdtNo
+	 * @return
+	 */
+	ProductStar selectStar(int prdtNo);
+
 }

@@ -179,11 +179,12 @@ public class GiftCtrl {
 				model.addAttribute("thumbnail", thumbnail);
 			}
 			
-			//상품별 평균 별점 가져오기
-			ProductStar star = cService.selectStar(prdtNo);
-			if(star != null) {
-				model.addAttribute("star", star);
+			
+			ProductStar star = service.selectStar(prdtNo); 
+			if(star != null) { 
+				model.addAttribute("star", star); 
 			}
+			 
 			
 			model.addAttribute("gift", gift);
 			url = "gift/giftView";
