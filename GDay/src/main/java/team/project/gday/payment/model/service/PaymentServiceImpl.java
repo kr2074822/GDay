@@ -28,4 +28,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return dao.bOrderThumbnailList(olList);
 	}
 
+	// 결제 성공 시 결제 정보 삽입 Service 구현
+	@Override
+	public int insertOrderInfo(Map<String, Object> map) {
+		return dao.insertOrderInfo(map);
+	}
+
 }
