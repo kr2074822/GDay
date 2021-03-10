@@ -29,6 +29,10 @@
 }
 
 .day-btn {
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #FE929F;
+	font-family: 'TmoneyRoundWindRegular';
 	border: 0;
 	outline: 0;
 }
@@ -39,6 +43,13 @@
 	color: #FFF;
 }
 
+#status-change-btn, #list-search-btn {
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #FE929F;
+	font-family: 'TmoneyRoundWindRegular';
+	border-radius: 10px;
+}
 
 /* 반품 글 목록 */
 #refund-list {
@@ -50,15 +61,21 @@
 	width: 100%;
 }
 
+#table-head {
+	background-color : 
+}
+
 #table-head > th{
 	padding: 10px 0;
+	font-family: 'yg-jalnan';
 }
 
 .refund-td {
 	padding: 5px 20px;
 	border-bottom: 1px solid lightgray;
 	text-align: center;
-	word-break:break-all
+	word-break:break-all;
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 /* .prdt-name {

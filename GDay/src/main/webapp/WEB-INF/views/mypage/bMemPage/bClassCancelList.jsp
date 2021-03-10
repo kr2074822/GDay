@@ -60,9 +60,9 @@
 						<th></th>
 						<th class="hide">상품 번호</th>
 						<th class="hide">반품일</th>
-						<th class="hide">구매자</th>
-						<th class="hide">반품 사유</th>
-						<th class="hide">상태</th>
+						<th class="">구매자</th>
+						<th class="">반품 사유</th>
+						<th class="">상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,9 +90,9 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td class="cancel-td hide">${cancel.memName}</td>
+								<td class="cancel-td">${cancel.memName}</td>
 								<td class="cancel-td prdt-name">${cancel.rfReasonName}</td>
-								<td class="cancel-td hide">${cancel.statusName}</td>
+								<td class="cancel-td">${cancel.statusName}</td>
 
 							</tr>
 						</c:forEach>

@@ -29,6 +29,10 @@
 }
 
 .day-btn {
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #FE929F;
+	font-family: 'TmoneyRoundWindRegular';
 	border: 0;
 	outline: 0;
 }
@@ -39,6 +43,13 @@
 	color: #FFF;
 }
 
+#status-change-btn, #list-search-btn {
+	height : 36px; 
+	font-size : 16px; 
+	background-color: #FE929F;
+	font-family: 'TmoneyRoundWindRegular';
+	border-radius: 10px;
+}
 
 /* 판매 글 목록 */
 #cancel-list {
@@ -52,13 +63,15 @@
 
 #table-head > th{
 	padding: 10px 0;
+	font-family: 'yg-jalnan';
 }
 
 .cancel-td {
 	padding: 5px 20px;
 	border-bottom: 1px solid lightgray;
 	text-align: center;
-	word-break:break-all
+	word-break:break-all;
+	font-family: 'TmoneyRoundWindRegular';
 }
 
 /* .prdt-name {

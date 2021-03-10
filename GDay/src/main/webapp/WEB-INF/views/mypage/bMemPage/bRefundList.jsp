@@ -60,9 +60,9 @@
 						<th></th>
 						<th class="hide">상품 번호</th>
 						<th class="hide">반품일</th>
-						<th class="hide">구매자</th>
-						<th class="hide">반품 사유</th>
-						<th class="hide">상태</th>
+						<th class="">구매자</th>
+						<th class="">반품 사유</th>
+						<th class="">상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,9 +90,9 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td class="refund-td hide">${refund.memName}</td>
+								<td class="refund-td ">${refund.memName}</td>
 								<td class="refund-td prdt-name">${refund.rfReasonName}</td>
-								<td class="refund-td hide">${refund.statusName}</td>
+								<td class="refund-td ">${refund.statusName}</td>
 
 							</tr>
 						</c:forEach>

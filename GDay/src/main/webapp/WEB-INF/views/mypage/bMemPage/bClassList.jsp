@@ -59,7 +59,6 @@
 									</c:if>
 								</c:forEach>
 								
-								<span class="item-no">[${bClass.prdtNo}]</span>		
 								<span class="item-name" title="${bClass.prdtName}">${bClass.prdtName}</span>
 							</div>
 						</c:forEach>					

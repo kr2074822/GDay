@@ -48,7 +48,7 @@
                <option value="200">발송 완료</option>
                <option value="300">구매 확정</option>
            </select> <!-- giftStats : 주문 선물 상태 -->
-           <button type="button" id="status-change-btn">변경</button>
+           <button type="button" class="day-btn" id="status-change-btn">변경</button>
         </div>
 			</div>
 			
@@ -136,7 +136,7 @@
                <option value="status">상태</option>
            </select>
            <input type="text" name="sv" id="searchValue"/>
-           <button type="submit" id="list-search-btn">검색</button>
+           <button type="submit" class="day-btn" id="list-search-btn">검색</button>
         </div>
       </form>			
 			
