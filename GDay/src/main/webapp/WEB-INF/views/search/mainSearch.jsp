@@ -56,7 +56,7 @@ input[name='category'] {
 				<h1>클래스/선물 찾기</h1>
 
 				<div class="">
-					<input type="text" name="sv" id="" placeholder="">
+					<input type="text" name="sv" id="sv" placeholder="">
 					<button type="submit" id="">
 						<i class="fas fa-search"></i>
 					</button>
@@ -231,7 +231,7 @@ input[name='category'] {
 							</c:if>
 						</c:forEach>
 						
-							<c:if test="${gift.cStatus == 'N'}">
+							<c:if test="${gift.gStatus == 'N'}">
 								<div class="sold_out">
 									<h1>마감</h1>
 								</div>

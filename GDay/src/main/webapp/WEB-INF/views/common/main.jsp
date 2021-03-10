@@ -346,30 +346,6 @@ display: none;
                         </a>
                     </div>
                    </c:forEach>
-                              
-                              
-                    <div class="card">
-                        <a href="">
-                            <img src="images/pattern.jpg" alt="">
-                            <div class="gradient"></div>
-                            <h2>목걸이 제목</h2>
-                            <div class="info">
-                                <span>목걸이</span>
-                                <span>10,000</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="">
-                            <img src="images/pattern.jpg" alt="">
-                            <div class="gradient"></div>
-                            <h2>목걸이 제목</h2>
-                            <div class="info">
-                                <span>목걸이</span>
-                                <span>10,000</span>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
