@@ -27,7 +27,6 @@
 	<script src="${contextPath}/resources/summernote/js/summernote-ko-KR.js"></script>
 	<script src="${contextPath}/resources/summernote/js/mySummernote.js"></script>
 
-    <header></header>
 
     <section>
         <div class="magazine_wrapper">
@@ -44,7 +43,7 @@
                             </div>
                             <h1>썸네일을 등록해주세요</h1>
                             <div class="boardImg">
-                                <img src="" alt="">
+                                <img alt="">
                             </div>
                         </div>
                     </div>

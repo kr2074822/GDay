@@ -45,13 +45,15 @@
                         <div>
                             <input type="password" name="memberPwd" required class="pw1">
                             <label for="">비밀번호</label>
-                            <i class="showpw fas fa-eye"></i>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash"></i>
                         </div>
                         <div>
                             <input type="password" name="" required class="pw2">
                             <label for="">비밀번호 확인</label>
                             <span id=""></span>
-                            <i class="showpw fas fa-eye"></i>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash"></i>
                         </div>
                         <div>
                             <input type="text" name="memberName" class="memberName" required>
@@ -104,13 +106,15 @@
                         <div>
                             <input type="password" name="memberPwd" required class="pw3">
                             <label for="">비밀번호</label>
-                            <i class="showpw fas fa-eye"></i>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash"></i>
                         </div>
                         <div>
                             <input type="password" name="" required class="pw4">
                             <label for="">비밀번호 확인</label>
                             <span id=""></span>
-                            <i class="showpw fas fa-eye"></i>
+                            <i class="showpw show fas fa-eye see"></i>
+                            <i class="showpw none fas fa-eye-slash"></i>
                         </div>
                         <div>
                             <input type="text" name="memberName" class="memName" required>
@@ -130,7 +134,7 @@
                             <label for="">업체명</label>
                         </div>
                         <div>
-                            <input type="file" class="postcodify_details license" name="image" id="limg" required>
+                            <input type="file" class="postcodify_details license" name="image" id="limg">
                             <label for="">사업자등록증</label>
                         </div>
                         <div>
@@ -206,14 +210,22 @@
 		}
 
         /* 비밀번호 표시 */
-        $(".showpw").on('click', function(){
-            $(this).toggleClass("fa-eye-slash");
-            if($(this).hasClass("fa-eye-slash")){
-                $(this).parent().children().first().attr('type', 'text');
-            }else{
-                $(this).parent().children().first().attr('type', 'password');
-            }
-        });
+        $(".show").on('click', function(){
+            console.log($(this).next())
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'password');
+            $(this).next().css("display",'inline-block');
+        })
+        $(".none").on('click', function(){
+            console.log($(".show"))
+            $(this).css("display",'none');
+            $(this).parent().children().first().attr('type', 'text');
+            $(this).prev().css("display",'inline-block');
+        })
+        
+        
+        
+        
         
         /* 이메일 중복 검사 */
         $(".emailCheck").on('click', function() {

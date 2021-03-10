@@ -78,6 +78,10 @@ body{
     cursor: pointer;
 }
 
+.container .content form div .show{
+	display: none;
+}
+
 
 .container .content button{
     display: inline-block;
