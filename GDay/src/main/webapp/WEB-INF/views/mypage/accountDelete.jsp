@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 	
 	<!--  -->
-	<link rel="stylesheet" href="${contextPath}/resources/css/mypage/accountDelete.css"> <!-- 같은 클래스 공유 -->
+	<link rel="stylesheet" href="${contextPath}/resources/css/mypage/accountDelete.css?ver=1.1"> <!-- 같은 클래스 공유 -->
 
 <title>Insert title here</title>
 
@@ -41,7 +41,7 @@
 			
 			<div class="account_del">
 				<div class="title">
-					<h1>회원 탈퇴${loginMember.memberGrade }</h1>
+					<h1>회원 탈퇴</h1>
 				</div>
 				<div class="insert_info">
 					<div>

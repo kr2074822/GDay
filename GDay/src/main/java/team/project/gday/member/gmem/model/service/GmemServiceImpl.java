@@ -31,6 +31,7 @@ public class GmemServiceImpl implements GmemService {
 	
 	@Autowired
 	private GmemDAO dao;
+	
 
 	//pInfo 생성service 구현
 	@Override
@@ -262,7 +263,6 @@ public class GmemServiceImpl implements GmemService {
 				
 			}
 			
-			
 			return result;
 		}
 
@@ -281,6 +281,37 @@ public class GmemServiceImpl implements GmemService {
 			String ext = originFileName.substring(originFileName.lastIndexOf("."));
 			
 			return date + str + ext;
+		}
+
+		
+		//비밀번호 구현
+		@Transactional(rollbackFor = Exception.class)
+		@Override
+		public int updatePwd(Map<String, Object> map) {
+			
+			int result = 0;
+			
+			//1. 현재 비밀번호가 일치하는지 확인(본인 확인)
+			//bcrypt 암호화 → DB에서 비밀번호를 가져와 입력받은 현재 비밀번호와 같은지 확인(matches)
+			String savePwd = dao.selectPwd((int)map.get("memberNo"));
+
+			if(savePwd != null) {
+				
+				//matches(평문 상태 비번(입력받은 비번), 암호화된 비번(DB 비번))
+				if(enc.matches((String)map.get("presentPwd"), savePwd)) {
+					
+					//2. 입력받은 비밀번호와 DB의 비밀번호 일치 시 newPwd 업데이트 처리
+					//(1) 새 비밀번호 암호화
+					String encPwd = enc.encode((String)map.get("newPwd"));
+					
+					//(2) 암호화된 비밀번호를 다시 map에 세팅
+					map.put("newPwd", encPwd);
+					
+					//(3) 비밀번호 수정 DAO ㅈ호출
+					result = dao.updatePwd(map);
+				} 
+			}
+			return result;
 		}
 
 

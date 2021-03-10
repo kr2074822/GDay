@@ -292,7 +292,7 @@ public class BmemController {
 	//비즈니스 비밀번호 변경 이동
 	@RequestMapping("bMemPwdUpdateForm")
 	public String bMemPwdUpdateForm() {
-		return "mypage/bMemPage/bMemUpdatePwd";
+		return "mypage/memPwdUpdate";
 	}
 	
 	//비즈니스 회원 탈퇴 이동

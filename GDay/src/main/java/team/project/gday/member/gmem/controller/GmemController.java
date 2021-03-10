@@ -540,8 +540,8 @@ public class GmemController {
 	
 	// =================================== 회원 탈퇴 =====================================
 	
-	//비즈니스 회원 탈퇴 이동
-		@RequestMapping("bMemSessionUpdate")
+	//일반 회원 탈퇴 이동
+		@RequestMapping("gMemSessionUpdate")
 		public String bMemSessionUpdate() {
 			return "mypage/accountDelete";
 		}
@@ -568,7 +568,58 @@ public class GmemController {
 	}
 	
 	
+	//일반회원 비번 변경 이동
+	@RequestMapping("gMempwdForm")
+	public String gMemPwdForm() {
+		return "mypage/memPwdUpdate";
+	}
 	
+	//회원 비번 변경 이동
+	@RequestMapping("updateMemPwd")
+	public String updateMemPwd(@ModelAttribute(name="loginMember", binding=false) Member loginMember,
+								@RequestParam("presentPwd") String presentPwd,
+								@RequestParam("newPw") String newPwd,
+								RedirectAttributes ra) {
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("presentPwd", presentPwd);
+		map.put("newPwd", newPwd);
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		int result = service.updatePwd(map);
+		
+		String url = null;
+		
+		String grade = loginMember.getMemberGrade();
+		
+		if(result > 0) {
+			swalIcon = "success";
+			swalTitle = "비밀번호 변경 성공!";
+
+			switch(grade) {
+			case "U" : 
+			case "B" : url = "../bMember/bMemUpdate/" + loginMember.getMemberNo(); break;
+			case "G" : url = "../gMember/updateInfo"; break;
+			}
+
+		} else {
+			swalIcon ="error";
+			swalTitle = "비밀번호 수정 실패";
+
+			switch(grade) {
+			case "U" : 
+			case "B" : url = "../bMember/bMemPwdUpdateForm"; break;
+			case "G" : url = "../gMember/gMempwdForm"; break;
+			}
+			
+		}
+		
+		ra.addFlashAttribute("swalIcon", swalIcon);
+		ra.addFlashAttribute("swalTitle", swalTitle);
+		
+		return "redirect:" + url;
+	}
+ 	
 	
 	
 	

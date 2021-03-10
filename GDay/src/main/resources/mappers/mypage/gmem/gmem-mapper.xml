@@ -331,6 +331,17 @@
 		DELETE FROM PROFILE_IMG WHERE MEM_NO = #{memberNo}
 	</delete>
 	
+	
+	<!-- 비밀번호 가져오기 -->
+	<select id="selectPwd" parameterType="_int" resultType="string">
+		SELECT MEM_PW FROM MEMBER WHERE MEM_NO = #{memberNo}
+	</select>
+	
+	<!-- 비밀번호 업데이트 -->
+	<update id="updatePwd" parameterType="map">
+		UPDATE MEMBER SET MEM_PW = #{newPwd} WHERE MEM_NO = #{memberNo}
+	</update>
+	
 </mapper>
 
 
