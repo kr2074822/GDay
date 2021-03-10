@@ -332,6 +332,9 @@ $(function(){
 			console.log(validateCheck.memberNick + "nick");
 		});
     
+    
+    
+    
 });//ready 끝
     
 

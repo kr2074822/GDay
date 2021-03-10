@@ -128,7 +128,7 @@ function selectReviewList(cp){
 					var reviewCard = $("<div>").addClass('review-card');
 
 					var reviewDt = $("<div>").addClass("review-date");
-					var dateText1 = $("<span>").addClass("date-text").text("리뷰 작성일");
+					var dateText1 = $("<span>").addClass("date-text").text("후기 작성일");
 					var dateText2 = $("<span>").text(review.createDate);
 					
 					reviewDt.append(dateText1).append(dateText2);

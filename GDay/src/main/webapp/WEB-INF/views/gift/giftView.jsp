@@ -324,69 +324,23 @@
 				    		you: "${member.memberNo}",
 				    		
 				    	},
-				    	success: (result) => {
+				    	success: (result) =>{
 				    		console.log("성공")
 				    		Swal.fire(
 							  '문의가 전송되었습니다',
 							  ' ',
 							  'success'
-							)
+								);
 				    	},
-				    	error: () => {
+				    	error: (result) =>{
 				    		console.log("실패")
-				    		
 				    	}
 				    	
 				    });
 		    		
 		    	})
 	
-		    	
-		    
 	    });
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
 	    
 	    
 	    
@@ -435,9 +389,6 @@
 	    
 	    
 	    
-	    
-	    
-	    
  /* ======================== 장바구니 버튼 클릭 시 ======================== */
 	     $(".cart").on("click", function() {
 	    	 var prdtNo = ${gift.prdtNo};
@@ -470,6 +421,11 @@
 	   			
 	    	 
 	     });
-    </script>
+ 
+ 
+</script>
+
+
+
 </body>
 </html>
