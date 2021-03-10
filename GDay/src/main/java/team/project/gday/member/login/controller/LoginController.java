@@ -164,8 +164,9 @@ public class LoginController {
 			
 			if(loginMember.getMemberGrade().equals("B")) {
 				url = "common/bMain";
+			}else if(loginMember.getMemberGrade().equals("A")){
+				url = "admin/adminMember";
 			}else {
-				
 				url ="redirect:/";
 			}
 			
@@ -176,7 +177,6 @@ public class LoginController {
 		}else {
 			url = "login/login";
 		}
-		
 		
 		return  url;
 		

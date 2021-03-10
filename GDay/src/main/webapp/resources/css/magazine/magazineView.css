@@ -54,3 +54,7 @@ section .magazine_wrapper .magazine_content{
     padding: 50px 0;
     min-height: 600px;
 }
+
+section .magazine_wrapper .magazine_content > img{
+	width: 100%;
+}

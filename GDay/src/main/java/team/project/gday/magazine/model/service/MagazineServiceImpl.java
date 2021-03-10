@@ -381,4 +381,15 @@ public class MagazineServiceImpl implements MagazineService{
 		return result;
 	}
 
+	// 메인 매거진
+	@Override
+	public List<Magazine> selectMagazine3() {
+		return dao.selectMagazine3();
+	}
+
+	@Override
+	public List<MagazineImg> selectThumbnail2(List<Magazine> mList) {
+		return dao.selectThumbnail2(mList);
+	}
+
 }

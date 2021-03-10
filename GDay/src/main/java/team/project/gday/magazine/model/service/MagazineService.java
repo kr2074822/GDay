@@ -49,5 +49,16 @@ public interface MagazineService {
 
 	int updateMagazine(Map<String, Object> map, List<MultipartFile> images, String savePath);
 
+	/** 메인페이지 매거진
+	 * @return
+	 */
+	List<Magazine> selectMagazine3();
+
+	/** 메인페이지 매거진 썸네일
+	 * @param mList
+	 * @return
+	 */
+	List<MagazineImg> selectThumbnail2(List<Magazine> mList);
+
 	
 }
