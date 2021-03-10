@@ -31,7 +31,6 @@
 						<thead>
 							<tr>
 								<th>신고 번호</th>
-
 								<th>게시글 타입</th>
 								<th>게시글 번호</th>
 								<th>신고 타입</th>
@@ -54,9 +53,9 @@
 		                    	<c:forEach var="report" items="${rsList}">
 									<tr>
 										<td>${report.reportNo}</td>
-										<td>${report.reportType}</td>
+										<td class="pType">${report.parentType}</td>
 										<td>${report.parentNo}</td>
-										<td>${report.parentType}</td>
+										<td class="repType">${report.reportType}</td>
 										<td>${report.memberNo}</td>
 										<td>${report.reportTarget}</td>
 										<td>${report.reportCount}</td>
@@ -164,15 +163,31 @@
 				}
 			});
 		});
-		
-		/* 게시글 상세보기 */
-/* 		$("#list-table td").on("click", function(){
-			var boardNo = $(this).parent().children().eq(0).text();
-							
-			var boardViewURL = "../${pInfo.boardType}/" + boardNo;
-							
-			location.href = "${contextPath}/admin/memberCustomerView"; 
-		}); */
+
+		// 신고받은 게시물 타입 명 
+		(function(){
+			$(".pType").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "G" : $(item).text("선물"); break;
+				case "C" : $(item).text("클래스"); break;
+				}
+			});
+		})();		
+
+		// 신고받은 타입 명 
+		(function(){
+			$(".repType").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "F" : $(item).text("허위광고"); break;
+				case "D" : $(item).text("사기"); break;
+				case "C" : $(item).text("욕설"); break;
+				}
+			});
+		})();		
 	</script>	
 </body>
 </html>

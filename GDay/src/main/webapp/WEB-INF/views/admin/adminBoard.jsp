@@ -66,8 +66,8 @@ td{
 		                    	<c:forEach var="product" items="${pList}">
 									<tr>
 										<td>${product.prdtNo}</td>
-										<td>${product.prdtType}</td>
-										<td>${product.prdtName}</td>
+										<td class="prType">${product.prdtType}</td>
+										<td class="titleView">${product.prdtName}</td>
 										<td>${product.createDate}</td>
 										<td>${product.modifyDate}</td>
 										<td>${product.prdtStatus}</td>
@@ -177,19 +177,33 @@ td{
 			});
 		});
 		
+		// 전체 체크 중, 한개라도 체크가 풀리면 모든 체크 해제
+		$("input[id=checkMember]").on("click", function(){
+			$("#checkAll").prop("checked", false);
+		});
+		
+		
 		
 		/* 게시글 상세보기 */
-		$("#list-table td").on("click", function(){
+		$(".titleView").on("click", function(){
 			var prdtNo = $(this).parent().children().eq(0).text();
 			console.log("123aAD")
 			var type = "../${product.prdtType}/" + prdtNo;
+			var url = "";
 			
-			<c:if test="${product.prdtType == C}">
+			if($(this).prev().text() == '클래스'){
+				url = 'gClass';
+			}else if($(this).prev().text() == '선물'){
+				url = 'gift';
+			}
+			/* <c:if test="${product.prdtType == C}">
 				window.location.href="${contextPath}/gClass/"+prdtNo;
 			</c:if>
 			<c:if test="${product.prdtType == G}">
 				window.location.href="${contextPath}/gift/"+prdtNo;
-			</c:if>
+			</c:if> */
+			
+			window.location.href="${contextPath}/"+ url + "/" +prdtNo;
 		});
 		 
 		
@@ -236,7 +250,19 @@ td{
 					return;
 				}
 			}
-		});		
+		});	
+		
+		// 가입 수단 명 변경
+		(function(){
+			$(".prType").each(function(index, item){
+				var type = $(item).text();
+				
+				switch(type){
+				case "G" : $(item).text("선물"); break;
+				case "C" : $(item).text("클래스"); break;
+				}
+			});
+		})();		
 	</script>	
 </body>
 </html>
