@@ -260,63 +260,11 @@
                     </div>
                 </div>
 
-                <div class="review_wrapper">
-                    <h1>상품 후기</h1>
-                    <div class="bar">
-                        <div class="info">
-                            <span>별점</span>
-                        </div>
-                        <div class="progress_line"><span style="width: 70%;">3.5</span></div>
-                    </div>
-                  
-                    <!-- 
-                    <div class="review_editor">
-                        <div class="write_form">
-                            <form action="">
-                                <textarea name="" id="" cols="30" rows="7"></textarea>
-                                <img src="" alt="">
-                                <input type="file">
-                                <button type="button">입력</button>
-                            </form>
-                        </div>
-                    </div>
- -->
-                 
-                    <div class="review">
-                        <div class="item">
-                            <div class="rank">
-                                <span>별점 <span>5</span></span>
-                            </div>
-                            <div class="rev_content">
-                                <img src="" alt="">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                </p>
-                            </div>
-                            <div class="writer">
-                                <span>김누구</span>
-                                <span>작성날짜</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="rank">
-                                <span>별점 <span>5</span></span>
-                            </div>
-                            <div class="rev_content">
-                                <img src="" alt="">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                </p>
-                            </div>
-                            <div class="writer">
-                                <span>김누구</span>
-                                <span>작성날짜</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					<div id="review" class="review_wrapper">
+             
+             <jsp:include page="../review/reviewView.jsp"></jsp:include>
+             
+          </div>
                 <c:url var="updateUrl" value="${gclass.prdtNo}/update"/>
                 <c:url var="pauseUrl" value="${gclass.prdtNo}/pause"/>
           	<c:if test="${(loginMember != null) && (member.memberEmail == loginMember.memberEmail)}">
