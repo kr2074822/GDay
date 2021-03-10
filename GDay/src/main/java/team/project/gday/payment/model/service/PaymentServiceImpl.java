@@ -16,13 +16,13 @@ public class PaymentServiceImpl implements PaymentService{
 	@Autowired
 	private PaymentDAO dao;
 	
-	// 결제창 주문목록 리스트 Service 구현
+	// 장바구니에서 결제창 주문목록 리스트 Service 구현
 	@Override
 	public List<PaymentInfo> orderList(Map<String, Object> map) {
 		return dao.orderList(map);
 	}
 
-	// 결제창 주문목록 썸네일 리스트 Service 구현
+	// 장바구니에서 결제창 주문목록 썸네일 리스트 Service 구현
 	@Override
 	public List<Attachment> bOrderThumbnailList(List<PaymentInfo> olList) {
 		return dao.bOrderThumbnailList(olList);
@@ -32,6 +32,12 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public int insertOrderInfo(Map<String, Object> map) {
 		return dao.insertOrderInfo(map);
+	}
+
+	// 상품 하나만 일 시 썸네일 가져오기 Service 구현
+	@Override
+	public List<Attachment> oneThumbnail(int prdtNo) {
+		return dao.oneThumbnail(prdtNo);
 	}
 
 }

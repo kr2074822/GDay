@@ -29,23 +29,22 @@
             <th class="goods-header-th2">가격</th>
             <th class="goods-header-th3">수량</th>
          </tr>
-	         <c:forEach var="paymentItem" items="${olList}" varStatus="vs">
+         	<c:if test="${item != null }">         	      	
 		         <tr id="goods-list" class="items">
 		            <td class="goods-list img-box">
-	         			<c:forEach items="${thList}" var="th">
-							<c:if test="${th.prdtNo == paymentItem.prdtNo}">								
-								<img src="${contextPath}${th.filePath}/${th.fileName}">										
-							</c:if>
+	         			<c:forEach items="${tList}" var="th">
+							<img src="${contextPath}${th.filePath}/${th.fileName}">										
 						</c:forEach> 
 		            </td>         
-		            <td class="goods-list prdt-name"  style="vertical-align: middle;">${paymentItem.prdtName}</td>
-		            <td class="goods-list prdt-price"  style="vertical-align: middle;">${paymentItem.prdtPrice}</td>
-		            <td class="goods-list cart-amount"  style="vertical-align: middle;">${paymentItem.cartAmount}</td>
-		         </tr>         
-	         </c:forEach>
+		            <td class="goods-list prdt-name"  style="vertical-align: middle;">${item.prdtName}</td>
+		            <td class="goods-list prdt-price"  style="vertical-align: middle;">${item.prdtPrice}</td>
+		            <td class="goods-list cart-amount"  style="vertical-align: middle;">${item.prdtAmount}</td>
+		         </tr>   
+	         </c:if>      
       </table>
       
-      <c:remove var="oList" scope="session"/>
+      <c:remove var="item" scope="session"/>
+      <c:remove var="tList" scope="session"/>
       
       <br>
       
