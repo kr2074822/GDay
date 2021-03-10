@@ -72,7 +72,7 @@
                         <!-- <p>총 <span>123</span>개</p> -->
                         <div class="price">
                             <span>총 상품금액</span>
-                            <span class="sum" style="font-size: 30px;">${gclass.prdtPrice}</span>
+                            <span class="sum" style="font-size: 30px;"><fmt:formatNumber value="${gclass.prdtPrice}"/>원</span>
                         </div>
     
                         <div class="option_btn">
@@ -91,10 +91,10 @@
             <div class="gift_title">
                 <div id="fnMove1" class="pointCursor"><a>상품 설명</a></div>
                 <div id="fnMove2" class="pointCursor"><a>상품 후기</a></div>
-                <div id="fnMove3" class="pointCursor"><a>배송 교환 반품</a></div>
+                <div id="fnMove3" class="pointCursor"><a>수강 취소 정보</a></div>
             </div>
             <div class="describe">
-                <h1>판매자 정보</h1>
+                <h1>강사 정보</h1>
                 <div class="report">
                     <a href='javascript:;' onclick="window.open('${contextPath}/admin/reportForm/${gclass.prdtNo}', '', 'width=500, height=500, top=200, left=100, scrollbars=no'); return false;">
                         <i class="fas fa-siren-on"></i>
@@ -105,9 +105,13 @@
                         <tr>
                             <th colspan="2"><span>${member.memberNick}</span></th>
                         </tr>
-                        <tr>
+							<%--  		<tr>
                             <td>이름</td>
                             <td>${member.memberName}</td>
+                        </tr> --%>
+                        <tr>
+                            <td>상호명</td>
+                            <td id="memberNick">${member.memberNick}</td>
                         </tr>
                         <tr>
                             <td>전화번호</td>
@@ -120,10 +124,6 @@
                         <tr>
                             <td>이메일</td>
                             <td>${member.memberEmail}</td>
-                        </tr>
-                        <tr>
-                            <td>상호명</td>
-                            <td id="memberNick">${member.memberNick}</td>
                         </tr>
                     </table>
                 </div>
@@ -223,38 +223,36 @@
                 </div>
 
                 <div class="refund">
-                    <h1>반품 / 교환정보</h1>
+                    <h1>수강 취소 정보</h1>
                     <div class="table_wrapper">
                         <table>
                             <tr>
                                 <th colspan="4">
-                                    <h2>G-Day 반품/교환 안내</h2>
-                                    <p>반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비, 반품지 주소등을 협의하신 후 반품상품을 발송해 주시기 바랍니다.</p>
+                                    <h2>G-Day 수강 취소 안내</h2>
+                                    <p>수강 취소 시 먼저 강사와 연락하셔서 취소 사유 등을 협의하신 후 취소 요청해 주시기 바랍니다.</p>
                                 </th>
                             </tr>
-                            <tr>
+<!--                             <tr>
                                 <td>판매자 지정댁배사</td>
                                 <td colspan="3">우체국택배</td>
     
+                            </tr> -->
+                            <tr>
+                                <td>취소 수수료</td>
+                                <td colspan="3">없음</td>
                             </tr>
                             <tr>
-                                <td>반품배송비</td>
-                                <td>무료</td>
-                                <td>교환배송비</td>
-                                <td>무료</td>
+                                <td>수강 취소 가능 기간</td>
+                                <td colspan="3">개강 1일 전까지 가능</td>
                             </tr>
                             <tr>
-                                <td>보내실 곳</td>
-                                <td colspan="3">서울특별시 중구 신당동 어딘가</td>
+                                <td>개강 후 취소</td>
+                                <td colspan="3">클래스 폐강 등의 강사 측 문제, 천재지변 등의 사유만 가능</td>
                             </tr>
-                            <tr>
-                                <td>반품/교환 사유에 <br>따른요청 가능 시간</td>
-                                <td colspan="3">구매자 단순 변심은 상품 수령 후 7일 이내</td>
-                            </tr>
-                            <tr>
+                        <!--<tr>
                                 <td>반품/교환 불가능 사유</td>
                                 <td colspan="3">-</td>
-                            </tr>
+                            </tr> -->
                             
                         </table>
                     </div>
