@@ -155,7 +155,7 @@ input[name='category'] {
 				<span>${pInfo.listCount}</span>개 상품
 			</h2>
 			<p>
-				<span class="order" id="Popularity">인기순</span> | <span class="order" id="Newest">최신순</span>
+				<span class="order" id="Newest"><strong>최신순</strong></span> | <span class="order" id="Popularity">인기순</span>
 			</p>
 		</div>
 		<!-- 검색결과 상품이 없을 때 / 상품이 없을 때 -->
