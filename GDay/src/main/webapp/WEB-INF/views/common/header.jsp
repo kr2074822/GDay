@@ -53,6 +53,17 @@
 					
 				</div>		  
 			</div> -->
+			
+		<c:choose>								
+			<c:when test="${!empty loginMember}">
+				<c:url var="calendarUrl" value="/calendar/calendarMain"/>
+			</c:when>
+			<c:when test="${empty loginMember}">
+				<c:set var="calendarUrl" value="javascript:cantgoCalendar()"/>
+			</c:when>
+		</c:choose>
+									
+			
 		
 			<div id="header-logo">
 				<a href="${contextPath}/">
@@ -65,7 +76,7 @@
 				<li class="header-li header-login"><a href="${contextPath}/login/loginView">로그인</a></li>			
 				<li class="header-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
 				<li class="header-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
-				<li class="header-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
+				<li class="header-li"><a href="${calendarUrl}">마이캘린더</a></li>
 				<li class="header-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 			</ul>
 			
@@ -85,7 +96,7 @@
 									<li class="media-li"><a href="#">로그인</a></li>
 									<li class="media-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
 									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
-									<li class="media-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
+									<li class="media-li"><a href="${calendarUrl}">마이캘린더</a></li>
 									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>		
 								</ul>		
 							</div>
@@ -164,7 +175,7 @@
 								<ul id="media-menu">	
 									<li class="media-li"><a href="${contextPath}/gift/list">선물찾기</a></li>
 									<li class="media-li"><a href="${contextPath}/gClass/list">클래스찾기</a></li>
-									<li class="media-li"><a href="${contextPath}/calendar/calendarMain">마이캘린더</a></li>
+									<li class="media-li"><a href="${calendarUrl}">마이캘린더</a></li>
 									<li class="media-li"><a href="${contextPath}/magazine/list">매거진</a></li>
 									<li class="media-li"><a href="${mypageUrl}">마이페이지</a></li>
 									<li class="media-li"><a href="${contextPath}/message/message">쪽지</a></li>
@@ -317,6 +328,13 @@
           toggleMenu.classList.toggle('active')
 
       }
+      
+      
+      //로그인 안됐을 때 캘린더 막기(임시)
+      function cantgoCalendar(){
+    	  swal.fire({icon:"warning", title:"로그인 후 이용 가능합니다"});
+      }
+      
       
 
   </script>
