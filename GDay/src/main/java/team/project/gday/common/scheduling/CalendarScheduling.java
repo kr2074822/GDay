@@ -59,7 +59,6 @@ public class CalendarScheduling {
 	
 	//문자 발송비를 아끼기 위해 스케줄링은 잠시 주석처리 ^_<
 	//매일 9시에 기념일 보내기
-	//@Scheduled(fixedRate=300000)//5분마다 확인 : 임시 확인용
 	//@Scheduled(cron="0 0 9 * * *") //매일 오전 10시에 발송 0 0 10 * * *
 /*	public void sendGdayMsg() {
 		
