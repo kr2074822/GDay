@@ -158,7 +158,7 @@
         var memberName = $("#member-name").val();
         var prdtName = $(".prdt-name").text();
         var memberEmail = $("#email").val();
-        var memberPhone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4);
+/*         var memberPhone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4); */
         var postCode = $("#post").val();
     	var memberAddress = $("#address1").val() + "," + $("#address2").val();    	
     	
@@ -176,7 +176,7 @@
              amount : 100,
              buyer_email : memberEmail,
              buyer_name : memberName,
-             buyer_tel : memberPhone,
+             buyer_tel : phone,
              buyer_addr : memberAddress,
              buyer_postcode : postCode,
              m_redirect_url : 'https://www.myservice.com/payments/complete/mobile'
