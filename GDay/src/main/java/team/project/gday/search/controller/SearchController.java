@@ -41,6 +41,7 @@ public class SearchController {
 		
 		//2. (클래스 찾기 + 10개만 보여주기) 검색 조건이 포함된 선물 목록 조회
 		List<GClass> gCList = service.selectClassSearchList(search); 
+		System.out.println("gCList: " + gCList);
 		List<Attachment> thList = new ArrayList<>();
 		List<ProductStar> selectStarList = new ArrayList<>();
 		

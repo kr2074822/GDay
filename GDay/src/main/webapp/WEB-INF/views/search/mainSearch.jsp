@@ -185,7 +185,7 @@ input[name='category'] {
 							</c:if>
 						</c:forEach>
 						
-							<c:if test="${gclass.cStatus == 'N'}">
+							<c:if test="${gClass.cStatus == 'N'}">
 								<div class="sold_out">
 									<h1>마감</h1>
 								</div>
@@ -195,6 +195,7 @@ input[name='category'] {
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
+									<span>${gClass.cStartDate} ~ ${gClass.cEndDate}</span><br>
 									<span><fmt:formatNumber value="${gClass.prdtPrice}"/>원</span>
 								</c:if>
 							</c:forEach>
