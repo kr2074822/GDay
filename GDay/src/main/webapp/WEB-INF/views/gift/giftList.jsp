@@ -194,63 +194,102 @@ input[name='category'] {
 		</c:if>
 	</section>
 	
-	<div class="pagination">
+<div class="pagination">
+		<div class="my-4">
+			<ul class="pagination">
+				
+				<%-- 주소 조합 작업 --%>
+				<c:choose>
+						<%-- 검색이 된 경우 --%>
+					<c:when test="${!empty search}">
+						<%-- 선택된 카테고리를 하나의 쿼리스트링으로 조합 --%>
+						<c:forEach items="${search.category}" var="c">
+							<c:set var="category" value="${category}category=${c}&"/>
+							<c:forEach items="${search.hashNo}" var="t">
+								<c:set var="hashNo" value="${hashNo}hashNo=${t}&" />
+							</c:forEach>
+						</c:forEach>
+						<c:set var="searchStr" value="${category}${hashNo}"/>
+						<c:url var="pageUrl" value="search?${searchStr}"/>
+						
 
-		<c:url var="pageUrl" value="list?" />
-
-		<!-- 화살표에 들어갈 주소를 변수로 생성 -->
-		<c:set var="firstPage" value="${pageUrl}cp=1" />
-		<c:set var="lastPage" value="${pageUrl}cp=${pInfo.maxPage}" />
-
-		<%-- EL을 이용한 숫자 연산의 단점 : 연산이 자료형에 영향을 받지 않는다--%>
-		<%-- 
-					<fmt:parseNumber>   : 숫자 형태를 지정하여 변수 선언 
-					integerOnly="true"  : 정수로만 숫자 표현 (소수점 버림)--%>
-
-
-		<fmt:parseNumber var="c1" value="${(pInfo.currentPage - 1) / 10 }" integerOnly="true" />
-		<fmt:parseNumber var="prev" value="${ c1 * 10 }" integerOnly="true" />
-		<c:set var="prevPage" value="${pageUrl}cp=${prev}" />
-
-		<fmt:parseNumber var="c2" value="${(pInfo.currentPage + 9) / 10 }" integerOnly="true" />
-		<fmt:parseNumber var="next" value="${ c2 * 10 + 1 }" integerOnly="true" />
-		<c:set var="nextPage" value="${pageUrl}cp=${next}" />
-
-		<c:if test="${pInfo.currentPage > pInfo.pageSize}">
-			<li>
-				<!-- 첫 페이지로 이동(<<) --> <a class="page-link" href="${firstPage}">&lt;&lt;</a>
-			</li>
-
-			<li>
-				<!-- 이전 페이지로 이동 (<) --> <a class="page-link" href="${prevPage}">&lt;</a>
-			</li>
-		</c:if>
-
-
-		<!-- 페이지 목록 -->
-		<c:forEach var="page" begin="${pInfo.startPage}" end="${pInfo.endPage}">
-			<c:choose>
-				<c:when test="${pInfo.currentPage == page }">
-					<li><a class="page-link">${page}</a></li>
-				</c:when>
-
+						
+						<%-- 검색된 내용이 있다면 --%>
+						<c:if test="${!empty search.sv}">
+							<c:set var="searchStr" value="${category}${hashNo}&sv=${search.sv}"/>
+							<c:url var="pageUrl" value="${searchStr}"/>
+						</c:if>
+					</c:when>
+				
 				<c:otherwise>
-					<li><a class="page-link" href="${pageUrl}cp=${page}">${page}</a></li>
+							<c:url var="pageUrl" value="list?"/>
+								<!-- 목록으로 버튼에 사용할 URL 저장 변수 선언 -->
 				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+				</c:choose>
+				
+				
+				<!-- 화살표에 들어갈 주소를 변수로 생성 -->
+				<c:set var="firstPage" value="${pageUrl}cp=1"/>
+				<c:set var="lastPage" value="${pageUrl}cp=${pInfo.maxPage}"/>
+				
+				<%-- EL을 이용한 숫자 연산의 단점 : 연산이 자료형에 영향을 받지 않는다--%>
+				<%-- 
+					<fmt:parseNumber>   : 숫자 형태를 지정하여 변수 선언 
+					integerOnly="true"  : 정수로만 숫자 표현 (소수점 버림)
+				--%>
+				
+				<fmt:parseNumber var="c1" value="${(pInfo.currentPage - 1) / 10 }"  integerOnly="true" />
+				<fmt:parseNumber var="prev" value="${ c1 * 10 }"  integerOnly="true" />
+				<c:set var="prevPage" value="${pageUrl}cp=${prev}" />
+				
+				
+				<fmt:parseNumber var="c2" value="${(pInfo.currentPage + 9) / 10 }" integerOnly="true" />
+				<fmt:parseNumber var="next" value="${ c2 * 10 + 1 }" integerOnly="true" />
+				<c:set var="nextPage" value="${pageUrl}cp=${next}" />
+				
 
-	<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
-	<c:if test="${next <= pInfo.maxPage}">
-		<li>
-			<!-- 다음 페이지로 이동 (>) --> <a class="page-link" href="${nextPage}">&gt;</a>
-		</li>
 
-		<li>
-			<!-- 마지막 페이지로 이동(>>) --> <a class="page-link" href="${lastPage}">&gt;&gt;</a>
-		</li>
-	</c:if>
-</div>    
+				<c:if test="${pInfo.currentPage > pInfo.pageSize}">
+					<li> <!-- 첫 페이지로 이동(<<) -->
+						<a class="page-link" href="${firstPage}">&lt;&lt;</a>
+					</li>
+					
+					<li> <!-- 이전 페이지로 이동 (<) -->
+						<a class="page-link" href="${prevPage}">&lt;</a>
+					</li>
+				</c:if>
+
+				<!-- 페이지 목록 -->
+				<c:forEach var="page" begin="${pInfo.startPage}" end="${pInfo.endPage}" >
+					<c:choose>
+						<c:when test="${pInfo.currentPage == page }">
+							<li>
+								<a class="page-link">${page}</a>
+							</li>
+						</c:when>
+					
+						<c:otherwise>
+							<li>	
+								<a class="page-link" href="${pageUrl}cp=${page}">${page}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					
+		
+				<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
+				<c:if test="${next <= pInfo.maxPage}">
+					<li> <!-- 다음 페이지로 이동 (>) -->
+						<a class="page-link" href="${nextPage}">&gt;</a>
+					</li>
+					
+					<li> <!-- 마지막 페이지로 이동(>>) -->
+						<a class="page-link" href="${lastPage}">&gt;&gt;</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+</div>
 
     <jsp:include page="../common/footer.jsp"/>
 	
