@@ -117,7 +117,7 @@ function selectReplyList(){
 				replyListArea.html(""); // 기존 정보 초기화
 				
 				// 댓글 출력할 li요소 생성
-				var li = "<li>"+"<p style='font-weight: bold';>관리자</p>" + "<p> "+customer.curContent+"</p> 작성일자: "+customer.replyCreateDate+" </li>"
+				var li = "<br><li>"+"<p style='font-weight: bold';>관리자</p><br>" +"<p style='font-size: 12px'> 작성일자: "+customer.replyCreateDate+ "</p><br> <p> "+ customer.curContent+" </li>"
 					
 					
 			    // 댓글 영역 화면에 배치
