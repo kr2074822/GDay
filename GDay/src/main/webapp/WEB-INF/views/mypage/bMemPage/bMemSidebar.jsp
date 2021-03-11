@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비즈니스 회원 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.4"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.5"/>
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -46,22 +46,22 @@
                     </a>
 
                     <ul class="sub-menu">
-                        <li><a href="${contextPath}/bMember/bSellList">
+                        <li class="act"><a href="${contextPath}/bMember/bSellList">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">판매글</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bOrderList">
+                        <li class="act"><a href="${contextPath}/bMember/bOrderList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">주문조회</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bRefundList">
+                        <li class="act"><a href="${contextPath}/bMember/bRefundList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">반품 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bCancelList">
+                        <li class="act"><a href="${contextPath}/bMember/bCancelList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">주문 취소 조회</span>
                             </a>
@@ -76,17 +76,17 @@
                     </a>
 
                     <ul class="sub-menu">
-                        <li><a href="${contextPath}/bMember/bClassList">
+                        <li class="act"><a href="${contextPath}/bMember/bClassList">
                             <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                             <span class="submenu-text">내 클래스</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bEnrolmentList">
+                        <li class="act"><a href="${contextPath}/bMember/bEnrolmentList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">수강 신청 조회</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/bMember/bClassCancelList">
+                        <li class="act"><a href="${contextPath}/bMember/bClassCancelList">
                             <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                             <span class="submenu-text">수강 취소 조회</span>
                             </a>
@@ -94,15 +94,15 @@
                     </ul>
 								</li>
 								
-                <li><a href="${contextPath}/bMember/bMemUpdate/${loginMember.memberNo}">
+                <li class="act"><a href="${contextPath}/bMember/bMemUpdate/${loginMember.memberNo}">
                     <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                     <span class="menu-text">내 정보</span>
                     </a></li>
-                <li><a href="${contextPath}/bMember/bMemPwdUpdateForm">
+                <li class="act"><a href="${contextPath}/bMember/bMemPwdUpdateForm">
                     <span class="menu-icon"><i class="fas fa-user-shield" style="font-size : 20px"></i></span>
                     <span class="menu-text">비밀번호 변경</span>
                     </a></li>
-                <li><a href="${contextPath}/bMember/bMemSessionUpdate">
+                <li class="act"><a href="${contextPath}/bMember/bMemSessionUpdate">
                     <span class="menu-icon"><i class="fas fa-sad-tear"></i></span>
                     <span class="menu-text">회원 탈퇴</span>
                     </a></li>

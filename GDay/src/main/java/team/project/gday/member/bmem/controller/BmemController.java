@@ -37,7 +37,7 @@ import team.project.gday.member.model.vo.ProfileImg;
 
 
 @Controller
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember", "picture"})
 @RequestMapping("/bMember/*")
 public class BmemController {
 
@@ -224,7 +224,7 @@ public class BmemController {
 									HttpServletRequest request,	SessionStatus status,
 									RedirectAttributes ra, Model model) {
 		//System.out.println(updateMember);
-		//System.out.println(profile);
+		System.out.println(profile);
 		//System.out.println("profileFlag: " + profileFlag);
 		
 			
@@ -248,7 +248,7 @@ public class BmemController {
 				//status.setComplete();
 			} 
 			model.addAttribute("picture", picture);
-			
+			System.out.println("picture : " + picture );
 			System.out.println("newLogin : "+ newLoginMember);
 			//로그인 새로 올리기
 			model.addAttribute("loginMember", newLoginMember);

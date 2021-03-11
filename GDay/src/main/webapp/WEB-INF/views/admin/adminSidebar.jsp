@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 사이드바</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminSidebar.css?ver=1.0"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/admin/adminSidebar.css?ver=1.1"/>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">    
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -34,17 +34,17 @@
                     </a>
 
                     <ul class="sub-menu">
-                        <li><a href="${contextPath}/admin/adminMember">
+                        <li class="act"><a href="${contextPath}/admin/adminMember">
                             <span class="submenu-icon"><i class="fas fa-users"></i></span>
                             <span class="submenu-text">전체회원 보기</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/admin/adminBMemSub">
+                        <li class="act"><a href="${contextPath}/admin/adminBMemSub">
                             <span class="submenu-icon"><i class="far fa-id-card"></i></span>
                             <span class="submenu-text">비즈니스 회원 신청</span>
                             </a>
                         </li>
-                        <li><a href="${contextPath}/admin/adminBlackMem">
+                        <li class="act"><a href="${contextPath}/admin/adminBlackMem">
                             <span class="submenu-icon"><i class="fas fa-user-times"></i></span>
                             <span class="submenu-text">블랙 리스트 회원</span>
                             </a>
@@ -59,12 +59,12 @@
                     </a>
 
 	                    <ul class="sub-menu">
-			                <li><a href="${contextPath}/admin/adminBoard">
+			                <li class="act"><a href="${contextPath}/admin/adminBoard">
 			                    <span class="submenu-icon"><i class="fas fa-book-open"></i></span>
 			                    <span class="submenu-text">전체 게시글 관리</span>
 			                    </a>
 			                </li>
-			                <li><a href="${contextPath}/admin/adminMagazine">
+			                <li class="act"><a href="${contextPath}/admin/adminMagazine">
 			                    <span class="submenu-icon"><i class="fas fa-book-open"></i></span>
 			                    <span class="submenu-text">매거진 관리</span>
 			                    </a>
@@ -72,12 +72,12 @@
 	                    </ul>
 					</li>
 								
-                <li><a href="${contextPath}/admin/adminReportStand">
+                <li class="act"><a href="${contextPath}/admin/adminReportStand">
                     <span class="menu-icon"><i class="fas fa-bomb" style="font-size : 20px"></i></span>
                     <span class="menu-text">신고 게시판</span>
                     </a></li>
               
-                <li><a href="${contextPath}/admin/adminCustomerService">
+                <li class="act"><a href="${contextPath}/admin/adminCustomerService">
                     <span class="menu-icon"><i class="fas fa-question-circle" style="font-size : 20px"></i></span>
                     <span class="menu-text">고객 센터</span>
                     </a></li>

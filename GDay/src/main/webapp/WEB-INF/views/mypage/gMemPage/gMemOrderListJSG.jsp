@@ -41,6 +41,7 @@ $(document).ready(function(){//ready 함수
 function loadNewPage(){
 		
 		listContainer.html("");
+		console.log("리셋");
 		
 		if(cp == undefined || cp <= 0) {
 			cp = 1;//첫 페이지
@@ -50,6 +51,7 @@ function loadNewPage(){
 		for(var i=1; i<=cp; i++){ 
 		//목록, 이전으로 버튼으로 돌아온 경우
 			selectOrderList(i); 
+		 console.log("다시 로딩" + i);
 		}
 
 }

@@ -176,6 +176,7 @@
 	<select id="selectReviewView" parameterType="map" resultMap="review_rm">
 		SELECT * FROM V_REVIEW
 		WHERE PRDT_NO = #{prdtNo}
+		ORDER BY CREATE_DATE DESC
 	</select>
 	
 	<!-- 별점 조회 -->
