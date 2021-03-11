@@ -20,6 +20,7 @@ button:active { outline: none !important;}
     align-items: center;
     margin : 30px auto;
     min-height : 900px;
+    font-family: 'TmoneyRoundWindRegular';
 }
 
 /* 내정보 제목 */
@@ -29,8 +30,8 @@ button:active { outline: none !important;}
 }
 
 #information-title > span { 
-	font : bold 20px/40px "맑은 고딕"; 
-	margin-left : 30px
+	font : 22px/40px "yg-jalnan"; 
+	margin-left : 30px;
 }
 
 
