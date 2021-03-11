@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
     
     <!-- magazine.css -->
-    <link rel="stylesheet" href="${contextPath}/resources/css/search/mainSearch.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/search/mainSearch.css?ver=1.0">
     <title>선물/클래스 찾기</title>
 <style>
 input[name='category'] {
@@ -195,7 +195,7 @@ input[name='category'] {
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gClass.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
-									<span>${gClass.prdtPrice}</span>
+									<span><fmt:formatNumber value="${gClass.prdtPrice}"/>원</span>
 								</c:if>
 							</c:forEach>
 						</a>
@@ -240,7 +240,7 @@ input[name='category'] {
 							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gift.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
-									<span>${gift.prdtPrice}</span>
+									<span><fmt:formatNumber value="${gift.prdtPrice}"/>원</span>
 								</c:if>
 							</c:forEach>
 						</a>

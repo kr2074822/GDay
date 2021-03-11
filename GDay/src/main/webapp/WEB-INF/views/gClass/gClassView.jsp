@@ -45,7 +45,7 @@
                         <div class="title">
                             <div>
                                 <h1>${gclass.prdtName}</h1>
-                                <span>${gclass.prdtPrice}원 / ${gclass.cCount}회 수업</span><br>
+                                <span><fmt:formatNumber value="${gclass.prdtPrice}"/>원 / ${gclass.cCount}회 수업</span><br>
                                 <span>${gclass.cStartDate} ~ ${gclass.cEndDate}</span><br>
                                 <span>전체 정원 <b>${gclass.cCount}</b>명 중 <b>${gclass.cNowCount}</b>명이 수업을 신청했어요.</span>
                             </div>

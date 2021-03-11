@@ -18,11 +18,13 @@ section.search{
 }
 section.search .search_wrapper{
     width: 100%;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.search .search_wrapper h1{
     text-align: center;
     font-size: 40px;
     margin-bottom: 20px;
+    font-family: 'yg-jalnan';
 }
 section.search .search_wrapper div{
     width: 100%;
@@ -37,6 +39,7 @@ section.search .search_wrapper div input{
     outline: none;
     border: none;
     border-bottom: 2px solid #FE929F;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.search .search_wrapper div button{
     padding: 20px 0 10px;
@@ -60,6 +63,7 @@ section.option .option_wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.option .option_wrapper .item_wrapper{
     width: 100%;
@@ -127,6 +131,7 @@ section.option .option_wrapper .tag_wrapper ul li > input[type="checkbox"]:check
 section.gift{
     width: 80%;
     margin: 200px auto 0;
+    font-family: 'TmoneyRoundWindRegular';
 }
 section.gift.ver2{
     margin: 50px auto 200px;
