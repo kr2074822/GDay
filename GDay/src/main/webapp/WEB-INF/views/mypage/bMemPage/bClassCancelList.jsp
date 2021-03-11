@@ -20,7 +20,7 @@
 		
 		<div id="b-cancel-list-wrapper">
 		
-			<h1>반품 목록 조회</h1>
+			<h1>취소요청 목록 조회</h1>
 			
 			<div id="wrapper-top-area">
 			<!-- 주문 목록 기간 검색 -->
@@ -43,8 +43,8 @@
 		    
 		    <div class="list-search" id="list-search-3 container-form">
            <select name="cancelStatus" id="cancelStatus">
-               <option value="500">반품 요청</option>
-               <option value="700">반품 완료</option>
+               <option value="400">취소 요청</option>
+               <option value="600">취소 완료</option>
            </select> <!-- giftStats : 주문 선물 상태 -->
            <button type="button" id="status-change-btn">변경</button>
         </div>
