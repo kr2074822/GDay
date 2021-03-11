@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
-  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.2"/>
+  <link rel="stylesheet" href="${contextPath}/resources/css/mypage/gmemSidebar.css?ver=1.3"/>
   <!-- icon : font-awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
@@ -36,11 +36,11 @@
                   </a>
 
                   <ul class="sub-menu">
-                      <li><a href="${contextPath}/gMember/orderList/G">
+                      <li class="act"><a href="${contextPath}/gMember/orderList/G">
                           <span class="submenu-icon"><i class="fas fa-gift"></i></span>
                           <span class="submenu-text">선물 리스트</span>
                           </a></li>
-                      <li><a href="${contextPath}/gMember/orderList/C">
+                      <li class="act"><a href="${contextPath}/gMember/orderList/C">
                           <span class="submenu-icon"><i class="fab fa-slideshare"></i></span>
                           <span class="submenu-text">클래스 리스트</span>
                           </a></li>
@@ -50,22 +50,22 @@
                   <span class="menu-icon"><i class="fas fa-heart"></i></span>
                   <span class="menu-text">위시 리스트</span>
                   </a></li> --%>
-              <li><a href="${contextPath}/gMember/myReviews">
+              <li class="act"><a href="${contextPath}/gMember/myReviews">
                   <span class="menu-icon"><i class="fas fa-feather"></i></span>
                   <span class="menu-text">나의 후기</span>
                   </a></li>
-              <li><a href="${contextPath}/gMember/updateInfo">
+              <li class="act"><a href="${contextPath}/gMember/updateInfo">
                   <span class="menu-icon"><i class="fas fa-user-edit" style="font-size : 20px"></i></span>
                   <span class="menu-text">내 정보</span>
                   </a></li>
                   
               <c:if test="${loginMember.memberType != 'K'}">    
-              <li><a href="${contextPath}/gMember/gMempwdForm">
+              <li class="act"><a href="${contextPath}/gMember/gMempwdForm">
                   <span class="menu-icon"><i class="fas fa-user-shield" style="font-size : 20px"></i></span>
                   <span class="menu-text">비밀번호 변경</span>
                   </a></li>
               </c:if>
-              <li><a href="${contextPath}/gMember/gMemSessionUpdate">
+              <li class="act"><a href="${contextPath}/gMember/gMemSessionUpdate">
                   <span class="menu-icon"><i class="fas fa-sad-tear"></i></span>
                   <span class="menu-text">회원 탈퇴</span>
                   </a></li>

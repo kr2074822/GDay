@@ -225,7 +225,10 @@ public class BmemServiceImpl implements BmemService {
 		BmemberInfo bmemInfo = dao.getBmemInfo(memberNo);
 		
 		//스크립팅 사이트 해제 + 개행문자 처리 해제
-		bmemInfo.setBmemIntro(backParameter(bmemInfo.getBmemIntro().replaceAll("<br>", "\n")));
+		String intro = bmemInfo.getBmemIntro();
+		if(intro != null) {
+			bmemInfo.setBmemIntro(backParameter(intro.replaceAll("<br>", "\n")));
+		}
 		
 		return bmemInfo;
 	}
@@ -247,8 +250,10 @@ public class BmemServiceImpl implements BmemService {
 		int memberNo = bmemInfo.getBmemNo();
 		
 		//개행문자 처리
-		bmemInfo.setBmemIntro(replaceParameter(bmemInfo.getBmemIntro().replaceAll("\n", "<br>")));
-		
+		String intro = bmemInfo.getBmemIntro();
+		if(intro != null) {
+			bmemInfo.setBmemIntro(replaceParameter(intro.replaceAll("\n", "<br>")));
+		}
 		//bmember 정보 업데이트
 		result = dao.udpateBmemInfo(bmemInfo);
 		

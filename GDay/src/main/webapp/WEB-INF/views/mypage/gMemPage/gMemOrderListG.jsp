@@ -128,7 +128,7 @@
     </div> <!-- wrapper-box 끝 -->
    </div>
 </div>
-
+<c:set var="returnViewURL" value="${contextPath}/gMember/orderList/G" scope="session"/>
 		
 <script src="${contextPath}/resources/js/mypage/listPeriod.js"></script>
 

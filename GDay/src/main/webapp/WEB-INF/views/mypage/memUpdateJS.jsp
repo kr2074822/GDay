@@ -126,7 +126,7 @@ function recertification(){
 			
 			switch(key){
 			case "bmemShop" : str = "<h2>업체명/강사명은 반드시 작성해주세요</h2>"; break;
-			case "license" : str = "<h2>증명서는 반드시 재업로드해야<br>인증 신청이 가능합니다.</h2>"; break;
+			case "license" : str = "<h2>증명서는 반드시 업로드 혹은 재업로드를 해야<br>인증 신청이 가능합니다.</h2>"; break;
 			}
 			
 			flag = false;
@@ -155,11 +155,11 @@ function recertification(){
 				        $("#license-btn").hide();
 							
 							} else {
-								swal.fire({icon:"error", title:"인증 재신청 실패", confirmButtonColor: "#54b39E"});
+								swal.fire({icon:"error", title:"인증 신청 실패", confirmButtonColor: "#54b39E"});
 							}
 						},
 						error : function(){
-							console.log("인증 재신청 과정에서 오류");
+							console.log("인증 신청 과정에서 오류");
 							$("#b-cancel-btn").trigger("click");//취소 버튼 클릭 효과
 						}
 			    });
@@ -285,7 +285,7 @@ $(function(){
         $("#b-validate-btn").show();
         $("#b-cancel-btn").show();
         $("#b-update-btn").hide();
-        $(".status-text").text("인증 재신청");
+        $(".status-text").text("인증 신청하기");
 
         /* input, textarea, 사진 등록 버튼 활성화 */
         $("#company").prop("readonly", false);

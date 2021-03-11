@@ -89,11 +89,11 @@
     border-right : 4px solid #fafafa !important;
     font-weight: bold;
 }
-.sidebar-menu li:hover {
+.sidebar-menu .act:hover {
     border-right : 4px solid #fafafa;
     background-color :  #ffffff2d;
 }
-.sidebar-menu a:hover {
+.sidebar-menu .act a:hover {
     font-weight: bold;
     /* transition : 0.4s; */
 }

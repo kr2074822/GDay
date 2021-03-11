@@ -114,7 +114,7 @@
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
             
-        <c:if test="${loginMember.memberGrade == 'B'}">    
+        <c:if test="${loginMember.memberGrade == 'B' && licenseImg.lcsStatus == 'Y'}">    
         	<c:set var="status" value="비즈니스 인증 완료"/>
         </c:if>
         <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'N'}">
@@ -122,6 +122,9 @@
         </c:if>  
         <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'R'}">
         	<c:set var="status" value="인증 재신청 필요"/>
+        </c:if>  
+        <c:if test="${empty licenseImg && loginMember.memberGrade == 'U'}">
+        	<c:set var="status" value="인증 신청 필요"/>
         </c:if>  
         <!-- 비즈니스 회원 정보 인증? -->
         <div class="row" id="container-info-form-2">
@@ -153,7 +156,7 @@
                 <div id="license-div">
                 	<div id="license-image"> <!-- 사업자 등록증 배경으로 첨부 -->
                 	</div>
-                	<button type="button" id="license-btn" class="info-btn">재등록</button>
+                	<button type="button" id="license-btn" class="info-btn">등록</button>
                 </div>
             </div>
             <!-- 등록증 업로드 -->

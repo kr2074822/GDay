@@ -155,7 +155,7 @@
         
    </div><!-- list-all -->
 </div>
-
+<c:set var="returnViewURL" value="${contextPath}/gMember/orderList/C" scope="session"/>
 
 <!-- js 파일 -->
 <jsp:include page="gMemOrderListJSC.jsp"/>
