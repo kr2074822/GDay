@@ -130,25 +130,23 @@ public class CalendarServiceImpl implements CalendarService {
 			for(Calendar originalCal : cList){
 				
 				//System.out.println("originalCal: " + originalCal);
-				
 				//공통 : 언제까지? 오늘 기준 40일 후 전까지 계산
-				if(originalCal.getGdayFreq().equals("daily") && originalCal.getGdayInter() == 1 ) {
 				//반복 없음 날짜 계산 필요 없음
 						
-					String realGday = df.format(originalCal.getDtStart());
+				String realGday = df.format(originalCal.getDtStart());
+			
+				if (realGday.equals(today) || realGday.equals(today7) || realGday.equals(today14) || realGday.equals(today30)){
+					
+					if(realGday.equals(today)) originalCal.setGdayNo(0);//알림용 남은 기간을 gdayNo에 저장
+					else if(realGday.equals(today7)) originalCal.setGdayNo(7);//알림용 남은 기간을 gdayNo에 저장
+					else if(realGday.equals(today14)) originalCal.setGdayNo(14); //알림용 남은 기간을 gdayNo에 저장
+					else if(realGday.equals(today30)) originalCal.setGdayNo(30); //알림용 남은 기간을 gdayNo에 저장
+					
+					targetList.add(originalCal);
+					System.out.println("반복 없음 + 첫날 target : " + targetList);
+				}
 				
-					if (realGday.equals(today) || realGday.equals(today7) || realGday.equals(today14) || realGday.equals(today30)){
-						
-						if(realGday.equals(today)) originalCal.setGdayNo(0);//알림용 남은 기간을 gdayNo에 저장
-						else if(realGday.equals(today7)) originalCal.setGdayNo(7);//알림용 남은 기간을 gdayNo에 저장
-						else if(realGday.equals(today14)) originalCal.setGdayNo(14); //알림용 남은 기간을 gdayNo에 저장
-						else if(realGday.equals(today30)) originalCal.setGdayNo(30); //알림용 남은 기간을 gdayNo에 저장
-						
-						targetList.add(originalCal);
-						System.out.println("반복 없음 target : " + targetList);
-					}
-				
-				} else {
+			if(!(originalCal.getGdayFreq().equals("daily") && originalCal.getGdayInter() == 1 )) {
 
 					String startGday = df.format(originalCal.getDtStart());
 					//originalCal의 sql.date startday를 string으로
@@ -164,6 +162,10 @@ public class CalendarServiceImpl implements CalendarService {
 					String freq = originalCal.getGdayFreq();
 					int inter = originalCal.getGdayInter(); //주기
 					
+					System.out.println("realGdayC : " + realGdayC);
+					System.out.println("startGday : " + startGday);
+					
+					
 					while (!(realGdayC.compareTo(standardDt) == 1)) {//realgday util.calendar > util.calendar standardDt(오늘 날짜 +30) 이면 끝남
 						
 						switch (freq){
@@ -171,10 +173,12 @@ public class CalendarServiceImpl implements CalendarService {
 							case "yearly" : realGdayC.add(java.util.Calendar.MONTH, inter); break;
 						}
 						
+						//System.out.println("realGdayC 수정 후 : " + realGdayC);
+						
 						//gday Calendar
 						Calendar target = originalCal;
 						
-						String realGday = df.format(realGdayC.getTime());//현재 계산된 날짜를 realGday 스트링으로 바꿈
+						realGday = df.format(realGdayC.getTime());//현재 계산된 날짜를 realGday 스트링으로 바꿈
 						
 						if (realGday.equals(today) || realGday.equals(today7) || realGday.equals(today14) || realGday.equals(today30)){
 						
