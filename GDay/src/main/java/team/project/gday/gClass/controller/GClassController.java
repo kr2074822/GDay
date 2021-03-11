@@ -249,7 +249,7 @@ public class GClassController {
 				swalIcon = "success";
 				swalTitle = "클래스 정상 마감";
 				swalText = "클래스가 마감되었습니다.";
-				url = "redirect:/" + referer;
+				url = "redirect:/gClass/list";
 			}else {
 				swalIcon = "error";
 				swalTitle = "클래스 마감 중 문제 발생";

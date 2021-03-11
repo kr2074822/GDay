@@ -306,7 +306,7 @@ public class GiftCtrl {
 				swalIcon = "success";
 				swalTitle = "품절 정상 처리";
 				swalText = "상품이 품절되었습니다.";
-				url = "redirect:/" + referer;
+				url = "redirect:/gift/list";
 			}else {
 				swalIcon = "error";
 				swalTitle = "품절 처리 중 문제 발생";
