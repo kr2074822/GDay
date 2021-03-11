@@ -336,7 +336,11 @@ public class GiftCtrl {
 				if(!gList.isEmpty()) {
 					List<Attachment> thList = service.selectThumbnailList(gList);
 					model.addAttribute("thList", thList);
-					System.out.println(thList);
+					
+					//평균 별점 목록 가져오기
+					List<ProductStar> selectStarList = service.selectStarList(gList);
+					
+					model.addAttribute("selectStarList", selectStarList);
 				}
 				
 				System.out.println(pInfo);
