@@ -273,21 +273,34 @@ function selectReviewList(cp){
 
 
 function deleteReview(rvNo){
-	
-	$.ajax({
-		url : "${contextPath}/review/deleteReview/" + rvNo,
-		type : "get",
-		success : function(result){
-			if(result > 0){
-				loadNewPage();
-			} else {
-				swal.fire({icon: "error", title:"후기 삭제 실패!", text: "다시 시도해 주세요."});
-			}
-		},
-		error : function(){
-			console.log("후기 삭제 중 오류 발생");
-		}
-	});
+	  //confirm 확인 후 진행
+	  swal.fire({icon:"question", 
+			title: "해당 후기를 삭제하시겠습니까?",
+			showCancelButton: true,
+			confirmButtonText: "삭제",
+			confirmButtonColor: "#54b39E",
+			cancelButtonText: "취소",
+			cancelButtonColor: "#a9a9a9",
+			reverseButtons: true//버튼 위치 바꾸기
+			}).then((result) => {
+				if(result.isConfirmed){	
+						$.ajax({
+							url : "${contextPath}/review/deleteReview/" + rvNo,
+							type : "get",
+							success : function(result){
+								if(result > 0){
+									swal.fire({icon: "error", title:"후기 삭제 성공!", confirmButtonColor: "#54b39E"});
+									loadNewPage();
+								} else {
+									swal.fire({icon: "error", title:"후기 삭제 실패!", text: "다시 시도해 주세요."});
+								}
+							},
+							error : function(){
+								console.log("후기 삭제 중 오류 발생");
+							}
+						});
+					} 
+		});//confirm 끝
 }
 
 //큰 이미지 보여주기

@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
    <title>내 정보</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemInfoUpdate.css?ver=1.1"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/mypage/bMemInfoUpdate.css?ver=1.2"/>
     
     <!-- icon : font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -113,19 +113,24 @@
 		        </div>
             </form> <!-- 일반 정보 기입 끝 -->
         </div>
-            
-        <c:if test="${loginMember.memberGrade == 'B' && licenseImg.lcsStatus == 'Y'}">    
-        	<c:set var="status" value="비즈니스 인증 완료"/>
-        </c:if>
-        <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'N'}">
-        	<c:set var="status" value="비즈니스 인증 대기"/>
-        </c:if>  
-        <c:if test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'R'}">
-        	<c:set var="status" value="인증 재신청 필요"/>
-        </c:if>  
-        <c:if test="${empty licenseImg && loginMember.memberGrade == 'U'}">
-        	<c:set var="status" value="인증 신청 필요"/>
-        </c:if>  
+        
+        <c:choose>    
+	        <c:when test="${loginMember.memberGrade == 'B' && licenseImg.lcsStatus == 'Y'}">    
+	        	<c:set var="status" value="비즈니스 인증 완료"/>
+	        </c:when>
+	        <c:when test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'N'}">
+	        	<c:set var="status" value="비즈니스 인증 대기"/>
+	        </c:when>  
+	        <c:when test="${loginMember.memberGrade == 'U' && licenseImg.lcsStatus == 'R'}">
+	        	<c:set var="status" value="인증 재신청 필요"/>
+	        </c:when>  
+	        <c:when test="${empty licenseImg && loginMember.memberGrade == 'U'}">
+	        	<c:set var="status" value="인증 신청 필요"/>
+	        </c:when>
+	        <c:otherwise>
+	        	<c:set var="status" value="비즈니스 인증 대기"/>
+	        </c:otherwise>
+        </c:choose>
         <!-- 비즈니스 회원 정보 인증? -->
         <div class="row" id="container-info-form-2">
            <form id="container-form-2" enctype="multipart/form-data">
