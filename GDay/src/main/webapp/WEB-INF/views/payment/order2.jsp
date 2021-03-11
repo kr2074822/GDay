@@ -76,7 +76,7 @@
 					<input type="text" name="post" id="post" class="form-control postcodify_postcode5">
 				</div>
 				<div class="col-md-3 address-info">
-					<button type="button" class="btn btn-success" id="postcodify_search_button">검색</button>
+					<button type="button" class="btn btn-success addr-btn" id="postcodify_search_button">검색</button>
 				</div>
 			</div>
 
@@ -156,7 +156,7 @@
         var memberName = $("#member-name").val();
         var prdtName = $(".prdt-name").text();
         var memberEmail = $("#email").val();
-        var memberPhone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4);
+/*         var memberPhone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4); */
         var postCode = $("#post").val();
     	var memberAddress = $("#address1").val() + "," + $("#address2").val();    	
     	
@@ -174,7 +174,7 @@
              amount : 100,
              buyer_email : memberEmail,
              buyer_name : memberName,
-             buyer_tel : memberPhone,
+             buyer_tel : phone,
              buyer_addr : memberAddress,
              buyer_postcode : postCode,
              m_redirect_url : 'https://www.myservice.com/payments/complete/mobile'
