@@ -277,7 +277,7 @@
 	
 	<!-- 카테고리 검색 조건이 포함된 페이징 처리용 객체 얻어오기 -->
 	<select id="getSearchListCount" parameterType="Search" resultType="_int">
-		SELECT COUNT(*) FROM V_PRODUCT WHERE PRDT_NO IN
+		SELECT COUNT(*) FROM PRODUCT WHERE PRDT_NO IN
 		<foreach collection="category" item="ct" open="(" close=")" separator="INTERSECT">
 			SELECT PRDT_NO FROM PRODUCT
 			JOIN PRODUCT_TAG USING(PRDT_NO)
