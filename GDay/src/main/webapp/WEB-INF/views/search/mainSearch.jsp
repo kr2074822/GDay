@@ -237,7 +237,7 @@ input[name='category'] {
 							</c:if>
 						
 							<h1>${gift.prdtName}</h1> 
-							<c:forEach var="star" items="${selectStarList}" varStatus="vs">
+							<c:forEach var="star" items="${gSelectStarList}" varStatus="vs">
 								<c:if test="${star.prdtNo == gift.prdtNo}">
 									<p><i class="fas fa-star"></i>${star.rvStarAvg}</p>
 									<span><fmt:formatNumber value="${gift.prdtPrice}"/>원</span>
