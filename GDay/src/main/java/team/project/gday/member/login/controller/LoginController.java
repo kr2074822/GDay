@@ -163,9 +163,9 @@ public class LoginController {
 			response.addCookie(loginSessionId);
 			
 			if(loginMember.getMemberGrade().equals("B")) {
-				url = "common/bMain";
+				url = "redirect:/common/bMain";
 			}else if(loginMember.getMemberGrade().equals("A")){
-				url = "admin/adminMember";
+				url = "redirect:/admin/adminMember";
 			}else {
 				url ="redirect:/";
 			}
