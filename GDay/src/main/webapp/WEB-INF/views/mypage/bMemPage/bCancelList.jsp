@@ -187,7 +187,7 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-							
+					
 				
 						<%-- 다음 페이지가 마지막 페이지 이하인 경우 --%>
 						<c:if test="${next <= pInfo.maxPage}">

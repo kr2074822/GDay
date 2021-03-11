@@ -208,10 +208,19 @@ public class PaymentController {
 		memberName = URLDecoder.decode(memberName, "UTF-8");
 		memberAddress = URLDecoder.decode(memberAddress, "UTF-8");
 		
-		int start = merchant_uid.indexOf("merchant_uid");
-		int end = merchant_uid.indexOf("memberName");
+		System.out.println(merchant_uid);
+		
+		int start = merchant_uid.indexOf("merchant_uid=");
+		int end = merchant_uid.indexOf("&memberName");
 		
 		String importKey = merchant_uid.substring(start,end);
+		
+		System.out.println(importKey);
+
+		importKey.replaceAll("merchant_uid=", "");
+		
+		memberPhone.replaceAll("-","");
+		System.out.println(memberPhone);	
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNo", loginMember.getMemberNo());
