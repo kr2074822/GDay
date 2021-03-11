@@ -279,6 +279,11 @@ public class GClassController {
 				if(!gCList.isEmpty()) {
 					List<Attachment> thList = service.selectThumbnailList(gCList);
 					model.addAttribute("thList", thList);
+					
+					//평균 별점 목록 가져오기
+					List<ProductStar> selectStarList = service.selectStarList(gCList);
+					
+					model.addAttribute("selectStarList", selectStarList);
 				}
 				
 				model.addAttribute("gCList", gCList);
