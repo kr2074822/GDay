@@ -132,7 +132,7 @@ function loadFullCalendar(events, setDate){
 	  var calendarEl = document.getElementById('calendar');
 	  calendar = new FullCalendar.Calendar(calendarEl, {
 	      //themeSystem: 'bootstrap',
-	      //aspectRatio: 1.5, 비율
+	      aspectRatio: 1.5, //비율
 	      height : '95%',//달력형 스크롤바 X
 
 	      dayHeaderClassNames: 'dayBox',//캘린더 요일 요소에 클래스 추가(css) 
