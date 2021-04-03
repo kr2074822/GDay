@@ -20,7 +20,6 @@ import com.google.gson.JsonObject;
 
 import team.project.gday.calendar.model.vo.Calendar;
 
-
 public class SendSMSbyN {
 	
 	private String hostNameUrl = "https://sens.apigw.ntruss.com";

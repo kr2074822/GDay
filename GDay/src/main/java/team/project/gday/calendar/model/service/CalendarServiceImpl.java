@@ -146,15 +146,15 @@ public class CalendarServiceImpl implements CalendarService {
 					System.out.println("반복 없음 + 첫날 target : " + targetList);
 				}
 				
-			if(!(originalCal.getGdayFreq().equals("daily") && originalCal.getGdayInter() == 1 )) {
+				if(!(originalCal.getGdayFreq().equals("daily") && originalCal.getGdayInter() == 1 )) {
 
-					String startGday = df.format(originalCal.getDtStart());
+					//String startGday = df.format(originalCal.getDtStart());
 					//originalCal의 sql.date startday를 string으로
 
 					java.util.Calendar realGdayC = java.util.Calendar.getInstance();//util의 calendar
 					
 					try {
-			            realGdayC.setTime(df.parse(startGday));//String startGday => util.calendar realGdayC
+			            realGdayC.setTime(df.parse(realGday));//String realGday => util.calendar realGdayC
 			        } catch(Exception e) {
 			            e.printStackTrace();
 			        }
@@ -163,20 +163,18 @@ public class CalendarServiceImpl implements CalendarService {
 					int inter = originalCal.getGdayInter(); //주기
 					
 					System.out.println("realGdayC : " + realGdayC);
-					System.out.println("startGday : " + startGday);
+					System.out.println("realGday : " + realGday);
 					
 					
 					while (!(realGdayC.compareTo(standardDt) == 1)) {//realgday util.calendar > util.calendar standardDt(오늘 날짜 +30) 이면 끝남
 						
 						switch (freq){
 							case "daily" : realGdayC.add(java.util.Calendar.DATE, inter); break;
-							case "yearly" : realGdayC.add(java.util.Calendar.MONTH, inter); break;
+							case "yearly" : realGdayC.add(java.util.Calendar.YEAR, inter); break;
 						}
 						
-						//System.out.println("realGdayC 수정 후 : " + realGdayC);
-						
 						//gday Calendar
-						Calendar target = originalCal;
+						//Calendar target = originalCal;
 						
 						realGday = df.format(realGdayC.getTime());//현재 계산된 날짜를 realGday 스트링으로 바꿈
 						
@@ -187,11 +185,9 @@ public class CalendarServiceImpl implements CalendarService {
 							else if(realGday.equals(today14)) originalCal.setGdayNo(14); //알림용 남은 기간을 gdayNo에 저장
 							else if(realGday.equals(today30)) originalCal.setGdayNo(30); //알림용 남은 기간을 gdayNo에 저장
 							
-							//target.setGdayTitle(originalCal.getGdayTitle());
-							target.setDtStart(Date.valueOf(realGday));//String realGday-> sql.date로 변경
-							//target.setMemberNick(originalCal.getMemberNick());
-							//target.setMemberPhone(originalCal.getMemberPhone());	
-							targetList.add(target);
+							originalCal.setDtStart(Date.valueOf(realGday));//String realGday-> sql.date로 변경
+							
+							targetList.add(originalCal);
 							System.out.println("반복 있음 target : " + targetList);
 						}
 						//realGday -> util.calendar
