@@ -65,7 +65,7 @@ public class GiftDAO {
 	 * @return
 	 */
 	public int insertAttachmentList(List<Attachment> uploadImages) {
-		return sqlSession.insert("giftMapper.insertAttachmentList");
+		return sqlSession.insert("giftMapper.insertAttachmentList", uploadImages);
 	}
 
 	/** 선물 옵션 색상 추가
